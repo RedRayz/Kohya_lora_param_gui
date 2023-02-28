@@ -228,7 +228,7 @@ namespace Kohya_lora_trainer
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Yu Gothic UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button5.Location = new System.Drawing.Point(829, 625);
+            this.button5.Location = new System.Drawing.Point(829, 629);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(177, 48);
             this.button5.TabIndex = 27;
@@ -486,7 +486,7 @@ namespace Kohya_lora_trainer
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(712, 581);
+            this.label1.Location = new System.Drawing.Point(723, 581);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(193, 25);
             this.label1.TabIndex = 60;
@@ -494,7 +494,7 @@ namespace Kohya_lora_trainer
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(911, 581);
+            this.label8.Location = new System.Drawing.Point(922, 581);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(84, 25);
             this.label8.TabIndex = 61;
