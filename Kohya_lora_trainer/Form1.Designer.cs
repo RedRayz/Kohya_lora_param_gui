@@ -44,16 +44,16 @@ namespace Kohya_lora_trainer
             this.lblRegImgPath = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnAdvanced = new System.Windows.Forms.Button();
+            this.btnStartTraining = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cbxShuffle = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnSavePreset = new System.Windows.Forms.Button();
+            this.btnLoadPreset = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.tbxFileName = new System.Windows.Forms.TextBox();
             this.lblFileName = new System.Windows.Forms.Label();
@@ -69,7 +69,7 @@ namespace Kohya_lora_trainer
             this.nudSaveEpoch = new System.Windows.Forms.NumericUpDown();
             this.nudBatchSize = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblNumSteps = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
@@ -215,25 +215,25 @@ namespace Kohya_lora_trainer
             this.label17.TabIndex = 23;
             this.label17.Text = "エポック数*";
             // 
-            // button4
+            // btnAdvanced
             // 
-            this.button4.Location = new System.Drawing.Point(35, 629);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(210, 48);
-            this.button4.TabIndex = 26;
-            this.button4.Text = "Advanced options";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnAdvanced.Location = new System.Drawing.Point(35, 629);
+            this.btnAdvanced.Name = "btnAdvanced";
+            this.btnAdvanced.Size = new System.Drawing.Size(210, 48);
+            this.btnAdvanced.TabIndex = 26;
+            this.btnAdvanced.Text = "Advanced options";
+            this.btnAdvanced.UseVisualStyleBackColor = true;
+            this.btnAdvanced.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button5
+            // btnStartTraining
             // 
-            this.button5.Font = new System.Drawing.Font("Yu Gothic UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button5.Location = new System.Drawing.Point(829, 629);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(177, 48);
-            this.button5.TabIndex = 27;
-            this.button5.Text = "学習開始";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnStartTraining.Font = new System.Drawing.Font("Yu Gothic UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnStartTraining.Location = new System.Drawing.Point(829, 629);
+            this.btnStartTraining.Name = "btnStartTraining";
+            this.btnStartTraining.Size = new System.Drawing.Size(177, 48);
+            this.btnStartTraining.TabIndex = 27;
+            this.btnStartTraining.Text = "学習開始";
+            this.btnStartTraining.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -273,25 +273,25 @@ namespace Kohya_lora_trainer
             this.label12.TabIndex = 33;
             this.label12.Text = "トークン保持数\r\n0で無効";
             // 
-            // button6
+            // btnSavePreset
             // 
-            this.button6.Enabled = false;
-            this.button6.Location = new System.Drawing.Point(340, 629);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(146, 48);
-            this.button6.TabIndex = 34;
-            this.button6.Text = "プリセットの保存";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnSavePreset.Enabled = false;
+            this.btnSavePreset.Location = new System.Drawing.Point(340, 629);
+            this.btnSavePreset.Name = "btnSavePreset";
+            this.btnSavePreset.Size = new System.Drawing.Size(146, 48);
+            this.btnSavePreset.TabIndex = 34;
+            this.btnSavePreset.Text = "プリセットの保存";
+            this.btnSavePreset.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // btnLoadPreset
             // 
-            this.button7.Enabled = false;
-            this.button7.Location = new System.Drawing.Point(502, 631);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(160, 46);
-            this.button7.TabIndex = 35;
-            this.button7.Text = "プリセットの読込";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnLoadPreset.Enabled = false;
+            this.btnLoadPreset.Location = new System.Drawing.Point(502, 631);
+            this.btnLoadPreset.Name = "btnLoadPreset";
+            this.btnLoadPreset.Size = new System.Drawing.Size(160, 46);
+            this.btnLoadPreset.TabIndex = 35;
+            this.btnLoadPreset.Text = "プリセットの読込";
+            this.btnLoadPreset.UseVisualStyleBackColor = true;
             // 
             // label13
             // 
@@ -492,13 +492,13 @@ namespace Kohya_lora_trainer
             this.label1.TabIndex = 60;
             this.label1.Text = "batch1相当のステップ数:";
             // 
-            // label8
+            // lblNumSteps
             // 
-            this.label8.Location = new System.Drawing.Point(922, 581);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(84, 25);
-            this.label8.TabIndex = 61;
-            this.label8.Text = "16384";
+            this.lblNumSteps.Location = new System.Drawing.Point(922, 581);
+            this.lblNumSteps.Name = "lblNumSteps";
+            this.lblNumSteps.Size = new System.Drawing.Size(84, 25);
+            this.lblNumSteps.TabIndex = 61;
+            this.lblNumSteps.Text = "16384";
             // 
             // numericUpDown1
             // 
@@ -538,7 +538,7 @@ namespace Kohya_lora_trainer
             this.ClientSize = new System.Drawing.Size(1065, 710);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.lblNumSteps);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nudBatchSize);
             this.Controls.Add(this.nudSaveEpoch);
@@ -554,14 +554,14 @@ namespace Kohya_lora_trainer
             this.Controls.Add(this.lblFileName);
             this.Controls.Add(this.tbxFileName);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.btnLoadPreset);
+            this.Controls.Add(this.btnSavePreset);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cbxShuffle);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnStartTraining);
+            this.Controls.Add(this.btnAdvanced);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.lblRegImgPath);
@@ -610,16 +610,16 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Label lblRegImgPath;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnAdvanced;
+        private System.Windows.Forms.Button btnStartTraining;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox cbxShuffle;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolTip toolTip2;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btnSavePreset;
+        private System.Windows.Forms.Button btnLoadPreset;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox tbxFileName;
         private System.Windows.Forms.Label lblFileName;
@@ -635,7 +635,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.NumericUpDown nudSaveEpoch;
         private System.Windows.Forms.NumericUpDown nudBatchSize;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblNumSteps;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label9;
     }
