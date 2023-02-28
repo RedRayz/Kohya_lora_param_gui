@@ -13,7 +13,7 @@ namespace Kohya_lora_trainer {
 
         //Optional
         public static string RegImagePath;
-        public static bool ShuffleCaptions = false, KeepTokens = true;
+        public static bool ShuffleCaptions = false;
         public static int KeepTokenCount = 0, SaveEveryNEpochs = 0;
         public static OptimizerType OptimizerType = OptimizerType.AdamW8bit;
         public static int WarmupSteps = 500;
@@ -21,12 +21,13 @@ namespace Kohya_lora_trainer {
 
         //Advanced
         public static int CpuThreads = 12;
-        public static bool NoBucketUpscaling;
+        public static bool NoBucketUpscaling, UseWarmupInit;
         public static int ClipSkip = 2, Seed = 42;
         public static SavePrecision SavePrecision = SavePrecision.fp16;
         public static SchedulerType SchedulerType = SchedulerType.cosine_with_restarts;
         public static int MinBucketResolution = 320, MaxBucketResolution = 960;
         public static string CaptionFileExtension = ".txt";
+        public static float UnetLR = -1, TextEncoderLR = -1;
     }
 
     public enum OptimizerType {
@@ -36,8 +37,8 @@ namespace Kohya_lora_trainer {
     }
 
     public enum SavePrecision {
-        bf16,
         fp16,
+        bf16,
         fp32
     }
 

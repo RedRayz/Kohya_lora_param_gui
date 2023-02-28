@@ -48,18 +48,20 @@ namespace Kohya_lora_trainer
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.tbxExtension = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.cbxPrecision = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.nudSeed = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.nudMinBucketReso = new System.Windows.Forms.NumericUpDown();
+            this.nudMaxBucketReso = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.cbxScheduler = new System.Windows.Forms.ComboBox();
             this.nudClipSkip = new System.Windows.Forms.NumericUpDown();
+            this.cbxPrecision = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnDiscardAndClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxBucketReso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudClipSkip)).BeginInit();
             this.SuspendLayout();
             // 
@@ -134,6 +136,7 @@ namespace Kohya_lora_trainer
             this.tbrCpuThreads.Size = new System.Drawing.Size(470, 69);
             this.tbrCpuThreads.TabIndex = 9;
             this.tbrCpuThreads.Value = 12;
+            this.tbrCpuThreads.Scroll += new System.EventHandler(this.tbrCpuThreads_Scroll);
             // 
             // label5
             // 
@@ -209,26 +212,14 @@ namespace Kohya_lora_trainer
             this.label9.TabIndex = 20;
             this.label9.Text = "キャプションファイルの\r\n拡張子";
             // 
-            // cbxPrecision
-            // 
-            this.cbxPrecision.AutoSize = true;
-            this.cbxPrecision.Checked = true;
-            this.cbxPrecision.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxPrecision.Location = new System.Drawing.Point(477, 499);
-            this.cbxPrecision.Name = "cbxPrecision";
-            this.cbxPrecision.Size = new System.Drawing.Size(125, 29);
-            this.cbxPrecision.TabIndex = 21;
-            this.cbxPrecision.Text = "fp16で保存";
-            this.cbxPrecision.UseVisualStyleBackColor = true;
-            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(760, 596);
+            this.button1.Location = new System.Drawing.Point(651, 596);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 44);
+            this.button1.Size = new System.Drawing.Size(259, 44);
             this.button1.TabIndex = 22;
-            this.button1.Text = "閉じる";
+            this.button1.Text = "設定を反映して閉じる";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -249,45 +240,45 @@ namespace Kohya_lora_trainer
             0,
             0});
             // 
-            // numericUpDown2
+            // nudMinBucketReso
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(211, 224);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.nudMinBucketReso.Location = new System.Drawing.Point(211, 224);
+            this.nudMinBucketReso.Maximum = new decimal(new int[] {
             1024,
             0,
             0,
             0});
-            this.numericUpDown2.Minimum = new decimal(new int[] {
+            this.nudMinBucketReso.Minimum = new decimal(new int[] {
             32,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(120, 31);
-            this.numericUpDown2.TabIndex = 24;
-            this.numericUpDown2.Value = new decimal(new int[] {
+            this.nudMinBucketReso.Name = "nudMinBucketReso";
+            this.nudMinBucketReso.Size = new System.Drawing.Size(120, 31);
+            this.nudMinBucketReso.TabIndex = 24;
+            this.nudMinBucketReso.Value = new decimal(new int[] {
             320,
             0,
             0,
             0});
             // 
-            // numericUpDown3
+            // nudMaxBucketReso
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(547, 224);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
+            this.nudMaxBucketReso.Location = new System.Drawing.Point(547, 224);
+            this.nudMaxBucketReso.Maximum = new decimal(new int[] {
             2048,
             0,
             0,
             0});
-            this.numericUpDown3.Minimum = new decimal(new int[] {
+            this.nudMaxBucketReso.Minimum = new decimal(new int[] {
             128,
             0,
             0,
             0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(120, 31);
-            this.numericUpDown3.TabIndex = 25;
-            this.numericUpDown3.Value = new decimal(new int[] {
+            this.nudMaxBucketReso.Name = "nudMaxBucketReso";
+            this.nudMaxBucketReso.Size = new System.Drawing.Size(120, 31);
+            this.nudMaxBucketReso.TabIndex = 25;
+            this.nudMaxBucketReso.Value = new decimal(new int[] {
             960,
             0,
             0,
@@ -304,6 +295,7 @@ namespace Kohya_lora_trainer
             // 
             // cbxScheduler
             // 
+            this.cbxScheduler.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxScheduler.FormattingEnabled = true;
             this.cbxScheduler.Items.AddRange(new object[] {
             "cosine_with_restarts",
@@ -316,7 +308,6 @@ namespace Kohya_lora_trainer
             this.cbxScheduler.Name = "cbxScheduler";
             this.cbxScheduler.Size = new System.Drawing.Size(212, 33);
             this.cbxScheduler.TabIndex = 27;
-            this.cbxScheduler.Text = "cosine_with_restarts";
             // 
             // nudClipSkip
             // 
@@ -340,19 +331,54 @@ namespace Kohya_lora_trainer
             0,
             0});
             // 
+            // cbxPrecision
+            // 
+            this.cbxPrecision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxPrecision.FormattingEnabled = true;
+            this.cbxPrecision.Items.AddRange(new object[] {
+            "fp16",
+            "bf16",
+            "float"});
+            this.cbxPrecision.Location = new System.Drawing.Point(546, 499);
+            this.cbxPrecision.Name = "cbxPrecision";
+            this.cbxPrecision.Size = new System.Drawing.Size(121, 33);
+            this.cbxPrecision.TabIndex = 29;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(424, 503);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(117, 25);
+            this.label11.TabIndex = 30;
+            this.label11.Text = "保存時の精度";
+            // 
+            // btnDiscardAndClose
+            // 
+            this.btnDiscardAndClose.Font = new System.Drawing.Font("Yu Gothic UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnDiscardAndClose.Location = new System.Drawing.Point(383, 597);
+            this.btnDiscardAndClose.Name = "btnDiscardAndClose";
+            this.btnDiscardAndClose.Size = new System.Drawing.Size(257, 44);
+            this.btnDiscardAndClose.TabIndex = 31;
+            this.btnDiscardAndClose.Text = "設定を反映せずに閉じる";
+            this.btnDiscardAndClose.UseVisualStyleBackColor = true;
+            this.btnDiscardAndClose.Click += new System.EventHandler(this.btnDiscardAndClose_Click);
+            // 
             // Form_Advanced
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(955, 663);
+            this.Controls.Add(this.btnDiscardAndClose);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.cbxPrecision);
             this.Controls.Add(this.nudClipSkip);
             this.Controls.Add(this.cbxScheduler);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.numericUpDown3);
-            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.nudMaxBucketReso);
+            this.Controls.Add(this.nudMinBucketReso);
             this.Controls.Add(this.nudSeed);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.cbxPrecision);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.tbxExtension);
             this.Controls.Add(this.cbxUseWarmupInit);
@@ -376,10 +402,11 @@ namespace Kohya_lora_trainer
             this.Name = "Form_Advanced";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form_Advanced";
+            this.Load += new System.EventHandler(this.Form_Advanced_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxBucketReso)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudClipSkip)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -406,13 +433,15 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.ToolTip toolTip2;
         private System.Windows.Forms.TextBox tbxExtension;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.CheckBox cbxPrecision;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown nudSeed;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown nudMinBucketReso;
+        private System.Windows.Forms.NumericUpDown nudMaxBucketReso;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cbxScheduler;
         private System.Windows.Forms.NumericUpDown nudClipSkip;
+        private System.Windows.Forms.ComboBox cbxPrecision;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnDiscardAndClose;
     }
 }
