@@ -181,7 +181,7 @@ namespace Kohya_lora_trainer {
 
 
                 if (!File.Exists("../train_network.py")) {
-                    MessageBox.Show("学習用スクリプトが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("学習用スクリプト(train_network.py)が見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
