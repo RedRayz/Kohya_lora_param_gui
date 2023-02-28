@@ -10,19 +10,16 @@ using System.Windows.Forms;
 
 namespace Kohya_lora_trainer
 {
-    public partial class Form1 : Form
+    public partial class Form_Advanced : Form
     {
-        public Form1()
+        public Form_Advanced()
         {
             InitializeComponent();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            Form adv = new Form_Advanced();
-            adv.ShowDialog();
-
-            adv.Dispose();
+            Close();
         }
     }
 }
