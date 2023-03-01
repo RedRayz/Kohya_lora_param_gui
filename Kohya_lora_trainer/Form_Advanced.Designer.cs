@@ -34,8 +34,8 @@ namespace Kohya_lora_trainer
             this.tbxTextEncoLR = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblMinBucketReso = new System.Windows.Forms.Label();
+            this.lblMaxBucketReso = new System.Windows.Forms.Label();
             this.cbxNoUpscale = new System.Windows.Forms.CheckBox();
             this.tbrCpuThreads = new System.Windows.Forms.TrackBar();
             this.label5 = new System.Windows.Forms.Label();
@@ -106,23 +106,23 @@ namespace Kohya_lora_trainer
             this.label2.TabIndex = 3;
             this.label2.Text = "Text encoder LR";
             // 
-            // label3
+            // lblMinBucketReso
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(45, 226);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(163, 25);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "最小バケット解像度*";
+            this.lblMinBucketReso.AutoSize = true;
+            this.lblMinBucketReso.Location = new System.Drawing.Point(45, 226);
+            this.lblMinBucketReso.Name = "lblMinBucketReso";
+            this.lblMinBucketReso.Size = new System.Drawing.Size(163, 25);
+            this.lblMinBucketReso.TabIndex = 4;
+            this.lblMinBucketReso.Text = "最小バケット解像度*";
             // 
-            // label4
+            // lblMaxBucketReso
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(378, 226);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(163, 25);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "最大バケット解像度*";
+            this.lblMaxBucketReso.AutoSize = true;
+            this.lblMaxBucketReso.Location = new System.Drawing.Point(378, 226);
+            this.lblMaxBucketReso.Name = "lblMaxBucketReso";
+            this.lblMaxBucketReso.Size = new System.Drawing.Size(163, 25);
+            this.lblMaxBucketReso.TabIndex = 7;
+            this.lblMaxBucketReso.Text = "最大バケット解像度*";
             // 
             // cbxNoUpscale
             // 
@@ -249,6 +249,11 @@ namespace Kohya_lora_trainer
             // 
             // nudMinBucketReso
             // 
+            this.nudMinBucketReso.Increment = new decimal(new int[] {
+            64,
+            0,
+            0,
+            0});
             this.nudMinBucketReso.Location = new System.Drawing.Point(211, 224);
             this.nudMinBucketReso.Maximum = new decimal(new int[] {
             1024,
@@ -256,7 +261,7 @@ namespace Kohya_lora_trainer
             0,
             0});
             this.nudMinBucketReso.Minimum = new decimal(new int[] {
-            32,
+            64,
             0,
             0,
             0});
@@ -268,9 +273,15 @@ namespace Kohya_lora_trainer
             0,
             0,
             0});
+            this.nudMinBucketReso.ValueChanged += new System.EventHandler(this.nudMinBucketReso_ValueChanged);
             // 
             // nudMaxBucketReso
             // 
+            this.nudMaxBucketReso.Increment = new decimal(new int[] {
+            64,
+            0,
+            0,
+            0});
             this.nudMaxBucketReso.Location = new System.Drawing.Point(547, 224);
             this.nudMaxBucketReso.Maximum = new decimal(new int[] {
             2048,
@@ -290,6 +301,7 @@ namespace Kohya_lora_trainer
             0,
             0,
             0});
+            this.nudMaxBucketReso.ValueChanged += new System.EventHandler(this.nudMaxBucketReso_ValueChanged);
             // 
             // label10
             // 
@@ -463,8 +475,8 @@ namespace Kohya_lora_trainer
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tbrCpuThreads);
             this.Controls.Add(this.cbxNoUpscale);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblMaxBucketReso);
+            this.Controls.Add(this.lblMinBucketReso);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbxTextEncoLR);
@@ -494,8 +506,8 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.TextBox tbxTextEncoLR;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblMinBucketReso;
+        private System.Windows.Forms.Label lblMaxBucketReso;
         private System.Windows.Forms.CheckBox cbxNoUpscale;
         private System.Windows.Forms.TrackBar tbrCpuThreads;
         private System.Windows.Forms.Label label5;

@@ -18,7 +18,7 @@ using System.Xml.Serialization;
 
 namespace Kohya_lora_trainer {
     public partial class Form1 : Form {
-        private bool IsInvalidOutputName, IsInvalidImageFolder = true, IsInvalidRegFolder = false, IsInvalidLR = false;
+        private bool IsInvalidOutputName, IsInvalidImageFolder = true, IsInvalidRegFolder = false, IsInvalidLR = false, IsInvalidResolution;
         private int StepsPerEpoch, TotalSteps, TotalStepsBatch1;
         public static string ScriptPath = string.Empty;
 
@@ -151,6 +151,8 @@ namespace Kohya_lora_trainer {
 
         private void nudResolution_ValueChanged(object sender, EventArgs e) {
             TrainParams.Current.Resolution = (int)nudResolution.Value;
+            IsInvalidResolution = nudResolution.Value % 64 != 0;
+            lblResolution.ForeColor = IsInvalidResolution ? Color.Red : Color.Black;
         }
 
         private void nudBatchSize_ValueChanged(object sender, EventArgs e) {
@@ -204,7 +206,7 @@ namespace Kohya_lora_trainer {
         }
 
         private void btnStartTraining_Click(object sender, EventArgs e) {
-            if(!IsInvalidImageFolder && !IsInvalidRegFolder && !IsInvalidOutputName && !IsInvalidLR) {
+            if(!IsInvalidImageFolder && !IsInvalidRegFolder && !IsInvalidOutputName && !IsInvalidLR && !IsInvalidResolution) {
                 string str = string.IsNullOrEmpty(ScriptPath) ? "..\\" : ScriptPath + "\\";  
 
                 if (!File.Exists(str + "train_network.py")) {
@@ -388,6 +390,8 @@ namespace Kohya_lora_trainer {
             CheckLR();
             //Reso
             nudResolution.Value = TrainParams.Current.Resolution;
+            IsInvalidResolution = TrainParams.Current.Resolution % 64 != 0;
+            lblResolution.ForeColor = IsInvalidResolution ? Color.Red : Color.Black;
             //BatchSize
             nudBatchSize.Value = TrainParams.Current.BatchSize;
             //NetworkDim

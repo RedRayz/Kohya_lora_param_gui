@@ -57,6 +57,16 @@ namespace Kohya_lora_trainer {
                 TrainParams.Current.UnetLR -= 1;
             }
 
+            if(nudMinBucketReso.Value % 64 != 0) {
+                MessageBox.Show("最小バケット解像度の値が間違っています。\n64で割り切れる必要があります。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (nudMaxBucketReso.Value % 64 != 0) {
+                MessageBox.Show("最大バケット解像度の値が間違っています。\n64で割り切れる必要があります。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
 
             TrainParams.Current.CpuThreads = tbrCpuThreads.Value;
             TrainParams.Current.SchedulerType = (SchedulerType)Enum.ToObject(typeof(SchedulerType), cbxScheduler.SelectedIndex);
@@ -91,6 +101,12 @@ namespace Kohya_lora_trainer {
             cbxPrecision.SelectedIndex = (int)TrainParams.Current.SavePrecision;
 
             lblTBoardPath.Text = TrainParams.Current.TensorBoardLogPath;
+
+            bool valid = nudMinBucketReso.Value % 64 == 0;
+            lblMinBucketReso.ForeColor = valid ? Color.Black : Color.Red;
+
+            valid = nudMaxBucketReso.Value % 64 == 0;
+            lblMaxBucketReso.ForeColor = valid ? Color.Black : Color.Red;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e) {
@@ -115,6 +131,16 @@ namespace Kohya_lora_trainer {
         private void btnClearTBoardPath_Click(object sender, EventArgs e) {
             lblTBoardPath.Text = string.Empty;
             TrainParams.Current.TensorBoardLogPath = string.Empty;
+        }
+
+        private void nudMinBucketReso_ValueChanged(object sender, EventArgs e) {
+            bool valid = nudMinBucketReso.Value % 64 == 0;
+            lblMinBucketReso.ForeColor = valid ? Color.Black : Color.Red;
+        }
+
+        private void nudMaxBucketReso_ValueChanged(object sender, EventArgs e) {
+            bool valid = nudMaxBucketReso.Value % 64 == 0;
+            lblMaxBucketReso.ForeColor = valid ? Color.Black : Color.Red;
         }
     }
 }

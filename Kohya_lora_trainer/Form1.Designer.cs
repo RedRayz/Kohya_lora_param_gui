@@ -54,7 +54,7 @@ namespace Kohya_lora_trainer
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.btnSavePreset = new System.Windows.Forms.Button();
             this.btnLoadPreset = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
+            this.lblResolution = new System.Windows.Forms.Label();
             this.tbxFileName = new System.Windows.Forms.TextBox();
             this.lblFileName = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -85,6 +85,7 @@ namespace Kohya_lora_trainer
             this.toolTip4 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip5 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip6 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip7 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -315,14 +316,14 @@ namespace Kohya_lora_trainer
             this.btnLoadPreset.UseVisualStyleBackColor = true;
             this.btnLoadPreset.Click += new System.EventHandler(this.btnLoadPreset_Click);
             // 
-            // label13
+            // lblResolution
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(425, 258);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(74, 25);
-            this.label13.TabIndex = 36;
-            this.label13.Text = "解像度*";
+            this.lblResolution.AutoSize = true;
+            this.lblResolution.Location = new System.Drawing.Point(425, 258);
+            this.lblResolution.Name = "lblResolution";
+            this.lblResolution.Size = new System.Drawing.Size(74, 25);
+            this.lblResolution.TabIndex = 36;
+            this.lblResolution.Text = "解像度*";
             // 
             // tbxFileName
             // 
@@ -445,6 +446,11 @@ namespace Kohya_lora_trainer
             // 
             // nudResolution
             // 
+            this.nudResolution.Increment = new decimal(new int[] {
+            64,
+            0,
+            0,
+            0});
             this.nudResolution.Location = new System.Drawing.Point(505, 256);
             this.nudResolution.Maximum = new decimal(new int[] {
             1024,
@@ -459,6 +465,7 @@ namespace Kohya_lora_trainer
             this.nudResolution.Name = "nudResolution";
             this.nudResolution.Size = new System.Drawing.Size(120, 31);
             this.nudResolution.TabIndex = 54;
+            this.toolTip7.SetToolTip(this.nudResolution, "64で割り切れる必要があります");
             this.nudResolution.Value = new decimal(new int[] {
             512,
             0,
@@ -675,7 +682,7 @@ namespace Kohya_lora_trainer
             this.Controls.Add(this.label16);
             this.Controls.Add(this.lblFileName);
             this.Controls.Add(this.tbxFileName);
-            this.Controls.Add(this.label13);
+            this.Controls.Add(this.lblResolution);
             this.Controls.Add(this.btnLoadPreset);
             this.Controls.Add(this.btnSavePreset);
             this.Controls.Add(this.label12);
@@ -747,7 +754,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.ToolTip toolTip2;
         private System.Windows.Forms.Button btnSavePreset;
         private System.Windows.Forms.Button btnLoadPreset;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblResolution;
         private System.Windows.Forms.TextBox tbxFileName;
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.Label label16;
@@ -778,6 +785,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.ToolTip toolTip5;
         private System.Windows.Forms.ToolTip toolTip4;
         private System.Windows.Forms.ToolTip toolTip6;
+        private System.Windows.Forms.ToolTip toolTip7;
     }
 }
 
