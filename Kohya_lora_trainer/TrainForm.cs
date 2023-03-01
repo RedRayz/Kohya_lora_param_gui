@@ -13,6 +13,7 @@ using System.Windows.Forms;
 namespace Kohya_lora_trainer {
     public partial class TrainForm : Form {
         private Process process;
+        private string TrainArgs;
 
         public TrainForm() {
             InitializeComponent();
@@ -24,16 +25,20 @@ namespace Kohya_lora_trainer {
             btnClose.Enabled = false;
 
             StringBuilder sb = new StringBuilder();
-            sb.Append(@"/c cd ");
-            if (!string.IsNullOrEmpty(Form1.ScriptPath)){
-                sb.Append("/d ").Append(Form1.ScriptPath);
+            StringBuilder sbCmd = new StringBuilder();
+
+            sbCmd.Append(@"/c cd ");
+            if (!string.IsNullOrEmpty(Form1.ScriptPath)) {
+                sbCmd.Append("/d ").Append(Form1.ScriptPath);
             }
             else {
-                sb.Append("..\\");
+                sbCmd.Append("..\\");
             }
 
+            sbCmd.Append(" && .\\venv\\Scripts\\activate && ");
 
-            sb.Append(" && .\\venv\\Scripts\\activate && accelerate launch --num_cpu_threads_per_process ").Append(TrainParams.Current.CpuThreads);
+
+            sb.Append("accelerate launch --num_cpu_threads_per_process ").Append(TrainParams.Current.CpuThreads);
             sb.Append(" train_network.py  --pretrained_model_name_or_path=").Append(TrainParams.Current.ModelPath).Append("  --train_data_dir=")
                 .Append(TrainParams.Current.TrainImagePath).Append("  --output_dir=").Append(TrainParams.Current.OutputPath);
             //Optional(RegImage)
@@ -115,9 +120,13 @@ namespace Kohya_lora_trainer {
                 sb.Append("  --logging_dir=").Append(TrainParams.Current.TensorBoardLogPath);
             }
 
+            TrainArgs = sb.ToString();
+
+            sbCmd.Append(TrainArgs);
+
             ProcessStartInfo ps = new ProcessStartInfo();
             ps.FileName = "cmd";
-            ps.Arguments = sb.ToString();
+            ps.Arguments = sbCmd.ToString();
             process = new Process();
             process.SynchronizingObject = this;
             process.StartInfo = ps;
@@ -156,6 +165,10 @@ namespace Kohya_lora_trainer {
                 process.Dispose();
                 process = null;
             }
+        }
+
+        private void btnCopyCmd_Click(object sender, EventArgs e) {
+            Clipboard.SetText(TrainArgs);
         }
     }
 }

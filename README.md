@@ -15,3 +15,7 @@ https://github.com/kohya-ss/sd-scripts の学習用のパラメータ設定し�
 
 ## 起動方法
 Kohya_lora_trainer.exeをダブルクリックする。ショートカット作ると便利かも?
+
+## 推奨動作環境
+Windows 11(10は不明)
+.NET Framework 4.7.2
