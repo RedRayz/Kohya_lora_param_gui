@@ -62,6 +62,9 @@ namespace Kohya_lora_trainer
             this.label12 = new System.Windows.Forms.Label();
             this.lblTBoardPath = new System.Windows.Forms.Label();
             this.btnClearTBoardPath = new System.Windows.Forms.Button();
+            this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
+            this.cbxAdvancedTrain = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).BeginInit();
@@ -347,6 +350,7 @@ namespace Kohya_lora_trainer
             this.cbxPrecision.Name = "cbxPrecision";
             this.cbxPrecision.Size = new System.Drawing.Size(121, 33);
             this.cbxPrecision.TabIndex = 29;
+            this.toolTip3.SetToolTip(this.cbxPrecision, "fp16にするとファイルサイズを小さくします");
             // 
             // label11
             // 
@@ -406,11 +410,35 @@ namespace Kohya_lora_trainer
             this.btnClearTBoardPath.UseVisualStyleBackColor = true;
             this.btnClearTBoardPath.Click += new System.EventHandler(this.btnClearTBoardPath_Click);
             // 
+            // cbxAdvancedTrain
+            // 
+            this.cbxAdvancedTrain.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxAdvancedTrain.FormattingEnabled = true;
+            this.cbxAdvancedTrain.Items.AddRange(new object[] {
+            "しない",
+            "TextEncoderのみ学習",
+            "UNetのみ学習"});
+            this.cbxAdvancedTrain.Location = new System.Drawing.Point(547, 107);
+            this.cbxAdvancedTrain.Name = "cbxAdvancedTrain";
+            this.cbxAdvancedTrain.Size = new System.Drawing.Size(205, 33);
+            this.cbxAdvancedTrain.TabIndex = 36;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(442, 110);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(99, 25);
+            this.label13.TabIndex = 37;
+            this.label13.Text = "特殊な学習";
+            // 
             // Form_Advanced
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(955, 693);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.cbxAdvancedTrain);
             this.Controls.Add(this.btnClearTBoardPath);
             this.Controls.Add(this.lblTBoardPath);
             this.Controls.Add(this.label12);
@@ -442,6 +470,7 @@ namespace Kohya_lora_trainer
             this.Controls.Add(this.tbxTextEncoLR);
             this.Controls.Add(this.tbxUnetLR);
             this.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -493,5 +522,8 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblTBoardPath;
         private System.Windows.Forms.Button btnClearTBoardPath;
+        private System.Windows.Forms.ToolTip toolTip3;
+        private System.Windows.Forms.ComboBox cbxAdvancedTrain;
+        private System.Windows.Forms.Label label13;
     }
 }

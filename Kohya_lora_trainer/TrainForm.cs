@@ -27,7 +27,6 @@ namespace Kohya_lora_trainer {
             sb.Append(@"/c cd ");
             if (!string.IsNullOrEmpty(Form1.ScriptPath)){
                 sb.Append("/d ").Append(Form1.ScriptPath);
-                Console.WriteLine(sb.ToString());
             }
             else {
                 sb.Append("..\\");
@@ -76,7 +75,7 @@ namespace Kohya_lora_trainer {
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.OutputName)) {
-                sb.Append("--output_name=").Append(TrainParams.Current.OutputName);
+                sb.Append("  --output_name=").Append(TrainParams.Current.OutputName);
             }
 
             //Advanced
@@ -92,6 +91,18 @@ namespace Kohya_lora_trainer {
                 .Append("  --max_bucket_reso=").Append(TrainParams.Current.MaxBucketResolution)
                 .Append("  --caption_extension=").Append(TrainParams.Current.CaptionFileExtension);
 
+            switch (TrainParams.Current.advancedTrainType) {
+                case AdvancedTrainType.TextEncoderOnly:
+                    sb.Append("  --network_train_text_encoder_only");
+                    break;
+                case AdvancedTrainType.UNetOnly:
+                    sb.Append("  --network_train_unet_only");
+                    break;
+                default:
+                    break;
+            }
+
+
             if (TrainParams.Current.TextEncoderLR > 0) {
                 sb.Append("  --text_encoder_lr=").Append(TrainParams.Current.TextEncoderLR.ToString("g"));
             }
@@ -105,7 +116,7 @@ namespace Kohya_lora_trainer {
             }
 
             ProcessStartInfo ps = new ProcessStartInfo();
-            ps.FileName = @"cmd";
+            ps.FileName = "cmd";
             ps.Arguments = sb.ToString();
             process = new Process();
             process.SynchronizingObject = this;

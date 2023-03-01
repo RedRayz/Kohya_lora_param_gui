@@ -61,6 +61,7 @@ namespace Kohya_lora_trainer {
             TrainParams.Current.CpuThreads = tbrCpuThreads.Value;
             TrainParams.Current.SchedulerType = (SchedulerType)Enum.ToObject(typeof(SchedulerType), cbxScheduler.SelectedIndex);
             TrainParams.Current.SavePrecision = (SavePrecision)Enum.ToObject(typeof(SavePrecision), cbxPrecision.SelectedIndex);
+            TrainParams.Current.advancedTrainType = (AdvancedTrainType)Enum.ToObject(typeof(AdvancedTrainType), cbxAdvancedTrain.SelectedIndex);
             TrainParams.Current.MinBucketResolution = (int)nudMinBucketReso.Value;
             TrainParams.Current.MaxBucketResolution = (int)nudMaxBucketReso.Value;
             TrainParams.Current.NoBucketUpscaling = cbxNoUpscale.Checked;
@@ -82,6 +83,7 @@ namespace Kohya_lora_trainer {
             nudMaxBucketReso.Value = TrainParams.Current.MaxBucketResolution;
             cbxNoUpscale.Checked = TrainParams.Current.NoBucketUpscaling;
             cbxUseWarmupInit.Checked = TrainParams.Current.UseWarmupInit;
+            cbxAdvancedTrain.SelectedIndex = (int)TrainParams.Current.advancedTrainType;
 
             nudClipSkip.Value = TrainParams.Current.ClipSkip;
             nudSeed.Value = TrainParams.Current.Seed;

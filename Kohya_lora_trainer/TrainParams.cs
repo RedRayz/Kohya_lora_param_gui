@@ -28,6 +28,7 @@ namespace Kohya_lora_trainer {
         public  int MinBucketResolution = 320, MaxBucketResolution = 960;
         public  string CaptionFileExtension = ".txt";
         public  float UnetLR = -1, TextEncoderLR = -1;
+        public AdvancedTrainType advancedTrainType = AdvancedTrainType.None;
 
         [NonSerialized]
         public static TrainParams Current;
@@ -56,5 +57,11 @@ namespace Kohya_lora_trainer {
         polynomial,
         constant,
         constant_with_warmup
+    }
+
+    public enum AdvancedTrainType {
+        None,
+        TextEncoderOnly,
+        UNetOnly,
     }
 }

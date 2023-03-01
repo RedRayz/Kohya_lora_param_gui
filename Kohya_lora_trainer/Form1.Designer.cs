@@ -82,6 +82,9 @@ namespace Kohya_lora_trainer
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
             this.btnCustomScriptPath = new System.Windows.Forms.Button();
             this.lblScriptPathDesc = new System.Windows.Forms.Label();
+            this.toolTip4 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip5 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip6 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -390,6 +393,7 @@ namespace Kohya_lora_trainer
             this.nudNetworkAlpha.Name = "nudNetworkAlpha";
             this.nudNetworkAlpha.Size = new System.Drawing.Size(120, 31);
             this.nudNetworkAlpha.TabIndex = 51;
+            this.toolTip5.SetToolTip(this.nudNetworkAlpha, "下げるとアンダーフローを抑えますが学習能力が低下します");
             this.nudNetworkAlpha.Value = new decimal(new int[] {
             128,
             0,
@@ -413,6 +417,7 @@ namespace Kohya_lora_trainer
             this.nudNetworkDim.Name = "nudNetworkDim";
             this.nudNetworkDim.Size = new System.Drawing.Size(120, 31);
             this.nudNetworkDim.TabIndex = 52;
+            this.toolTip4.SetToolTip(this.nudNetworkDim, "学習能力、ファイルサイズ、生成速度に影響します");
             this.nudNetworkDim.Value = new decimal(new int[] {
             128,
             0,
@@ -472,6 +477,7 @@ namespace Kohya_lora_trainer
             this.nudKeepTokens.Name = "nudKeepTokens";
             this.nudKeepTokens.Size = new System.Drawing.Size(120, 31);
             this.nudKeepTokens.TabIndex = 55;
+            this.toolTip6.SetToolTip(this.nudKeepTokens, "1トークン=カンマ区切り");
             this.nudKeepTokens.ValueChanged += new System.EventHandler(this.nudKeepTokens_ValueChanged);
             // 
             // nudSaveEpoch
@@ -769,6 +775,9 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.ToolTip toolTip3;
         private System.Windows.Forms.Button btnCustomScriptPath;
         private System.Windows.Forms.Label lblScriptPathDesc;
+        private System.Windows.Forms.ToolTip toolTip5;
+        private System.Windows.Forms.ToolTip toolTip4;
+        private System.Windows.Forms.ToolTip toolTip6;
     }
 }
 
