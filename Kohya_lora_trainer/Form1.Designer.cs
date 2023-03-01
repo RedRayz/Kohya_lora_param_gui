@@ -80,6 +80,8 @@ namespace Kohya_lora_trainer
             this.lblOutputPath = new System.Windows.Forms.Label();
             this.btnOutputPath = new System.Windows.Forms.Button();
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnCustomScriptPath = new System.Windows.Forms.Button();
+            this.lblScriptPathDesc = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -93,7 +95,7 @@ namespace Kohya_lora_trainer
             // lblModelPath
             // 
             this.lblModelPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblModelPath.Location = new System.Drawing.Point(31, 168);
+            this.lblModelPath.Location = new System.Drawing.Point(34, 193);
             this.lblModelPath.Name = "lblModelPath";
             this.lblModelPath.Size = new System.Drawing.Size(318, 52);
             this.lblModelPath.TabIndex = 0;
@@ -101,7 +103,7 @@ namespace Kohya_lora_trainer
             // 
             // btnModel
             // 
-            this.btnModel.Location = new System.Drawing.Point(149, 123);
+            this.btnModel.Location = new System.Drawing.Point(152, 148);
             this.btnModel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnModel.Name = "btnModel";
             this.btnModel.Size = new System.Drawing.Size(166, 46);
@@ -112,7 +114,7 @@ namespace Kohya_lora_trainer
             // 
             // btnImage
             // 
-            this.btnImage.Location = new System.Drawing.Point(503, 122);
+            this.btnImage.Location = new System.Drawing.Point(506, 147);
             this.btnImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnImage.Name = "btnImage";
             this.btnImage.Size = new System.Drawing.Size(166, 46);
@@ -124,7 +126,7 @@ namespace Kohya_lora_trainer
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 134);
+            this.label2.Location = new System.Drawing.Point(31, 159);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 25);
             this.label2.TabIndex = 2;
@@ -133,7 +135,7 @@ namespace Kohya_lora_trainer
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(352, 133);
+            this.label3.Location = new System.Drawing.Point(355, 158);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(145, 25);
             this.label3.TabIndex = 3;
@@ -141,7 +143,7 @@ namespace Kohya_lora_trainer
             // 
             // btnRegImage
             // 
-            this.btnRegImage.Location = new System.Drawing.Point(847, 122);
+            this.btnRegImage.Location = new System.Drawing.Point(850, 147);
             this.btnRegImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRegImage.Name = "btnRegImage";
             this.btnRegImage.Size = new System.Drawing.Size(166, 46);
@@ -153,7 +155,7 @@ namespace Kohya_lora_trainer
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(689, 134);
+            this.label4.Location = new System.Drawing.Point(692, 159);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(155, 25);
             this.label4.TabIndex = 3;
@@ -161,7 +163,7 @@ namespace Kohya_lora_trainer
             // 
             // tbxLR
             // 
-            this.tbxLR.Location = new System.Drawing.Point(149, 228);
+            this.tbxLR.Location = new System.Drawing.Point(152, 253);
             this.tbxLR.Name = "tbxLR";
             this.tbxLR.Size = new System.Drawing.Size(120, 31);
             this.tbxLR.TabIndex = 4;
@@ -173,7 +175,7 @@ namespace Kohya_lora_trainer
             // 
             this.lblLR.AutoSize = true;
             this.lblLR.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblLR.Location = new System.Drawing.Point(22, 231);
+            this.lblLR.Location = new System.Drawing.Point(25, 256);
             this.lblLR.Name = "lblLR";
             this.lblLR.Size = new System.Drawing.Size(121, 25);
             this.lblLR.TabIndex = 5;
@@ -187,7 +189,7 @@ namespace Kohya_lora_trainer
             "AdamW8bit",
             "AdamW",
             "AdaFactor"});
-            this.cbxOptimizer.Location = new System.Drawing.Point(149, 402);
+            this.cbxOptimizer.Location = new System.Drawing.Point(152, 427);
             this.cbxOptimizer.Name = "cbxOptimizer";
             this.cbxOptimizer.Size = new System.Drawing.Size(146, 33);
             this.cbxOptimizer.TabIndex = 6;
@@ -196,7 +198,7 @@ namespace Kohya_lora_trainer
             // lblImagePath
             // 
             this.lblImagePath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblImagePath.Location = new System.Drawing.Point(353, 168);
+            this.lblImagePath.Location = new System.Drawing.Point(356, 193);
             this.lblImagePath.Name = "lblImagePath";
             this.lblImagePath.Size = new System.Drawing.Size(292, 49);
             this.lblImagePath.TabIndex = 12;
@@ -205,7 +207,7 @@ namespace Kohya_lora_trainer
             // lblRegImgPath
             // 
             this.lblRegImgPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblRegImgPath.Location = new System.Drawing.Point(697, 168);
+            this.lblRegImgPath.Location = new System.Drawing.Point(700, 193);
             this.lblRegImgPath.Name = "lblRegImgPath";
             this.lblRegImgPath.Size = new System.Drawing.Size(316, 49);
             this.lblRegImgPath.TabIndex = 13;
@@ -214,7 +216,7 @@ namespace Kohya_lora_trainer
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(32, 406);
+            this.label10.Location = new System.Drawing.Point(35, 431);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(114, 25);
             this.label10.TabIndex = 14;
@@ -223,7 +225,7 @@ namespace Kohya_lora_trainer
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(49, 279);
+            this.label17.Location = new System.Drawing.Point(52, 304);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(93, 25);
             this.label17.TabIndex = 23;
@@ -231,7 +233,7 @@ namespace Kohya_lora_trainer
             // 
             // btnAdvanced
             // 
-            this.btnAdvanced.Location = new System.Drawing.Point(33, 694);
+            this.btnAdvanced.Location = new System.Drawing.Point(36, 719);
             this.btnAdvanced.Name = "btnAdvanced";
             this.btnAdvanced.Size = new System.Drawing.Size(210, 48);
             this.btnAdvanced.TabIndex = 26;
@@ -242,7 +244,7 @@ namespace Kohya_lora_trainer
             // btnStartTraining
             // 
             this.btnStartTraining.Font = new System.Drawing.Font("Yu Gothic UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnStartTraining.Location = new System.Drawing.Point(821, 685);
+            this.btnStartTraining.Location = new System.Drawing.Point(824, 710);
             this.btnStartTraining.Name = "btnStartTraining";
             this.btnStartTraining.Size = new System.Drawing.Size(192, 58);
             this.btnStartTraining.TabIndex = 27;
@@ -272,7 +274,7 @@ namespace Kohya_lora_trainer
             // cbxShuffle
             // 
             this.cbxShuffle.AutoSize = true;
-            this.cbxShuffle.Location = new System.Drawing.Point(83, 341);
+            this.cbxShuffle.Location = new System.Drawing.Point(86, 366);
             this.cbxShuffle.Name = "cbxShuffle";
             this.cbxShuffle.Size = new System.Drawing.Size(194, 29);
             this.cbxShuffle.TabIndex = 30;
@@ -283,7 +285,7 @@ namespace Kohya_lora_trainer
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(379, 339);
+            this.label12.Location = new System.Drawing.Point(382, 364);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(117, 50);
             this.label12.TabIndex = 33;
@@ -291,7 +293,7 @@ namespace Kohya_lora_trainer
             // 
             // btnSavePreset
             // 
-            this.btnSavePreset.Location = new System.Drawing.Point(351, 695);
+            this.btnSavePreset.Location = new System.Drawing.Point(354, 720);
             this.btnSavePreset.Name = "btnSavePreset";
             this.btnSavePreset.Size = new System.Drawing.Size(146, 46);
             this.btnSavePreset.TabIndex = 34;
@@ -302,7 +304,7 @@ namespace Kohya_lora_trainer
             // 
             // btnLoadPreset
             // 
-            this.btnLoadPreset.Location = new System.Drawing.Point(509, 695);
+            this.btnLoadPreset.Location = new System.Drawing.Point(512, 720);
             this.btnLoadPreset.Name = "btnLoadPreset";
             this.btnLoadPreset.Size = new System.Drawing.Size(160, 46);
             this.btnLoadPreset.TabIndex = 35;
@@ -313,7 +315,7 @@ namespace Kohya_lora_trainer
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(422, 233);
+            this.label13.Location = new System.Drawing.Point(425, 258);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(74, 25);
             this.label13.TabIndex = 36;
@@ -321,7 +323,7 @@ namespace Kohya_lora_trainer
             // 
             // tbxFileName
             // 
-            this.tbxFileName.Location = new System.Drawing.Point(149, 485);
+            this.tbxFileName.Location = new System.Drawing.Point(152, 510);
             this.tbxFileName.Name = "tbxFileName";
             this.tbxFileName.Size = new System.Drawing.Size(474, 31);
             this.tbxFileName.TabIndex = 38;
@@ -330,7 +332,7 @@ namespace Kohya_lora_trainer
             // lblFileName
             // 
             this.lblFileName.AutoSize = true;
-            this.lblFileName.Location = new System.Drawing.Point(26, 488);
+            this.lblFileName.Location = new System.Drawing.Point(29, 513);
             this.lblFileName.Name = "lblFileName";
             this.lblFileName.Size = new System.Drawing.Size(117, 25);
             this.lblFileName.TabIndex = 39;
@@ -339,7 +341,7 @@ namespace Kohya_lora_trainer
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(692, 337);
+            this.label16.Location = new System.Drawing.Point(695, 362);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(152, 50);
             this.label16.TabIndex = 42;
@@ -348,7 +350,7 @@ namespace Kohya_lora_trainer
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(739, 235);
+            this.label18.Location = new System.Drawing.Point(742, 260);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(102, 25);
             this.label18.TabIndex = 44;
@@ -357,7 +359,7 @@ namespace Kohya_lora_trainer
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(288, 279);
+            this.label20.Location = new System.Drawing.Point(291, 304);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(205, 50);
             this.label20.TabIndex = 48;
@@ -366,7 +368,7 @@ namespace Kohya_lora_trainer
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(692, 283);
+            this.label21.Location = new System.Drawing.Point(695, 308);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(150, 25);
             this.label21.TabIndex = 50;
@@ -374,7 +376,7 @@ namespace Kohya_lora_trainer
             // 
             // nudNetworkAlpha
             // 
-            this.nudNetworkAlpha.Location = new System.Drawing.Point(847, 279);
+            this.nudNetworkAlpha.Location = new System.Drawing.Point(850, 304);
             this.nudNetworkAlpha.Maximum = new decimal(new int[] {
             512,
             0,
@@ -397,7 +399,7 @@ namespace Kohya_lora_trainer
             // 
             // nudNetworkDim
             // 
-            this.nudNetworkDim.Location = new System.Drawing.Point(503, 279);
+            this.nudNetworkDim.Location = new System.Drawing.Point(506, 304);
             this.nudNetworkDim.Maximum = new decimal(new int[] {
             512,
             0,
@@ -420,7 +422,7 @@ namespace Kohya_lora_trainer
             // 
             // nudEpochs
             // 
-            this.nudEpochs.Location = new System.Drawing.Point(149, 277);
+            this.nudEpochs.Location = new System.Drawing.Point(152, 302);
             this.nudEpochs.Minimum = new decimal(new int[] {
             1,
             0,
@@ -438,7 +440,7 @@ namespace Kohya_lora_trainer
             // 
             // nudResolution
             // 
-            this.nudResolution.Location = new System.Drawing.Point(502, 231);
+            this.nudResolution.Location = new System.Drawing.Point(505, 256);
             this.nudResolution.Maximum = new decimal(new int[] {
             1024,
             0,
@@ -461,7 +463,7 @@ namespace Kohya_lora_trainer
             // 
             // nudKeepTokens
             // 
-            this.nudKeepTokens.Location = new System.Drawing.Point(502, 339);
+            this.nudKeepTokens.Location = new System.Drawing.Point(505, 364);
             this.nudKeepTokens.Maximum = new decimal(new int[] {
             10,
             0,
@@ -474,7 +476,7 @@ namespace Kohya_lora_trainer
             // 
             // nudSaveEpoch
             // 
-            this.nudSaveEpoch.Location = new System.Drawing.Point(847, 337);
+            this.nudSaveEpoch.Location = new System.Drawing.Point(850, 362);
             this.nudSaveEpoch.Maximum = new decimal(new int[] {
             8,
             0,
@@ -487,7 +489,7 @@ namespace Kohya_lora_trainer
             // 
             // nudBatchSize
             // 
-            this.nudBatchSize.Location = new System.Drawing.Point(847, 233);
+            this.nudBatchSize.Location = new System.Drawing.Point(850, 258);
             this.nudBatchSize.Maximum = new decimal(new int[] {
             16,
             0,
@@ -511,7 +513,7 @@ namespace Kohya_lora_trainer
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(810, 599);
+            this.label1.Location = new System.Drawing.Point(813, 624);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(106, 25);
             this.label1.TabIndex = 60;
@@ -520,7 +522,7 @@ namespace Kohya_lora_trainer
             // lblNumSteps
             // 
             this.lblNumSteps.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblNumSteps.Location = new System.Drawing.Point(922, 596);
+            this.lblNumSteps.Location = new System.Drawing.Point(925, 621);
             this.lblNumSteps.Name = "lblNumSteps";
             this.lblNumSteps.Size = new System.Drawing.Size(84, 25);
             this.lblNumSteps.TabIndex = 61;
@@ -528,7 +530,7 @@ namespace Kohya_lora_trainer
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(502, 403);
+            this.numericUpDown1.Location = new System.Drawing.Point(505, 428);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -546,7 +548,7 @@ namespace Kohya_lora_trainer
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(322, 405);
+            this.label9.Location = new System.Drawing.Point(325, 430);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(175, 50);
             this.label9.TabIndex = 63;
@@ -554,7 +556,7 @@ namespace Kohya_lora_trainer
             // 
             // btnClearRegImagePath
             // 
-            this.btnClearRegImagePath.Location = new System.Drawing.Point(847, 80);
+            this.btnClearRegImagePath.Location = new System.Drawing.Point(850, 105);
             this.btnClearRegImagePath.Name = "btnClearRegImagePath";
             this.btnClearRegImagePath.Size = new System.Drawing.Size(166, 35);
             this.btnClearRegImagePath.TabIndex = 64;
@@ -565,7 +567,7 @@ namespace Kohya_lora_trainer
             // lblNumStepsBatch1
             // 
             this.lblNumStepsBatch1.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblNumStepsBatch1.Location = new System.Drawing.Point(922, 634);
+            this.lblNumStepsBatch1.Location = new System.Drawing.Point(925, 659);
             this.lblNumStepsBatch1.Name = "lblNumStepsBatch1";
             this.lblNumStepsBatch1.Size = new System.Drawing.Size(84, 25);
             this.lblNumStepsBatch1.TabIndex = 61;
@@ -574,7 +576,7 @@ namespace Kohya_lora_trainer
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(800, 634);
+            this.label5.Location = new System.Drawing.Point(803, 659);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(116, 25);
             this.label5.TabIndex = 60;
@@ -583,7 +585,7 @@ namespace Kohya_lora_trainer
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(149, 523);
+            this.label8.Location = new System.Drawing.Point(152, 548);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(273, 25);
             this.label8.TabIndex = 65;
@@ -592,7 +594,7 @@ namespace Kohya_lora_trainer
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(717, 485);
+            this.label11.Location = new System.Drawing.Point(720, 510);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(127, 25);
             this.label11.TabIndex = 3;
@@ -601,7 +603,7 @@ namespace Kohya_lora_trainer
             // lblOutputPath
             // 
             this.lblOutputPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblOutputPath.Location = new System.Drawing.Point(697, 523);
+            this.lblOutputPath.Location = new System.Drawing.Point(700, 548);
             this.lblOutputPath.Name = "lblOutputPath";
             this.lblOutputPath.Size = new System.Drawing.Size(316, 49);
             this.lblOutputPath.TabIndex = 13;
@@ -609,7 +611,7 @@ namespace Kohya_lora_trainer
             // 
             // btnOutputPath
             // 
-            this.btnOutputPath.Location = new System.Drawing.Point(847, 476);
+            this.btnOutputPath.Location = new System.Drawing.Point(850, 501);
             this.btnOutputPath.Name = "btnOutputPath";
             this.btnOutputPath.Size = new System.Drawing.Size(159, 44);
             this.btnOutputPath.TabIndex = 66;
@@ -617,11 +619,34 @@ namespace Kohya_lora_trainer
             this.btnOutputPath.UseVisualStyleBackColor = true;
             this.btnOutputPath.Click += new System.EventHandler(this.btnOutputPath_Click);
             // 
+            // btnCustomScriptPath
+            // 
+            this.btnCustomScriptPath.Enabled = false;
+            this.btnCustomScriptPath.Location = new System.Drawing.Point(850, 37);
+            this.btnCustomScriptPath.Name = "btnCustomScriptPath";
+            this.btnCustomScriptPath.Size = new System.Drawing.Size(166, 37);
+            this.btnCustomScriptPath.TabIndex = 67;
+            this.btnCustomScriptPath.Text = "選択";
+            this.btnCustomScriptPath.UseVisualStyleBackColor = true;
+            this.btnCustomScriptPath.Click += new System.EventHandler(this.btnCustomScriptPath_Click);
+            // 
+            // lblScriptPathDesc
+            // 
+            this.lblScriptPathDesc.AutoSize = true;
+            this.lblScriptPathDesc.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lblScriptPathDesc.Location = new System.Drawing.Point(796, 9);
+            this.lblScriptPathDesc.Name = "lblScriptPathDesc";
+            this.lblScriptPathDesc.Size = new System.Drawing.Size(268, 25);
+            this.lblScriptPathDesc.TabIndex = 68;
+            this.lblScriptPathDesc.Text = "sd-scriptsの場所を選択してください";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1065, 765);
+            this.ClientSize = new System.Drawing.Size(1065, 787);
+            this.Controls.Add(this.lblScriptPathDesc);
+            this.Controls.Add(this.btnCustomScriptPath);
             this.Controls.Add(this.btnOutputPath);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnClearRegImagePath);
@@ -742,6 +767,8 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Label lblOutputPath;
         private System.Windows.Forms.Button btnOutputPath;
         private System.Windows.Forms.ToolTip toolTip3;
+        private System.Windows.Forms.Button btnCustomScriptPath;
+        private System.Windows.Forms.Label lblScriptPathDesc;
     }
 }
 

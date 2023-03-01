@@ -20,6 +20,7 @@ namespace Kohya_lora_trainer {
     public partial class Form1 : Form {
         private bool IsInvalidOutputName, IsInvalidImageFolder = true, IsInvalidRegFolder = false, IsInvalidLR = false;
         private int StepsPerEpoch, TotalSteps, TotalStepsBatch1;
+        public static string ScriptPath = string.Empty;
 
         public Form1() {
             InitializeComponent();
@@ -35,6 +36,14 @@ namespace Kohya_lora_trainer {
             cbxOptimizer.SelectedIndex = 0;
             lblNumSteps.Text = "?";
             lblNumStepsBatch1.Text = "?";
+            string str = string.IsNullOrEmpty(ScriptPath) ? "..\\" : ScriptPath + "\\";
+            if (!File.Exists(str + "train_network.py")) {
+                btnCustomScriptPath.Enabled = true;
+            }
+            else {
+                btnCustomScriptPath.Visible = false;
+                lblScriptPathDesc.Visible = false;
+            }
         }
 
         private void button4_Click(object sender, EventArgs e) {
@@ -196,6 +205,14 @@ namespace Kohya_lora_trainer {
 
         private void btnStartTraining_Click(object sender, EventArgs e) {
             if(!IsInvalidImageFolder && !IsInvalidRegFolder && !IsInvalidOutputName && !IsInvalidLR) {
+                string str = string.IsNullOrEmpty(ScriptPath) ? "..\\" : ScriptPath + "\\";  
+
+                if (!File.Exists(str + "train_network.py")) {
+                    MessageBox.Show("train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    btnCustomScriptPath.Enabled = true;
+                    return;
+                }
+
                 if (!File.Exists(TrainParams.Current.ModelPath)) {
                     MessageBox.Show("学習元モデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -255,6 +272,17 @@ namespace Kohya_lora_trainer {
             }
         }
 
+        private void btnCustomScriptPath_Click(object sender, EventArgs e) {
+            CommonOpenFileDialog cof = new CommonOpenFileDialog();
+            cof.Title = "Select SD-Scripts Folder";
+            cof.IsFolderPicker = true;
+            cof.RestoreDirectory = true;
+
+            if (cof.ShowDialog() == CommonFileDialogResult.Ok) {
+                ScriptPath = cof.FileName;
+            }
+        }
+
         private void cbxOptimizer_SelectedIndexChanged(object sender, EventArgs e) {
             TrainParams.Current.OptimizerType = (OptimizerType)Enum.ToObject(typeof(OptimizerType), cbxOptimizer.SelectedIndex);
         }
@@ -278,7 +306,7 @@ namespace Kohya_lora_trainer {
                 lblNumStepsBatch1.Text = "?";
             }
             else {
-                TotalSteps = StepsPerEpoch * TrainParams.Current.Epochs;
+                TotalSteps = StepsPerEpoch * TrainParams.Current.Epochs / TrainParams.Current.BatchSize;
                 TotalStepsBatch1 = TotalSteps * TrainParams.Current.BatchSize;
                 if(!string.IsNullOrEmpty(TrainParams.Current.RegImagePath) ) {
                     TotalSteps *= 2;
@@ -342,8 +370,14 @@ namespace Kohya_lora_trainer {
             lblImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
             //RegImage
             lblRegImgPath.Text = TrainParams.Current.RegImagePath;
-            int num = 0;
-            IsInvalidRegFolder = !ValidateImageFolder(TrainParams.Current.RegImagePath, out num);
+            if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath)) {
+                int num = 0;
+                IsInvalidRegFolder = !ValidateImageFolder(TrainParams.Current.RegImagePath, out num);
+            }
+            else {
+                IsInvalidRegFolder = false;
+            }
+
             lblRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
             //OutputPath
             lblOutputPath.Text = TrainParams.Current.OutputPath;

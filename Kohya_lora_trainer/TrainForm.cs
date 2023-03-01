@@ -24,8 +24,18 @@ namespace Kohya_lora_trainer {
             btnClose.Enabled = false;
 
             StringBuilder sb = new StringBuilder();
-            sb.Append(@"/c cd /d G:\sd-scripts && .\venv\Scripts\activate && accelerate launch --num_cpu_threads_per_process ").Append(TrainParams.Current.CpuThreads)
-                .Append(" train_network.py  --pretrained_model_name_or_path=").Append(TrainParams.Current.ModelPath).Append("  --train_data_dir=")
+            sb.Append(@"/c cd ");
+            if (!string.IsNullOrEmpty(Form1.ScriptPath)){
+                sb.Append("/d ").Append(Form1.ScriptPath);
+                Console.WriteLine(sb.ToString());
+            }
+            else {
+                sb.Append("..\\");
+            }
+
+
+            sb.Append(" && .\\venv\\Scripts\\activate && accelerate launch --num_cpu_threads_per_process ").Append(TrainParams.Current.CpuThreads);
+            sb.Append(" train_network.py  --pretrained_model_name_or_path=").Append(TrainParams.Current.ModelPath).Append("  --train_data_dir=")
                 .Append(TrainParams.Current.TrainImagePath).Append("  --output_dir=").Append(TrainParams.Current.OutputPath);
             //Optional(RegImage)
             if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath)) {
