@@ -90,7 +90,6 @@
             this.Name = "TrainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "学習";
-            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TrainForm_FormClosing);
             this.Load += new System.EventHandler(this.TrainForm_Load);
             this.ResumeLayout(false);
