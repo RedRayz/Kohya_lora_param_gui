@@ -5,34 +5,41 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Kohya_lora_trainer {
-    public static class TrainParams {
+    public  class TrainParams {
         //Required
-        public static string ModelPath, TrainImagePath, OutputPath;
-        public static float LearningRate = 0.0001f;
-        public static int Resolution = 512, BatchSize = 1, Epochs = 5, NetworkDim = 128, NetworkAlpha = 128;
+        public  string ModelPath, TrainImagePath, OutputPath, TensorBoardLogPath;
+        public  float LearningRate = 0.0001f;
+        public  int Resolution = 512, BatchSize = 1, Epochs = 5, NetworkDim = 128, NetworkAlpha = 128;
 
         //Optional
-        public static string RegImagePath;
-        public static bool ShuffleCaptions = false;
-        public static int KeepTokenCount = 0, SaveEveryNEpochs = 0;
-        public static OptimizerType OptimizerType = OptimizerType.AdamW8bit;
-        public static int WarmupSteps = 500;
-        public static string OutputName;
+        public  string RegImagePath;
+        public  bool ShuffleCaptions = false;
+        public  int KeepTokenCount = 0, SaveEveryNEpochs = 0;
+        public  OptimizerType OptimizerType = OptimizerType.AdamW8bit;
+        public  int WarmupSteps = 500;
+        public  string OutputName;
 
         //Advanced
-        public static int CpuThreads = 12;
-        public static bool NoBucketUpscaling, UseWarmupInit;
-        public static int ClipSkip = 2, Seed = 42;
-        public static SavePrecision SavePrecision = SavePrecision.fp16;
-        public static SchedulerType SchedulerType = SchedulerType.cosine_with_restarts;
-        public static int MinBucketResolution = 320, MaxBucketResolution = 960;
-        public static string CaptionFileExtension = ".txt";
-        public static float UnetLR = -1, TextEncoderLR = -1;
+        public  int CpuThreads = 12;
+        public  bool NoBucketUpscaling, UseWarmupInit;
+        public  int ClipSkip = 2, Seed = 42;
+        public  SavePrecision SavePrecision = SavePrecision.fp16;
+        public  SchedulerType SchedulerType = SchedulerType.cosine_with_restarts;
+        public  int MinBucketResolution = 320, MaxBucketResolution = 960;
+        public  string CaptionFileExtension = ".txt";
+        public  float UnetLR = -1, TextEncoderLR = -1;
+
+        [NonSerialized]
+        public static TrainParams Current;
+
+        public TrainParams() {
+            Current = this;
+        }
     }
 
     public enum OptimizerType {
-        AdamW,
         AdamW8bit,
+        AdamW,
         AdaFactor
     }
 

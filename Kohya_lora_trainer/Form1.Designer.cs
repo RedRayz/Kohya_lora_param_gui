@@ -79,6 +79,7 @@ namespace Kohya_lora_trainer
             this.label11 = new System.Windows.Forms.Label();
             this.lblOutputPath = new System.Windows.Forms.Label();
             this.btnOutputPath = new System.Windows.Forms.Button();
+            this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -290,23 +291,24 @@ namespace Kohya_lora_trainer
             // 
             // btnSavePreset
             // 
-            this.btnSavePreset.Enabled = false;
             this.btnSavePreset.Location = new System.Drawing.Point(351, 695);
             this.btnSavePreset.Name = "btnSavePreset";
             this.btnSavePreset.Size = new System.Drawing.Size(146, 46);
             this.btnSavePreset.TabIndex = 34;
             this.btnSavePreset.Text = "プリセットの保存";
+            this.toolTip3.SetToolTip(this.btnSavePreset, "すべての項目を保存します");
             this.btnSavePreset.UseVisualStyleBackColor = true;
+            this.btnSavePreset.Click += new System.EventHandler(this.btnSavePreset_Click);
             // 
             // btnLoadPreset
             // 
-            this.btnLoadPreset.Enabled = false;
             this.btnLoadPreset.Location = new System.Drawing.Point(509, 695);
             this.btnLoadPreset.Name = "btnLoadPreset";
             this.btnLoadPreset.Size = new System.Drawing.Size(160, 46);
             this.btnLoadPreset.TabIndex = 35;
             this.btnLoadPreset.Text = "プリセットの読込";
             this.btnLoadPreset.UseVisualStyleBackColor = true;
+            this.btnLoadPreset.Click += new System.EventHandler(this.btnLoadPreset_Click);
             // 
             // label13
             // 
@@ -673,7 +675,7 @@ namespace Kohya_lora_trainer
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "LoRA Training GUI";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).EndInit();
@@ -739,6 +741,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblOutputPath;
         private System.Windows.Forms.Button btnOutputPath;
+        private System.Windows.Forms.ToolTip toolTip3;
     }
 }
 

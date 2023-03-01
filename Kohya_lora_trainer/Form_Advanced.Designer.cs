@@ -58,6 +58,10 @@ namespace Kohya_lora_trainer
             this.cbxPrecision = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.btnDiscardAndClose = new System.Windows.Forms.Button();
+            this.btnTensorBoardPath = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lblTBoardPath = new System.Windows.Forms.Label();
+            this.btnClearTBoardPath = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).BeginInit();
@@ -159,7 +163,7 @@ namespace Kohya_lora_trainer
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(127, 432);
+            this.label7.Location = new System.Drawing.Point(127, 502);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(81, 25);
             this.label7.TabIndex = 13;
@@ -168,7 +172,7 @@ namespace Kohya_lora_trainer
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(490, 432);
+            this.label6.Location = new System.Drawing.Point(490, 502);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 25);
             this.label6.TabIndex = 16;
@@ -178,7 +182,7 @@ namespace Kohya_lora_trainer
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Yu Gothic UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label8.Location = new System.Drawing.Point(48, 383);
+            this.label8.Location = new System.Drawing.Point(48, 453);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(280, 30);
             this.label8.TabIndex = 17;
@@ -197,7 +201,7 @@ namespace Kohya_lora_trainer
             // 
             // tbxExtension
             // 
-            this.tbxExtension.Location = new System.Drawing.Point(211, 496);
+            this.tbxExtension.Location = new System.Drawing.Point(211, 566);
             this.tbxExtension.Name = "tbxExtension";
             this.tbxExtension.Size = new System.Drawing.Size(126, 31);
             this.tbxExtension.TabIndex = 19;
@@ -206,7 +210,7 @@ namespace Kohya_lora_trainer
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(53, 499);
+            this.label9.Location = new System.Drawing.Point(53, 569);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(155, 50);
             this.label9.TabIndex = 20;
@@ -215,7 +219,7 @@ namespace Kohya_lora_trainer
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(651, 596);
+            this.button1.Location = new System.Drawing.Point(651, 637);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(259, 44);
             this.button1.TabIndex = 22;
@@ -225,7 +229,7 @@ namespace Kohya_lora_trainer
             // 
             // nudSeed
             // 
-            this.nudSeed.Location = new System.Drawing.Point(547, 430);
+            this.nudSeed.Location = new System.Drawing.Point(547, 500);
             this.nudSeed.Maximum = new decimal(new int[] {
             -1,
             0,
@@ -311,7 +315,7 @@ namespace Kohya_lora_trainer
             // 
             // nudClipSkip
             // 
-            this.nudClipSkip.Location = new System.Drawing.Point(211, 429);
+            this.nudClipSkip.Location = new System.Drawing.Point(211, 499);
             this.nudClipSkip.Maximum = new decimal(new int[] {
             8,
             0,
@@ -339,7 +343,7 @@ namespace Kohya_lora_trainer
             "fp16",
             "bf16",
             "float"});
-            this.cbxPrecision.Location = new System.Drawing.Point(546, 499);
+            this.cbxPrecision.Location = new System.Drawing.Point(546, 569);
             this.cbxPrecision.Name = "cbxPrecision";
             this.cbxPrecision.Size = new System.Drawing.Size(121, 33);
             this.cbxPrecision.TabIndex = 29;
@@ -347,7 +351,7 @@ namespace Kohya_lora_trainer
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(424, 503);
+            this.label11.Location = new System.Drawing.Point(424, 573);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(117, 25);
             this.label11.TabIndex = 30;
@@ -356,7 +360,7 @@ namespace Kohya_lora_trainer
             // btnDiscardAndClose
             // 
             this.btnDiscardAndClose.Font = new System.Drawing.Font("Yu Gothic UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnDiscardAndClose.Location = new System.Drawing.Point(383, 597);
+            this.btnDiscardAndClose.Location = new System.Drawing.Point(383, 638);
             this.btnDiscardAndClose.Name = "btnDiscardAndClose";
             this.btnDiscardAndClose.Size = new System.Drawing.Size(257, 44);
             this.btnDiscardAndClose.TabIndex = 31;
@@ -364,11 +368,53 @@ namespace Kohya_lora_trainer
             this.btnDiscardAndClose.UseVisualStyleBackColor = true;
             this.btnDiscardAndClose.Click += new System.EventHandler(this.btnDiscardAndClose_Click);
             // 
+            // btnTensorBoardPath
+            // 
+            this.btnTensorBoardPath.Location = new System.Drawing.Point(211, 336);
+            this.btnTensorBoardPath.Name = "btnTensorBoardPath";
+            this.btnTensorBoardPath.Size = new System.Drawing.Size(147, 46);
+            this.btnTensorBoardPath.TabIndex = 32;
+            this.btnTensorBoardPath.Text = "選択";
+            this.btnTensorBoardPath.UseVisualStyleBackColor = true;
+            this.btnTensorBoardPath.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(76, 336);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(129, 50);
+            this.label12.TabIndex = 33;
+            this.label12.Text = "Tensorboard用\r\nログ出力先";
+            // 
+            // lblTBoardPath
+            // 
+            this.lblTBoardPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblTBoardPath.Location = new System.Drawing.Point(77, 386);
+            this.lblTBoardPath.Name = "lblTBoardPath";
+            this.lblTBoardPath.Size = new System.Drawing.Size(320, 46);
+            this.lblTBoardPath.TabIndex = 34;
+            this.lblTBoardPath.Text = "D:\\Sample\\Please stop using Super Long Naming\\RegImage\\1_1girl";
+            // 
+            // btnClearTBoardPath
+            // 
+            this.btnClearTBoardPath.Location = new System.Drawing.Point(383, 336);
+            this.btnClearTBoardPath.Name = "btnClearTBoardPath";
+            this.btnClearTBoardPath.Size = new System.Drawing.Size(99, 46);
+            this.btnClearTBoardPath.TabIndex = 35;
+            this.btnClearTBoardPath.Text = "クリア";
+            this.btnClearTBoardPath.UseVisualStyleBackColor = true;
+            this.btnClearTBoardPath.Click += new System.EventHandler(this.btnClearTBoardPath_Click);
+            // 
             // Form_Advanced
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(955, 663);
+            this.ClientSize = new System.Drawing.Size(955, 693);
+            this.Controls.Add(this.btnClearTBoardPath);
+            this.Controls.Add(this.lblTBoardPath);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.btnTensorBoardPath);
             this.Controls.Add(this.btnDiscardAndClose);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.cbxPrecision);
@@ -401,7 +447,7 @@ namespace Kohya_lora_trainer
             this.MinimizeBox = false;
             this.Name = "Form_Advanced";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form_Advanced";
+            this.Text = "Advanced";
             this.Load += new System.EventHandler(this.Form_Advanced_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).EndInit();
@@ -443,5 +489,9 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.ComboBox cbxPrecision;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnDiscardAndClose;
+        private System.Windows.Forms.Button btnTensorBoardPath;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblTBoardPath;
+        private System.Windows.Forms.Button btnClearTBoardPath;
     }
 }
