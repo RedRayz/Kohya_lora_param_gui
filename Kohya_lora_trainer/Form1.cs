@@ -185,8 +185,8 @@ namespace Kohya_lora_trainer {
             }
 
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.FileName = "New Preset.xml";
-            sfd.Filter = "XML(*.xml)|*.xml";
+            sfd.FileName = "New Preset.xmlora";
+            sfd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
             sfd.Title = "Save a preset";
             sfd.RestoreDirectory = true;
             if (sfd.ShowDialog() == DialogResult.OK) {
@@ -256,8 +256,8 @@ namespace Kohya_lora_trainer {
 
         private void btnLoadPreset_Click(object sender, EventArgs e) {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "XML(*.xml)|*.xml";
-            ofd.Title = "Select the preset XML";
+            ofd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
+            ofd.Title = "Select a preset";
             ofd.RestoreDirectory = true;
             if(ofd.ShowDialog() == DialogResult.OK) {
                 try {
