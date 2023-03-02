@@ -179,11 +179,11 @@ namespace Kohya_lora_trainer
             // 
             this.lblLR.AutoSize = true;
             this.lblLR.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblLR.Location = new System.Drawing.Point(25, 256);
+            this.lblLR.Location = new System.Drawing.Point(42, 256);
             this.lblLR.Name = "lblLR";
-            this.lblLR.Size = new System.Drawing.Size(121, 25);
+            this.lblLR.Size = new System.Drawing.Size(103, 25);
             this.lblLR.TabIndex = 5;
-            this.lblLR.Text = "学習速度(LR)*";
+            this.lblLR.Text = "学習率(LR)*";
             // 
             // cbxOptimizer
             // 
@@ -237,9 +237,9 @@ namespace Kohya_lora_trainer
             // 
             // btnAdvanced
             // 
-            this.btnAdvanced.Location = new System.Drawing.Point(36, 719);
+            this.btnAdvanced.Location = new System.Drawing.Point(34, 722);
             this.btnAdvanced.Name = "btnAdvanced";
-            this.btnAdvanced.Size = new System.Drawing.Size(210, 48);
+            this.btnAdvanced.Size = new System.Drawing.Size(168, 45);
             this.btnAdvanced.TabIndex = 26;
             this.btnAdvanced.Text = "Advanced options";
             this.btnAdvanced.UseVisualStyleBackColor = true;
@@ -297,7 +297,7 @@ namespace Kohya_lora_trainer
             // 
             // btnSavePreset
             // 
-            this.btnSavePreset.Location = new System.Drawing.Point(354, 720);
+            this.btnSavePreset.Location = new System.Drawing.Point(402, 721);
             this.btnSavePreset.Name = "btnSavePreset";
             this.btnSavePreset.Size = new System.Drawing.Size(146, 46);
             this.btnSavePreset.TabIndex = 34;
@@ -308,7 +308,7 @@ namespace Kohya_lora_trainer
             // 
             // btnLoadPreset
             // 
-            this.btnLoadPreset.Location = new System.Drawing.Point(512, 720);
+            this.btnLoadPreset.Location = new System.Drawing.Point(565, 722);
             this.btnLoadPreset.Name = "btnLoadPreset";
             this.btnLoadPreset.Size = new System.Drawing.Size(160, 46);
             this.btnLoadPreset.TabIndex = 35;

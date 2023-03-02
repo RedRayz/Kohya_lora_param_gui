@@ -125,8 +125,17 @@
       <DependentUpon>TrainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TrainParams.cs" />
+    <Compile Include="FormUtils.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUtils.Designer.cs">
+      <DependentUpon>FormUtils.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUtils.resx">
+      <DependentUpon>FormUtils.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Advanced.resx">
       <DependentUpon>Form_Advanced.cs</DependentUpon>
