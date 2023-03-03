@@ -18,6 +18,7 @@ namespace Kohya_lora_trainer {
         public  OptimizerType OptimizerType = OptimizerType.AdamW8bit;
         public  int WarmupSteps = 500;
         public  string OutputName;
+        public bool UseLoCon = false;
 
         //Advanced
         public  int CpuThreads = 12;

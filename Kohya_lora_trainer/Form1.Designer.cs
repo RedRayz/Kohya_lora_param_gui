@@ -87,6 +87,8 @@ namespace Kohya_lora_trainer
             this.toolTip6 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip7 = new System.Windows.Forms.ToolTip(this.components);
             this.btnUtilities = new System.Windows.Forms.Button();
+            this.cbxUseLoCon = new System.Windows.Forms.CheckBox();
+            this.toolTip8 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -663,11 +665,24 @@ namespace Kohya_lora_trainer
             this.btnUtilities.UseVisualStyleBackColor = true;
             this.btnUtilities.Click += new System.EventHandler(this.btnUtilities_Click);
             // 
+            // cbxUseLoCon
+            // 
+            this.cbxUseLoCon.AutoSize = true;
+            this.cbxUseLoCon.Location = new System.Drawing.Point(681, 431);
+            this.cbxUseLoCon.Name = "cbxUseLoCon";
+            this.cbxUseLoCon.Size = new System.Drawing.Size(358, 29);
+            this.cbxUseLoCon.TabIndex = 70;
+            this.cbxUseLoCon.Text = "LoConを使用する(事前にインストールが必要)";
+            this.toolTip8.SetToolTip(this.cbxUseLoCon, "venvでpip install locon");
+            this.cbxUseLoCon.UseVisualStyleBackColor = true;
+            this.cbxUseLoCon.CheckedChanged += new System.EventHandler(this.cbxUseLoCon_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1065, 787);
+            this.Controls.Add(this.cbxUseLoCon);
             this.Controls.Add(this.btnUtilities);
             this.Controls.Add(this.lblScriptPathDesc);
             this.Controls.Add(this.btnCustomScriptPath);
@@ -798,6 +813,8 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.ToolTip toolTip6;
         private System.Windows.Forms.ToolTip toolTip7;
         private System.Windows.Forms.Button btnUtilities;
+        private System.Windows.Forms.CheckBox cbxUseLoCon;
+        private System.Windows.Forms.ToolTip toolTip8;
     }
 }
 

@@ -30,7 +30,7 @@ namespace Kohya_lora_trainer {
 
         private void Form1_Load(object sender, EventArgs e) {
             //レジストリからsd-scriptsの場所を取ってくる
-           
+
 
 
             lblModelPath.Text = string.Empty;
@@ -48,7 +48,7 @@ namespace Kohya_lora_trainer {
                 btnCustomScriptPath.Visible = true;
                 lblScriptPathDesc.Visible = true;
                 ScriptPath = (string)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "ScriptPath", string.Empty);
-                if(string.IsNullOrEmpty(ScriptPath) || !File.Exists(ScriptPath + "\\train_network.py")) {
+                if (string.IsNullOrEmpty(ScriptPath) || !File.Exists(ScriptPath + "\\train_network.py")) {
                     lblScriptPathDesc.ForeColor = Color.Red;
                     lblScriptPathDesc.Text = "sd-scriptsの場所を選択してください";
                 }
@@ -156,7 +156,7 @@ namespace Kohya_lora_trainer {
                 }
                 else {
                     lblLR.ForeColor = Color.Black;
-                    if(changeParam)
+                    if (changeParam)
                         TrainParams.Current.LearningRate = lr;
                     IsInvalidLR = false;
                 }
@@ -224,8 +224,8 @@ namespace Kohya_lora_trainer {
         }
 
         private void btnStartTraining_Click(object sender, EventArgs e) {
-            if(!IsInvalidImageFolder && !IsInvalidRegFolder && !IsInvalidOutputName && !IsInvalidLR && !IsInvalidResolution) {
-                string str = string.IsNullOrEmpty(ScriptPath) ? "..\\" : ScriptPath + "\\";  
+            if (!IsInvalidImageFolder && !IsInvalidRegFolder && !IsInvalidOutputName && !IsInvalidLR && !IsInvalidResolution) {
+                string str = string.IsNullOrEmpty(ScriptPath) ? "..\\" : ScriptPath + "\\";
 
                 if (!File.Exists(str + "train_network.py")) {
                     MessageBox.Show("train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -279,13 +279,14 @@ namespace Kohya_lora_trainer {
             ofd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
             ofd.Title = "Select a preset";
             ofd.RestoreDirectory = true;
-            if(ofd.ShowDialog() == DialogResult.OK) {
+            if (ofd.ShowDialog() == DialogResult.OK) {
                 try {
                     XmlSerializer se = new XmlSerializer(typeof(TrainParams));
                     using (StreamReader sr = new StreamReader(ofd.FileName, new System.Text.UTF8Encoding(false))) {
                         TrainParams.Current = (TrainParams)se.Deserialize(sr);
                     }
-                }catch {
+                }
+                catch {
                     MessageBox.Show("プリセットを読み込めません。破損しているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 UpdateAllContents();
@@ -296,6 +297,10 @@ namespace Kohya_lora_trainer {
             Form frm = new FormUtils();
             frm.ShowDialog();
             frm.Dispose();
+        }
+
+        private void cbxUseLoCon_CheckedChanged(object sender, EventArgs e) {
+            TrainParams.Current.UseLoCon = cbxUseLoCon.Checked;
         }
 
         private void btnCustomScriptPath_Click(object sender, EventArgs e) {
@@ -335,7 +340,7 @@ namespace Kohya_lora_trainer {
             else {
                 TotalSteps = StepsPerEpoch * TrainParams.Current.Epochs / TrainParams.Current.BatchSize;
                 TotalStepsBatch1 = TotalSteps * TrainParams.Current.BatchSize;
-                if(!string.IsNullOrEmpty(TrainParams.Current.RegImagePath) ) {
+                if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath)) {
                     TotalSteps *= 2;
                     TotalStepsBatch1 *= 2;
                 }
@@ -348,7 +353,7 @@ namespace Kohya_lora_trainer {
         }
 
         private bool ValidateImageFolder(string path, out int ccnt) {
-            if(string.IsNullOrEmpty(path)) {
+            if (string.IsNullOrEmpty(path)) {
                 ccnt = 0;
                 return false;
             }
@@ -433,7 +438,8 @@ namespace Kohya_lora_trainer {
             cbxOptimizer.SelectedIndex = (int)TrainParams.Current.OptimizerType;
             //OutputName
             tbxFileName.Text = TrainParams.Current.OutputName;
-            
+            //UseLoCon
+            cbxUseLoCon.Checked = TrainParams.Current.UseLoCon;
 
             UpdateTotalStepCount();
         }
