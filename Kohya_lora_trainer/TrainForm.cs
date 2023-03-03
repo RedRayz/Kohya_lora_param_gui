@@ -46,16 +46,26 @@ namespace Kohya_lora_trainer {
                 sb.Append("  --reg_data_dir=").Append(TrainParams.Current.RegImagePath);
             }
 
+
+            //Automatic
+            sb.Append("  --network_module=").Append(TrainParams.Current.UseLoCon ? "locon.locon_kohya" : "networks.lora")
+            .Append("  --persistent_data_loader_workers  --color_aug  --enable_bucket  --xformers")
+                .Append("  --save_model_as=safetensors  --lr_scheduler_num_cycles=4  --mixed_precision=fp16");
+
+            //Main
             sb.Append("  --learning_rate=").Append(TrainParams.Current.LearningRate.ToString("g"))
                 .Append("  --resolution=").Append(TrainParams.Current.Resolution).Append(",").Append(TrainParams.Current.Resolution)
                 .Append("  --train_batch_size=").Append(TrainParams.Current.BatchSize)
-                .Append("  --max_train_epochs=").Append(TrainParams.Current.Epochs)
-                .Append("  --network_dim=").Append(TrainParams.Current.NetworkDim)
-                .Append("  --network_alpha=").Append(TrainParams.Current.NetworkAlpha);
+                .Append("  --max_train_epochs=").Append(TrainParams.Current.Epochs);
 
-            //Automatic
-            sb.Append("  --network_module=networks.lora  --persistent_data_loader_workers  --color_aug  --enable_bucket  --xformers")
-                .Append("  --save_model_as=safetensors  --lr_scheduler_num_cycles=4  --mixed_precision=fp16");
+            //readmeに書いてあるusageどおりに文字列渡すと壊れるので無効
+            //if (TrainParams.Current.UseLoCon) {
+            //    sb.Append("  --network_args \"conv_dim=RANK_FOR_CONV\" \"conv_alpha=ALPHA_FOR_CONV\"");
+            //    sb.Append("  --network_dim \"RANK_FOR_TRANSFORMER\"  --network_alpha \"ALPHA_FOR_TRANSFORMER\"");
+            //}
+
+            sb.Append("  --network_dim=").Append(TrainParams.Current.NetworkDim)
+            .Append("  --network_alpha=").Append(TrainParams.Current.NetworkAlpha);
 
             //Optional Main
             if (TrainParams.Current.ShuffleCaptions) {
@@ -82,6 +92,8 @@ namespace Kohya_lora_trainer {
             if (!string.IsNullOrEmpty(TrainParams.Current.OutputName)) {
                 sb.Append("  --output_name=").Append(TrainParams.Current.OutputName);
             }
+
+
 
             //Advanced
             if (TrainParams.Current.NoBucketUpscaling) {

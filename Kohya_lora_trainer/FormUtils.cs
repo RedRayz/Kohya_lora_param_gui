@@ -125,7 +125,7 @@ namespace Kohya_lora_trainer {
                     process.Close();
                     process.Dispose();
                 }
-            }catch (Exception ex) { 
+            }catch { 
 
             }
         }

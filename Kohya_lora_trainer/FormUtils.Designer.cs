@@ -136,6 +136,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormUtils";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Utils";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormUtils_FormClosing);
             this.Load += new System.EventHandler(this.FormUtils_Load);
