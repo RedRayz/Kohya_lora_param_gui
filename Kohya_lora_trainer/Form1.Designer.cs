@@ -86,6 +86,7 @@ namespace Kohya_lora_trainer
             this.toolTip5 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip6 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip7 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnUtilities = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -634,7 +635,6 @@ namespace Kohya_lora_trainer
             // 
             // btnCustomScriptPath
             // 
-            this.btnCustomScriptPath.Enabled = false;
             this.btnCustomScriptPath.Location = new System.Drawing.Point(850, 37);
             this.btnCustomScriptPath.Name = "btnCustomScriptPath";
             this.btnCustomScriptPath.Size = new System.Drawing.Size(166, 37);
@@ -646,18 +646,29 @@ namespace Kohya_lora_trainer
             // lblScriptPathDesc
             // 
             this.lblScriptPathDesc.AutoSize = true;
-            this.lblScriptPathDesc.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lblScriptPathDesc.ForeColor = System.Drawing.Color.Black;
             this.lblScriptPathDesc.Location = new System.Drawing.Point(796, 9);
             this.lblScriptPathDesc.Name = "lblScriptPathDesc";
             this.lblScriptPathDesc.Size = new System.Drawing.Size(268, 25);
             this.lblScriptPathDesc.TabIndex = 68;
             this.lblScriptPathDesc.Text = "sd-scriptsの場所を選択してください";
             // 
+            // btnUtilities
+            // 
+            this.btnUtilities.Location = new System.Drawing.Point(208, 721);
+            this.btnUtilities.Name = "btnUtilities";
+            this.btnUtilities.Size = new System.Drawing.Size(117, 45);
+            this.btnUtilities.TabIndex = 69;
+            this.btnUtilities.Text = "ユーティリティ";
+            this.btnUtilities.UseVisualStyleBackColor = true;
+            this.btnUtilities.Click += new System.EventHandler(this.btnUtilities_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1065, 787);
+            this.Controls.Add(this.btnUtilities);
             this.Controls.Add(this.lblScriptPathDesc);
             this.Controls.Add(this.btnCustomScriptPath);
             this.Controls.Add(this.btnOutputPath);
@@ -786,6 +797,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.ToolTip toolTip4;
         private System.Windows.Forms.ToolTip toolTip6;
         private System.Windows.Forms.ToolTip toolTip7;
+        private System.Windows.Forms.Button btnUtilities;
     }
 }
 

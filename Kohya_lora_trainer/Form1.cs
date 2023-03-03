@@ -14,7 +14,7 @@ using System.IO;
 using System.Diagnostics.SymbolStore;
 using System.IO;
 using System.Xml.Serialization;
-
+using Microsoft.Win32;
 
 namespace Kohya_lora_trainer {
     public partial class Form1 : Form {
@@ -29,6 +29,10 @@ namespace Kohya_lora_trainer {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
+            //レジストリからsd-scriptsの場所を取ってくる
+           
+
+
             lblModelPath.Text = string.Empty;
             lblImagePath.Text = string.Empty;
             lblRegImgPath.Text = string.Empty;
@@ -36,14 +40,28 @@ namespace Kohya_lora_trainer {
             cbxOptimizer.SelectedIndex = 0;
             lblNumSteps.Text = "?";
             lblNumStepsBatch1.Text = "?";
-            string str = string.IsNullOrEmpty(ScriptPath) ? "..\\" : ScriptPath + "\\";
-            if (!File.Exists(str + "train_network.py")) {
-                btnCustomScriptPath.Enabled = true;
+
+            //先に親フォルダにpyがあるか確認する。
+            //なければボタンを表示する
+            //ない状態でカスタムパスにもpyがないなら赤字で設定するよう促す
+            if (!File.Exists(@"..\train_network.py")) {
+                btnCustomScriptPath.Visible = true;
+                lblScriptPathDesc.Visible = true;
+                ScriptPath = (string)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "ScriptPath", string.Empty);
+                if(string.IsNullOrEmpty(ScriptPath) || !File.Exists(ScriptPath + "\\train_network.py")) {
+                    lblScriptPathDesc.ForeColor = Color.Red;
+                    lblScriptPathDesc.Text = "sd-scriptsの場所を選択してください";
+                }
+                else {
+                    lblScriptPathDesc.ForeColor = Color.Black;
+                    lblScriptPathDesc.Text = "sd-scriptsの場所を変更する";
+                }
             }
             else {
                 btnCustomScriptPath.Visible = false;
                 lblScriptPathDesc.Visible = false;
             }
+
         }
 
         private void button4_Click(object sender, EventArgs e) {
@@ -274,6 +292,12 @@ namespace Kohya_lora_trainer {
             }
         }
 
+        private void btnUtilities_Click(object sender, EventArgs e) {
+            Form frm = new FormUtils();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+
         private void btnCustomScriptPath_Click(object sender, EventArgs e) {
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
             cof.Title = "Select SD-Scripts Folder";
@@ -282,6 +306,7 @@ namespace Kohya_lora_trainer {
 
             if (cof.ShowDialog() == CommonFileDialogResult.Ok) {
                 ScriptPath = cof.FileName;
+                Registry.SetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "ScriptPath", ScriptPath);
             }
         }
 
