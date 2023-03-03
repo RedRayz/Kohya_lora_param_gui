@@ -36,7 +36,7 @@ namespace Kohya_lora_trainer {
             }
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "SD Model(*.ckpt;*.safetensors)|*.ckpt;*.safetensors";
-            ofd.Title = "Select a model to check";
+            ofd.Title = "確認するモデルの選択";
             ofd.RestoreDirectory = true;
             if(ofd.ShowDialog() == DialogResult.OK) {
                 StringBuilder sb = new StringBuilder();
@@ -52,7 +52,7 @@ namespace Kohya_lora_trainer {
                 btnCheckCorrupt.Enabled = false;
                 btnRunTensorboard.Enabled = false;
                 lblTipNeedScript.Text = "読込中...";
-
+                tbxConsoleOutput.Text = string.Empty;
                 UpdateUI = new UpdateUIEventHandler(UpdateConsoleText);
 
 
@@ -81,7 +81,7 @@ namespace Kohya_lora_trainer {
                 return;
             }
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
-            cof.Title = "Select Image Folder";
+            cof.Title = "ログディレクトリの選択";
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
             if(cof.ShowDialog() == CommonFileDialogResult.Ok) {
@@ -148,6 +148,10 @@ namespace Kohya_lora_trainer {
             btnCheckCorrupt.Enabled = true;
             btnRunTensorboard.Enabled = true;
             lblTipNeedScript.Text = "sd-scripts内にfix_position_ids.pyが必要です";
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            Process.Start("https://note.com/bbcmc/n/n12c05bf109cc");
         }
     }
 }

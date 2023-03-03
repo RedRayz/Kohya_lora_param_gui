@@ -74,7 +74,7 @@ namespace Kohya_lora_trainer {
         private void btnModel_Click(object sender, EventArgs e) {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "SD Model(*.ckpt;*.safetensors)|*.ckpt;*.safetensors";
-            ofd.Title = "Select the base model";
+            ofd.Title = "Select a base model";
             ofd.RestoreDirectory = true;
             if (ofd.ShowDialog() == DialogResult.OK) {
                 TrainParams.Current.ModelPath = ofd.FileName;
@@ -84,7 +84,7 @@ namespace Kohya_lora_trainer {
 
         private void btnImage_Click(object sender, EventArgs e) {
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
-            cof.Title = "Select Image Folder";
+            cof.Title = "Select an image folder";
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
 
