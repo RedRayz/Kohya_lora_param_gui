@@ -27,7 +27,7 @@ namespace Kohya_lora_trainer {
             StringBuilder sb = new StringBuilder();
             StringBuilder sbCmd = new StringBuilder();
 
-            sbCmd.Append(@"/c cd ");
+            sbCmd.Append(@"/k cd ");
             if (!string.IsNullOrEmpty(Form1.ScriptPath)) {
                 sbCmd.Append("/d ").Append(Form1.ScriptPath);
             }
@@ -153,7 +153,7 @@ namespace Kohya_lora_trainer {
 
         private void btnStop_Click(object sender, EventArgs e) {
             if (process != null && !process.HasExited) {
-                DialogResult result = MessageBox.Show("学習を中止しますか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("学習中に閉じると学習は中止されます。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes) {
                     process.Kill();
                     process.Dispose();

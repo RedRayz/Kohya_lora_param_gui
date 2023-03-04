@@ -39,6 +39,10 @@ namespace Kohya_lora_trainer {
             ofd.Title = "確認するモデルの選択";
             ofd.RestoreDirectory = true;
             if(ofd.ShowDialog() == DialogResult.OK) {
+                if (ofd.FileName.Contains(" ")) {
+                    MessageBox.Show("空白を含むパスは使用できません。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 StringBuilder sb = new StringBuilder();
                 sb.Append("/c cd ");
                 if (!string.IsNullOrEmpty(Form1.ScriptPath)) {
@@ -85,6 +89,10 @@ namespace Kohya_lora_trainer {
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
             if(cof.ShowDialog() == CommonFileDialogResult.Ok) {
+                if (cof.FileName.Contains(" ")) {
+                    MessageBox.Show("空白を含むパスは使用できません。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 StringBuilder sb = new StringBuilder();
                 sb.Append("/c cd ");
                 if (!string.IsNullOrEmpty(Form1.ScriptPath)) {

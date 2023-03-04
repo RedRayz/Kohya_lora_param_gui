@@ -92,6 +92,10 @@ namespace Kohya_lora_trainer {
             ofd.Title = "Select a base model";
             ofd.RestoreDirectory = true;
             if (ofd.ShowDialog() == DialogResult.OK) {
+                if (ofd.FileName.Contains(" ")) {
+                    MessageBox.Show("空白を含むパスは使用できません。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 TrainParams.Current.ModelPath = ofd.FileName;
                 lblModelPath.Text = ofd.FileName;
             }
@@ -104,6 +108,10 @@ namespace Kohya_lora_trainer {
             cof.RestoreDirectory = true;
 
             if (cof.ShowDialog() == CommonFileDialogResult.Ok) {
+                if (cof.FileName.Contains(" ")) {
+                    MessageBox.Show("空白を含むパスは使用できません。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 TrainParams.Current.TrainImagePath = cof.FileName;
                 lblImagePath.Text = TrainParams.Current.TrainImagePath;
                 IsInvalidImageFolder = !ValidateImageFolder(cof.FileName, out StepsPerEpoch);
@@ -122,6 +130,10 @@ namespace Kohya_lora_trainer {
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
             if (cof.ShowDialog() == CommonFileDialogResult.Ok) {
+                if (cof.FileName.Contains(" ")) {
+                    MessageBox.Show("空白を含むパスは使用できません。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 TrainParams.Current.RegImagePath = cof.FileName;
                 lblRegImgPath.Text = TrainParams.Current.RegImagePath;
                 int num = 0;
@@ -141,6 +153,10 @@ namespace Kohya_lora_trainer {
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
             if (cof.ShowDialog() == CommonFileDialogResult.Ok) {
+                if (cof.FileName.Contains(" ")) {
+                    MessageBox.Show("空白を含むパスは使用できません。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 TrainParams.Current.OutputPath = cof.FileName;
                 lblOutputPath.Text = TrainParams.Current.OutputPath;
             }
@@ -346,7 +362,7 @@ namespace Kohya_lora_trainer {
 
         private void tbxFileName_TextChanged(object sender, EventArgs e) {
             TrainParams.Current.OutputName = tbxFileName.Text;
-            Regex regex = new Regex("[:/\\\\\\?\\*<>\\|\"]");
+            Regex regex = new Regex("[:/\\\\\\?\\*<>\\|\" 　]");
             if (regex.IsMatch(tbxFileName.Text)) {
                 lblFileName.ForeColor = Color.Red;
                 IsInvalidOutputName = true;

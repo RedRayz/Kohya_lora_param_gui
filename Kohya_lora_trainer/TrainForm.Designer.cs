@@ -37,7 +37,7 @@
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(257, 47);
             this.btnStop.TabIndex = 1;
-            this.btnStop.Text = "学習中止";
+            this.btnStop.Text = "ターミナルを閉じる";
             this.btnStop.UseVisualStyleBackColor = false;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
