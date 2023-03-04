@@ -7,6 +7,7 @@ https://github.com/kohya-ss/sd-scripts の学習用のパラメータ設定し�
 ## 他の機能
 * 学習パラメータのプリセットをxmlで保存/読込
 * position_ids破損確認とtensorboardの起動
+* GUI終了時にパラメータを記憶し、起動時に反映
 
 ## 注意事項
 [sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法でセットアップしている環境を前提としています。
