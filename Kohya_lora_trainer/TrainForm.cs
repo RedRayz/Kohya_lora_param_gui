@@ -39,8 +39,8 @@ namespace Kohya_lora_trainer {
 
 
             sb.Append("accelerate launch --num_cpu_threads_per_process ").Append(TrainParams.Current.CpuThreads);
-            sb.Append(" train_network.py  --pretrained_model_name_or_path=").Append(TrainParams.Current.ModelPath).Append("  --train_data_dir=")
-                .Append(TrainParams.Current.TrainImagePath).Append("  --output_dir=").Append(TrainParams.Current.OutputPath);
+            sb.Append(" train_network.py  --pretrained_model_name_or_path=\"").Append(TrainParams.Current.ModelPath).Append("\"").Append("  --train_data_dir=\"")
+                .Append(TrainParams.Current.TrainImagePath).Append("\"  --output_dir=\"").Append(TrainParams.Current.OutputPath).Append("\"");
             //Optional(RegImage)
             if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath)) {
                 sb.Append("  --reg_data_dir=").Append(TrainParams.Current.RegImagePath);
@@ -90,7 +90,7 @@ namespace Kohya_lora_trainer {
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.OutputName)) {
-                sb.Append("  --output_name=").Append(TrainParams.Current.OutputName);
+                sb.Append("  --output_name=\"").Append(TrainParams.Current.OutputName).Append("\"");
             }
 
 
@@ -129,7 +129,7 @@ namespace Kohya_lora_trainer {
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.TensorBoardLogPath)) {
-                sb.Append("  --logging_dir=").Append(TrainParams.Current.TensorBoardLogPath);
+                sb.Append("  --logging_dir=\"").Append(TrainParams.Current.TensorBoardLogPath).Append("\"");
             }
 
             TrainArgs = sb.ToString();

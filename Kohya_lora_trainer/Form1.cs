@@ -20,6 +20,7 @@ using System.Security.Cryptography;
 namespace Kohya_lora_trainer {
     public partial class Form1 : Form {
         private bool IsInvalidOutputName, IsInvalidImageFolder = true, IsInvalidRegFolder = false, IsInvalidLR = false, IsInvalidResolution;
+        private bool HaveNonAscillInOutputName, HaveNonAscillInImageFolder, HaveNonAscillInRegFolder, HaveNonAscillInModelPath, HaveNonAscillInOutputPath;
         private int StepsPerEpoch, TotalSteps, TotalStepsBatch1;
         public static string ScriptPath = string.Empty;
 
@@ -34,9 +35,9 @@ namespace Kohya_lora_trainer {
 
 
 
-            lblModelPath.Text = string.Empty;
-            lblImagePath.Text = string.Empty;
-            lblRegImgPath.Text = string.Empty;
+            tbxModelPath.Text = string.Empty;
+            tbxImagePath.Text = string.Empty;
+            tbxRegImgPath.Text = string.Empty;
             lblOutputPath.Text = string.Empty;
             cbxOptimizer.SelectedIndex = 0;
             lblNumSteps.Text = "?";
@@ -70,13 +71,13 @@ namespace Kohya_lora_trainer {
                     using (StreamReader sr = new StreamReader(str, new System.Text.UTF8Encoding(false))) {
                         TrainParams.Current = (TrainParams)se.Deserialize(sr);
                     }
-
-                    UpdateAllContents();
                 }
                 catch {
                     MessageBox.Show("自動保存プリセットを読み込めません。破損しているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
+            UpdateAllContents();
         }
 
         private void button4_Click(object sender, EventArgs e) {
@@ -92,12 +93,16 @@ namespace Kohya_lora_trainer {
             ofd.Title = "Select a base model";
             ofd.RestoreDirectory = true;
             if (ofd.ShowDialog() == DialogResult.OK) {
-                if (ofd.FileName.Contains(" ")) {
-                    MessageBox.Show("空白を含むパスは使用できません。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
                 TrainParams.Current.ModelPath = ofd.FileName;
-                lblModelPath.Text = ofd.FileName;
+                tbxModelPath.Text = ofd.FileName;
+                if (CheckUtil.HaveNonAsciiOrSpace(ofd.FileName)) {
+                    tbxModelPath.ForeColor = Color.OrangeRed;
+                    HaveNonAscillInModelPath = true;
+                }
+                else {
+                    HaveNonAscillInModelPath = false;
+                    tbxModelPath.ForeColor = Color.Black;
+                }
             }
         }
 
@@ -108,19 +113,22 @@ namespace Kohya_lora_trainer {
             cof.RestoreDirectory = true;
 
             if (cof.ShowDialog() == CommonFileDialogResult.Ok) {
-                if (cof.FileName.Contains(" ")) {
-                    MessageBox.Show("空白を含むパスは使用できません。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
                 TrainParams.Current.TrainImagePath = cof.FileName;
-                lblImagePath.Text = TrainParams.Current.TrainImagePath;
-                IsInvalidImageFolder = !ValidateImageFolder(cof.FileName, out StepsPerEpoch);
+                tbxImagePath.Text = TrainParams.Current.TrainImagePath;
+                IsInvalidImageFolder = !CheckUtil.IsValidImageFolder(cof.FileName, out StepsPerEpoch);
                 if (IsInvalidImageFolder) {
                     MessageBox.Show("教師画像フォルダの指定を間違えている可能性があります。\n「繰り返し数_プロンプト」の名前のフォルダが1つ以上入ったフォルダを指定する必要があります。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
                 UpdateTotalStepCount();
-                lblImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
+                tbxImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
+                if (CheckUtil.HaveNonAsciiOrSpace(cof.FileName) && !IsInvalidImageFolder) {
+                    tbxImagePath.ForeColor = Color.Orange;
+                    HaveNonAscillInImageFolder = true;
+                }
+                else {
+                    HaveNonAscillInImageFolder = false;
+                }
+
             }
         }
 
@@ -130,19 +138,22 @@ namespace Kohya_lora_trainer {
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
             if (cof.ShowDialog() == CommonFileDialogResult.Ok) {
-                if (cof.FileName.Contains(" ")) {
-                    MessageBox.Show("空白を含むパスは使用できません。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
                 TrainParams.Current.RegImagePath = cof.FileName;
-                lblRegImgPath.Text = TrainParams.Current.RegImagePath;
+                tbxRegImgPath.Text = TrainParams.Current.RegImagePath;
                 int num = 0;
-                IsInvalidRegFolder = !ValidateImageFolder(TrainParams.Current.RegImagePath, out num);
+                IsInvalidRegFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.RegImagePath, out num);
                 if (IsInvalidRegFolder) {
                     MessageBox.Show("正則化画像フォルダの指定を間違えている可能性があります。\n「繰り返し数_プロンプト」の名前のフォルダが1つ以上入ったフォルダを指定する必要があります。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-                lblRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
+                tbxRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
+                if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.RegImagePath) && !IsInvalidRegFolder) {
+                    tbxRegImgPath.ForeColor = Color.Orange;
+                    HaveNonAscillInRegFolder = true;
+                }
+                else {
+                    HaveNonAscillInRegFolder = false;
+                }
             }
             UpdateTotalStepCount();
         }
@@ -153,18 +164,23 @@ namespace Kohya_lora_trainer {
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
             if (cof.ShowDialog() == CommonFileDialogResult.Ok) {
-                if (cof.FileName.Contains(" ")) {
-                    MessageBox.Show("空白を含むパスは使用できません。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
                 TrainParams.Current.OutputPath = cof.FileName;
                 lblOutputPath.Text = TrainParams.Current.OutputPath;
+
+                if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputPath)) {
+                    lblOutputPath.ForeColor = Color.Orange;
+                    HaveNonAscillInRegFolder = true;
+                }
+                else {
+                    HaveNonAscillInRegFolder = false;
+                    lblOutputPath.ForeColor = Color.Black;
+                }
             }
         }
 
         private void btnClearRegImagePath_Click(object sender, EventArgs e) {
             TrainParams.Current.RegImagePath = string.Empty;
-            lblRegImgPath.Text = string.Empty;
+            tbxRegImgPath.Text = string.Empty;
             IsInvalidRegFolder = false;
             UpdateTotalStepCount();
         }
@@ -289,6 +305,12 @@ namespace Kohya_lora_trainer {
                     return;
                 }
 
+                if(HaveNonAscillInImageFolder || HaveNonAscillInModelPath || HaveNonAscillInOutputName || HaveNonAscillInRegFolder || HaveNonAscillInOutputPath) {
+                    DialogResult res = MessageBox.Show("パスに日本語などのマルチバイト文字または空白文字が含まれています。\n不具合/エラーの原因となるため、それらの使用は推奨しません。\n続けてもよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (res != DialogResult.Yes)
+                        return;
+                }
+
                 Form train = new TrainForm();
                 train.ShowDialog();
                 train.Dispose();
@@ -360,17 +382,88 @@ namespace Kohya_lora_trainer {
             TrainParams.Current.OptimizerType = (OptimizerType)Enum.ToObject(typeof(OptimizerType), cbxOptimizer.SelectedIndex);
         }
 
+        private void tbxModelPath_TextChanged(object sender, EventArgs e) {
+            TrainParams.Current.ModelPath = tbxModelPath.Text;
+            if (!CheckUtil.IsPathAvailable(tbxModelPath.Text, false)) {
+                tbxModelPath.ForeColor = Color.Red;
+                HaveNonAscillInModelPath = false;
+            }
+            else if (CheckUtil.HaveNonAsciiOrSpace(tbxModelPath.Text)) {
+                tbxModelPath.ForeColor = Color.OrangeRed;
+                HaveNonAscillInModelPath = true;
+            }
+            else {
+                tbxModelPath.ForeColor = Color.Black;
+                HaveNonAscillInModelPath = false;
+            }
+        }
+
+        private void tbxImagePath_TextChanged(object sender, EventArgs e) {
+            TrainParams.Current.TrainImagePath = tbxImagePath.Text;
+            if (!CheckUtil.IsPathAvailable(tbxImagePath.Text, true)) {
+                tbxImagePath.ForeColor = Color.Red;
+                IsInvalidImageFolder = true;
+                HaveNonAscillInImageFolder = false;
+            }
+            else if (CheckUtil.HaveNonAsciiOrSpace(tbxImagePath.Text)) {
+                tbxImagePath.ForeColor = Color.Orange;
+                HaveNonAscillInImageFolder = true;
+                IsInvalidImageFolder = !CheckUtil.IsValidImageFolder(tbxImagePath.Text, out StepsPerEpoch);
+                UpdateTotalStepCount();
+            }
+            else {
+                IsInvalidImageFolder = !CheckUtil.IsValidImageFolder(tbxImagePath.Text, out StepsPerEpoch);
+                UpdateTotalStepCount();
+                tbxImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
+                HaveNonAscillInImageFolder = false;
+            }
+
+           
+        }
+
+        private void tbxRegImgPath_TextChanged(object sender, EventArgs e) {
+            TrainParams.Current.RegImagePath = tbxRegImgPath.Text;
+            if (!CheckUtil.IsPathAvailable(tbxRegImgPath.Text, true)) {
+                tbxRegImgPath.ForeColor = Color.Red;
+                IsInvalidRegFolder = true;
+                HaveNonAscillInRegFolder = false;
+            }
+            else if (CheckUtil.HaveNonAsciiOrSpace(tbxRegImgPath.Text)) {
+                tbxRegImgPath.ForeColor = Color.Orange;
+                HaveNonAscillInRegFolder = true;
+                int num = 0;
+                IsInvalidRegFolder = !CheckUtil.IsValidImageFolder(tbxRegImgPath.Text, out num);
+                UpdateTotalStepCount();
+            }
+            else {
+                int num = 0;
+                IsInvalidRegFolder = !CheckUtil.IsValidImageFolder(tbxRegImgPath.Text, out num);
+                UpdateTotalStepCount();
+                tbxRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
+                HaveNonAscillInRegFolder = false;
+            }
+        }
+
         private void tbxFileName_TextChanged(object sender, EventArgs e) {
             TrainParams.Current.OutputName = tbxFileName.Text;
-            Regex regex = new Regex("[:/\\\\\\?\\*<>\\|\" 　]");
+            HaveNonAscillInOutputName = false;
+            Regex regex = new Regex("[:/\\\\\\?\\*<>\\|\"]");
             if (regex.IsMatch(tbxFileName.Text)) {
                 lblFileName.ForeColor = Color.Red;
+                tbxFileName.ForeColor = Color.Red;
                 IsInvalidOutputName = true;
+                return;
+            }
+            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputName)) {
+                lblFileName.ForeColor = Color.Orange;
+                tbxFileName.ForeColor = Color.Orange;
+                HaveNonAscillInOutputName = true;
             }
             else {
                 lblFileName.ForeColor = Color.Black;
-                IsInvalidOutputName = false;
+                tbxFileName.ForeColor = Color.Black;
             }
+            IsInvalidOutputName = false;
         }
 
         private void UpdateTotalStepCount() {
@@ -393,67 +486,57 @@ namespace Kohya_lora_trainer {
 
         }
 
-        private bool ValidateImageFolder(string path, out int ccnt) {
-            if (string.IsNullOrEmpty(path)) {
-                ccnt = 0;
-                return false;
-            }
-
-            string[] dc = Directory.GetDirectories(path);
-            ccnt = 0;
-            if (dc.Length == 0) {
-                return false;
-            }
-            else {
-                foreach (string dc2 in dc) {
-                    string str = dc2.Remove(0, dc2.LastIndexOf('\\') + 1);
-                    int idx = str.IndexOf("_");
-                    if (idx > 0) {
-                        str = str.Remove(idx);
-                        int num = 0;
-                        if (int.TryParse(str, out num) && num > 0) {
-                            string[] files = Directory.GetFiles(dc2);
-                            int fileCnt = 0;
-                            foreach (string file in files) {
-                                if (!Path.GetExtension(file).Equals(".txt") && !Path.GetExtension(file).Equals(".caption")) {
-                                    fileCnt++;
-                                }
-                            }
-                            ccnt += num * fileCnt;
-
-                        }
-                        else {
-                            return false;
-                        }
-                    }
-                    else {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
         private void UpdateAllContents() {
+            HaveNonAscillInImageFolder = false;
+            HaveNonAscillInModelPath = false;
+            HaveNonAscillInOutputName = false;
+            HaveNonAscillInRegFolder = false;
+            HaveNonAscillInOutputPath = false;
             //ModelPath
-            lblModelPath.Text = TrainParams.Current.ModelPath;
+            tbxModelPath.Text = TrainParams.Current.ModelPath;
+            if (!CheckUtil.IsPathAvailable(TrainParams.Current.ModelPath, false)) {
+                tbxModelPath.ForeColor = Color.Red;
+            }
+            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.ModelPath)) {
+                tbxModelPath.ForeColor = Color.Orange;
+                HaveNonAscillInModelPath = true;
+            }
+
             //TrainImage
-            lblImagePath.Text = TrainParams.Current.TrainImagePath;
-            IsInvalidImageFolder = !ValidateImageFolder(TrainParams.Current.TrainImagePath, out StepsPerEpoch);
-            lblImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
+            tbxImagePath.Text = TrainParams.Current.TrainImagePath;
+            IsInvalidImageFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.TrainImagePath, out StepsPerEpoch);
+            tbxImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
+            if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.TrainImagePath)) {
+                tbxImagePath.ForeColor = Color.Orange;
+                HaveNonAscillInImageFolder = true;
+            }
+            
             //RegImage
-            lblRegImgPath.Text = TrainParams.Current.RegImagePath;
+            tbxRegImgPath.Text = TrainParams.Current.RegImagePath;
             if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath)) {
                 int num = 0;
-                IsInvalidRegFolder = !ValidateImageFolder(TrainParams.Current.RegImagePath, out num);
+                IsInvalidRegFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.RegImagePath, out num);
             }
             else {
                 IsInvalidRegFolder = false;
             }
+            tbxRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
 
-            lblRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
+            if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.RegImagePath)) {
+                tbxRegImgPath.ForeColor = Color.Orange;
+                HaveNonAscillInRegFolder = true;
+            }
+
             //OutputPath
             lblOutputPath.Text = TrainParams.Current.OutputPath;
+            if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputPath)) {
+                lblOutputPath.ForeColor = Color.Orange;
+                HaveNonAscillInOutputPath = true;
+            }
+
+            if (!CheckUtil.IsPathAvailable(TrainParams.Current.OutputPath, true)) {
+                lblOutputPath.ForeColor = Color.Red;
+            }
             //Epochs
             nudEpochs.Value = TrainParams.Current.Epochs;
             //LR
@@ -479,10 +562,19 @@ namespace Kohya_lora_trainer {
             cbxOptimizer.SelectedIndex = (int)TrainParams.Current.OptimizerType;
             //OutputName
             tbxFileName.Text = TrainParams.Current.OutputName;
+            if (CheckUtil.HaveNonAsciiOrSpace(tbxFileName.Text)) {
+                tbxFileName.ForeColor = Color.Orange;
+                HaveNonAscillInOutputName = true;
+            }
+
             //UseLoCon
             cbxUseLoCon.Checked = TrainParams.Current.UseLoCon;
 
+
+
+
             UpdateTotalStepCount();
         }
+
     }
 }
