@@ -258,12 +258,6 @@ namespace Kohya_lora_trainer {
                     return;
                 }
 
-
-                if (!File.Exists("G:\\sd-scripts\\train_network.py")) {
-                    MessageBox.Show("学習用スクリプト(train_network.py)が見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
                 Form train = new TrainForm();
                 train.ShowDialog();
                 train.Dispose();
