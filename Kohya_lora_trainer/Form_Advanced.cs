@@ -54,7 +54,7 @@ namespace Kohya_lora_trainer {
                 }
             }
             else {
-                TrainParams.Current.UnetLR -= 1;
+                TrainParams.Current.UnetLR = -1;
             }
 
             if(nudMinBucketReso.Value % 64 != 0) {

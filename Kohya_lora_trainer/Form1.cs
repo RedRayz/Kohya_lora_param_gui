@@ -15,6 +15,7 @@ using System.Diagnostics.SymbolStore;
 using System.IO;
 using System.Xml.Serialization;
 using Microsoft.Win32;
+using System.Security.Cryptography;
 
 namespace Kohya_lora_trainer {
     public partial class Form1 : Form {
@@ -62,6 +63,20 @@ namespace Kohya_lora_trainer {
                 lblScriptPathDesc.Visible = false;
             }
 
+            string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\autosave.xmlora";
+            if (File.Exists(str)) {
+                try {
+                    XmlSerializer se = new XmlSerializer(typeof(TrainParams));
+                    using (StreamReader sr = new StreamReader(str, new System.Text.UTF8Encoding(false))) {
+                        TrainParams.Current = (TrainParams)se.Deserialize(sr);
+                    }
+
+                    UpdateAllContents();
+                }
+                catch {
+                    MessageBox.Show("自動保存プリセットを読み込めません。破損しているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void button4_Click(object sender, EventArgs e) {
@@ -295,6 +310,22 @@ namespace Kohya_lora_trainer {
 
         private void cbxUseLoCon_CheckedChanged(object sender, EventArgs e) {
             TrainParams.Current.UseLoCon = cbxUseLoCon.Checked;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+            if (IsInvalidOutputName)
+                return;
+
+            string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\autosave.xmlora";
+            try {
+                XmlSerializer se = new XmlSerializer(typeof(TrainParams));
+                using (StreamWriter sw = new StreamWriter(str, false, new UTF8Encoding(false))) {
+                    se.Serialize(sw, TrainParams.Current);
+                }
+            }
+            catch {
+                Console.WriteLine("自動保存書き込みできない");
+            }
         }
 
         private void btnCustomScriptPath_Click(object sender, EventArgs e) {
