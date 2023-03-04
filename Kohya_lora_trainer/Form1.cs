@@ -306,7 +306,7 @@ namespace Kohya_lora_trainer {
                 }
 
                 if(HaveNonAscillInImageFolder || HaveNonAscillInModelPath || HaveNonAscillInOutputName || HaveNonAscillInRegFolder || HaveNonAscillInOutputPath) {
-                    DialogResult res = MessageBox.Show("パスに日本語などのマルチバイト文字または空白文字が含まれています。\n不具合/エラーの原因となるため、それらの使用は推奨しません。\n続けてもよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult res = MessageBox.Show("パスに日本語などのマルチバイト文字または空白文字が含まれています。\n不具合/エラーの原因となるため、それらの文字の使用は推奨しません。\n続けてもよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (res != DialogResult.Yes)
                         return;
                 }

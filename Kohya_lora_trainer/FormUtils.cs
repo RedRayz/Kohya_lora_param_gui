@@ -52,7 +52,7 @@ namespace Kohya_lora_trainer {
                     sb.Append(@"..\");
                 }
 
-                sb.Append(" && .\\venv\\Scripts\\activate && python fix_position_ids.py --model ").Append(ofd.FileName);
+                sb.Append(" && .\\venv\\Scripts\\activate && python fix_position_ids.py --model \"").Append(ofd.FileName).Append("\"");
                 btnCheckCorrupt.Enabled = false;
                 btnRunTensorboard.Enabled = false;
                 lblTipNeedScript.Text = "読込中...";
