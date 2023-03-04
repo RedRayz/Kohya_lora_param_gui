@@ -11,11 +11,12 @@ https://github.com/kohya-ss/sd-scripts の学習用のパラメータ設定し�
 
 ## 注意事項
 [sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法でセットアップしている環境を前提としています。
+補助スクリプトなどで構築した環境は動作対象外です。
 
 動作の保証はしません。自己責任でご利用ください。
 
 ## インストール方法
-1.[releases](https://github.com/RedRayz/Kohya_lora_param_gui/releases)からzipをDLする
+1.[releases](https://github.com/RedRayz/Kohya_lora_param_gui/releases)からkohya_lora_gui-x.x.x.zipをDLする
 
 2.zipを解凍してできたフォルダをsd-scriptに移動させる
 
