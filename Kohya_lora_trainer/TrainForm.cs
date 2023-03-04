@@ -125,7 +125,7 @@ namespace Kohya_lora_trainer {
             }
 
             if (TrainParams.Current.UnetLR > 0) {
-                sb.Append("--unet_lr=").Append(TrainParams.Current.UnetLR.ToString("g"));
+                sb.Append("  --unet_lr=").Append(TrainParams.Current.UnetLR.ToString("g"));
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.TensorBoardLogPath)) {
