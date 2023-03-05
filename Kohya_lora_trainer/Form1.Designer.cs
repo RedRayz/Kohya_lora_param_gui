@@ -73,7 +73,6 @@ namespace Kohya_lora_trainer
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.lblOutputPath = new System.Windows.Forms.Label();
             this.btnOutputPath = new System.Windows.Forms.Button();
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
             this.btnCustomScriptPath = new System.Windows.Forms.Button();
@@ -88,6 +87,7 @@ namespace Kohya_lora_trainer
             this.tbxModelPath = new System.Windows.Forms.TextBox();
             this.tbxImagePath = new System.Windows.Forms.TextBox();
             this.tbxRegImgPath = new System.Windows.Forms.TextBox();
+            this.tbxOutputPath = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -579,15 +579,6 @@ namespace Kohya_lora_trainer
             this.label11.TabIndex = 3;
             this.label11.Text = "出力先フォルダ*";
             // 
-            // lblOutputPath
-            // 
-            this.lblOutputPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblOutputPath.Location = new System.Drawing.Point(700, 548);
-            this.lblOutputPath.Name = "lblOutputPath";
-            this.lblOutputPath.Size = new System.Drawing.Size(316, 49);
-            this.lblOutputPath.TabIndex = 13;
-            this.lblOutputPath.Text = "D:\\Sample\\Please stop using Super Long Naming\\RegImage\\1_1girl";
-            // 
             // btnOutputPath
             // 
             this.btnOutputPath.Location = new System.Drawing.Point(850, 501);
@@ -645,7 +636,7 @@ namespace Kohya_lora_trainer
             this.tbxModelPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.tbxModelPath.Location = new System.Drawing.Point(34, 201);
             this.tbxModelPath.Name = "tbxModelPath";
-            this.tbxModelPath.Size = new System.Drawing.Size(278, 29);
+            this.tbxModelPath.Size = new System.Drawing.Size(284, 29);
             this.tbxModelPath.TabIndex = 71;
             this.tbxModelPath.TextChanged += new System.EventHandler(this.tbxModelPath_TextChanged);
             // 
@@ -667,11 +658,21 @@ namespace Kohya_lora_trainer
             this.tbxRegImgPath.TabIndex = 71;
             this.tbxRegImgPath.TextChanged += new System.EventHandler(this.tbxRegImgPath_TextChanged);
             // 
+            // tbxOutputPath
+            // 
+            this.tbxOutputPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbxOutputPath.Location = new System.Drawing.Point(700, 551);
+            this.tbxOutputPath.Name = "tbxOutputPath";
+            this.tbxOutputPath.Size = new System.Drawing.Size(328, 29);
+            this.tbxOutputPath.TabIndex = 71;
+            this.tbxOutputPath.TextChanged += new System.EventHandler(this.tbxOutputPath_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1065, 787);
+            this.Controls.Add(this.tbxOutputPath);
             this.Controls.Add(this.tbxRegImgPath);
             this.Controls.Add(this.tbxImagePath);
             this.Controls.Add(this.tbxModelPath);
@@ -711,7 +712,6 @@ namespace Kohya_lora_trainer
             this.Controls.Add(this.btnAdvanced);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.lblOutputPath);
             this.Controls.Add(this.cbxOptimizer);
             this.Controls.Add(this.lblLR);
             this.Controls.Add(this.tbxLR);
@@ -788,7 +788,6 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label lblOutputPath;
         private System.Windows.Forms.Button btnOutputPath;
         private System.Windows.Forms.ToolTip toolTip3;
         private System.Windows.Forms.Button btnCustomScriptPath;
@@ -803,6 +802,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.TextBox tbxModelPath;
         private System.Windows.Forms.TextBox tbxImagePath;
         private System.Windows.Forms.TextBox tbxRegImgPath;
+        private System.Windows.Forms.TextBox tbxOutputPath;
     }
 }
 

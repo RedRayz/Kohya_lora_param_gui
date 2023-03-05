@@ -38,7 +38,7 @@ namespace Kohya_lora_trainer {
             tbxModelPath.Text = string.Empty;
             tbxImagePath.Text = string.Empty;
             tbxRegImgPath.Text = string.Empty;
-            lblOutputPath.Text = string.Empty;
+            tbxOutputPath.Text = string.Empty;
             cbxOptimizer.SelectedIndex = 0;
             lblNumSteps.Text = "?";
             lblNumStepsBatch1.Text = "?";
@@ -161,14 +161,14 @@ namespace Kohya_lora_trainer {
             cof.RestoreDirectory = true;
             if (cof.ShowDialog() == CommonFileDialogResult.Ok) {
                 TrainParams.Current.OutputPath = cof.FileName;
-                lblOutputPath.Text = TrainParams.Current.OutputPath;
+                tbxOutputPath.Text = TrainParams.Current.OutputPath;
                 HaveNonAscillInRegFolder = false;
                 if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputPath)) {
-                    lblOutputPath.ForeColor = Color.Orange;
+                    tbxOutputPath.ForeColor = Color.Orange;
                     HaveNonAscillInRegFolder = true;
                 }
                 else {
-                    lblOutputPath.ForeColor = Color.Black;
+                    tbxOutputPath.ForeColor = Color.Black;
                 }
             }
         }
@@ -341,6 +341,22 @@ namespace Kohya_lora_trainer {
             frm.Dispose();
         }
 
+        private void tbxOutputPath_TextChanged(object sender, EventArgs e) {
+            TrainParams.Current.OutputPath = tbxOutputPath.Text.Trim();
+            if (!Directory.Exists(TrainParams.Current.OutputPath)) {
+                tbxOutputPath.ForeColor = Color.Red;
+                HaveNonAscillInOutputPath = false;
+            }
+            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputPath)) {
+                tbxOutputPath.ForeColor = Color.Orange;
+                HaveNonAscillInOutputPath = true;
+            }
+            else {
+                tbxOutputPath.ForeColor = Color.Black;
+                HaveNonAscillInOutputPath = false;
+            }
+        }
+
         private void cbxUseLoCon_CheckedChanged(object sender, EventArgs e) {
             TrainParams.Current.UseLoCon = cbxUseLoCon.Checked;
         }
@@ -494,6 +510,7 @@ namespace Kohya_lora_trainer {
             HaveNonAscillInOutputPath = false;
             //ModelPath
             tbxModelPath.Text = TrainParams.Current.ModelPath;
+            tbxModelPath.ForeColor = Color.Black;
             if (!File.Exists(TrainParams.Current.ModelPath)) {
                 tbxModelPath.ForeColor = Color.Red;
             }
@@ -528,14 +545,15 @@ namespace Kohya_lora_trainer {
             }
 
             //OutputPath
-            lblOutputPath.Text = TrainParams.Current.OutputPath;
+            tbxOutputPath.ForeColor = Color.Black;
+            tbxOutputPath.Text = TrainParams.Current.OutputPath;
             if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputPath)) {
-                lblOutputPath.ForeColor = Color.Orange;
+                tbxOutputPath.ForeColor = Color.Orange;
                 HaveNonAscillInOutputPath = true;
             }
 
             if (!Directory.Exists(TrainParams.Current.OutputPath)) {
-                lblOutputPath.ForeColor = Color.Red;
+                tbxOutputPath.ForeColor = Color.Red;
             }
             //Epochs
             nudEpochs.Value = TrainParams.Current.Epochs;
@@ -562,6 +580,7 @@ namespace Kohya_lora_trainer {
             cbxOptimizer.SelectedIndex = (int)TrainParams.Current.OptimizerType;
             //OutputName
             tbxFileName.Text = TrainParams.Current.OutputName;
+            tbxFileName.ForeColor = Color.Black;
             if (CheckUtil.HaveNonAsciiOrSpace(tbxFileName.Text)) {
                 tbxFileName.ForeColor = Color.Orange;
                 HaveNonAscillInOutputName = true;
