@@ -43,7 +43,6 @@ namespace Kohya_lora_trainer
             this.label17 = new System.Windows.Forms.Label();
             this.btnAdvanced = new System.Windows.Forms.Button();
             this.btnStartTraining = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cbxShuffle = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -232,24 +231,15 @@ namespace Kohya_lora_trainer
             this.btnStartTraining.UseVisualStyleBackColor = true;
             this.btnStartTraining.Click += new System.EventHandler(this.btnStartTraining_Click);
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label6.Location = new System.Drawing.Point(29, 9);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(110, 32);
-            this.label6.TabIndex = 28;
-            this.label6.Text = "基本設定";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(30, 41);
+            this.label7.Location = new System.Drawing.Point(35, 9);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(482, 75);
+            this.label7.Size = new System.Drawing.Size(482, 100);
             this.label7.TabIndex = 29;
-            this.label7.Text = "*がつく項目は必須です\r\n他の設定は「Advanced options」を押すと表示します。\r\n日本語などのマルチバイト文字と空白文字の使用は推奨しません。";
+            this.label7.Text = "*がつく項目は必須です\r\n他の設定は「Advanced options」を押すと表示します。\r\n日本語などのマルチバイト文字と空白文字の使用は推奨しません。\r\nパ" +
+    "スの先頭と末尾の空白は無視されます。";
             // 
             // cbxShuffle
             // 
@@ -717,7 +707,6 @@ namespace Kohya_lora_trainer
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cbxShuffle);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnStartTraining);
             this.Controls.Add(this.btnAdvanced);
             this.Controls.Add(this.label17);
@@ -769,7 +758,6 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button btnAdvanced;
         private System.Windows.Forms.Button btnStartTraining;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox cbxShuffle;
         private System.Windows.Forms.Label label12;

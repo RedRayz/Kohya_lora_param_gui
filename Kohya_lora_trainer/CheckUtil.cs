@@ -28,22 +28,6 @@ namespace Kohya_lora_trainer {
         }
 
         /// <summary>
-        /// パスが有効かどうか
-        /// </summary>
-        /// <param name="path">パス</param>
-        /// <param name="IsDirectory">フォルダの存在チェックか</param>
-        /// <returns></returns>
-        public static bool IsPathAvailable(string path, bool IsDirectory) {
-            if (IsDirectory && !Directory.Exists(path)) {
-                return false;
-            }
-            else if (!IsDirectory && !File.Exists(path)) {
-                return false;
-            }
-            return true;
-        }
-
-        /// <summary>
         /// 教師画像フォルダの構造が要件を満たしているかどうか
         /// </summary>
         /// <param name="path"></param>
