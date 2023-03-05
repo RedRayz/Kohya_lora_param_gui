@@ -43,7 +43,7 @@ namespace Kohya_lora_trainer {
                 .Append(TrainParams.Current.TrainImagePath).Append("\"  --output_dir=\"").Append(TrainParams.Current.OutputPath).Append("\"");
             //Optional(RegImage)
             if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath)) {
-                sb.Append("  --reg_data_dir=").Append(TrainParams.Current.RegImagePath);
+                sb.Append("  --reg_data_dir=\"").Append(TrainParams.Current.RegImagePath).Append("\"");
             }
 
 
