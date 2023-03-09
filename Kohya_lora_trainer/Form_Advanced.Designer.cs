@@ -68,6 +68,11 @@ namespace Kohya_lora_trainer
             this.cbxAlgoType = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.toolTip4 = new System.Windows.Forms.ToolTip(this.components);
+            this.cbxCrossAttenType = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.toolTip5 = new System.Windows.Forms.ToolTip(this.components);
+            this.cbxUseGradient = new System.Windows.Forms.CheckBox();
+            this.toolTip6 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).BeginInit();
@@ -169,7 +174,7 @@ namespace Kohya_lora_trainer
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(127, 564);
+            this.label7.Location = new System.Drawing.Point(127, 621);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(81, 25);
             this.label7.TabIndex = 13;
@@ -178,7 +183,7 @@ namespace Kohya_lora_trainer
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(490, 564);
+            this.label6.Location = new System.Drawing.Point(490, 621);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 25);
             this.label6.TabIndex = 16;
@@ -188,7 +193,7 @@ namespace Kohya_lora_trainer
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Yu Gothic UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label8.Location = new System.Drawing.Point(48, 515);
+            this.label8.Location = new System.Drawing.Point(48, 572);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(280, 30);
             this.label8.TabIndex = 17;
@@ -207,7 +212,7 @@ namespace Kohya_lora_trainer
             // 
             // tbxExtension
             // 
-            this.tbxExtension.Location = new System.Drawing.Point(211, 628);
+            this.tbxExtension.Location = new System.Drawing.Point(211, 685);
             this.tbxExtension.Name = "tbxExtension";
             this.tbxExtension.Size = new System.Drawing.Size(126, 31);
             this.tbxExtension.TabIndex = 19;
@@ -216,7 +221,7 @@ namespace Kohya_lora_trainer
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(53, 631);
+            this.label9.Location = new System.Drawing.Point(53, 688);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(155, 50);
             this.label9.TabIndex = 20;
@@ -225,7 +230,7 @@ namespace Kohya_lora_trainer
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(651, 699);
+            this.button1.Location = new System.Drawing.Point(651, 756);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(259, 44);
             this.button1.TabIndex = 22;
@@ -235,7 +240,7 @@ namespace Kohya_lora_trainer
             // 
             // nudSeed
             // 
-            this.nudSeed.Location = new System.Drawing.Point(547, 562);
+            this.nudSeed.Location = new System.Drawing.Point(547, 619);
             this.nudSeed.Maximum = new decimal(new int[] {
             -1,
             0,
@@ -333,7 +338,7 @@ namespace Kohya_lora_trainer
             // 
             // nudClipSkip
             // 
-            this.nudClipSkip.Location = new System.Drawing.Point(211, 561);
+            this.nudClipSkip.Location = new System.Drawing.Point(211, 618);
             this.nudClipSkip.Maximum = new decimal(new int[] {
             8,
             0,
@@ -361,7 +366,7 @@ namespace Kohya_lora_trainer
             "fp16",
             "bf16",
             "float"});
-            this.cbxPrecision.Location = new System.Drawing.Point(546, 631);
+            this.cbxPrecision.Location = new System.Drawing.Point(546, 688);
             this.cbxPrecision.Name = "cbxPrecision";
             this.cbxPrecision.Size = new System.Drawing.Size(121, 33);
             this.cbxPrecision.TabIndex = 29;
@@ -370,7 +375,7 @@ namespace Kohya_lora_trainer
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(424, 635);
+            this.label11.Location = new System.Drawing.Point(424, 692);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(117, 25);
             this.label11.TabIndex = 30;
@@ -379,7 +384,7 @@ namespace Kohya_lora_trainer
             // btnDiscardAndClose
             // 
             this.btnDiscardAndClose.Font = new System.Drawing.Font("Yu Gothic UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnDiscardAndClose.Location = new System.Drawing.Point(383, 700);
+            this.btnDiscardAndClose.Location = new System.Drawing.Point(383, 757);
             this.btnDiscardAndClose.Name = "btnDiscardAndClose";
             this.btnDiscardAndClose.Size = new System.Drawing.Size(257, 44);
             this.btnDiscardAndClose.TabIndex = 31;
@@ -389,7 +394,7 @@ namespace Kohya_lora_trainer
             // 
             // btnTensorBoardPath
             // 
-            this.btnTensorBoardPath.Location = new System.Drawing.Point(211, 398);
+            this.btnTensorBoardPath.Location = new System.Drawing.Point(191, 454);
             this.btnTensorBoardPath.Name = "btnTensorBoardPath";
             this.btnTensorBoardPath.Size = new System.Drawing.Size(147, 46);
             this.btnTensorBoardPath.TabIndex = 32;
@@ -400,7 +405,7 @@ namespace Kohya_lora_trainer
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(76, 398);
+            this.label12.Location = new System.Drawing.Point(56, 454);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(129, 50);
             this.label12.TabIndex = 33;
@@ -409,7 +414,7 @@ namespace Kohya_lora_trainer
             // lblTBoardPath
             // 
             this.lblTBoardPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblTBoardPath.Location = new System.Drawing.Point(77, 448);
+            this.lblTBoardPath.Location = new System.Drawing.Point(57, 504);
             this.lblTBoardPath.Name = "lblTBoardPath";
             this.lblTBoardPath.Size = new System.Drawing.Size(320, 46);
             this.lblTBoardPath.TabIndex = 34;
@@ -417,7 +422,7 @@ namespace Kohya_lora_trainer
             // 
             // btnClearTBoardPath
             // 
-            this.btnClearTBoardPath.Location = new System.Drawing.Point(383, 398);
+            this.btnClearTBoardPath.Location = new System.Drawing.Point(363, 454);
             this.btnClearTBoardPath.Name = "btnClearTBoardPath";
             this.btnClearTBoardPath.Size = new System.Drawing.Size(99, 46);
             this.btnClearTBoardPath.TabIndex = 35;
@@ -469,12 +474,47 @@ namespace Kohya_lora_trainer
             this.label3.TabIndex = 39;
             this.label3.Text = "LyCORISのアルゴリズム";
             // 
+            // cbxCrossAttenType
+            // 
+            this.cbxCrossAttenType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxCrossAttenType.FormattingEnabled = true;
+            this.cbxCrossAttenType.Items.AddRange(new object[] {
+            "xformers",
+            "mem_eff_attn"});
+            this.cbxCrossAttenType.Location = new System.Drawing.Point(631, 281);
+            this.cbxCrossAttenType.Name = "cbxCrossAttenType";
+            this.cbxCrossAttenType.Size = new System.Drawing.Size(207, 33);
+            this.cbxCrossAttenType.TabIndex = 38;
+            this.toolTip5.SetToolTip(this.cbxCrossAttenType, "mem_eff_attnは遅いが省メモリ");
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(442, 286);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(183, 25);
+            this.label4.TabIndex = 40;
+            this.label4.Text = "クロスアテンションの種類";
+            // 
+            // cbxUseGradient
+            // 
+            this.cbxUseGradient.AutoSize = true;
+            this.cbxUseGradient.Location = new System.Drawing.Point(49, 395);
+            this.cbxUseGradient.Name = "cbxUseGradient";
+            this.cbxUseGradient.Size = new System.Drawing.Size(301, 29);
+            this.cbxUseGradient.TabIndex = 18;
+            this.cbxUseGradient.Text = "gradient_checkpointingを使用する";
+            this.toolTip6.SetToolTip(this.cbxUseGradient, "速度低下と引き換えにメモリ消費量を減らす");
+            this.cbxUseGradient.UseVisualStyleBackColor = true;
+            // 
             // Form_Advanced
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(955, 768);
+            this.ClientSize = new System.Drawing.Size(955, 812);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.cbxCrossAttenType);
             this.Controls.Add(this.cbxAlgoType);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.cbxAdvancedTrain);
@@ -494,6 +534,7 @@ namespace Kohya_lora_trainer
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.tbxExtension);
+            this.Controls.Add(this.cbxUseGradient);
             this.Controls.Add(this.cbxUseWarmupInit);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
@@ -567,5 +608,10 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.ComboBox cbxAlgoType;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolTip toolTip4;
+        private System.Windows.Forms.ComboBox cbxCrossAttenType;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolTip toolTip5;
+        private System.Windows.Forms.CheckBox cbxUseGradient;
+        private System.Windows.Forms.ToolTip toolTip6;
     }
 }

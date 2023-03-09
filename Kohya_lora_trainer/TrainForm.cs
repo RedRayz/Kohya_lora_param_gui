@@ -59,9 +59,22 @@ namespace Kohya_lora_trainer {
                     break;
             }
 
+            switch (TrainParams.Current.CrossAttenType) {
+                case CrossAttenType.xformers:
+                    sb.Append("  --xformers");
+                    break;
+                    case CrossAttenType.mem_eff_attn:
+                    sb.Append("  --mem_eff_attn");
+                    break;
+            }
+
+            if (TrainParams.Current.UseGradient) {
+                sb.Append("  --gradient_checkpointing");
+            }
+
             //Automatic
             
-            sb.Append("  --persistent_data_loader_workers  --color_aug  --enable_bucket  --xformers")
+            sb.Append("  --persistent_data_loader_workers  --color_aug  --enable_bucket")
                 .Append("  --save_model_as=safetensors  --lr_scheduler_num_cycles=4  --mixed_precision=fp16");
 
             //Main

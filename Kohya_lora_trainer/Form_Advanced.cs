@@ -73,6 +73,7 @@ namespace Kohya_lora_trainer {
             TrainParams.Current.SavePrecision = (SavePrecision)Enum.ToObject(typeof(SavePrecision), cbxPrecision.SelectedIndex);
             TrainParams.Current.advancedTrainType = (AdvancedTrainType)Enum.ToObject(typeof(AdvancedTrainType), cbxAdvancedTrain.SelectedIndex);
             TrainParams.Current.AlgoType = (AlgoType)Enum.ToObject(typeof(AlgoType), cbxAlgoType.SelectedIndex);
+            TrainParams.Current.CrossAttenType = (CrossAttenType)Enum.ToObject(typeof(CrossAttenType), cbxCrossAttenType.SelectedIndex);
             TrainParams.Current.MinBucketResolution = (int)nudMinBucketReso.Value;
             TrainParams.Current.MaxBucketResolution = (int)nudMaxBucketReso.Value;
             TrainParams.Current.NoBucketUpscaling = cbxNoUpscale.Checked;
@@ -80,6 +81,7 @@ namespace Kohya_lora_trainer {
             TrainParams.Current.ClipSkip = (int)nudClipSkip.Value;
             TrainParams.Current.Seed = (int)nudSeed.Value;
             TrainParams.Current.CaptionFileExtension = tbxExtension.Text;
+            TrainParams.Current.UseGradient = cbxUseGradient.Checked;
 
             Close();
         }
@@ -95,6 +97,7 @@ namespace Kohya_lora_trainer {
             cbxNoUpscale.Checked = TrainParams.Current.NoBucketUpscaling;
             cbxUseWarmupInit.Checked = TrainParams.Current.UseWarmupInit;
             cbxAdvancedTrain.SelectedIndex = (int)TrainParams.Current.advancedTrainType;
+            cbxCrossAttenType.SelectedIndex = (int)TrainParams.Current.CrossAttenType;
 
             nudClipSkip.Value = TrainParams.Current.ClipSkip;
             nudSeed.Value = TrainParams.Current.Seed;
@@ -103,6 +106,7 @@ namespace Kohya_lora_trainer {
             cbxAlgoType.SelectedIndex = (int)TrainParams.Current.AlgoType;
 
             lblTBoardPath.Text = TrainParams.Current.TensorBoardLogPath;
+            cbxUseGradient.Checked = TrainParams.Current.UseGradient;
 
             bool valid = nudMinBucketReso.Value % 64 == 0;
             lblMinBucketReso.ForeColor = valid ? Color.Black : Color.Red;

@@ -35,6 +35,8 @@ namespace Kohya_lora_trainer {
         public  float UnetLR = -1, TextEncoderLR = -1;
         public AdvancedTrainType advancedTrainType = AdvancedTrainType.None;
         public AlgoType AlgoType = AlgoType.lora;
+        public CrossAttenType CrossAttenType = CrossAttenType.xformers;
+        public bool UseGradient = false;
 
         [NonSerialized]
         public static TrainParams Current;
@@ -80,5 +82,10 @@ namespace Kohya_lora_trainer {
     public enum AlgoType {
         lora,
         loha
+    }
+
+    public enum CrossAttenType {
+        xformers,
+        mem_eff_attn
     }
 }
