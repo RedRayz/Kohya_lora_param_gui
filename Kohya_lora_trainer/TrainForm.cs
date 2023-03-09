@@ -46,10 +46,21 @@ namespace Kohya_lora_trainer {
                 sb.Append("  --reg_data_dir=\"").Append(TrainParams.Current.RegImagePath).Append("\"");
             }
 
+            switch (TrainParams.Current.ModuleType) {
+                    case ModuleType.LoRA:
+                    sb.Append("  --network_module=").Append("networks.lora");
+                    break;
+                    case ModuleType.LoCon:
+                    sb.Append("  --network_module=").Append("locon.locon_kohya");
+                    break;
+                    case ModuleType.LyCORIS:
+                    sb.Append("  --network_module=").Append("lycoris.kohya");
+                    break;
+            }
 
             //Automatic
-            sb.Append("  --network_module=").Append(TrainParams.Current.UseLoCon ? "locon.locon_kohya" : "networks.lora")
-            .Append("  --persistent_data_loader_workers  --color_aug  --enable_bucket  --xformers")
+            
+            sb.Append("  --persistent_data_loader_workers  --color_aug  --enable_bucket  --xformers")
                 .Append("  --save_model_as=safetensors  --lr_scheduler_num_cycles=4  --mixed_precision=fp16");
 
             //Main

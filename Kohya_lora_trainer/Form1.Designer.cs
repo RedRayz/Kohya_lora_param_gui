@@ -82,12 +82,13 @@ namespace Kohya_lora_trainer
             this.toolTip6 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip7 = new System.Windows.Forms.ToolTip(this.components);
             this.btnUtilities = new System.Windows.Forms.Button();
-            this.cbxUseLoCon = new System.Windows.Forms.CheckBox();
             this.toolTip8 = new System.Windows.Forms.ToolTip(this.components);
             this.tbxModelPath = new System.Windows.Forms.TextBox();
             this.tbxImagePath = new System.Windows.Forms.TextBox();
             this.tbxRegImgPath = new System.Windows.Forms.TextBox();
             this.tbxOutputPath = new System.Windows.Forms.TextBox();
+            this.cbxModuleType = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -619,18 +620,6 @@ namespace Kohya_lora_trainer
             this.btnUtilities.UseVisualStyleBackColor = true;
             this.btnUtilities.Click += new System.EventHandler(this.btnUtilities_Click);
             // 
-            // cbxUseLoCon
-            // 
-            this.cbxUseLoCon.AutoSize = true;
-            this.cbxUseLoCon.Location = new System.Drawing.Point(681, 431);
-            this.cbxUseLoCon.Name = "cbxUseLoCon";
-            this.cbxUseLoCon.Size = new System.Drawing.Size(358, 29);
-            this.cbxUseLoCon.TabIndex = 70;
-            this.cbxUseLoCon.Text = "LoConを使用する(事前にインストールが必要)";
-            this.toolTip8.SetToolTip(this.cbxUseLoCon, "venvでpip install locon");
-            this.cbxUseLoCon.UseVisualStyleBackColor = true;
-            this.cbxUseLoCon.CheckedChanged += new System.EventHandler(this.cbxUseLoCon_CheckedChanged);
-            // 
             // tbxModelPath
             // 
             this.tbxModelPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -667,16 +656,39 @@ namespace Kohya_lora_trainer
             this.tbxOutputPath.TabIndex = 71;
             this.tbxOutputPath.TextChanged += new System.EventHandler(this.tbxOutputPath_TextChanged);
             // 
+            // cbxModuleType
+            // 
+            this.cbxModuleType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxModuleType.FormattingEnabled = true;
+            this.cbxModuleType.Items.AddRange(new object[] {
+            "LoRA",
+            "LoCon",
+            "LyCORIS"});
+            this.cbxModuleType.Location = new System.Drawing.Point(850, 424);
+            this.cbxModuleType.Name = "cbxModuleType";
+            this.cbxModuleType.Size = new System.Drawing.Size(146, 33);
+            this.cbxModuleType.TabIndex = 6;
+            this.cbxModuleType.SelectedIndexChanged += new System.EventHandler(this.cbxModuleType_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(695, 427);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(130, 25);
+            this.label6.TabIndex = 72;
+            this.label6.Text = "モジュールの種類";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1065, 787);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.tbxOutputPath);
             this.Controls.Add(this.tbxRegImgPath);
             this.Controls.Add(this.tbxImagePath);
             this.Controls.Add(this.tbxModelPath);
-            this.Controls.Add(this.cbxUseLoCon);
             this.Controls.Add(this.btnUtilities);
             this.Controls.Add(this.lblScriptPathDesc);
             this.Controls.Add(this.btnCustomScriptPath);
@@ -712,6 +724,7 @@ namespace Kohya_lora_trainer
             this.Controls.Add(this.btnAdvanced);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label10);
+            this.Controls.Add(this.cbxModuleType);
             this.Controls.Add(this.cbxOptimizer);
             this.Controls.Add(this.lblLR);
             this.Controls.Add(this.tbxLR);
@@ -797,12 +810,13 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.ToolTip toolTip6;
         private System.Windows.Forms.ToolTip toolTip7;
         private System.Windows.Forms.Button btnUtilities;
-        private System.Windows.Forms.CheckBox cbxUseLoCon;
         private System.Windows.Forms.ToolTip toolTip8;
         private System.Windows.Forms.TextBox tbxModelPath;
         private System.Windows.Forms.TextBox tbxImagePath;
         private System.Windows.Forms.TextBox tbxRegImgPath;
         private System.Windows.Forms.TextBox tbxOutputPath;
+        private System.Windows.Forms.ComboBox cbxModuleType;
+        private System.Windows.Forms.Label label6;
     }
 }
 

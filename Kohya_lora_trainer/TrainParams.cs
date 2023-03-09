@@ -18,7 +18,11 @@ namespace Kohya_lora_trainer {
         public  OptimizerType OptimizerType = OptimizerType.AdamW8bit;
         public  int WarmupSteps = 500;
         public  string OutputName;
+        /// <summary>
+        /// 互換性維持のために残しています。通常はModuleTypeを使用してください
+        /// </summary>
         public bool UseLoCon = false;
+        public ModuleType ModuleType = ModuleType.LoRA;
 
         //Advanced
         public  int CpuThreads = 12;
@@ -64,5 +68,11 @@ namespace Kohya_lora_trainer {
         None,
         TextEncoderOnly,
         UNetOnly,
+    }
+
+    public enum ModuleType {
+        LoRA,
+        LoCon,
+        LyCORIS
     }
 }

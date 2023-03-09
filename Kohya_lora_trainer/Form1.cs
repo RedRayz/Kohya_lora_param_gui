@@ -40,6 +40,7 @@ namespace Kohya_lora_trainer {
             tbxRegImgPath.Text = string.Empty;
             tbxOutputPath.Text = string.Empty;
             cbxOptimizer.SelectedIndex = 0;
+            cbxModuleType.SelectedIndex = 0;
             lblNumSteps.Text = "?";
             lblNumStepsBatch1.Text = "?";
 
@@ -327,6 +328,12 @@ namespace Kohya_lora_trainer {
                     using (StreamReader sr = new StreamReader(ofd.FileName, new System.Text.UTF8Encoding(false))) {
                         TrainParams.Current = (TrainParams)se.Deserialize(sr);
                     }
+
+                    //古いプリセットの互換性維持用
+                    if (TrainParams.Current.UseLoCon) {
+                        TrainParams.Current.ModuleType = ModuleType.LoCon;
+                    }
+
                 }
                 catch {
                     MessageBox.Show("プリセットを読み込めません。破損しているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -357,8 +364,8 @@ namespace Kohya_lora_trainer {
             }
         }
 
-        private void cbxUseLoCon_CheckedChanged(object sender, EventArgs e) {
-            TrainParams.Current.UseLoCon = cbxUseLoCon.Checked;
+        private void cbxModuleType_SelectedIndexChanged(object sender, EventArgs e) {
+            TrainParams.Current.ModuleType = (ModuleType)Enum.ToObject(typeof(ModuleType), cbxModuleType.SelectedIndex);
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
@@ -578,6 +585,8 @@ namespace Kohya_lora_trainer {
             nudSaveEpoch.Value = TrainParams.Current.SaveEveryNEpochs;
             //Optimizer
             cbxOptimizer.SelectedIndex = (int)TrainParams.Current.OptimizerType;
+            //ModuleType
+            cbxModuleType.SelectedIndex = (int)TrainParams.Current.ModuleType;
             //OutputName
             tbxFileName.Text = TrainParams.Current.OutputName;
             tbxFileName.ForeColor = Color.Black;
@@ -585,12 +594,6 @@ namespace Kohya_lora_trainer {
                 tbxFileName.ForeColor = Color.Orange;
                 HaveNonAscillInOutputName = true;
             }
-
-            //UseLoCon
-            cbxUseLoCon.Checked = TrainParams.Current.UseLoCon;
-
-
-
 
             UpdateTotalStepCount();
         }
