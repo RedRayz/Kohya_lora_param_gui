@@ -55,6 +55,7 @@ namespace Kohya_lora_trainer {
                     break;
                     case ModuleType.LyCORIS:
                     sb.Append("  --network_module=").Append("lycoris.kohya");
+                    sb.Append("  --network_args \"algo=").Append(TrainParams.Current.AlgoType.ToString()).Append("\"");
                     break;
             }
 
@@ -68,12 +69,6 @@ namespace Kohya_lora_trainer {
                 .Append("  --resolution=").Append(TrainParams.Current.Resolution).Append(",").Append(TrainParams.Current.Resolution)
                 .Append("  --train_batch_size=").Append(TrainParams.Current.BatchSize)
                 .Append("  --max_train_epochs=").Append(TrainParams.Current.Epochs);
-
-            //readmeに書いてあるusageどおりに文字列渡すと壊れるので無効
-            //if (TrainParams.Current.UseLoCon) {
-            //    sb.Append("  --network_args \"conv_dim=RANK_FOR_CONV\" \"conv_alpha=ALPHA_FOR_CONV\"");
-            //    sb.Append("  --network_dim \"RANK_FOR_TRANSFORMER\"  --network_alpha \"ALPHA_FOR_TRANSFORMER\"");
-            //}
 
             sb.Append("  --network_dim=").Append(TrainParams.Current.NetworkDim)
             .Append("  --network_alpha=").Append(TrainParams.Current.NetworkAlpha);

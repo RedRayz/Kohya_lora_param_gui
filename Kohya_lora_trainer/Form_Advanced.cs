@@ -72,6 +72,7 @@ namespace Kohya_lora_trainer {
             TrainParams.Current.SchedulerType = (SchedulerType)Enum.ToObject(typeof(SchedulerType), cbxScheduler.SelectedIndex);
             TrainParams.Current.SavePrecision = (SavePrecision)Enum.ToObject(typeof(SavePrecision), cbxPrecision.SelectedIndex);
             TrainParams.Current.advancedTrainType = (AdvancedTrainType)Enum.ToObject(typeof(AdvancedTrainType), cbxAdvancedTrain.SelectedIndex);
+            TrainParams.Current.AlgoType = (AlgoType)Enum.ToObject(typeof(AlgoType), cbxAlgoType.SelectedIndex);
             TrainParams.Current.MinBucketResolution = (int)nudMinBucketReso.Value;
             TrainParams.Current.MaxBucketResolution = (int)nudMaxBucketReso.Value;
             TrainParams.Current.NoBucketUpscaling = cbxNoUpscale.Checked;
@@ -99,6 +100,7 @@ namespace Kohya_lora_trainer {
             nudSeed.Value = TrainParams.Current.Seed;
             tbxExtension.Text = TrainParams.Current.CaptionFileExtension;
             cbxPrecision.SelectedIndex = (int)TrainParams.Current.SavePrecision;
+            cbxAlgoType.SelectedIndex = (int)TrainParams.Current.AlgoType;
 
             lblTBoardPath.Text = TrainParams.Current.TensorBoardLogPath;
 

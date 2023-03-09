@@ -34,6 +34,7 @@ namespace Kohya_lora_trainer {
         public  string CaptionFileExtension = ".txt";
         public  float UnetLR = -1, TextEncoderLR = -1;
         public AdvancedTrainType advancedTrainType = AdvancedTrainType.None;
+        public AlgoType AlgoType = AlgoType.lora;
 
         [NonSerialized]
         public static TrainParams Current;
@@ -74,5 +75,10 @@ namespace Kohya_lora_trainer {
         LoRA,
         LoCon,
         LyCORIS
+    }
+
+    public enum AlgoType {
+        lora,
+        loha
     }
 }
