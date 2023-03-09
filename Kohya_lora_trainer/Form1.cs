@@ -332,6 +332,7 @@ namespace Kohya_lora_trainer {
                     //古いプリセットの互換性維持用
                     if (TrainParams.Current.UseLoCon) {
                         TrainParams.Current.ModuleType = ModuleType.LoCon;
+                        TrainParams.Current.UseLoCon = false;
                     }
 
                 }
