@@ -22,7 +22,6 @@ namespace Kohya_lora_trainer {
         /// 互換性維持のために残しています。通常はModuleTypeを使用してください
         /// </summary>
         public bool UseLoCon = false;
-        public ModuleType ModuleType = ModuleType.LoRA;
 
         //Advanced
         public  int CpuThreads = 12;
@@ -37,6 +36,10 @@ namespace Kohya_lora_trainer {
         public AlgoType AlgoType = AlgoType.lora;
         public CrossAttenType CrossAttenType = CrossAttenType.xformers;
         public bool UseGradient = false;
+
+        //Addtional(KohakuBlueleaf氏作成拡張スクリプト用)
+        public ModuleType ModuleType = ModuleType.LoRA;
+        public float ConvDim = -1, ConvAlpha = -1;
 
         [NonSerialized]
         public static TrainParams Current;

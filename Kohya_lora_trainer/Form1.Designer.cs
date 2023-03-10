@@ -89,6 +89,7 @@ namespace Kohya_lora_trainer
             this.tbxOutputPath = new System.Windows.Forms.TextBox();
             this.cbxModuleType = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnAddtional = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -213,11 +214,11 @@ namespace Kohya_lora_trainer
             // 
             // btnAdvanced
             // 
-            this.btnAdvanced.Location = new System.Drawing.Point(34, 722);
+            this.btnAdvanced.Location = new System.Drawing.Point(12, 721);
             this.btnAdvanced.Name = "btnAdvanced";
-            this.btnAdvanced.Size = new System.Drawing.Size(168, 45);
+            this.btnAdvanced.Size = new System.Drawing.Size(112, 45);
             this.btnAdvanced.TabIndex = 26;
-            this.btnAdvanced.Text = "Advanced options";
+            this.btnAdvanced.Text = "詳細設定";
             this.btnAdvanced.UseVisualStyleBackColor = true;
             this.btnAdvanced.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -237,10 +238,10 @@ namespace Kohya_lora_trainer
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(35, 9);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(482, 100);
+            this.label7.Size = new System.Drawing.Size(706, 100);
             this.label7.TabIndex = 29;
-            this.label7.Text = "*がつく項目は必須です\r\n他の設定は「Advanced options」を押すと表示します。\r\n日本語などのマルチバイト文字と空白文字の使用は推奨しません。\r\nパ" +
-    "スの先頭と末尾の空白は無視されます。";
+            this.label7.Text = "*がつく項目は必須です\r\n他の設定は「詳細設定」を押すと表示します。LoConとLyCORISの設定は「追加設定」にあります。\r\n日本語などのマルチバイト文字と空" +
+    "白文字の使用は推奨しません。\r\nパスの先頭と末尾の空白は無視されます。";
             // 
             // cbxShuffle
             // 
@@ -264,7 +265,7 @@ namespace Kohya_lora_trainer
             // 
             // btnSavePreset
             // 
-            this.btnSavePreset.Location = new System.Drawing.Point(402, 721);
+            this.btnSavePreset.Location = new System.Drawing.Point(430, 720);
             this.btnSavePreset.Name = "btnSavePreset";
             this.btnSavePreset.Size = new System.Drawing.Size(146, 46);
             this.btnSavePreset.TabIndex = 34;
@@ -275,7 +276,7 @@ namespace Kohya_lora_trainer
             // 
             // btnLoadPreset
             // 
-            this.btnLoadPreset.Location = new System.Drawing.Point(565, 722);
+            this.btnLoadPreset.Location = new System.Drawing.Point(582, 720);
             this.btnLoadPreset.Name = "btnLoadPreset";
             this.btnLoadPreset.Size = new System.Drawing.Size(160, 46);
             this.btnLoadPreset.TabIndex = 35;
@@ -612,7 +613,7 @@ namespace Kohya_lora_trainer
             // 
             // btnUtilities
             // 
-            this.btnUtilities.Location = new System.Drawing.Point(208, 721);
+            this.btnUtilities.Location = new System.Drawing.Point(249, 721);
             this.btnUtilities.Name = "btnUtilities";
             this.btnUtilities.Size = new System.Drawing.Size(117, 45);
             this.btnUtilities.TabIndex = 69;
@@ -679,11 +680,21 @@ namespace Kohya_lora_trainer
             this.label6.TabIndex = 72;
             this.label6.Text = "モジュールの種類";
             // 
+            // btnAddtional
+            // 
+            this.btnAddtional.Location = new System.Drawing.Point(130, 722);
+            this.btnAddtional.Name = "btnAddtional";
+            this.btnAddtional.Size = new System.Drawing.Size(113, 44);
+            this.btnAddtional.TabIndex = 73;
+            this.btnAddtional.Text = "追加設定";
+            this.btnAddtional.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1065, 787);
+            this.Controls.Add(this.btnAddtional);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbxOutputPath);
             this.Controls.Add(this.tbxRegImgPath);
@@ -817,6 +828,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.TextBox tbxOutputPath;
         private System.Windows.Forms.ComboBox cbxModuleType;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnAddtional;
     }
 }
 
