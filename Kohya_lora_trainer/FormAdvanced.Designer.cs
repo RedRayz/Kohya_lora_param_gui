@@ -1,7 +1,7 @@
 ﻿
 namespace Kohya_lora_trainer
 {
-    partial class Form_Advanced
+    partial class FormAdvanced
     {
         /// <summary>
         /// Required designer variable.

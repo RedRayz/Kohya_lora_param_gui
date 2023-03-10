@@ -47,15 +47,35 @@ namespace Kohya_lora_trainer {
             }
 
             switch (TrainParams.Current.ModuleType) {
-                    case ModuleType.LoRA:
-                    sb.Append("  --network_module=").Append("networks.lora");
+                    case ModuleType.LoRA: {
+                        sb.Append("  --network_module=").Append("networks.lora");
+                    }
                     break;
-                    case ModuleType.LoCon:
-                    sb.Append("  --network_module=").Append("locon.locon_kohya");
+                    case ModuleType.LoCon: {
+                        sb.Append("  --network_module=").Append("locon.locon_kohya");
+                        bool di = TrainParams.Current.ConvDim > 0;
+                        bool al = TrainParams.Current.ConvAlpha > 0;
+                        if (di || al) {
+                            sb.Append("  --network_args");
+                            if (di)
+                                sb.Append(" \"conv_dim=").Append(TrainParams.Current.ConvDim.ToString()).Append("\"");
+                            if (al)
+                                sb.Append(" \"conv_alpha=").Append(TrainParams.Current.ConvAlpha.ToString()).Append("\"");
+                        }
+                    }
                     break;
-                    case ModuleType.LyCORIS:
-                    sb.Append("  --network_module=").Append("lycoris.kohya");
-                    sb.Append("  --network_args \"algo=").Append(TrainParams.Current.AlgoType.ToString()).Append("\"");
+                    case ModuleType.LyCORIS: {
+                        sb.Append("  --network_module=").Append("lycoris.kohya");
+                        sb.Append("  --network_args \"algo=").Append(TrainParams.Current.AlgoType.ToString()).Append("\"");
+                        bool di = TrainParams.Current.ConvDim > 0;
+                        bool al = TrainParams.Current.ConvAlpha > 0;
+                        if (di || al) {
+                            if (di)
+                                sb.Append(" \"conv_dim=").Append(TrainParams.Current.ConvDim.ToString()).Append("\"");
+                            if (al)
+                                sb.Append(" \"conv_alpha=").Append(TrainParams.Current.ConvAlpha.ToString()).Append("\"");
+                        }
+                    }
                     break;
             }
 

@@ -33,13 +33,13 @@ namespace Kohya_lora_trainer {
         public  string CaptionFileExtension = ".txt";
         public  float UnetLR = -1, TextEncoderLR = -1;
         public AdvancedTrainType advancedTrainType = AdvancedTrainType.None;
-        public AlgoType AlgoType = AlgoType.lora;
         public CrossAttenType CrossAttenType = CrossAttenType.xformers;
         public bool UseGradient = false;
 
         //Addtional(KohakuBlueleaf氏作成拡張スクリプト用)
         public ModuleType ModuleType = ModuleType.LoRA;
-        public float ConvDim = -1, ConvAlpha = -1;
+        public AlgoType AlgoType = AlgoType.lora;
+        public int ConvDim = 0, ConvAlpha = 0;
 
         [NonSerialized]
         public static TrainParams Current;

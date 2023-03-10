@@ -15,7 +15,10 @@ namespace Kohya_lora_trainer {
         }
 
         private void FormAddtional_Load(object sender, EventArgs e) {
-            cbxAlgo.SelectedIndex = (int)TrainParams.Current.AlgoType;
+            cbxAlgoType.SelectedIndex = (int)TrainParams.Current.AlgoType;
+
+            nudConvDim.Value = TrainParams.Current.ConvDim;
+            nudConvAlpha.Value = TrainParams.Current.ConvAlpha;
         }
 
         private void btnDiscardChangesAndClose_Click(object sender, EventArgs e) {
@@ -23,7 +26,12 @@ namespace Kohya_lora_trainer {
         }
 
         private void btnSaveAndClose_Click(object sender, EventArgs e) {
+            TrainParams.Current.ConvDim = (int)nudConvDim.Value;
+            TrainParams.Current.ConvAlpha = (int)nudConvAlpha.Value;
 
+            TrainParams.Current.AlgoType = (AlgoType)Enum.ToObject(typeof(AlgoType), cbxAlgoType.SelectedIndex);
+
+            Close();
         }
     }
 }

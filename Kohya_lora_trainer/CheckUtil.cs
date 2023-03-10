@@ -74,6 +74,17 @@ namespace Kohya_lora_trainer {
             return true;
         }
 
+        /// <summary>
+        /// 0以上の実数かどうか
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public static bool IsValidNum(float num) {
+            if(num<= 0 || float.IsNaN(num) || float.IsInfinity(num)) 
+                return false;
+            return true;
+        }
+
     }
 
 

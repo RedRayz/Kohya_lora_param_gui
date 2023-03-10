@@ -117,11 +117,11 @@
     <Compile Include="FormAddtional.Designer.cs">
       <DependentUpon>FormAddtional.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_Advanced.cs">
+    <Compile Include="FormAdvanced.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_Advanced.Designer.cs">
-      <DependentUpon>Form_Advanced.cs</DependentUpon>
+    <Compile Include="FormAdvanced.Designer.cs">
+      <DependentUpon>FormAdvanced.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -147,8 +147,8 @@
     <EmbeddedResource Include="FormUtils.resx">
       <DependentUpon>FormUtils.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_Advanced.resx">
-      <DependentUpon>Form_Advanced.cs</DependentUpon>
+    <EmbeddedResource Include="FormAdvanced.resx">
+      <DependentUpon>FormAdvanced.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

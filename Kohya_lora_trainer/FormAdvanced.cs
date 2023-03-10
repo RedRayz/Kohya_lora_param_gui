@@ -11,8 +11,8 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.WindowsAPICodePack.Shell;
 
 namespace Kohya_lora_trainer {
-    public partial class Form_Advanced : Form {
-        public Form_Advanced() {
+    public partial class FormAdvanced : Form {
+        public FormAdvanced() {
             InitializeComponent();
         }
 
@@ -20,7 +20,7 @@ namespace Kohya_lora_trainer {
             if (!string.IsNullOrEmpty(tbxTextEncoLR.Text)) {
                 float lr = -1f;
                 if (float.TryParse(tbxTextEncoLR.Text, out lr)) {
-                    if (lr <= 0f || float.IsNaN(lr) || float.IsInfinity(lr)) {
+                    if (!CheckUtil.IsValidNum(lr)) {
                         MessageBox.Show("TextEncoder LRに0以下、NaN、無限は指定できません", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
@@ -40,7 +40,7 @@ namespace Kohya_lora_trainer {
             if (!string.IsNullOrEmpty(tbxUnetLR.Text)) {
                 float lr = -1f;
                 if (float.TryParse(tbxUnetLR.Text, out lr)) {
-                    if (lr <= 0f || float.IsNaN(lr) || float.IsInfinity(lr)) {
+                    if (!CheckUtil.IsValidNum(lr)) {
                         MessageBox.Show("UNet LRに0以下、NaN、無限は指定できません", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }

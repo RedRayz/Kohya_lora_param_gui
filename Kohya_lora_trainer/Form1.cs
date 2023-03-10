@@ -82,7 +82,7 @@ namespace Kohya_lora_trainer {
         }
 
         private void button4_Click(object sender, EventArgs e) {
-            Form adv = new Form_Advanced();
+            Form adv = new FormAdvanced();
             adv.ShowDialog();
 
             adv.Dispose();
@@ -363,6 +363,12 @@ namespace Kohya_lora_trainer {
                 tbxOutputPath.ForeColor = Color.Black;
                 HaveNonAscillInOutputPath = false;
             }
+        }
+
+        private void btnAddtional_Click(object sender, EventArgs e) {
+            Form frm = new FormAddtional();
+            frm.ShowDialog();
+            frm.Dispose();
         }
 
         private void cbxModuleType_SelectedIndexChanged(object sender, EventArgs e) {

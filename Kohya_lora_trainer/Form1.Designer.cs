@@ -688,6 +688,7 @@ namespace Kohya_lora_trainer
             this.btnAddtional.TabIndex = 73;
             this.btnAddtional.Text = "追加設定";
             this.btnAddtional.UseVisualStyleBackColor = true;
+            this.btnAddtional.Click += new System.EventHandler(this.btnAddtional_Click);
             // 
             // Form1
             // 
