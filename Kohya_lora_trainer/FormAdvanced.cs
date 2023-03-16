@@ -146,5 +146,13 @@ namespace Kohya_lora_trainer {
             bool valid = nudMaxBucketReso.Value % 64 == 0;
             lblMaxBucketReso.ForeColor = valid ? Color.Black : Color.Red;
         }
+
+        private void btnSelectLoRAmodel_Click(object sender, EventArgs e) {
+
+        }
+
+        private void btnClearLoRAmodel_Click(object sender, EventArgs e) {
+
+        }
     }
 }

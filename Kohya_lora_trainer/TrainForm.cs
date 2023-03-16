@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Kohya_lora_trainer {
+    //TODO: --network_weightsの対応
     public partial class TrainForm : Form {
         private Process process;
         private string TrainArgs;

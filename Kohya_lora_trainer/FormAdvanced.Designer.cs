@@ -71,6 +71,10 @@ namespace Kohya_lora_trainer
             this.toolTip5 = new System.Windows.Forms.ToolTip(this.components);
             this.cbxUseGradient = new System.Windows.Forms.CheckBox();
             this.toolTip6 = new System.Windows.Forms.ToolTip(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnSelectLoRAmodel = new System.Windows.Forms.Button();
+            this.btnClearLoRAmodel = new System.Windows.Forms.Button();
+            this.lblLoRAmodelPath = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).BeginInit();
@@ -483,11 +487,53 @@ namespace Kohya_lora_trainer
             this.toolTip6.SetToolTip(this.cbxUseGradient, "速度低下と引き換えにメモリ消費量を減らす");
             this.cbxUseGradient.UseVisualStyleBackColor = true;
             // 
-            // Form_Advanced
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(490, 393);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(113, 50);
+            this.label3.TabIndex = 41;
+            this.label3.Text = "追加学習する\r\nLoRAモデル";
+            // 
+            // btnSelectLoRAmodel
+            // 
+            this.btnSelectLoRAmodel.Location = new System.Drawing.Point(603, 394);
+            this.btnSelectLoRAmodel.Name = "btnSelectLoRAmodel";
+            this.btnSelectLoRAmodel.Size = new System.Drawing.Size(110, 45);
+            this.btnSelectLoRAmodel.TabIndex = 42;
+            this.btnSelectLoRAmodel.Text = "選択";
+            this.btnSelectLoRAmodel.UseVisualStyleBackColor = true;
+            this.btnSelectLoRAmodel.Click += new System.EventHandler(this.btnSelectLoRAmodel_Click);
+            // 
+            // btnClearLoRAmodel
+            // 
+            this.btnClearLoRAmodel.Location = new System.Drawing.Point(719, 394);
+            this.btnClearLoRAmodel.Name = "btnClearLoRAmodel";
+            this.btnClearLoRAmodel.Size = new System.Drawing.Size(110, 45);
+            this.btnClearLoRAmodel.TabIndex = 42;
+            this.btnClearLoRAmodel.Text = "クリア";
+            this.btnClearLoRAmodel.UseVisualStyleBackColor = true;
+            this.btnClearLoRAmodel.Click += new System.EventHandler(this.btnClearLoRAmodel_Click);
+            // 
+            // lblLoRAmodelPath
+            // 
+            this.lblLoRAmodelPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblLoRAmodelPath.Location = new System.Drawing.Point(495, 458);
+            this.lblLoRAmodelPath.Name = "lblLoRAmodelPath";
+            this.lblLoRAmodelPath.Size = new System.Drawing.Size(334, 46);
+            this.lblLoRAmodelPath.TabIndex = 43;
+            this.lblLoRAmodelPath.Text = "C:\\Sample\\SuperLong\\Multibyte\\and\\spaces\\日本語.safetensors";
+            // 
+            // FormAdvanced
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(955, 756);
+            this.Controls.Add(this.lblLoRAmodelPath);
+            this.Controls.Add(this.btnClearLoRAmodel);
+            this.Controls.Add(this.btnSelectLoRAmodel);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbxCrossAttenType);
             this.Controls.Add(this.label13);
@@ -528,7 +574,7 @@ namespace Kohya_lora_trainer
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form_Advanced";
+            this.Name = "FormAdvanced";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "詳細設定";
             this.Load += new System.EventHandler(this.Form_Advanced_Load);
@@ -585,5 +631,9 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.ToolTip toolTip5;
         private System.Windows.Forms.CheckBox cbxUseGradient;
         private System.Windows.Forms.ToolTip toolTip6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnSelectLoRAmodel;
+        private System.Windows.Forms.Button btnClearLoRAmodel;
+        private System.Windows.Forms.Label lblLoRAmodelPath;
     }
 }
