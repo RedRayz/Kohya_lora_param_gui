@@ -307,6 +307,11 @@ namespace Kohya_lora_trainer {
                         return;
                 }
 
+                if (!string.IsNullOrEmpty(TrainParams.Current.LoraModelPath) && !File.Exists(TrainParams.Current.LoraModelPath)) {
+                    MessageBox.Show("追加学習するLoRAモデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 Form train = new TrainForm();
                 train.ShowDialog();
                 train.Dispose();

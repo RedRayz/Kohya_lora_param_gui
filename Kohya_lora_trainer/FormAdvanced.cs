@@ -148,11 +148,17 @@ namespace Kohya_lora_trainer {
         }
 
         private void btnSelectLoRAmodel_Click(object sender, EventArgs e) {
-
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "SD Model(*.safetensors)|*.safetensors";
+            ofd.Title = "Select a lora";
+            ofd.RestoreDirectory = true;
+            if(ofd.ShowDialog() == DialogResult.OK) {
+                TrainParams.Current.LoraModelPath = ofd.FileName;
+            }
         }
 
         private void btnClearLoRAmodel_Click(object sender, EventArgs e) {
-
+            TrainParams.Current.LoraModelPath = string.Empty;
         }
     }
 }

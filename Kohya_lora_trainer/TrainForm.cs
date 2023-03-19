@@ -94,7 +94,6 @@ namespace Kohya_lora_trainer {
             }
 
             //Automatic
-            
             sb.Append("  --persistent_data_loader_workers  --color_aug  --enable_bucket")
                 .Append("  --save_model_as=safetensors  --lr_scheduler_num_cycles=4  --mixed_precision=fp16");
 
@@ -136,6 +135,11 @@ namespace Kohya_lora_trainer {
 
 
             //Advanced
+            if (!string.IsNullOrEmpty(TrainParams.Current.LoraModelPath)) {
+                sb.Append("  --network_weights=").Append("\"").Append(TrainParams.Current.LoraModelPath).Append("\"");
+            }
+
+
             if (TrainParams.Current.NoBucketUpscaling) {
                 sb.Append("  --bucket_no_upscale");
             }

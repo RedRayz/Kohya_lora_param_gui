@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Kohya_lora_trainer {
     public  class TrainParams {
         //Required
-        public  string ModelPath, TrainImagePath, OutputPath, TensorBoardLogPath;
+        public  string ModelPath, TrainImagePath, OutputPath, TensorBoardLogPath, LoraModelPath;
         public  float LearningRate = 0.0001f;
         public  int Resolution = 512, BatchSize = 1, Epochs = 5, NetworkDim = 128, NetworkAlpha = 128;
 
