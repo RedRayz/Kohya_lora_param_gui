@@ -81,6 +81,7 @@ namespace Kohya_lora_trainer {
             TrainParams.Current.Seed = (int)nudSeed.Value;
             TrainParams.Current.CaptionFileExtension = tbxExtension.Text;
             TrainParams.Current.UseGradient = cbxUseGradient.Checked;
+            TrainParams.Current.LoraModelPath = lblLoRAmodelPath.Text;
 
             Close();
         }
@@ -111,6 +112,8 @@ namespace Kohya_lora_trainer {
 
             valid = nudMaxBucketReso.Value % 64 == 0;
             lblMaxBucketReso.ForeColor = valid ? Color.Black : Color.Red;
+
+            lblLoRAmodelPath.Text = TrainParams.Current.LoraModelPath;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e) {
@@ -153,12 +156,12 @@ namespace Kohya_lora_trainer {
             ofd.Title = "Select a lora";
             ofd.RestoreDirectory = true;
             if(ofd.ShowDialog() == DialogResult.OK) {
-                TrainParams.Current.LoraModelPath = ofd.FileName;
+                lblLoRAmodelPath.Text = ofd.FileName;
             }
         }
 
         private void btnClearLoRAmodel_Click(object sender, EventArgs e) {
-            TrainParams.Current.LoraModelPath = string.Empty;
+            lblLoRAmodelPath.Text = string.Empty;
         }
     }
 }

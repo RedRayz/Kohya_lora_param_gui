@@ -238,10 +238,10 @@ namespace Kohya_lora_trainer
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(35, 9);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(706, 100);
+            this.label7.Size = new System.Drawing.Size(642, 100);
             this.label7.TabIndex = 29;
-            this.label7.Text = "*がつく項目は必須です\r\n他の設定は「詳細設定」を押すと表示します。LoConとLyCORISの設定は「追加設定」にあります。\r\n日本語などのマルチバイト文字と空" +
-    "白文字の使用は推奨しません。\r\nパスの先頭と末尾の空白は無視されます。";
+            this.label7.Text = "*がつく項目は必須です\r\n他の設定は「詳細設定」を押すと表示します。LyCORISの設定は「追加設定」にあります。\r\n日本語などのマルチバイト文字と空白文字の使用" +
+    "は推奨しません。\r\nパスの先頭と末尾の空白は無視されます。";
             // 
             // cbxShuffle
             // 
@@ -663,7 +663,6 @@ namespace Kohya_lora_trainer
             this.cbxModuleType.FormattingEnabled = true;
             this.cbxModuleType.Items.AddRange(new object[] {
             "LoRA",
-            "LoCon",
             "LyCORIS"});
             this.cbxModuleType.Location = new System.Drawing.Point(850, 424);
             this.cbxModuleType.Name = "cbxModuleType";

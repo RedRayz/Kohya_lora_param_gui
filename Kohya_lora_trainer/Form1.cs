@@ -72,6 +72,11 @@ namespace Kohya_lora_trainer {
                     using (StreamReader sr = new StreamReader(str, new System.Text.UTF8Encoding(false))) {
                         TrainParams.Current = (TrainParams)se.Deserialize(sr);
                     }
+                    //古いプリセットの互換性維持用
+                    if (TrainParams.Current.ModuleType == ModuleType.LoCon) {
+                        TrainParams.Current.ModuleType = ModuleType.LyCORIS;
+                        TrainParams.Current.AlgoType = AlgoType.lora;
+                    }
                 }
                 catch {
                     MessageBox.Show("自動保存プリセットを読み込めません。破損しているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -335,9 +340,10 @@ namespace Kohya_lora_trainer {
                     }
 
                     //古いプリセットの互換性維持用
-                    if (TrainParams.Current.UseLoCon) {
-                        TrainParams.Current.ModuleType = ModuleType.LoCon;
-                        TrainParams.Current.UseLoCon = false;
+                    if(TrainParams.Current.ModuleType == ModuleType.LoCon) {
+                        TrainParams.Current.ModuleType = ModuleType.LyCORIS;
+                        TrainParams.Current.AlgoType = AlgoType.lora;
+                        Console.WriteLine("Detected old param!");
                     }
 
                 }

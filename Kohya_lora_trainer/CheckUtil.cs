@@ -75,7 +75,7 @@ namespace Kohya_lora_trainer {
         }
 
         /// <summary>
-        /// 0以上の実数かどうか
+        /// 0以上の実数かどうか。0以下、NaN、無限の場合はfalse。それ以外はtrue
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
