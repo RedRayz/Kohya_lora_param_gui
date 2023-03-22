@@ -461,7 +461,7 @@ namespace Kohya_lora_trainer
             this.cbxCrossAttenType.Items.AddRange(new object[] {
             "xformers",
             "mem_eff_attn"});
-            this.cbxCrossAttenType.Location = new System.Drawing.Point(584, 344);
+            this.cbxCrossAttenType.Location = new System.Drawing.Point(584, 329);
             this.cbxCrossAttenType.Name = "cbxCrossAttenType";
             this.cbxCrossAttenType.Size = new System.Drawing.Size(207, 33);
             this.cbxCrossAttenType.TabIndex = 38;
@@ -470,7 +470,7 @@ namespace Kohya_lora_trainer
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(395, 349);
+            this.label4.Location = new System.Drawing.Point(395, 332);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(183, 25);
             this.label4.TabIndex = 40;

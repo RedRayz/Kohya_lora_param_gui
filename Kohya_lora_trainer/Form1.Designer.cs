@@ -674,7 +674,7 @@ namespace Kohya_lora_trainer
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(695, 427);
+            this.label6.Location = new System.Drawing.Point(704, 431);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(130, 25);
             this.label6.TabIndex = 72;
