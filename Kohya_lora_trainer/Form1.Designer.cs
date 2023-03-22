@@ -66,7 +66,7 @@ namespace Kohya_lora_trainer
             this.nudBatchSize = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.lblNumSteps = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.nudWarmupSteps = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.btnClearRegImagePath = new System.Windows.Forms.Button();
             this.lblNumStepsBatch1 = new System.Windows.Forms.Label();
@@ -97,7 +97,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudKeepTokens)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveEpoch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWarmupSteps)).BeginInit();
             this.SuspendLayout();
             // 
             // btnModel
@@ -509,22 +509,23 @@ namespace Kohya_lora_trainer
             this.lblNumSteps.TabIndex = 61;
             this.lblNumSteps.Text = "16384";
             // 
-            // numericUpDown1
+            // nudWarmupSteps
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(505, 428);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            1000,
+            this.nudWarmupSteps.Location = new System.Drawing.Point(505, 428);
+            this.nudWarmupSteps.Maximum = new decimal(new int[] {
+            10000,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 31);
-            this.numericUpDown1.TabIndex = 62;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.nudWarmupSteps.Name = "nudWarmupSteps";
+            this.nudWarmupSteps.Size = new System.Drawing.Size(120, 31);
+            this.nudWarmupSteps.TabIndex = 62;
+            this.nudWarmupSteps.Value = new decimal(new int[] {
             500,
             0,
             0,
             0});
+            this.nudWarmupSteps.ValueChanged += new System.EventHandler(this.nudWarmupSteps_ValueChanged);
             // 
             // label9
             // 
@@ -708,7 +709,7 @@ namespace Kohya_lora_trainer
             this.Controls.Add(this.btnClearRegImagePath);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblNumStepsBatch1);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.nudWarmupSteps);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblNumSteps);
             this.Controls.Add(this.label1);
@@ -762,7 +763,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudKeepTokens)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveEpoch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWarmupSteps)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -805,7 +806,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.NumericUpDown nudBatchSize;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblNumSteps;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown nudWarmupSteps;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnClearRegImagePath;
         private System.Windows.Forms.Label lblNumStepsBatch1;

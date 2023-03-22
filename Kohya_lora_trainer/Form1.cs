@@ -382,6 +382,10 @@ namespace Kohya_lora_trainer {
             frm.Dispose();
         }
 
+        private void nudWarmupSteps_ValueChanged(object sender, EventArgs e) {
+            TrainParams.Current.WarmupSteps = (int)nudWarmupSteps.Value;
+        }
+
         private void cbxModuleType_SelectedIndexChanged(object sender, EventArgs e) {
             TrainParams.Current.ModuleType = (ModuleType)Enum.ToObject(typeof(ModuleType), cbxModuleType.SelectedIndex);
         }
@@ -612,6 +616,8 @@ namespace Kohya_lora_trainer {
                 tbxFileName.ForeColor = Color.Orange;
                 HaveNonAscillInOutputName = true;
             }
+            //WarmupSteps
+            nudWarmupSteps.Value = TrainParams.Current.WarmupSteps;
 
             UpdateTotalStepCount();
         }
