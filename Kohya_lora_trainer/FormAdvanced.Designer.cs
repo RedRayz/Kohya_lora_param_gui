@@ -75,11 +75,21 @@ namespace Kohya_lora_trainer
             this.btnSelectLoRAmodel = new System.Windows.Forms.Button();
             this.btnClearLoRAmodel = new System.Windows.Forms.Button();
             this.lblLoRAmodelPath = new System.Windows.Forms.Label();
+            this.nudNoiseOffset = new System.Windows.Forms.NumericUpDown();
+            this.label14 = new System.Windows.Forms.Label();
+            this.nudMomentum = new System.Windows.Forms.NumericUpDown();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnSelectVAE = new System.Windows.Forms.Button();
+            this.btnClearVAE = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lblVAEPath = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxBucketReso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudClipSkip)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNoiseOffset)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMomentum)).BeginInit();
             this.SuspendLayout();
             // 
             // tbxUnetLR
@@ -525,11 +535,116 @@ namespace Kohya_lora_trainer
             this.lblLoRAmodelPath.TabIndex = 43;
             this.lblLoRAmodelPath.Text = "C:\\Sample\\SuperLong\\Multibyte\\and\\spaces\\日本語.safetensors";
             // 
+            // nudNoiseOffset
+            // 
+            this.nudNoiseOffset.DecimalPlaces = 4;
+            this.nudNoiseOffset.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudNoiseOffset.Location = new System.Drawing.Point(915, 107);
+            this.nudNoiseOffset.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudNoiseOffset.Name = "nudNoiseOffset";
+            this.nudNoiseOffset.Size = new System.Drawing.Size(120, 31);
+            this.nudNoiseOffset.TabIndex = 44;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(794, 110);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(115, 50);
+            this.label14.TabIndex = 45;
+            this.label14.Text = "ノイズオフセット\r\n0で無効";
+            // 
+            // nudMomentum
+            // 
+            this.nudMomentum.DecimalPlaces = 4;
+            this.nudMomentum.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudMomentum.Location = new System.Drawing.Point(915, 172);
+            this.nudMomentum.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudMomentum.Name = "nudMomentum";
+            this.nudMomentum.Size = new System.Drawing.Size(120, 31);
+            this.nudMomentum.TabIndex = 44;
+            this.nudMomentum.Value = new decimal(new int[] {
+            9,
+            0,
+            0,
+            65536});
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(794, 179);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(106, 75);
+            this.label15.TabIndex = 45;
+            this.label15.Text = "Nesterovの\r\nmomentum\r\n0で無効";
+            // 
+            // btnSelectVAE
+            // 
+            this.btnSelectVAE.Location = new System.Drawing.Point(942, 325);
+            this.btnSelectVAE.Name = "btnSelectVAE";
+            this.btnSelectVAE.Size = new System.Drawing.Size(101, 45);
+            this.btnSelectVAE.TabIndex = 46;
+            this.btnSelectVAE.Text = "選択";
+            this.btnSelectVAE.UseVisualStyleBackColor = true;
+            this.btnSelectVAE.Click += new System.EventHandler(this.btnSelectVAE_Click);
+            // 
+            // btnClearVAE
+            // 
+            this.btnClearVAE.Location = new System.Drawing.Point(1049, 325);
+            this.btnClearVAE.Name = "btnClearVAE";
+            this.btnClearVAE.Size = new System.Drawing.Size(101, 45);
+            this.btnClearVAE.TabIndex = 46;
+            this.btnClearVAE.Text = "クリア";
+            this.btnClearVAE.UseVisualStyleBackColor = true;
+            this.btnClearVAE.Click += new System.EventHandler(this.btnClearVAE_Click);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(893, 334);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(43, 25);
+            this.label16.TabIndex = 47;
+            this.label16.Text = "VAE";
+            // 
+            // lblVAEPath
+            // 
+            this.lblVAEPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblVAEPath.Location = new System.Drawing.Point(859, 373);
+            this.lblVAEPath.Name = "lblVAEPath";
+            this.lblVAEPath.Size = new System.Drawing.Size(334, 46);
+            this.lblVAEPath.TabIndex = 43;
+            this.lblVAEPath.Text = "C:\\Sample\\SuperLong\\Multibyte\\and\\spaces\\日本語.safetensors";
+            // 
             // FormAdvanced
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(955, 756);
+            this.ClientSize = new System.Drawing.Size(1205, 756);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.btnClearVAE);
+            this.Controls.Add(this.btnSelectVAE);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.nudMomentum);
+            this.Controls.Add(this.lblVAEPath);
+            this.Controls.Add(this.nudNoiseOffset);
             this.Controls.Add(this.lblLoRAmodelPath);
             this.Controls.Add(this.btnClearLoRAmodel);
             this.Controls.Add(this.btnSelectLoRAmodel);
@@ -583,6 +698,8 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxBucketReso)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudClipSkip)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNoiseOffset)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMomentum)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -635,5 +752,13 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Button btnSelectLoRAmodel;
         private System.Windows.Forms.Button btnClearLoRAmodel;
         private System.Windows.Forms.Label lblLoRAmodelPath;
+        private System.Windows.Forms.NumericUpDown nudNoiseOffset;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.NumericUpDown nudMomentum;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnSelectVAE;
+        private System.Windows.Forms.Button btnClearVAE;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblVAEPath;
     }
 }

@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Kohya_lora_trainer {
-    //TODO: --network_weightsの対応
     public partial class TrainForm : Form {
         private Process process;
         private string TrainArgs;
@@ -49,7 +48,7 @@ namespace Kohya_lora_trainer {
 
             switch (TrainParams.Current.ModuleType) {
                     case ModuleType.LoRA: {
-                        sb.Append("  --network_module=").Append("networks.lora");
+                        sb.Append("  --network_module=\"").Append("networks.lora").Append("\"");
                     }
                     break;
                     case ModuleType.LoCon: {
@@ -118,10 +117,12 @@ namespace Kohya_lora_trainer {
                 sb.Append("  --save_every_n_epochs=").Append(TrainParams.Current.SaveEveryNEpochs);
             }
 
-            sb.Append("  --optimizer_type=").Append(TrainParams.Current.OptimizerType.ToString());
+            sb.Append("  --optimizer_type=\"").Append(TrainParams.Current.OptimizerType.ToString()).Append("\"");
             //AdaFactorなら引数追加
             if (TrainParams.Current.OptimizerType == OptimizerType.AdaFactor) {
                 sb.Append("  --optimizer_args \"relative_step=True\" \"scale_parameter=True\" \"warmup_init=").Append(TrainParams.Current.UseWarmupInit.ToString()).Append("\"");
+            }else if(TrainParams.Current.OptimizerType == OptimizerType.SGDNesterov || TrainParams.Current.OptimizerType == OptimizerType.SGDNesterov8bit) {
+                sb.Append("  --optimizer_args \"momentum=").Append(TrainParams.Current.Momentum.ToString()).Append("\"");
             }
 
             if (TrainParams.Current.WarmupSteps > 0) {
@@ -132,7 +133,9 @@ namespace Kohya_lora_trainer {
                 sb.Append("  --output_name=\"").Append(TrainParams.Current.OutputName).Append("\"");
             }
 
-
+            if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath)) {
+                sb.Append("  --vae=\"").Append(TrainParams.Current.VAEPath).Append("\"");
+            }
 
             //Advanced
             if (!string.IsNullOrEmpty(TrainParams.Current.LoraModelPath)) {
@@ -150,7 +153,7 @@ namespace Kohya_lora_trainer {
                 .Append("  --lr_scheduler=").Append(TrainParams.Current.SchedulerType.ToString())
                 .Append("  --min_bucket_reso=").Append(TrainParams.Current.MinBucketResolution)
                 .Append("  --max_bucket_reso=").Append(TrainParams.Current.MaxBucketResolution)
-                .Append("  --caption_extension=").Append(TrainParams.Current.CaptionFileExtension);
+                .Append("  --caption_extension=\"").Append(TrainParams.Current.CaptionFileExtension).Append("\"");
 
             switch (TrainParams.Current.advancedTrainType) {
                 case AdvancedTrainType.TextEncoderOnly:
@@ -170,6 +173,10 @@ namespace Kohya_lora_trainer {
 
             if (TrainParams.Current.UnetLR > 0) {
                 sb.Append("  --unet_lr=").Append(TrainParams.Current.UnetLR.ToString("g"));
+            }
+
+            if(TrainParams.Current.NoiseOffset > 0f) {
+                sb.Append("  --noise_offset=").Append(TrainParams.Current.NoiseOffset.ToString());
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.TensorBoardLogPath)) {

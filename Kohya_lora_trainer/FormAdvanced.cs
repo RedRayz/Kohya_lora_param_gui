@@ -82,6 +82,9 @@ namespace Kohya_lora_trainer {
             TrainParams.Current.CaptionFileExtension = tbxExtension.Text;
             TrainParams.Current.UseGradient = cbxUseGradient.Checked;
             TrainParams.Current.LoraModelPath = lblLoRAmodelPath.Text;
+            TrainParams.Current.NoiseOffset = (float)nudNoiseOffset.Value;
+            TrainParams.Current.Momentum = (float)nudMomentum.Value;
+            TrainParams.Current.VAEPath = lblVAEPath.Text;
 
             Close();
         }
@@ -114,6 +117,9 @@ namespace Kohya_lora_trainer {
             lblMaxBucketReso.ForeColor = valid ? Color.Black : Color.Red;
 
             lblLoRAmodelPath.Text = TrainParams.Current.LoraModelPath;
+            nudNoiseOffset.Value = (decimal)TrainParams.Current.NoiseOffset;
+            nudMomentum.Value = (decimal)TrainParams.Current.Momentum;
+            lblVAEPath.Text = TrainParams.Current.VAEPath;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e) {
@@ -162,6 +168,20 @@ namespace Kohya_lora_trainer {
 
         private void btnClearLoRAmodel_Click(object sender, EventArgs e) {
             lblLoRAmodelPath.Text = string.Empty;
+        }
+
+        private void btnSelectVAE_Click(object sender, EventArgs e) {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "SD VAE(*.safetensors;*.pt)|*.safetensors;*.pt";
+            ofd.Title = "Select a VAE";
+            ofd.RestoreDirectory = true;
+            if (ofd.ShowDialog() == DialogResult.OK) {
+                lblVAEPath.Text = ofd.FileName;
+            }
+        }
+
+        private void btnClearVAE_Click(object sender, EventArgs e) {
+            lblVAEPath.Text = string.Empty;
         }
     }
 }

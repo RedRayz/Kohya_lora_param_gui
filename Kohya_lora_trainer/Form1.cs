@@ -198,7 +198,7 @@ namespace Kohya_lora_trainer {
         private void CheckLR(bool changeParam = false) {
             float lr = 0.0001f;
             if (float.TryParse(tbxLR.Text, out lr)) {
-                if (lr <= 0f || lr >= 0.1f || float.IsNaN(lr)) {
+                if (lr <= 0f || lr >= 2f || float.IsNaN(lr)) {
                     lblLR.ForeColor = Color.Red;
                     IsInvalidLR = true;
                 }
@@ -314,6 +314,11 @@ namespace Kohya_lora_trainer {
 
                 if (!string.IsNullOrEmpty(TrainParams.Current.LoraModelPath) && !File.Exists(TrainParams.Current.LoraModelPath)) {
                     MessageBox.Show("追加学習するLoRAモデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath) && !File.Exists(TrainParams.Current.VAEPath)) {
+                    MessageBox.Show("VAEが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 

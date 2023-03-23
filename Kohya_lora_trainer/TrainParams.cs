@@ -26,8 +26,8 @@ namespace Kohya_lora_trainer {
         public  SavePrecision SavePrecision = SavePrecision.fp16;
         public  SchedulerType SchedulerType = SchedulerType.cosine_with_restarts;
         public  int MinBucketResolution = 320, MaxBucketResolution = 960;
-        public  string CaptionFileExtension = ".txt";
-        public  float UnetLR = -1, TextEncoderLR = -1;
+        public  string CaptionFileExtension = ".txt", VAEPath = string.Empty;
+        public  float UnetLR = -1, TextEncoderLR = -1, NoiseOffset = 0, Momentum = 0.9f;
         public AdvancedTrainType advancedTrainType = AdvancedTrainType.None;
         public CrossAttenType CrossAttenType = CrossAttenType.xformers;
         public bool UseGradient = false;
@@ -48,7 +48,11 @@ namespace Kohya_lora_trainer {
     public enum OptimizerType {
         AdamW8bit,
         AdamW,
-        AdaFactor
+        AdaFactor,
+        Lion,
+        SGDNesterov,
+        SGDNesterov8bit,
+        DAdaptation
     }
 
     public enum SavePrecision {

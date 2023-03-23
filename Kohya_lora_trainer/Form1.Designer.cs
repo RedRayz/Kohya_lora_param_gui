@@ -187,7 +187,11 @@ namespace Kohya_lora_trainer
             this.cbxOptimizer.Items.AddRange(new object[] {
             "AdamW8bit",
             "AdamW",
-            "AdaFactor"});
+            "AdaFactor",
+            "Lion",
+            "SGDNesterov",
+            "SGDNesterov8bit",
+            "DAdaptation"});
             this.cbxOptimizer.Location = new System.Drawing.Point(152, 427);
             this.cbxOptimizer.Name = "cbxOptimizer";
             this.cbxOptimizer.Size = new System.Drawing.Size(146, 33);
