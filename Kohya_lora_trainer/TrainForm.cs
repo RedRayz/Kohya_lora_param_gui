@@ -106,7 +106,7 @@ namespace Kohya_lora_trainer {
 
             //Automatic
             sb.Append("  --persistent_data_loader_workers  --color_aug  --enable_bucket")
-                .Append("  --save_model_as=safetensors  --lr_scheduler_num_cycles=4  --mixed_precision=fp16");
+                .Append("  --save_model_as=\"safetensors\"  --lr_scheduler_num_cycles=4  --mixed_precision=fp16");
 
             //Main
             sb.Append("  --learning_rate=").Append(TrainParams.Current.LearningRate.ToString("g"))
@@ -161,7 +161,7 @@ namespace Kohya_lora_trainer {
 
             sb.Append("  --clip_skip=").Append(TrainParams.Current.ClipSkip)
                 .Append("  --seed=").Append(TrainParams.Current.Seed)
-                .Append("  --save_precision=").Append(TrainParams.Current.SavePrecision.ToString())
+                .Append("  --save_precision=\"").Append(TrainParams.Current.SavePrecision.ToString()).Append("\"")
                 .Append("  --lr_scheduler=").Append(TrainParams.Current.SchedulerType.ToString())
                 .Append("  --min_bucket_reso=").Append(TrainParams.Current.MinBucketResolution)
                 .Append("  --max_bucket_reso=").Append(TrainParams.Current.MaxBucketResolution)
