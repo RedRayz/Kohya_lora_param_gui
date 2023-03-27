@@ -498,11 +498,11 @@ namespace Kohya_lora_trainer
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(813, 624);
+            this.label1.Location = new System.Drawing.Point(767, 624);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 25);
+            this.label1.Size = new System.Drawing.Size(152, 25);
             this.label1.TabIndex = 60;
-            this.label1.Text = "総ステップ数:";
+            this.label1.Text = "総ステップ数(目安):";
             // 
             // lblNumSteps
             // 
@@ -562,11 +562,11 @@ namespace Kohya_lora_trainer
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(803, 659);
+            this.label5.Location = new System.Drawing.Point(767, 659);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 25);
+            this.label5.Size = new System.Drawing.Size(152, 25);
             this.label5.TabIndex = 60;
-            this.label5.Text = "(batch1相当):";
+            this.label5.Text = "batch1相当(目安):";
             // 
             // label8
             // 
