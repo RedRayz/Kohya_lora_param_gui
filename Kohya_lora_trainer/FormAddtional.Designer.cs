@@ -31,6 +31,7 @@
             this.btnSaveAndClose = new System.Windows.Forms.Button();
             this.nudConvDim = new System.Windows.Forms.NumericUpDown();
             this.nudConvAlpha = new System.Windows.Forms.NumericUpDown();
+            this.cbxUseConv2d = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudConvDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudConvAlpha)).BeginInit();
             this.SuspendLayout();
@@ -120,11 +121,22 @@
             this.nudConvAlpha.Size = new System.Drawing.Size(120, 31);
             this.nudConvAlpha.TabIndex = 8;
             // 
+            // cbxUseConv2d
+            // 
+            this.cbxUseConv2d.AutoSize = true;
+            this.cbxUseConv2d.Location = new System.Drawing.Point(108, 174);
+            this.cbxUseConv2d.Name = "cbxUseConv2d";
+            this.cbxUseConv2d.Size = new System.Drawing.Size(242, 29);
+            this.cbxUseConv2d.TabIndex = 9;
+            this.cbxUseConv2d.Text = "LoRAでConv2d拡張を使用";
+            this.cbxUseConv2d.UseVisualStyleBackColor = true;
+            // 
             // FormAddtional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(671, 366);
+            this.Controls.Add(this.cbxUseConv2d);
             this.Controls.Add(this.nudConvAlpha);
             this.Controls.Add(this.nudConvDim);
             this.Controls.Add(this.btnSaveAndClose);
@@ -159,5 +171,6 @@
         private System.Windows.Forms.Button btnSaveAndClose;
         private System.Windows.Forms.NumericUpDown nudConvDim;
         private System.Windows.Forms.NumericUpDown nudConvAlpha;
+        private System.Windows.Forms.CheckBox cbxUseConv2d;
     }
 }

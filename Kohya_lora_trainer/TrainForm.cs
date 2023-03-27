@@ -49,6 +49,18 @@ namespace Kohya_lora_trainer {
             switch (TrainParams.Current.ModuleType) {
                     case ModuleType.LoRA: {
                         sb.Append("  --network_module=\"").Append("networks.lora").Append("\"");
+                        if (TrainParams.Current.UseConv2dExtend) {
+                            bool di = TrainParams.Current.ConvDim > 0;
+                            bool al = TrainParams.Current.ConvAlpha > 0;
+                            if (di || al) {
+                                sb.Append("  --network_args");
+                                if (di)
+                                    sb.Append(" \"conv_dim=").Append(TrainParams.Current.ConvDim.ToString()).Append("\"");
+                                if (al)
+                                    sb.Append(" \"conv_alpha=").Append(TrainParams.Current.ConvAlpha.ToString()).Append("\"");
+                            }
+                        }
+
                     }
                     break;
                     case ModuleType.LoCon: {

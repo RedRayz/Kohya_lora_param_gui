@@ -36,6 +36,8 @@ namespace Kohya_lora_trainer {
         public ModuleType ModuleType = ModuleType.LoRA;
         public AlgoType AlgoType = AlgoType.lora;
         public int ConvDim = 0, ConvAlpha = 0;
+        //Additional(LoRA)
+        public bool UseConv2dExtend = false;
 
         [NonSerialized]
         public static TrainParams Current;
