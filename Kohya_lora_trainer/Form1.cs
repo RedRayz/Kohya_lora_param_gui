@@ -322,7 +322,7 @@ namespace Kohya_lora_trainer {
                     return;
                 }
 
-                Form train = new TrainForm();
+                Form train = new TrainForm(cbxBenchmarkMode.Checked);
                 train.ShowDialog();
                 train.Dispose();
 

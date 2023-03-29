@@ -14,9 +14,12 @@ namespace Kohya_lora_trainer {
     public partial class TrainForm : Form {
         private Process process;
         private string TrainArgs;
+        private bool BenchMarkMode;
+        private Stopwatch stopwatch;
 
-        public TrainForm() {
+        public TrainForm(bool benchMarkMode = false) {
             InitializeComponent();
+            BenchMarkMode = benchMarkMode;
         }
 
         private void TrainForm_Load(object sender, EventArgs e) {
@@ -27,7 +30,14 @@ namespace Kohya_lora_trainer {
             StringBuilder sb = new StringBuilder();
             StringBuilder sbCmd = new StringBuilder();
 
-            sbCmd.Append(@"/k cd ");
+            if (BenchMarkMode) {
+                sbCmd.Append(@"/c ");
+            }
+            else {
+                sbCmd.Append(@"/k ");
+            }
+
+            sbCmd.Append("cd ");
             if (!string.IsNullOrEmpty(Form1.ScriptPath)) {
                 sbCmd.Append("/d ").Append(Form1.ScriptPath);
             }
@@ -198,6 +208,9 @@ namespace Kohya_lora_trainer {
             TrainArgs = sb.ToString();
 
             sbCmd.Append(TrainArgs);
+            if (BenchMarkMode) {
+                stopwatch = Stopwatch.StartNew();
+            }
 
             ProcessStartInfo ps = new ProcessStartInfo();
             ps.FileName = "cmd";
@@ -232,6 +245,17 @@ namespace Kohya_lora_trainer {
             process = null;
             btnStop.Enabled = false;
             btnClose.Enabled = true;
+            if(BenchMarkMode && stopwatch != null) {
+                stopwatch.Stop();
+                double sec = stopwatch.Elapsed.TotalSeconds % 60;
+                double min = stopwatch.Elapsed.TotalSeconds / 60;
+                double hour = min / 60;
+                min = Math.Floor(min);
+                hour = Math.Floor(hour);
+
+
+                MessageBox.Show("経過時間: " + $"{hour}h{min}m" + sec.ToString("0.000s"), "結果", MessageBoxButtons.OK);
+            }
         }
 
         private void TrainForm_FormClosing(object sender, FormClosingEventArgs e) {

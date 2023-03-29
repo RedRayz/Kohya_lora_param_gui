@@ -90,6 +90,7 @@ namespace Kohya_lora_trainer
             this.cbxModuleType = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnAddtional = new System.Windows.Forms.Button();
+            this.cbxBenchmarkMode = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -694,11 +695,22 @@ namespace Kohya_lora_trainer
             this.btnAddtional.UseVisualStyleBackColor = true;
             this.btnAddtional.Click += new System.EventHandler(this.btnAddtional_Click);
             // 
+            // cbxBenchmarkMode
+            // 
+            this.cbxBenchmarkMode.AutoSize = true;
+            this.cbxBenchmarkMode.Location = new System.Drawing.Point(57, 630);
+            this.cbxBenchmarkMode.Name = "cbxBenchmarkMode";
+            this.cbxBenchmarkMode.Size = new System.Drawing.Size(405, 54);
+            this.cbxBenchmarkMode.TabIndex = 74;
+            this.cbxBenchmarkMode.Text = "ベンチマークモード\r\n(ターミナルは自動で閉じ、かかった時間を表示します)";
+            this.cbxBenchmarkMode.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1065, 787);
+            this.Controls.Add(this.cbxBenchmarkMode);
             this.Controls.Add(this.btnAddtional);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbxOutputPath);
@@ -834,6 +846,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.ComboBox cbxModuleType;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnAddtional;
+        private System.Windows.Forms.CheckBox cbxBenchmarkMode;
     }
 }
 
