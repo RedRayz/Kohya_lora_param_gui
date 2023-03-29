@@ -698,11 +698,11 @@ namespace Kohya_lora_trainer
             // cbxBenchmarkMode
             // 
             this.cbxBenchmarkMode.AutoSize = true;
-            this.cbxBenchmarkMode.Location = new System.Drawing.Point(57, 630);
+            this.cbxBenchmarkMode.Location = new System.Drawing.Point(87, 621);
             this.cbxBenchmarkMode.Name = "cbxBenchmarkMode";
-            this.cbxBenchmarkMode.Size = new System.Drawing.Size(405, 54);
+            this.cbxBenchmarkMode.Size = new System.Drawing.Size(360, 54);
             this.cbxBenchmarkMode.TabIndex = 74;
-            this.cbxBenchmarkMode.Text = "ベンチマークモード\r\n(ターミナルは自動で閉じ、かかった時間を表示します)";
+            this.cbxBenchmarkMode.Text = "ベンチマークモード\r\n(ウィンドウは自動で閉じ、かかった時間を表示)";
             this.cbxBenchmarkMode.UseVisualStyleBackColor = true;
             // 
             // Form1
