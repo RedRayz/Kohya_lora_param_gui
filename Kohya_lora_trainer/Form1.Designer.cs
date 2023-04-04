@@ -93,6 +93,7 @@ namespace Kohya_lora_trainer
             this.cbxBenchmarkMode = new System.Windows.Forms.CheckBox();
             this.btnBlockWeight = new System.Windows.Forms.Button();
             this.btnBlockDim = new System.Windows.Forms.Button();
+            this.cbxShutdown = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -727,11 +728,22 @@ namespace Kohya_lora_trainer
             this.btnBlockDim.UseVisualStyleBackColor = true;
             this.btnBlockDim.Click += new System.EventHandler(this.btnBlockDim_Click);
             // 
+            // cbxShutdown
+            // 
+            this.cbxShutdown.AutoSize = true;
+            this.cbxShutdown.Location = new System.Drawing.Point(510, 608);
+            this.cbxShutdown.Name = "cbxShutdown";
+            this.cbxShutdown.Size = new System.Drawing.Size(181, 29);
+            this.cbxShutdown.TabIndex = 77;
+            this.cbxShutdown.Text = "終了後シャットダウン";
+            this.cbxShutdown.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1245, 736);
+            this.Controls.Add(this.cbxShutdown);
             this.Controls.Add(this.btnBlockDim);
             this.Controls.Add(this.btnBlockWeight);
             this.Controls.Add(this.cbxBenchmarkMode);
@@ -873,6 +885,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.CheckBox cbxBenchmarkMode;
         private System.Windows.Forms.Button btnBlockWeight;
         private System.Windows.Forms.Button btnBlockDim;
+        private System.Windows.Forms.CheckBox cbxShutdown;
     }
 }
 

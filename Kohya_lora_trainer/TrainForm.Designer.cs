@@ -23,10 +23,13 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.btnStop = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCopyCmd = new System.Windows.Forms.Button();
+            this.lblCuntdown = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // btnStop
@@ -64,7 +67,7 @@
             // btnCopyCmd
             // 
             this.btnCopyCmd.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnCopyCmd.Location = new System.Drawing.Point(200, 169);
+            this.btnCopyCmd.Location = new System.Drawing.Point(209, 229);
             this.btnCopyCmd.Name = "btnCopyCmd";
             this.btnCopyCmd.Size = new System.Drawing.Size(210, 32);
             this.btnCopyCmd.TabIndex = 4;
@@ -72,12 +75,29 @@
             this.btnCopyCmd.UseVisualStyleBackColor = true;
             this.btnCopyCmd.Click += new System.EventHandler(this.btnCopyCmd_Click);
             // 
+            // lblCuntdown
+            // 
+            this.lblCuntdown.AutoSize = true;
+            this.lblCuntdown.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblCuntdown.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lblCuntdown.Location = new System.Drawing.Point(55, 149);
+            this.lblCuntdown.Name = "lblCuntdown";
+            this.lblCuntdown.Size = new System.Drawing.Size(344, 56);
+            this.lblCuntdown.TabIndex = 6;
+            this.lblCuntdown.Text = "30秒後にシャットダウンします\r\nしない場合はこのウィンドウを閉じてください";
+            this.lblCuntdown.Visible = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // TrainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(422, 213);
+            this.ClientSize = new System.Drawing.Size(431, 273);
             this.ControlBox = false;
+            this.Controls.Add(this.lblCuntdown);
             this.Controls.Add(this.btnCopyCmd);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClose);
@@ -102,5 +122,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCopyCmd;
+        private System.Windows.Forms.Label lblCuntdown;
+        private System.Windows.Forms.Timer timer1;
     }
 }
