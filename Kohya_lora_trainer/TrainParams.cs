@@ -39,6 +39,20 @@ namespace Kohya_lora_trainer {
         //Additional(LoRA)
         public bool UseConv2dExtend = false;
 
+        //Block Weight
+        public int[] BlockWeightIn = { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
+        public int BlockWeightMid = 10;
+        public int[] BlockWeightOut = { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
+
+        //Block DimAlpha
+        public int[] BlockDimIn = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
+        public int BlockDimMid = 32;
+        public int[] BlockDimOut = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
+
+        public int[] BlockAlphaIn = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
+        public int BlockAlphaMid = 32;
+        public int[] BlockAlphaOut = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
+
         [NonSerialized]
         public static TrainParams Current;
 

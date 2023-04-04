@@ -391,6 +391,18 @@ namespace Kohya_lora_trainer {
             TrainParams.Current.WarmupSteps = (int)nudWarmupSteps.Value;
         }
 
+        private void btnBlockWeight_Click(object sender, EventArgs e) {
+            Form frm = new FormBlockWeight();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+
+        private void btnBlockDim_Click(object sender, EventArgs e) {
+            Form frm = new FormBlockDim();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+
         private void cbxModuleType_SelectedIndexChanged(object sender, EventArgs e) {
             TrainParams.Current.ModuleType = (ModuleType)Enum.ToObject(typeof(ModuleType), cbxModuleType.SelectedIndex);
         }
