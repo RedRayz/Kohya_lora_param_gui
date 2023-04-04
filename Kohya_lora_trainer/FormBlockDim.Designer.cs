@@ -249,6 +249,7 @@
             this.btnSaveChanges.TabIndex = 4;
             this.btnSaveChanges.Text = "設定を反映して閉じる";
             this.btnSaveChanges.UseVisualStyleBackColor = true;
+            this.btnSaveChanges.Click += new System.EventHandler(this.btnSaveChanges_Click);
             // 
             // label3
             // 
@@ -1661,7 +1662,9 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "FormBlockDim";
-            this.Text = "FormBlockDim";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Block Dim/Alpha";
+            this.Load += new System.EventHandler(this.FormBlockDim_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudDimIn00)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAlphaIn00)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDimIn01)).EndInit();

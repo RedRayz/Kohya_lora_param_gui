@@ -40,11 +40,17 @@ namespace Kohya_lora_trainer {
         public bool UseConv2dExtend = false;
 
         //Block Weight
-        public int[] BlockWeightIn = { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
-        public int BlockWeightMid = 10;
-        public int[] BlockWeightOut = { 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
+        public bool UseBlockWeight = false;
+        public int[] BlockWeightIn = { 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 };
+        public int BlockWeightMid = 20;
+        public int[] BlockWeightOut = { 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 };
+        public decimal BlockWeightOffsetIn = 0, BlockWeightOffsetOut = 0;
+        public BlockWeightPresetType BlockWeightPresetTypeIn = BlockWeightPresetType.none;
+        public BlockWeightPresetType BlockWeightPresetTypeOut = BlockWeightPresetType.none;
+        public int BlockWeightZeroThreshold = 0;
 
-        //Block DimAlpha
+        //Block Dim,Alpha
+        public bool UseBlockDim = false;
         public int[] BlockDimIn = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
         public int BlockDimMid = 32;
         public int[] BlockDimOut = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
@@ -107,5 +113,15 @@ namespace Kohya_lora_trainer {
     public enum CrossAttenType {
         xformers,
         mem_eff_attn
+    }
+
+    public enum BlockWeightPresetType
+    {
+        none,
+        sine,
+        cosine,
+        linear,
+        reverse_linear,
+        zeros
     }
 }
