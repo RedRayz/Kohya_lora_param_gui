@@ -90,11 +90,13 @@ namespace Kohya_lora_trainer
             this.cbxModuleType = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnAddtional = new System.Windows.Forms.Button();
-            this.cbxBenchmarkMode = new System.Windows.Forms.CheckBox();
             this.btnBlockWeight = new System.Windows.Forms.Button();
             this.btnBlockDim = new System.Windows.Forms.Button();
-            this.cbxShutdown = new System.Windows.Forms.CheckBox();
             this.btnAdvanced1 = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbtDoNothing = new System.Windows.Forms.RadioButton();
+            this.rbtBenckmark = new System.Windows.Forms.RadioButton();
+            this.rbtShutdown = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -103,6 +105,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveEpoch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWarmupSteps)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnModel
@@ -623,7 +626,7 @@ namespace Kohya_lora_trainer
             // 
             // btnUtilities
             // 
-            this.btnUtilities.Location = new System.Drawing.Point(497, 628);
+            this.btnUtilities.Location = new System.Drawing.Point(480, 627);
             this.btnUtilities.Name = "btnUtilities";
             this.btnUtilities.Size = new System.Drawing.Size(117, 45);
             this.btnUtilities.TabIndex = 69;
@@ -699,21 +702,11 @@ namespace Kohya_lora_trainer
             this.btnAddtional.UseVisualStyleBackColor = true;
             this.btnAddtional.Click += new System.EventHandler(this.btnAddtional_Click);
             // 
-            // cbxBenchmarkMode
-            // 
-            this.cbxBenchmarkMode.AutoSize = true;
-            this.cbxBenchmarkMode.Location = new System.Drawing.Point(51, 497);
-            this.cbxBenchmarkMode.Name = "cbxBenchmarkMode";
-            this.cbxBenchmarkMode.Size = new System.Drawing.Size(360, 54);
-            this.cbxBenchmarkMode.TabIndex = 74;
-            this.cbxBenchmarkMode.Text = "ベンチマークモード\r\n(ウィンドウは自動で閉じ、かかった時間を表示)";
-            this.cbxBenchmarkMode.UseVisualStyleBackColor = true;
-            // 
             // btnBlockWeight
             // 
-            this.btnBlockWeight.Location = new System.Drawing.Point(24, 633);
+            this.btnBlockWeight.Location = new System.Drawing.Point(24, 635);
             this.btnBlockWeight.Name = "btnBlockWeight";
-            this.btnBlockWeight.Size = new System.Drawing.Size(112, 44);
+            this.btnBlockWeight.Size = new System.Drawing.Size(112, 42);
             this.btnBlockWeight.TabIndex = 75;
             this.btnBlockWeight.Text = "層別学習率";
             this.btnBlockWeight.UseVisualStyleBackColor = true;
@@ -729,16 +722,6 @@ namespace Kohya_lora_trainer
             this.btnBlockDim.UseVisualStyleBackColor = true;
             this.btnBlockDim.Click += new System.EventHandler(this.btnBlockDim_Click);
             // 
-            // cbxShutdown
-            // 
-            this.cbxShutdown.AutoSize = true;
-            this.cbxShutdown.Location = new System.Drawing.Point(465, 522);
-            this.cbxShutdown.Name = "cbxShutdown";
-            this.cbxShutdown.Size = new System.Drawing.Size(181, 29);
-            this.cbxShutdown.TabIndex = 77;
-            this.cbxShutdown.Text = "終了後シャットダウン";
-            this.cbxShutdown.UseVisualStyleBackColor = true;
-            // 
             // btnAdvanced1
             // 
             this.btnAdvanced1.Location = new System.Drawing.Point(142, 584);
@@ -749,16 +732,59 @@ namespace Kohya_lora_trainer
             this.btnAdvanced1.UseVisualStyleBackColor = true;
             this.btnAdvanced1.Click += new System.EventHandler(this.btnAdvanced1_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbtShutdown);
+            this.groupBox1.Controls.Add(this.rbtBenckmark);
+            this.groupBox1.Controls.Add(this.rbtDoNothing);
+            this.groupBox1.Location = new System.Drawing.Point(24, 496);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(460, 68);
+            this.groupBox1.TabIndex = 79;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "学習終了後の動作";
+            // 
+            // rbtDoNothing
+            // 
+            this.rbtDoNothing.AutoSize = true;
+            this.rbtDoNothing.Checked = true;
+            this.rbtDoNothing.Location = new System.Drawing.Point(20, 29);
+            this.rbtDoNothing.Name = "rbtDoNothing";
+            this.rbtDoNothing.Size = new System.Drawing.Size(68, 29);
+            this.rbtDoNothing.TabIndex = 0;
+            this.rbtDoNothing.TabStop = true;
+            this.rbtDoNothing.Text = "無し";
+            this.rbtDoNothing.UseVisualStyleBackColor = true;
+            // 
+            // rbtBenckmark
+            // 
+            this.rbtBenckmark.AutoSize = true;
+            this.rbtBenckmark.Location = new System.Drawing.Point(132, 28);
+            this.rbtBenckmark.Name = "rbtBenckmark";
+            this.rbtBenckmark.Size = new System.Drawing.Size(160, 29);
+            this.rbtBenckmark.TabIndex = 1;
+            this.rbtBenckmark.Text = "経過時間の表示";
+            this.rbtBenckmark.UseVisualStyleBackColor = true;
+            // 
+            // rbtShutdown
+            // 
+            this.rbtShutdown.AutoSize = true;
+            this.rbtShutdown.Location = new System.Drawing.Point(318, 27);
+            this.rbtShutdown.Name = "rbtShutdown";
+            this.rbtShutdown.Size = new System.Drawing.Size(126, 29);
+            this.rbtShutdown.TabIndex = 2;
+            this.rbtShutdown.Text = "シャットダウン";
+            this.rbtShutdown.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1172, 694);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAdvanced1);
-            this.Controls.Add(this.cbxShutdown);
             this.Controls.Add(this.btnBlockDim);
             this.Controls.Add(this.btnBlockWeight);
-            this.Controls.Add(this.cbxBenchmarkMode);
             this.Controls.Add(this.btnAddtional);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbxOutputPath);
@@ -828,6 +854,8 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveEpoch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWarmupSteps)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -894,11 +922,13 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.ComboBox cbxModuleType;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnAddtional;
-        private System.Windows.Forms.CheckBox cbxBenchmarkMode;
         private System.Windows.Forms.Button btnBlockWeight;
         private System.Windows.Forms.Button btnBlockDim;
-        private System.Windows.Forms.CheckBox cbxShutdown;
         private System.Windows.Forms.Button btnAdvanced1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbtBenckmark;
+        private System.Windows.Forms.RadioButton rbtDoNothing;
+        private System.Windows.Forms.RadioButton rbtShutdown;
     }
 }
 
