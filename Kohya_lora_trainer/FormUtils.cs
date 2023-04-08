@@ -28,10 +28,10 @@ namespace Kohya_lora_trainer {
         private void btnCheckCorrupt_Click(object sender, EventArgs e) {
             string path = string.IsNullOrEmpty(Form1.ScriptPath) ? "..\\" : Form1.ScriptPath + "\\";
             if (!Directory.Exists(path + "venv")) {
-                MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }else if(!File.Exists(path + "fix_position_ids.py")) {
-                MessageBox.Show("fix_position_ids.pyが見つかりません。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("fix_position_ids.pyが見つかりません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             OpenFileDialog ofd = new OpenFileDialog();
