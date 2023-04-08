@@ -123,6 +123,12 @@
     <Compile Include="FormAdvanced.Designer.cs">
       <DependentUpon>FormAdvanced.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAdvanced1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdvanced1.Designer.cs">
+      <DependentUpon>FormAdvanced1.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormBlockDim.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAddtional.resx">
       <DependentUpon>FormAddtional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAdvanced1.resx">
+      <DependentUpon>FormAdvanced1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBlockDim.resx">
       <DependentUpon>FormBlockDim.cs</DependentUpon>

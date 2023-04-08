@@ -79,28 +79,28 @@ namespace Kohya_lora_trainer {
             NudAlphaOut[11] = nudAlphaOut11;
 
             //値の読込
-            for(int i=0; i<NudDimIn.Length; i++)
+            for(int i=0; i< 12; i++)
             {
                 NudDimIn[i].Value = TrainParams.Current.BlockDimIn[i];
             }
 
-            for (int i = 0; i < NudDimOut.Length; i++)
+            for (int i = 0; i < 12; i++)
             {
                 NudDimOut[i].Value = TrainParams.Current.BlockDimOut[i];
             }
 
-            for(int i = 0; i< NudAlphaIn.Length; i++)
+            for(int i = 0; i< 12; i++)
             {
-                NudAlphaIn[i].Value = TrainParams.Current.BlockAlphaIn[i];
+                NudAlphaIn[i].Value = TrainParams.Current.BlockAlphaInM[i];
             }
 
-            for (int i = 0; i < NudAlphaOut.Length; i++)
+            for (int i = 0; i < 12; i++)
             {
-                NudAlphaOut[i].Value = TrainParams.Current.BlockAlphaOut[i];
+                NudAlphaOut[i].Value = TrainParams.Current.BlockAlphaOutM[i];
             }
 
             nudDimMid.Value = TrainParams.Current.BlockDimMid;
-            nudAlphaMid.Value = TrainParams.Current.BlockAlphaMid;
+            nudAlphaMid.Value = TrainParams.Current.BlockAlphaMidM;
 
             cbxEnableBlockDim.Checked = TrainParams.Current.UseBlockDim;
         }
@@ -108,28 +108,28 @@ namespace Kohya_lora_trainer {
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
             //値の読込
-            for (int i = 0; i < NudDimIn.Length; i++)
+            for (int i = 0; i < 12; i++)
             {
                 TrainParams.Current.BlockDimIn[i] = (int)NudDimIn[i].Value;
             }
 
-            for (int i = 0; i < NudDimOut.Length; i++)
+            for (int i = 0; i < 12; i++)
             {
                 TrainParams.Current.BlockDimOut[i] = (int)NudDimOut[i].Value;
             }
 
-            for(int i = 0; i< NudAlphaIn.Length; i++)
+            for(int i = 0; i< 12; i++)
             {
-                TrainParams.Current.BlockAlphaIn[i] = (int)NudAlphaIn[i].Value;
+                TrainParams.Current.BlockAlphaInM[i] = NudAlphaIn[i].Value;
             }
 
-            for (int i = 0; i < NudAlphaOut.Length; i++)
+            for (int i = 0; i < 12; i++)
             {
-                TrainParams.Current.BlockAlphaOut[i] = (int)NudAlphaOut[i].Value;
+                TrainParams.Current.BlockAlphaOutM[i] = NudAlphaOut[i].Value;
             }
 
             TrainParams.Current.BlockDimMid = (int)nudDimMid.Value;
-            TrainParams.Current.BlockAlphaMid = (int)nudAlphaMid.Value;
+            TrainParams.Current.BlockAlphaMidM = nudAlphaMid.Value;
             TrainParams.Current.UseBlockDim = cbxEnableBlockDim.Checked;
 
             Close();

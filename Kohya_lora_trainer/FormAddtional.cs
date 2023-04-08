@@ -28,7 +28,7 @@ namespace Kohya_lora_trainer {
 
         private void btnSaveAndClose_Click(object sender, EventArgs e) {
             TrainParams.Current.ConvDim = (int)nudConvDim.Value;
-            TrainParams.Current.ConvAlpha = (int)nudConvAlpha.Value;
+            TrainParams.Current.ConvAlpha = nudConvAlpha.Value;
             TrainParams.Current.UseConv2dExtend = cbxUseConv2d.Checked;
 
             TrainParams.Current.AlgoType = (AlgoType)Enum.ToObject(typeof(AlgoType), cbxAlgoType.SelectedIndex);

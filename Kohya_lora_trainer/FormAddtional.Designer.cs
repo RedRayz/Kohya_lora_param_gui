@@ -111,6 +111,7 @@
             // 
             // nudConvAlpha
             // 
+            this.nudConvAlpha.DecimalPlaces = 2;
             this.nudConvAlpha.Location = new System.Drawing.Point(506, 54);
             this.nudConvAlpha.Maximum = new decimal(new int[] {
             512,
@@ -120,6 +121,11 @@
             this.nudConvAlpha.Name = "nudConvAlpha";
             this.nudConvAlpha.Size = new System.Drawing.Size(120, 31);
             this.nudConvAlpha.TabIndex = 8;
+            this.nudConvAlpha.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             // 
             // cbxUseConv2d
             // 

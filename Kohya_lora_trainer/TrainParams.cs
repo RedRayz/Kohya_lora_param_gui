@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Kohya_lora_trainer {
     public  class TrainParams {
         //Required
         public  string ModelPath, TrainImagePath, OutputPath, TensorBoardLogPath, LoraModelPath;
         public  float LearningRate = 0.0001f;
-        public  int Resolution = 512, BatchSize = 1, Epochs = 5, NetworkDim = 128, NetworkAlpha = 128;
+        public  int Resolution = 512, BatchSize = 1, Epochs = 5, NetworkDim = 64;
+        public decimal NetworkAlpha = 32;
 
         //Optional
         public  string RegImagePath;
@@ -30,12 +32,13 @@ namespace Kohya_lora_trainer {
         public  float UnetLR = -1, TextEncoderLR = -1, NoiseOffset = 0, Momentum = 0.9f;
         public AdvancedTrainType advancedTrainType = AdvancedTrainType.None;
         public CrossAttenType CrossAttenType = CrossAttenType.xformers;
-        public bool UseGradient = false;
+        public bool UseGradient = false, UseWeightedCaptions = false;
 
         //Addtional(KohakuBlueleaf氏作成拡張スクリプト用)
         public ModuleType ModuleType = ModuleType.LoRA;
         public AlgoType AlgoType = AlgoType.lora;
-        public int ConvDim = 0, ConvAlpha = 0;
+        public int ConvDim = 0;
+        public decimal ConvAlpha = 0;
         //Additional(LoRA)
         public bool UseConv2dExtend = false;
 
@@ -55,15 +58,148 @@ namespace Kohya_lora_trainer {
         public int BlockDimMid = 32;
         public int[] BlockDimOut = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
 
-        public int[] BlockAlphaIn = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
-        public int BlockAlphaMid = 32;
-        public int[] BlockAlphaOut = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
+        //decimal型に変更予定
+        public int[] BlockAlphaIn = Array.Empty<int>();
+        public int BlockAlphaMid = -1;
+        public int[] BlockAlphaOut = Array.Empty<int>();
+
+        public decimal[] BlockAlphaInM = { 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32 };
+        public decimal BlockAlphaMidM = 32;
+        public decimal[] BlockAlphaOutM = { 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32 };
+
+        //Advanced1
+        public bool UseColorAug = true, UseFastLoading = true, UseSDV2 = false, DontSaveMetadata = false, UseFlipAug = false, CropRandomly = false, UseParameterization = false;
+        //public string ModelConfigPath = string.Empty;
+        public int LRSchedulerCycle = 4, DataLoaderThreads = 8, MaxTokens = 75;
+        public MixedPrecisionType mixedPrecisionType = MixedPrecisionType.fp16;
+
 
         [NonSerialized]
         public static TrainParams Current;
 
         public TrainParams() {
             Current = this;
+        }
+
+        public void ConvertBlockAlpha()
+        {
+            if(BlockAlphaIn.Length > 0)
+            {
+                Console.WriteLine("Converting BlockAlphaIn...");
+                for (int i =0; i < BlockAlphaIn.Length; i++)
+                {
+                    if (i < BlockAlphaInM.Length)
+                        BlockAlphaInM[i] = BlockAlphaIn[i];
+                    else
+                    {
+                        Console.WriteLine("Found Missing Array Element in BlockAlphaInM!");
+                        BlockAlphaInM = new decimal[] { 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32 };
+                        break;
+                    }
+                }
+
+                BlockAlphaIn = Array.Empty<int>();
+            }
+
+            if (BlockAlphaOut.Length > 0)
+            {
+                Console.WriteLine("Converting BlockAlphaOut...");
+                for (int i = 0; i < BlockAlphaOut.Length; i++)
+                {
+                    if (i < BlockAlphaOutM.Length)
+                        BlockAlphaOutM[i] = BlockAlphaOut[i];
+                    else
+                    {
+                        Console.WriteLine("Found Missing Array Element in BlockAlphaOutM!");
+                        BlockAlphaOutM = new decimal[] { 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32 };
+                        break;
+                    }
+
+                }
+
+                BlockAlphaOut = Array.Empty<int>();
+            }
+
+            if (BlockAlphaMid > 0)
+            {
+                Console.WriteLine("Converting BlockAlphaMid...");
+                BlockAlphaMidM = BlockAlphaMid;
+                BlockAlphaMid = -1;
+            }
+        }
+
+        public void CheckBrokenBlockDim()
+        {
+            bool broken = false;
+
+            if(BlockDimIn.Length < 12)
+            {
+                BlockDimIn = new int[] { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
+                broken = true;
+            }
+
+            if(BlockDimMid <= 0 || BlockDimMid > 512)
+            {
+                BlockDimMid = 32;
+                broken = true;
+            }
+
+            if(BlockDimOut.Length < 12)
+            {
+                BlockDimOut = new int[] { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
+                broken = true;
+            }
+
+            if(BlockAlphaInM.Length < 12)
+            {
+                BlockAlphaInM = new decimal[] { 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32 };
+                broken = true;
+            }
+
+            if(BlockAlphaMidM <= 0)
+            {
+                BlockAlphaMidM = 32;
+                broken = true;
+            }
+
+            if(BlockAlphaOutM.Length < 12)
+            {
+                BlockAlphaOutM = new decimal[] { 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32 };
+                broken = true;
+            }
+
+            for(int i = 0; i< 12; i++)
+            {
+                if (BlockDimIn[i] <= 0 || BlockDimIn[i] > 512)
+                {
+                    BlockDimIn[i] = 64;
+                    broken = true;
+                }
+
+                if (BlockDimOut[i] <= 0 || BlockDimOut[i] > 512)
+                {
+                    BlockDimOut[i] = 64;
+                    broken = true;
+                }
+
+                if (BlockAlphaInM[i] <= 0)
+                {
+                    BlockAlphaInM[i] = 32;
+                    broken = true;
+                }
+
+                if (BlockAlphaOutM[i] <= 0)
+                {
+                    BlockAlphaOutM[i] = 32;
+                    broken = true;
+                }
+
+            }
+
+            if (broken)
+            {
+                MessageBox.Show("層別Dim/Alphaの設定が破損しています。破損箇所はリセットされました。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 
@@ -123,5 +259,12 @@ namespace Kohya_lora_trainer {
         linear,
         reverse_linear,
         zeros
+    }
+
+    public enum MixedPrecisionType
+    {
+        None,
+        fp16,
+        bf16
     }
 }

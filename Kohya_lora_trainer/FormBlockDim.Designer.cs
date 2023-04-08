@@ -173,7 +173,7 @@
             // 
             this.nudDimIn00.Location = new System.Drawing.Point(104, 144);
             this.nudDimIn00.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -193,9 +193,10 @@
             // 
             // nudAlphaIn00
             // 
+            this.nudAlphaIn00.DecimalPlaces = 2;
             this.nudAlphaIn00.Location = new System.Drawing.Point(255, 144);
             this.nudAlphaIn00.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -203,7 +204,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaIn00.Name = "nudAlphaIn00";
             this.nudAlphaIn00.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn00.TabIndex = 1;
@@ -264,7 +265,7 @@
             // 
             this.nudDimIn01.Location = new System.Drawing.Point(104, 181);
             this.nudDimIn01.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -284,9 +285,10 @@
             // 
             // nudAlphaIn01
             // 
+            this.nudAlphaIn01.DecimalPlaces = 2;
             this.nudAlphaIn01.Location = new System.Drawing.Point(255, 181);
             this.nudAlphaIn01.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -294,7 +296,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaIn01.Name = "nudAlphaIn01";
             this.nudAlphaIn01.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn01.TabIndex = 1;
@@ -317,7 +319,7 @@
             // 
             this.nudDimIn02.Location = new System.Drawing.Point(104, 218);
             this.nudDimIn02.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -337,9 +339,10 @@
             // 
             // nudAlphaIn02
             // 
+            this.nudAlphaIn02.DecimalPlaces = 2;
             this.nudAlphaIn02.Location = new System.Drawing.Point(255, 218);
             this.nudAlphaIn02.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -347,7 +350,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaIn02.Name = "nudAlphaIn02";
             this.nudAlphaIn02.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn02.TabIndex = 1;
@@ -361,7 +364,7 @@
             // 
             this.nudDimIn03.Location = new System.Drawing.Point(104, 255);
             this.nudDimIn03.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -381,9 +384,10 @@
             // 
             // nudAlphaIn03
             // 
+            this.nudAlphaIn03.DecimalPlaces = 2;
             this.nudAlphaIn03.Location = new System.Drawing.Point(255, 255);
             this.nudAlphaIn03.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -391,7 +395,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaIn03.Name = "nudAlphaIn03";
             this.nudAlphaIn03.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn03.TabIndex = 1;
@@ -423,7 +427,7 @@
             // 
             this.nudDimIn04.Location = new System.Drawing.Point(104, 292);
             this.nudDimIn04.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -443,9 +447,10 @@
             // 
             // nudAlphaIn04
             // 
+            this.nudAlphaIn04.DecimalPlaces = 2;
             this.nudAlphaIn04.Location = new System.Drawing.Point(255, 292);
             this.nudAlphaIn04.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -453,7 +458,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaIn04.Name = "nudAlphaIn04";
             this.nudAlphaIn04.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn04.TabIndex = 1;
@@ -467,7 +472,7 @@
             // 
             this.nudDimIn05.Location = new System.Drawing.Point(104, 329);
             this.nudDimIn05.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -487,9 +492,10 @@
             // 
             // nudAlphaIn05
             // 
+            this.nudAlphaIn05.DecimalPlaces = 2;
             this.nudAlphaIn05.Location = new System.Drawing.Point(255, 329);
             this.nudAlphaIn05.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -497,7 +503,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaIn05.Name = "nudAlphaIn05";
             this.nudAlphaIn05.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn05.TabIndex = 1;
@@ -529,7 +535,7 @@
             // 
             this.nudDimIn06.Location = new System.Drawing.Point(104, 366);
             this.nudDimIn06.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -549,9 +555,10 @@
             // 
             // nudAlphaIn06
             // 
+            this.nudAlphaIn06.DecimalPlaces = 2;
             this.nudAlphaIn06.Location = new System.Drawing.Point(255, 366);
             this.nudAlphaIn06.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -559,7 +566,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaIn06.Name = "nudAlphaIn06";
             this.nudAlphaIn06.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn06.TabIndex = 1;
@@ -573,7 +580,7 @@
             // 
             this.nudDimIn07.Location = new System.Drawing.Point(104, 403);
             this.nudDimIn07.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -593,9 +600,10 @@
             // 
             // nudAlphaIn07
             // 
+            this.nudAlphaIn07.DecimalPlaces = 2;
             this.nudAlphaIn07.Location = new System.Drawing.Point(255, 403);
             this.nudAlphaIn07.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -603,7 +611,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaIn07.Name = "nudAlphaIn07";
             this.nudAlphaIn07.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn07.TabIndex = 1;
@@ -635,7 +643,7 @@
             // 
             this.nudDimIn08.Location = new System.Drawing.Point(104, 440);
             this.nudDimIn08.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -655,9 +663,10 @@
             // 
             // nudAlphaIn08
             // 
+            this.nudAlphaIn08.DecimalPlaces = 2;
             this.nudAlphaIn08.Location = new System.Drawing.Point(255, 440);
             this.nudAlphaIn08.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -665,7 +674,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaIn08.Name = "nudAlphaIn08";
             this.nudAlphaIn08.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn08.TabIndex = 1;
@@ -679,7 +688,7 @@
             // 
             this.nudDimIn09.Location = new System.Drawing.Point(104, 477);
             this.nudDimIn09.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -699,9 +708,10 @@
             // 
             // nudAlphaIn09
             // 
+            this.nudAlphaIn09.DecimalPlaces = 2;
             this.nudAlphaIn09.Location = new System.Drawing.Point(255, 477);
             this.nudAlphaIn09.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -709,7 +719,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaIn09.Name = "nudAlphaIn09";
             this.nudAlphaIn09.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn09.TabIndex = 1;
@@ -741,7 +751,7 @@
             // 
             this.nudDimIn10.Location = new System.Drawing.Point(104, 514);
             this.nudDimIn10.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -761,9 +771,10 @@
             // 
             // nudAlphaIn10
             // 
+            this.nudAlphaIn10.DecimalPlaces = 2;
             this.nudAlphaIn10.Location = new System.Drawing.Point(255, 514);
             this.nudAlphaIn10.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -771,7 +782,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaIn10.Name = "nudAlphaIn10";
             this.nudAlphaIn10.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn10.TabIndex = 1;
@@ -785,7 +796,7 @@
             // 
             this.nudDimIn11.Location = new System.Drawing.Point(104, 551);
             this.nudDimIn11.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -805,9 +816,10 @@
             // 
             // nudAlphaIn11
             // 
+            this.nudAlphaIn11.DecimalPlaces = 2;
             this.nudAlphaIn11.Location = new System.Drawing.Point(255, 551);
             this.nudAlphaIn11.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -815,7 +827,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaIn11.Name = "nudAlphaIn11";
             this.nudAlphaIn11.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn11.TabIndex = 1;
@@ -847,7 +859,7 @@
             // 
             this.nudDimMid.Location = new System.Drawing.Point(287, 629);
             this.nudDimMid.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -867,9 +879,10 @@
             // 
             // nudAlphaMid
             // 
+            this.nudAlphaMid.DecimalPlaces = 2;
             this.nudAlphaMid.Location = new System.Drawing.Point(438, 629);
             this.nudAlphaMid.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -877,7 +890,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaMid.Name = "nudAlphaMid";
             this.nudAlphaMid.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaMid.TabIndex = 1;
@@ -900,7 +913,7 @@
             // 
             this.nudDimOut11.Location = new System.Drawing.Point(539, 144);
             this.nudDimOut11.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -920,9 +933,10 @@
             // 
             // nudAlphaOut11
             // 
+            this.nudAlphaOut11.DecimalPlaces = 2;
             this.nudAlphaOut11.Location = new System.Drawing.Point(690, 144);
             this.nudAlphaOut11.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -930,7 +944,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaOut11.Name = "nudAlphaOut11";
             this.nudAlphaOut11.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut11.TabIndex = 1;
@@ -944,7 +958,7 @@
             // 
             this.nudDimOut09.Location = new System.Drawing.Point(539, 218);
             this.nudDimOut09.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -964,9 +978,10 @@
             // 
             // nudAlphaOut09
             // 
+            this.nudAlphaOut09.DecimalPlaces = 2;
             this.nudAlphaOut09.Location = new System.Drawing.Point(690, 218);
             this.nudAlphaOut09.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -974,7 +989,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaOut09.Name = "nudAlphaOut09";
             this.nudAlphaOut09.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut09.TabIndex = 1;
@@ -988,7 +1003,7 @@
             // 
             this.nudDimOut07.Location = new System.Drawing.Point(539, 292);
             this.nudDimOut07.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1008,9 +1023,10 @@
             // 
             // nudAlphaOut07
             // 
+            this.nudAlphaOut07.DecimalPlaces = 2;
             this.nudAlphaOut07.Location = new System.Drawing.Point(690, 292);
             this.nudAlphaOut07.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1018,7 +1034,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaOut07.Name = "nudAlphaOut07";
             this.nudAlphaOut07.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut07.TabIndex = 1;
@@ -1032,7 +1048,7 @@
             // 
             this.nudDimOut05.Location = new System.Drawing.Point(539, 366);
             this.nudDimOut05.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1052,9 +1068,10 @@
             // 
             // nudAlphaOut05
             // 
+            this.nudAlphaOut05.DecimalPlaces = 2;
             this.nudAlphaOut05.Location = new System.Drawing.Point(690, 366);
             this.nudAlphaOut05.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1062,7 +1079,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaOut05.Name = "nudAlphaOut05";
             this.nudAlphaOut05.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut05.TabIndex = 1;
@@ -1076,7 +1093,7 @@
             // 
             this.nudDimOut03.Location = new System.Drawing.Point(539, 440);
             this.nudDimOut03.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1096,9 +1113,10 @@
             // 
             // nudAlphaOut03
             // 
+            this.nudAlphaOut03.DecimalPlaces = 2;
             this.nudAlphaOut03.Location = new System.Drawing.Point(690, 440);
             this.nudAlphaOut03.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1106,7 +1124,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaOut03.Name = "nudAlphaOut03";
             this.nudAlphaOut03.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut03.TabIndex = 1;
@@ -1120,7 +1138,7 @@
             // 
             this.nudDimOut01.Location = new System.Drawing.Point(539, 514);
             this.nudDimOut01.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1140,9 +1158,10 @@
             // 
             // nudAlphaOut01
             // 
+            this.nudAlphaOut01.DecimalPlaces = 2;
             this.nudAlphaOut01.Location = new System.Drawing.Point(690, 514);
             this.nudAlphaOut01.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1150,7 +1169,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaOut01.Name = "nudAlphaOut01";
             this.nudAlphaOut01.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut01.TabIndex = 1;
@@ -1164,7 +1183,7 @@
             // 
             this.nudDimOut10.Location = new System.Drawing.Point(539, 181);
             this.nudDimOut10.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1186,7 +1205,7 @@
             // 
             this.nudDimOut08.Location = new System.Drawing.Point(539, 255);
             this.nudDimOut08.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1208,7 +1227,7 @@
             // 
             this.nudDimOut06.Location = new System.Drawing.Point(539, 329);
             this.nudDimOut06.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1230,7 +1249,7 @@
             // 
             this.nudDimOut04.Location = new System.Drawing.Point(539, 403);
             this.nudDimOut04.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1252,7 +1271,7 @@
             // 
             this.nudDimOut02.Location = new System.Drawing.Point(539, 477);
             this.nudDimOut02.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1274,7 +1293,7 @@
             // 
             this.nudDimOut00.Location = new System.Drawing.Point(539, 551);
             this.nudDimOut00.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1294,9 +1313,10 @@
             // 
             // nudAlphaOut10
             // 
+            this.nudAlphaOut10.DecimalPlaces = 2;
             this.nudAlphaOut10.Location = new System.Drawing.Point(690, 181);
             this.nudAlphaOut10.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1304,7 +1324,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaOut10.Name = "nudAlphaOut10";
             this.nudAlphaOut10.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut10.TabIndex = 1;
@@ -1316,9 +1336,10 @@
             // 
             // nudAlphaOut08
             // 
+            this.nudAlphaOut08.DecimalPlaces = 2;
             this.nudAlphaOut08.Location = new System.Drawing.Point(690, 255);
             this.nudAlphaOut08.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1326,7 +1347,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaOut08.Name = "nudAlphaOut08";
             this.nudAlphaOut08.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut08.TabIndex = 1;
@@ -1338,9 +1359,10 @@
             // 
             // nudAlphaOut06
             // 
+            this.nudAlphaOut06.DecimalPlaces = 2;
             this.nudAlphaOut06.Location = new System.Drawing.Point(690, 329);
             this.nudAlphaOut06.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1348,7 +1370,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaOut06.Name = "nudAlphaOut06";
             this.nudAlphaOut06.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut06.TabIndex = 1;
@@ -1360,9 +1382,10 @@
             // 
             // nudAlphaOut04
             // 
+            this.nudAlphaOut04.DecimalPlaces = 2;
             this.nudAlphaOut04.Location = new System.Drawing.Point(690, 403);
             this.nudAlphaOut04.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1370,7 +1393,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaOut04.Name = "nudAlphaOut04";
             this.nudAlphaOut04.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut04.TabIndex = 1;
@@ -1382,9 +1405,10 @@
             // 
             // nudAlphaOut02
             // 
+            this.nudAlphaOut02.DecimalPlaces = 2;
             this.nudAlphaOut02.Location = new System.Drawing.Point(690, 477);
             this.nudAlphaOut02.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1392,7 +1416,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaOut02.Name = "nudAlphaOut02";
             this.nudAlphaOut02.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut02.TabIndex = 1;
@@ -1404,9 +1428,10 @@
             // 
             // nudAlphaOut00
             // 
+            this.nudAlphaOut00.DecimalPlaces = 2;
             this.nudAlphaOut00.Location = new System.Drawing.Point(690, 551);
             this.nudAlphaOut00.Maximum = new decimal(new int[] {
-            256,
+            512,
             0,
             0,
             0});
@@ -1414,7 +1439,7 @@
             1,
             0,
             0,
-            0});
+            131072});
             this.nudAlphaOut00.Name = "nudAlphaOut00";
             this.nudAlphaOut00.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut00.TabIndex = 1;

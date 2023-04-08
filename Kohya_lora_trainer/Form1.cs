@@ -32,9 +32,6 @@ namespace Kohya_lora_trainer {
 
         private void Form1_Load(object sender, EventArgs e) {
             //レジストリからsd-scriptsの場所を取ってくる
-
-
-
             tbxModelPath.Text = string.Empty;
             tbxImagePath.Text = string.Empty;
             tbxRegImgPath.Text = string.Empty;
@@ -82,6 +79,9 @@ namespace Kohya_lora_trainer {
                     MessageBox.Show("自動保存プリセットを読み込めません。破損しているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
+            TrainParams.Current.ConvertBlockAlpha();
+            TrainParams.Current.CheckBrokenBlockDim();
 
             UpdateAllContents();
         }
@@ -231,7 +231,7 @@ namespace Kohya_lora_trainer {
         }
 
         private void nudNetworkAlpha_ValueChanged(object sender, EventArgs e) {
-            TrainParams.Current.NetworkAlpha = (int)nudNetworkAlpha.Value;
+            TrainParams.Current.NetworkAlpha = nudNetworkAlpha.Value;
         }
 
         private void cbxShuffle_CheckedChanged(object sender, EventArgs e) {
@@ -355,6 +355,8 @@ namespace Kohya_lora_trainer {
                 catch {
                     MessageBox.Show("プリセットを読み込めません。破損しているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                TrainParams.Current.ConvertBlockAlpha();
+                TrainParams.Current.CheckBrokenBlockDim();
                 UpdateAllContents();
             }
         }
@@ -399,6 +401,13 @@ namespace Kohya_lora_trainer {
 
         private void btnBlockDim_Click(object sender, EventArgs e) {
             Form frm = new FormBlockDim();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+
+        private void btnAdvanced1_Click(object sender, EventArgs e)
+        {
+            Form frm = new FormAdvanced1();
             frm.ShowDialog();
             frm.Dispose();
         }

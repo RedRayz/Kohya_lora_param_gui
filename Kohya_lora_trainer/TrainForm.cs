@@ -10,21 +10,25 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Kohya_lora_trainer {
-    public partial class TrainForm : Form {
+namespace Kohya_lora_trainer
+{
+    public partial class TrainForm : Form
+    {
         private Process process;
         private string TrainArgs;
         private bool BenchMarkMode, ShutdownAfterComplete;
         private Stopwatch stopwatch;
         private int Duration = 60;
 
-        public TrainForm(bool benchMarkMode = false, bool shutdownAfterComplete = false) {
+        public TrainForm(bool benchMarkMode = false, bool shutdownAfterComplete = false)
+        {
             InitializeComponent();
             BenchMarkMode = benchMarkMode;
             ShutdownAfterComplete = shutdownAfterComplete;
         }
 
-        private void TrainForm_Load(object sender, EventArgs e) {
+        private void TrainForm_Load(object sender, EventArgs e)
+        {
 
             btnStop.Enabled = true;
             btnClose.Enabled = false;
@@ -32,18 +36,22 @@ namespace Kohya_lora_trainer {
             StringBuilder sb = new StringBuilder();
             StringBuilder sbCmd = new StringBuilder();
 
-            if (BenchMarkMode || ShutdownAfterComplete) {
+            if (BenchMarkMode || ShutdownAfterComplete)
+            {
                 sbCmd.Append(@"/c ");
             }
-            else {
+            else
+            {
                 sbCmd.Append(@"/k ");
             }
 
             sbCmd.Append("cd ");
-            if (!string.IsNullOrEmpty(Form1.ScriptPath)) {
+            if (!string.IsNullOrEmpty(Form1.ScriptPath))
+            {
                 sbCmd.Append("/d ").Append(Form1.ScriptPath);
             }
-            else {
+            else
+            {
                 sbCmd.Append("..\\");
             }
 
@@ -54,19 +62,24 @@ namespace Kohya_lora_trainer {
             sb.Append(" train_network.py  --pretrained_model_name_or_path=\"").Append(TrainParams.Current.ModelPath).Append("\"").Append("  --train_data_dir=\"")
                 .Append(TrainParams.Current.TrainImagePath).Append("\"  --output_dir=\"").Append(TrainParams.Current.OutputPath).Append("\"");
             //Optional(RegImage)
-            if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath)) {
+            if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
+            {
                 sb.Append("  --reg_data_dir=\"").Append(TrainParams.Current.RegImagePath).Append("\"");
             }
 
             string lbw = GetBlockWeightCmd();
 
-            switch (TrainParams.Current.ModuleType) {
-                    case ModuleType.LoRA: {
+            switch (TrainParams.Current.ModuleType)
+            {
+                case ModuleType.LoRA:
+                    {
                         sb.Append("  --network_module=\"").Append("networks.lora").Append("\"");
-                        if (TrainParams.Current.UseConv2dExtend) {
+                        if (TrainParams.Current.UseConv2dExtend)
+                        {
                             bool di = TrainParams.Current.ConvDim > 0;
                             bool al = TrainParams.Current.ConvAlpha > 0;
-                            if (di || al) {
+                            if (di || al)
+                            {
                                 sb.Append("  --network_args");
                                 if (di)
                                     sb.Append(" \"conv_dim=").Append(TrainParams.Current.ConvDim.ToString()).Append("\"");
@@ -76,19 +89,21 @@ namespace Kohya_lora_trainer {
                                     sb.Append(" ").Append(lbw);
                             }
                         }
-                        else if(TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
+                        else if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
                         {
                             sb.Append("  --network_args").Append(" ").Append(lbw);
                         }
 
                     }
                     break;
-                    case ModuleType.LyCORIS: {
-                        sb.Append("  --network_module=").Append("lycoris.kohya");
+                case ModuleType.LyCORIS:
+                    {
+                        sb.Append("  --network_module=\"").Append("lycoris.kohya\"");
                         sb.Append("  --network_args \"algo=").Append(TrainParams.Current.AlgoType.ToString()).Append("\"");
                         bool di = TrainParams.Current.ConvDim > 0;
                         bool al = TrainParams.Current.ConvAlpha > 0;
-                        if (di || al) {
+                        if (di || al)
+                        {
                             if (di)
                                 sb.Append(" \"conv_dim=").Append(TrainParams.Current.ConvDim.ToString()).Append("\"");
                             if (al)
@@ -100,22 +115,63 @@ namespace Kohya_lora_trainer {
                     break;
             }
 
-            switch (TrainParams.Current.CrossAttenType) {
+            switch (TrainParams.Current.CrossAttenType)
+            {
                 case CrossAttenType.xformers:
                     sb.Append("  --xformers");
                     break;
-                    case CrossAttenType.mem_eff_attn:
+                case CrossAttenType.mem_eff_attn:
                     sb.Append("  --mem_eff_attn");
                     break;
             }
 
-            if (TrainParams.Current.UseGradient) {
+            if (TrainParams.Current.UseGradient)
+            {
                 sb.Append("  --gradient_checkpointing");
             }
 
+            if (TrainParams.Current.UseColorAug)
+            {
+                sb.Append("  --color_aug");
+            }
+
+            if (TrainParams.Current.UseFlipAug)
+            {
+                sb.Append("  --flip_aug");
+            }
+
+            if (TrainParams.Current.CropRandomly)
+            {
+                sb.Append("  --random_crop");
+            }
+
+            if (TrainParams.Current.UseFastLoading)
+            {
+                sb.Append("  --persistent_data_loader_workers");
+            }
+
+            if (TrainParams.Current.DontSaveMetadata)
+            {
+                sb.Append("  --no_metadata");
+            }
+
+            if (TrainParams.Current.UseSDV2)
+            {
+                sb.Append("  --v2");
+                if (TrainParams.Current.UseParameterization)
+                    sb.Append("  --v_parameterization");
+            }
+
+            if (TrainParams.Current.MaxTokens > 75)
+                sb.Append("  --max_token_length=").Append(TrainParams.Current.MaxTokens);
+
+            sb.Append("  --max_data_loader_n_workers=").Append(TrainParams.Current.DataLoaderThreads);
+
             //Automatic
-            sb.Append("  --persistent_data_loader_workers  --color_aug  --enable_bucket")
-                .Append("  --save_model_as=\"safetensors\"  --lr_scheduler_num_cycles=4  --mixed_precision=fp16");
+            sb.Append("  --enable_bucket  --save_model_as=\"safetensors\"  --lr_scheduler_num_cycles=").Append(TrainParams.Current.LRSchedulerCycle);
+
+            if (TrainParams.Current.mixedPrecisionType != MixedPrecisionType.None)
+                sb.Append("  --mixed_precision=\"").Append(TrainParams.Current.mixedPrecisionType.ToString()).Append("\"");
 
             //Main
             sb.Append("  --learning_rate=").Append(TrainParams.Current.LearningRate.ToString("g"))
@@ -127,44 +183,55 @@ namespace Kohya_lora_trainer {
             .Append("  --network_alpha=").Append(TrainParams.Current.NetworkAlpha);
 
             //Optional Main
-            if (TrainParams.Current.ShuffleCaptions) {
+            if (TrainParams.Current.ShuffleCaptions)
+            {
                 sb.Append("  --shuffle_caption");
-                if (TrainParams.Current.KeepTokenCount > 0) {
+                if (TrainParams.Current.KeepTokenCount > 0)
+                {
                     sb.Append("  --keep_tokens=").Append(TrainParams.Current.KeepTokenCount);
                 }
             }
 
-            if (TrainParams.Current.SaveEveryNEpochs > 0) {
+            if (TrainParams.Current.SaveEveryNEpochs > 0)
+            {
                 sb.Append("  --save_every_n_epochs=").Append(TrainParams.Current.SaveEveryNEpochs);
             }
 
             sb.Append("  --optimizer_type=\"").Append(TrainParams.Current.OptimizerType.ToString()).Append("\"");
             //AdaFactorなら引数追加
-            if (TrainParams.Current.OptimizerType == OptimizerType.AdaFactor) {
+            if (TrainParams.Current.OptimizerType == OptimizerType.AdaFactor)
+            {
                 sb.Append("  --optimizer_args \"relative_step=True\" \"scale_parameter=True\" \"warmup_init=").Append(TrainParams.Current.UseWarmupInit.ToString()).Append("\"");
-            }else if(TrainParams.Current.OptimizerType == OptimizerType.SGDNesterov || TrainParams.Current.OptimizerType == OptimizerType.SGDNesterov8bit) {
+            }
+            else if (TrainParams.Current.OptimizerType == OptimizerType.SGDNesterov || TrainParams.Current.OptimizerType == OptimizerType.SGDNesterov8bit)
+            {
                 sb.Append("  --optimizer_args \"momentum=").Append(TrainParams.Current.Momentum.ToString()).Append("\"");
             }
 
-            if (TrainParams.Current.WarmupSteps > 0) {
+            if (TrainParams.Current.WarmupSteps > 0)
+            {
                 sb.Append("  --lr_warmup_steps=").Append(TrainParams.Current.WarmupSteps);
             }
 
-            if (!string.IsNullOrEmpty(TrainParams.Current.OutputName)) {
+            if (!string.IsNullOrEmpty(TrainParams.Current.OutputName))
+            {
                 sb.Append("  --output_name=\"").Append(TrainParams.Current.OutputName).Append("\"");
             }
 
-            if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath)) {
+            if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath))
+            {
                 sb.Append("  --vae=\"").Append(TrainParams.Current.VAEPath).Append("\"");
             }
 
             //Advanced
-            if (!string.IsNullOrEmpty(TrainParams.Current.LoraModelPath)) {
+            if (!string.IsNullOrEmpty(TrainParams.Current.LoraModelPath))
+            {
                 sb.Append("  --network_weights=").Append("\"").Append(TrainParams.Current.LoraModelPath).Append("\"");
             }
 
 
-            if (TrainParams.Current.NoBucketUpscaling) {
+            if (TrainParams.Current.NoBucketUpscaling)
+            {
                 sb.Append("  --bucket_no_upscale");
             }
 
@@ -176,7 +243,8 @@ namespace Kohya_lora_trainer {
                 .Append("  --max_bucket_reso=").Append(TrainParams.Current.MaxBucketResolution)
                 .Append("  --caption_extension=\"").Append(TrainParams.Current.CaptionFileExtension).Append("\"");
 
-            switch (TrainParams.Current.advancedTrainType) {
+            switch (TrainParams.Current.advancedTrainType)
+            {
                 case AdvancedTrainType.TextEncoderOnly:
                     sb.Append("  --network_train_text_encoder_only");
                     break;
@@ -188,27 +256,37 @@ namespace Kohya_lora_trainer {
             }
 
 
-            if (TrainParams.Current.TextEncoderLR > 0) {
+            if (TrainParams.Current.TextEncoderLR > 0)
+            {
                 sb.Append("  --text_encoder_lr=").Append(TrainParams.Current.TextEncoderLR.ToString("g"));
             }
 
-            if (TrainParams.Current.UnetLR > 0) {
+            if (TrainParams.Current.UnetLR > 0)
+            {
                 sb.Append("  --unet_lr=").Append(TrainParams.Current.UnetLR.ToString("g"));
             }
 
-            if(TrainParams.Current.NoiseOffset > 0f) {
+            if (TrainParams.Current.NoiseOffset > 0f)
+            {
                 sb.Append("  --noise_offset=").Append(TrainParams.Current.NoiseOffset.ToString());
             }
 
-            if (!string.IsNullOrEmpty(TrainParams.Current.TensorBoardLogPath)) {
+            if (TrainParams.Current.UseWeightedCaptions)
+            {
+                sb.Append("  --weighted_captions");
+            }
+
+            if (!string.IsNullOrEmpty(TrainParams.Current.TensorBoardLogPath))
+            {
                 sb.Append("  --logging_dir=\"").Append(TrainParams.Current.TensorBoardLogPath).Append("\"");
             }
 
             TrainArgs = sb.ToString();
             lblCuntdown.Text = string.Empty;
             sbCmd.Append(TrainArgs);
-            
-            if (BenchMarkMode) {
+
+            if (BenchMarkMode)
+            {
                 stopwatch = Stopwatch.StartNew();
             }
 
@@ -223,7 +301,8 @@ namespace Kohya_lora_trainer {
             process.Start();
         }
 
-        private void btnClose_Click(object sender, EventArgs e) {
+        private void btnClose_Click(object sender, EventArgs e)
+        {
             if (ShutdownAfterComplete)
             {
                 Duration = 60;
@@ -232,10 +311,13 @@ namespace Kohya_lora_trainer {
             Close();
         }
 
-        private void btnStop_Click(object sender, EventArgs e) {
-            if (process != null && !process.HasExited) {
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            if (process != null && !process.HasExited)
+            {
                 DialogResult result = MessageBox.Show("学習中に閉じると学習は中止されます。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.Yes) {
+                if (result == DialogResult.Yes)
+                {
                     process.Kill();
                     process.Dispose();
                     btnStop.Enabled = false;
@@ -245,12 +327,14 @@ namespace Kohya_lora_trainer {
             }
         }
 
-        private void TrainExited(object sender, EventArgs e) {
+        private void TrainExited(object sender, EventArgs e)
+        {
             process.Dispose();
             process = null;
             btnStop.Enabled = false;
             btnClose.Enabled = true;
-            if(BenchMarkMode && stopwatch != null) {
+            if (BenchMarkMode && stopwatch != null)
+            {
                 stopwatch.Stop();
                 double sec = stopwatch.Elapsed.TotalSeconds % 60;
                 double min = stopwatch.Elapsed.TotalSeconds / 60;
@@ -269,29 +353,32 @@ namespace Kohya_lora_trainer {
             }
         }
 
-        private void TrainForm_FormClosing(object sender, FormClosingEventArgs e) {
-            if (process != null && !process.HasExited) {
+        private void TrainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (process != null && !process.HasExited)
+            {
                 process.Kill();
                 process.Dispose();
                 process = null;
             }
         }
 
-        private void btnCopyCmd_Click(object sender, EventArgs e) {
+        private void btnCopyCmd_Click(object sender, EventArgs e)
+        {
             Clipboard.SetText(TrainArgs);
         }
 
         private string GetBlockWeightCmd()
         {
             StringBuilder sb = new StringBuilder();
-            if(TrainParams.Current.UseBlockWeight)
+            if (TrainParams.Current.UseBlockWeight)
             {
-                switch(TrainParams.Current.BlockWeightPresetTypeIn)
+                switch (TrainParams.Current.BlockWeightPresetTypeIn)
                 {
                     case BlockWeightPresetType.none:
                         {
                             sb.Append("\"down_lr_weight=");
-                            for(int i = 0; i < 12; i++)
+                            for (int i = 0; i < 12; i++)
                             {
                                 sb.Append((0.05f * TrainParams.Current.BlockWeightIn[i]).ToString());
                                 if (i < 11)
@@ -303,7 +390,7 @@ namespace Kohya_lora_trainer {
                     default:
                         {
                             sb.Append("\"down_lr_weight=").Append(TrainParams.Current.BlockWeightPresetTypeIn.ToString());
-                            if(TrainParams.Current.BlockWeightOffsetIn >= 0.25m)
+                            if (TrainParams.Current.BlockWeightOffsetIn >= 0.25m)
                             {
                                 sb.Append("+").Append(TrainParams.Current.BlockWeightOffsetIn.ToString());
                             }
@@ -342,7 +429,7 @@ namespace Kohya_lora_trainer {
                         break;
                 }
 
-                if(TrainParams.Current.BlockWeightZeroThreshold > 0)
+                if (TrainParams.Current.BlockWeightZeroThreshold > 0)
                 {
                     sb.Append(" \"block_lr_zero_threshold=").Append((0.05f * TrainParams.Current.BlockWeightZeroThreshold).ToString()).Append("\"");
                 }
@@ -350,7 +437,7 @@ namespace Kohya_lora_trainer {
 
             if (TrainParams.Current.UseBlockDim)
             {
-                sb.Append(TrainParams.Current.UseConv2dExtend ? " \"conv_block_dims=" : " \"block_dims=");
+                sb.Append(TrainParams.Current.UseConv2dExtend ? "\"conv_block_dims=" : "\"block_dims=");
                 //DIM IN
                 for (int i = 0; i < 12; i++)
                 {
@@ -373,16 +460,16 @@ namespace Kohya_lora_trainer {
                 //ALPHA IN
                 for (int i = 0; i < 12; i++)
                 {
-                    sb.Append(TrainParams.Current.BlockAlphaIn[i]);
+                    sb.Append(TrainParams.Current.BlockAlphaInM[i]);
                     sb.Append(",");
                 }
                 //ALPHA MID
-                sb.Append(TrainParams.Current.BlockAlphaMid).Append(",");
+                sb.Append(TrainParams.Current.BlockAlphaMidM).Append(",");
 
                 //ALPHA OUT
                 for (int i = 0; i < 12; i++)
                 {
-                    sb.Append(TrainParams.Current.BlockAlphaOut[i]);
+                    sb.Append(TrainParams.Current.BlockAlphaOutM[i]);
                     if (i < 11)
                         sb.Append(",");
                 }
@@ -394,16 +481,16 @@ namespace Kohya_lora_trainer {
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if(Duration == 0)
+            if (Duration == 0)
             {
                 Duration = -1;
-                if(timer1.Enabled)
+                if (timer1.Enabled)
                     timer1.Stop();
                 ShutdownPC();
                 Close();
                 //MessageBox.Show("ここでシャットダウンする", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else if(Duration > 0)
+            else if (Duration > 0)
             {
                 Duration--;
                 lblCuntdown.Text = Duration.ToString() + "秒後にシャットダウンします \n しない場合はこのウィンドウを閉じてください";
