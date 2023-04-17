@@ -15,19 +15,19 @@ namespace Kohya_lora_trainer {
 
         //Optional
         public  string RegImagePath;
-        public  bool ShuffleCaptions = false;
-        public  int KeepTokenCount = 0, SaveEveryNEpochs = 0;
+        public  bool ShuffleCaptions = true;
+        public  int KeepTokenCount = 1, SaveEveryNEpochs = 0;
         public  OptimizerType OptimizerType = OptimizerType.AdamW8bit;
         public  int WarmupSteps = 500;
         public  string OutputName;
 
         //Advanced
-        public  int CpuThreads = 12;
-        public  bool NoBucketUpscaling, UseWarmupInit;
+        public  int CpuThreads = 8;
+        public  bool NoBucketUpscaling = false, UseWarmupInit = false;
         public  int ClipSkip = 2, Seed = 42;
         public  SavePrecision SavePrecision = SavePrecision.fp16;
         public  SchedulerType SchedulerType = SchedulerType.cosine_with_restarts;
-        public  int MinBucketResolution = 320, MaxBucketResolution = 960;
+        public  int MinBucketResolution = 320, MaxBucketResolution = 1024;
         public  string CaptionFileExtension = ".txt", VAEPath = string.Empty;
         public  float UnetLR = -1, TextEncoderLR = -1, NoiseOffset = 0, Momentum = 0.9f;
         public AdvancedTrainType advancedTrainType = AdvancedTrainType.None;
@@ -41,6 +41,7 @@ namespace Kohya_lora_trainer {
         public decimal ConvAlpha = 0;
         //Additional(LoRA)
         public bool UseConv2dExtend = false;
+        public decimal DyLoRAUnit = 4;
 
         //Block Weight
         public bool UseBlockWeight = false;
@@ -58,7 +59,7 @@ namespace Kohya_lora_trainer {
         public int BlockDimMid = 32;
         public int[] BlockDimOut = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
 
-        //decimal型に変更予定
+        //現在未使用。互換性維持のため残してある
         public int[] BlockAlphaIn = Array.Empty<int>();
         public int BlockAlphaMid = -1;
         public int[] BlockAlphaOut = Array.Empty<int>();
@@ -68,9 +69,9 @@ namespace Kohya_lora_trainer {
         public decimal[] BlockAlphaOutM = { 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32 };
 
         //Advanced1
-        public bool UseColorAug = true, UseFastLoading = true, UseSDV2 = false, DontSaveMetadata = false, UseFlipAug = false, CropRandomly = false, UseParameterization = false;
+        public bool UseColorAug = true, UseFastLoading = true, UseSDV2 = false, DontSaveMetadata = false, UseFlipAug = false, CropRandomly = false, UseParameterization = false, CacheLatents = false, CacheLatentsToDisk = false;
         //public string ModelConfigPath = string.Empty;
-        public int LRSchedulerCycle = 4, DataLoaderThreads = 8, MaxTokens = 75;
+        public int LRSchedulerCycle = 4, DataLoaderThreads = 4, MaxTokens = 75;
         public MixedPrecisionType mixedPrecisionType = MixedPrecisionType.fp16;
 
 
@@ -237,13 +238,14 @@ namespace Kohya_lora_trainer {
     public enum ModuleType {
         LoRA,
         LyCORIS,
-        //LyCORISの統合・最適化に伴い削除予定
-        LoCon
+        DyLoRA
     }
 
     public enum AlgoType {
         lora,
-        loha
+        loha,
+        ia3,
+        lokr
     }
 
     public enum CrossAttenType {

@@ -32,8 +32,11 @@
             this.nudConvDim = new System.Windows.Forms.NumericUpDown();
             this.nudConvAlpha = new System.Windows.Forms.NumericUpDown();
             this.cbxUseConv2d = new System.Windows.Forms.CheckBox();
+            this.nudDyLoRAUnit = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudConvDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudConvAlpha)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDyLoRAUnit)).BeginInit();
             this.SuspendLayout();
             // 
             // cbxAlgoType
@@ -42,7 +45,9 @@
             this.cbxAlgoType.FormattingEnabled = true;
             this.cbxAlgoType.Items.AddRange(new object[] {
             "lora",
-            "loha"});
+            "loha",
+            "ia3",
+            "lokr"});
             this.cbxAlgoType.Location = new System.Drawing.Point(229, 109);
             this.cbxAlgoType.Name = "cbxAlgoType";
             this.cbxAlgoType.Size = new System.Drawing.Size(121, 33);
@@ -137,11 +142,44 @@
             this.cbxUseConv2d.Text = "LoRAでConv2d拡張を使用";
             this.cbxUseConv2d.UseVisualStyleBackColor = true;
             // 
+            // nudDyLoRAUnit
+            // 
+            this.nudDyLoRAUnit.Location = new System.Drawing.Point(518, 116);
+            this.nudDyLoRAUnit.Maximum = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
+            this.nudDyLoRAUnit.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudDyLoRAUnit.Name = "nudDyLoRAUnit";
+            this.nudDyLoRAUnit.Size = new System.Drawing.Size(120, 31);
+            this.nudDyLoRAUnit.TabIndex = 10;
+            this.nudDyLoRAUnit.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(391, 118);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(121, 25);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "DyLoRAのunit";
+            // 
             // FormAddtional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(671, 366);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.nudDyLoRAUnit);
             this.Controls.Add(this.cbxUseConv2d);
             this.Controls.Add(this.nudConvAlpha);
             this.Controls.Add(this.nudConvDim);
@@ -162,6 +200,7 @@
             this.Load += new System.EventHandler(this.FormAddtional_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudConvDim)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudConvAlpha)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDyLoRAUnit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,5 +217,7 @@
         private System.Windows.Forms.NumericUpDown nudConvDim;
         private System.Windows.Forms.NumericUpDown nudConvAlpha;
         private System.Windows.Forms.CheckBox cbxUseConv2d;
+        private System.Windows.Forms.NumericUpDown nudDyLoRAUnit;
+        private System.Windows.Forms.Label label4;
     }
 }

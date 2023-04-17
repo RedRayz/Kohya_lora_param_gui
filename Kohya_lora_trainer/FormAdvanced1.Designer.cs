@@ -45,6 +45,8 @@
             this.cbxCropRandomly = new System.Windows.Forms.CheckBox();
             this.cbxFlipAug = new System.Windows.Forms.CheckBox();
             this.cbxUseParametarization = new System.Windows.Forms.CheckBox();
+            this.cbxCacheLatents = new System.Windows.Forms.CheckBox();
+            this.cbxCacheLatentsToDisk = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudLRSchedulerCycle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDataLoaderThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxTokens)).BeginInit();
@@ -64,7 +66,7 @@
             // 
             // btnSaveChanges
             // 
-            this.btnSaveChanges.Location = new System.Drawing.Point(553, 358);
+            this.btnSaveChanges.Location = new System.Drawing.Point(553, 403);
             this.btnSaveChanges.Name = "btnSaveChanges";
             this.btnSaveChanges.Size = new System.Drawing.Size(199, 42);
             this.btnSaveChanges.TabIndex = 1;
@@ -74,7 +76,7 @@
             // 
             // btnDiscardChanges
             // 
-            this.btnDiscardChanges.Location = new System.Drawing.Point(348, 358);
+            this.btnDiscardChanges.Location = new System.Drawing.Point(348, 403);
             this.btnDiscardChanges.Name = "btnDiscardChanges";
             this.btnDiscardChanges.Size = new System.Drawing.Size(199, 42);
             this.btnDiscardChanges.TabIndex = 1;
@@ -90,7 +92,7 @@
             "なし",
             "fp16",
             "bf16"});
-            this.cbxMixedPrecision.Location = new System.Drawing.Point(250, 184);
+            this.cbxMixedPrecision.Location = new System.Drawing.Point(250, 229);
             this.cbxMixedPrecision.Name = "cbxMixedPrecision";
             this.cbxMixedPrecision.Size = new System.Drawing.Size(120, 33);
             this.cbxMixedPrecision.TabIndex = 2;
@@ -98,7 +100,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(160, 187);
+            this.label1.Location = new System.Drawing.Point(160, 232);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 25);
             this.label1.TabIndex = 3;
@@ -106,7 +108,7 @@
             // 
             // nudLRSchedulerCycle
             // 
-            this.nudLRSchedulerCycle.Location = new System.Drawing.Point(250, 223);
+            this.nudLRSchedulerCycle.Location = new System.Drawing.Point(250, 268);
             this.nudLRSchedulerCycle.Maximum = new decimal(new int[] {
             64,
             0,
@@ -129,7 +131,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(63, 225);
+            this.label2.Location = new System.Drawing.Point(63, 270);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(181, 25);
             this.label2.TabIndex = 5;
@@ -149,7 +151,7 @@
             // 
             // nudDataLoaderThreads
             // 
-            this.nudDataLoaderThreads.Location = new System.Drawing.Point(250, 264);
+            this.nudDataLoaderThreads.Location = new System.Drawing.Point(250, 309);
             this.nudDataLoaderThreads.Maximum = new decimal(new int[] {
             64,
             0,
@@ -172,7 +174,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(35, 266);
+            this.label3.Location = new System.Drawing.Point(35, 311);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(209, 25);
             this.label3.TabIndex = 5;
@@ -195,7 +197,7 @@
             0,
             0,
             0});
-            this.nudMaxTokens.Location = new System.Drawing.Point(250, 301);
+            this.nudMaxTokens.Location = new System.Drawing.Point(250, 346);
             this.nudMaxTokens.Maximum = new decimal(new int[] {
             225,
             0,
@@ -218,7 +220,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(127, 303);
+            this.label5.Location = new System.Drawing.Point(127, 348);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(117, 25);
             this.label5.TabIndex = 5;
@@ -264,12 +266,34 @@
             this.cbxUseParametarization.Text = "SD2:パラメタリゼーションの使用";
             this.cbxUseParametarization.UseVisualStyleBackColor = true;
             // 
+            // cbxCacheLatents
+            // 
+            this.cbxCacheLatents.AutoSize = true;
+            this.cbxCacheLatents.Location = new System.Drawing.Point(424, 127);
+            this.cbxCacheLatents.Name = "cbxCacheLatents";
+            this.cbxCacheLatents.Size = new System.Drawing.Size(161, 29);
+            this.cbxCacheLatents.TabIndex = 6;
+            this.cbxCacheLatents.Text = "latentのキャッシュ";
+            this.cbxCacheLatents.UseVisualStyleBackColor = true;
+            // 
+            // cbxCacheLatentsToDisk
+            // 
+            this.cbxCacheLatentsToDisk.AutoSize = true;
+            this.cbxCacheLatentsToDisk.Location = new System.Drawing.Point(45, 162);
+            this.cbxCacheLatentsToDisk.Name = "cbxCacheLatentsToDisk";
+            this.cbxCacheLatentsToDisk.Size = new System.Drawing.Size(227, 29);
+            this.cbxCacheLatentsToDisk.TabIndex = 6;
+            this.cbxCacheLatentsToDisk.Text = "latentをディスクにキャッシュ";
+            this.cbxCacheLatentsToDisk.UseVisualStyleBackColor = true;
+            // 
             // FormAdvanced1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 412);
+            this.ClientSize = new System.Drawing.Size(764, 457);
             this.ControlBox = false;
+            this.Controls.Add(this.cbxCacheLatentsToDisk);
+            this.Controls.Add(this.cbxCacheLatents);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -323,5 +347,7 @@
         private System.Windows.Forms.CheckBox cbxCropRandomly;
         private System.Windows.Forms.CheckBox cbxFlipAug;
         private System.Windows.Forms.CheckBox cbxUseParametarization;
+        private System.Windows.Forms.CheckBox cbxCacheLatents;
+        private System.Windows.Forms.CheckBox cbxCacheLatentsToDisk;
     }
 }

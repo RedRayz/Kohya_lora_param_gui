@@ -113,6 +113,32 @@ namespace Kohya_lora_trainer
                         }
                     }
                     break;
+                case ModuleType.DyLoRA:
+                    {
+                        sb.Append("  --network_module=\"").Append("networks.dylora").Append("\"");
+                        sb.Append("  --network_args");
+                        sb.Append(" \"unit=").Append(TrainParams.Current.DyLoRAUnit.ToString()).Append("\"");
+
+                        if (TrainParams.Current.UseConv2dExtend)
+                        {
+                            bool di = TrainParams.Current.ConvDim > 0;
+                            bool al = TrainParams.Current.ConvAlpha > 0;
+                            if (di || al)
+                            {
+                                if (di)
+                                    sb.Append(" \"conv_dim=").Append(TrainParams.Current.ConvDim.ToString()).Append("\"");
+                                if (al)
+                                    sb.Append(" \"conv_alpha=").Append(TrainParams.Current.ConvAlpha.ToString()).Append("\"");
+                                if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
+                                    sb.Append(" ").Append(lbw);
+                            }
+                        }
+                        else if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
+                        {
+                            sb.Append(" ").Append(lbw);
+                        }
+                    }
+                    break;
             }
 
             switch (TrainParams.Current.CrossAttenType)
@@ -160,6 +186,17 @@ namespace Kohya_lora_trainer
                 sb.Append("  --v2");
                 if (TrainParams.Current.UseParameterization)
                     sb.Append("  --v_parameterization");
+            }
+
+            if (TrainParams.Current.CacheLatents)
+            {
+                sb.Append("  --cache_latents");
+
+                if (TrainParams.Current.CacheLatentsToDisk)
+                {
+                    sb.Append("  --cache_latents_to_disk");
+                }
+
             }
 
             if (TrainParams.Current.MaxTokens > 75)
@@ -238,7 +275,7 @@ namespace Kohya_lora_trainer
             sb.Append("  --clip_skip=").Append(TrainParams.Current.ClipSkip)
                 .Append("  --seed=").Append(TrainParams.Current.Seed)
                 .Append("  --save_precision=\"").Append(TrainParams.Current.SavePrecision.ToString()).Append("\"")
-                .Append("  --lr_scheduler=").Append(TrainParams.Current.SchedulerType.ToString())
+                .Append("  --lr_scheduler=\"").Append(TrainParams.Current.SchedulerType.ToString()).Append("\"")
                 .Append("  --min_bucket_reso=").Append(TrainParams.Current.MinBucketResolution)
                 .Append("  --max_bucket_reso=").Append(TrainParams.Current.MaxBucketResolution)
                 .Append("  --caption_extension=\"").Append(TrainParams.Current.CaptionFileExtension).Append("\"");

@@ -94,9 +94,9 @@ namespace Kohya_lora_trainer
             this.btnBlockDim = new System.Windows.Forms.Button();
             this.btnAdvanced1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbtDoNothing = new System.Windows.Forms.RadioButton();
-            this.rbtBenckmark = new System.Windows.Forms.RadioButton();
             this.rbtShutdown = new System.Windows.Forms.RadioButton();
+            this.rbtBenckmark = new System.Windows.Forms.RadioButton();
+            this.rbtDoNothing = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -676,7 +676,8 @@ namespace Kohya_lora_trainer
             this.cbxModuleType.FormattingEnabled = true;
             this.cbxModuleType.Items.AddRange(new object[] {
             "LoRA",
-            "LyCORIS"});
+            "LyCORIS",
+            "DyLoRA"});
             this.cbxModuleType.Location = new System.Drawing.Point(991, 344);
             this.cbxModuleType.Name = "cbxModuleType";
             this.cbxModuleType.Size = new System.Drawing.Size(146, 33);
@@ -744,17 +745,15 @@ namespace Kohya_lora_trainer
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "学習終了後の動作";
             // 
-            // rbtDoNothing
+            // rbtShutdown
             // 
-            this.rbtDoNothing.AutoSize = true;
-            this.rbtDoNothing.Checked = true;
-            this.rbtDoNothing.Location = new System.Drawing.Point(20, 29);
-            this.rbtDoNothing.Name = "rbtDoNothing";
-            this.rbtDoNothing.Size = new System.Drawing.Size(68, 29);
-            this.rbtDoNothing.TabIndex = 0;
-            this.rbtDoNothing.TabStop = true;
-            this.rbtDoNothing.Text = "無し";
-            this.rbtDoNothing.UseVisualStyleBackColor = true;
+            this.rbtShutdown.AutoSize = true;
+            this.rbtShutdown.Location = new System.Drawing.Point(318, 27);
+            this.rbtShutdown.Name = "rbtShutdown";
+            this.rbtShutdown.Size = new System.Drawing.Size(126, 29);
+            this.rbtShutdown.TabIndex = 2;
+            this.rbtShutdown.Text = "シャットダウン";
+            this.rbtShutdown.UseVisualStyleBackColor = true;
             // 
             // rbtBenckmark
             // 
@@ -766,15 +765,17 @@ namespace Kohya_lora_trainer
             this.rbtBenckmark.Text = "経過時間の表示";
             this.rbtBenckmark.UseVisualStyleBackColor = true;
             // 
-            // rbtShutdown
+            // rbtDoNothing
             // 
-            this.rbtShutdown.AutoSize = true;
-            this.rbtShutdown.Location = new System.Drawing.Point(318, 27);
-            this.rbtShutdown.Name = "rbtShutdown";
-            this.rbtShutdown.Size = new System.Drawing.Size(126, 29);
-            this.rbtShutdown.TabIndex = 2;
-            this.rbtShutdown.Text = "シャットダウン";
-            this.rbtShutdown.UseVisualStyleBackColor = true;
+            this.rbtDoNothing.AutoSize = true;
+            this.rbtDoNothing.Checked = true;
+            this.rbtDoNothing.Location = new System.Drawing.Point(20, 29);
+            this.rbtDoNothing.Name = "rbtDoNothing";
+            this.rbtDoNothing.Size = new System.Drawing.Size(68, 29);
+            this.rbtDoNothing.TabIndex = 0;
+            this.rbtDoNothing.TabStop = true;
+            this.rbtDoNothing.Text = "無し";
+            this.rbtDoNothing.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

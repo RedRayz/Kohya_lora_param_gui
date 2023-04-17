@@ -20,6 +20,7 @@ namespace Kohya_lora_trainer {
             nudConvDim.Value = TrainParams.Current.ConvDim;
             nudConvAlpha.Value = TrainParams.Current.ConvAlpha;
             cbxUseConv2d.Checked = TrainParams.Current.UseConv2dExtend;
+            nudDyLoRAUnit.Value = TrainParams.Current.DyLoRAUnit;
         }
 
         private void btnDiscardChangesAndClose_Click(object sender, EventArgs e) {
@@ -30,6 +31,7 @@ namespace Kohya_lora_trainer {
             TrainParams.Current.ConvDim = (int)nudConvDim.Value;
             TrainParams.Current.ConvAlpha = nudConvAlpha.Value;
             TrainParams.Current.UseConv2dExtend = cbxUseConv2d.Checked;
+            TrainParams.Current.DyLoRAUnit = nudDyLoRAUnit.Value;
 
             TrainParams.Current.AlgoType = (AlgoType)Enum.ToObject(typeof(AlgoType), cbxAlgoType.SelectedIndex);
 

@@ -26,6 +26,8 @@ namespace Kohya_lora_trainer
             TrainParams.Current.UseFlipAug = cbxFlipAug.Checked;
             TrainParams.Current.CropRandomly = cbxCropRandomly.Checked;
             TrainParams.Current.DontSaveMetadata = cbxDontSaveMetadata.Checked;
+            TrainParams.Current.CacheLatents = cbxCacheLatents.Checked;
+            TrainParams.Current.CacheLatentsToDisk = cbxCacheLatentsToDisk.Checked;
 
             //TrainParams.Current.ModelConfigPath = tbxModelConfigPath.Text;
 
@@ -52,8 +54,8 @@ namespace Kohya_lora_trainer
             cbxFlipAug.Checked = TrainParams.Current.UseFlipAug;
             cbxCropRandomly.Checked = TrainParams.Current.CropRandomly;
             cbxDontSaveMetadata.Checked = TrainParams.Current.DontSaveMetadata;
-
-            //tbxModelConfigPath.Text = TrainParams.Current.ModelConfigPath;
+            cbxCacheLatentsToDisk.Checked = TrainParams.Current.CacheLatentsToDisk;
+            cbxCacheLatents.Checked = TrainParams.Current.CacheLatents;
 
             cbxMixedPrecision.SelectedIndex = (int)TrainParams.Current.mixedPrecisionType;
 
