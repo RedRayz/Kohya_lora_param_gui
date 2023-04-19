@@ -28,7 +28,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCopyCmd = new System.Windows.Forms.Button();
-            this.lblCuntdown = new System.Windows.Forms.Label();
+            this.lblCountdown = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
@@ -75,17 +75,17 @@
             this.btnCopyCmd.UseVisualStyleBackColor = true;
             this.btnCopyCmd.Click += new System.EventHandler(this.btnCopyCmd_Click);
             // 
-            // lblCuntdown
+            // lblCountdown
             // 
-            this.lblCuntdown.AutoSize = true;
-            this.lblCuntdown.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblCuntdown.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblCuntdown.Location = new System.Drawing.Point(55, 149);
-            this.lblCuntdown.Name = "lblCuntdown";
-            this.lblCuntdown.Size = new System.Drawing.Size(344, 56);
-            this.lblCuntdown.TabIndex = 6;
-            this.lblCuntdown.Text = "30秒後にシャットダウンします\r\nしない場合はこのウィンドウを閉じてください";
-            this.lblCuntdown.Visible = false;
+            this.lblCountdown.AutoSize = true;
+            this.lblCountdown.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblCountdown.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lblCountdown.Location = new System.Drawing.Point(55, 149);
+            this.lblCountdown.Name = "lblCountdown";
+            this.lblCountdown.Size = new System.Drawing.Size(344, 56);
+            this.lblCountdown.TabIndex = 6;
+            this.lblCountdown.Text = "30秒後にシャットダウンします\r\nしない場合はこのウィンドウを閉じてください";
+            this.lblCountdown.Visible = false;
             // 
             // timer1
             // 
@@ -97,7 +97,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(431, 273);
             this.ControlBox = false;
-            this.Controls.Add(this.lblCuntdown);
+            this.Controls.Add(this.lblCountdown);
             this.Controls.Add(this.btnCopyCmd);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClose);
@@ -122,7 +122,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCopyCmd;
-        private System.Windows.Forms.Label lblCuntdown;
+        private System.Windows.Forms.Label lblCountdown;
         private System.Windows.Forms.Timer timer1;
     }
 }

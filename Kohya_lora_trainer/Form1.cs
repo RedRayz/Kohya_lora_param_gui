@@ -16,21 +16,26 @@ using System.IO;
 using System.Xml.Serialization;
 using Microsoft.Win32;
 using System.Security.Cryptography;
+using System.Diagnostics;
 
-namespace Kohya_lora_trainer {
-    public partial class Form1 : Form {
+namespace Kohya_lora_trainer
+{
+    public partial class Form1 : Form
+    {
         private bool IsInvalidOutputName, IsInvalidImageFolder = true, IsInvalidRegFolder = false, IsInvalidLR = false, IsInvalidResolution;
         private bool HaveNonAscillInOutputName, HaveNonAscillInImageFolder, HaveNonAscillInRegFolder, HaveNonAscillInModelPath, HaveNonAscillInOutputPath;
         private int StepsPerEpoch, TotalSteps, TotalStepsBatch1;
         public static string ScriptPath = string.Empty;
 
-        public Form1() {
+        public Form1()
+        {
             InitializeComponent();
 
             var ins = new TrainParams();
         }
 
-        private void Form1_Load(object sender, EventArgs e) {
+        private void Form1_Load(object sender, EventArgs e)
+        {
             //レジストリからsd-scriptsの場所を取ってくる
             tbxModelPath.Text = string.Empty;
             tbxImagePath.Text = string.Empty;
@@ -44,33 +49,41 @@ namespace Kohya_lora_trainer {
             //先に親フォルダにpyがあるか確認する。
             //なければボタンを表示する
             //ない状態でカスタムパスにもpyがないなら赤字で設定するよう促す
-            if (!File.Exists(@"..\train_network.py")) {
+            if (!File.Exists(@"..\train_network.py"))
+            {
                 btnCustomScriptPath.Visible = true;
                 lblScriptPathDesc.Visible = true;
                 ScriptPath = (string)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "ScriptPath", string.Empty);
-                if (string.IsNullOrEmpty(ScriptPath) || !File.Exists(ScriptPath + "\\train_network.py")) {
+                if (string.IsNullOrEmpty(ScriptPath) || !File.Exists(ScriptPath + "\\train_network.py"))
+                {
                     lblScriptPathDesc.ForeColor = Color.Red;
                     lblScriptPathDesc.Text = "sd-scriptsの場所を選択してください";
                 }
-                else {
+                else
+                {
                     lblScriptPathDesc.ForeColor = Color.Black;
                     lblScriptPathDesc.Text = "sd-scriptsの場所を変更する";
                 }
             }
-            else {
+            else
+            {
                 btnCustomScriptPath.Visible = false;
                 lblScriptPathDesc.Visible = false;
             }
 
             string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\autosave.xmlora";
-            if (File.Exists(str)) {
-                try {
+            if (File.Exists(str))
+            {
+                try
+                {
                     XmlSerializer se = new XmlSerializer(typeof(TrainParams));
-                    using (StreamReader sr = new StreamReader(str, new System.Text.UTF8Encoding(false))) {
+                    using (StreamReader sr = new StreamReader(str, new System.Text.UTF8Encoding(false)))
+                    {
                         TrainParams.Current = (TrainParams)se.Deserialize(sr);
                     }
                 }
-                catch {
+                catch
+                {
                     MessageBox.Show("自動保存プリセットを読み込めません。破損しているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -81,49 +94,58 @@ namespace Kohya_lora_trainer {
             UpdateAllContents();
         }
 
-        private void button4_Click(object sender, EventArgs e) {
+        private void button4_Click(object sender, EventArgs e)
+        {
             Form adv = new FormAdvanced();
             adv.ShowDialog();
 
             adv.Dispose();
         }
 
-        private void btnModel_Click(object sender, EventArgs e) {
+        private void btnModel_Click(object sender, EventArgs e)
+        {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "SD Model(*.ckpt;*.safetensors)|*.ckpt;*.safetensors";
             ofd.Title = "Select a base model";
             ofd.RestoreDirectory = true;
-            if (ofd.ShowDialog() == DialogResult.OK) {
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
                 TrainParams.Current.ModelPath = ofd.FileName;
                 tbxModelPath.Text = ofd.FileName;
-                if (CheckUtil.HaveNonAsciiOrSpace(ofd.FileName)) {
+                if (CheckUtil.HaveNonAsciiOrSpace(ofd.FileName))
+                {
                     tbxModelPath.ForeColor = Color.OrangeRed;
                     HaveNonAscillInModelPath = true;
                 }
-                else {
+                else
+                {
                     HaveNonAscillInModelPath = false;
                     tbxModelPath.ForeColor = Color.Black;
                 }
             }
         }
 
-        private void btnImage_Click(object sender, EventArgs e) {
+        private void btnImage_Click(object sender, EventArgs e)
+        {
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
             cof.Title = "Select an image folder";
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
 
-            if (cof.ShowDialog() == CommonFileDialogResult.Ok) {
+            if (cof.ShowDialog() == CommonFileDialogResult.Ok)
+            {
                 HaveNonAscillInImageFolder = false;
                 TrainParams.Current.TrainImagePath = cof.FileName;
                 tbxImagePath.Text = TrainParams.Current.TrainImagePath;
                 IsInvalidImageFolder = !CheckUtil.IsValidImageFolder(cof.FileName, out StepsPerEpoch);
-                if (IsInvalidImageFolder) {
+                if (IsInvalidImageFolder)
+                {
                     MessageBox.Show("教師画像フォルダの指定を間違えている可能性があります。\n「繰り返し数_プロンプト」の名前のフォルダが1つ以上入ったフォルダを指定する必要があります。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 UpdateTotalStepCount();
                 tbxImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
-                if (CheckUtil.HaveNonAsciiOrSpace(cof.FileName) && !IsInvalidImageFolder) {
+                if (CheckUtil.HaveNonAsciiOrSpace(cof.FileName) && !IsInvalidImageFolder)
+                {
                     tbxImagePath.ForeColor = Color.Orange;
                     HaveNonAscillInImageFolder = true;
                 }
@@ -131,23 +153,27 @@ namespace Kohya_lora_trainer {
             }
         }
 
-        private void btnRegImage_Click(object sender, EventArgs e) {
+        private void btnRegImage_Click(object sender, EventArgs e)
+        {
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
             cof.Title = "Select Reg Image Folder";
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
-            if (cof.ShowDialog() == CommonFileDialogResult.Ok) {
+            if (cof.ShowDialog() == CommonFileDialogResult.Ok)
+            {
                 TrainParams.Current.RegImagePath = cof.FileName;
                 tbxRegImgPath.Text = TrainParams.Current.RegImagePath;
                 int num = 0;
                 HaveNonAscillInRegFolder = false;
                 IsInvalidRegFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.RegImagePath, out num);
-                if (IsInvalidRegFolder) {
+                if (IsInvalidRegFolder)
+                {
                     MessageBox.Show("正則化画像フォルダの指定を間違えている可能性があります。\n「繰り返し数_プロンプト」の名前のフォルダが1つ以上入ったフォルダを指定する必要があります。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 tbxRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
-                if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.RegImagePath) && !IsInvalidRegFolder) {
+                if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.RegImagePath) && !IsInvalidRegFolder)
+                {
                     tbxRegImgPath.ForeColor = Color.Orange;
                     HaveNonAscillInRegFolder = true;
                 }
@@ -155,94 +181,115 @@ namespace Kohya_lora_trainer {
             UpdateTotalStepCount();
         }
 
-        private void btnOutputPath_Click(object sender, EventArgs e) {
+        private void btnOutputPath_Click(object sender, EventArgs e)
+        {
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
             cof.Title = "Select Output Folder";
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
-            if (cof.ShowDialog() == CommonFileDialogResult.Ok) {
+            if (cof.ShowDialog() == CommonFileDialogResult.Ok)
+            {
                 TrainParams.Current.OutputPath = cof.FileName;
                 tbxOutputPath.Text = TrainParams.Current.OutputPath;
                 HaveNonAscillInRegFolder = false;
-                if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputPath)) {
+                if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputPath))
+                {
                     tbxOutputPath.ForeColor = Color.Orange;
                     HaveNonAscillInRegFolder = true;
                 }
-                else {
+                else
+                {
                     tbxOutputPath.ForeColor = Color.Black;
                 }
             }
         }
 
-        private void btnClearRegImagePath_Click(object sender, EventArgs e) {
+        private void btnClearRegImagePath_Click(object sender, EventArgs e)
+        {
             TrainParams.Current.RegImagePath = string.Empty;
             tbxRegImgPath.Text = string.Empty;
             IsInvalidRegFolder = false;
             UpdateTotalStepCount();
         }
 
-        private void nudEpochs_ValueChanged(object sender, EventArgs e) {
+        private void nudEpochs_ValueChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.Epochs = (int)nudEpochs.Value;
             UpdateTotalStepCount();
         }
 
-        private void tbxLR_TextChanged(object sender, EventArgs e) {
+        private void tbxLR_TextChanged(object sender, EventArgs e)
+        {
             CheckLR(true);
         }
 
-        private void CheckLR(bool changeParam = false) {
+        private void CheckLR(bool changeParam = false)
+        {
             float lr = 0.0001f;
-            if (float.TryParse(tbxLR.Text, out lr)) {
-                if (lr <= 0f || lr >= 2f || float.IsNaN(lr)) {
+            if (float.TryParse(tbxLR.Text, out lr))
+            {
+                if (lr <= 0f || lr >= 2f || float.IsNaN(lr))
+                {
                     lblLR.ForeColor = Color.Red;
                     IsInvalidLR = true;
                 }
-                else {
+                else
+                {
                     lblLR.ForeColor = Color.Black;
                     if (changeParam)
                         TrainParams.Current.LearningRate = lr;
                     IsInvalidLR = false;
                 }
             }
-            else {
+            else
+            {
                 lblLR.ForeColor = Color.Red;
                 IsInvalidLR = true;
             }
         }
 
-        private void nudResolution_ValueChanged(object sender, EventArgs e) {
+        private void nudResolution_ValueChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.Resolution = (int)nudResolution.Value;
             IsInvalidResolution = nudResolution.Value % 64 != 0;
             lblResolution.ForeColor = IsInvalidResolution ? Color.Red : Color.Black;
         }
 
-        private void nudBatchSize_ValueChanged(object sender, EventArgs e) {
+        private void nudBatchSize_ValueChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.BatchSize = (int)nudBatchSize.Value;
             UpdateTotalStepCount();
         }
 
-        private void nudNetworkDim_ValueChanged(object sender, EventArgs e) {
+        private void nudNetworkDim_ValueChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.NetworkDim = (int)nudNetworkDim.Value;
         }
 
-        private void nudNetworkAlpha_ValueChanged(object sender, EventArgs e) {
+        private void nudNetworkAlpha_ValueChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.NetworkAlpha = nudNetworkAlpha.Value;
         }
 
-        private void cbxShuffle_CheckedChanged(object sender, EventArgs e) {
+        private void cbxShuffle_CheckedChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.ShuffleCaptions = cbxShuffle.Checked;
         }
 
-        private void nudKeepTokens_ValueChanged(object sender, EventArgs e) {
+        private void nudKeepTokens_ValueChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.KeepTokenCount = (int)nudKeepTokens.Value;
         }
 
-        private void nudSaveEpoch_ValueChanged(object sender, EventArgs e) {
+        private void nudSaveEpoch_ValueChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.SaveEveryNEpochs = (int)nudSaveEpoch.Value;
         }
 
-        private void btnSavePreset_Click(object sender, EventArgs e) {
-            if (IsInvalidOutputName) {
+        private void btnSavePreset_Click(object sender, EventArgs e)
+        {
+            if (IsInvalidOutputName)
+            {
                 MessageBox.Show("出力ファイル名が間違った状態では\nプリセットの保存はできません", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -252,142 +299,270 @@ namespace Kohya_lora_trainer {
             sfd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
             sfd.Title = "Save a preset";
             sfd.RestoreDirectory = true;
-            if (sfd.ShowDialog() == DialogResult.OK) {
-                try {
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
                     XmlSerializer se = new XmlSerializer(typeof(TrainParams));
-                    using (StreamWriter sw = new StreamWriter(sfd.FileName, false, new System.Text.UTF8Encoding(false))) {
+                    using (StreamWriter sw = new StreamWriter(sfd.FileName, false, new System.Text.UTF8Encoding(false)))
+                    {
                         se.Serialize(sw, TrainParams.Current);
                     }
                 }
-                catch {
+                catch
+                {
                     MessageBox.Show("プリセットを保存できません。他のアプリが開いているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
         }
 
-        private void btnStartTraining_Click(object sender, EventArgs e) {
-            if (!IsInvalidImageFolder && !IsInvalidRegFolder && !IsInvalidOutputName && !IsInvalidLR && !IsInvalidResolution) {
+        private void btnStartTraining_Click(object sender, EventArgs e)
+        {
+            if (!IsInvalidImageFolder && !IsInvalidRegFolder && !IsInvalidOutputName && !IsInvalidLR && !IsInvalidResolution)
+            {
                 string str = string.IsNullOrEmpty(ScriptPath) ? "..\\" : ScriptPath + "\\";
 
-                if (!File.Exists(str + "train_network.py")) {
+                if (!File.Exists(str + "train_network.py"))
+                {
                     MessageBox.Show("train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     btnCustomScriptPath.Enabled = true;
                     return;
                 }
 
-                if (!File.Exists(TrainParams.Current.ModelPath)) {
+                if (BatchProcess.BatchStack.Count > 0)
+                {
+                    BatchProcess.IsCancel = false;
+                    BatchProcess.IsRunning = true;
+                    BatchProcess.SkippedCount = 0;
+                    while (BatchProcess.BatchStack.Count > 0)
+                    {
+                        string pth = BatchProcess.BatchStack.Pop();
+                        if (!File.Exists(pth))
+                        {
+                            Console.WriteLine("Skipping training. Invalid path: " + pth);
+                            BatchProcess.SkippedCount++;
+                            continue;
+                        }
+
+                        LoadPreset(pth, false);
+                        if (!CanRunTraining())
+                        {
+                            Console.WriteLine("Skipping training. Invalid params in: " + pth);
+                            BatchProcess.SkippedCount++;
+                            continue;
+                        }
+                        Console.WriteLine("Start training: " + pth);
+                        Form train0 = new TrainForm(rbtBenckmark.Checked, rbtShutdown.Checked, false);
+                        train0.ShowDialog();
+                        train0.Dispose();
+                    }
+
+                    if (rbtShutdown.Checked && !BatchProcess.IsCancel)
+                    {
+                        Form train0 = new TrainForm(false, rbtShutdown.Checked, true);
+                        train0.ShowDialog();
+                        train0.Dispose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("バッチ処理が終了しました。\n" + BatchProcess.SkippedCount.ToString() + "件の処理がスキップされました。\nもう一度バッチ処理をする場合はバッチ処理ウィンドウを開いて反映ボタンを押してください。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    BatchProcess.IsRunning = false;
+                    BatchProcess.SkippedCount = 0;
+                    BatchProcess.IsCancel = false;
+                    return;
+                }
+
+                if (!File.Exists(TrainParams.Current.ModelPath))
+                {
                     MessageBox.Show("学習元モデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (!Directory.Exists(TrainParams.Current.TrainImagePath)) {
+                if (!Directory.Exists(TrainParams.Current.TrainImagePath))
+                {
                     MessageBox.Show("教師画像フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath) && !Directory.Exists(TrainParams.Current.RegImagePath)) {
+                if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath) && !Directory.Exists(TrainParams.Current.RegImagePath))
+                {
                     MessageBox.Show("正則化画像フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (!Directory.Exists(TrainParams.Current.OutputPath)) {
+                if (!Directory.Exists(TrainParams.Current.OutputPath))
+                {
                     MessageBox.Show("出力先フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (!string.IsNullOrEmpty(TrainParams.Current.TensorBoardLogPath) && !Directory.Exists(TrainParams.Current.TensorBoardLogPath)) {
+                if (!string.IsNullOrEmpty(TrainParams.Current.TensorBoardLogPath) && !Directory.Exists(TrainParams.Current.TensorBoardLogPath))
+                {
                     MessageBox.Show("TensorBoard用ログフォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if(HaveNonAscillInImageFolder || HaveNonAscillInModelPath || HaveNonAscillInOutputName || HaveNonAscillInRegFolder || HaveNonAscillInOutputPath) {
+                if (HaveNonAscillInImageFolder || HaveNonAscillInModelPath || HaveNonAscillInOutputName || HaveNonAscillInRegFolder || HaveNonAscillInOutputPath)
+                {
                     DialogResult res = MessageBox.Show("パスに日本語などのマルチバイト文字または空白文字が含まれています。\n不具合/エラーの原因となるため、それらの文字の使用は推奨しません。\n続けてもよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (res != DialogResult.Yes)
                         return;
                 }
 
-                if (!string.IsNullOrEmpty(TrainParams.Current.LoraModelPath) && !File.Exists(TrainParams.Current.LoraModelPath)) {
+                if (!string.IsNullOrEmpty(TrainParams.Current.LoraModelPath) && !File.Exists(TrainParams.Current.LoraModelPath))
+                {
                     MessageBox.Show("追加学習するLoRAモデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath) && !File.Exists(TrainParams.Current.VAEPath)) {
+                if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath) && !File.Exists(TrainParams.Current.VAEPath))
+                {
                     MessageBox.Show("VAEが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                Form train = new TrainForm(rbtBenckmark.Checked, rbtShutdown.Checked);
+                Form train = new TrainForm(rbtBenckmark.Checked, rbtShutdown.Checked, false);
                 train.ShowDialog();
                 train.Dispose();
 
             }
-            else {
+            else
+            {
                 MessageBox.Show("設定が間違っています。設定を見直してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private void btnLoadPreset_Click(object sender, EventArgs e) {
+        private bool CanRunTraining()
+        {
+            string str = string.IsNullOrEmpty(ScriptPath) ? "..\\" : ScriptPath + "\\";
+            if (!File.Exists(str + "train_network.py"))
+            {
+                btnCustomScriptPath.Enabled = true;
+                return false;
+            }
+
+            if (!File.Exists(TrainParams.Current.ModelPath))
+            {
+                return false;
+            }
+
+            if (!Directory.Exists(TrainParams.Current.TrainImagePath))
+            {
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath) && !Directory.Exists(TrainParams.Current.RegImagePath))
+            {
+                return false;
+            }
+
+            if (!Directory.Exists(TrainParams.Current.OutputPath))
+            {
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(TrainParams.Current.TensorBoardLogPath) && !Directory.Exists(TrainParams.Current.TensorBoardLogPath))
+            {
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(TrainParams.Current.LoraModelPath) && !File.Exists(TrainParams.Current.LoraModelPath))
+            {
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath) && !File.Exists(TrainParams.Current.VAEPath))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void btnLoadPreset_Click(object sender, EventArgs e)
+        {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
             ofd.Title = "Select a preset";
             ofd.RestoreDirectory = true;
-            if (ofd.ShowDialog() == DialogResult.OK) {
-                try {
-                    XmlSerializer se = new XmlSerializer(typeof(TrainParams));
-                    using (StreamReader sr = new StreamReader(ofd.FileName, new System.Text.UTF8Encoding(false))) {
-                        TrainParams.Current = (TrainParams)se.Deserialize(sr);
-                    }
-
-                }
-                catch {
-                    MessageBox.Show("プリセットを読み込めません。破損しているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                TrainParams.Current.ConvertBlockAlpha();
-                TrainParams.Current.CheckBrokenBlockDim();
-                UpdateAllContents();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                LoadPreset(ofd.FileName, true);
             }
         }
 
-        private void btnUtilities_Click(object sender, EventArgs e) {
+        private void LoadPreset(string path, bool ShowMsg)
+        {
+            try
+            {
+                XmlSerializer se = new XmlSerializer(typeof(TrainParams));
+                using (StreamReader sr = new StreamReader(path, new System.Text.UTF8Encoding(false)))
+                {
+                    TrainParams.Current = (TrainParams)se.Deserialize(sr);
+                }
+
+            }
+            catch
+            {
+                Console.WriteLine("Failed to load preset");
+                if (ShowMsg)
+                    MessageBox.Show("プリセットを読み込めません。破損しているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            TrainParams.Current.ConvertBlockAlpha();
+            TrainParams.Current.CheckBrokenBlockDim();
+            UpdateAllContents();
+        }
+
+
+        private void btnUtilities_Click(object sender, EventArgs e)
+        {
             Form frm = new FormUtils();
             frm.ShowDialog();
             frm.Dispose();
         }
 
-        private void tbxOutputPath_TextChanged(object sender, EventArgs e) {
+        private void tbxOutputPath_TextChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.OutputPath = tbxOutputPath.Text.Trim();
-            if (!Directory.Exists(TrainParams.Current.OutputPath)) {
+            if (!Directory.Exists(TrainParams.Current.OutputPath))
+            {
                 tbxOutputPath.ForeColor = Color.Red;
                 HaveNonAscillInOutputPath = false;
             }
-            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputPath)) {
+            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputPath))
+            {
                 tbxOutputPath.ForeColor = Color.Orange;
                 HaveNonAscillInOutputPath = true;
             }
-            else {
+            else
+            {
                 tbxOutputPath.ForeColor = Color.Black;
                 HaveNonAscillInOutputPath = false;
             }
         }
 
-        private void btnAddtional_Click(object sender, EventArgs e) {
+        private void btnAddtional_Click(object sender, EventArgs e)
+        {
             Form frm = new FormAddtional();
             frm.ShowDialog();
             frm.Dispose();
         }
 
-        private void nudWarmupSteps_ValueChanged(object sender, EventArgs e) {
+        private void nudWarmupSteps_ValueChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.WarmupSteps = (int)nudWarmupSteps.Value;
         }
 
-        private void btnBlockWeight_Click(object sender, EventArgs e) {
+        private void btnBlockWeight_Click(object sender, EventArgs e)
+        {
             Form frm = new FormBlockWeight();
             frm.ShowDialog();
             frm.Dispose();
         }
 
-        private void btnBlockDim_Click(object sender, EventArgs e) {
+        private void btnBlockDim_Click(object sender, EventArgs e)
+        {
             Form frm = new FormBlockDim();
             frm.ShowDialog();
             frm.Dispose();
@@ -400,72 +575,95 @@ namespace Kohya_lora_trainer {
             frm.Dispose();
         }
 
-        private void cbxModuleType_SelectedIndexChanged(object sender, EventArgs e) {
+        private void btnBatchProcess_Click(object sender, EventArgs e)
+        {
+            Form frm = new FormBatchProcess();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+
+        private void cbxModuleType_SelectedIndexChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.ModuleType = (ModuleType)Enum.ToObject(typeof(ModuleType), cbxModuleType.SelectedIndex);
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
             if (IsInvalidOutputName)
                 return;
 
             string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\autosave.xmlora";
-            try {
+            try
+            {
                 XmlSerializer se = new XmlSerializer(typeof(TrainParams));
-                using (StreamWriter sw = new StreamWriter(str, false, new UTF8Encoding(false))) {
+                using (StreamWriter sw = new StreamWriter(str, false, new UTF8Encoding(false)))
+                {
                     se.Serialize(sw, TrainParams.Current);
                 }
             }
-            catch {
+            catch
+            {
                 Console.WriteLine("自動保存書き込みできない");
             }
         }
 
-        private void btnCustomScriptPath_Click(object sender, EventArgs e) {
+        private void btnCustomScriptPath_Click(object sender, EventArgs e)
+        {
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
             cof.Title = "Select SD-Scripts Folder";
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
 
-            if (cof.ShowDialog() == CommonFileDialogResult.Ok) {
+            if (cof.ShowDialog() == CommonFileDialogResult.Ok)
+            {
                 ScriptPath = cof.FileName;
                 Registry.SetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "ScriptPath", ScriptPath);
             }
         }
 
-        private void cbxOptimizer_SelectedIndexChanged(object sender, EventArgs e) {
+        private void cbxOptimizer_SelectedIndexChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.OptimizerType = (OptimizerType)Enum.ToObject(typeof(OptimizerType), cbxOptimizer.SelectedIndex);
         }
 
-        private void tbxModelPath_TextChanged(object sender, EventArgs e) {
+        private void tbxModelPath_TextChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.ModelPath = tbxModelPath.Text.Trim();
-            if (!File.Exists(TrainParams.Current.ModelPath)) {
+            if (!File.Exists(TrainParams.Current.ModelPath))
+            {
                 tbxModelPath.ForeColor = Color.Red;
                 HaveNonAscillInModelPath = false;
             }
-            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.ModelPath)) {
+            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.ModelPath))
+            {
                 tbxModelPath.ForeColor = Color.OrangeRed;
                 HaveNonAscillInModelPath = true;
             }
-            else {
+            else
+            {
                 tbxModelPath.ForeColor = Color.Black;
                 HaveNonAscillInModelPath = false;
             }
         }
 
-        private void tbxImagePath_TextChanged(object sender, EventArgs e) {
+        private void tbxImagePath_TextChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.TrainImagePath = tbxImagePath.Text.Trim();
-            if (!Directory.Exists(TrainParams.Current.TrainImagePath)) {
+            if (!Directory.Exists(TrainParams.Current.TrainImagePath))
+            {
                 tbxImagePath.ForeColor = Color.Red;
                 IsInvalidImageFolder = true;
                 HaveNonAscillInImageFolder = false;
                 StepsPerEpoch = 0;
             }
-            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.TrainImagePath)) {
+            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.TrainImagePath))
+            {
                 tbxImagePath.ForeColor = Color.Orange;
                 HaveNonAscillInImageFolder = true;
                 IsInvalidImageFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.TrainImagePath, out StepsPerEpoch);
             }
-            else {
+            else
+            {
                 IsInvalidImageFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.TrainImagePath, out StepsPerEpoch);
                 tbxImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
                 HaveNonAscillInImageFolder = false;
@@ -474,27 +672,32 @@ namespace Kohya_lora_trainer {
 
         }
 
-        private void tbxRegImgPath_TextChanged(object sender, EventArgs e) {
+        private void tbxRegImgPath_TextChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.RegImagePath = tbxRegImgPath.Text.Trim();
-            if(string.IsNullOrEmpty(TrainParams.Current.RegImagePath)) {
+            if (string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
+            {
                 UpdateTotalStepCount();
                 tbxRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
                 HaveNonAscillInRegFolder = false;
                 return;
             }
 
-            if (!Directory.Exists(TrainParams.Current.RegImagePath)) {
+            if (!Directory.Exists(TrainParams.Current.RegImagePath))
+            {
                 tbxRegImgPath.ForeColor = Color.Red;
                 IsInvalidRegFolder = true;
                 HaveNonAscillInRegFolder = false;
             }
-            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.RegImagePath)) {
+            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.RegImagePath))
+            {
                 tbxRegImgPath.ForeColor = Color.Orange;
                 HaveNonAscillInRegFolder = true;
                 int num = 0;
                 IsInvalidRegFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.RegImagePath, out num);
             }
-            else {
+            else
+            {
                 int num = 0;
                 IsInvalidRegFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.RegImagePath, out num);
                 tbxRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
@@ -503,37 +706,45 @@ namespace Kohya_lora_trainer {
             UpdateTotalStepCount();
         }
 
-        private void tbxFileName_TextChanged(object sender, EventArgs e) {
+        private void tbxFileName_TextChanged(object sender, EventArgs e)
+        {
             TrainParams.Current.OutputName = tbxFileName.Text.Trim();
             HaveNonAscillInOutputName = false;
             Regex regex = new Regex("[:/\\\\\\?\\*<>\\|\"]");
-            if (regex.IsMatch(TrainParams.Current.OutputName)) {
+            if (regex.IsMatch(TrainParams.Current.OutputName))
+            {
                 lblFileName.ForeColor = Color.Red;
                 tbxFileName.ForeColor = Color.Red;
                 IsInvalidOutputName = true;
                 return;
             }
-            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputName)) {
+            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputName))
+            {
                 lblFileName.ForeColor = Color.Orange;
                 tbxFileName.ForeColor = Color.Orange;
                 HaveNonAscillInOutputName = true;
             }
-            else {
+            else
+            {
                 lblFileName.ForeColor = Color.Black;
                 tbxFileName.ForeColor = Color.Black;
             }
             IsInvalidOutputName = false;
         }
 
-        private void UpdateTotalStepCount() {
-            if (StepsPerEpoch <= 0 || (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath) && !Directory.Exists(TrainParams.Current.RegImagePath))) {
+        private void UpdateTotalStepCount()
+        {
+            if (StepsPerEpoch <= 0 || (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath) && !Directory.Exists(TrainParams.Current.RegImagePath)))
+            {
                 lblNumSteps.Text = "?";
                 lblNumStepsBatch1.Text = "?";
             }
-            else {
+            else
+            {
                 TotalSteps = StepsPerEpoch * TrainParams.Current.Epochs / TrainParams.Current.BatchSize;
                 TotalStepsBatch1 = TotalSteps * TrainParams.Current.BatchSize;
-                if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath)) {
+                if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
+                {
                     TotalSteps *= 2;
                     TotalStepsBatch1 *= 2;
                 }
@@ -545,7 +756,8 @@ namespace Kohya_lora_trainer {
 
         }
 
-        private void UpdateAllContents() {
+        private void UpdateAllContents()
+        {
             HaveNonAscillInImageFolder = false;
             HaveNonAscillInModelPath = false;
             HaveNonAscillInOutputName = false;
@@ -554,10 +766,12 @@ namespace Kohya_lora_trainer {
             //ModelPath
             tbxModelPath.Text = TrainParams.Current.ModelPath;
             tbxModelPath.ForeColor = Color.Black;
-            if (!File.Exists(TrainParams.Current.ModelPath)) {
+            if (!File.Exists(TrainParams.Current.ModelPath))
+            {
                 tbxModelPath.ForeColor = Color.Red;
             }
-            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.ModelPath)) {
+            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.ModelPath))
+            {
                 tbxModelPath.ForeColor = Color.Orange;
                 HaveNonAscillInModelPath = true;
             }
@@ -566,23 +780,27 @@ namespace Kohya_lora_trainer {
             tbxImagePath.Text = TrainParams.Current.TrainImagePath;
             IsInvalidImageFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.TrainImagePath, out StepsPerEpoch);
             tbxImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
-            if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.TrainImagePath)) {
+            if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.TrainImagePath))
+            {
                 tbxImagePath.ForeColor = Color.Orange;
                 HaveNonAscillInImageFolder = true;
             }
-            
+
             //RegImage
             tbxRegImgPath.Text = TrainParams.Current.RegImagePath;
-            if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath)) {
+            if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
+            {
                 int num = 0;
                 IsInvalidRegFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.RegImagePath, out num);
             }
-            else {
+            else
+            {
                 IsInvalidRegFolder = false;
             }
             tbxRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
 
-            if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.RegImagePath)) {
+            if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.RegImagePath))
+            {
                 tbxRegImgPath.ForeColor = Color.Orange;
                 HaveNonAscillInRegFolder = true;
             }
@@ -590,12 +808,14 @@ namespace Kohya_lora_trainer {
             //OutputPath
             tbxOutputPath.ForeColor = Color.Black;
             tbxOutputPath.Text = TrainParams.Current.OutputPath;
-            if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputPath)) {
+            if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputPath))
+            {
                 tbxOutputPath.ForeColor = Color.Orange;
                 HaveNonAscillInOutputPath = true;
             }
 
-            if (!Directory.Exists(TrainParams.Current.OutputPath)) {
+            if (!Directory.Exists(TrainParams.Current.OutputPath))
+            {
                 tbxOutputPath.ForeColor = Color.Red;
             }
             //Epochs
@@ -626,7 +846,8 @@ namespace Kohya_lora_trainer {
             //OutputName
             tbxFileName.Text = TrainParams.Current.OutputName;
             tbxFileName.ForeColor = Color.Black;
-            if (CheckUtil.HaveNonAsciiOrSpace(tbxFileName.Text)) {
+            if (CheckUtil.HaveNonAsciiOrSpace(tbxFileName.Text))
+            {
                 tbxFileName.ForeColor = Color.Orange;
                 HaveNonAscillInOutputName = true;
             }

@@ -104,6 +104,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BatchProcess.cs" />
     <Compile Include="CheckUtil.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -128,6 +129,12 @@
     </Compile>
     <Compile Include="FormAdvanced1.Designer.cs">
       <DependentUpon>FormAdvanced1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBatchProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBatchProcess.Designer.cs">
+      <DependentUpon>FormBatchProcess.cs</DependentUpon>
     </Compile>
     <Compile Include="FormBlockDim.cs">
       <SubType>Form</SubType>
@@ -164,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAdvanced1.resx">
       <DependentUpon>FormAdvanced1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBatchProcess.resx">
+      <DependentUpon>FormBatchProcess.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBlockDim.resx">
       <DependentUpon>FormBlockDim.cs</DependentUpon>

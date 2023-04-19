@@ -16,27 +16,41 @@ namespace Kohya_lora_trainer
     {
         private Process process;
         private string TrainArgs;
-        private bool BenchMarkMode, ShutdownAfterComplete;
+        private bool BenchMarkMode, ShutdownAfterComplete, ShutdownOnly;
         private Stopwatch stopwatch;
         private int Duration = 60;
 
-        public TrainForm(bool benchMarkMode = false, bool shutdownAfterComplete = false)
+        public TrainForm(bool benchMarkMode, bool shutdownAfterComplete, bool shutdownOnly)
         {
             InitializeComponent();
             BenchMarkMode = benchMarkMode;
             ShutdownAfterComplete = shutdownAfterComplete;
+            ShutdownOnly = shutdownOnly;
         }
 
         private void TrainForm_Load(object sender, EventArgs e)
         {
+            if (ShutdownOnly && ShutdownAfterComplete)
+            {
+                btnCopyCmd.Enabled = false;
+                btnStop.Enabled = false;
+                btnClose.Enabled = true;
+                lblCountdown.Visible = true;
+                timer1.Interval = 1000;
+                timer1.Start();
+                lblCountdown.Text = Duration.ToString() + "秒後にシャットダウンします \n しない場合はこのウィンドウを閉じてください";
+                return;
+            }
 
             btnStop.Enabled = true;
             btnClose.Enabled = false;
+            if (BatchProcess.IsRunning)
+                btnStop.Text = "バッチ処理の中止";
 
             StringBuilder sb = new StringBuilder();
             StringBuilder sbCmd = new StringBuilder();
 
-            if (BenchMarkMode || ShutdownAfterComplete)
+            if (BenchMarkMode || ShutdownAfterComplete || BatchProcess.IsRunning)
             {
                 sbCmd.Append(@"/c ");
             }
@@ -319,7 +333,7 @@ namespace Kohya_lora_trainer
             }
 
             TrainArgs = sb.ToString();
-            lblCuntdown.Text = string.Empty;
+            lblCountdown.Text = string.Empty;
             sbCmd.Append(TrainArgs);
 
             if (BenchMarkMode)
@@ -355,11 +369,17 @@ namespace Kohya_lora_trainer
                 DialogResult result = MessageBox.Show("学習中に閉じると学習は中止されます。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
+                    if (process == null || process.HasExited)
+                        return;
                     process.Kill();
                     process.Dispose();
                     btnStop.Enabled = false;
                     btnClose.Enabled = true;
                     process = null;
+                    BatchProcess.SkippedCount += BatchProcess.BatchStack.Count + 1;
+                    BatchProcess.IsCancel = true;
+                    BatchProcess.BatchStack.Clear();
+                    BatchProcess.IsRunning = false;
                 }
             }
         }
@@ -370,6 +390,13 @@ namespace Kohya_lora_trainer
             process = null;
             btnStop.Enabled = false;
             btnClose.Enabled = true;
+
+            if(BatchProcess.IsRunning)
+            {
+                Close();
+                return;
+            }
+
             if (BenchMarkMode && stopwatch != null)
             {
                 stopwatch.Stop();
@@ -383,10 +410,10 @@ namespace Kohya_lora_trainer
 
             if (ShutdownAfterComplete)
             {
-                lblCuntdown.Visible = true;
+                lblCountdown.Visible = true;
                 timer1.Interval = 1000;
                 timer1.Start();
-                lblCuntdown.Text = Duration.ToString() + "秒後にシャットダウンします \n しない場合はこのウィンドウを閉じてください";
+                lblCountdown.Text = Duration.ToString() + "秒後にシャットダウンします \n しない場合はこのウィンドウを閉じてください";
             }
         }
 
@@ -530,7 +557,7 @@ namespace Kohya_lora_trainer
             else if (Duration > 0)
             {
                 Duration--;
-                lblCuntdown.Text = Duration.ToString() + "秒後にシャットダウンします \n しない場合はこのウィンドウを閉じてください";
+                lblCountdown.Text = Duration.ToString() + "秒後にシャットダウンします \n しない場合はこのウィンドウを閉じてください";
             }
         }
 

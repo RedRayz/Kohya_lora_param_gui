@@ -97,6 +97,7 @@ namespace Kohya_lora_trainer
             this.rbtShutdown = new System.Windows.Forms.RadioButton();
             this.rbtBenckmark = new System.Windows.Forms.RadioButton();
             this.rbtDoNothing = new System.Windows.Forms.RadioButton();
+            this.btnBatchProcess = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -777,11 +778,22 @@ namespace Kohya_lora_trainer
             this.rbtDoNothing.Text = "無し";
             this.rbtDoNothing.UseVisualStyleBackColor = true;
             // 
+            // btnBatchProcess
+            // 
+            this.btnBatchProcess.Location = new System.Drawing.Point(262, 636);
+            this.btnBatchProcess.Name = "btnBatchProcess";
+            this.btnBatchProcess.Size = new System.Drawing.Size(112, 41);
+            this.btnBatchProcess.TabIndex = 80;
+            this.btnBatchProcess.Text = "バッチ処理";
+            this.btnBatchProcess.UseVisualStyleBackColor = true;
+            this.btnBatchProcess.Click += new System.EventHandler(this.btnBatchProcess_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1172, 694);
+            this.Controls.Add(this.btnBatchProcess);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAdvanced1);
             this.Controls.Add(this.btnBlockDim);
@@ -930,6 +942,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.RadioButton rbtBenckmark;
         private System.Windows.Forms.RadioButton rbtDoNothing;
         private System.Windows.Forms.RadioButton rbtShutdown;
+        private System.Windows.Forms.Button btnBatchProcess;
     }
 }
 
