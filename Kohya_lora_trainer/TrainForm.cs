@@ -400,11 +400,15 @@ namespace Kohya_lora_trainer
             if (BenchMarkMode && stopwatch != null)
             {
                 stopwatch.Stop();
-                double sec = stopwatch.Elapsed.TotalSeconds % 60;
-                double min = stopwatch.Elapsed.TotalSeconds / 60;
+                double tos = stopwatch.Elapsed.TotalSeconds;
+
+                double sec = tos % 60;
+                double min = tos / 60;
                 double hour = min / 60;
                 min = Math.Floor(min);
                 hour = Math.Floor(hour);
+                min -= hour * 60;
+
                 MessageBox.Show("経過時間: " + $"{hour}h{min}m" + sec.ToString("0.000s"), "結果", MessageBoxButtons.OK);
             }
 
