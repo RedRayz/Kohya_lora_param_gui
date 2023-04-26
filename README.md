@@ -8,12 +8,13 @@ https://github.com/kohya-ss/sd-scripts の学習用のパラメータ設定し�
 * 学習パラメータのプリセットをxmlで保存/読込
 * position_ids破損確認とtensorboardの起動
 * GUI終了時にパラメータを記憶し、起動時に反映
+* 複数LoRAの一括学習
 
 ## 注意事項
 [sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法でセットアップしている環境を前提としています。
-補助スクリプトなどで構築した環境は動作対象外です。
+補助スクリプトなどで構築した環境で動作するかは不明です。
 
-動作の保証はしません。自己責任でご利用ください。
+もともと自分用に作ったものであり、動作の保証はしません。自己責任でご利用ください。
 
 
 ## インストール方法

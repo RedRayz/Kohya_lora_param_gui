@@ -332,6 +332,11 @@ namespace Kohya_lora_trainer
                 sb.Append("  --logging_dir=\"").Append(TrainParams.Current.TensorBoardLogPath).Append("\"");
             }
 
+            if (!string.IsNullOrEmpty(TrainParams.Current.DatasetConfigPath))
+            {
+                sb.Append("  --dataset_config=\"").Append(TrainParams.Current.DatasetConfigPath).Append("\"");
+            }
+
             TrainArgs = sb.ToString();
             lblCountdown.Text = string.Empty;
             sbCmd.Append(TrainArgs);

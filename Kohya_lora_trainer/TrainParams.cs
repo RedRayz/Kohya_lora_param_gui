@@ -42,6 +42,7 @@ namespace Kohya_lora_trainer {
         //Additional(LoRA)
         public bool UseConv2dExtend = false;
         public decimal DyLoRAUnit = 4;
+        public string DatasetConfigPath = string.Empty;
 
         //Block Weight
         public bool UseBlockWeight = false;

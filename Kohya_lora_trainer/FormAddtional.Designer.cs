@@ -34,6 +34,10 @@
             this.cbxUseConv2d = new System.Windows.Forms.CheckBox();
             this.nudDyLoRAUnit = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnSelectConfigPath = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnClearConfigPath = new System.Windows.Forms.Button();
+            this.lblConfigPath = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudConvDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudConvAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDyLoRAUnit)).BeginInit();
@@ -83,7 +87,7 @@
             // btnDiscardChangesAndClose
             // 
             this.btnDiscardChangesAndClose.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnDiscardChangesAndClose.Location = new System.Drawing.Point(164, 295);
+            this.btnDiscardChangesAndClose.Location = new System.Drawing.Point(171, 426);
             this.btnDiscardChangesAndClose.Name = "btnDiscardChangesAndClose";
             this.btnDiscardChangesAndClose.Size = new System.Drawing.Size(228, 43);
             this.btnDiscardChangesAndClose.TabIndex = 6;
@@ -94,7 +98,7 @@
             // btnSaveAndClose
             // 
             this.btnSaveAndClose.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnSaveAndClose.Location = new System.Drawing.Point(414, 295);
+            this.btnSaveAndClose.Location = new System.Drawing.Point(421, 426);
             this.btnSaveAndClose.Name = "btnSaveAndClose";
             this.btnSaveAndClose.Size = new System.Drawing.Size(217, 43);
             this.btnSaveAndClose.TabIndex = 6;
@@ -144,7 +148,7 @@
             // 
             // nudDyLoRAUnit
             // 
-            this.nudDyLoRAUnit.Location = new System.Drawing.Point(518, 116);
+            this.nudDyLoRAUnit.Location = new System.Drawing.Point(506, 112);
             this.nudDyLoRAUnit.Maximum = new decimal(new int[] {
             256,
             0,
@@ -167,17 +171,59 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(391, 118);
+            this.label4.Location = new System.Drawing.Point(379, 112);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(121, 25);
             this.label4.TabIndex = 11;
             this.label4.Text = "DyLoRAのunit";
             // 
+            // btnSelectConfigPath
+            // 
+            this.btnSelectConfigPath.Location = new System.Drawing.Point(220, 275);
+            this.btnSelectConfigPath.Name = "btnSelectConfigPath";
+            this.btnSelectConfigPath.Size = new System.Drawing.Size(106, 37);
+            this.btnSelectConfigPath.TabIndex = 12;
+            this.btnSelectConfigPath.Text = "選択";
+            this.btnSelectConfigPath.UseVisualStyleBackColor = true;
+            this.btnSelectConfigPath.Click += new System.EventHandler(this.btnSelectConfigPath_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(29, 281);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(185, 25);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "データセットconfigのパス";
+            // 
+            // btnClearConfigPath
+            // 
+            this.btnClearConfigPath.Location = new System.Drawing.Point(332, 275);
+            this.btnClearConfigPath.Name = "btnClearConfigPath";
+            this.btnClearConfigPath.Size = new System.Drawing.Size(106, 37);
+            this.btnClearConfigPath.TabIndex = 12;
+            this.btnClearConfigPath.Text = "クリア";
+            this.btnClearConfigPath.UseVisualStyleBackColor = true;
+            this.btnClearConfigPath.Click += new System.EventHandler(this.btnClearConfigPath_Click);
+            // 
+            // lblConfigPath
+            // 
+            this.lblConfigPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblConfigPath.Location = new System.Drawing.Point(180, 315);
+            this.lblConfigPath.Name = "lblConfigPath";
+            this.lblConfigPath.Size = new System.Drawing.Size(281, 50);
+            this.lblConfigPath.TabIndex = 13;
+            this.lblConfigPath.Text = "C:\\Users\\Test\\Desktop\\long name\\aaaaa.toml";
+            // 
             // FormAddtional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 366);
+            this.ClientSize = new System.Drawing.Size(671, 494);
+            this.Controls.Add(this.lblConfigPath);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.btnClearConfigPath);
+            this.Controls.Add(this.btnSelectConfigPath);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.nudDyLoRAUnit);
             this.Controls.Add(this.cbxUseConv2d);
@@ -219,5 +265,9 @@
         private System.Windows.Forms.CheckBox cbxUseConv2d;
         private System.Windows.Forms.NumericUpDown nudDyLoRAUnit;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnSelectConfigPath;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnClearConfigPath;
+        private System.Windows.Forms.Label lblConfigPath;
     }
 }
