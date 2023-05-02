@@ -17,7 +17,7 @@ namespace Kohya_lora_trainer {
         public  string RegImagePath;
         public  bool ShuffleCaptions = true;
         public  int KeepTokenCount = 1, SaveEveryNEpochs = 0;
-        public  OptimizerType OptimizerType = OptimizerType.AdamW8bit;
+        public  OptimizerType OptimizerType = OptimizerType.AdamW;
         public  int WarmupSteps = 500;
         public  string OutputName;
 
