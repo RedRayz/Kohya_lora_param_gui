@@ -582,6 +582,13 @@ namespace Kohya_lora_trainer
             frm.Dispose();
         }
 
+        private void btnResizeDim_Click(object sender, EventArgs e)
+        {
+            Form frm = new FormResizeDim();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+
         private void cbxModuleType_SelectedIndexChanged(object sender, EventArgs e)
         {
             TrainParams.Current.ModuleType = (ModuleType)Enum.ToObject(typeof(ModuleType), cbxModuleType.SelectedIndex);
