@@ -524,7 +524,14 @@ namespace Kohya_lora_trainer
 
         private void tbxOutputPath_TextChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.OutputPath = tbxOutputPath.Text.Trim();
+            string str = tbxOutputPath.Text.Trim();
+            if (str.EndsWith("\\"))
+            {
+                str = str.Remove(str.Length - 1, 1);
+            }
+
+
+            TrainParams.Current.OutputPath = str;
             if (!Directory.Exists(TrainParams.Current.OutputPath))
             {
                 tbxOutputPath.ForeColor = Color.Red;
@@ -655,7 +662,15 @@ namespace Kohya_lora_trainer
 
         private void tbxImagePath_TextChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.TrainImagePath = tbxImagePath.Text.Trim();
+
+            string str = tbxImagePath.Text.Trim();
+            if (str.EndsWith("\\"))
+            {
+                str = str.Remove(str.Length - 1, 1);
+            }
+
+
+            TrainParams.Current.TrainImagePath = str;
             if (!Directory.Exists(TrainParams.Current.TrainImagePath))
             {
                 tbxImagePath.ForeColor = Color.Red;
@@ -681,7 +696,13 @@ namespace Kohya_lora_trainer
 
         private void tbxRegImgPath_TextChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.RegImagePath = tbxRegImgPath.Text.Trim();
+            string str = tbxRegImgPath.Text.Trim();
+            if (str.EndsWith("\\"))
+            {
+                str = str.Remove(str.Length - 1, 1);
+            }
+
+            TrainParams.Current.RegImagePath = str;
             if (string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
             {
                 UpdateTotalStepCount();
