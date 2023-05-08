@@ -33,6 +33,7 @@ namespace Kohya_lora_trainer {
         public AdvancedTrainType advancedTrainType = AdvancedTrainType.None;
         public CrossAttenType CrossAttenType = CrossAttenType.xformers;
         public bool UseGradient = false, UseWeightedCaptions = false;
+        public decimal AdaptiveNoiseScale = 0;
 
         //Addtional(KohakuBlueleaf氏作成拡張スクリプト用)
         public ModuleType ModuleType = ModuleType.LoRA;
@@ -212,7 +213,11 @@ namespace Kohya_lora_trainer {
         Lion,
         SGDNesterov,
         SGDNesterov8bit,
-        DAdaptation
+        DAdaptation,
+        Lion8bit,
+        DAdaptAdaGrad,
+        DAdaptAdan,
+        DAdaptSGD
     }
 
     public enum SavePrecision {

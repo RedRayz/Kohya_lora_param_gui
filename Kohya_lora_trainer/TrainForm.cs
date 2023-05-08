@@ -213,6 +213,11 @@ namespace Kohya_lora_trainer
 
             }
 
+            if(TrainParams.Current.AdaptiveNoiseScale != 0)
+            {
+                sb.Append("  --adaptive_noise_scale=").Append(TrainParams.Current.AdaptiveNoiseScale.ToString());
+            }
+
             if (TrainParams.Current.MaxTokens > 75)
                 sb.Append("  --max_token_length=").Append(TrainParams.Current.MaxTokens);
 

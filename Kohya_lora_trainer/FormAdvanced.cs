@@ -86,7 +86,7 @@ namespace Kohya_lora_trainer {
             TrainParams.Current.Momentum = (float)nudMomentum.Value;
             TrainParams.Current.VAEPath = lblVAEPath.Text;
             TrainParams.Current.UseWeightedCaptions = cbxUseWeightedCaption.Checked;
-
+            TrainParams.Current.AdaptiveNoiseScale = nudAdaptiveNoiseScale.Value;
             Close();
         }
 
@@ -103,6 +103,7 @@ namespace Kohya_lora_trainer {
             cbxAdvancedTrain.SelectedIndex = (int)TrainParams.Current.advancedTrainType;
             cbxCrossAttenType.SelectedIndex = (int)TrainParams.Current.CrossAttenType;
             cbxUseWeightedCaption.Checked = TrainParams.Current.UseWeightedCaptions;
+            nudAdaptiveNoiseScale.Value = TrainParams.Current.AdaptiveNoiseScale;
 
             nudClipSkip.Value = TrainParams.Current.ClipSkip;
             nudSeed.Value = TrainParams.Current.Seed;
