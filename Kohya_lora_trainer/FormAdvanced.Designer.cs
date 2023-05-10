@@ -88,8 +88,10 @@ namespace Kohya_lora_trainer
             this.label17 = new System.Windows.Forms.Label();
             this.nudMinSNRGamma = new System.Windows.Forms.NumericUpDown();
             this.label18 = new System.Windows.Forms.Label();
-            this.nudMultiresNoise = new System.Windows.Forms.NumericUpDown();
+            this.nudMultiresNoiseIterations = new System.Windows.Forms.NumericUpDown();
             this.label19 = new System.Windows.Forms.Label();
+            this.nudMultiresNoiseDiscount = new System.Windows.Forms.NumericUpDown();
+            this.label20 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).BeginInit();
@@ -99,7 +101,8 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudMomentum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdaptiveNoiseScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinSNRGamma)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMultiresNoise)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMultiresNoiseIterations)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMultiresNoiseDiscount)).BeginInit();
             this.SuspendLayout();
             // 
             // tbxUnetLR
@@ -695,12 +698,17 @@ namespace Kohya_lora_trainer
             this.label18.TabIndex = 52;
             this.label18.Text = "Min-SNR Gamma#";
             // 
-            // nudMultiresNoise
+            // nudMultiresNoiseIterations
             // 
-            this.nudMultiresNoise.Location = new System.Drawing.Point(926, 308);
-            this.nudMultiresNoise.Name = "nudMultiresNoise";
-            this.nudMultiresNoise.Size = new System.Drawing.Size(120, 31);
-            this.nudMultiresNoise.TabIndex = 53;
+            this.nudMultiresNoiseIterations.Location = new System.Drawing.Point(926, 308);
+            this.nudMultiresNoiseIterations.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nudMultiresNoiseIterations.Name = "nudMultiresNoiseIterations";
+            this.nudMultiresNoiseIterations.Size = new System.Drawing.Size(120, 31);
+            this.nudMultiresNoiseIterations.TabIndex = 53;
             // 
             // label19
             // 
@@ -711,13 +719,37 @@ namespace Kohya_lora_trainer
             this.label19.TabIndex = 54;
             this.label19.Text = "Multires Noise\r\nIterations#";
             // 
+            // nudMultiresNoiseDiscount
+            // 
+            this.nudMultiresNoiseDiscount.DecimalPlaces = 2;
+            this.nudMultiresNoiseDiscount.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudMultiresNoiseDiscount.Location = new System.Drawing.Point(507, 308);
+            this.nudMultiresNoiseDiscount.Name = "nudMultiresNoiseDiscount";
+            this.nudMultiresNoiseDiscount.Size = new System.Drawing.Size(120, 31);
+            this.nudMultiresNoiseDiscount.TabIndex = 55;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(376, 310);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(125, 50);
+            this.label20.TabIndex = 56;
+            this.label20.Text = "Multires Noise\r\nDiscount#";
+            // 
             // FormAdvanced
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1205, 743);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.nudMultiresNoiseDiscount);
             this.Controls.Add(this.label19);
-            this.Controls.Add(this.nudMultiresNoise);
+            this.Controls.Add(this.nudMultiresNoiseIterations);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.nudMinSNRGamma);
             this.Controls.Add(this.label17);
@@ -788,7 +820,8 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudMomentum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdaptiveNoiseScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinSNRGamma)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMultiresNoise)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMultiresNoiseIterations)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMultiresNoiseDiscount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -854,7 +887,9 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.NumericUpDown nudMinSNRGamma;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.NumericUpDown nudMultiresNoise;
+        private System.Windows.Forms.NumericUpDown nudMultiresNoiseIterations;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.NumericUpDown nudMultiresNoiseDiscount;
+        private System.Windows.Forms.Label label20;
     }
 }

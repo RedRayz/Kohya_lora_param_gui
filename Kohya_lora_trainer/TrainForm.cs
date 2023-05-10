@@ -327,6 +327,22 @@ namespace Kohya_lora_trainer
                 sb.Append("  --noise_offset=").Append(TrainParams.Current.NoiseOffset.ToString());
             }
 
+            if(TrainParams.Current.MultiresNoiseIterations > 0)
+            {
+                sb.Append("  --multires_noise_iterations=").Append(TrainParams.Current.MultiresNoiseIterations.ToString());
+            }
+
+            if (TrainParams.Current.MultiresNoiseDiscount > 0)
+            {
+                sb.Append("  --multires_noise_discount=").Append(TrainParams.Current.MultiresNoiseDiscount.ToString());
+            }
+
+            if (TrainParams.Current.MinSNRGamma > 0)
+            {
+                sb.Append("  --min_snr_gamma=").Append(TrainParams.Current.MinSNRGamma.ToString());
+            }
+
+
             if (TrainParams.Current.UseWeightedCaptions)
             {
                 sb.Append("  --weighted_captions");

@@ -87,6 +87,10 @@ namespace Kohya_lora_trainer {
             TrainParams.Current.VAEPath = lblVAEPath.Text;
             TrainParams.Current.UseWeightedCaptions = cbxUseWeightedCaption.Checked;
             TrainParams.Current.AdaptiveNoiseScale = nudAdaptiveNoiseScale.Value;
+            TrainParams.Current.MinSNRGamma = nudMinSNRGamma.Value;
+            TrainParams.Current.MultiresNoiseIterations = nudMultiresNoiseIterations.Value;
+            TrainParams.Current.MultiresNoiseDiscount = nudMultiresNoiseDiscount.Value;
+
             Close();
         }
 
@@ -112,7 +116,9 @@ namespace Kohya_lora_trainer {
 
             lblTBoardPath.Text = TrainParams.Current.TensorBoardLogPath;
             cbxUseGradient.Checked = TrainParams.Current.UseGradient;
-
+            nudMinSNRGamma.Value = TrainParams.Current.MinSNRGamma;
+            nudMultiresNoiseIterations.Value = TrainParams.Current.MultiresNoiseIterations;
+            nudMultiresNoiseDiscount.Value = TrainParams.Current.MultiresNoiseDiscount;
             bool valid = nudMinBucketReso.Value % 64 == 0;
             lblMinBucketReso.ForeColor = valid ? Color.Black : Color.Red;
 
