@@ -86,6 +86,10 @@ namespace Kohya_lora_trainer
             this.cbxUseWeightedCaption = new System.Windows.Forms.CheckBox();
             this.nudAdaptiveNoiseScale = new System.Windows.Forms.NumericUpDown();
             this.label17 = new System.Windows.Forms.Label();
+            this.nudMinSNRGamma = new System.Windows.Forms.NumericUpDown();
+            this.label18 = new System.Windows.Forms.Label();
+            this.nudMultiresNoise = new System.Windows.Forms.NumericUpDown();
+            this.label19 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).BeginInit();
@@ -94,6 +98,8 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudNoiseOffset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMomentum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdaptiveNoiseScale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinSNRGamma)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMultiresNoise)).BeginInit();
             this.SuspendLayout();
             // 
             // tbxUnetLR
@@ -673,11 +679,47 @@ namespace Kohya_lora_trainer
             this.label17.TabIndex = 50;
             this.label17.Text = "適応\r\nノイズスケール#";
             // 
+            // nudMinSNRGamma
+            // 
+            this.nudMinSNRGamma.Location = new System.Drawing.Point(926, 270);
+            this.nudMinSNRGamma.Name = "nudMinSNRGamma";
+            this.nudMinSNRGamma.Size = new System.Drawing.Size(120, 31);
+            this.nudMinSNRGamma.TabIndex = 51;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(759, 272);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(161, 25);
+            this.label18.TabIndex = 52;
+            this.label18.Text = "Min-SNR Gamma#";
+            // 
+            // nudMultiresNoise
+            // 
+            this.nudMultiresNoise.Location = new System.Drawing.Point(926, 308);
+            this.nudMultiresNoise.Name = "nudMultiresNoise";
+            this.nudMultiresNoise.Size = new System.Drawing.Size(120, 31);
+            this.nudMultiresNoise.TabIndex = 53;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(790, 310);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(125, 50);
+            this.label19.TabIndex = 54;
+            this.label19.Text = "Multires Noise\r\nIterations#";
+            // 
             // FormAdvanced
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1205, 743);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.nudMultiresNoise);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.nudMinSNRGamma);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.nudAdaptiveNoiseScale);
             this.Controls.Add(this.cbxUseWeightedCaption);
@@ -745,6 +787,8 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudNoiseOffset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMomentum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdaptiveNoiseScale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinSNRGamma)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMultiresNoise)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -808,5 +852,9 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.CheckBox cbxUseWeightedCaption;
         private System.Windows.Forms.NumericUpDown nudAdaptiveNoiseScale;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.NumericUpDown nudMinSNRGamma;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.NumericUpDown nudMultiresNoise;
+        private System.Windows.Forms.Label label19;
     }
 }
