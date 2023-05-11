@@ -18,13 +18,15 @@ https://github.com/kohya-ss/sd-scripts の学習用のパラメータ設定し�
 
 
 ## インストール方法
-1.[releases](https://github.com/RedRayz/Kohya_lora_param_gui/releases)からkohya_lora_gui-x.x.x.zipをDLする
+1.[sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法sd-scriptsの導入をする。
 
-2.zipを解凍してできたフォルダをsd-scriptに移動させる
+2.[releases](https://github.com/RedRayz/Kohya_lora_param_gui/releases)からkohya_lora_gui-x.x.x.zipをDLする
+
+3.zipを解凍してできたフォルダをsd-scriptに移動させる
 
 注意:ディレクトリの階層は次のようにします。
 
-![image1](https://user-images.githubusercontent.com/71994877/222900350-9585963f-5514-4313-82c9-e20f72f2f88c.png)
+![Image000](https://github.com/RedRayz/Kohya_lora_param_gui/assets/71994877/1c5ee177-85ad-47bb-9881-95aa3f28ef3b)
 
 ## 起動方法
 Kohya_lora_trainer.exeをダブルクリックする。ショートカット作ると便利かも?
