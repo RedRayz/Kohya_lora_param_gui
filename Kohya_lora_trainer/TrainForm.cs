@@ -471,7 +471,7 @@ namespace Kohya_lora_trainer
                 {
                     case BlockWeightPresetType.none:
                         {
-                            sb.Append("\"down_lr_weight=");
+                            sb.Append(" \"down_lr_weight=");
                             for (int i = 0; i < 12; i++)
                             {
                                 sb.Append((0.05f * TrainParams.Current.BlockWeightIn[i]).ToString());
@@ -483,7 +483,7 @@ namespace Kohya_lora_trainer
                         break;
                     default:
                         {
-                            sb.Append("\"down_lr_weight=").Append(TrainParams.Current.BlockWeightPresetTypeIn.ToString());
+                            sb.Append(" \"down_lr_weight=").Append(TrainParams.Current.BlockWeightPresetTypeIn.ToString());
                             if (TrainParams.Current.BlockWeightOffsetIn >= 0.25m)
                             {
                                 sb.Append("+").Append(TrainParams.Current.BlockWeightOffsetIn.ToString());
@@ -531,7 +531,7 @@ namespace Kohya_lora_trainer
 
             if (TrainParams.Current.UseBlockDim)
             {
-                sb.Append(TrainParams.Current.UseConv2dExtend ? "\"conv_block_dims=" : "\"block_dims=");
+                sb.Append(TrainParams.Current.UseConv2dExtend ? " \"conv_block_dims=" : " \"block_dims=");
                 //DIM IN
                 for (int i = 0; i < 12; i++)
                 {
