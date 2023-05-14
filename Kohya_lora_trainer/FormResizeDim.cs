@@ -39,9 +39,14 @@ namespace Kohya_lora_trainer
 
             sb.Append(" && .\\venv\\Scripts\\activate && ");
 
-            sb.Append("python .\\networks\\resize_lora.py").Append("  --model=\"").Append(lblModelPath.Text).Append("\"")
-                .Append("  --save_to=\"").Append(lblOutputPath.Text).Append("\"").Append("  --save_precision=\"fp16\"")
-                .Append("  --new_rank=").Append(nudDimSize.Value.ToString());
+            sb.Append("python .\\networks\\resize_lora.py").Append("  --model \"").Append(lblModelPath.Text).Append("\"")
+                .Append("  --save_to \"").Append(lblOutputPath.Text).Append("\"").Append("  --save_precision \"fp16\"")
+                .Append("  --new_rank ").Append(nudDimSize.Value.ToString());
+
+            if (cbxUseCUDA.Checked)
+            {
+                sb.Append("  --device \"cuda\"");
+            }
 
             ProcessStartInfo ps = new ProcessStartInfo();
             ps.FileName = "cmd";

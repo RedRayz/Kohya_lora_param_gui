@@ -37,6 +37,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblOutputPath = new System.Windows.Forms.Label();
             this.btnConvert = new System.Windows.Forms.Button();
+            this.cbxUseCUDA = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudDimSize)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,7 +90,7 @@
             // nudDimSize
             // 
             this.nudDimSize.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.nudDimSize.Location = new System.Drawing.Point(52, 216);
+            this.nudDimSize.Location = new System.Drawing.Point(43, 193);
             this.nudDimSize.Maximum = new decimal(new int[] {
             1024,
             0,
@@ -112,7 +113,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(47, 188);
+            this.label5.Location = new System.Drawing.Point(47, 165);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 25);
             this.label5.TabIndex = 4;
@@ -136,11 +137,22 @@
             this.btnConvert.UseVisualStyleBackColor = true;
             this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
             // 
+            // cbxUseCUDA
+            // 
+            this.cbxUseCUDA.AutoSize = true;
+            this.cbxUseCUDA.Location = new System.Drawing.Point(43, 238);
+            this.cbxUseCUDA.Name = "cbxUseCUDA";
+            this.cbxUseCUDA.Size = new System.Drawing.Size(244, 29);
+            this.cbxUseCUDA.TabIndex = 6;
+            this.cbxUseCUDA.Text = "GPUで変換(NVIDIA CUDA)";
+            this.cbxUseCUDA.UseVisualStyleBackColor = true;
+            // 
             // FormResizeDim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(609, 297);
+            this.Controls.Add(this.cbxUseCUDA);
             this.Controls.Add(this.btnConvert);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.nudDimSize);
@@ -174,5 +186,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblOutputPath;
         private System.Windows.Forms.Button btnConvert;
+        private System.Windows.Forms.CheckBox cbxUseCUDA;
     }
 }
