@@ -1,8 +1,9 @@
 # Kohya_LoRA_GUI
 
-<img width="1321" alt="image00" src="https://user-images.githubusercontent.com/71994877/222030715-e454e99a-1f2d-4818-b0d3-c9cb5998c72c.png">
+![GUI Image](https://github.com/RedRayz/Kohya_lora_param_gui/assets/71994877/621d1c16-d77e-4520-9f58-c374ca0b5cc3)
 
-https://github.com/kohya-ss/sd-scripts の学習用のパラメータ設定してコマンドラインに渡すGUIです。
+
+https://github.com/kohya-ss/sd-scripts のLoRA学習用のパラメータをGUI上で設定してコマンドラインに渡すGUIです。
 
 ## 他の機能
 * 学習パラメータのプリセットをxmlで保存/読込
@@ -14,7 +15,10 @@ https://github.com/kohya-ss/sd-scripts の学習用のパラメータ設定し�
 [sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法でセットアップしている環境を前提としています。
 補助スクリプトなどで構築した環境で動作するかは不明です。
 
-もともと自分用に作ったものであり、動作の保証はしません。自己責任でご利用ください。
+
+このソフトウェアはMIT Licenseで提供しています。
+
+動作の保証はしません。また、このソフトウェアを使用したことによる損害などについて開発者は一切の責任を負いません。自己責任でご利用ください。
 
 
 ## インストール方法
