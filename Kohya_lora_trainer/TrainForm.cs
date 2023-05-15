@@ -73,12 +73,12 @@ namespace Kohya_lora_trainer
 
 
             sb.Append("accelerate launch --num_cpu_threads_per_process ").Append(TrainParams.Current.CpuThreads);
-            sb.Append(" train_network.py  --pretrained_model_name_or_path=\"").Append(TrainParams.Current.ModelPath).Append("\"").Append("  --train_data_dir=\"")
-                .Append(TrainParams.Current.TrainImagePath).Append("\"  --output_dir=\"").Append(TrainParams.Current.OutputPath).Append("\"");
+            sb.Append(" train_network.py --pretrained_model_name_or_path \"").Append(TrainParams.Current.ModelPath).Append("\"").Append(" --train_data_dir \"")
+                .Append(TrainParams.Current.TrainImagePath).Append("\" --output_dir \"").Append(TrainParams.Current.OutputPath).Append("\"");
             //Optional(RegImage)
             if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
             {
-                sb.Append("  --reg_data_dir=\"").Append(TrainParams.Current.RegImagePath).Append("\"");
+                sb.Append(" --reg_data_dir \"").Append(TrainParams.Current.RegImagePath).Append("\"");
             }
 
             string lbw = GetBlockWeightCmd();
@@ -87,14 +87,14 @@ namespace Kohya_lora_trainer
             {
                 case ModuleType.LoRA:
                     {
-                        sb.Append("  --network_module=\"").Append("networks.lora").Append("\"");
+                        sb.Append(" --network_module \"").Append("networks.lora").Append("\"");
                         if (TrainParams.Current.UseConv2dExtend)
                         {
                             bool di = TrainParams.Current.ConvDim > 0;
                             bool al = TrainParams.Current.ConvAlpha > 0;
                             if (di || al)
                             {
-                                sb.Append("  --network_args");
+                                sb.Append(" --network_args");
                                 if (di)
                                     sb.Append(" \"conv_dim=").Append(TrainParams.Current.ConvDim.ToString()).Append("\"");
                                 if (al)
@@ -105,15 +105,15 @@ namespace Kohya_lora_trainer
                         }
                         else if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
                         {
-                            sb.Append("  --network_args").Append(" ").Append(lbw);
+                            sb.Append(" --network_args").Append(" ").Append(lbw);
                         }
 
                     }
                     break;
                 case ModuleType.LyCORIS:
                     {
-                        sb.Append("  --network_module=\"").Append("lycoris.kohya\"");
-                        sb.Append("  --network_args \"algo=").Append(TrainParams.Current.AlgoType.ToString()).Append("\"");
+                        sb.Append(" --network_module \"").Append("lycoris.kohya\"");
+                        sb.Append(" --network_args \"algo=").Append(TrainParams.Current.AlgoType.ToString()).Append("\"");
                         bool di = TrainParams.Current.ConvDim > 0;
                         bool al = TrainParams.Current.ConvAlpha > 0;
                         if (di || al)
@@ -129,9 +129,9 @@ namespace Kohya_lora_trainer
                     break;
                 case ModuleType.DyLoRA:
                     {
-                        sb.Append("  --network_module=\"").Append("networks.dylora").Append("\"");
-                        sb.Append("  --network_args");
-                        sb.Append(" \"unit=").Append(TrainParams.Current.DyLoRAUnit.ToString()).Append("\"");
+                        sb.Append(" --network_module \"").Append("networks.dylora").Append("\"");
+                        sb.Append(" --network_args");
+                        sb.Append(" \"unit ").Append(TrainParams.Current.DyLoRAUnit.ToString()).Append("\"");
 
                         if (TrainParams.Current.UseConv2dExtend)
                         {
@@ -158,154 +158,154 @@ namespace Kohya_lora_trainer
             switch (TrainParams.Current.CrossAttenType)
             {
                 case CrossAttenType.xformers:
-                    sb.Append("  --xformers");
+                    sb.Append(" --xformers");
                     break;
                 case CrossAttenType.mem_eff_attn:
-                    sb.Append("  --mem_eff_attn");
+                    sb.Append(" --mem_eff_attn");
                     break;
             }
 
             if (TrainParams.Current.UseGradient)
             {
-                sb.Append("  --gradient_checkpointing");
+                sb.Append(" --gradient_checkpointing");
             }
 
             if (TrainParams.Current.UseColorAug)
             {
-                sb.Append("  --color_aug");
+                sb.Append(" --color_aug");
             }
 
             if (TrainParams.Current.UseFlipAug)
             {
-                sb.Append("  --flip_aug");
+                sb.Append(" --flip_aug");
             }
 
             if (TrainParams.Current.CropRandomly)
             {
-                sb.Append("  --random_crop");
+                sb.Append(" --random_crop");
             }
 
             if (TrainParams.Current.UseFastLoading)
             {
-                sb.Append("  --persistent_data_loader_workers");
+                sb.Append(" --persistent_data_loader_workers");
             }
 
             if (TrainParams.Current.DontSaveMetadata)
             {
-                sb.Append("  --no_metadata");
+                sb.Append(" --no_metadata");
             }
 
             if (TrainParams.Current.UseSDV2)
             {
-                sb.Append("  --v2");
+                sb.Append(" --v2");
                 if (TrainParams.Current.UseParameterization)
-                    sb.Append("  --v_parameterization");
+                    sb.Append(" --v_parameterization");
             }
 
             if (TrainParams.Current.CacheLatents)
             {
-                sb.Append("  --cache_latents");
+                sb.Append(" --cache_latents");
 
                 if (TrainParams.Current.CacheLatentsToDisk)
                 {
-                    sb.Append("  --cache_latents_to_disk");
+                    sb.Append(" --cache_latents_to_disk");
                 }
 
             }
 
             if(TrainParams.Current.AdaptiveNoiseScale != 0)
             {
-                sb.Append("  --adaptive_noise_scale=").Append(TrainParams.Current.AdaptiveNoiseScale.ToString());
+                sb.Append(" --adaptive_noise_scale ").Append(TrainParams.Current.AdaptiveNoiseScale.ToString());
             }
 
             if (TrainParams.Current.MaxTokens > 75)
-                sb.Append("  --max_token_length=").Append(TrainParams.Current.MaxTokens);
+                sb.Append(" --max_token_length ").Append(TrainParams.Current.MaxTokens);
 
-            sb.Append("  --max_data_loader_n_workers=").Append(TrainParams.Current.DataLoaderThreads);
+            sb.Append(" --max_data_loader_n_workers ").Append(TrainParams.Current.DataLoaderThreads);
 
             //Automatic
-            sb.Append("  --enable_bucket  --save_model_as=\"safetensors\"  --lr_scheduler_num_cycles=").Append(TrainParams.Current.LRSchedulerCycle);
+            sb.Append(" --enable_bucket --save_model_as \"safetensors\" --lr_scheduler_num_cycles ").Append(TrainParams.Current.LRSchedulerCycle);
 
             if (TrainParams.Current.mixedPrecisionType != MixedPrecisionType.None)
-                sb.Append("  --mixed_precision=\"").Append(TrainParams.Current.mixedPrecisionType.ToString()).Append("\"");
+                sb.Append(" --mixed_precision \"").Append(TrainParams.Current.mixedPrecisionType.ToString()).Append("\"");
 
             //Main
-            sb.Append("  --learning_rate=").Append(TrainParams.Current.LearningRate.ToString("g"))
-                .Append("  --resolution=").Append(TrainParams.Current.Resolution).Append(",").Append(TrainParams.Current.Resolution)
-                .Append("  --train_batch_size=").Append(TrainParams.Current.BatchSize)
-                .Append("  --max_train_epochs=").Append(TrainParams.Current.Epochs);
+            sb.Append(" --learning_rate ").Append(TrainParams.Current.LearningRate.ToString("g"))
+                .Append(" --resolution ").Append(TrainParams.Current.Resolution)
+                .Append(" --train_batch_size ").Append(TrainParams.Current.BatchSize)
+                .Append(" --max_train_epochs ").Append(TrainParams.Current.Epochs);
 
-            sb.Append("  --network_dim=").Append(TrainParams.Current.NetworkDim)
-            .Append("  --network_alpha=").Append(TrainParams.Current.NetworkAlpha);
+            sb.Append(" --network_dim ").Append(TrainParams.Current.NetworkDim)
+            .Append(" --network_alpha ").Append(TrainParams.Current.NetworkAlpha);
 
             //Optional Main
             if (TrainParams.Current.ShuffleCaptions)
             {
-                sb.Append("  --shuffle_caption");
+                sb.Append(" --shuffle_caption");
                 if (TrainParams.Current.KeepTokenCount > 0)
                 {
-                    sb.Append("  --keep_tokens=").Append(TrainParams.Current.KeepTokenCount);
+                    sb.Append(" --keep_tokens ").Append(TrainParams.Current.KeepTokenCount);
                 }
             }
 
             if (TrainParams.Current.SaveEveryNEpochs > 0)
             {
-                sb.Append("  --save_every_n_epochs=").Append(TrainParams.Current.SaveEveryNEpochs);
+                sb.Append(" --save_every_n_epochs ").Append(TrainParams.Current.SaveEveryNEpochs);
             }
 
-            sb.Append("  --optimizer_type=\"").Append(TrainParams.Current.OptimizerType.ToString()).Append("\"");
+            sb.Append(" --optimizer_type \"").Append(TrainParams.Current.OptimizerType.ToString()).Append("\"");
             //AdaFactorなら引数追加
             if (TrainParams.Current.OptimizerType == OptimizerType.AdaFactor)
             {
-                sb.Append("  --optimizer_args \"relative_step=True\" \"scale_parameter=True\" \"warmup_init=").Append(TrainParams.Current.UseWarmupInit.ToString()).Append("\"");
+                sb.Append(" --optimizer_args \"relative_step=True\" \"scale_parameter=True\" \"warmup_init=").Append(TrainParams.Current.UseWarmupInit.ToString()).Append("\"");
             }
             else if (TrainParams.Current.OptimizerType == OptimizerType.SGDNesterov || TrainParams.Current.OptimizerType == OptimizerType.SGDNesterov8bit)
             {
-                sb.Append("  --optimizer_args \"momentum=").Append(TrainParams.Current.Momentum.ToString()).Append("\"");
+                sb.Append(" --optimizer_args \"momentum=").Append(TrainParams.Current.Momentum.ToString()).Append("\"");
             }
 
             if (TrainParams.Current.WarmupSteps > 0)
             {
-                sb.Append("  --lr_warmup_steps=").Append(TrainParams.Current.WarmupSteps);
+                sb.Append(" --lr_warmup_steps ").Append(TrainParams.Current.WarmupSteps);
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.OutputName))
             {
-                sb.Append("  --output_name=\"").Append(TrainParams.Current.OutputName).Append("\"");
+                sb.Append(" --output_name \"").Append(TrainParams.Current.OutputName).Append("\"");
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath))
             {
-                sb.Append("  --vae=\"").Append(TrainParams.Current.VAEPath).Append("\"");
+                sb.Append(" --vae \"").Append(TrainParams.Current.VAEPath).Append("\"");
             }
 
             //Advanced
             if (!string.IsNullOrEmpty(TrainParams.Current.LoraModelPath))
             {
-                sb.Append("  --network_weights=").Append("\"").Append(TrainParams.Current.LoraModelPath).Append("\"");
+                sb.Append(" --network_weights ").Append("\"").Append(TrainParams.Current.LoraModelPath).Append("\"");
             }
 
 
             if (TrainParams.Current.NoBucketUpscaling)
             {
-                sb.Append("  --bucket_no_upscale");
+                sb.Append(" --bucket_no_upscale");
             }
 
-            sb.Append("  --clip_skip=").Append(TrainParams.Current.ClipSkip)
-                .Append("  --seed=").Append(TrainParams.Current.Seed)
-                .Append("  --save_precision=\"").Append(TrainParams.Current.SavePrecision.ToString()).Append("\"")
-                .Append("  --lr_scheduler=\"").Append(TrainParams.Current.SchedulerType.ToString()).Append("\"")
-                .Append("  --min_bucket_reso=").Append(TrainParams.Current.MinBucketResolution)
-                .Append("  --max_bucket_reso=").Append(TrainParams.Current.MaxBucketResolution)
-                .Append("  --caption_extension=\"").Append(TrainParams.Current.CaptionFileExtension).Append("\"");
+            sb.Append(" --clip_skip ").Append(TrainParams.Current.ClipSkip)
+                .Append(" --seed ").Append(TrainParams.Current.Seed)
+                .Append(" --save_precision \"").Append(TrainParams.Current.SavePrecision.ToString()).Append("\"")
+                .Append(" --lr_scheduler \"").Append(TrainParams.Current.SchedulerType.ToString()).Append("\"")
+                .Append(" --min_bucket_reso ").Append(TrainParams.Current.MinBucketResolution)
+                .Append(" --max_bucket_reso ").Append(TrainParams.Current.MaxBucketResolution)
+                .Append(" --caption_extension \"").Append(TrainParams.Current.CaptionFileExtension).Append("\"");
 
             switch (TrainParams.Current.advancedTrainType)
             {
                 case AdvancedTrainType.TextEncoderOnly:
-                    sb.Append("  --network_train_text_encoder_only");
+                    sb.Append(" --network_train_text_encoder_only");
                     break;
                 case AdvancedTrainType.UNetOnly:
-                    sb.Append("  --network_train_unet_only");
+                    sb.Append(" --network_train_unet_only");
                     break;
                 default:
                     break;
@@ -314,48 +314,48 @@ namespace Kohya_lora_trainer
 
             if (TrainParams.Current.TextEncoderLR > 0)
             {
-                sb.Append("  --text_encoder_lr=").Append(TrainParams.Current.TextEncoderLR.ToString("g"));
+                sb.Append(" --text_encoder_lr ").Append(TrainParams.Current.TextEncoderLR.ToString("g"));
             }
 
             if (TrainParams.Current.UnetLR > 0)
             {
-                sb.Append("  --unet_lr=").Append(TrainParams.Current.UnetLR.ToString("g"));
+                sb.Append(" --unet_lr ").Append(TrainParams.Current.UnetLR.ToString("g"));
             }
 
             if (TrainParams.Current.NoiseOffset > 0f)
             {
-                sb.Append("  --noise_offset=").Append(TrainParams.Current.NoiseOffset.ToString());
+                sb.Append(" --noise_offset ").Append(TrainParams.Current.NoiseOffset.ToString());
             }
 
             if(TrainParams.Current.MultiresNoiseIterations > 0)
             {
-                sb.Append("  --multires_noise_iterations=").Append(TrainParams.Current.MultiresNoiseIterations.ToString());
+                sb.Append(" --multires_noise_iterations ").Append(TrainParams.Current.MultiresNoiseIterations.ToString());
             }
 
             if (TrainParams.Current.MultiresNoiseDiscount > 0)
             {
-                sb.Append("  --multires_noise_discount=").Append(TrainParams.Current.MultiresNoiseDiscount.ToString());
+                sb.Append(" --multires_noise_discount ").Append(TrainParams.Current.MultiresNoiseDiscount.ToString());
             }
 
             if (TrainParams.Current.MinSNRGamma > 0)
             {
-                sb.Append("  --min_snr_gamma=").Append(TrainParams.Current.MinSNRGamma.ToString());
+                sb.Append(" --min_snr_gamma ").Append(TrainParams.Current.MinSNRGamma.ToString());
             }
 
 
             if (TrainParams.Current.UseWeightedCaptions)
             {
-                sb.Append("  --weighted_captions");
+                sb.Append(" --weighted_captions");
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.TensorBoardLogPath))
             {
-                sb.Append("  --logging_dir=\"").Append(TrainParams.Current.TensorBoardLogPath).Append("\"");
+                sb.Append(" --logging_dir \"").Append(TrainParams.Current.TensorBoardLogPath).Append("\"");
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.DatasetConfigPath))
             {
-                sb.Append("  --dataset_config=\"").Append(TrainParams.Current.DatasetConfigPath).Append("\"");
+                sb.Append(" --dataset_config \"").Append(TrainParams.Current.DatasetConfigPath).Append("\"");
             }
 
             TrainArgs = sb.ToString();
