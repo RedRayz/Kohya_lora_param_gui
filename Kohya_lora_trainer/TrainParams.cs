@@ -71,7 +71,7 @@ namespace Kohya_lora_trainer {
         public decimal[] BlockAlphaOutM = { 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32 };
 
         //Advanced1
-        public bool UseColorAug = true, UseFastLoading = true, UseSDV2 = false, DontSaveMetadata = false, UseFlipAug = false, CropRandomly = false, UseParameterization = false, CacheLatents = false, CacheLatentsToDisk = false;
+        public bool UseColorAug = false, UseFastLoading = true, UseSDV2 = false, DontSaveMetadata = false, UseFlipAug = false, CropRandomly = false, UseParameterization = false, CacheLatents = false, CacheLatentsToDisk = false;
         //public string ModelConfigPath = string.Empty;
         public int LRSchedulerCycle = 4, DataLoaderThreads = 4, MaxTokens = 75;
         public MixedPrecisionType mixedPrecisionType = MixedPrecisionType.fp16;
