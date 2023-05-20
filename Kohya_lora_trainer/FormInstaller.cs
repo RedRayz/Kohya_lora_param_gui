@@ -22,7 +22,7 @@ namespace Kohya_lora_trainer
         private void btnInstall_Click(object sender, EventArgs e)
         {
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
-            cof.Title = "Select Reg Image Folder";
+            cof.Title = "Select install directory";
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)

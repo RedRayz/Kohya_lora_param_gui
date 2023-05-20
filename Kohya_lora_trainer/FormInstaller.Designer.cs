@@ -48,18 +48,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(32, 120);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(576, 112);
+            this.label1.Size = new System.Drawing.Size(458, 125);
             this.label1.TabIndex = 1;
-            this.label1.Text = "上のボタンを押すとターミナルが立ち上がり、必要なコマンドを実行します。\r\nなお、gitとpythonは事前にインストールする必要があります。\r\n最後にaccele" +
-    "rate configの質問が出るのでターミナルで\r\n数字キーとEnterキーを用いて以下のように答えてください。";
+            this.label1.Text = "上のボタンを押すとインストール先フォルダの選択画面が出ます。\r\n選択後、ターミナルが立ち上がり、必要なコマンドを実行します。\r\nなお、gitとpythonは事前に" +
+    "インストールする必要があります。\r\n最後にaccelerate configの質問が出るのでターミナルで\r\n数字キーとEnterキーを用いて以下のように答えてく" +
+    "ださい。";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 244);
+            this.label2.Location = new System.Drawing.Point(32, 261);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(587, 325);
             this.label2.TabIndex = 2;
@@ -69,7 +70,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(687, 595);
+            this.ClientSize = new System.Drawing.Size(687, 598);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnInstall);
