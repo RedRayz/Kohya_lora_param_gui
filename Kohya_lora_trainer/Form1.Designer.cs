@@ -808,9 +808,9 @@ namespace Kohya_lora_trainer
             // 
             this.btnInstaller.Location = new System.Drawing.Point(516, 19);
             this.btnInstaller.Name = "btnInstaller";
-            this.btnInstaller.Size = new System.Drawing.Size(151, 42);
+            this.btnInstaller.Size = new System.Drawing.Size(189, 42);
             this.btnInstaller.TabIndex = 82;
-            this.btnInstaller.Text = "自動インストール";
+            this.btnInstaller.Text = "簡易インストーラー";
             this.btnInstaller.UseVisualStyleBackColor = true;
             this.btnInstaller.Click += new System.EventHandler(this.btnInstaller_Click);
             // 
