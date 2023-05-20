@@ -148,6 +148,12 @@
     <Compile Include="FormBlockWeight.Designer.cs">
       <DependentUpon>FormBlockWeight.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormInstaller.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormInstaller.Designer.cs">
+      <DependentUpon>FormInstaller.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormResizeDim.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormBlockWeight.resx">
       <DependentUpon>FormBlockWeight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormInstaller.resx">
+      <DependentUpon>FormInstaller.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormResizeDim.resx">
       <DependentUpon>FormResizeDim.cs</DependentUpon>
