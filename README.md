@@ -22,6 +22,24 @@ https://github.com/kohya-ss/sd-scripts のLoRA学習用のパラメータをGUI�
 
 
 ## インストール方法
+2つあります。好きなほうをご利用ください。
+
+### A.GUIの簡易インストーラーを使用する
+v1.6以降でご利用いただけます。
+
+0.あらかじめgitとPython3.10をインストールしておく。
+
+1.[releases](https://github.com/RedRayz/Kohya_lora_param_gui/releases)からkohya_lora_gui-x.x.x.zipをDLする
+
+2.zipを解凍し、中にあるexeファイルをダブルクリックしてGUIを起動する。
+
+3.GUIの上部にある「簡易インストーラー」をクリックして表示されるウィンドウに書いてある説明を読んでから、インストールボタンを押す。
+
+4.インストールが完了したら、GUIを閉じてGUIが入ったフォルダをsd-scripts直下に移動させる。
+
+### B.手動インストール
+簡易インストールがうまくいかないか違うバージョンのtorchを入れたい場合はこちら
+
 1.[sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法sd-scriptsの導入をする。
 
 2.[releases](https://github.com/RedRayz/Kohya_lora_param_gui/releases)からkohya_lora_gui-x.x.x.zipをDLする
