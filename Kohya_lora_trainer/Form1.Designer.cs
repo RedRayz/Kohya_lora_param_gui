@@ -99,6 +99,7 @@ namespace Kohya_lora_trainer
             this.rbtDoNothing = new System.Windows.Forms.RadioButton();
             this.btnBatchProcess = new System.Windows.Forms.Button();
             this.btnResizeDim = new System.Windows.Forms.Button();
+            this.btnInstaller = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -624,7 +625,7 @@ namespace Kohya_lora_trainer
             // 
             this.lblScriptPathDesc.AutoSize = true;
             this.lblScriptPathDesc.ForeColor = System.Drawing.Color.Black;
-            this.lblScriptPathDesc.Location = new System.Drawing.Point(697, 19);
+            this.lblScriptPathDesc.Location = new System.Drawing.Point(869, 53);
             this.lblScriptPathDesc.Name = "lblScriptPathDesc";
             this.lblScriptPathDesc.Size = new System.Drawing.Size(268, 25);
             this.lblScriptPathDesc.TabIndex = 68;
@@ -803,11 +804,22 @@ namespace Kohya_lora_trainer
             this.btnResizeDim.UseVisualStyleBackColor = true;
             this.btnResizeDim.Click += new System.EventHandler(this.btnResizeDim_Click);
             // 
+            // btnInstaller
+            // 
+            this.btnInstaller.Location = new System.Drawing.Point(516, 19);
+            this.btnInstaller.Name = "btnInstaller";
+            this.btnInstaller.Size = new System.Drawing.Size(189, 42);
+            this.btnInstaller.TabIndex = 82;
+            this.btnInstaller.Text = "簡易インストーラー";
+            this.btnInstaller.UseVisualStyleBackColor = true;
+            this.btnInstaller.Click += new System.EventHandler(this.btnInstaller_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1172, 694);
+            this.Controls.Add(this.btnInstaller);
             this.Controls.Add(this.btnResizeDim);
             this.Controls.Add(this.btnBatchProcess);
             this.Controls.Add(this.groupBox1);
@@ -960,6 +972,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.RadioButton rbtShutdown;
         private System.Windows.Forms.Button btnBatchProcess;
         private System.Windows.Forms.Button btnResizeDim;
+        private System.Windows.Forms.Button btnInstaller;
     }
 }
 
