@@ -625,7 +625,7 @@ namespace Kohya_lora_trainer
             // 
             this.lblScriptPathDesc.AutoSize = true;
             this.lblScriptPathDesc.ForeColor = System.Drawing.Color.Black;
-            this.lblScriptPathDesc.Location = new System.Drawing.Point(697, 19);
+            this.lblScriptPathDesc.Location = new System.Drawing.Point(869, 53);
             this.lblScriptPathDesc.Name = "lblScriptPathDesc";
             this.lblScriptPathDesc.Size = new System.Drawing.Size(268, 25);
             this.lblScriptPathDesc.TabIndex = 68;
@@ -812,6 +812,7 @@ namespace Kohya_lora_trainer
             this.btnInstaller.TabIndex = 82;
             this.btnInstaller.Text = "自動インストール";
             this.btnInstaller.UseVisualStyleBackColor = true;
+            this.btnInstaller.Click += new System.EventHandler(this.btnInstaller_Click);
             // 
             // Form1
             // 

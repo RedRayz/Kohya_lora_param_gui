@@ -46,11 +46,17 @@ namespace Kohya_lora_trainer
             lblNumSteps.Text = "?";
             lblNumStepsBatch1.Text = "?";
 
+            btnCustomScriptPath.Visible = false;
+            lblScriptPathDesc.Visible = false;
+            btnInstaller.Visible = false;
+
             //先に親フォルダにpyがあるか確認する。
             //なければボタンを表示する
-            //ない状態でカスタムパスにもpyがないなら赤字で設定するよう促す
+            //ない状態でカスタムパスにもpyがないなら赤字で設定するよう促す(デバッグ環境のみ)
             if (!File.Exists(@"..\train_network.py"))
             {
+                btnInstaller.Visible = true;
+#if DEBUG
                 btnCustomScriptPath.Visible = true;
                 lblScriptPathDesc.Visible = true;
                 ScriptPath = (string)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "ScriptPath", string.Empty);
@@ -64,11 +70,11 @@ namespace Kohya_lora_trainer
                     lblScriptPathDesc.ForeColor = Color.Black;
                     lblScriptPathDesc.Text = "sd-scriptsの場所を変更する";
                 }
-            }
-            else
-            {
-                btnCustomScriptPath.Visible = false;
-                lblScriptPathDesc.Visible = false;
+#else
+                    lblScriptPathDesc.Visible = true;
+                    lblScriptPathDesc.ForeColor = Color.Red;
+                    lblScriptPathDesc.Text = "train_network.pyがみつかりません";
+#endif
             }
 
             string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\autosave.xmlora";
@@ -592,6 +598,13 @@ namespace Kohya_lora_trainer
         private void btnResizeDim_Click(object sender, EventArgs e)
         {
             Form frm = new FormResizeDim();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+
+        private void btnInstaller_Click(object sender, EventArgs e)
+        {
+            Form frm = new FormInstaller();
             frm.ShowDialog();
             frm.Dispose();
         }
