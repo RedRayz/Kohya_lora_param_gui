@@ -412,10 +412,14 @@ namespace Kohya_lora_trainer
 
         private void TrainExited(object sender, EventArgs e)
         {
-            process.Dispose();
-            process = null;
-            btnStop.Enabled = false;
-            btnClose.Enabled = true;
+            if (process != null)
+            {
+                process.Dispose();
+                process = null;
+                btnStop.Enabled = false;
+                btnClose.Enabled = true;
+            }
+
 
             if(BatchProcess.IsRunning)
             {

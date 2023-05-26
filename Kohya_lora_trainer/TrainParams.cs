@@ -217,7 +217,9 @@ namespace Kohya_lora_trainer {
         Lion8bit,
         DAdaptAdaGrad,
         DAdaptAdan,
-        DAdaptSGD
+        DAdaptSGD,
+        DAdaptAdanIP,
+        DAdaptLion
     }
 
     public enum SavePrecision {
