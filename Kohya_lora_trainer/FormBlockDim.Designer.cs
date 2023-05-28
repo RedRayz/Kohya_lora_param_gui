@@ -107,7 +107,6 @@
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudDimIn00)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAlphaIn00)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDimIn01)).BeginInit();
@@ -1594,21 +1593,11 @@
             this.label31.TabIndex = 3;
             this.label31.Text = "Alpha";
             // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(22, 9);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(420, 25);
-            this.label32.TabIndex = 6;
-            this.label32.Text = "※層別学習率も有効にしないと機能しないかもしれません";
-            // 
             // FormBlockDim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(866, 703);
-            this.Controls.Add(this.label32);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.label14);
@@ -1842,6 +1831,5 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label32;
     }
 }
