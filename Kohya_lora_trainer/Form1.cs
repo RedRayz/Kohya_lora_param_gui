@@ -234,7 +234,7 @@ namespace Kohya_lora_trainer
             float lr = 0.0001f;
             if (float.TryParse(tbxLR.Text, out lr))
             {
-                if (lr <= 0f || lr >= 2f || float.IsNaN(lr))
+                if (lr <= 0f || lr >= 3f || float.IsNaN(lr))
                 {
                     lblLR.ForeColor = Color.Red;
                     IsInvalidLR = true;

@@ -254,14 +254,100 @@ namespace Kohya_lora_trainer
             }
 
             sb.Append(" --optimizer_type \"").Append(TrainParams.Current.OptimizerType.ToString()).Append("\"");
-            //AdaFactorなら引数追加
-            if (TrainParams.Current.OptimizerType == OptimizerType.AdaFactor)
+
+            //Optimizerの引数
+            switch (TrainParams.Current.OptimizerType)
             {
-                sb.Append(" --optimizer_args \"relative_step=True\" \"scale_parameter=True\" \"warmup_init=").Append(TrainParams.Current.UseWarmupInit.ToString()).Append("\"");
-            }
-            else if (TrainParams.Current.OptimizerType == OptimizerType.SGDNesterov || TrainParams.Current.OptimizerType == OptimizerType.SGDNesterov8bit)
-            {
-                sb.Append(" --optimizer_args \"momentum=").Append(TrainParams.Current.Momentum.ToString()).Append("\"");
+                case OptimizerType.AdaFactor:
+                    {
+                        sb.Append(" --optimizer_args \"relative_step=True\" \"scale_parameter=True\" \"warmup_init=").Append(TrainParams.Current.UseWarmupInit.ToString()).Append("\"");
+                    }
+                    break;
+                case OptimizerType.SGDNesterov:
+                case OptimizerType.SGDNesterov8bit:
+                    {
+                        sb.Append(" --optimizer_args \"momentum=").Append(TrainParams.Current.Momentum.ToString()).Append("\"");
+                    }
+                    break;
+                case OptimizerType.DAdaptAdaGrad:
+                    {
+                        sb.Append(" --optimizer_args \"eps=").Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
+                            .Append(TrainParams.Current.D0.ToString("g")).Append("\"");
+
+                        if (TrainParams.Current.GrowthRate > 0f)
+                        {
+                            sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append("\"");
+                        }
+                    }
+                    break;
+                case OptimizerType.DAdaptAdam:
+                    {
+                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
+                            .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
+                            .Append(TrainParams.Current.D0.ToString("g")).Append("\"");
+
+                        if (TrainParams.Current.GrowthRate > 0f)
+                        {
+                            sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append("\"");
+                        }
+
+                    }
+                    break;
+                case OptimizerType.DAdaptAdan:
+                    {
+                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g")).Append(",").Append(TrainParams.Current.Betas2.ToString("g")).Append("\" \"eps=")
+    .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
+    .Append(TrainParams.Current.D0.ToString("g")).Append("\"");
+
+                        if (TrainParams.Current.GrowthRate > 0f)
+                        {
+                            sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append("\"");
+                        }
+                    }
+                    break;
+                case OptimizerType.DAdaptLion:
+                    {
+                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g"))
+                            .Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
+                            .Append(TrainParams.Current.D0.ToString("g")).Append("\"");
+                    }
+                    break;
+                case OptimizerType.DAdaptSGD:
+                    {
+                        sb.Append(" --optimizer_args \"momentum=").Append(TrainParams.Current.DAdaptMomentum.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
+                            .Append(TrainParams.Current.D0.ToString("g")).Append("\"");
+
+                        if (TrainParams.Current.GrowthRate > 0f)
+                        {
+                            sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append("\"");
+                        }
+                    }
+                    break;
+                //dadapt_adam_preprint.pyの説明にはmomontumが書いてあるが実際にはない
+                case OptimizerType.DAdaptation:
+                    {
+                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
+    .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
+    .Append(TrainParams.Current.D0.ToString("g")).Append("\"");
+
+                        if (TrainParams.Current.GrowthRate > 0f)
+                        {
+                            sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append("\"");
+                        }
+                    }
+                    break;
+                case OptimizerType.DAdaptAdanIP:
+                    {
+                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g")).Append(",").Append(TrainParams.Current.Betas2.ToString("g")).Append("\" \"eps=")
+    .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
+    .Append(TrainParams.Current.D0.ToString("g")).Append("\"");
+
+                        if (TrainParams.Current.GrowthRate > 0f)
+                        {
+                            sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append("\"");
+                        }
+                    }
+                    break;
             }
 
             if (TrainParams.Current.WarmupSteps > 0)

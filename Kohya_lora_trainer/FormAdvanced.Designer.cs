@@ -112,6 +112,7 @@ namespace Kohya_lora_trainer
             this.tbxUnetLR.Name = "tbxUnetLR";
             this.tbxUnetLR.Size = new System.Drawing.Size(100, 31);
             this.tbxUnetLR.TabIndex = 0;
+            this.tbxUnetLR.TextChanged += new System.EventHandler(this.tbxUnetLR_TextChanged);
             // 
             // tbxTextEncoLR
             // 

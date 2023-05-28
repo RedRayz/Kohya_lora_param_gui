@@ -192,5 +192,10 @@ namespace Kohya_lora_trainer {
         private void btnClearVAE_Click(object sender, EventArgs e) {
             lblVAEPath.Text = string.Empty;
         }
+
+        private void tbxUnetLR_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

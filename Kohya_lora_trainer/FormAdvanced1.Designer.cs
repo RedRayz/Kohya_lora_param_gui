@@ -47,6 +47,21 @@
             this.cbxUseParametarization = new System.Windows.Forms.CheckBox();
             this.cbxCacheLatents = new System.Windows.Forms.CheckBox();
             this.cbxCacheLatentsToDisk = new System.Windows.Forms.CheckBox();
+            this.tbxWeightDecay = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbxEps = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbxD0 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tbxBetas0 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tbxBetas1 = new System.Windows.Forms.TextBox();
+            this.tbxGrowthRate = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbxBetas2 = new System.Windows.Forms.TextBox();
+            this.tbxMomentum = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudLRSchedulerCycle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDataLoaderThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxTokens)).BeginInit();
@@ -66,7 +81,7 @@
             // 
             // btnSaveChanges
             // 
-            this.btnSaveChanges.Location = new System.Drawing.Point(553, 403);
+            this.btnSaveChanges.Location = new System.Drawing.Point(788, 409);
             this.btnSaveChanges.Name = "btnSaveChanges";
             this.btnSaveChanges.Size = new System.Drawing.Size(199, 42);
             this.btnSaveChanges.TabIndex = 1;
@@ -76,7 +91,7 @@
             // 
             // btnDiscardChanges
             // 
-            this.btnDiscardChanges.Location = new System.Drawing.Point(348, 403);
+            this.btnDiscardChanges.Location = new System.Drawing.Point(583, 409);
             this.btnDiscardChanges.Name = "btnDiscardChanges";
             this.btnDiscardChanges.Size = new System.Drawing.Size(199, 42);
             this.btnDiscardChanges.TabIndex = 1;
@@ -92,7 +107,7 @@
             "なし",
             "fp16",
             "bf16"});
-            this.cbxMixedPrecision.Location = new System.Drawing.Point(250, 229);
+            this.cbxMixedPrecision.Location = new System.Drawing.Point(867, 12);
             this.cbxMixedPrecision.Name = "cbxMixedPrecision";
             this.cbxMixedPrecision.Size = new System.Drawing.Size(120, 33);
             this.cbxMixedPrecision.TabIndex = 2;
@@ -100,7 +115,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(160, 232);
+            this.label1.Location = new System.Drawing.Point(777, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 25);
             this.label1.TabIndex = 3;
@@ -108,7 +123,7 @@
             // 
             // nudLRSchedulerCycle
             // 
-            this.nudLRSchedulerCycle.Location = new System.Drawing.Point(250, 268);
+            this.nudLRSchedulerCycle.Location = new System.Drawing.Point(867, 51);
             this.nudLRSchedulerCycle.Maximum = new decimal(new int[] {
             64,
             0,
@@ -131,7 +146,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(63, 270);
+            this.label2.Location = new System.Drawing.Point(680, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(181, 25);
             this.label2.TabIndex = 5;
@@ -151,7 +166,7 @@
             // 
             // nudDataLoaderThreads
             // 
-            this.nudDataLoaderThreads.Location = new System.Drawing.Point(250, 309);
+            this.nudDataLoaderThreads.Location = new System.Drawing.Point(867, 92);
             this.nudDataLoaderThreads.Maximum = new decimal(new int[] {
             64,
             0,
@@ -174,7 +189,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(35, 311);
+            this.label3.Location = new System.Drawing.Point(652, 94);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(209, 25);
             this.label3.TabIndex = 5;
@@ -197,7 +212,7 @@
             0,
             0,
             0});
-            this.nudMaxTokens.Location = new System.Drawing.Point(250, 346);
+            this.nudMaxTokens.Location = new System.Drawing.Point(867, 129);
             this.nudMaxTokens.Maximum = new decimal(new int[] {
             225,
             0,
@@ -220,7 +235,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(127, 348);
+            this.label5.Location = new System.Drawing.Point(744, 131);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(117, 25);
             this.label5.TabIndex = 5;
@@ -286,12 +301,154 @@
             this.cbxCacheLatentsToDisk.Text = "latentをディスクにキャッシュ";
             this.cbxCacheLatentsToDisk.UseVisualStyleBackColor = true;
             // 
+            // tbxWeightDecay
+            // 
+            this.tbxWeightDecay.Location = new System.Drawing.Point(172, 283);
+            this.tbxWeightDecay.Name = "tbxWeightDecay";
+            this.tbxWeightDecay.Size = new System.Drawing.Size(100, 31);
+            this.tbxWeightDecay.TabIndex = 7;
+            this.tbxWeightDecay.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(60, 239);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(135, 25);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "DAdaption関連";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(47, 283);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(118, 25);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "weight_decay";
+            // 
+            // tbxEps
+            // 
+            this.tbxEps.Location = new System.Drawing.Point(172, 320);
+            this.tbxEps.Name = "tbxEps";
+            this.tbxEps.Size = new System.Drawing.Size(100, 31);
+            this.tbxEps.TabIndex = 7;
+            this.tbxEps.Text = "1E-06";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(125, 323);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(40, 25);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "eps";
+            // 
+            // tbxD0
+            // 
+            this.tbxD0.Location = new System.Drawing.Point(172, 357);
+            this.tbxD0.Name = "tbxD0";
+            this.tbxD0.Size = new System.Drawing.Size(100, 31);
+            this.tbxD0.TabIndex = 7;
+            this.tbxD0.Text = "1E-06";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(125, 360);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(33, 25);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "d0";
+            // 
+            // tbxBetas0
+            // 
+            this.tbxBetas0.Location = new System.Drawing.Point(415, 277);
+            this.tbxBetas0.Name = "tbxBetas0";
+            this.tbxBetas0.Size = new System.Drawing.Size(73, 31);
+            this.tbxBetas0.TabIndex = 7;
+            this.tbxBetas0.Text = "0.9";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(354, 280);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(55, 25);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "betas";
+            // 
+            // tbxBetas1
+            // 
+            this.tbxBetas1.Location = new System.Drawing.Point(503, 277);
+            this.tbxBetas1.Name = "tbxBetas1";
+            this.tbxBetas1.Size = new System.Drawing.Size(77, 31);
+            this.tbxBetas1.TabIndex = 7;
+            this.tbxBetas1.Text = "0.999";
+            // 
+            // tbxGrowthRate
+            // 
+            this.tbxGrowthRate.Location = new System.Drawing.Point(172, 398);
+            this.tbxGrowthRate.Name = "tbxGrowthRate";
+            this.tbxGrowthRate.Size = new System.Drawing.Size(100, 31);
+            this.tbxGrowthRate.TabIndex = 7;
+            this.tbxGrowthRate.Text = "0";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(59, 401);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(106, 50);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "growth_rate\r\n0で無制限";
+            // 
+            // tbxBetas2
+            // 
+            this.tbxBetas2.Location = new System.Drawing.Point(598, 277);
+            this.tbxBetas2.Name = "tbxBetas2";
+            this.tbxBetas2.Size = new System.Drawing.Size(77, 31);
+            this.tbxBetas2.TabIndex = 7;
+            this.tbxBetas2.Text = "0.999";
+            // 
+            // tbxMomentum
+            // 
+            this.tbxMomentum.Location = new System.Drawing.Point(415, 320);
+            this.tbxMomentum.Name = "tbxMomentum";
+            this.tbxMomentum.Size = new System.Drawing.Size(94, 31);
+            this.tbxMomentum.TabIndex = 7;
+            this.tbxMomentum.Text = "0";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(303, 323);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(106, 25);
+            this.label11.TabIndex = 9;
+            this.label11.Text = "momentum";
+            // 
             // FormAdvanced1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(764, 457);
+            this.ClientSize = new System.Drawing.Size(1019, 472);
             this.ControlBox = false;
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.tbxMomentum);
+            this.Controls.Add(this.tbxGrowthRate);
+            this.Controls.Add(this.tbxD0);
+            this.Controls.Add(this.tbxEps);
+            this.Controls.Add(this.tbxBetas2);
+            this.Controls.Add(this.tbxBetas1);
+            this.Controls.Add(this.tbxBetas0);
+            this.Controls.Add(this.tbxWeightDecay);
             this.Controls.Add(this.cbxCacheLatentsToDisk);
             this.Controls.Add(this.cbxCacheLatents);
             this.Controls.Add(this.label5);
@@ -349,5 +506,20 @@
         private System.Windows.Forms.CheckBox cbxUseParametarization;
         private System.Windows.Forms.CheckBox cbxCacheLatents;
         private System.Windows.Forms.CheckBox cbxCacheLatentsToDisk;
+        private System.Windows.Forms.TextBox tbxWeightDecay;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox tbxEps;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tbxD0;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tbxBetas0;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox tbxBetas1;
+        private System.Windows.Forms.TextBox tbxGrowthRate;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tbxBetas2;
+        private System.Windows.Forms.TextBox tbxMomentum;
+        private System.Windows.Forms.Label label11;
     }
 }

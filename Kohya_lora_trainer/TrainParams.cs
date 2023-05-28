@@ -76,6 +76,9 @@ namespace Kohya_lora_trainer {
         public int LRSchedulerCycle = 4, DataLoaderThreads = 4, MaxTokens = 75;
         public MixedPrecisionType mixedPrecisionType = MixedPrecisionType.fp16;
 
+        //DAdaption関連
+        public float WeightDecay = 0, Eps = 1e-06f, D0 = 1e-06f, GrowthRate = 0, Betas0 = 0.9f, Betas1 = 0.999f, Betas2 = 0.999f, DAdaptMomentum = 0.9f;
+
 
         [NonSerialized]
         public static TrainParams Current;
@@ -216,6 +219,7 @@ namespace Kohya_lora_trainer {
         DAdaptation,
         Lion8bit,
         DAdaptAdaGrad,
+        DAdaptAdam,
         DAdaptAdan,
         DAdaptSGD,
         DAdaptAdanIP,

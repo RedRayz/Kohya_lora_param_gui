@@ -194,6 +194,7 @@ namespace Kohya_lora_trainer
             // cbxOptimizer
             // 
             this.cbxOptimizer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxOptimizer.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cbxOptimizer.FormattingEnabled = true;
             this.cbxOptimizer.Items.AddRange(new object[] {
             "AdamW8bit",
@@ -202,16 +203,17 @@ namespace Kohya_lora_trainer
             "Lion",
             "SGDNesterov",
             "SGDNesterov8bit",
-            "DAdaptation",
+            "DAdaptAdamPreprint",
             "Lion8bit",
             "DAdaptAdaGrad",
+            "DAdaptAdam",
             "DAdaptAdan",
             "DAdaptSGD",
             "DAdaptAdanIP",
             "DAdaptLion"});
             this.cbxOptimizer.Location = new System.Drawing.Point(166, 347);
             this.cbxOptimizer.Name = "cbxOptimizer";
-            this.cbxOptimizer.Size = new System.Drawing.Size(146, 33);
+            this.cbxOptimizer.Size = new System.Drawing.Size(208, 33);
             this.cbxOptimizer.TabIndex = 6;
             this.cbxOptimizer.SelectedIndexChanged += new System.EventHandler(this.cbxOptimizer_SelectedIndexChanged);
             // 
