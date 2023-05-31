@@ -387,6 +387,117 @@ namespace Kohya_lora_trainer
             return sb.ToString();
         }
 
+        public static string GetBlockWeightCmd()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (TrainParams.Current.UseBlockWeight)
+            {
+                switch (TrainParams.Current.BlockWeightPresetTypeIn)
+                {
+                    case BlockWeightPresetType.none:
+                        {
+                            sb.Append(" \"down_lr_weight=");
+                            for (int i = 0; i < 12; i++)
+                            {
+                                sb.Append((0.05f * TrainParams.Current.BlockWeightIn[i]).ToString());
+                                if (i < 11)
+                                    sb.Append(",");
+                            }
+                            sb.Append("\"");
+                        }
+                        break;
+                    default:
+                        {
+                            sb.Append(" \"down_lr_weight=").Append(TrainParams.Current.BlockWeightPresetTypeIn.ToString());
+                            if (TrainParams.Current.BlockWeightOffsetIn >= 0.25m)
+                            {
+                                sb.Append("+").Append(TrainParams.Current.BlockWeightOffsetIn.ToString());
+                            }
+
+                            sb.Append("\"");
+                        }
+                        break;
+                }
+
+                sb.Append(" \"mid_lr_weight=").Append((0.05f * TrainParams.Current.BlockWeightMid).ToString()).Append("\"");
+
+                switch (TrainParams.Current.BlockWeightPresetTypeOut)
+                {
+                    case BlockWeightPresetType.none:
+                        {
+                            sb.Append(" \"up_lr_weight=");
+                            for (int i = 0; i < 12; i++)
+                            {
+                                sb.Append((0.05f * TrainParams.Current.BlockWeightOut[i]).ToString());
+                                if (i < 11)
+                                    sb.Append(",");
+                            }
+                            sb.Append("\"");
+                        }
+                        break;
+                    default:
+                        {
+                            sb.Append(" \"up_lr_weight=").Append(TrainParams.Current.BlockWeightPresetTypeOut.ToString());
+                            if (TrainParams.Current.BlockWeightOffsetOut >= 0.25m)
+                            {
+                                sb.Append("+").Append(TrainParams.Current.BlockWeightOffsetOut.ToString());
+                            }
+
+                            sb.Append("\"");
+                        }
+                        break;
+                }
+
+                if (TrainParams.Current.BlockWeightZeroThreshold > 0)
+                {
+                    sb.Append(" \"block_lr_zero_threshold=").Append((0.05f * TrainParams.Current.BlockWeightZeroThreshold).ToString()).Append("\"");
+                }
+            }
+
+            if (TrainParams.Current.UseBlockDim)
+            {
+                sb.Append(TrainParams.Current.UseConv2dExtend ? " \"conv_block_dims=" : " \"block_dims=");
+                //DIM IN
+                for (int i = 0; i < 12; i++)
+                {
+                    sb.Append(TrainParams.Current.BlockDimIn[i]);
+                    sb.Append(",");
+                }
+                //DIM MID
+                sb.Append(TrainParams.Current.BlockDimMid).Append(",");
+
+                //DIM OUT
+                for (int i = 0; i < 12; i++)
+                {
+                    sb.Append(TrainParams.Current.BlockDimOut[i]);
+                    if (i < 11)
+                        sb.Append(",");
+                }
+                sb.Append("\"");
+
+                sb.Append(TrainParams.Current.UseConv2dExtend ? " \"conv_block_alphas=" : " \"block_alphas=");
+                //ALPHA IN
+                for (int i = 0; i < 12; i++)
+                {
+                    sb.Append(TrainParams.Current.BlockAlphaInM[i]);
+                    sb.Append(",");
+                }
+                //ALPHA MID
+                sb.Append(TrainParams.Current.BlockAlphaMidM).Append(",");
+
+                //ALPHA OUT
+                for (int i = 0; i < 12; i++)
+                {
+                    sb.Append(TrainParams.Current.BlockAlphaOutM[i]);
+                    if (i < 11)
+                        sb.Append(",");
+                }
+                sb.Append("\"");
+            }
+
+            return sb.ToString();
+        }
+
 
         public static void ResizeLora(string inputPath, string outputPath, decimal dim, bool cudaConversion)
         {
