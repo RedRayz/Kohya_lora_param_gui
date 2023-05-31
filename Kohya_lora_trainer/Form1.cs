@@ -601,13 +601,6 @@ namespace Kohya_lora_trainer
             frm.Dispose();
         }
 
-        private void btnResizeDim_Click(object sender, EventArgs e)
-        {
-            Form frm = new FormResizeDim();
-            frm.ShowDialog();
-            frm.Dispose();
-        }
-
         private void btnInstaller_Click(object sender, EventArgs e)
         {
             Form frm = new FormInstaller();

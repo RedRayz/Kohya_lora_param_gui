@@ -98,7 +98,6 @@ namespace Kohya_lora_trainer
             this.rbtBenckmark = new System.Windows.Forms.RadioButton();
             this.rbtDoNothing = new System.Windows.Forms.RadioButton();
             this.btnBatchProcess = new System.Windows.Forms.Button();
-            this.btnResizeDim = new System.Windows.Forms.Button();
             this.btnInstaller = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
@@ -798,16 +797,6 @@ namespace Kohya_lora_trainer
             this.btnBatchProcess.UseVisualStyleBackColor = true;
             this.btnBatchProcess.Click += new System.EventHandler(this.btnBatchProcess_Click);
             // 
-            // btnResizeDim
-            // 
-            this.btnResizeDim.Location = new System.Drawing.Point(480, 580);
-            this.btnResizeDim.Name = "btnResizeDim";
-            this.btnResizeDim.Size = new System.Drawing.Size(117, 45);
-            this.btnResizeDim.TabIndex = 81;
-            this.btnResizeDim.Text = "dimリサイズ";
-            this.btnResizeDim.UseVisualStyleBackColor = true;
-            this.btnResizeDim.Click += new System.EventHandler(this.btnResizeDim_Click);
-            // 
             // btnInstaller
             // 
             this.btnInstaller.Location = new System.Drawing.Point(516, 19);
@@ -824,7 +813,6 @@ namespace Kohya_lora_trainer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1172, 694);
             this.Controls.Add(this.btnInstaller);
-            this.Controls.Add(this.btnResizeDim);
             this.Controls.Add(this.btnBatchProcess);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAdvanced1);
@@ -975,7 +963,6 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.RadioButton rbtDoNothing;
         private System.Windows.Forms.RadioButton rbtShutdown;
         private System.Windows.Forms.Button btnBatchProcess;
-        private System.Windows.Forms.Button btnResizeDim;
         private System.Windows.Forms.Button btnInstaller;
     }
 }

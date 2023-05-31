@@ -53,9 +53,9 @@
             // 
             // btnPathToSave
             // 
-            this.btnPathToSave.Location = new System.Drawing.Point(363, 62);
+            this.btnPathToSave.Location = new System.Drawing.Point(390, 62);
             this.btnPathToSave.Name = "btnPathToSave";
-            this.btnPathToSave.Size = new System.Drawing.Size(129, 40);
+            this.btnPathToSave.Size = new System.Drawing.Size(129, 41);
             this.btnPathToSave.TabIndex = 0;
             this.btnPathToSave.Text = "選択";
             this.btnPathToSave.UseVisualStyleBackColor = true;
@@ -66,13 +66,13 @@
             this.lblModelPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblModelPath.Location = new System.Drawing.Point(39, 105);
             this.lblModelPath.Name = "lblModelPath";
-            this.lblModelPath.Size = new System.Drawing.Size(233, 47);
+            this.lblModelPath.Size = new System.Drawing.Size(248, 47);
             this.lblModelPath.TabIndex = 1;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(38, 34);
+            this.label3.Location = new System.Drawing.Point(47, 34);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(118, 25);
             this.label3.TabIndex = 2;
@@ -81,7 +81,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(358, 34);
+            this.label4.Location = new System.Drawing.Point(417, 34);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 25);
             this.label4.TabIndex = 2;
@@ -122,14 +122,14 @@
             // lblOutputPath
             // 
             this.lblOutputPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblOutputPath.Location = new System.Drawing.Point(359, 105);
+            this.lblOutputPath.Location = new System.Drawing.Point(322, 105);
             this.lblOutputPath.Name = "lblOutputPath";
-            this.lblOutputPath.Size = new System.Drawing.Size(233, 47);
+            this.lblOutputPath.Size = new System.Drawing.Size(260, 47);
             this.lblOutputPath.TabIndex = 1;
             // 
             // btnConvert
             // 
-            this.btnConvert.Location = new System.Drawing.Point(467, 238);
+            this.btnConvert.Location = new System.Drawing.Point(457, 220);
             this.btnConvert.Name = "btnConvert";
             this.btnConvert.Size = new System.Drawing.Size(125, 47);
             this.btnConvert.TabIndex = 5;

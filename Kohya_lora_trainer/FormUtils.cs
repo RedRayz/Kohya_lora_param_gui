@@ -56,12 +56,78 @@ namespace Kohya_lora_trainer {
             }
         }
 
-        private void FormUtils_Load(object sender, EventArgs e) {
-
+        private void btnSelectModel_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Safetensors(*.safetensors)|*.safetensors";
+            ofd.Title = "Select a LoRA model";
+            ofd.RestoreDirectory = true;
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                lblLoraPath.Text = ofd.FileName;
+            }
         }
 
-        private void FormUtils_FormClosing(object sender, FormClosingEventArgs e) {
+        private void btnResizeDim_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(lblLoraPath.Text) || string.IsNullOrEmpty(lblOutputPath.Text))
+            {
+                MessageBox.Show("変更するモデルと出力先の両方を指定してください", "おしらせ", MessageBoxButtons.OK);
+                return;
+            }
 
+            ResizeLora(lblLoraPath.Text, lblOutputPath.Text, nudTargetDim.Value, cbxCudaConversion.Checked);
+        }
+
+        private void ResizeLora(string inputPath, string outputPath, decimal dim, bool cudaConversion)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(@"/c cd ");
+            if (!string.IsNullOrEmpty(Form1.ScriptPath))
+            {
+                sb.Append("/d ").Append(Form1.ScriptPath);
+            }
+            else
+            {
+                sb.Append("..\\");
+            }
+
+            sb.Append(" && .\\venv\\Scripts\\activate && ");
+
+            sb.Append("python .\\networks\\resize_lora.py").Append("  --model \"").Append(inputPath).Append("\"")
+                .Append("  --save_to \"").Append(outputPath).Append("\"").Append("  --save_precision \"fp16\"")
+                .Append("  --new_rank ").Append(dim.ToString());
+
+            if (cudaConversion)
+            {
+                sb.Append("  --device \"cuda\"");
+            }
+
+            ProcessStartInfo ps = new ProcessStartInfo();
+            ps.FileName = "cmd";
+            ps.Arguments = sb.ToString();
+            var process = new Process();
+            process.StartInfo = ps;
+            process.Start();
+        }
+
+        private void btnSelectOutputPath_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileName = "NewLoRA.safetensors";
+            sfd.Filter = "Safetensors(*.safetensors)|*.safetensors";
+            sfd.Title = "Path to save a lora";
+            sfd.RestoreDirectory = true;
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                lblOutputPath.Text = sfd.FileName;
+            }
+        }
+
+        private void FormUtils_Load(object sender, EventArgs e)
+        {
+            lblOutputPath.Text = string.Empty;
+            lblLoraPath.Text = string.Empty;
         }
     }
 }
