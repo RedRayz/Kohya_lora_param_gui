@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -386,5 +387,37 @@ namespace Kohya_lora_trainer
             return sb.ToString();
         }
 
+
+        public static void ResizeLora(string inputPath, string outputPath, decimal dim, bool cudaConversion)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(@"/c cd ");
+            if (!string.IsNullOrEmpty(Form1.ScriptPath))
+            {
+                sb.Append("/d ").Append(Form1.ScriptPath);
+            }
+            else
+            {
+                sb.Append("..\\");
+            }
+
+            sb.Append(" && .\\venv\\Scripts\\activate && ");
+
+            sb.Append("python .\\networks\\resize_lora.py").Append("  --model \"").Append(inputPath).Append("\"")
+                .Append("  --save_to \"").Append(outputPath).Append("\"").Append("  --save_precision \"fp16\"")
+                .Append("  --new_rank ").Append(dim.ToString());
+
+            if (cudaConversion)
+            {
+                sb.Append("  --device \"cuda\"");
+            }
+
+            ProcessStartInfo ps = new ProcessStartInfo();
+            ps.FileName = "cmd";
+            ps.Arguments = sb.ToString();
+            var process = new Process();
+            process.StartInfo = ps;
+            process.Start();
+        }
     }
 }
