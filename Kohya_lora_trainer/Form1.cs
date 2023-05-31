@@ -325,170 +325,155 @@ namespace Kohya_lora_trainer
 
         private void btnStartTraining_Click(object sender, EventArgs e)
         {
-            if (!IsInvalidImageFolder && !IsInvalidRegFolder && !IsInvalidOutputName && !IsInvalidLR && !IsInvalidResolution)
+            string str = string.IsNullOrEmpty(ScriptPath) ? "..\\" : ScriptPath + "\\";
+
+            if (!HasScriptFile(str, true))
+                return;
+
+            if (NotifyBadParams() != DialogResult.Yes)
+                return;
+
+            if (BatchProcess.BatchStack.Count > 0)
             {
-                string str = string.IsNullOrEmpty(ScriptPath) ? "..\\" : ScriptPath + "\\";
-
-                if (!File.Exists(str + "train_network.py"))
+                BatchProcess.IsCancel = false;
+                BatchProcess.IsRunning = true;
+                BatchProcess.SkippedCount = 0;
+                BatchProcess.CompletedCount = 0;
+                while (BatchProcess.BatchStack.Count > 0)
                 {
-                    MessageBox.Show("train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    btnCustomScriptPath.Enabled = true;
-                    return;
-                }
-
-                if (NotifyBadParams() != DialogResult.Yes)
-                    return;
-
-                if (BatchProcess.BatchStack.Count > 0)
-                {
-                    BatchProcess.IsCancel = false;
-                    BatchProcess.IsRunning = true;
-                    BatchProcess.SkippedCount = 0;
-                    BatchProcess.CompletedCount = 0;
-                    while (BatchProcess.BatchStack.Count > 0)
+                    if (!HasScriptFile(str, false))
                     {
-                        string pth = BatchProcess.BatchStack.Pop();
-                        if (!File.Exists(pth))
-                        {
-                            Console.WriteLine("Skipping training. Invalid path: " + pth);
-                            BatchProcess.SkippedCount++;
-                            continue;
-                        }
-
-                        LoadPreset(pth, false);
-                        if (!CanRunTraining())
-                        {
-                            Console.WriteLine("Skipping training. Invalid params in: " + pth);
-                            BatchProcess.SkippedCount++;
-                            continue;
-                        }
-                        Console.WriteLine("Start training: " + pth);
-                        Form train0 = new TrainForm(rbtBenckmark.Checked, rbtShutdown.Checked, false);
-                        train0.ShowDialog();
-                        train0.Dispose();
-                        BatchProcess.CompletedCount++;
+                        Console.WriteLine("Skipping training. train_network.py not found");
+                        BatchProcess.SkippedCount++;
+                        continue;
                     }
 
-                    if (rbtShutdown.Checked && !BatchProcess.IsCancel)
+                    string pth = BatchProcess.BatchStack.Pop();
+                    if (!File.Exists(pth))
                     {
-                        Form train0 = new TrainForm(false, rbtShutdown.Checked, true);
-                        train0.ShowDialog();
-                        train0.Dispose();
+                        Console.WriteLine("Skipping training. Invalid path: " + pth);
+                        BatchProcess.SkippedCount++;
+                        continue;
                     }
-                    else
+
+                    LoadPreset(pth, false);
+                    if (!IsTrainingAvailable(false))
                     {
-                        MessageBox.Show("バッチ処理が終了しました。\n" + BatchProcess.CompletedCount.ToString() + "件の処理が完了し、" + BatchProcess.SkippedCount.ToString() + "件の処理がスキップされました。\nもう一度バッチ処理をする場合はバッチ処理ウィンドウを開いて反映ボタンを押してください。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Console.WriteLine("Skipping training. Invalid params in: " + pth);
+                        BatchProcess.SkippedCount++;
+                        continue;
                     }
-                    BatchProcess.IsRunning = false;
-                    BatchProcess.SkippedCount = 0;
-                    BatchProcess.CompletedCount = 0;
-                    BatchProcess.IsCancel = false;
-                    return;
+                    Console.WriteLine("Start training: " + pth);
+                    Form train0 = new TrainForm(rbtBenckmark.Checked, rbtShutdown.Checked, false);
+                    train0.ShowDialog();
+                    train0.Dispose();
+                    BatchProcess.CompletedCount++;
                 }
 
-                if (!File.Exists(TrainParams.Current.ModelPath))
+                if (rbtShutdown.Checked && !BatchProcess.IsCancel)
                 {
-                    MessageBox.Show("学習元モデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    Form train0 = new TrainForm(false, rbtShutdown.Checked, true);
+                    train0.ShowDialog();
+                    train0.Dispose();
                 }
-
-                if (!Directory.Exists(TrainParams.Current.TrainImagePath))
+                else
                 {
-                    MessageBox.Show("教師画像フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    MessageBox.Show("バッチ処理が終了しました。\n" + BatchProcess.CompletedCount.ToString() + "件の処理が完了し、" + BatchProcess.SkippedCount.ToString() + "件の処理がスキップされました。\nもう一度バッチ処理をする場合はバッチ処理ウィンドウを開いて反映ボタンを押してください。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-                if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath) && !Directory.Exists(TrainParams.Current.RegImagePath))
-                {
-                    MessageBox.Show("正則化画像フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (!Directory.Exists(TrainParams.Current.OutputPath))
-                {
-                    MessageBox.Show("出力先フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (!string.IsNullOrEmpty(TrainParams.Current.TensorBoardLogPath) && !Directory.Exists(TrainParams.Current.TensorBoardLogPath))
-                {
-                    MessageBox.Show("TensorBoard用ログフォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (HaveNonAscillInImageFolder || HaveNonAscillInModelPath || HaveNonAscillInOutputName || HaveNonAscillInRegFolder || HaveNonAscillInOutputPath)
-                {
-                    DialogResult res = MessageBox.Show("パスに日本語などのマルチバイト文字または空白文字が含まれています。\n不具合/エラーの原因となるため、それらの文字の使用は推奨しません。\n続けてもよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (res != DialogResult.Yes)
-                        return;
-                }
-
-                if (!string.IsNullOrEmpty(TrainParams.Current.LoraModelPath) && !File.Exists(TrainParams.Current.LoraModelPath))
-                {
-                    MessageBox.Show("追加学習するLoRAモデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath) && !File.Exists(TrainParams.Current.VAEPath))
-                {
-                    MessageBox.Show("VAEが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                Form train = new TrainForm(rbtBenckmark.Checked, rbtShutdown.Checked, false);
-                train.ShowDialog();
-                train.Dispose();
-
+                BatchProcess.IsRunning = false;
+                BatchProcess.SkippedCount = 0;
+                BatchProcess.CompletedCount = 0;
+                BatchProcess.IsCancel = false;
+                return;
             }
-            else
-            {
-                MessageBox.Show("設定が間違っています。設定を見直してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+
+            if (!IsTrainingAvailable(true))
+                return;
+
+            Form train = new TrainForm(rbtBenckmark.Checked, rbtShutdown.Checked, false);
+            train.ShowDialog();
+            train.Dispose();
         }
 
-        private bool CanRunTraining()
+        private bool HasScriptFile(string str, bool showMsg)
         {
-            string str = string.IsNullOrEmpty(ScriptPath) ? "..\\" : ScriptPath + "\\";
             if (!File.Exists(str + "train_network.py"))
             {
-                btnCustomScriptPath.Enabled = true;
+                if (showMsg)
+                    MessageBox.Show("train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
+        private bool IsTrainingAvailable(bool showMsg)
+        {
+            if (IsInvalidImageFolder || IsInvalidRegFolder || IsInvalidOutputName || IsInvalidLR || IsInvalidResolution)
+            {
+                if (showMsg)
+                {
+                    MessageBox.Show("設定が間違っています。設定を見直してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
                 return false;
             }
 
             if (!File.Exists(TrainParams.Current.ModelPath))
             {
+                if (showMsg)
+                    MessageBox.Show("学習元モデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (!Directory.Exists(TrainParams.Current.TrainImagePath))
             {
+                if (showMsg)
+                    MessageBox.Show("教師画像フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath) && !Directory.Exists(TrainParams.Current.RegImagePath))
             {
+                if (showMsg)
+                    MessageBox.Show("正則化画像フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (!Directory.Exists(TrainParams.Current.OutputPath))
             {
+                if (showMsg)
+                    MessageBox.Show("出力先フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.TensorBoardLogPath) && !Directory.Exists(TrainParams.Current.TensorBoardLogPath))
             {
+                if (showMsg)
+                    MessageBox.Show("TensorBoard用ログフォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
+            }
+
+            if (showMsg && (HaveNonAscillInImageFolder || HaveNonAscillInModelPath || HaveNonAscillInOutputName || HaveNonAscillInRegFolder || HaveNonAscillInOutputPath))
+            {
+                DialogResult res = MessageBox.Show("パスに日本語などのマルチバイト文字または空白文字が含まれています。\n不具合/エラーの原因となるため、それらの文字の使用は推奨しません。\n続けてもよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res != DialogResult.Yes)
+                    return false;
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.LoraModelPath) && !File.Exists(TrainParams.Current.LoraModelPath))
             {
+                if (showMsg)
+                    MessageBox.Show("追加学習するLoRAモデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath) && !File.Exists(TrainParams.Current.VAEPath))
             {
+                if (showMsg)
+                    MessageBox.Show("VAEが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+
             return true;
         }
 
@@ -611,6 +596,12 @@ namespace Kohya_lora_trainer
         private void cbxModuleType_SelectedIndexChanged(object sender, EventArgs e)
         {
             TrainParams.Current.ModuleType = (ModuleType)Enum.ToObject(typeof(ModuleType), cbxModuleType.SelectedIndex);
+        }
+
+        private void btnGenerateCommands_Click(object sender, EventArgs e)
+        {
+            if (IsTrainingAvailable(true))
+                Clipboard.SetText(MyUtils.GenerateCommands());
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -905,7 +896,7 @@ namespace Kohya_lora_trainer
                 case OptimizerType.AdamW:
                 case OptimizerType.AdaFactor:
                     {
-                        if(TrainParams.Current.LearningRate > 0.02f)
+                        if (TrainParams.Current.LearningRate > 0.02f)
                             return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.00005-0.001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
@@ -913,7 +904,7 @@ namespace Kohya_lora_trainer
                     {
                         if (TrainParams.Current.LearningRate > 3)
                             return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:1)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        else if(TrainParams.Current.LearningRate < 0.1f)
+                        else if (TrainParams.Current.LearningRate < 0.1f)
                             return MessageBox.Show("現在のOptimizerに対するLRが低すぎます(推奨値:1)。\n何も学習しない可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;

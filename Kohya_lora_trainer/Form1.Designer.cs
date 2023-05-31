@@ -99,6 +99,7 @@ namespace Kohya_lora_trainer
             this.rbtDoNothing = new System.Windows.Forms.RadioButton();
             this.btnBatchProcess = new System.Windows.Forms.Button();
             this.btnInstaller = new System.Windows.Forms.Button();
+            this.btnGenerateCommands = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
@@ -516,7 +517,7 @@ namespace Kohya_lora_trainer
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(895, 523);
+            this.label1.Location = new System.Drawing.Point(895, 499);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 25);
             this.label1.TabIndex = 60;
@@ -525,7 +526,7 @@ namespace Kohya_lora_trainer
             // lblNumSteps
             // 
             this.lblNumSteps.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblNumSteps.Location = new System.Drawing.Point(1053, 520);
+            this.lblNumSteps.Location = new System.Drawing.Point(1053, 496);
             this.lblNumSteps.Name = "lblNumSteps";
             this.lblNumSteps.Size = new System.Drawing.Size(84, 25);
             this.lblNumSteps.TabIndex = 61;
@@ -571,7 +572,7 @@ namespace Kohya_lora_trainer
             // lblNumStepsBatch1
             // 
             this.lblNumStepsBatch1.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblNumStepsBatch1.Location = new System.Drawing.Point(1053, 558);
+            this.lblNumStepsBatch1.Location = new System.Drawing.Point(1053, 534);
             this.lblNumStepsBatch1.Name = "lblNumStepsBatch1";
             this.lblNumStepsBatch1.Size = new System.Drawing.Size(84, 25);
             this.lblNumStepsBatch1.TabIndex = 61;
@@ -580,7 +581,7 @@ namespace Kohya_lora_trainer
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(895, 558);
+            this.label5.Location = new System.Drawing.Point(895, 534);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(152, 25);
             this.label5.TabIndex = 60;
@@ -807,11 +808,22 @@ namespace Kohya_lora_trainer
             this.btnInstaller.UseVisualStyleBackColor = true;
             this.btnInstaller.Click += new System.EventHandler(this.btnInstaller_Click);
             // 
+            // btnGenerateCommands
+            // 
+            this.btnGenerateCommands.Location = new System.Drawing.Point(951, 575);
+            this.btnGenerateCommands.Name = "btnGenerateCommands";
+            this.btnGenerateCommands.Size = new System.Drawing.Size(192, 38);
+            this.btnGenerateCommands.TabIndex = 83;
+            this.btnGenerateCommands.Text = "コマンドの生成とコピー";
+            this.btnGenerateCommands.UseVisualStyleBackColor = true;
+            this.btnGenerateCommands.Click += new System.EventHandler(this.btnGenerateCommands_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1172, 694);
+            this.Controls.Add(this.btnGenerateCommands);
             this.Controls.Add(this.btnInstaller);
             this.Controls.Add(this.btnBatchProcess);
             this.Controls.Add(this.groupBox1);
@@ -964,6 +976,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.RadioButton rbtShutdown;
         private System.Windows.Forms.Button btnBatchProcess;
         private System.Windows.Forms.Button btnInstaller;
+        private System.Windows.Forms.Button btnGenerateCommands;
     }
 }
 

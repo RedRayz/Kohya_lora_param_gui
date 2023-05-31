@@ -9,6 +9,10 @@ namespace Kohya_lora_trainer
 {
     public static class MyUtils
     {
+        /// <summary>
+        /// accelerateのコマンド生成。
+        /// </summary>
+        /// <returns>accelerateのコマンド</returns>
         public static string GenerateCommands()
         {
             StringBuilder sb = new StringBuilder();
@@ -387,6 +391,10 @@ namespace Kohya_lora_trainer
             return sb.ToString();
         }
 
+        /// <summary>
+        /// 層別ウェイトの引数生成。
+        /// </summary>
+        /// <returns>層別ウェイトのコマンド</returns>
         public static string GetBlockWeightCmd()
         {
             StringBuilder sb = new StringBuilder();
@@ -499,6 +507,13 @@ namespace Kohya_lora_trainer
         }
 
 
+        /// <summary>
+        /// Dimリサイズコマンドの実行。
+        /// </summary>
+        /// <param name="inputPath">変換元LoRA</param>
+        /// <param name="outputPath">変換後の保存先</param>
+        /// <param name="dim">このDimする</param>
+        /// <param name="cudaConversion">CUDAで変換</param>
         public static void ResizeLora(string inputPath, string outputPath, decimal dim, bool cudaConversion)
         {
             StringBuilder sb = new StringBuilder();

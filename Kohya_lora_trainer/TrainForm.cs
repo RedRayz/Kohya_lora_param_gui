@@ -150,7 +150,7 @@ namespace Kohya_lora_trainer
                 hour = Math.Floor(hour);
                 min -= hour * 60;
 
-                MessageBox.Show("経過時間: " + $"{hour}h{min}m" + sec.ToString("0.000s"), "結果", MessageBoxButtons.OK);
+                MessageBox.Show("Time taken: " + $"{hour}h{min}m" + sec.ToString("0.000s"), "Result", MessageBoxButtons.OK);
             }
 
             if (ShutdownAfterComplete)
