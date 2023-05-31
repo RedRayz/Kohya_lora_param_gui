@@ -12,6 +12,7 @@ namespace Kohya_lora_trainer
         public static bool IsRunning = false;
         public static bool IsCancel = false;
         public static int SkippedCount = 0;
+        public static int CompletedCount = 0;
 
         public static void LoadBatchPresetText(string text)
         {

@@ -449,7 +449,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(26, 581);
+            this.label21.Location = new System.Drawing.Point(24, 581);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(50, 25);
             this.label21.TabIndex = 1;
@@ -704,7 +704,7 @@
             // 
             // tbrOut01
             // 
-            this.tbrOut01.Location = new System.Drawing.Point(573, 581);
+            this.tbrOut01.Location = new System.Drawing.Point(571, 581);
             this.tbrOut01.Maximum = 20;
             this.tbrOut01.Name = "tbrOut01";
             this.tbrOut01.Size = new System.Drawing.Size(356, 69);
@@ -815,7 +815,7 @@
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(515, 581);
+            this.label45.Location = new System.Drawing.Point(513, 581);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(67, 25);
             this.label45.TabIndex = 1;

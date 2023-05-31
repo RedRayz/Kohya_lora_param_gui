@@ -234,7 +234,7 @@ namespace Kohya_lora_trainer
             float lr = 0.0001f;
             if (float.TryParse(tbxLR.Text, out lr))
             {
-                if (lr <= 0f || lr >= 3f || float.IsNaN(lr))
+                if (lr < 0f || lr >= 4f || float.IsNaN(lr))
                 {
                     lblLR.ForeColor = Color.Red;
                     IsInvalidLR = true;
@@ -336,11 +336,15 @@ namespace Kohya_lora_trainer
                     return;
                 }
 
+                if (NotifyBadParams() != DialogResult.Yes)
+                    return;
+
                 if (BatchProcess.BatchStack.Count > 0)
                 {
                     BatchProcess.IsCancel = false;
                     BatchProcess.IsRunning = true;
                     BatchProcess.SkippedCount = 0;
+                    BatchProcess.CompletedCount = 0;
                     while (BatchProcess.BatchStack.Count > 0)
                     {
                         string pth = BatchProcess.BatchStack.Pop();
@@ -362,6 +366,7 @@ namespace Kohya_lora_trainer
                         Form train0 = new TrainForm(rbtBenckmark.Checked, rbtShutdown.Checked, false);
                         train0.ShowDialog();
                         train0.Dispose();
+                        BatchProcess.CompletedCount++;
                     }
 
                     if (rbtShutdown.Checked && !BatchProcess.IsCancel)
@@ -372,10 +377,11 @@ namespace Kohya_lora_trainer
                     }
                     else
                     {
-                        MessageBox.Show("バッチ処理が終了しました。\n" + BatchProcess.SkippedCount.ToString() + "件の処理がスキップされました。\nもう一度バッチ処理をする場合はバッチ処理ウィンドウを開いて反映ボタンを押してください。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("バッチ処理が終了しました。\n" + BatchProcess.CompletedCount.ToString() + "件の処理が完了し、" + BatchProcess.SkippedCount.ToString() + "件の処理がスキップされました。\nもう一度バッチ処理をする場合はバッチ処理ウィンドウを開いて反映ボタンを押してください。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     BatchProcess.IsRunning = false;
                     BatchProcess.SkippedCount = 0;
+                    BatchProcess.CompletedCount = 0;
                     BatchProcess.IsCancel = false;
                     return;
                 }
@@ -896,6 +902,31 @@ namespace Kohya_lora_trainer
             nudWarmupSteps.Value = TrainParams.Current.WarmupSteps;
 
             UpdateTotalStepCount();
+        }
+
+        private DialogResult NotifyBadParams()
+        {
+            switch (TrainParams.Current.OptimizerType)
+            {
+                case OptimizerType.AdamW8bit:
+                case OptimizerType.AdamW:
+                case OptimizerType.AdaFactor:
+                    {
+                        if(TrainParams.Current.LearningRate > 0.02f)
+                            return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.00005-0.001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
+                    break;
+                case OptimizerType.DAdaptLion:
+                    {
+                        if (TrainParams.Current.LearningRate > 3)
+                            return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:1)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        else if(TrainParams.Current.LearningRate < 0.1f)
+                            return MessageBox.Show("現在のOptimizerに対するLRが低すぎます(推奨値:1)。\n何も学習しない可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
+                    break;
+            }
+
+            return DialogResult.Yes;
         }
 
     }
