@@ -117,18 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="tbxConsoleOutput.Text" xml:space="preserve">
-    <value>loading ... your_model.safetensors
-#
-tensor([[ True,  True,  True,  True,  True,  True,  True,  True,  True,  True,
-          True,  True,  True,  True,  True,  True,  True,  True,  True,  True,
-          True,  True,  True,  True,  True,  True,  True,  True,  True,  True,
-          True,  True,  True,  True,  True,  True,  True,  True,  True,  True,
-          True, False,  True,  True,  True,  True,  True,  True,  True,  True,
-          True,  True,  True,  True,  True,  True,  True,  True,  True,  True,
-          True,  True,  True,  True,  True,  True,  True,  True,  True,  True,
-          True,  True,  True,  True,  True,  True,  True]])
-corrupt token indexes : [41]
-missing token numbers : [41]</value>
-  </data>
 </root>
