@@ -259,11 +259,11 @@ namespace Kohya_lora_trainer
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(39, 13);
+            this.label7.Location = new System.Drawing.Point(19, 13);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(360, 50);
+            this.label7.Size = new System.Drawing.Size(417, 25);
             this.label7.TabIndex = 29;
-            this.label7.Text = "*がつく項目は必須です\r\n#がつく項目は0を指定することで無効になります。";
+            this.label7.Text = "*がつく項目は必須。#がつく項目は0を指定すると無効化";
             // 
             // cbxShuffle
             // 
@@ -590,11 +590,11 @@ namespace Kohya_lora_trainer
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(160, 438);
+            this.label8.Location = new System.Drawing.Point(171, 438);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(280, 25);
+            this.label8.Size = new System.Drawing.Size(298, 25);
             this.label8.TabIndex = 65;
-            this.label8.Text = "次の文字は使用できません /\\?:*<>|\"\r\n";
+            this.label8.Text = "次の文字は使用できません /\\?:*<>|\"＆\r\n";
             // 
             // label11
             // 
@@ -689,20 +689,20 @@ namespace Kohya_lora_trainer
             "LoRA",
             "LyCORIS",
             "DyLoRA"});
-            this.cbxModuleType.Location = new System.Drawing.Point(991, 344);
+            this.cbxModuleType.Location = new System.Drawing.Point(1017, 344);
             this.cbxModuleType.Name = "cbxModuleType";
-            this.cbxModuleType.Size = new System.Drawing.Size(146, 33);
+            this.cbxModuleType.Size = new System.Drawing.Size(120, 33);
             this.cbxModuleType.TabIndex = 6;
             this.cbxModuleType.SelectedIndexChanged += new System.EventHandler(this.cbxModuleType_SelectedIndexChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(849, 347);
+            this.label6.Location = new System.Drawing.Point(873, 347);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(130, 25);
+            this.label6.Size = new System.Drawing.Size(138, 25);
             this.label6.TabIndex = 72;
-            this.label6.Text = "モジュールの種類";
+            this.label6.Text = "モジュールの種類*";
             // 
             // btnAddtional
             // 
@@ -800,7 +800,7 @@ namespace Kohya_lora_trainer
             // 
             // btnInstaller
             // 
-            this.btnInstaller.Location = new System.Drawing.Point(520, 19);
+            this.btnInstaller.Location = new System.Drawing.Point(538, 13);
             this.btnInstaller.Name = "btnInstaller";
             this.btnInstaller.Size = new System.Drawing.Size(189, 42);
             this.btnInstaller.TabIndex = 82;

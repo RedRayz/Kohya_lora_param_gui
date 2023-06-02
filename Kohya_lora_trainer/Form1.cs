@@ -24,7 +24,8 @@ namespace Kohya_lora_trainer
     {
         private bool IsInvalidOutputName, IsInvalidImageFolder = true, IsInvalidRegFolder = false, IsInvalidLR = false, IsInvalidResolution;
         private bool HaveNonAscillInOutputName, HaveNonAscillInImageFolder, HaveNonAscillInRegFolder, HaveNonAscillInModelPath, HaveNonAscillInOutputPath;
-        private int StepsPerEpoch, TotalSteps, TotalStepsBatch1;
+        private int StepsPerEpoch;
+        private decimal TotalSteps, TotalStepsBatch1;
         public static string ScriptPath = string.Empty;
 
         public Form1()
@@ -63,12 +64,12 @@ namespace Kohya_lora_trainer
                 if (string.IsNullOrEmpty(ScriptPath) || !File.Exists(ScriptPath + "\\train_network.py"))
                 {
                     lblScriptPathDesc.ForeColor = Color.Red;
-                    lblScriptPathDesc.Text = "sd-scriptsの場所を選択してください";
+                    lblScriptPathDesc.Text = "sd-scriptsの場所選択";
                 }
                 else
                 {
                     lblScriptPathDesc.ForeColor = Color.Black;
-                    lblScriptPathDesc.Text = "sd-scriptsの場所を変更する";
+                    lblScriptPathDesc.Text = "sd-scriptsの場所変更";
                 }
 #else
                     lblScriptPathDesc.Visible = true;
@@ -234,7 +235,7 @@ namespace Kohya_lora_trainer
             float lr = 0.0001f;
             if (float.TryParse(tbxLR.Text, out lr))
             {
-                if (lr < 0f || lr >= 4f || float.IsNaN(lr))
+                if (lr < 0f || lr > 10f || float.IsNaN(lr))
                 {
                     lblLR.ForeColor = Color.Red;
                     IsInvalidLR = true;
@@ -741,7 +742,7 @@ namespace Kohya_lora_trainer
         {
             TrainParams.Current.OutputName = tbxFileName.Text.Trim();
             HaveNonAscillInOutputName = false;
-            Regex regex = new Regex("[:/\\\\\\?\\*<>\\|\"]");
+            Regex regex = new Regex("[&:/\\\\\\?\\*<>\\|\"]");
             if (regex.IsMatch(TrainParams.Current.OutputName))
             {
                 lblFileName.ForeColor = Color.Red;
@@ -772,7 +773,12 @@ namespace Kohya_lora_trainer
             }
             else
             {
-                TotalSteps = StepsPerEpoch * TrainParams.Current.Epochs / TrainParams.Current.BatchSize;
+                //TrainParams.Current.Epochs * (double)StepsPerEpoch / TrainParams.Current.BatchSize
+                //TotalSteps = StepsPerEpoch * TrainParams.Current.Epochs / TrainParams.Current.BatchSize;
+                decimal eps = (decimal)StepsPerEpoch / TrainParams.Current.BatchSize;
+
+                TotalSteps = TrainParams.Current.Epochs * Math.Ceiling(eps);
+                
                 TotalStepsBatch1 = TotalSteps * TrainParams.Current.BatchSize;
                 if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
                 {
@@ -900,6 +906,12 @@ namespace Kohya_lora_trainer
                             return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.00005-0.001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
+                case OptimizerType.DAdaptation:
+                case OptimizerType.DAdaptAdaGrad:
+                case OptimizerType.DAdaptAdam:
+                case OptimizerType.DAdaptAdan:
+                case OptimizerType.DAdaptSGD:
+                case OptimizerType.DAdaptAdanIP:
                 case OptimizerType.DAdaptLion:
                     {
                         if (TrainParams.Current.LearningRate > 3)
