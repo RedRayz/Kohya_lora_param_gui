@@ -773,8 +773,7 @@ namespace Kohya_lora_trainer
             }
             else
             {
-                //TrainParams.Current.Epochs * (double)StepsPerEpoch / TrainParams.Current.BatchSize
-                //TotalSteps = StepsPerEpoch * TrainParams.Current.Epochs / TrainParams.Current.BatchSize;
+                //sd-scriptsに近い計算式でもずれるときはずれる。accelerateとかの影響?
                 decimal eps = (decimal)StepsPerEpoch / TrainParams.Current.BatchSize;
 
                 TotalSteps = TrainParams.Current.Epochs * Math.Ceiling(eps);
