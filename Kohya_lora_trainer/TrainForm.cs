@@ -117,6 +117,7 @@ namespace Kohya_lora_trainer
                     BatchProcess.IsCancel = true;
                     BatchProcess.BatchStack.Clear();
                     BatchProcess.IsRunning = false;
+                    BatchProcess.CompletedCount--;
                 }
             }
         }

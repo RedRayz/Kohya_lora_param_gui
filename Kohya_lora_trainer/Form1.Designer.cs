@@ -706,11 +706,11 @@ namespace Kohya_lora_trainer
             // 
             // btnAddtional
             // 
-            this.btnAddtional.Location = new System.Drawing.Point(261, 584);
+            this.btnAddtional.Location = new System.Drawing.Point(142, 585);
             this.btnAddtional.Name = "btnAddtional";
             this.btnAddtional.Size = new System.Drawing.Size(113, 45);
             this.btnAddtional.TabIndex = 73;
-            this.btnAddtional.Text = "追加設定";
+            this.btnAddtional.Text = "詳細設定1";
             this.btnAddtional.UseVisualStyleBackColor = true;
             this.btnAddtional.Click += new System.EventHandler(this.btnAddtional_Click);
             // 
@@ -736,11 +736,11 @@ namespace Kohya_lora_trainer
             // 
             // btnAdvanced1
             // 
-            this.btnAdvanced1.Location = new System.Drawing.Point(142, 584);
+            this.btnAdvanced1.Location = new System.Drawing.Point(262, 585);
             this.btnAdvanced1.Name = "btnAdvanced1";
             this.btnAdvanced1.Size = new System.Drawing.Size(113, 45);
             this.btnAdvanced1.TabIndex = 78;
-            this.btnAdvanced1.Text = "詳細設定1";
+            this.btnAdvanced1.Text = "詳細設定2";
             this.btnAdvanced1.UseVisualStyleBackColor = true;
             this.btnAdvanced1.Click += new System.EventHandler(this.btnAdvanced1_Click);
             // 
