@@ -45,11 +45,16 @@ namespace Kohya_lora_trainer
                                     sb.Append(" \"conv_alpha=").Append(TrainParams.Current.ConvAlpha.ToString()).Append("\"");
                                 if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
                                     sb.Append(" ").Append(lbw);
+                                sb.Append(GenerateDropoutCommands());
                             }
                         }
                         else if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
                         {
                             sb.Append(" --network_args").Append(" ").Append(lbw);
+                            sb.Append(GenerateDropoutCommands());
+                        }else if(TrainParams.Current.RankDropout > 0 || TrainParams.Current.ModuleDropout > 0)
+                        {
+                            sb.Append(" --network_args").Append(" ").Append(GenerateDropoutCommands());
                         }
 
                     }
@@ -69,6 +74,7 @@ namespace Kohya_lora_trainer
                             if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
                                 sb.Append(" ").Append(lbw);
                         }
+                        sb.Append(GenerateDropoutCommands());
                     }
                     break;
                 case ModuleType.DyLoRA:
@@ -76,7 +82,7 @@ namespace Kohya_lora_trainer
                         sb.Append(" --network_module \"").Append("networks.dylora").Append("\"");
                         sb.Append(" --network_args");
                         sb.Append(" \"unit ").Append(TrainParams.Current.DyLoRAUnit.ToString()).Append("\"");
-
+                        sb.Append(GenerateDropoutCommands());
                         if (TrainParams.Current.UseConv2dExtend)
                         {
                             bool di = TrainParams.Current.ConvDim > 0;
@@ -142,9 +148,10 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.UseSDV2)
             {
                 sb.Append(" --v2");
-                if (TrainParams.Current.UseParameterization)
-                    sb.Append(" --v_parameterization");
             }
+
+            if (TrainParams.Current.UseParameterization)
+                sb.Append(" --v_parameterization");
 
             if (TrainParams.Current.CacheLatents)
             {
@@ -386,6 +393,38 @@ namespace Kohya_lora_trainer
             if (!string.IsNullOrEmpty(TrainParams.Current.DatasetConfigPath))
             {
                 sb.Append(" --dataset_config \"").Append(TrainParams.Current.DatasetConfigPath).Append("\"");
+            }
+
+            if (TrainParams.Current.ScaleVPredLoss)
+            {
+                sb.Append(" --scale_v_pred_loss_like_noise_pred");
+            }
+
+            if (TrainParams.Current.MaxNormReg > 0)
+            {
+                sb.Append(" --scale_weight_norms ").Append(TrainParams.Current.MaxNormReg.ToString());
+            }
+
+            if (TrainParams.Current.NetworkDropout > 0)
+            {
+                sb.Append(" --network_dropout ").Append(TrainParams.Current.NetworkDropout.ToString());
+            }
+
+            return sb.ToString();
+        }
+
+        private static string GenerateDropoutCommands()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            if(TrainParams.Current.RankDropout > 0)
+            {
+                sb.Append(" \"rank_dropout=").Append(TrainParams.Current.RankDropout.ToString()).Append("\"");
+            }
+
+            if (TrainParams.Current.ModuleDropout > 0)
+            {
+                sb.Append(" \"module_dropout=").Append(TrainParams.Current.ModuleDropout.ToString()).Append("\"");
             }
 
             return sb.ToString();
