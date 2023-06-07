@@ -106,10 +106,15 @@ namespace Kohya_lora_trainer
                 DialogResult result = MessageBox.Show("学習中に閉じると学習は中止されます。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    if (process == null || process.HasExited)
-                        return;
-                    process.Kill();
-                    process.Dispose();
+                    //メッセージボックスが出ている間に閉じたかもしれないので再度確認
+                    if (process != null && !process.HasExited)
+                    {
+                        //Killしても閉じないことがある・・・Windowsのバグ？
+                        Console.WriteLine("Try kill terminal: " + process.ProcessName);
+                        process.Kill();
+                        process.Dispose();
+                    }
+
                     btnStop.Enabled = false;
                     btnClose.Enabled = true;
                     process = null;

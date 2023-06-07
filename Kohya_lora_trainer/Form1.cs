@@ -547,13 +547,6 @@ namespace Kohya_lora_trainer
             }
         }
 
-        private void btnAddtional_Click(object sender, EventArgs e)
-        {
-            Form frm = new FormAddtional();
-            frm.ShowDialog();
-            frm.Dispose();
-        }
-
         private void nudWarmupSteps_ValueChanged(object sender, EventArgs e)
         {
             TrainParams.Current.WarmupSteps = (int)nudWarmupSteps.Value;
@@ -569,13 +562,6 @@ namespace Kohya_lora_trainer
         private void btnBlockDim_Click(object sender, EventArgs e)
         {
             Form frm = new FormBlockDim();
-            frm.ShowDialog();
-            frm.Dispose();
-        }
-
-        private void btnAdvanced1_Click(object sender, EventArgs e)
-        {
-            Form frm = new FormAdvanced1();
             frm.ShowDialog();
             frm.Dispose();
         }

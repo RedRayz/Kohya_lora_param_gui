@@ -132,23 +132,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAddtional.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAddtional.Designer.cs">
-      <DependentUpon>FormAddtional.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormAdvanced.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAdvanced.Designer.cs">
       <DependentUpon>FormAdvanced.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormAdvanced1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAdvanced1.Designer.cs">
-      <DependentUpon>FormAdvanced1.cs</DependentUpon>
     </Compile>
     <Compile Include="FormBatchProcess.cs">
       <SubType>Form</SubType>
@@ -192,12 +180,6 @@
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormAddtional.resx">
-      <DependentUpon>FormAddtional.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormAdvanced1.resx">
-      <DependentUpon>FormAdvanced1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBatchProcess.resx">
       <DependentUpon>FormBatchProcess.cs</DependentUpon>

@@ -89,10 +89,8 @@ namespace Kohya_lora_trainer
             this.tbxOutputPath = new System.Windows.Forms.TextBox();
             this.cbxModuleType = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnAddtional = new System.Windows.Forms.Button();
             this.btnBlockWeight = new System.Windows.Forms.Button();
             this.btnBlockDim = new System.Windows.Forms.Button();
-            this.btnAdvanced1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbtShutdown = new System.Windows.Forms.RadioButton();
             this.rbtBenckmark = new System.Windows.Forms.RadioButton();
@@ -704,16 +702,6 @@ namespace Kohya_lora_trainer
             this.label6.TabIndex = 72;
             this.label6.Text = "モジュールの種類*";
             // 
-            // btnAddtional
-            // 
-            this.btnAddtional.Location = new System.Drawing.Point(142, 585);
-            this.btnAddtional.Name = "btnAddtional";
-            this.btnAddtional.Size = new System.Drawing.Size(113, 45);
-            this.btnAddtional.TabIndex = 73;
-            this.btnAddtional.Text = "詳細設定1";
-            this.btnAddtional.UseVisualStyleBackColor = true;
-            this.btnAddtional.Click += new System.EventHandler(this.btnAddtional_Click);
-            // 
             // btnBlockWeight
             // 
             this.btnBlockWeight.Location = new System.Drawing.Point(24, 635);
@@ -733,16 +721,6 @@ namespace Kohya_lora_trainer
             this.btnBlockDim.Text = "層別dim";
             this.btnBlockDim.UseVisualStyleBackColor = true;
             this.btnBlockDim.Click += new System.EventHandler(this.btnBlockDim_Click);
-            // 
-            // btnAdvanced1
-            // 
-            this.btnAdvanced1.Location = new System.Drawing.Point(262, 585);
-            this.btnAdvanced1.Name = "btnAdvanced1";
-            this.btnAdvanced1.Size = new System.Drawing.Size(113, 45);
-            this.btnAdvanced1.TabIndex = 78;
-            this.btnAdvanced1.Text = "詳細設定2";
-            this.btnAdvanced1.UseVisualStyleBackColor = true;
-            this.btnAdvanced1.Click += new System.EventHandler(this.btnAdvanced1_Click);
             // 
             // groupBox1
             // 
@@ -790,7 +768,7 @@ namespace Kohya_lora_trainer
             // 
             // btnBatchProcess
             // 
-            this.btnBatchProcess.Location = new System.Drawing.Point(262, 636);
+            this.btnBatchProcess.Location = new System.Drawing.Point(143, 586);
             this.btnBatchProcess.Name = "btnBatchProcess";
             this.btnBatchProcess.Size = new System.Drawing.Size(112, 41);
             this.btnBatchProcess.TabIndex = 80;
@@ -827,10 +805,8 @@ namespace Kohya_lora_trainer
             this.Controls.Add(this.btnInstaller);
             this.Controls.Add(this.btnBatchProcess);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnAdvanced1);
             this.Controls.Add(this.btnBlockDim);
             this.Controls.Add(this.btnBlockWeight);
-            this.Controls.Add(this.btnAddtional);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbxOutputPath);
             this.Controls.Add(this.tbxRegImgPath);
@@ -966,10 +942,8 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.TextBox tbxOutputPath;
         private System.Windows.Forms.ComboBox cbxModuleType;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btnAddtional;
         private System.Windows.Forms.Button btnBlockWeight;
         private System.Windows.Forms.Button btnBlockDim;
-        private System.Windows.Forms.Button btnAdvanced1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rbtBenckmark;
         private System.Windows.Forms.RadioButton rbtDoNothing;

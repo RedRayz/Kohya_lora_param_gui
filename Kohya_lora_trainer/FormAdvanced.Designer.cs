@@ -43,7 +43,6 @@ namespace Kohya_lora_trainer
             this.label7 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label6 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.cbxUseWarmupInit = new System.Windows.Forms.CheckBox();
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.tbxExtension = new System.Windows.Forms.TextBox();
@@ -92,6 +91,58 @@ namespace Kohya_lora_trainer
             this.label19 = new System.Windows.Forms.Label();
             this.nudMultiresNoiseDiscount = new System.Windows.Forms.NumericUpDown();
             this.label20 = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.pageMisc = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
+            this.pageConv = new System.Windows.Forms.TabPage();
+            this.lblConfigPath = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.btnClearConfigPath = new System.Windows.Forms.Button();
+            this.btnSelectConfigPath = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.nudDyLoRAUnit = new System.Windows.Forms.NumericUpDown();
+            this.cbxUseConv2d = new System.Windows.Forms.CheckBox();
+            this.nudConvAlpha = new System.Windows.Forms.NumericUpDown();
+            this.nudConvDim = new System.Windows.Forms.NumericUpDown();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.cbxAlgoType = new System.Windows.Forms.ComboBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.cbxUseColorAug = new System.Windows.Forms.CheckBox();
+            this.cbxCacheLatentsToDisk = new System.Windows.Forms.CheckBox();
+            this.cbxUseFastLoading = new System.Windows.Forms.CheckBox();
+            this.cbxCacheLatents = new System.Windows.Forms.CheckBox();
+            this.cbxUseV2 = new System.Windows.Forms.CheckBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.cbxUseParametarization = new System.Windows.Forms.CheckBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.cbxDontSaveMetadata = new System.Windows.Forms.CheckBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.cbxCropRandomly = new System.Windows.Forms.CheckBox();
+            this.nudMaxTokens = new System.Windows.Forms.NumericUpDown();
+            this.cbxFlipAug = new System.Windows.Forms.CheckBox();
+            this.nudDataLoaderThreads = new System.Windows.Forms.NumericUpDown();
+            this.cbxMixedPrecision = new System.Windows.Forms.ComboBox();
+            this.nudLRSchedulerCycle = new System.Windows.Forms.NumericUpDown();
+            this.label29 = new System.Windows.Forms.Label();
+            this.tbxMomentum = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.tbxWeightDecay = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.tbxBetas0 = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.tbxBetas1 = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.tbxBetas2 = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.tbxEps = new System.Windows.Forms.TextBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.tbxD0 = new System.Windows.Forms.TextBox();
+            this.tbxGrowthRate = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).BeginInit();
@@ -103,11 +154,24 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudMinSNRGamma)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMultiresNoiseIterations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMultiresNoiseDiscount)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.pageMisc.SuspendLayout();
+            this.pageConv.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDyLoRAUnit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudConvAlpha)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudConvDim)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxTokens)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDataLoaderThreads)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLRSchedulerCycle)).BeginInit();
             this.SuspendLayout();
             // 
             // tbxUnetLR
             // 
-            this.tbxUnetLR.Location = new System.Drawing.Point(211, 138);
+            this.tbxUnetLR.Location = new System.Drawing.Point(203, 70);
             this.tbxUnetLR.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxUnetLR.Name = "tbxUnetLR";
             this.tbxUnetLR.Size = new System.Drawing.Size(100, 31);
@@ -116,7 +180,7 @@ namespace Kohya_lora_trainer
             // 
             // tbxTextEncoLR
             // 
-            this.tbxTextEncoLR.Location = new System.Drawing.Point(547, 135);
+            this.tbxTextEncoLR.Location = new System.Drawing.Point(539, 67);
             this.tbxTextEncoLR.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbxTextEncoLR.Name = "tbxTextEncoLR";
             this.tbxTextEncoLR.Size = new System.Drawing.Size(100, 31);
@@ -125,7 +189,7 @@ namespace Kohya_lora_trainer
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(132, 141);
+            this.label1.Location = new System.Drawing.Point(124, 73);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 25);
             this.label1.TabIndex = 2;
@@ -134,7 +198,7 @@ namespace Kohya_lora_trainer
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(406, 138);
+            this.label2.Location = new System.Drawing.Point(398, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(135, 25);
             this.label2.TabIndex = 3;
@@ -143,7 +207,7 @@ namespace Kohya_lora_trainer
             // lblMinBucketReso
             // 
             this.lblMinBucketReso.AutoSize = true;
-            this.lblMinBucketReso.Location = new System.Drawing.Point(45, 179);
+            this.lblMinBucketReso.Location = new System.Drawing.Point(37, 111);
             this.lblMinBucketReso.Name = "lblMinBucketReso";
             this.lblMinBucketReso.Size = new System.Drawing.Size(163, 25);
             this.lblMinBucketReso.TabIndex = 4;
@@ -152,7 +216,7 @@ namespace Kohya_lora_trainer
             // lblMaxBucketReso
             // 
             this.lblMaxBucketReso.AutoSize = true;
-            this.lblMaxBucketReso.Location = new System.Drawing.Point(378, 179);
+            this.lblMaxBucketReso.Location = new System.Drawing.Point(370, 111);
             this.lblMaxBucketReso.Name = "lblMaxBucketReso";
             this.lblMaxBucketReso.Size = new System.Drawing.Size(163, 25);
             this.lblMaxBucketReso.TabIndex = 7;
@@ -161,7 +225,7 @@ namespace Kohya_lora_trainer
             // cbxNoUpscale
             // 
             this.cbxNoUpscale.AutoSize = true;
-            this.cbxNoUpscale.Location = new System.Drawing.Point(50, 225);
+            this.cbxNoUpscale.Location = new System.Drawing.Point(42, 157);
             this.cbxNoUpscale.Name = "cbxNoUpscale";
             this.cbxNoUpscale.Size = new System.Drawing.Size(283, 29);
             this.cbxNoUpscale.TabIndex = 8;
@@ -170,7 +234,8 @@ namespace Kohya_lora_trainer
             // 
             // tbrCpuThreads
             // 
-            this.tbrCpuThreads.Location = new System.Drawing.Point(159, 32);
+            this.tbrCpuThreads.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tbrCpuThreads.Location = new System.Drawing.Point(158, 41);
             this.tbrCpuThreads.Maximum = 32;
             this.tbrCpuThreads.Minimum = 1;
             this.tbrCpuThreads.Name = "tbrCpuThreads";
@@ -182,7 +247,7 @@ namespace Kohya_lora_trainer
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(44, 32);
+            this.label5.Location = new System.Drawing.Point(43, 41);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(123, 25);
             this.label5.TabIndex = 10;
@@ -191,7 +256,7 @@ namespace Kohya_lora_trainer
             // lblCpuThreadsCounter
             // 
             this.lblCpuThreadsCounter.AutoSize = true;
-            this.lblCpuThreadsCounter.Location = new System.Drawing.Point(646, 32);
+            this.lblCpuThreadsCounter.Location = new System.Drawing.Point(645, 41);
             this.lblCpuThreadsCounter.Name = "lblCpuThreadsCounter";
             this.lblCpuThreadsCounter.Size = new System.Drawing.Size(32, 25);
             this.lblCpuThreadsCounter.TabIndex = 11;
@@ -200,7 +265,7 @@ namespace Kohya_lora_trainer
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(119, 579);
+            this.label7.Location = new System.Drawing.Point(105, 88);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(81, 25);
             this.label7.TabIndex = 13;
@@ -209,26 +274,16 @@ namespace Kohya_lora_trainer
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(482, 579);
+            this.label6.Location = new System.Drawing.Point(444, 87);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 25);
             this.label6.TabIndex = 16;
             this.label6.Text = "Seed";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Yu Gothic UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label8.Location = new System.Drawing.Point(40, 530);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(280, 30);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "-通常編集の必要のない設定-";
-            // 
             // cbxUseWarmupInit
             // 
             this.cbxUseWarmupInit.AutoSize = true;
-            this.cbxUseWarmupInit.Location = new System.Drawing.Point(45, 356);
+            this.cbxUseWarmupInit.Location = new System.Drawing.Point(37, 288);
             this.cbxUseWarmupInit.Name = "cbxUseWarmupInit";
             this.cbxUseWarmupInit.Size = new System.Drawing.Size(302, 29);
             this.cbxUseWarmupInit.TabIndex = 18;
@@ -238,7 +293,7 @@ namespace Kohya_lora_trainer
             // 
             // tbxExtension
             // 
-            this.tbxExtension.Location = new System.Drawing.Point(204, 625);
+            this.tbxExtension.Location = new System.Drawing.Point(190, 134);
             this.tbxExtension.Name = "tbxExtension";
             this.tbxExtension.Size = new System.Drawing.Size(126, 31);
             this.tbxExtension.TabIndex = 19;
@@ -247,7 +302,7 @@ namespace Kohya_lora_trainer
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(46, 628);
+            this.label9.Location = new System.Drawing.Point(32, 137);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(155, 50);
             this.label9.TabIndex = 20;
@@ -256,7 +311,7 @@ namespace Kohya_lora_trainer
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(926, 681);
+            this.button1.Location = new System.Drawing.Point(829, 458);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(259, 44);
             this.button1.TabIndex = 22;
@@ -266,7 +321,7 @@ namespace Kohya_lora_trainer
             // 
             // nudSeed
             // 
-            this.nudSeed.Location = new System.Drawing.Point(539, 577);
+            this.nudSeed.Location = new System.Drawing.Point(501, 85);
             this.nudSeed.Maximum = new decimal(new int[] {
             -1,
             0,
@@ -288,7 +343,7 @@ namespace Kohya_lora_trainer
             0,
             0,
             0});
-            this.nudMinBucketReso.Location = new System.Drawing.Point(211, 177);
+            this.nudMinBucketReso.Location = new System.Drawing.Point(203, 109);
             this.nudMinBucketReso.Maximum = new decimal(new int[] {
             1024,
             0,
@@ -316,7 +371,7 @@ namespace Kohya_lora_trainer
             0,
             0,
             0});
-            this.nudMaxBucketReso.Location = new System.Drawing.Point(547, 177);
+            this.nudMaxBucketReso.Location = new System.Drawing.Point(539, 109);
             this.nudMaxBucketReso.Maximum = new decimal(new int[] {
             2048,
             0,
@@ -340,7 +395,7 @@ namespace Kohya_lora_trainer
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(98, 98);
+            this.label10.Location = new System.Drawing.Point(90, 30);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(91, 25);
             this.label10.TabIndex = 26;
@@ -357,14 +412,14 @@ namespace Kohya_lora_trainer
             "polynomial",
             "constant",
             "constant_with_warmup"});
-            this.cbxScheduler.Location = new System.Drawing.Point(211, 95);
+            this.cbxScheduler.Location = new System.Drawing.Point(203, 27);
             this.cbxScheduler.Name = "cbxScheduler";
             this.cbxScheduler.Size = new System.Drawing.Size(212, 33);
             this.cbxScheduler.TabIndex = 27;
             // 
             // nudClipSkip
             // 
-            this.nudClipSkip.Location = new System.Drawing.Point(203, 576);
+            this.nudClipSkip.Location = new System.Drawing.Point(189, 85);
             this.nudClipSkip.Maximum = new decimal(new int[] {
             8,
             0,
@@ -392,7 +447,7 @@ namespace Kohya_lora_trainer
             "fp16",
             "bf16",
             "float"});
-            this.cbxPrecision.Location = new System.Drawing.Point(539, 628);
+            this.cbxPrecision.Location = new System.Drawing.Point(501, 136);
             this.cbxPrecision.Name = "cbxPrecision";
             this.cbxPrecision.Size = new System.Drawing.Size(121, 33);
             this.cbxPrecision.TabIndex = 29;
@@ -401,7 +456,7 @@ namespace Kohya_lora_trainer
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(417, 632);
+            this.label11.Location = new System.Drawing.Point(379, 140);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(117, 25);
             this.label11.TabIndex = 30;
@@ -410,7 +465,7 @@ namespace Kohya_lora_trainer
             // btnDiscardAndClose
             // 
             this.btnDiscardAndClose.Font = new System.Drawing.Font("Yu Gothic UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnDiscardAndClose.Location = new System.Drawing.Point(658, 682);
+            this.btnDiscardAndClose.Location = new System.Drawing.Point(561, 459);
             this.btnDiscardAndClose.Name = "btnDiscardAndClose";
             this.btnDiscardAndClose.Size = new System.Drawing.Size(257, 44);
             this.btnDiscardAndClose.TabIndex = 31;
@@ -420,9 +475,9 @@ namespace Kohya_lora_trainer
             // 
             // btnTensorBoardPath
             // 
-            this.btnTensorBoardPath.Location = new System.Drawing.Point(176, 400);
+            this.btnTensorBoardPath.Location = new System.Drawing.Point(179, 229);
             this.btnTensorBoardPath.Name = "btnTensorBoardPath";
-            this.btnTensorBoardPath.Size = new System.Drawing.Size(147, 46);
+            this.btnTensorBoardPath.Size = new System.Drawing.Size(101, 46);
             this.btnTensorBoardPath.TabIndex = 32;
             this.btnTensorBoardPath.Text = "選択";
             this.btnTensorBoardPath.UseVisualStyleBackColor = true;
@@ -431,7 +486,7 @@ namespace Kohya_lora_trainer
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(41, 400);
+            this.label12.Location = new System.Drawing.Point(35, 229);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(129, 50);
             this.label12.TabIndex = 33;
@@ -440,7 +495,7 @@ namespace Kohya_lora_trainer
             // lblTBoardPath
             // 
             this.lblTBoardPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblTBoardPath.Location = new System.Drawing.Point(42, 450);
+            this.lblTBoardPath.Location = new System.Drawing.Point(36, 279);
             this.lblTBoardPath.Name = "lblTBoardPath";
             this.lblTBoardPath.Size = new System.Drawing.Size(320, 46);
             this.lblTBoardPath.TabIndex = 34;
@@ -448,9 +503,9 @@ namespace Kohya_lora_trainer
             // 
             // btnClearTBoardPath
             // 
-            this.btnClearTBoardPath.Location = new System.Drawing.Point(348, 400);
+            this.btnClearTBoardPath.Location = new System.Drawing.Point(286, 230);
             this.btnClearTBoardPath.Name = "btnClearTBoardPath";
-            this.btnClearTBoardPath.Size = new System.Drawing.Size(99, 46);
+            this.btnClearTBoardPath.Size = new System.Drawing.Size(101, 45);
             this.btnClearTBoardPath.TabIndex = 35;
             this.btnClearTBoardPath.Text = "クリア";
             this.btnClearTBoardPath.UseVisualStyleBackColor = true;
@@ -464,7 +519,7 @@ namespace Kohya_lora_trainer
             "しない",
             "TextEncoderのみ学習",
             "UNetのみ学習"});
-            this.cbxAdvancedTrain.Location = new System.Drawing.Point(547, 95);
+            this.cbxAdvancedTrain.Location = new System.Drawing.Point(539, 27);
             this.cbxAdvancedTrain.Name = "cbxAdvancedTrain";
             this.cbxAdvancedTrain.Size = new System.Drawing.Size(205, 33);
             this.cbxAdvancedTrain.TabIndex = 36;
@@ -472,7 +527,7 @@ namespace Kohya_lora_trainer
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(442, 98);
+            this.label13.Location = new System.Drawing.Point(434, 30);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(99, 25);
             this.label13.TabIndex = 37;
@@ -485,7 +540,7 @@ namespace Kohya_lora_trainer
             this.cbxCrossAttenType.Items.AddRange(new object[] {
             "xformers",
             "mem_eff_attn"});
-            this.cbxCrossAttenType.Location = new System.Drawing.Point(381, 263);
+            this.cbxCrossAttenType.Location = new System.Drawing.Point(373, 195);
             this.cbxCrossAttenType.Name = "cbxCrossAttenType";
             this.cbxCrossAttenType.Size = new System.Drawing.Size(207, 33);
             this.cbxCrossAttenType.TabIndex = 38;
@@ -494,7 +549,7 @@ namespace Kohya_lora_trainer
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(378, 229);
+            this.label4.Location = new System.Drawing.Point(370, 161);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(183, 25);
             this.label4.TabIndex = 40;
@@ -503,7 +558,7 @@ namespace Kohya_lora_trainer
             // cbxUseGradient
             // 
             this.cbxUseGradient.AutoSize = true;
-            this.cbxUseGradient.Location = new System.Drawing.Point(49, 260);
+            this.cbxUseGradient.Location = new System.Drawing.Point(41, 192);
             this.cbxUseGradient.Name = "cbxUseGradient";
             this.cbxUseGradient.Size = new System.Drawing.Size(301, 29);
             this.cbxUseGradient.TabIndex = 18;
@@ -514,7 +569,7 @@ namespace Kohya_lora_trainer
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(475, 400);
+            this.label3.Location = new System.Drawing.Point(45, 115);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(113, 50);
             this.label3.TabIndex = 41;
@@ -522,7 +577,7 @@ namespace Kohya_lora_trainer
             // 
             // btnSelectLoRAmodel
             // 
-            this.btnSelectLoRAmodel.Location = new System.Drawing.Point(588, 401);
+            this.btnSelectLoRAmodel.Location = new System.Drawing.Point(158, 116);
             this.btnSelectLoRAmodel.Name = "btnSelectLoRAmodel";
             this.btnSelectLoRAmodel.Size = new System.Drawing.Size(110, 45);
             this.btnSelectLoRAmodel.TabIndex = 42;
@@ -532,7 +587,7 @@ namespace Kohya_lora_trainer
             // 
             // btnClearLoRAmodel
             // 
-            this.btnClearLoRAmodel.Location = new System.Drawing.Point(704, 401);
+            this.btnClearLoRAmodel.Location = new System.Drawing.Point(274, 116);
             this.btnClearLoRAmodel.Name = "btnClearLoRAmodel";
             this.btnClearLoRAmodel.Size = new System.Drawing.Size(110, 45);
             this.btnClearLoRAmodel.TabIndex = 42;
@@ -543,7 +598,7 @@ namespace Kohya_lora_trainer
             // lblLoRAmodelPath
             // 
             this.lblLoRAmodelPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblLoRAmodelPath.Location = new System.Drawing.Point(480, 465);
+            this.lblLoRAmodelPath.Location = new System.Drawing.Point(50, 180);
             this.lblLoRAmodelPath.Name = "lblLoRAmodelPath";
             this.lblLoRAmodelPath.Size = new System.Drawing.Size(334, 46);
             this.lblLoRAmodelPath.TabIndex = 43;
@@ -557,7 +612,7 @@ namespace Kohya_lora_trainer
             0,
             0,
             65536});
-            this.nudNoiseOffset.Location = new System.Drawing.Point(926, 97);
+            this.nudNoiseOffset.Location = new System.Drawing.Point(918, 29);
             this.nudNoiseOffset.Maximum = new decimal(new int[] {
             10,
             0,
@@ -570,7 +625,7 @@ namespace Kohya_lora_trainer
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(794, 99);
+            this.label14.Location = new System.Drawing.Point(786, 31);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(126, 25);
             this.label14.TabIndex = 45;
@@ -584,7 +639,7 @@ namespace Kohya_lora_trainer
             0,
             0,
             65536});
-            this.nudMomentum.Location = new System.Drawing.Point(926, 134);
+            this.nudMomentum.Location = new System.Drawing.Point(918, 66);
             this.nudMomentum.Maximum = new decimal(new int[] {
             10,
             0,
@@ -602,7 +657,7 @@ namespace Kohya_lora_trainer
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(798, 134);
+            this.label15.Location = new System.Drawing.Point(790, 66);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(117, 50);
             this.label15.TabIndex = 45;
@@ -610,7 +665,7 @@ namespace Kohya_lora_trainer
             // 
             // btnSelectVAE
             // 
-            this.btnSelectVAE.Location = new System.Drawing.Point(935, 401);
+            this.btnSelectVAE.Location = new System.Drawing.Point(527, 120);
             this.btnSelectVAE.Name = "btnSelectVAE";
             this.btnSelectVAE.Size = new System.Drawing.Size(101, 45);
             this.btnSelectVAE.TabIndex = 46;
@@ -620,7 +675,7 @@ namespace Kohya_lora_trainer
             // 
             // btnClearVAE
             // 
-            this.btnClearVAE.Location = new System.Drawing.Point(1042, 401);
+            this.btnClearVAE.Location = new System.Drawing.Point(634, 119);
             this.btnClearVAE.Name = "btnClearVAE";
             this.btnClearVAE.Size = new System.Drawing.Size(101, 45);
             this.btnClearVAE.TabIndex = 46;
@@ -631,7 +686,7 @@ namespace Kohya_lora_trainer
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(886, 410);
+            this.label16.Location = new System.Drawing.Point(452, 129);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(43, 25);
             this.label16.TabIndex = 47;
@@ -640,7 +695,7 @@ namespace Kohya_lora_trainer
             // lblVAEPath
             // 
             this.lblVAEPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblVAEPath.Location = new System.Drawing.Point(852, 449);
+            this.lblVAEPath.Location = new System.Drawing.Point(418, 168);
             this.lblVAEPath.Name = "lblVAEPath";
             this.lblVAEPath.Size = new System.Drawing.Size(334, 46);
             this.lblVAEPath.TabIndex = 43;
@@ -649,7 +704,7 @@ namespace Kohya_lora_trainer
             // cbxUseWeightedCaption
             // 
             this.cbxUseWeightedCaption.AutoSize = true;
-            this.cbxUseWeightedCaption.Location = new System.Drawing.Point(50, 296);
+            this.cbxUseWeightedCaption.Location = new System.Drawing.Point(42, 228);
             this.cbxUseWeightedCaption.Name = "cbxUseWeightedCaption";
             this.cbxUseWeightedCaption.Size = new System.Drawing.Size(242, 54);
             this.cbxUseWeightedCaption.TabIndex = 48;
@@ -664,7 +719,7 @@ namespace Kohya_lora_trainer
             0,
             0,
             65536});
-            this.nudAdaptiveNoiseScale.Location = new System.Drawing.Point(926, 202);
+            this.nudAdaptiveNoiseScale.Location = new System.Drawing.Point(918, 134);
             this.nudAdaptiveNoiseScale.Minimum = new decimal(new int[] {
             100,
             0,
@@ -677,7 +732,7 @@ namespace Kohya_lora_trainer
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(798, 202);
+            this.label17.Location = new System.Drawing.Point(790, 134);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(116, 50);
             this.label17.TabIndex = 50;
@@ -685,7 +740,7 @@ namespace Kohya_lora_trainer
             // 
             // nudMinSNRGamma
             // 
-            this.nudMinSNRGamma.Location = new System.Drawing.Point(926, 270);
+            this.nudMinSNRGamma.Location = new System.Drawing.Point(918, 202);
             this.nudMinSNRGamma.Name = "nudMinSNRGamma";
             this.nudMinSNRGamma.Size = new System.Drawing.Size(120, 31);
             this.nudMinSNRGamma.TabIndex = 51;
@@ -693,7 +748,7 @@ namespace Kohya_lora_trainer
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(759, 272);
+            this.label18.Location = new System.Drawing.Point(751, 204);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(161, 25);
             this.label18.TabIndex = 52;
@@ -701,7 +756,7 @@ namespace Kohya_lora_trainer
             // 
             // nudMultiresNoiseIterations
             // 
-            this.nudMultiresNoiseIterations.Location = new System.Drawing.Point(926, 308);
+            this.nudMultiresNoiseIterations.Location = new System.Drawing.Point(918, 240);
             this.nudMultiresNoiseIterations.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -714,7 +769,7 @@ namespace Kohya_lora_trainer
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(790, 310);
+            this.label19.Location = new System.Drawing.Point(782, 242);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(125, 50);
             this.label19.TabIndex = 54;
@@ -728,7 +783,7 @@ namespace Kohya_lora_trainer
             0,
             0,
             65536});
-            this.nudMultiresNoiseDiscount.Location = new System.Drawing.Point(507, 308);
+            this.nudMultiresNoiseDiscount.Location = new System.Drawing.Point(499, 240);
             this.nudMultiresNoiseDiscount.Name = "nudMultiresNoiseDiscount";
             this.nudMultiresNoiseDiscount.Size = new System.Drawing.Size(120, 31);
             this.nudMultiresNoiseDiscount.TabIndex = 55;
@@ -736,73 +791,680 @@ namespace Kohya_lora_trainer
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(376, 310);
+            this.label20.Location = new System.Drawing.Point(368, 242);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(125, 50);
             this.label20.TabIndex = 56;
             this.label20.Text = "Multires Noise\r\nDiscount#";
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.pageConv);
+            this.tabControl1.Controls.Add(this.pageMisc);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1080, 431);
+            this.tabControl1.TabIndex = 57;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.label20);
+            this.tabPage1.Controls.Add(this.tbxUnetLR);
+            this.tabPage1.Controls.Add(this.nudMultiresNoiseDiscount);
+            this.tabPage1.Controls.Add(this.tbxTextEncoLR);
+            this.tabPage1.Controls.Add(this.label19);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.nudMultiresNoiseIterations);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.label18);
+            this.tabPage1.Controls.Add(this.lblMinBucketReso);
+            this.tabPage1.Controls.Add(this.nudMinSNRGamma);
+            this.tabPage1.Controls.Add(this.lblMaxBucketReso);
+            this.tabPage1.Controls.Add(this.label17);
+            this.tabPage1.Controls.Add(this.cbxNoUpscale);
+            this.tabPage1.Controls.Add(this.nudAdaptiveNoiseScale);
+            this.tabPage1.Controls.Add(this.cbxUseWeightedCaption);
+            this.tabPage1.Controls.Add(this.cbxUseWarmupInit);
+            this.tabPage1.Controls.Add(this.cbxUseGradient);
+            this.tabPage1.Controls.Add(this.label15);
+            this.tabPage1.Controls.Add(this.nudMinBucketReso);
+            this.tabPage1.Controls.Add(this.label14);
+            this.tabPage1.Controls.Add(this.nudMaxBucketReso);
+            this.tabPage1.Controls.Add(this.nudMomentum);
+            this.tabPage1.Controls.Add(this.label10);
+            this.tabPage1.Controls.Add(this.cbxScheduler);
+            this.tabPage1.Controls.Add(this.nudNoiseOffset);
+            this.tabPage1.Controls.Add(this.cbxAdvancedTrain);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.label13);
+            this.tabPage1.Controls.Add(this.cbxCrossAttenType);
+            this.tabPage1.Location = new System.Drawing.Point(4, 34);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1072, 393);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "ページ1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.lblVAEPath);
+            this.tabPage2.Controls.Add(this.tbrCpuThreads);
+            this.tabPage2.Controls.Add(this.lblCpuThreadsCounter);
+            this.tabPage2.Controls.Add(this.btnClearTBoardPath);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.btnSelectLoRAmodel);
+            this.tabPage2.Controls.Add(this.lblTBoardPath);
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.btnClearLoRAmodel);
+            this.tabPage2.Controls.Add(this.btnTensorBoardPath);
+            this.tabPage2.Controls.Add(this.lblLoRAmodelPath);
+            this.tabPage2.Controls.Add(this.btnClearVAE);
+            this.tabPage2.Controls.Add(this.btnSelectVAE);
+            this.tabPage2.Controls.Add(this.label16);
+            this.tabPage2.Location = new System.Drawing.Point(4, 34);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1072, 393);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "ページ2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // pageMisc
+            // 
+            this.pageMisc.Controls.Add(this.label8);
+            this.pageMisc.Controls.Add(this.nudSeed);
+            this.pageMisc.Controls.Add(this.cbxPrecision);
+            this.pageMisc.Controls.Add(this.tbxExtension);
+            this.pageMisc.Controls.Add(this.label9);
+            this.pageMisc.Controls.Add(this.label7);
+            this.pageMisc.Controls.Add(this.label11);
+            this.pageMisc.Controls.Add(this.label6);
+            this.pageMisc.Controls.Add(this.nudClipSkip);
+            this.pageMisc.Location = new System.Drawing.Point(4, 34);
+            this.pageMisc.Name = "pageMisc";
+            this.pageMisc.Size = new System.Drawing.Size(1072, 393);
+            this.pageMisc.TabIndex = 2;
+            this.pageMisc.Text = "その他";
+            this.pageMisc.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Yu Gothic UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label8.Location = new System.Drawing.Point(40, 31);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(279, 30);
+            this.label8.TabIndex = 31;
+            this.label8.Text = "通常編集する必要のない設定";
+            // 
+            // pageConv
+            // 
+            this.pageConv.Controls.Add(this.lblConfigPath);
+            this.pageConv.Controls.Add(this.label21);
+            this.pageConv.Controls.Add(this.btnClearConfigPath);
+            this.pageConv.Controls.Add(this.btnSelectConfigPath);
+            this.pageConv.Controls.Add(this.label22);
+            this.pageConv.Controls.Add(this.nudDyLoRAUnit);
+            this.pageConv.Controls.Add(this.cbxUseConv2d);
+            this.pageConv.Controls.Add(this.nudConvAlpha);
+            this.pageConv.Controls.Add(this.nudConvDim);
+            this.pageConv.Controls.Add(this.label23);
+            this.pageConv.Controls.Add(this.label24);
+            this.pageConv.Controls.Add(this.label25);
+            this.pageConv.Controls.Add(this.cbxAlgoType);
+            this.pageConv.Location = new System.Drawing.Point(4, 34);
+            this.pageConv.Name = "pageConv";
+            this.pageConv.Size = new System.Drawing.Size(1072, 393);
+            this.pageConv.TabIndex = 3;
+            this.pageConv.Text = "Conv関連";
+            this.pageConv.UseVisualStyleBackColor = true;
+            // 
+            // lblConfigPath
+            // 
+            this.lblConfigPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblConfigPath.Location = new System.Drawing.Point(281, 303);
+            this.lblConfigPath.Name = "lblConfigPath";
+            this.lblConfigPath.Size = new System.Drawing.Size(281, 50);
+            this.lblConfigPath.TabIndex = 25;
+            this.lblConfigPath.Text = "C:\\Users\\Test\\Desktop\\long name\\aaaaa.toml";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(130, 269);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(185, 25);
+            this.label21.TabIndex = 26;
+            this.label21.Text = "データセットconfigのパス";
+            // 
+            // btnClearConfigPath
+            // 
+            this.btnClearConfigPath.Location = new System.Drawing.Point(433, 263);
+            this.btnClearConfigPath.Name = "btnClearConfigPath";
+            this.btnClearConfigPath.Size = new System.Drawing.Size(106, 37);
+            this.btnClearConfigPath.TabIndex = 23;
+            this.btnClearConfigPath.Text = "クリア";
+            this.btnClearConfigPath.UseVisualStyleBackColor = true;
+            this.btnClearConfigPath.Click += new System.EventHandler(this.btnClearConfigPath_Click);
+            // 
+            // btnSelectConfigPath
+            // 
+            this.btnSelectConfigPath.Location = new System.Drawing.Point(321, 263);
+            this.btnSelectConfigPath.Name = "btnSelectConfigPath";
+            this.btnSelectConfigPath.Size = new System.Drawing.Size(106, 37);
+            this.btnSelectConfigPath.TabIndex = 24;
+            this.btnSelectConfigPath.Text = "選択";
+            this.btnSelectConfigPath.UseVisualStyleBackColor = true;
+            this.btnSelectConfigPath.Click += new System.EventHandler(this.btnSelectConfigPath_Click);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(480, 100);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(121, 25);
+            this.label22.TabIndex = 22;
+            this.label22.Text = "DyLoRAのunit";
+            // 
+            // nudDyLoRAUnit
+            // 
+            this.nudDyLoRAUnit.Location = new System.Drawing.Point(607, 100);
+            this.nudDyLoRAUnit.Maximum = new decimal(new int[] {
+            256,
+            0,
+            0,
+            0});
+            this.nudDyLoRAUnit.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudDyLoRAUnit.Name = "nudDyLoRAUnit";
+            this.nudDyLoRAUnit.Size = new System.Drawing.Size(120, 31);
+            this.nudDyLoRAUnit.TabIndex = 21;
+            this.nudDyLoRAUnit.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            // 
+            // cbxUseConv2d
+            // 
+            this.cbxUseConv2d.AutoSize = true;
+            this.cbxUseConv2d.Location = new System.Drawing.Point(209, 162);
+            this.cbxUseConv2d.Name = "cbxUseConv2d";
+            this.cbxUseConv2d.Size = new System.Drawing.Size(242, 29);
+            this.cbxUseConv2d.TabIndex = 20;
+            this.cbxUseConv2d.Text = "LoRAでConv2d拡張を使用";
+            this.cbxUseConv2d.UseVisualStyleBackColor = true;
+            // 
+            // nudConvAlpha
+            // 
+            this.nudConvAlpha.DecimalPlaces = 2;
+            this.nudConvAlpha.Location = new System.Drawing.Point(607, 42);
+            this.nudConvAlpha.Maximum = new decimal(new int[] {
+            512,
+            0,
+            0,
+            0});
+            this.nudConvAlpha.Name = "nudConvAlpha";
+            this.nudConvAlpha.Size = new System.Drawing.Size(120, 31);
+            this.nudConvAlpha.TabIndex = 19;
+            this.nudConvAlpha.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            // 
+            // nudConvDim
+            // 
+            this.nudConvDim.Location = new System.Drawing.Point(331, 40);
+            this.nudConvDim.Maximum = new decimal(new int[] {
+            512,
+            0,
+            0,
+            0});
+            this.nudConvDim.Name = "nudConvDim";
+            this.nudConvDim.Size = new System.Drawing.Size(120, 31);
+            this.nudConvDim.TabIndex = 18;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(139, 100);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(176, 25);
+            this.label23.TabIndex = 17;
+            this.label23.Text = "LyCORISのアルゴリズム";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(496, 42);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(104, 50);
+            this.label24.TabIndex = 16;
+            this.label24.Text = "Conv Alpha\r\n0で無効";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(224, 40);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(91, 50);
+            this.label25.TabIndex = 15;
+            this.label25.Text = "Conv Dim\r\n0で無効";
+            // 
+            // cbxAlgoType
+            // 
+            this.cbxAlgoType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxAlgoType.FormattingEnabled = true;
+            this.cbxAlgoType.Items.AddRange(new object[] {
+            "lora",
+            "loha",
+            "ia3",
+            "lokr"});
+            this.cbxAlgoType.Location = new System.Drawing.Point(330, 97);
+            this.cbxAlgoType.Name = "cbxAlgoType";
+            this.cbxAlgoType.Size = new System.Drawing.Size(121, 33);
+            this.cbxAlgoType.TabIndex = 14;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.cbxUseColorAug);
+            this.tabPage4.Controls.Add(this.cbxCacheLatentsToDisk);
+            this.tabPage4.Controls.Add(this.cbxUseFastLoading);
+            this.tabPage4.Controls.Add(this.cbxCacheLatents);
+            this.tabPage4.Controls.Add(this.cbxUseV2);
+            this.tabPage4.Controls.Add(this.label26);
+            this.tabPage4.Controls.Add(this.cbxUseParametarization);
+            this.tabPage4.Controls.Add(this.label27);
+            this.tabPage4.Controls.Add(this.cbxDontSaveMetadata);
+            this.tabPage4.Controls.Add(this.label28);
+            this.tabPage4.Controls.Add(this.cbxCropRandomly);
+            this.tabPage4.Controls.Add(this.nudMaxTokens);
+            this.tabPage4.Controls.Add(this.cbxFlipAug);
+            this.tabPage4.Controls.Add(this.nudDataLoaderThreads);
+            this.tabPage4.Controls.Add(this.cbxMixedPrecision);
+            this.tabPage4.Controls.Add(this.nudLRSchedulerCycle);
+            this.tabPage4.Controls.Add(this.label29);
+            this.tabPage4.Location = new System.Drawing.Point(4, 34);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1072, 393);
+            this.tabPage4.TabIndex = 4;
+            this.tabPage4.Text = "ページ3";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.tbxMomentum);
+            this.tabPage5.Controls.Add(this.label30);
+            this.tabPage5.Controls.Add(this.tbxWeightDecay);
+            this.tabPage5.Controls.Add(this.label31);
+            this.tabPage5.Controls.Add(this.tbxBetas0);
+            this.tabPage5.Controls.Add(this.label32);
+            this.tabPage5.Controls.Add(this.tbxBetas1);
+            this.tabPage5.Controls.Add(this.label33);
+            this.tabPage5.Controls.Add(this.tbxBetas2);
+            this.tabPage5.Controls.Add(this.label34);
+            this.tabPage5.Controls.Add(this.tbxEps);
+            this.tabPage5.Controls.Add(this.label35);
+            this.tabPage5.Controls.Add(this.tbxD0);
+            this.tabPage5.Controls.Add(this.tbxGrowthRate);
+            this.tabPage5.Location = new System.Drawing.Point(4, 34);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1072, 393);
+            this.tabPage5.TabIndex = 5;
+            this.tabPage5.Text = "DAdaption";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // cbxUseColorAug
+            // 
+            this.cbxUseColorAug.AutoSize = true;
+            this.cbxUseColorAug.Checked = true;
+            this.cbxUseColorAug.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxUseColorAug.Location = new System.Drawing.Point(39, 42);
+            this.cbxUseColorAug.Name = "cbxUseColorAug";
+            this.cbxUseColorAug.Size = new System.Drawing.Size(165, 29);
+            this.cbxUseColorAug.TabIndex = 7;
+            this.cbxUseColorAug.Text = "color_augを使用";
+            this.cbxUseColorAug.UseVisualStyleBackColor = true;
+            // 
+            // cbxCacheLatentsToDisk
+            // 
+            this.cbxCacheLatentsToDisk.AutoSize = true;
+            this.cbxCacheLatentsToDisk.Location = new System.Drawing.Point(39, 182);
+            this.cbxCacheLatentsToDisk.Name = "cbxCacheLatentsToDisk";
+            this.cbxCacheLatentsToDisk.Size = new System.Drawing.Size(227, 29);
+            this.cbxCacheLatentsToDisk.TabIndex = 23;
+            this.cbxCacheLatentsToDisk.Text = "latentをディスクにキャッシュ";
+            this.cbxCacheLatentsToDisk.UseVisualStyleBackColor = true;
+            // 
+            // cbxUseFastLoading
+            // 
+            this.cbxUseFastLoading.AutoSize = true;
+            this.cbxUseFastLoading.Checked = true;
+            this.cbxUseFastLoading.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxUseFastLoading.Location = new System.Drawing.Point(39, 77);
+            this.cbxUseFastLoading.Name = "cbxUseFastLoading";
+            this.cbxUseFastLoading.Size = new System.Drawing.Size(143, 29);
+            this.cbxUseFastLoading.TabIndex = 12;
+            this.cbxUseFastLoading.Text = "読込の高速化";
+            this.cbxUseFastLoading.UseVisualStyleBackColor = true;
+            // 
+            // cbxCacheLatents
+            // 
+            this.cbxCacheLatents.AutoSize = true;
+            this.cbxCacheLatents.Location = new System.Drawing.Point(343, 147);
+            this.cbxCacheLatents.Name = "cbxCacheLatents";
+            this.cbxCacheLatents.Size = new System.Drawing.Size(161, 29);
+            this.cbxCacheLatents.TabIndex = 22;
+            this.cbxCacheLatents.Text = "latentのキャッシュ";
+            this.cbxCacheLatents.UseVisualStyleBackColor = true;
+            // 
+            // cbxUseV2
+            // 
+            this.cbxUseV2.AutoSize = true;
+            this.cbxUseV2.Location = new System.Drawing.Point(39, 112);
+            this.cbxUseV2.Name = "cbxUseV2";
+            this.cbxUseV2.Size = new System.Drawing.Size(243, 29);
+            this.cbxUseV2.TabIndex = 13;
+            this.cbxUseV2.Text = "Stable Diffusion 2.Xを使用";
+            this.cbxUseV2.UseVisualStyleBackColor = true;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(663, 151);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(117, 25);
+            this.label26.TabIndex = 19;
+            this.label26.Text = "最大トークン数";
+            // 
+            // cbxUseParametarization
+            // 
+            this.cbxUseParametarization.AutoSize = true;
+            this.cbxUseParametarization.Location = new System.Drawing.Point(39, 147);
+            this.cbxUseParametarization.Name = "cbxUseParametarization";
+            this.cbxUseParametarization.Size = new System.Drawing.Size(258, 29);
+            this.cbxUseParametarization.TabIndex = 10;
+            this.cbxUseParametarization.Text = "SD2:パラメタリゼーションの使用";
+            this.cbxUseParametarization.UseVisualStyleBackColor = true;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(571, 114);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(209, 25);
+            this.label27.TabIndex = 20;
+            this.label27.Text = "データローダのCPUスレッド数";
+            // 
+            // cbxDontSaveMetadata
+            // 
+            this.cbxDontSaveMetadata.AutoSize = true;
+            this.cbxDontSaveMetadata.Location = new System.Drawing.Point(344, 112);
+            this.cbxDontSaveMetadata.Name = "cbxDontSaveMetadata";
+            this.cbxDontSaveMetadata.Size = new System.Drawing.Size(198, 29);
+            this.cbxDontSaveMetadata.TabIndex = 11;
+            this.cbxDontSaveMetadata.Text = "メタデータを保存しない";
+            this.cbxDontSaveMetadata.UseVisualStyleBackColor = true;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(599, 73);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(181, 25);
+            this.label28.TabIndex = 21;
+            this.label28.Text = "LRスケジューラのサイクル";
+            // 
+            // cbxCropRandomly
+            // 
+            this.cbxCropRandomly.AutoSize = true;
+            this.cbxCropRandomly.Location = new System.Drawing.Point(344, 77);
+            this.cbxCropRandomly.Name = "cbxCropRandomly";
+            this.cbxCropRandomly.Size = new System.Drawing.Size(206, 29);
+            this.cbxCropRandomly.TabIndex = 9;
+            this.cbxCropRandomly.Text = "画像をランダムにクロップ";
+            this.cbxCropRandomly.UseVisualStyleBackColor = true;
+            // 
+            // nudMaxTokens
+            // 
+            this.nudMaxTokens.Increment = new decimal(new int[] {
+            75,
+            0,
+            0,
+            0});
+            this.nudMaxTokens.Location = new System.Drawing.Point(786, 149);
+            this.nudMaxTokens.Maximum = new decimal(new int[] {
+            225,
+            0,
+            0,
+            0});
+            this.nudMaxTokens.Minimum = new decimal(new int[] {
+            75,
+            0,
+            0,
+            0});
+            this.nudMaxTokens.Name = "nudMaxTokens";
+            this.nudMaxTokens.Size = new System.Drawing.Size(120, 31);
+            this.nudMaxTokens.TabIndex = 17;
+            this.nudMaxTokens.Value = new decimal(new int[] {
+            75,
+            0,
+            0,
+            0});
+            // 
+            // cbxFlipAug
+            // 
+            this.cbxFlipAug.AutoSize = true;
+            this.cbxFlipAug.Location = new System.Drawing.Point(344, 42);
+            this.cbxFlipAug.Name = "cbxFlipAug";
+            this.cbxFlipAug.Size = new System.Drawing.Size(160, 29);
+            this.cbxFlipAug.TabIndex = 8;
+            this.cbxFlipAug.Text = "反転画像を使用";
+            this.cbxFlipAug.UseVisualStyleBackColor = true;
+            // 
+            // nudDataLoaderThreads
+            // 
+            this.nudDataLoaderThreads.Location = new System.Drawing.Point(786, 112);
+            this.nudDataLoaderThreads.Maximum = new decimal(new int[] {
+            64,
+            0,
+            0,
+            0});
+            this.nudDataLoaderThreads.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudDataLoaderThreads.Name = "nudDataLoaderThreads";
+            this.nudDataLoaderThreads.Size = new System.Drawing.Size(120, 31);
+            this.nudDataLoaderThreads.TabIndex = 18;
+            this.nudDataLoaderThreads.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            // 
+            // cbxMixedPrecision
+            // 
+            this.cbxMixedPrecision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxMixedPrecision.FormattingEnabled = true;
+            this.cbxMixedPrecision.Items.AddRange(new object[] {
+            "なし",
+            "fp16",
+            "bf16"});
+            this.cbxMixedPrecision.Location = new System.Drawing.Point(786, 32);
+            this.cbxMixedPrecision.Name = "cbxMixedPrecision";
+            this.cbxMixedPrecision.Size = new System.Drawing.Size(120, 33);
+            this.cbxMixedPrecision.TabIndex = 14;
+            // 
+            // nudLRSchedulerCycle
+            // 
+            this.nudLRSchedulerCycle.Location = new System.Drawing.Point(786, 71);
+            this.nudLRSchedulerCycle.Maximum = new decimal(new int[] {
+            64,
+            0,
+            0,
+            0});
+            this.nudLRSchedulerCycle.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudLRSchedulerCycle.Name = "nudLRSchedulerCycle";
+            this.nudLRSchedulerCycle.Size = new System.Drawing.Size(120, 31);
+            this.nudLRSchedulerCycle.TabIndex = 16;
+            this.nudLRSchedulerCycle.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(696, 35);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(84, 25);
+            this.label29.TabIndex = 15;
+            this.label29.Text = "混合精度";
+            // 
+            // tbxMomentum
+            // 
+            this.tbxMomentum.Location = new System.Drawing.Point(401, 79);
+            this.tbxMomentum.Name = "tbxMomentum";
+            this.tbxMomentum.Size = new System.Drawing.Size(94, 31);
+            this.tbxMomentum.TabIndex = 10;
+            this.tbxMomentum.Text = "0";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(289, 82);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(106, 25);
+            this.label30.TabIndex = 18;
+            this.label30.Text = "momentum";
+            // 
+            // tbxWeightDecay
+            // 
+            this.tbxWeightDecay.Location = new System.Drawing.Point(158, 42);
+            this.tbxWeightDecay.Name = "tbxWeightDecay";
+            this.tbxWeightDecay.Size = new System.Drawing.Size(100, 31);
+            this.tbxWeightDecay.TabIndex = 11;
+            this.tbxWeightDecay.Text = "0";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(45, 160);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(106, 50);
+            this.label31.TabIndex = 19;
+            this.label31.Text = "growth_rate\r\n0で無制限";
+            // 
+            // tbxBetas0
+            // 
+            this.tbxBetas0.Location = new System.Drawing.Point(401, 36);
+            this.tbxBetas0.Name = "tbxBetas0";
+            this.tbxBetas0.Size = new System.Drawing.Size(73, 31);
+            this.tbxBetas0.TabIndex = 12;
+            this.tbxBetas0.Text = "0.9";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(111, 119);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(33, 25);
+            this.label32.TabIndex = 20;
+            this.label32.Text = "d0";
+            // 
+            // tbxBetas1
+            // 
+            this.tbxBetas1.Location = new System.Drawing.Point(489, 36);
+            this.tbxBetas1.Name = "tbxBetas1";
+            this.tbxBetas1.Size = new System.Drawing.Size(77, 31);
+            this.tbxBetas1.TabIndex = 13;
+            this.tbxBetas1.Text = "0.999";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(111, 82);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(40, 25);
+            this.label33.TabIndex = 21;
+            this.label33.Text = "eps";
+            // 
+            // tbxBetas2
+            // 
+            this.tbxBetas2.Location = new System.Drawing.Point(584, 36);
+            this.tbxBetas2.Name = "tbxBetas2";
+            this.tbxBetas2.Size = new System.Drawing.Size(77, 31);
+            this.tbxBetas2.TabIndex = 14;
+            this.tbxBetas2.Text = "0.999";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(340, 39);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(55, 25);
+            this.label34.TabIndex = 22;
+            this.label34.Text = "betas";
+            // 
+            // tbxEps
+            // 
+            this.tbxEps.Location = new System.Drawing.Point(158, 79);
+            this.tbxEps.Name = "tbxEps";
+            this.tbxEps.Size = new System.Drawing.Size(100, 31);
+            this.tbxEps.TabIndex = 15;
+            this.tbxEps.Text = "1E-06";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(33, 42);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(118, 25);
+            this.label35.TabIndex = 23;
+            this.label35.Text = "weight_decay";
+            // 
+            // tbxD0
+            // 
+            this.tbxD0.Location = new System.Drawing.Point(158, 116);
+            this.tbxD0.Name = "tbxD0";
+            this.tbxD0.Size = new System.Drawing.Size(100, 31);
+            this.tbxD0.TabIndex = 16;
+            this.tbxD0.Text = "1E-06";
+            // 
+            // tbxGrowthRate
+            // 
+            this.tbxGrowthRate.Location = new System.Drawing.Point(158, 157);
+            this.tbxGrowthRate.Name = "tbxGrowthRate";
+            this.tbxGrowthRate.Size = new System.Drawing.Size(100, 31);
+            this.tbxGrowthRate.TabIndex = 17;
+            this.tbxGrowthRate.Text = "0";
+            // 
             // FormAdvanced
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1205, 743);
-            this.Controls.Add(this.label20);
-            this.Controls.Add(this.nudMultiresNoiseDiscount);
-            this.Controls.Add(this.label19);
-            this.Controls.Add(this.nudMultiresNoiseIterations);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.nudMinSNRGamma);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.nudAdaptiveNoiseScale);
-            this.Controls.Add(this.cbxUseWeightedCaption);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.btnClearVAE);
-            this.Controls.Add(this.btnSelectVAE);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.nudMomentum);
-            this.Controls.Add(this.lblVAEPath);
-            this.Controls.Add(this.nudNoiseOffset);
-            this.Controls.Add(this.lblLoRAmodelPath);
-            this.Controls.Add(this.btnClearLoRAmodel);
-            this.Controls.Add(this.btnSelectLoRAmodel);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.cbxCrossAttenType);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.cbxAdvancedTrain);
-            this.Controls.Add(this.btnClearTBoardPath);
-            this.Controls.Add(this.lblTBoardPath);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.btnTensorBoardPath);
+            this.ClientSize = new System.Drawing.Size(1124, 530);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnDiscardAndClose);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.cbxPrecision);
-            this.Controls.Add(this.nudClipSkip);
-            this.Controls.Add(this.cbxScheduler);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.nudMaxBucketReso);
-            this.Controls.Add(this.nudMinBucketReso);
-            this.Controls.Add(this.nudSeed);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.tbxExtension);
-            this.Controls.Add(this.cbxUseGradient);
-            this.Controls.Add(this.cbxUseWarmupInit);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.lblCpuThreadsCounter);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.tbrCpuThreads);
-            this.Controls.Add(this.cbxNoUpscale);
-            this.Controls.Add(this.lblMaxBucketReso);
-            this.Controls.Add(this.lblMinBucketReso);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.tbxTextEncoLR);
-            this.Controls.Add(this.tbxUnetLR);
             this.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -823,8 +1485,26 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudMinSNRGamma)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMultiresNoiseIterations)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMultiresNoiseDiscount)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.pageMisc.ResumeLayout(false);
+            this.pageMisc.PerformLayout();
+            this.pageConv.ResumeLayout(false);
+            this.pageConv.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDyLoRAUnit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudConvAlpha)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudConvDim)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxTokens)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDataLoaderThreads)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLRSchedulerCycle)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -843,7 +1523,6 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox cbxUseWarmupInit;
         private System.Windows.Forms.ToolTip toolTip2;
         private System.Windows.Forms.TextBox tbxExtension;
@@ -892,5 +1571,57 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.NumericUpDown nudMultiresNoiseDiscount;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage pageMisc;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TabPage pageConv;
+        private System.Windows.Forms.Label lblConfigPath;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button btnClearConfigPath;
+        private System.Windows.Forms.Button btnSelectConfigPath;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.NumericUpDown nudDyLoRAUnit;
+        private System.Windows.Forms.CheckBox cbxUseConv2d;
+        private System.Windows.Forms.NumericUpDown nudConvAlpha;
+        private System.Windows.Forms.NumericUpDown nudConvDim;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.ComboBox cbxAlgoType;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.CheckBox cbxUseColorAug;
+        private System.Windows.Forms.CheckBox cbxCacheLatentsToDisk;
+        private System.Windows.Forms.CheckBox cbxUseFastLoading;
+        private System.Windows.Forms.CheckBox cbxCacheLatents;
+        private System.Windows.Forms.CheckBox cbxUseV2;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.CheckBox cbxUseParametarization;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.CheckBox cbxDontSaveMetadata;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.CheckBox cbxCropRandomly;
+        private System.Windows.Forms.NumericUpDown nudMaxTokens;
+        private System.Windows.Forms.CheckBox cbxFlipAug;
+        private System.Windows.Forms.NumericUpDown nudDataLoaderThreads;
+        private System.Windows.Forms.ComboBox cbxMixedPrecision;
+        private System.Windows.Forms.NumericUpDown nudLRSchedulerCycle;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox tbxMomentum;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox tbxWeightDecay;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox tbxBetas0;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TextBox tbxBetas1;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.TextBox tbxBetas2;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.TextBox tbxEps;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox tbxD0;
+        private System.Windows.Forms.TextBox tbxGrowthRate;
     }
 }
