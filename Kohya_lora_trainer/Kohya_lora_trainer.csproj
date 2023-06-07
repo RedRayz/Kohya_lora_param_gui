@@ -132,23 +132,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAddtional.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAddtional.Designer.cs">
-      <DependentUpon>FormAddtional.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormAdvanced.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAdvanced.Designer.cs">
       <DependentUpon>FormAdvanced.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormAdvanced1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAdvanced1.Designer.cs">
-      <DependentUpon>FormAdvanced1.cs</DependentUpon>
     </Compile>
     <Compile Include="FormBatchProcess.cs">
       <SubType>Form</SubType>
@@ -174,12 +162,7 @@
     <Compile Include="FormInstaller.Designer.cs">
       <DependentUpon>FormInstaller.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormResizeDim.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormResizeDim.Designer.cs">
-      <DependentUpon>FormResizeDim.cs</DependentUpon>
-    </Compile>
+    <Compile Include="MyUtils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrainForm.cs">
@@ -198,12 +181,6 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAddtional.resx">
-      <DependentUpon>FormAddtional.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormAdvanced1.resx">
-      <DependentUpon>FormAdvanced1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormBatchProcess.resx">
       <DependentUpon>FormBatchProcess.cs</DependentUpon>
     </EmbeddedResource>
@@ -215,9 +192,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormInstaller.resx">
       <DependentUpon>FormInstaller.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormResizeDim.resx">
-      <DependentUpon>FormResizeDim.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUtils.resx">
       <DependentUpon>FormUtils.cs</DependentUpon>
