@@ -30,6 +30,7 @@ namespace Kohya_lora_trainer
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnModel = new System.Windows.Forms.Button();
             this.btnImage = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -860,6 +861,7 @@ namespace Kohya_lora_trainer
             this.Controls.Add(this.btnModel);
             this.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "Form1";
