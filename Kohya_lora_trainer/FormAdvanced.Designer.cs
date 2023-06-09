@@ -95,6 +95,15 @@ namespace Kohya_lora_trainer
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.cbxScaleVPredLoss = new System.Windows.Forms.CheckBox();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.nudMaxNormReg = new System.Windows.Forms.NumericUpDown();
+            this.nudModuleDropout = new System.Windows.Forms.NumericUpDown();
+            this.nudRankDropout = new System.Windows.Forms.NumericUpDown();
+            this.nudDropout = new System.Windows.Forms.NumericUpDown();
             this.cbxUseColorAug = new System.Windows.Forms.CheckBox();
             this.cbxCacheLatentsToDisk = new System.Windows.Forms.CheckBox();
             this.cbxUseFastLoading = new System.Windows.Forms.CheckBox();
@@ -143,15 +152,7 @@ namespace Kohya_lora_trainer
             this.cbxAlgoType = new System.Windows.Forms.ComboBox();
             this.pageMisc = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
-            this.nudDropout = new System.Windows.Forms.NumericUpDown();
-            this.label36 = new System.Windows.Forms.Label();
-            this.nudRankDropout = new System.Windows.Forms.NumericUpDown();
-            this.nudModuleDropout = new System.Windows.Forms.NumericUpDown();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.cbxScaleVPredLoss = new System.Windows.Forms.CheckBox();
-            this.nudMaxNormReg = new System.Windows.Forms.NumericUpDown();
-            this.label39 = new System.Windows.Forms.Label();
+            this.cbxDecouple = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).BeginInit();
@@ -167,6 +168,10 @@ namespace Kohya_lora_trainer
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxNormReg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudModuleDropout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRankDropout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDropout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxTokens)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDataLoaderThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLRSchedulerCycle)).BeginInit();
@@ -176,10 +181,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudConvAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudConvDim)).BeginInit();
             this.pageMisc.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDropout)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudRankDropout)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudModuleDropout)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxNormReg)).BeginInit();
             this.SuspendLayout();
             // 
             // tbxUnetLR
@@ -488,9 +489,9 @@ namespace Kohya_lora_trainer
             // 
             // btnTensorBoardPath
             // 
-            this.btnTensorBoardPath.Location = new System.Drawing.Point(179, 229);
+            this.btnTensorBoardPath.Location = new System.Drawing.Point(158, 229);
             this.btnTensorBoardPath.Name = "btnTensorBoardPath";
-            this.btnTensorBoardPath.Size = new System.Drawing.Size(101, 46);
+            this.btnTensorBoardPath.Size = new System.Drawing.Size(110, 46);
             this.btnTensorBoardPath.TabIndex = 32;
             this.btnTensorBoardPath.Text = "選択";
             this.btnTensorBoardPath.UseVisualStyleBackColor = true;
@@ -499,7 +500,7 @@ namespace Kohya_lora_trainer
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(35, 229);
+            this.label12.Location = new System.Drawing.Point(29, 229);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(129, 50);
             this.label12.TabIndex = 33;
@@ -516,9 +517,9 @@ namespace Kohya_lora_trainer
             // 
             // btnClearTBoardPath
             // 
-            this.btnClearTBoardPath.Location = new System.Drawing.Point(286, 230);
+            this.btnClearTBoardPath.Location = new System.Drawing.Point(274, 229);
             this.btnClearTBoardPath.Name = "btnClearTBoardPath";
-            this.btnClearTBoardPath.Size = new System.Drawing.Size(101, 45);
+            this.btnClearTBoardPath.Size = new System.Drawing.Size(101, 46);
             this.btnClearTBoardPath.TabIndex = 35;
             this.btnClearTBoardPath.Text = "クリア";
             this.btnClearTBoardPath.UseVisualStyleBackColor = true;
@@ -866,12 +867,16 @@ namespace Kohya_lora_trainer
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lblConfigPath);
             this.tabPage2.Controls.Add(this.lblVAEPath);
             this.tabPage2.Controls.Add(this.tbrCpuThreads);
+            this.tabPage2.Controls.Add(this.label21);
             this.tabPage2.Controls.Add(this.lblCpuThreadsCounter);
             this.tabPage2.Controls.Add(this.btnClearTBoardPath);
+            this.tabPage2.Controls.Add(this.btnClearConfigPath);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.btnSelectLoRAmodel);
+            this.tabPage2.Controls.Add(this.btnSelectConfigPath);
             this.tabPage2.Controls.Add(this.lblTBoardPath);
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.label12);
@@ -923,6 +928,124 @@ namespace Kohya_lora_trainer
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "ページ3";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // cbxScaleVPredLoss
+            // 
+            this.cbxScaleVPredLoss.AutoSize = true;
+            this.cbxScaleVPredLoss.Location = new System.Drawing.Point(39, 218);
+            this.cbxScaleVPredLoss.Name = "cbxScaleVPredLoss";
+            this.cbxScaleVPredLoss.Size = new System.Drawing.Size(265, 29);
+            this.cbxScaleVPredLoss.TabIndex = 26;
+            this.cbxScaleVPredLoss.Text = "v-prediction lossのスケーリング";
+            this.cbxScaleVPredLoss.UseVisualStyleBackColor = true;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(556, 299);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(224, 25);
+            this.label39.TabIndex = 25;
+            this.label39.Text = "Max Norm Regularization#";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(569, 262);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(211, 25);
+            this.label38.TabIndex = 25;
+            this.label38.Text = "moduleドロップアウト確率#";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(596, 225);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(184, 25);
+            this.label37.TabIndex = 25;
+            this.label37.Text = "rankドロップアウト確率#";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(630, 188);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(150, 25);
+            this.label36.TabIndex = 25;
+            this.label36.Text = "ドロップアウト確率#";
+            // 
+            // nudMaxNormReg
+            // 
+            this.nudMaxNormReg.DecimalPlaces = 2;
+            this.nudMaxNormReg.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            this.nudMaxNormReg.Location = new System.Drawing.Point(786, 297);
+            this.nudMaxNormReg.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudMaxNormReg.Name = "nudMaxNormReg";
+            this.nudMaxNormReg.Size = new System.Drawing.Size(120, 31);
+            this.nudMaxNormReg.TabIndex = 24;
+            // 
+            // nudModuleDropout
+            // 
+            this.nudModuleDropout.DecimalPlaces = 2;
+            this.nudModuleDropout.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudModuleDropout.Location = new System.Drawing.Point(786, 260);
+            this.nudModuleDropout.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudModuleDropout.Name = "nudModuleDropout";
+            this.nudModuleDropout.Size = new System.Drawing.Size(120, 31);
+            this.nudModuleDropout.TabIndex = 24;
+            // 
+            // nudRankDropout
+            // 
+            this.nudRankDropout.DecimalPlaces = 2;
+            this.nudRankDropout.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudRankDropout.Location = new System.Drawing.Point(786, 223);
+            this.nudRankDropout.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudRankDropout.Name = "nudRankDropout";
+            this.nudRankDropout.Size = new System.Drawing.Size(120, 31);
+            this.nudRankDropout.TabIndex = 24;
+            // 
+            // nudDropout
+            // 
+            this.nudDropout.DecimalPlaces = 2;
+            this.nudDropout.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudDropout.Location = new System.Drawing.Point(786, 186);
+            this.nudDropout.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudDropout.Name = "nudDropout";
+            this.nudDropout.Size = new System.Drawing.Size(120, 31);
+            this.nudDropout.TabIndex = 24;
             // 
             // cbxUseColorAug
             // 
@@ -1140,6 +1263,7 @@ namespace Kohya_lora_trainer
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.cbxDecouple);
             this.tabPage5.Controls.Add(this.tbxMomentum);
             this.tabPage5.Controls.Add(this.label30);
             this.tabPage5.Controls.Add(this.tbxWeightDecay);
@@ -1281,10 +1405,6 @@ namespace Kohya_lora_trainer
             // 
             // pageConv
             // 
-            this.pageConv.Controls.Add(this.lblConfigPath);
-            this.pageConv.Controls.Add(this.label21);
-            this.pageConv.Controls.Add(this.btnClearConfigPath);
-            this.pageConv.Controls.Add(this.btnSelectConfigPath);
             this.pageConv.Controls.Add(this.label22);
             this.pageConv.Controls.Add(this.nudDyLoRAUnit);
             this.pageConv.Controls.Add(this.cbxUseConv2d);
@@ -1304,7 +1424,7 @@ namespace Kohya_lora_trainer
             // lblConfigPath
             // 
             this.lblConfigPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblConfigPath.Location = new System.Drawing.Point(281, 303);
+            this.lblConfigPath.Location = new System.Drawing.Point(523, 289);
             this.lblConfigPath.Name = "lblConfigPath";
             this.lblConfigPath.Size = new System.Drawing.Size(281, 50);
             this.lblConfigPath.TabIndex = 25;
@@ -1313,17 +1433,17 @@ namespace Kohya_lora_trainer
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(130, 269);
+            this.label21.Location = new System.Drawing.Point(417, 235);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(185, 25);
+            this.label21.Size = new System.Drawing.Size(106, 50);
             this.label21.TabIndex = 26;
-            this.label21.Text = "データセットconfigのパス";
+            this.label21.Text = "dataset\r\nconfigのパス";
             // 
             // btnClearConfigPath
             // 
-            this.btnClearConfigPath.Location = new System.Drawing.Point(433, 263);
+            this.btnClearConfigPath.Location = new System.Drawing.Point(634, 229);
             this.btnClearConfigPath.Name = "btnClearConfigPath";
-            this.btnClearConfigPath.Size = new System.Drawing.Size(106, 37);
+            this.btnClearConfigPath.Size = new System.Drawing.Size(106, 46);
             this.btnClearConfigPath.TabIndex = 23;
             this.btnClearConfigPath.Text = "クリア";
             this.btnClearConfigPath.UseVisualStyleBackColor = true;
@@ -1331,9 +1451,9 @@ namespace Kohya_lora_trainer
             // 
             // btnSelectConfigPath
             // 
-            this.btnSelectConfigPath.Location = new System.Drawing.Point(321, 263);
+            this.btnSelectConfigPath.Location = new System.Drawing.Point(527, 229);
             this.btnSelectConfigPath.Name = "btnSelectConfigPath";
-            this.btnSelectConfigPath.Size = new System.Drawing.Size(106, 37);
+            this.btnSelectConfigPath.Size = new System.Drawing.Size(101, 46);
             this.btnSelectConfigPath.TabIndex = 24;
             this.btnSelectConfigPath.Text = "選択";
             this.btnSelectConfigPath.UseVisualStyleBackColor = true;
@@ -1479,123 +1599,15 @@ namespace Kohya_lora_trainer
             this.label8.TabIndex = 31;
             this.label8.Text = "通常編集する必要のない設定";
             // 
-            // nudDropout
+            // cbxDecouple
             // 
-            this.nudDropout.DecimalPlaces = 2;
-            this.nudDropout.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.nudDropout.Location = new System.Drawing.Point(786, 186);
-            this.nudDropout.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudDropout.Name = "nudDropout";
-            this.nudDropout.Size = new System.Drawing.Size(120, 31);
-            this.nudDropout.TabIndex = 24;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(630, 188);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(150, 25);
-            this.label36.TabIndex = 25;
-            this.label36.Text = "ドロップアウト確率#";
-            // 
-            // nudRankDropout
-            // 
-            this.nudRankDropout.DecimalPlaces = 2;
-            this.nudRankDropout.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.nudRankDropout.Location = new System.Drawing.Point(786, 223);
-            this.nudRankDropout.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudRankDropout.Name = "nudRankDropout";
-            this.nudRankDropout.Size = new System.Drawing.Size(120, 31);
-            this.nudRankDropout.TabIndex = 24;
-            // 
-            // nudModuleDropout
-            // 
-            this.nudModuleDropout.DecimalPlaces = 2;
-            this.nudModuleDropout.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.nudModuleDropout.Location = new System.Drawing.Point(786, 260);
-            this.nudModuleDropout.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudModuleDropout.Name = "nudModuleDropout";
-            this.nudModuleDropout.Size = new System.Drawing.Size(120, 31);
-            this.nudModuleDropout.TabIndex = 24;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(596, 225);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(184, 25);
-            this.label37.TabIndex = 25;
-            this.label37.Text = "rankドロップアウト確率#";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(569, 262);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(211, 25);
-            this.label38.TabIndex = 25;
-            this.label38.Text = "moduleドロップアウト確率#";
-            // 
-            // cbxScaleVPredLoss
-            // 
-            this.cbxScaleVPredLoss.AutoSize = true;
-            this.cbxScaleVPredLoss.Location = new System.Drawing.Point(39, 218);
-            this.cbxScaleVPredLoss.Name = "cbxScaleVPredLoss";
-            this.cbxScaleVPredLoss.Size = new System.Drawing.Size(265, 29);
-            this.cbxScaleVPredLoss.TabIndex = 26;
-            this.cbxScaleVPredLoss.Text = "v-prediction lossのスケーリング";
-            this.cbxScaleVPredLoss.UseVisualStyleBackColor = true;
-            // 
-            // nudMaxNormReg
-            // 
-            this.nudMaxNormReg.DecimalPlaces = 2;
-            this.nudMaxNormReg.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            131072});
-            this.nudMaxNormReg.Location = new System.Drawing.Point(786, 297);
-            this.nudMaxNormReg.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nudMaxNormReg.Name = "nudMaxNormReg";
-            this.nudMaxNormReg.Size = new System.Drawing.Size(120, 31);
-            this.nudMaxNormReg.TabIndex = 24;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(556, 299);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(224, 25);
-            this.label39.TabIndex = 25;
-            this.label39.Text = "Max Norm Regularization#";
+            this.cbxDecouple.AutoSize = true;
+            this.cbxDecouple.Location = new System.Drawing.Point(79, 228);
+            this.cbxDecouple.Name = "cbxDecouple";
+            this.cbxDecouple.Size = new System.Drawing.Size(179, 29);
+            this.cbxDecouple.TabIndex = 24;
+            this.cbxDecouple.Text = "decoupleを有効化";
+            this.cbxDecouple.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
@@ -1632,6 +1644,10 @@ namespace Kohya_lora_trainer
             this.tabPage2.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxNormReg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudModuleDropout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudRankDropout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDropout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxTokens)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDataLoaderThreads)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLRSchedulerCycle)).EndInit();
@@ -1644,10 +1660,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudConvDim)).EndInit();
             this.pageMisc.ResumeLayout(false);
             this.pageMisc.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDropout)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudRankDropout)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudModuleDropout)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxNormReg)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1776,5 +1788,6 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.CheckBox cbxScaleVPredLoss;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.NumericUpDown nudMaxNormReg;
+        private System.Windows.Forms.CheckBox cbxDecouple;
     }
 }
