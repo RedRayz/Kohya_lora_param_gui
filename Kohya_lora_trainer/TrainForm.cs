@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -41,6 +42,14 @@ namespace Kohya_lora_trainer
                 return;
             }
 
+            if (BatchProcess.LogResultText && BatchProcess.IsRunning)
+            {
+                StringBuilder ssb = new StringBuilder();
+                ssb.Append(TrainParams.Current.OutputPath).Append("\\").Append(TrainParams.Current.OutputName).Append(".safetensors\r\n").Append("開始時刻: ").Append(DateTime.Now.ToString());
+
+                BatchProcess.LogText += ssb.ToString();
+            }
+
             btnStop.Enabled = true;
             btnClose.Enabled = false;
             if (BatchProcess.IsRunning)
@@ -73,7 +82,7 @@ namespace Kohya_lora_trainer
             lblCountdown.Text = string.Empty;
             sbCmd.Append(MyUtils.GenerateCommands());
 
-            if (BenchMarkMode)
+            if (BenchMarkMode || (BatchProcess.IsRunning && BatchProcess.LogResultText))
             {
                 stopwatch = Stopwatch.StartNew();
             }
@@ -136,10 +145,35 @@ namespace Kohya_lora_trainer
                 btnStop.Enabled = false;
                 btnClose.Enabled = true;
             }
+            bool failed = !File.Exists(TrainParams.Current.OutputPath + "\\" + TrainParams.Current.OutputName + ".safetensors");
 
-
-            if(BatchProcess.IsRunning)
+            if (BatchProcess.IsRunning && BatchProcess.LogResultText && stopwatch != null)
             {
+                stopwatch.Stop();
+                double tos = stopwatch.Elapsed.TotalSeconds;
+
+                double sec = tos % 60;
+                double min = tos / 60;
+                double hour = min / 60;
+                min = Math.Floor(min);
+                hour = Math.Floor(hour);
+                min -= hour * 60;
+                BatchProcess.LogText += ", 終了時刻:" + DateTime.Now.ToString() + ", 経過時間: " + $"{hour}時間{min}分" + sec.ToString("0.000秒");
+                if (failed)
+                {
+                    BatchProcess.LogText += "\r\n出力物がないため学習失敗の可能性あり。";
+                }
+                BatchProcess.LogText += "\r\n\r\n";
+            }
+
+
+
+            if (BatchProcess.IsRunning)
+            {
+                if (failed)
+                {
+                    BatchProcess.FailCount++;
+                }
                 Close();
                 return;
             }
@@ -158,6 +192,8 @@ namespace Kohya_lora_trainer
 
                 MessageBox.Show("Time taken: " + $"{hour}h{min}m" + sec.ToString("0.000s"), "Result", MessageBoxButtons.OK);
             }
+
+
 
             if (ShutdownAfterComplete)
             {

@@ -235,11 +235,11 @@ namespace Kohya_lora_trainer
                     {
                         sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
                             .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
-                            .Append(TrainParams.Current.D0.ToString("g")).Append("\"");
+                            .Append(TrainParams.Current.D0.ToString("g")).Append("\" \"decouple=").Append(TrainParams.Current.Decouple.ToString()).Append("\"");
 
                         if (TrainParams.Current.GrowthRate > 0f)
                         {
-                            sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append("\"");
+                            sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append("\" \"decouple=").Append(TrainParams.Current.Decouple.ToString()).Append("\"");
                         }
 
                     }
@@ -248,7 +248,7 @@ namespace Kohya_lora_trainer
                     {
                         sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g")).Append(",").Append(TrainParams.Current.Betas2.ToString("g")).Append("\" \"eps=")
     .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
-    .Append(TrainParams.Current.D0.ToString("g")).Append("\"");
+    .Append(TrainParams.Current.D0.ToString("g")).Append("\" \"no_prox=").Append(TrainParams.Current.NoProx.ToString()).Append("\"");
 
                         if (TrainParams.Current.GrowthRate > 0f)
                         {
@@ -275,11 +275,12 @@ namespace Kohya_lora_trainer
                     }
                     break;
                 //dadapt_adam_preprint.pyの説明にはmomontumが書いてあるが実際にはない
+                //DAdaptAdamPreprint
                 case OptimizerType.DAdaptation:
                     {
                         sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
     .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
-    .Append(TrainParams.Current.D0.ToString("g")).Append("\"");
+    .Append(TrainParams.Current.D0.ToString("g")).Append("\" \"decouple=").Append(TrainParams.Current.Decouple.ToString()).Append("\"");
 
                         if (TrainParams.Current.GrowthRate > 0f)
                         {
@@ -291,7 +292,7 @@ namespace Kohya_lora_trainer
                     {
                         sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g")).Append(",").Append(TrainParams.Current.Betas2.ToString("g")).Append("\" \"eps=")
     .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
-    .Append(TrainParams.Current.D0.ToString("g")).Append("\"");
+    .Append(TrainParams.Current.D0.ToString("g")).Append("\" \"no_prox=").Append(TrainParams.Current.NoProx.ToString()).Append("\"");
 
                         if (TrainParams.Current.GrowthRate > 0f)
                         {

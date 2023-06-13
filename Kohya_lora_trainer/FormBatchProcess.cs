@@ -27,7 +27,8 @@ namespace Kohya_lora_trainer
 
         private void btnApplyChanges_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(tbxPrestList.Text))
+            BatchProcess.LogResultText = cbxGenerateLogText.Checked;
+            if (string.IsNullOrEmpty(tbxPrestList.Text))
             {
                 BatchProcess.BatchStack.Clear();
                 PresetListText = string.Empty;
@@ -37,6 +38,7 @@ namespace Kohya_lora_trainer
             PresetListText = tbxPrestList.Text;
 
             BatchProcess.LoadBatchPresetText(tbxPrestList.Text);
+            
             Close();
         }
 
@@ -60,6 +62,7 @@ namespace Kohya_lora_trainer
         private void FormBatchProcess_Load(object sender, EventArgs e)
         {
             tbxPrestList.Text = PresetListText;
+            cbxGenerateLogText.Checked = BatchProcess.LogResultText;
         }
     }
 }

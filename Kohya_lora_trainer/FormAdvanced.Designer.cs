@@ -94,6 +94,10 @@ namespace Kohya_lora_trainer
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblConfigPath = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.btnClearConfigPath = new System.Windows.Forms.Button();
+            this.btnSelectConfigPath = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.cbxScaleVPredLoss = new System.Windows.Forms.CheckBox();
             this.label39 = new System.Windows.Forms.Label();
@@ -122,6 +126,8 @@ namespace Kohya_lora_trainer
             this.nudLRSchedulerCycle = new System.Windows.Forms.NumericUpDown();
             this.label29 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.cbxNoProx = new System.Windows.Forms.CheckBox();
+            this.cbxDecouple = new System.Windows.Forms.CheckBox();
             this.tbxMomentum = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.tbxWeightDecay = new System.Windows.Forms.TextBox();
@@ -137,10 +143,6 @@ namespace Kohya_lora_trainer
             this.tbxD0 = new System.Windows.Forms.TextBox();
             this.tbxGrowthRate = new System.Windows.Forms.TextBox();
             this.pageConv = new System.Windows.Forms.TabPage();
-            this.lblConfigPath = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.btnClearConfigPath = new System.Windows.Forms.Button();
-            this.btnSelectConfigPath = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.nudDyLoRAUnit = new System.Windows.Forms.NumericUpDown();
             this.cbxUseConv2d = new System.Windows.Forms.CheckBox();
@@ -152,7 +154,6 @@ namespace Kohya_lora_trainer
             this.cbxAlgoType = new System.Windows.Forms.ComboBox();
             this.pageMisc = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
-            this.cbxDecouple = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).BeginInit();
@@ -894,6 +895,44 @@ namespace Kohya_lora_trainer
             this.tabPage2.Text = "ページ2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // lblConfigPath
+            // 
+            this.lblConfigPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblConfigPath.Location = new System.Drawing.Point(523, 289);
+            this.lblConfigPath.Name = "lblConfigPath";
+            this.lblConfigPath.Size = new System.Drawing.Size(281, 50);
+            this.lblConfigPath.TabIndex = 25;
+            this.lblConfigPath.Text = "C:\\Users\\Test\\Desktop\\long name\\aaaaa.toml";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(417, 235);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(106, 50);
+            this.label21.TabIndex = 26;
+            this.label21.Text = "dataset\r\nconfigのパス";
+            // 
+            // btnClearConfigPath
+            // 
+            this.btnClearConfigPath.Location = new System.Drawing.Point(634, 229);
+            this.btnClearConfigPath.Name = "btnClearConfigPath";
+            this.btnClearConfigPath.Size = new System.Drawing.Size(106, 46);
+            this.btnClearConfigPath.TabIndex = 23;
+            this.btnClearConfigPath.Text = "クリア";
+            this.btnClearConfigPath.UseVisualStyleBackColor = true;
+            this.btnClearConfigPath.Click += new System.EventHandler(this.btnClearConfigPath_Click);
+            // 
+            // btnSelectConfigPath
+            // 
+            this.btnSelectConfigPath.Location = new System.Drawing.Point(527, 229);
+            this.btnSelectConfigPath.Name = "btnSelectConfigPath";
+            this.btnSelectConfigPath.Size = new System.Drawing.Size(101, 46);
+            this.btnSelectConfigPath.TabIndex = 24;
+            this.btnSelectConfigPath.Text = "選択";
+            this.btnSelectConfigPath.UseVisualStyleBackColor = true;
+            this.btnSelectConfigPath.Click += new System.EventHandler(this.btnSelectConfigPath_Click);
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.cbxScaleVPredLoss);
@@ -1238,11 +1277,6 @@ namespace Kohya_lora_trainer
             0,
             0,
             0});
-            this.nudLRSchedulerCycle.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.nudLRSchedulerCycle.Name = "nudLRSchedulerCycle";
             this.nudLRSchedulerCycle.Size = new System.Drawing.Size(120, 31);
             this.nudLRSchedulerCycle.TabIndex = 16;
@@ -1263,6 +1297,7 @@ namespace Kohya_lora_trainer
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.cbxNoProx);
             this.tabPage5.Controls.Add(this.cbxDecouple);
             this.tabPage5.Controls.Add(this.tbxMomentum);
             this.tabPage5.Controls.Add(this.label30);
@@ -1284,6 +1319,26 @@ namespace Kohya_lora_trainer
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "DAdaption";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // cbxNoProx
+            // 
+            this.cbxNoProx.AutoSize = true;
+            this.cbxNoProx.Location = new System.Drawing.Point(79, 263);
+            this.cbxNoProx.Name = "cbxNoProx";
+            this.cbxNoProx.Size = new System.Drawing.Size(201, 29);
+            this.cbxNoProx.TabIndex = 24;
+            this.cbxNoProx.Text = "no prox(Adan系のみ)";
+            this.cbxNoProx.UseVisualStyleBackColor = true;
+            // 
+            // cbxDecouple
+            // 
+            this.cbxDecouple.AutoSize = true;
+            this.cbxDecouple.Location = new System.Drawing.Point(79, 228);
+            this.cbxDecouple.Name = "cbxDecouple";
+            this.cbxDecouple.Size = new System.Drawing.Size(286, 29);
+            this.cbxDecouple.TabIndex = 24;
+            this.cbxDecouple.Text = "decoupleを有効化(Adam系のみ)";
+            this.cbxDecouple.UseVisualStyleBackColor = true;
             // 
             // tbxMomentum
             // 
@@ -1420,44 +1475,6 @@ namespace Kohya_lora_trainer
             this.pageConv.TabIndex = 3;
             this.pageConv.Text = "Conv関連";
             this.pageConv.UseVisualStyleBackColor = true;
-            // 
-            // lblConfigPath
-            // 
-            this.lblConfigPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblConfigPath.Location = new System.Drawing.Point(523, 289);
-            this.lblConfigPath.Name = "lblConfigPath";
-            this.lblConfigPath.Size = new System.Drawing.Size(281, 50);
-            this.lblConfigPath.TabIndex = 25;
-            this.lblConfigPath.Text = "C:\\Users\\Test\\Desktop\\long name\\aaaaa.toml";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(417, 235);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(106, 50);
-            this.label21.TabIndex = 26;
-            this.label21.Text = "dataset\r\nconfigのパス";
-            // 
-            // btnClearConfigPath
-            // 
-            this.btnClearConfigPath.Location = new System.Drawing.Point(634, 229);
-            this.btnClearConfigPath.Name = "btnClearConfigPath";
-            this.btnClearConfigPath.Size = new System.Drawing.Size(106, 46);
-            this.btnClearConfigPath.TabIndex = 23;
-            this.btnClearConfigPath.Text = "クリア";
-            this.btnClearConfigPath.UseVisualStyleBackColor = true;
-            this.btnClearConfigPath.Click += new System.EventHandler(this.btnClearConfigPath_Click);
-            // 
-            // btnSelectConfigPath
-            // 
-            this.btnSelectConfigPath.Location = new System.Drawing.Point(527, 229);
-            this.btnSelectConfigPath.Name = "btnSelectConfigPath";
-            this.btnSelectConfigPath.Size = new System.Drawing.Size(101, 46);
-            this.btnSelectConfigPath.TabIndex = 24;
-            this.btnSelectConfigPath.Text = "選択";
-            this.btnSelectConfigPath.UseVisualStyleBackColor = true;
-            this.btnSelectConfigPath.Click += new System.EventHandler(this.btnSelectConfigPath_Click);
             // 
             // label22
             // 
@@ -1598,16 +1615,6 @@ namespace Kohya_lora_trainer
             this.label8.Size = new System.Drawing.Size(279, 30);
             this.label8.TabIndex = 31;
             this.label8.Text = "通常編集する必要のない設定";
-            // 
-            // cbxDecouple
-            // 
-            this.cbxDecouple.AutoSize = true;
-            this.cbxDecouple.Location = new System.Drawing.Point(79, 228);
-            this.cbxDecouple.Name = "cbxDecouple";
-            this.cbxDecouple.Size = new System.Drawing.Size(179, 29);
-            this.cbxDecouple.TabIndex = 24;
-            this.cbxDecouple.Text = "decoupleを有効化";
-            this.cbxDecouple.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
@@ -1789,5 +1796,6 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.NumericUpDown nudMaxNormReg;
         private System.Windows.Forms.CheckBox cbxDecouple;
+        private System.Windows.Forms.CheckBox cbxNoProx;
     }
 }

@@ -340,11 +340,14 @@ namespace Kohya_lora_trainer
                 BatchProcess.IsRunning = true;
                 BatchProcess.SkippedCount = 0;
                 BatchProcess.CompletedCount = 0;
+                BatchProcess.FailCount = 0;
                 while (BatchProcess.BatchStack.Count > 0)
                 {
                     if (!HasScriptFile(str, false))
                     {
                         Console.WriteLine("Skipping training. train_network.py not found");
+                        BatchProcess.LogText += TrainParams.Current.OutputPath + "\\" + TrainParams.Current.OutputName + ".safetensors\r\ntrain_network.pyがないためスキップ\r\n\r\n";
+
                         BatchProcess.SkippedCount++;
                         continue;
                     }
@@ -353,6 +356,11 @@ namespace Kohya_lora_trainer
                     if (!File.Exists(pth))
                     {
                         Console.WriteLine("Skipping training. Invalid path: " + pth);
+                        if (!string.IsNullOrEmpty(pth))
+                        {
+                            BatchProcess.LogText += pth + "\r\nプリセットがないためスキップ\r\n\r\n";
+                        }
+              
                         BatchProcess.SkippedCount++;
                         continue;
                     }
@@ -361,6 +369,7 @@ namespace Kohya_lora_trainer
                     if (!IsTrainingAvailable(false))
                     {
                         Console.WriteLine("Skipping training. Invalid params in: " + pth);
+                        BatchProcess.LogText += pth + "\r\nプリセットの設定が不適切なためスキップ\r\n\r\n";
                         BatchProcess.SkippedCount++;
                         continue;
                     }
@@ -369,6 +378,14 @@ namespace Kohya_lora_trainer
                     train0.ShowDialog();
                     train0.Dispose();
                     BatchProcess.CompletedCount++;
+                }
+                if (!BatchProcess.IsCancel)
+                {
+                    string sstr = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\batchlog-" + DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss") + ".txt";
+                    using(StreamWriter sw = new StreamWriter(sstr, false, new UTF8Encoding(false)))
+                    {
+                        sw.WriteLine(BatchProcess.LogText);
+                    }
                 }
 
                 if (rbtShutdown.Checked && !BatchProcess.IsCancel)
@@ -379,12 +396,14 @@ namespace Kohya_lora_trainer
                 }
                 else
                 {
-                    MessageBox.Show("バッチ処理が終了しました。\n" + BatchProcess.CompletedCount.ToString() + "件の処理が完了し、" + BatchProcess.SkippedCount.ToString() + "件の処理がスキップされました。\nもう一度バッチ処理をする場合はバッチ処理ウィンドウを開いて反映ボタンを押してください。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("バッチ処理が終了しました。\n" + BatchProcess.CompletedCount.ToString() + "件の処理が完了し、" + BatchProcess.SkippedCount.ToString() + "件の処理がスキップされました。\n完了したものの内" + BatchProcess.FailCount.ToString() +"件がエラーなどにより失敗した可能性があります。\nもう一度バッチ処理をする場合はバッチ処理ウィンドウを開いて反映ボタンを押してください。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 BatchProcess.IsRunning = false;
                 BatchProcess.SkippedCount = 0;
                 BatchProcess.CompletedCount = 0;
+                BatchProcess.FailCount = 0;
                 BatchProcess.IsCancel = false;
+                BatchProcess.LogText = string.Empty;
                 return;
             }
 

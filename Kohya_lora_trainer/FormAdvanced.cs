@@ -243,7 +243,8 @@ namespace Kohya_lora_trainer {
             TrainParams.Current.ScaleVPredLoss = cbxScaleVPredLoss.Checked;
             TrainParams.Current.MaxNormReg = nudMaxNormReg.Value;
 
-
+            TrainParams.Current.Decouple = cbxDecouple.Checked;
+            TrainParams.Current.NoProx = cbxNoProx.Checked;
 
             Close();
         }
@@ -324,6 +325,9 @@ namespace Kohya_lora_trainer {
             nudModuleDropout.Value = TrainParams.Current.ModuleDropout;
             cbxScaleVPredLoss.Checked = TrainParams.Current.ScaleVPredLoss;
             nudMaxNormReg.Value = TrainParams.Current.MaxNormReg;
+
+            cbxDecouple.Checked = TrainParams.Current.Decouple;
+            cbxNoProx.Checked = TrainParams.Current.NoProx;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e) {
