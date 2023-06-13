@@ -396,7 +396,24 @@ namespace Kohya_lora_trainer
                 }
                 else
                 {
-                    MessageBox.Show("バッチ処理が終了しました。\n" + BatchProcess.CompletedCount.ToString() + "件の処理が完了し、" + BatchProcess.SkippedCount.ToString() + "件の処理がスキップされました。\n完了したものの内" + BatchProcess.FailCount.ToString() +"件がエラーなどにより失敗した可能性があります。\nもう一度バッチ処理をする場合はバッチ処理ウィンドウを開いて反映ボタンを押してください。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append("バッチ処理が終了しました。\n").Append(BatchProcess.CompletedCount).Append("件が完了し");
+                    if(BatchProcess.SkippedCount > 0)
+                    {
+                        sb.Append("、").Append(BatchProcess.SkippedCount).Append("件がスキップされました。");
+                    }
+                    else
+                    {
+                        sb.Append("ました。");
+                    }
+
+                    if(BatchProcess.FailCount > 0)
+                    {
+                        sb.Append("\n完了したものの内").Append(BatchProcess.FailCount).Append("件が失敗した可能性があります。");
+                    }
+
+                    sb.Append("\nもう一度バッチ処理をする場合はバッチ処理ウィンドウを開いて反映ボタンを押してください。");
+                    MessageBox.Show(sb.ToString(), "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 BatchProcess.IsRunning = false;
                 BatchProcess.SkippedCount = 0;

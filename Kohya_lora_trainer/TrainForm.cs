@@ -118,7 +118,7 @@ namespace Kohya_lora_trainer
                     //メッセージボックスが出ている間に閉じたかもしれないので再度確認
                     if (process != null && !process.HasExited)
                     {
-                        //Killしても閉じないことがある・・・Windowsのバグ？
+                        //Killしても閉じない・・・Win11の仕様変更?
                         Console.WriteLine("Try kill terminal: " + process.ProcessName);
                         process.Kill();
                         process.Dispose();
@@ -161,7 +161,11 @@ namespace Kohya_lora_trainer
                 BatchProcess.LogText += ", 終了時刻:" + DateTime.Now.ToString() + ", 経過時間: " + $"{hour}時間{min}分" + sec.ToString("0.000秒");
                 if (failed)
                 {
-                    BatchProcess.LogText += "\r\n出力物がないため学習失敗の可能性あり。";
+                    BatchProcess.LogText += "\r\n出力物がないためエラー落ちの可能性あり。";
+                }
+                else
+                {
+                    BatchProcess.LogText += "\r\n学習は正常に終了。";
                 }
                 BatchProcess.LogText += "\r\n\r\n";
             }
