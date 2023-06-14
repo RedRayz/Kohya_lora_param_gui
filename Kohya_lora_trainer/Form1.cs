@@ -379,7 +379,8 @@ namespace Kohya_lora_trainer
                     train0.Dispose();
                     BatchProcess.CompletedCount++;
                 }
-                if (!BatchProcess.IsCancel)
+
+                if (!BatchProcess.IsCancel && !string.IsNullOrWhiteSpace(BatchProcess.LogText))
                 {
                     string sstr = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\batchlog-" + DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss") + ".txt";
                     using(StreamWriter sw = new StreamWriter(sstr, false, new UTF8Encoding(false)))
