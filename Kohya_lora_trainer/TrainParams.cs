@@ -78,6 +78,7 @@ namespace Kohya_lora_trainer {
 
         //DAdaption関連
         public float WeightDecay = 0, Eps = 1e-06f, D0 = 1e-06f, GrowthRate = 0, Betas0 = 0.9f, Betas1 = 0.999f, Betas2 = 0.999f, DAdaptMomentum = 0.9f;
+        public bool Decouple = false, NoProx = false;
 
 
         [NonSerialized]

@@ -54,8 +54,9 @@ namespace Kohya_lora_trainer {
                         if (int.TryParse(str, out num) && num > 0) {
                             string[] files = Directory.GetFiles(dc2);
                             int fileCnt = 0;
+                            Regex reg = new Regex(@"png|jpg|jpeg|webp|bmp|PNG|JPG|JPEG|WEBP|BMP");
                             foreach (string file in files) {
-                                if (!Path.GetExtension(file).Equals(".txt") && !Path.GetExtension(file).Equals(".caption")) {
+                                if (reg.IsMatch(Path.GetExtension(file))) {
                                     fileCnt++;
                                 }
                             }

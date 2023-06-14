@@ -33,6 +33,8 @@
             this.btnDiscardChanges = new System.Windows.Forms.Button();
             this.btnApplyChanges = new System.Windows.Forms.Button();
             this.btnAddPreset = new System.Windows.Forms.Button();
+            this.cbxGenerateLogText = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbxPrestList
@@ -84,11 +86,32 @@
             this.btnAddPreset.UseVisualStyleBackColor = true;
             this.btnAddPreset.Click += new System.EventHandler(this.btnAddPreset_Click);
             // 
+            // cbxGenerateLogText
+            // 
+            this.cbxGenerateLogText.AutoSize = true;
+            this.cbxGenerateLogText.Location = new System.Drawing.Point(595, 302);
+            this.cbxGenerateLogText.Name = "cbxGenerateLogText";
+            this.cbxGenerateLogText.Size = new System.Drawing.Size(237, 29);
+            this.cbxGenerateLogText.TabIndex = 4;
+            this.cbxGenerateLogText.Text = "終了時にレポートを出力する";
+            this.cbxGenerateLogText.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(581, 334);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(448, 50);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "開始時間、終了時間、経過時間、学習成功の可否を\r\nドキュメントフォルダーにbatchlog-日付.txtとして書き出します。";
+            // 
             // FormBatchProcess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1041, 601);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cbxGenerateLogText);
             this.Controls.Add(this.btnAddPreset);
             this.Controls.Add(this.btnApplyChanges);
             this.Controls.Add(this.btnDiscardChanges);
@@ -114,5 +137,7 @@
         private System.Windows.Forms.Button btnDiscardChanges;
         private System.Windows.Forms.Button btnApplyChanges;
         private System.Windows.Forms.Button btnAddPreset;
+        private System.Windows.Forms.CheckBox cbxGenerateLogText;
+        private System.Windows.Forms.Label label2;
     }
 }
