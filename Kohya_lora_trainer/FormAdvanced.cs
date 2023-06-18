@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
@@ -188,6 +189,19 @@ namespace Kohya_lora_trainer {
                 return;
             }
 
+
+            Regex regex = new Regex("[&:/\\\\\\?\\*<>\\|\"'`]");
+            if (regex.IsMatch(tbxComment.Text))
+            {
+                MessageBox.Show("コメント欄に使用できない文字が含まれています。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
+                TrainParams.Current.Comment = tbxComment.Text;
+            }
+
+
             TrainParams.Current.CpuThreads = tbrCpuThreads.Value;
             TrainParams.Current.SchedulerType = (SchedulerType)Enum.ToObject(typeof(SchedulerType), cbxScheduler.SelectedIndex);
             TrainParams.Current.SavePrecision = (SavePrecision)Enum.ToObject(typeof(SavePrecision), cbxPrecision.SelectedIndex);
@@ -328,6 +342,7 @@ namespace Kohya_lora_trainer {
 
             cbxDecouple.Checked = TrainParams.Current.Decouple;
             cbxNoProx.Checked = TrainParams.Current.NoProx;
+            tbxComment.Text = TrainParams.Current.Comment;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e) {

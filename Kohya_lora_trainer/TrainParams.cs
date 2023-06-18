@@ -19,7 +19,7 @@ namespace Kohya_lora_trainer {
         public  int KeepTokenCount = 1, SaveEveryNEpochs = 0;
         public  OptimizerType OptimizerType = OptimizerType.AdamW;
         public  int WarmupSteps = 500;
-        public  string OutputName;
+        public  string OutputName, Comment;
 
         //Advanced
         public  int CpuThreads = 8;

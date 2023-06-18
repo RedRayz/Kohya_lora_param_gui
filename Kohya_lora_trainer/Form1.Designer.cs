@@ -591,9 +591,9 @@ namespace Kohya_lora_trainer
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(171, 438);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(298, 25);
+            this.label8.Size = new System.Drawing.Size(307, 25);
             this.label8.TabIndex = 65;
-            this.label8.Text = "次の文字は使用できません /\\?:*<>|\"＆\r\n";
+            this.label8.Text = "次の文字は使用できません /\\?:*<>|\"＆\'`\r\n";
             // 
             // label11
             // 
