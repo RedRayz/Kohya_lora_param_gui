@@ -239,7 +239,7 @@ namespace Kohya_lora_trainer
 
                         if (TrainParams.Current.GrowthRate > 0f)
                         {
-                            sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append("\" \"decouple=").Append(TrainParams.Current.Decouple.ToString()).Append("\"");
+                            sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append("\"");
                         }
 
                     }
@@ -297,6 +297,24 @@ namespace Kohya_lora_trainer
                         if (TrainParams.Current.GrowthRate > 0f)
                         {
                             sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append("\"");
+                        }
+                    }
+                    break;
+                case OptimizerType.prodigy:
+                    {
+                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
+    .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
+    .Append(TrainParams.Current.D0.ToString("g")).Append("\" \"decouple=").Append(TrainParams.Current.Decouple.ToString()).Append("\" \"d_coef=").Append(TrainParams.Current.DCoef.ToString("g"))
+    .Append("\" \"use_bias_correction=").Append(TrainParams.Current.UseBiasCorrection.ToString()).Append("\" \"safeguard_warmup=").Append(TrainParams.Current.SafeguardWarmup.ToString()).Append("\"");
+
+                        if (TrainParams.Current.GrowthRate > 0f)
+                        {
+                            sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append("\"");
+                        }
+
+                        if (TrainParams.Current.ProdigyBeta3 > 0f)
+                        {
+                            sb.Append(" \"beta3=").Append(TrainParams.Current.ProdigyBeta3.ToString("g")).Append("\"");
                         }
                     }
                     break;

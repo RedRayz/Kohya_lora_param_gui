@@ -189,6 +189,36 @@ namespace Kohya_lora_trainer {
                 return;
             }
 
+            if (float.TryParse(tbxProdigyBeta3.Text, out val))
+            {
+                if (val < 0f)
+                {
+                    MessageBox.Show("beta3の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                TrainParams.Current.ProdigyBeta3 = val;
+            }
+            else
+            {
+                MessageBox.Show("beta3の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (float.TryParse(tbxDCoef.Text, out val))
+            {
+                if (val < 0f)
+                {
+                    MessageBox.Show("d coefの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                TrainParams.Current.DCoef = val;
+            }
+            else
+            {
+                MessageBox.Show("d coefの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
 
             Regex regex = new Regex("[&:/\\\\\\?\\*<>\\|\"'`]");
             if (regex.IsMatch(tbxComment.Text))
@@ -259,6 +289,9 @@ namespace Kohya_lora_trainer {
 
             TrainParams.Current.Decouple = cbxDecouple.Checked;
             TrainParams.Current.NoProx = cbxNoProx.Checked;
+
+            TrainParams.Current.SafeguardWarmup = cbxUseSafeguard.Checked;
+            TrainParams.Current.UseBiasCorrection = cbxUseBiasCorrection.Checked;
 
             Close();
         }
@@ -343,6 +376,12 @@ namespace Kohya_lora_trainer {
             cbxDecouple.Checked = TrainParams.Current.Decouple;
             cbxNoProx.Checked = TrainParams.Current.NoProx;
             tbxComment.Text = TrainParams.Current.Comment;
+
+            cbxUseWarmupInit.Checked = TrainParams.Current.UseBiasCorrection;
+            cbxUseSafeguard.Checked = TrainParams.Current.SafeguardWarmup;
+
+            tbxProdigyBeta3.Text = TrainParams.Current.ProdigyBeta3.ToString("g");
+            tbxDCoef.Text = TrainParams.Current.DCoef.ToString("g");
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e) {
