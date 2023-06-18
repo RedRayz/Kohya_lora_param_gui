@@ -938,6 +938,7 @@ namespace Kohya_lora_trainer
                 case OptimizerType.DAdaptSGD:
                 case OptimizerType.DAdaptAdanIP:
                 case OptimizerType.DAdaptLion:
+                case OptimizerType.prodigy:
                     {
                         if (TrainParams.Current.LearningRate > 3)
                             return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:1)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

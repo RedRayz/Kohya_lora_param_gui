@@ -153,10 +153,10 @@ namespace Kohya_lora_trainer
             this.label25 = new System.Windows.Forms.Label();
             this.cbxAlgoType = new System.Windows.Forms.ComboBox();
             this.pageMisc = new System.Windows.Forms.TabPage();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tbxComment = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.tbxComment = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).BeginInit();
@@ -1320,7 +1320,7 @@ namespace Kohya_lora_trainer
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(1072, 393);
             this.tabPage5.TabIndex = 5;
-            this.tabPage5.Text = "DAdaption";
+            this.tabPage5.Text = "DAdaptation";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // cbxNoProx
@@ -1612,22 +1612,14 @@ namespace Kohya_lora_trainer
             this.pageMisc.Text = "その他";
             this.pageMisc.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // label41
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Yu Gothic UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label8.Location = new System.Drawing.Point(42, 145);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(279, 30);
-            this.label8.TabIndex = 31;
-            this.label8.Text = "通常編集する必要のない設定";
-            // 
-            // tbxComment
-            // 
-            this.tbxComment.Location = new System.Drawing.Point(124, 34);
-            this.tbxComment.Name = "tbxComment";
-            this.tbxComment.Size = new System.Drawing.Size(691, 31);
-            this.tbxComment.TabIndex = 32;
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(119, 68);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(307, 25);
+            this.label41.TabIndex = 66;
+            this.label41.Text = "次の文字は使用できません /\\?:*<>|\"＆\'`\r\n";
             // 
             // label40
             // 
@@ -1638,14 +1630,22 @@ namespace Kohya_lora_trainer
             this.label40.TabIndex = 33;
             this.label40.Text = "学習コメント";
             // 
-            // label41
+            // tbxComment
             // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(119, 68);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(307, 25);
-            this.label41.TabIndex = 66;
-            this.label41.Text = "次の文字は使用できません /\\?:*<>|\"＆\'`\r\n";
+            this.tbxComment.Location = new System.Drawing.Point(124, 34);
+            this.tbxComment.Name = "tbxComment";
+            this.tbxComment.Size = new System.Drawing.Size(691, 31);
+            this.tbxComment.TabIndex = 32;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Yu Gothic UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label8.Location = new System.Drawing.Point(42, 145);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(279, 30);
+            this.label8.TabIndex = 31;
+            this.label8.Text = "通常編集する必要のない設定";
             // 
             // FormAdvanced
             // 

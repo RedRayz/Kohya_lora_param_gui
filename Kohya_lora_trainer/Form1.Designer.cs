@@ -209,7 +209,8 @@ namespace Kohya_lora_trainer
             "DAdaptAdan",
             "DAdaptSGD",
             "DAdaptAdanIP",
-            "DAdaptLion"});
+            "DAdaptLion",
+            "Prodigy"});
             this.cbxOptimizer.Location = new System.Drawing.Point(166, 347);
             this.cbxOptimizer.Name = "cbxOptimizer";
             this.cbxOptimizer.Size = new System.Drawing.Size(208, 33);
