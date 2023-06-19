@@ -426,7 +426,11 @@ namespace Kohya_lora_trainer
             }
 
             if (!IsTrainingAvailable(true))
-                return;
+            {
+                DialogResult res = MessageBox.Show("設定が正しくない可能性がありますが、\n続けてもよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == DialogResult.No)
+                    return;
+            }
 
             Form train = new TrainForm(rbtBenckmark.Checked, rbtShutdown.Checked, false);
             train.ShowDialog();
@@ -624,8 +628,7 @@ namespace Kohya_lora_trainer
 
         private void btnGenerateCommands_Click(object sender, EventArgs e)
         {
-            if (IsTrainingAvailable(true))
-                Clipboard.SetText(MyUtils.GenerateCommands());
+            Clipboard.SetText(MyUtils.GenerateCommands());
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -765,7 +768,7 @@ namespace Kohya_lora_trainer
         {
             TrainParams.Current.OutputName = tbxFileName.Text.Trim();
             HaveNonAscillInOutputName = false;
-            Regex regex = new Regex("[&:/\\\\\\?\\*<>\\|\"]");
+            Regex regex = new Regex("[&:/\\\\\\?\\*<>\\|\"'`]");
             if (regex.IsMatch(TrainParams.Current.OutputName))
             {
                 lblFileName.ForeColor = Color.Red;
@@ -935,6 +938,7 @@ namespace Kohya_lora_trainer
                 case OptimizerType.DAdaptSGD:
                 case OptimizerType.DAdaptAdanIP:
                 case OptimizerType.DAdaptLion:
+                case OptimizerType.prodigy:
                     {
                         if (TrainParams.Current.LearningRate > 3)
                             return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:1)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

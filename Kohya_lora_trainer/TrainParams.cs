@@ -19,7 +19,7 @@ namespace Kohya_lora_trainer {
         public  int KeepTokenCount = 1, SaveEveryNEpochs = 0;
         public  OptimizerType OptimizerType = OptimizerType.AdamW;
         public  int WarmupSteps = 500;
-        public  string OutputName;
+        public  string OutputName, Comment;
 
         //Advanced
         public  int CpuThreads = 8;
@@ -77,8 +77,8 @@ namespace Kohya_lora_trainer {
         public MixedPrecisionType mixedPrecisionType = MixedPrecisionType.fp16;
 
         //DAdaption関連
-        public float WeightDecay = 0, Eps = 1e-06f, D0 = 1e-06f, GrowthRate = 0, Betas0 = 0.9f, Betas1 = 0.999f, Betas2 = 0.999f, DAdaptMomentum = 0.9f;
-        public bool Decouple = false, NoProx = false;
+        public float WeightDecay = 0, Eps = 1e-06f, D0 = 1e-06f, GrowthRate = 0, Betas0 = 0.9f, Betas1 = 0.999f, Betas2 = 0.999f, DAdaptMomentum = 0.9f, ProdigyBeta3 = 0, DCoef = 1;
+        public bool Decouple = false, NoProx = false, SafeguardWarmup = false, UseBiasCorrection = false;
 
 
         [NonSerialized]
@@ -224,7 +224,8 @@ namespace Kohya_lora_trainer {
         DAdaptAdan,
         DAdaptSGD,
         DAdaptAdanIP,
-        DAdaptLion
+        DAdaptLion,
+        prodigy
     }
 
     public enum SavePrecision {
