@@ -38,6 +38,9 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnUpdateRepo = new System.Windows.Forms.Button();
+            this.btnInstallExtension = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudTargetDim)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -197,6 +200,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.label4);
+            this.tabPage3.Controls.Add(this.label1);
+            this.tabPage3.Controls.Add(this.btnInstallExtension);
             this.tabPage3.Controls.Add(this.btnUpdateRepo);
             this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Name = "tabPage3";
@@ -207,13 +213,41 @@
             // 
             // btnUpdateRepo
             // 
-            this.btnUpdateRepo.Location = new System.Drawing.Point(222, 109);
+            this.btnUpdateRepo.Location = new System.Drawing.Point(197, 44);
             this.btnUpdateRepo.Name = "btnUpdateRepo";
-            this.btnUpdateRepo.Size = new System.Drawing.Size(207, 54);
+            this.btnUpdateRepo.Size = new System.Drawing.Size(235, 45);
             this.btnUpdateRepo.TabIndex = 0;
             this.btnUpdateRepo.Text = "sd-scriptsのアップデート";
             this.btnUpdateRepo.UseVisualStyleBackColor = true;
             this.btnUpdateRepo.Click += new System.EventHandler(this.btnUpdateRepo_Click);
+            // 
+            // btnInstallExtension
+            // 
+            this.btnInstallExtension.Location = new System.Drawing.Point(197, 146);
+            this.btnInstallExtension.Name = "btnInstallExtension";
+            this.btnInstallExtension.Size = new System.Drawing.Size(235, 45);
+            this.btnInstallExtension.TabIndex = 1;
+            this.btnInstallExtension.Text = "拡張機能のインストール・更新";
+            this.btnInstallExtension.UseVisualStyleBackColor = true;
+            this.btnInstallExtension.Click += new System.EventHandler(this.btnInstallExtension_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(192, 194);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(265, 50);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "lycorisおよび追加のオプティマイザを\r\nインストールまたは更新をします。";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(129, 92);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(388, 25);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "リポジトリと必須のpythonパッケージの更新をします。";
             // 
             // FormUtils
             // 
@@ -238,6 +272,7 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -258,5 +293,8 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button btnUpdateRepo;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnInstallExtension;
+        private System.Windows.Forms.Label label4;
     }
 }

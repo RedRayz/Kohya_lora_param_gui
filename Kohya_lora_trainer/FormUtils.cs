@@ -128,5 +128,34 @@ namespace Kohya_lora_trainer {
 
             Process.Start(ps);
         }
+
+        private void btnInstallExtension_Click(object sender, EventArgs e)
+        {
+            string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.SdScriptsPath : Form1.ScriptPath + "\\";
+            if (!Directory.Exists(path + "venv"))
+            {
+                MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("/k cd ");
+            if (!string.IsNullOrEmpty(Form1.ScriptPath))
+            {
+                sb.Append("/d ").Append(Form1.ScriptPath);
+            }
+            else
+            {
+                sb.Append(Constants.SdScriptsPath);
+            }
+
+            sb.Append(" && .\\venv\\Scripts\\activate && pip install -U prodigyopt dadaptation lion-pytorch lycoris_lora");
+
+            ProcessStartInfo ps = new ProcessStartInfo();
+            ps.FileName = "cmd";
+            ps.Arguments = sb.ToString();
+
+            Process.Start(ps);
+        }
     }
 }
