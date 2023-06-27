@@ -3,7 +3,12 @@
 ![GUI Image](https://github.com/RedRayz/Kohya_lora_param_gui/assets/71994877/621d1c16-d77e-4520-9f58-c374ca0b5cc3)
 
 
-https://github.com/kohya-ss/sd-scripts のLoRA学習用のパラメータをGUI上で設定してコマンドラインに渡すGUIです。
+https://github.com/kohya-ss/sd-scripts のLoRA学習用のパラメータをGUI上で設定してコマンドラインに渡すWindows専用のGUIです。
+
+gradioを使用するものと比べ以下のメリットがあります。
+- python、gradioを使用しないため容量を圧迫せず起動が早い
+- Webブラウザを使用しないため軽量
+- 比較的コンパクトなUI
 
 ## 他の機能
 * 学習パラメータのプリセットをxmlで保存/読込
