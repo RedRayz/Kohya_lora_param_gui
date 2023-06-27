@@ -37,10 +37,10 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btnUpdateRepo = new System.Windows.Forms.Button();
-            this.btnInstallExtension = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnInstallExtension = new System.Windows.Forms.Button();
+            this.btnUpdateRepo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudTargetDim)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -80,7 +80,7 @@
             // 
             // btnResizeDim
             // 
-            this.btnResizeDim.Location = new System.Drawing.Point(24, 221);
+            this.btnResizeDim.Location = new System.Drawing.Point(22, 232);
             this.btnResizeDim.Name = "btnResizeDim";
             this.btnResizeDim.Size = new System.Drawing.Size(134, 37);
             this.btnResizeDim.TabIndex = 5;
@@ -91,7 +91,7 @@
             // cbxCudaConversion
             // 
             this.cbxCudaConversion.AutoSize = true;
-            this.cbxCudaConversion.Location = new System.Drawing.Point(24, 175);
+            this.cbxCudaConversion.Location = new System.Drawing.Point(22, 186);
             this.cbxCudaConversion.Name = "cbxCudaConversion";
             this.cbxCudaConversion.Size = new System.Drawing.Size(136, 29);
             this.cbxCudaConversion.TabIndex = 6;
@@ -103,7 +103,7 @@
             this.lblLoraPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblLoraPath.Location = new System.Drawing.Point(164, 22);
             this.lblLoraPath.Name = "lblLoraPath";
-            this.lblLoraPath.Size = new System.Drawing.Size(452, 37);
+            this.lblLoraPath.Size = new System.Drawing.Size(474, 37);
             this.lblLoraPath.TabIndex = 7;
             this.lblLoraPath.Text = "G:\\SD\\model\\lora\\longlongname\\aaaaa.safetensors";
             // 
@@ -112,7 +112,7 @@
             this.lblOutputPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblOutputPath.Location = new System.Drawing.Point(164, 65);
             this.lblOutputPath.Name = "lblOutputPath";
-            this.lblOutputPath.Size = new System.Drawing.Size(452, 37);
+            this.lblOutputPath.Size = new System.Drawing.Size(474, 37);
             this.lblOutputPath.TabIndex = 7;
             this.lblOutputPath.Text = "G:\\SD\\model\\lora\\longlongname\\aaaaa.safetensors";
             // 
@@ -143,9 +143,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(19, 110);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 25);
+            this.label2.Size = new System.Drawing.Size(66, 25);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Target dim size";
+            this.label2.Text = "次元数";
             // 
             // btnSelectOutputPath
             // 
@@ -211,15 +211,23 @@
             this.tabPage3.Text = "更新";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // btnUpdateRepo
+            // label4
             // 
-            this.btnUpdateRepo.Location = new System.Drawing.Point(197, 44);
-            this.btnUpdateRepo.Name = "btnUpdateRepo";
-            this.btnUpdateRepo.Size = new System.Drawing.Size(235, 45);
-            this.btnUpdateRepo.TabIndex = 0;
-            this.btnUpdateRepo.Text = "sd-scriptsのアップデート";
-            this.btnUpdateRepo.UseVisualStyleBackColor = true;
-            this.btnUpdateRepo.Click += new System.EventHandler(this.btnUpdateRepo_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(129, 92);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(388, 25);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "リポジトリと必須のpythonパッケージの更新をします。";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(192, 194);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(265, 50);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "lycorisおよび追加のオプティマイザを\r\nインストールまたは更新をします。";
             // 
             // btnInstallExtension
             // 
@@ -231,23 +239,15 @@
             this.btnInstallExtension.UseVisualStyleBackColor = true;
             this.btnInstallExtension.Click += new System.EventHandler(this.btnInstallExtension_Click);
             // 
-            // label1
+            // btnUpdateRepo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(192, 194);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(265, 50);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "lycorisおよび追加のオプティマイザを\r\nインストールまたは更新をします。";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(129, 92);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(388, 25);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "リポジトリと必須のpythonパッケージの更新をします。";
+            this.btnUpdateRepo.Location = new System.Drawing.Point(197, 44);
+            this.btnUpdateRepo.Name = "btnUpdateRepo";
+            this.btnUpdateRepo.Size = new System.Drawing.Size(235, 45);
+            this.btnUpdateRepo.TabIndex = 0;
+            this.btnUpdateRepo.Text = "sd-scriptsのアップデート";
+            this.btnUpdateRepo.UseVisualStyleBackColor = true;
+            this.btnUpdateRepo.Click += new System.EventHandler(this.btnUpdateRepo_Click);
             // 
             // FormUtils
             // 
