@@ -51,26 +51,26 @@
             this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(32, 120);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(458, 125);
+            this.label1.Size = new System.Drawing.Size(532, 175);
             this.label1.TabIndex = 1;
-            this.label1.Text = "上のボタンを押すとインストール先フォルダの選択画面が出ます。\r\n選択後、ターミナルが立ち上がり、必要なコマンドを実行します。\r\nなお、gitとpythonは事前に" +
-    "インストールする必要があります。\r\n最後にaccelerate configの質問が出るのでターミナルで\r\n数字キーとEnterキーを用いて以下のように答えてく" +
-    "ださい。";
+            this.label1.Text = resources.GetString("label1.Text");
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 261);
+            this.label2.Location = new System.Drawing.Point(32, 309);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(587, 325);
+            this.label2.Size = new System.Drawing.Size(587, 275);
             this.label2.TabIndex = 2;
-            this.label2.Text = resources.GetString("label2.Text");
+            this.label2.Text = "- This machine\r\n- No distributed training\r\n- NO\r\n- NO\r\n- NO\r\n- all\r\n- fp16\r\n注意:日本" +
+    "語環境では選択のためにカーソルキーを押すと落ちます。\r\n数字キーの0、1、2……で選択できますので、そちらを使ってください。\r\n\r\naccelerateの設定後" +
+    "(venv) 〇:\\〇〇\\sd-scripts>とでたらインストール完了です。";
             // 
             // FormInstaller
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(687, 598);
+            this.ClientSize = new System.Drawing.Size(687, 607);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnInstall);

@@ -54,7 +54,7 @@ namespace Kohya_lora_trainer
             //先に親フォルダにpyがあるか確認する。
             //なければボタンを表示する
             //ない状態でカスタムパスにもpyがないなら赤字で設定するよう促す(デバッグ環境のみ)
-            if (!File.Exists(@"..\train_network.py"))
+            if (!File.Exists(Constants.SdScriptsPath + @"train_network.py"))
             {
                 btnInstaller.Visible = true;
 #if DEBUG
@@ -326,7 +326,7 @@ namespace Kohya_lora_trainer
 
         private void btnStartTraining_Click(object sender, EventArgs e)
         {
-            string str = string.IsNullOrEmpty(ScriptPath) ? "..\\" : ScriptPath + "\\";
+            string str = string.IsNullOrEmpty(ScriptPath) ? Constants.SdScriptsPath : ScriptPath + "\\";
 
             if (!HasScriptFile(str, true))
                 return;

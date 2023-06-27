@@ -11,6 +11,7 @@ https://github.com/kohya-ss/sd-scripts のLoRA学習用のパラメータをGUI�
 * GUI終了時にパラメータを記憶し、起動時に反映
 * 複数LoRAの一括学習
 * Dimのリサイズ
+* sd-scriptsのインストール・更新
 
 ## 注意事項
 [sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法でセットアップしている環境を前提としています。
@@ -35,8 +36,6 @@ v1.6以降でご利用いただけます。
 
 3.GUIの上部にある「簡易インストーラー」をクリックして表示されるウィンドウに書いてある説明を読んでから、インストールボタンを押す。
 
-4.インストールが完了したら、GUIを閉じてGUIが入ったフォルダをsd-scripts直下に移動させる。
-
 ### B.手動インストール
 簡易インストールがうまくいかないか違うバージョンのtorchを入れたい場合はこちら
 
@@ -44,11 +43,11 @@ v1.6以降でご利用いただけます。
 
 2.[releases](https://github.com/RedRayz/Kohya_lora_param_gui/releases)からkohya_lora_gui-x.x.x.zipをDLする
 
-3.zipを解凍してできたフォルダをsd-scriptに移動させる
+3.zipを解凍してできたフォルダをsd-scriptsと同じ階層のフォルダに移動させる
 
 注意:ディレクトリの階層は次のようにします。
 
-![Image000](https://github.com/RedRayz/Kohya_lora_param_gui/assets/71994877/1c5ee177-85ad-47bb-9881-95aa3f28ef3b)
+![screenshot0001](https://github.com/RedRayz/Kohya_lora_param_gui/assets/71994877/2504408d-1e55-4cde-8050-380d69a977df)
 
 ## 起動方法
 Kohya_lora_trainer.exeをダブルクリックする。ショートカット作ると便利かも?

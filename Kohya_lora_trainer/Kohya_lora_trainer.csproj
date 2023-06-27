@@ -129,6 +129,7 @@
   <ItemGroup>
     <Compile Include="BatchProcess.cs" />
     <Compile Include="CheckUtil.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

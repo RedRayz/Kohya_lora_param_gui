@@ -117,20 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label2.Text" xml:space="preserve">
-    <value>- This machine
-- No distributed training
-- NO
-- NO
-- NO
-- all
-- fp16
-注意:日本語環境では選択のためにカーソルキーを押すと落ちます。
-数字キーの0、1、2……で選択できますので、そちらを使ってください。
-
-accelerateの設定後(venv) 〇:\〇〇\sd-scripts&gt;とでたらインストール完了です。
-その後、GUIを閉じてこのGUIのexeが入ったフォルダを
-sd-scripts直下に移動させることで学習できるようになります。
-</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>上のボタンを押すとインストール先フォルダの選択画面が出ます。
+フォルダはGUIが入ったフォルダと同階層を指定するか、
+インストール後にGUIのフォルダをsd-scriptsと同階層に移動させてください。
+選択後、ターミナルが立ち上がり、必要なコマンドを実行します。
+なお、gitとpythonは事前にインストールする必要があります。
+最後にaccelerate configの質問が出るのでターミナルで
+数字キーとEnterキーを用いて以下のように答えてください。</value>
   </data>
 </root>
