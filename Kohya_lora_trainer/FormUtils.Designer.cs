@@ -80,7 +80,7 @@
             // 
             // btnResizeDim
             // 
-            this.btnResizeDim.Location = new System.Drawing.Point(22, 232);
+            this.btnResizeDim.Location = new System.Drawing.Point(24, 225);
             this.btnResizeDim.Name = "btnResizeDim";
             this.btnResizeDim.Size = new System.Drawing.Size(134, 37);
             this.btnResizeDim.TabIndex = 5;
@@ -91,7 +91,7 @@
             // cbxCudaConversion
             // 
             this.cbxCudaConversion.AutoSize = true;
-            this.cbxCudaConversion.Location = new System.Drawing.Point(22, 186);
+            this.cbxCudaConversion.Location = new System.Drawing.Point(168, 138);
             this.cbxCudaConversion.Name = "cbxCudaConversion";
             this.cbxCudaConversion.Size = new System.Drawing.Size(136, 29);
             this.cbxCudaConversion.TabIndex = 6;
