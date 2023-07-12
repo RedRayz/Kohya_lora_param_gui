@@ -373,7 +373,7 @@ namespace Kohya_lora_trainer
             this.nudNetworkAlpha.DecimalPlaces = 2;
             this.nudNetworkAlpha.Location = new System.Drawing.Point(1017, 258);
             this.nudNetworkAlpha.Maximum = new decimal(new int[] {
-            512,
+            1024,
             0,
             0,
             0});
@@ -397,7 +397,7 @@ namespace Kohya_lora_trainer
             // 
             this.nudNetworkDim.Location = new System.Drawing.Point(607, 261);
             this.nudNetworkDim.Maximum = new decimal(new int[] {
-            512,
+            1024,
             0,
             0,
             0});
@@ -420,6 +420,11 @@ namespace Kohya_lora_trainer
             // nudEpochs
             // 
             this.nudEpochs.Location = new System.Drawing.Point(162, 261);
+            this.nudEpochs.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
             this.nudEpochs.Minimum = new decimal(new int[] {
             1,
             0,
@@ -444,7 +449,7 @@ namespace Kohya_lora_trainer
             0});
             this.nudResolution.Location = new System.Drawing.Point(606, 218);
             this.nudResolution.Maximum = new decimal(new int[] {
-            1024,
+            2048,
             0,
             0,
             0});
@@ -468,7 +473,7 @@ namespace Kohya_lora_trainer
             // 
             this.nudKeepTokens.Location = new System.Drawing.Point(606, 304);
             this.nudKeepTokens.Maximum = new decimal(new int[] {
-            10,
+            128,
             0,
             0,
             0});
@@ -482,7 +487,7 @@ namespace Kohya_lora_trainer
             // 
             this.nudSaveEpoch.Location = new System.Drawing.Point(1017, 301);
             this.nudSaveEpoch.Maximum = new decimal(new int[] {
-            8,
+            128,
             0,
             0,
             0});
@@ -495,7 +500,7 @@ namespace Kohya_lora_trainer
             // 
             this.nudBatchSize.Location = new System.Drawing.Point(1017, 217);
             this.nudBatchSize.Maximum = new decimal(new int[] {
-            16,
+            64,
             0,
             0,
             0});
@@ -536,7 +541,7 @@ namespace Kohya_lora_trainer
             // 
             this.nudWarmupSteps.Location = new System.Drawing.Point(606, 345);
             this.nudWarmupSteps.Maximum = new decimal(new int[] {
-            10000,
+            50000,
             0,
             0,
             0});

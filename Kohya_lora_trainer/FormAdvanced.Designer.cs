@@ -126,6 +126,10 @@ namespace Kohya_lora_trainer
             this.nudLRSchedulerCycle = new System.Windows.Forms.NumericUpDown();
             this.label29 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.cbxUseSafeguard = new System.Windows.Forms.CheckBox();
+            this.cbxUseBiasCorrection = new System.Windows.Forms.CheckBox();
             this.cbxNoProx = new System.Windows.Forms.CheckBox();
             this.cbxDecouple = new System.Windows.Forms.CheckBox();
             this.tbxMomentum = new System.Windows.Forms.TextBox();
@@ -136,6 +140,8 @@ namespace Kohya_lora_trainer
             this.label32 = new System.Windows.Forms.Label();
             this.tbxBetas1 = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
+            this.tbxDCoef = new System.Windows.Forms.TextBox();
+            this.tbxProdigyBeta3 = new System.Windows.Forms.TextBox();
             this.tbxBetas2 = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.tbxEps = new System.Windows.Forms.TextBox();
@@ -157,12 +163,6 @@ namespace Kohya_lora_trainer
             this.label40 = new System.Windows.Forms.Label();
             this.tbxComment = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.tbxProdigyBeta3 = new System.Windows.Forms.TextBox();
-            this.label42 = new System.Windows.Forms.Label();
-            this.cbxUseBiasCorrection = new System.Windows.Forms.CheckBox();
-            this.cbxUseSafeguard = new System.Windows.Forms.CheckBox();
-            this.tbxDCoef = new System.Windows.Forms.TextBox();
-            this.label43 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).BeginInit();
@@ -1335,6 +1335,44 @@ namespace Kohya_lora_trainer
             this.tabPage5.Text = "DAdaptation";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(727, 94);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(116, 50);
+            this.label43.TabIndex = 25;
+            this.label43.Text = "d_coef\r\n(prodigyのみ)";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(727, 36);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(116, 50);
+            this.label42.TabIndex = 25;
+            this.label42.Text = "beta3#\r\n(prodigyのみ)";
+            // 
+            // cbxUseSafeguard
+            // 
+            this.cbxUseSafeguard.AutoSize = true;
+            this.cbxUseSafeguard.Location = new System.Drawing.Point(79, 333);
+            this.cbxUseSafeguard.Name = "cbxUseSafeguard";
+            this.cbxUseSafeguard.Size = new System.Drawing.Size(341, 29);
+            this.cbxUseSafeguard.TabIndex = 24;
+            this.cbxUseSafeguard.Text = "safeguard warmupを使用(prodigyのみ)";
+            this.cbxUseSafeguard.UseVisualStyleBackColor = true;
+            // 
+            // cbxUseBiasCorrection
+            // 
+            this.cbxUseBiasCorrection.AutoSize = true;
+            this.cbxUseBiasCorrection.Location = new System.Drawing.Point(79, 298);
+            this.cbxUseBiasCorrection.Name = "cbxUseBiasCorrection";
+            this.cbxUseBiasCorrection.Size = new System.Drawing.Size(308, 29);
+            this.cbxUseBiasCorrection.TabIndex = 24;
+            this.cbxUseBiasCorrection.Text = "bias correctionを使用(prodigyのみ)";
+            this.cbxUseBiasCorrection.UseVisualStyleBackColor = true;
+            // 
             // cbxNoProx
             // 
             this.cbxNoProx.AutoSize = true;
@@ -1422,6 +1460,22 @@ namespace Kohya_lora_trainer
             this.label33.Size = new System.Drawing.Size(40, 25);
             this.label33.TabIndex = 21;
             this.label33.Text = "eps";
+            // 
+            // tbxDCoef
+            // 
+            this.tbxDCoef.Location = new System.Drawing.Point(849, 91);
+            this.tbxDCoef.Name = "tbxDCoef";
+            this.tbxDCoef.Size = new System.Drawing.Size(77, 31);
+            this.tbxDCoef.TabIndex = 14;
+            this.tbxDCoef.Text = "1";
+            // 
+            // tbxProdigyBeta3
+            // 
+            this.tbxProdigyBeta3.Location = new System.Drawing.Point(849, 33);
+            this.tbxProdigyBeta3.Name = "tbxProdigyBeta3";
+            this.tbxProdigyBeta3.Size = new System.Drawing.Size(77, 31);
+            this.tbxProdigyBeta3.TabIndex = 14;
+            this.tbxProdigyBeta3.Text = "0";
             // 
             // tbxBetas2
             // 
@@ -1537,7 +1591,7 @@ namespace Kohya_lora_trainer
             this.nudConvAlpha.DecimalPlaces = 2;
             this.nudConvAlpha.Location = new System.Drawing.Point(607, 42);
             this.nudConvAlpha.Maximum = new decimal(new int[] {
-            512,
+            1024,
             0,
             0,
             0});
@@ -1554,7 +1608,7 @@ namespace Kohya_lora_trainer
             // 
             this.nudConvDim.Location = new System.Drawing.Point(331, 40);
             this.nudConvDim.Maximum = new decimal(new int[] {
-            512,
+            1024,
             0,
             0,
             0});
@@ -1658,60 +1712,6 @@ namespace Kohya_lora_trainer
             this.label8.Size = new System.Drawing.Size(279, 30);
             this.label8.TabIndex = 31;
             this.label8.Text = "通常編集する必要のない設定";
-            // 
-            // tbxProdigyBeta3
-            // 
-            this.tbxProdigyBeta3.Location = new System.Drawing.Point(849, 33);
-            this.tbxProdigyBeta3.Name = "tbxProdigyBeta3";
-            this.tbxProdigyBeta3.Size = new System.Drawing.Size(77, 31);
-            this.tbxProdigyBeta3.TabIndex = 14;
-            this.tbxProdigyBeta3.Text = "0";
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(727, 36);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(116, 50);
-            this.label42.TabIndex = 25;
-            this.label42.Text = "beta3#\r\n(prodigyのみ)";
-            // 
-            // cbxUseBiasCorrection
-            // 
-            this.cbxUseBiasCorrection.AutoSize = true;
-            this.cbxUseBiasCorrection.Location = new System.Drawing.Point(79, 298);
-            this.cbxUseBiasCorrection.Name = "cbxUseBiasCorrection";
-            this.cbxUseBiasCorrection.Size = new System.Drawing.Size(308, 29);
-            this.cbxUseBiasCorrection.TabIndex = 24;
-            this.cbxUseBiasCorrection.Text = "bias correctionを使用(prodigyのみ)";
-            this.cbxUseBiasCorrection.UseVisualStyleBackColor = true;
-            // 
-            // cbxUseSafeguard
-            // 
-            this.cbxUseSafeguard.AutoSize = true;
-            this.cbxUseSafeguard.Location = new System.Drawing.Point(79, 333);
-            this.cbxUseSafeguard.Name = "cbxUseSafeguard";
-            this.cbxUseSafeguard.Size = new System.Drawing.Size(341, 29);
-            this.cbxUseSafeguard.TabIndex = 24;
-            this.cbxUseSafeguard.Text = "safeguard warmupを使用(prodigyのみ)";
-            this.cbxUseSafeguard.UseVisualStyleBackColor = true;
-            // 
-            // tbxDCoef
-            // 
-            this.tbxDCoef.Location = new System.Drawing.Point(849, 91);
-            this.tbxDCoef.Name = "tbxDCoef";
-            this.tbxDCoef.Size = new System.Drawing.Size(77, 31);
-            this.tbxDCoef.TabIndex = 14;
-            this.tbxDCoef.Text = "1";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(727, 94);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(116, 50);
-            this.label43.TabIndex = 25;
-            this.label43.Text = "d_coef\r\n(prodigyのみ)";
             // 
             // FormAdvanced
             // 
