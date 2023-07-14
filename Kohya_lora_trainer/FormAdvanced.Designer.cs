@@ -44,7 +44,6 @@ namespace Kohya_lora_trainer
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.cbxUseWarmupInit = new System.Windows.Forms.CheckBox();
-            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.tbxExtension = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -61,15 +60,11 @@ namespace Kohya_lora_trainer
             this.label12 = new System.Windows.Forms.Label();
             this.lblTBoardPath = new System.Windows.Forms.Label();
             this.btnClearTBoardPath = new System.Windows.Forms.Button();
-            this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
             this.cbxAdvancedTrain = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.toolTip4 = new System.Windows.Forms.ToolTip(this.components);
             this.cbxCrossAttenType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.toolTip5 = new System.Windows.Forms.ToolTip(this.components);
             this.cbxUseGradient = new System.Windows.Forms.CheckBox();
-            this.toolTip6 = new System.Windows.Forms.ToolTip(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.btnSelectLoRAmodel = new System.Windows.Forms.Button();
             this.btnClearLoRAmodel = new System.Windows.Forms.Button();
@@ -200,6 +195,7 @@ namespace Kohya_lora_trainer
             this.tbxUnetLR.Name = "tbxUnetLR";
             this.tbxUnetLR.Size = new System.Drawing.Size(100, 31);
             this.tbxUnetLR.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.tbxUnetLR, "一部のDADaptation系では使用不可");
             this.tbxUnetLR.TextChanged += new System.EventHandler(this.tbxUnetLR_TextChanged);
             // 
             // tbxTextEncoLR
@@ -209,6 +205,7 @@ namespace Kohya_lora_trainer
             this.tbxTextEncoLR.Name = "tbxTextEncoLR";
             this.tbxTextEncoLR.Size = new System.Drawing.Size(100, 31);
             this.tbxTextEncoLR.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.tbxTextEncoLR, "一部のDADaptation系では使用不可");
             // 
             // label1
             // 
@@ -254,6 +251,7 @@ namespace Kohya_lora_trainer
             this.cbxNoUpscale.Size = new System.Drawing.Size(283, 29);
             this.cbxNoUpscale.TabIndex = 8;
             this.cbxNoUpscale.Text = "バケットのアップスケーリングをしない";
+            this.toolTip1.SetToolTip(this.cbxNoUpscale, "バケットの解像度は自動設定になる");
             this.cbxNoUpscale.UseVisualStyleBackColor = true;
             // 
             // tbrCpuThreads
@@ -265,6 +263,7 @@ namespace Kohya_lora_trainer
             this.tbrCpuThreads.Name = "tbrCpuThreads";
             this.tbrCpuThreads.Size = new System.Drawing.Size(470, 69);
             this.tbrCpuThreads.TabIndex = 9;
+            this.toolTip1.SetToolTip(this.tbrCpuThreads, "基本的に上げても速くならない");
             this.tbrCpuThreads.Value = 12;
             this.tbrCpuThreads.Scroll += new System.EventHandler(this.tbrCpuThreads_Scroll);
             // 
@@ -312,7 +311,6 @@ namespace Kohya_lora_trainer
             this.cbxUseWarmupInit.Size = new System.Drawing.Size(302, 29);
             this.cbxUseWarmupInit.TabIndex = 18;
             this.cbxUseWarmupInit.Text = "AdaFactor: warmup_initを使用する";
-            this.toolTip2.SetToolTip(this.cbxUseWarmupInit, "使用すると、学習が遅くなります。");
             this.cbxUseWarmupInit.UseVisualStyleBackColor = true;
             // 
             // tbxExtension
@@ -475,7 +473,7 @@ namespace Kohya_lora_trainer
             this.cbxPrecision.Name = "cbxPrecision";
             this.cbxPrecision.Size = new System.Drawing.Size(121, 33);
             this.cbxPrecision.TabIndex = 29;
-            this.toolTip3.SetToolTip(this.cbxPrecision, "fp16にするとファイルサイズを小さくします");
+            this.toolTip1.SetToolTip(this.cbxPrecision, "fp16にするとファイルサイズ半減\r\nbf16は互換性の観点から非推奨");
             // 
             // label11
             // 
@@ -568,7 +566,7 @@ namespace Kohya_lora_trainer
             this.cbxCrossAttenType.Name = "cbxCrossAttenType";
             this.cbxCrossAttenType.Size = new System.Drawing.Size(207, 33);
             this.cbxCrossAttenType.TabIndex = 38;
-            this.toolTip5.SetToolTip(this.cbxCrossAttenType, "mem_eff_attnは遅いが省メモリ");
+            this.toolTip1.SetToolTip(this.cbxCrossAttenType, "mef_eff_attenは遅いが省メモリ");
             // 
             // label4
             // 
@@ -587,7 +585,6 @@ namespace Kohya_lora_trainer
             this.cbxUseGradient.Size = new System.Drawing.Size(301, 29);
             this.cbxUseGradient.TabIndex = 18;
             this.cbxUseGradient.Text = "gradient_checkpointingを使用する";
-            this.toolTip6.SetToolTip(this.cbxUseGradient, "速度低下と引き換えにメモリ消費量を減らす");
             this.cbxUseGradient.UseVisualStyleBackColor = true;
             // 
             // label3
@@ -985,6 +982,7 @@ namespace Kohya_lora_trainer
             this.cbxScaleVPredLoss.Size = new System.Drawing.Size(265, 29);
             this.cbxScaleVPredLoss.TabIndex = 26;
             this.cbxScaleVPredLoss.Text = "v-prediction lossのスケーリング";
+            this.toolTip1.SetToolTip(this.cbxScaleVPredLoss, "SD1.xでは非推奨");
             this.cbxScaleVPredLoss.UseVisualStyleBackColor = true;
             // 
             // label39
@@ -1105,6 +1103,7 @@ namespace Kohya_lora_trainer
             this.cbxUseColorAug.Size = new System.Drawing.Size(165, 29);
             this.cbxUseColorAug.TabIndex = 7;
             this.cbxUseColorAug.Text = "color_augを使用";
+            this.toolTip1.SetToolTip(this.cbxUseColorAug, "毎回ランダムに画像の色を変える\r\nlatentのキャッシュとの併用は不可");
             this.cbxUseColorAug.UseVisualStyleBackColor = true;
             // 
             // cbxCacheLatentsToDisk
@@ -1137,6 +1136,7 @@ namespace Kohya_lora_trainer
             this.cbxCacheLatents.Size = new System.Drawing.Size(161, 29);
             this.cbxCacheLatents.TabIndex = 22;
             this.cbxCacheLatents.Text = "latentのキャッシュ";
+            this.toolTip1.SetToolTip(this.cbxCacheLatents, "VRAM消費削減および速度改善\r\ngradient_checkpointingと組み合わせると効果的");
             this.cbxCacheLatents.UseVisualStyleBackColor = true;
             // 
             // cbxUseV2
@@ -1277,6 +1277,7 @@ namespace Kohya_lora_trainer
             this.cbxMixedPrecision.Name = "cbxMixedPrecision";
             this.cbxMixedPrecision.Size = new System.Drawing.Size(120, 33);
             this.cbxMixedPrecision.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.cbxMixedPrecision, "bf16はAmpere以降のみ対応");
             // 
             // nudLRSchedulerCycle
             // 
@@ -1289,6 +1290,7 @@ namespace Kohya_lora_trainer
             this.nudLRSchedulerCycle.Name = "nudLRSchedulerCycle";
             this.nudLRSchedulerCycle.Size = new System.Drawing.Size(120, 31);
             this.nudLRSchedulerCycle.TabIndex = 16;
+            this.toolTip1.SetToolTip(this.nudLRSchedulerCycle, "LR調整の周期");
             this.nudLRSchedulerCycle.Value = new decimal(new int[] {
             4,
             0,
@@ -1656,6 +1658,7 @@ namespace Kohya_lora_trainer
             this.cbxAlgoType.Name = "cbxAlgoType";
             this.cbxAlgoType.Size = new System.Drawing.Size(121, 33);
             this.cbxAlgoType.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.cbxAlgoType, "lora以外の実質的なdimはdim^2になる\r\nlora以外は重い");
             // 
             // pageMisc
             // 
@@ -1784,7 +1787,6 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox cbxUseWarmupInit;
-        private System.Windows.Forms.ToolTip toolTip2;
         private System.Windows.Forms.TextBox tbxExtension;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button1;
@@ -1801,15 +1803,11 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblTBoardPath;
         private System.Windows.Forms.Button btnClearTBoardPath;
-        private System.Windows.Forms.ToolTip toolTip3;
         private System.Windows.Forms.ComboBox cbxAdvancedTrain;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ToolTip toolTip4;
         private System.Windows.Forms.ComboBox cbxCrossAttenType;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ToolTip toolTip5;
         private System.Windows.Forms.CheckBox cbxUseGradient;
-        private System.Windows.Forms.ToolTip toolTip6;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSelectLoRAmodel;
         private System.Windows.Forms.Button btnClearLoRAmodel;

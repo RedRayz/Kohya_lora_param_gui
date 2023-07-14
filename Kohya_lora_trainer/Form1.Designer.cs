@@ -48,7 +48,6 @@ namespace Kohya_lora_trainer
             this.cbxShuffle = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.btnSavePreset = new System.Windows.Forms.Button();
             this.btnLoadPreset = new System.Windows.Forms.Button();
             this.lblResolution = new System.Windows.Forms.Label();
@@ -75,15 +74,9 @@ namespace Kohya_lora_trainer
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.btnOutputPath = new System.Windows.Forms.Button();
-            this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
             this.btnCustomScriptPath = new System.Windows.Forms.Button();
             this.lblScriptPathDesc = new System.Windows.Forms.Label();
-            this.toolTip4 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip5 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip6 = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTip7 = new System.Windows.Forms.ToolTip(this.components);
             this.btnUtilities = new System.Windows.Forms.Button();
-            this.toolTip8 = new System.Windows.Forms.ToolTip(this.components);
             this.tbxModelPath = new System.Windows.Forms.TextBox();
             this.tbxImagePath = new System.Windows.Forms.TextBox();
             this.tbxRegImgPath = new System.Windows.Forms.TextBox();
@@ -177,7 +170,7 @@ namespace Kohya_lora_trainer
             this.tbxLR.Size = new System.Drawing.Size(120, 31);
             this.tbxLR.TabIndex = 4;
             this.tbxLR.Text = "1e-4";
-            this.toolTip2.SetToolTip(this.tbxLR, "AdamWでは1e-4、AdaFactorでは1e-3を推奨");
+            this.toolTip1.SetToolTip(this.tbxLR, "AdamW系は0.0001、AdaFactorは0.001、DAdaptation系は1推奨");
             this.tbxLR.TextChanged += new System.EventHandler(this.tbxLR_TextChanged);
             // 
             // lblLR
@@ -213,8 +206,9 @@ namespace Kohya_lora_trainer
             "Prodigy"});
             this.cbxOptimizer.Location = new System.Drawing.Point(166, 347);
             this.cbxOptimizer.Name = "cbxOptimizer";
-            this.cbxOptimizer.Size = new System.Drawing.Size(208, 33);
+            this.cbxOptimizer.Size = new System.Drawing.Size(176, 33);
             this.cbxOptimizer.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.cbxOptimizer, "AdamWとDAdaptLionがおすすめ");
             this.cbxOptimizer.SelectedIndexChanged += new System.EventHandler(this.cbxOptimizer_SelectedIndexChanged);
             // 
             // label10
@@ -292,7 +286,6 @@ namespace Kohya_lora_trainer
             this.btnSavePreset.Size = new System.Drawing.Size(146, 46);
             this.btnSavePreset.TabIndex = 34;
             this.btnSavePreset.Text = "プリセットの保存";
-            this.toolTip3.SetToolTip(this.btnSavePreset, "すべての項目を保存します");
             this.btnSavePreset.UseVisualStyleBackColor = true;
             this.btnSavePreset.Click += new System.EventHandler(this.btnSavePreset_Click);
             // 
@@ -385,7 +378,7 @@ namespace Kohya_lora_trainer
             this.nudNetworkAlpha.Name = "nudNetworkAlpha";
             this.nudNetworkAlpha.Size = new System.Drawing.Size(120, 31);
             this.nudNetworkAlpha.TabIndex = 51;
-            this.toolTip5.SetToolTip(this.nudNetworkAlpha, "下げるとアンダーフローを抑えますが学習能力が低下します");
+            this.toolTip1.SetToolTip(this.nudNetworkAlpha, "dimの半分以下の値が望ましい\r\ndimに近い値では生成時に崩壊しやすい");
             this.nudNetworkAlpha.Value = new decimal(new int[] {
             128,
             0,
@@ -409,7 +402,7 @@ namespace Kohya_lora_trainer
             this.nudNetworkDim.Name = "nudNetworkDim";
             this.nudNetworkDim.Size = new System.Drawing.Size(120, 31);
             this.nudNetworkDim.TabIndex = 52;
-            this.toolTip4.SetToolTip(this.nudNetworkDim, "学習能力、ファイルサイズ、生成速度に影響します");
+            this.toolTip1.SetToolTip(this.nudNetworkDim, "上げると学習能力が上昇するが、速度低下と生成時の不安定化を招く");
             this.nudNetworkDim.Value = new decimal(new int[] {
             128,
             0,
@@ -461,7 +454,7 @@ namespace Kohya_lora_trainer
             this.nudResolution.Name = "nudResolution";
             this.nudResolution.Size = new System.Drawing.Size(120, 31);
             this.nudResolution.TabIndex = 54;
-            this.toolTip7.SetToolTip(this.nudResolution, "64で割り切れる必要があります");
+            this.toolTip1.SetToolTip(this.nudResolution, "latentのキャッシュとgradient_checkpointingを使用すると\r\n8GBで1024での学習が可能!!");
             this.nudResolution.Value = new decimal(new int[] {
             512,
             0,
@@ -480,7 +473,7 @@ namespace Kohya_lora_trainer
             this.nudKeepTokens.Name = "nudKeepTokens";
             this.nudKeepTokens.Size = new System.Drawing.Size(120, 31);
             this.nudKeepTokens.TabIndex = 55;
-            this.toolTip6.SetToolTip(this.nudKeepTokens, "1トークン=カンマ区切り");
+            this.toolTip1.SetToolTip(this.nudKeepTokens, "先頭nトークンをシャッフルの対象外にする。\r\n1トークン=カンマ区切り");
             this.nudKeepTokens.ValueChanged += new System.EventHandler(this.nudKeepTokens_ValueChanged);
             // 
             // nudSaveEpoch
@@ -512,6 +505,7 @@ namespace Kohya_lora_trainer
             this.nudBatchSize.Name = "nudBatchSize";
             this.nudBatchSize.Size = new System.Drawing.Size(120, 31);
             this.nudBatchSize.TabIndex = 57;
+            this.toolTip1.SetToolTip(this.nudBatchSize, "高batchでは学習効率が低下するので、LRかエポック数を多めにする");
             this.nudBatchSize.Value = new decimal(new int[] {
             1,
             0,
@@ -548,6 +542,7 @@ namespace Kohya_lora_trainer
             this.nudWarmupSteps.Name = "nudWarmupSteps";
             this.nudWarmupSteps.Size = new System.Drawing.Size(120, 31);
             this.nudWarmupSteps.TabIndex = 62;
+            this.toolTip1.SetToolTip(this.nudWarmupSteps, "nステップ数まで徐々にLRを上げる");
             this.nudWarmupSteps.Value = new decimal(new int[] {
             500,
             0,
@@ -908,7 +903,6 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.CheckBox cbxShuffle;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.ToolTip toolTip2;
         private System.Windows.Forms.Button btnSavePreset;
         private System.Windows.Forms.Button btnLoadPreset;
         private System.Windows.Forms.Label lblResolution;
@@ -935,15 +929,9 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button btnOutputPath;
-        private System.Windows.Forms.ToolTip toolTip3;
         private System.Windows.Forms.Button btnCustomScriptPath;
         private System.Windows.Forms.Label lblScriptPathDesc;
-        private System.Windows.Forms.ToolTip toolTip5;
-        private System.Windows.Forms.ToolTip toolTip4;
-        private System.Windows.Forms.ToolTip toolTip6;
-        private System.Windows.Forms.ToolTip toolTip7;
         private System.Windows.Forms.Button btnUtilities;
-        private System.Windows.Forms.ToolTip toolTip8;
         private System.Windows.Forms.TextBox tbxModelPath;
         private System.Windows.Forms.TextBox tbxImagePath;
         private System.Windows.Forms.TextBox tbxRegImgPath;
