@@ -10,19 +10,19 @@ namespace Kohya_lora_trainer {
         //Required
         public  string ModelPath, TrainImagePath, OutputPath, TensorBoardLogPath, LoraModelPath;
         public  float LearningRate = 0.0001f;
-        public  int Resolution = 512, BatchSize = 1, Epochs = 5, NetworkDim = 64;
-        public decimal NetworkAlpha = 32;
+        public  int Resolution = 512, BatchSize = 2, Epochs = 5, NetworkDim = 64;
+        public decimal NetworkAlpha = 16;
 
         //Optional
         public  string RegImagePath;
         public  bool ShuffleCaptions = true;
         public  int KeepTokenCount = 1, SaveEveryNEpochs = 0;
         public  OptimizerType OptimizerType = OptimizerType.AdamW;
-        public  int WarmupSteps = 500;
+        public  int WarmupSteps = 250;
         public  string OutputName, Comment;
 
         //Advanced
-        public  int CpuThreads = 8;
+        public  int CpuThreads = 4;
         public  bool NoBucketUpscaling = false, UseWarmupInit = false;
         public  int ClipSkip = 2, Seed = 42;
         public  SavePrecision SavePrecision = SavePrecision.fp16;
@@ -38,8 +38,8 @@ namespace Kohya_lora_trainer {
         //Addtional(KohakuBlueleaf氏作成拡張スクリプト用)
         public ModuleType ModuleType = ModuleType.LoRA;
         public AlgoType AlgoType = AlgoType.lora;
-        public int ConvDim = 0;
-        public decimal ConvAlpha = 0;
+        public int ConvDim = 64;
+        public decimal ConvAlpha = 16;
         //Additional(LoRA)
         public bool UseConv2dExtend = false;
         public decimal DyLoRAUnit = 4;
@@ -73,10 +73,10 @@ namespace Kohya_lora_trainer {
         //Advanced1
         public bool UseColorAug = false, UseFastLoading = true, UseSDV2 = false, DontSaveMetadata = false, UseFlipAug = false, CropRandomly = false, UseParameterization = false, CacheLatents = false, CacheLatentsToDisk = false;
         //public string ModelConfigPath = string.Empty;
-        public int LRSchedulerCycle = 4, DataLoaderThreads = 4, MaxTokens = 75;
+        public int LRSchedulerCycle = 4, DataLoaderThreads = 1, MaxTokens = 75;
         public MixedPrecisionType mixedPrecisionType = MixedPrecisionType.fp16;
 
-        //DAdaption関連
+        //DAdaptation関連
         public float WeightDecay = 0, Eps = 1e-06f, D0 = 1e-06f, GrowthRate = 0, Betas0 = 0.9f, Betas1 = 0.999f, Betas2 = 0.999f, DAdaptMomentum = 0.9f, ProdigyBeta3 = 0, DCoef = 1;
         public bool Decouple = false, NoProx = false, SafeguardWarmup = false, UseBiasCorrection = false;
 
