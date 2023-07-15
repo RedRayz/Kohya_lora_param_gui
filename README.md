@@ -52,7 +52,10 @@ v1.6以降でご利用いただけます。
 
 注意:ディレクトリの階層は次のようにします。
 
-![screenshot0001](https://github.com/RedRayz/Kohya_lora_param_gui/assets/71994877/2504408d-1e55-4cde-8050-380d69a977df)
+LECOも同じようにします。
+
+![image00004](https://github.com/RedRayz/Kohya_lora_param_gui/assets/71994877/9e078566-217e-4a45-b65a-b49014c2d680)
+
 
 ## 起動方法
 Kohya_lora_trainer.exeをダブルクリックする。ショートカット作ると便利かも?
