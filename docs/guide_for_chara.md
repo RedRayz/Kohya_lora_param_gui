@@ -1,21 +1,23 @@
 # キャラ学習手順
 
-作成中...
-Constructing...
+大雑把なので参考程度にどうぞ
 
 使用するツール類
 
 - Grabber
   
   教師画像の収集に使用
+  
 - XnConvert
   
   一括で画像のリサイズ
+  
 - WD14Tagger
   
   1111のExtension。入力画像のDanbooruタグを推論する。キャプション作成に使用する。
 
 ## 1.学習用フォルダ作成
+
 フォルダの階層:
 
 親フォルダ
@@ -36,7 +38,7 @@ XnConvertを用いて変換する。png、色深度を24bit、リサイズで長
 
 ## 4.WD14Taggerでタグ付け
 
-Batch processで一括でやる。Modelはconvnext-v2を使用。
+Batch processで"繰り返し数_名前"のフォルダに対して一括でやる。Modelはconvnext-v2を使用。
 
 Additional Tagsはキャラ名を入れる。
 

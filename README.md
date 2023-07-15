@@ -61,3 +61,7 @@ Kohya_lora_trainer.exeをダブルクリックする。ショートカット作�
 Windows 11(10は不明)
 
 .NET Framework 4.7.2
+
+## ガイドなど
+
+* [キャラLoRAの学習手順](./docs/guide_for_chara.md)
