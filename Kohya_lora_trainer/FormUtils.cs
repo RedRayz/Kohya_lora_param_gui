@@ -157,5 +157,51 @@ namespace Kohya_lora_trainer {
 
             Process.Start(ps);
         }
+
+        private void btnInstallLeco_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(@"/c cd ..\");
+            
+
+            sb.Append(@" && git clone https://github.com/p1atdev/LECO.git && cd .\LECO && python -m venv venv && .\venv\Scripts\activate && pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118");
+            sb.Append(@" && pip install xformers omegaconf && pip install --upgrade -r requirements.txt");
+
+            ProcessStartInfo ps = new ProcessStartInfo();
+            ps.FileName = "cmd";
+            ps.Arguments = sb.ToString();
+
+            Process.Start(ps);
+        }
+
+        private void btnRunLeco_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "YAML(*.yaml)|*.yaml";
+            ofd.Title = "Select a config";
+            ofd.RestoreDirectory = true;
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string path = Constants.LecoPath;
+                if (!Directory.Exists(path + "venv"))
+                {
+                    MessageBox.Show("venvのあるLECOフォルダが見つかりません。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                StringBuilder sb = new StringBuilder();
+                sb.Append("/k cd ").Append(Constants.LecoPath);
+
+
+                sb.Append(" && .\\venv\\Scripts\\activate && python .\\train_lora.py --config_file \"").Append(ofd.FileName).Append("\"");
+
+                ProcessStartInfo ps = new ProcessStartInfo();
+                ps.FileName = "cmd";
+                ps.Arguments = sb.ToString();
+
+                Process.Start(ps);
+            }
+
+        }
     }
 }

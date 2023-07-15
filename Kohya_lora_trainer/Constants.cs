@@ -9,5 +9,6 @@ namespace Kohya_lora_trainer
     public class Constants
     {
         public const string SdScriptsPath = @"..\sd-scripts\";
+        public const string LecoPath = @"..\LECO\";
     }
 }
