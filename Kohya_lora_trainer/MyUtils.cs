@@ -608,5 +608,29 @@ namespace Kohya_lora_trainer
             process.StartInfo = ps;
             process.Start();
         }
+
+        /// <summary>
+        /// パスからファイル名を除去する。実際には最後のスラッシュより後ろを消す
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string RemoveFileName(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return string.Empty;
+
+            int last = str.LastIndexOf("\\");
+            if (last == -1)
+            {
+                last = str.LastIndexOf("/");
+            }
+
+            if (last == -1)
+            {
+                return string.Empty;
+            }
+
+            return str.Remove(last + 1);
+        }
     }
 }

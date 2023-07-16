@@ -118,14 +118,7 @@ namespace Kohya_lora_trainer
 
             if (File.Exists(TrainParams.Current.ModelPath))
             {
-                int last = TrainParams.Current.ModelPath.LastIndexOf("\\");
-                if (last == -1)
-                {
-                    last = TrainParams.Current.ModelPath.LastIndexOf("/");
-                }
-
-                string str = TrainParams.Current.ModelPath.Remove(last + 1);
-                ofd.InitialDirectory = str;
+                ofd.InitialDirectory = MyUtils.RemoveFileName(TrainParams.Current.ModelPath);
             }
 
             if (ofd.ShowDialog() == DialogResult.OK)

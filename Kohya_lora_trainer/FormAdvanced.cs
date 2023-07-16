@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.WindowsAPICodePack.Shell;
+using System.IO;
 
 namespace Kohya_lora_trainer {
     public partial class FormAdvanced : Form {
@@ -397,6 +398,12 @@ namespace Kohya_lora_trainer {
             cof.Title = "Select Image Folder";
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
+
+            if (Directory.Exists(TrainParams.Current.TensorBoardLogPath))
+            {
+                cof.InitialDirectory = TrainParams.Current.TensorBoardLogPath;
+            }
+
             if (cof.ShowDialog() == CommonFileDialogResult.Ok) {
                 TrainParams.Current.TensorBoardLogPath = cof.FileName;
                 lblTBoardPath.Text = cof.FileName;
@@ -423,6 +430,12 @@ namespace Kohya_lora_trainer {
             ofd.Filter = "SD Model(*.safetensors)|*.safetensors";
             ofd.Title = "Select a lora";
             ofd.RestoreDirectory = true;
+
+            if (File.Exists(TrainParams.Current.LoraModelPath))
+            {
+                ofd.InitialDirectory = MyUtils.RemoveFileName(TrainParams.Current.LoraModelPath);
+            }
+
             if(ofd.ShowDialog() == DialogResult.OK) {
                 lblLoRAmodelPath.Text = ofd.FileName;
             }
@@ -437,6 +450,12 @@ namespace Kohya_lora_trainer {
             ofd.Filter = "SD VAE(*.safetensors;*.pt)|*.safetensors;*.pt";
             ofd.Title = "Select a VAE";
             ofd.RestoreDirectory = true;
+
+            if (File.Exists(TrainParams.Current.VAEPath))
+            {
+                ofd.InitialDirectory = MyUtils.RemoveFileName(TrainParams.Current.VAEPath);
+            }
+
             if (ofd.ShowDialog() == DialogResult.OK) {
                 lblVAEPath.Text = ofd.FileName;
             }
@@ -457,6 +476,12 @@ namespace Kohya_lora_trainer {
             ofd.Filter = "TOML(*.toml)|*.toml";
             ofd.Title = "Select a dataset config";
             ofd.RestoreDirectory = true;
+
+            if (File.Exists(TrainParams.Current.DatasetConfigPath))
+            {
+                ofd.InitialDirectory = MyUtils.RemoveFileName(TrainParams.Current.DatasetConfigPath);
+            }
+
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 lblConfigPath.Text = ofd.FileName;
