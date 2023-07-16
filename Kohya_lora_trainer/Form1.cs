@@ -12,7 +12,6 @@ using Microsoft.WindowsAPICodePack.Shell;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Diagnostics.SymbolStore;
-using System.IO;
 using System.Xml.Serialization;
 using Microsoft.Win32;
 using System.Security.Cryptography;
@@ -51,10 +50,20 @@ namespace Kohya_lora_trainer
             lblScriptPathDesc.Visible = false;
             btnInstaller.Visible = false;
 
+            //一応LoRAEasyTrainingのフォルダ名にも対応させる
+            if (Directory.Exists(@"..\sd-scripts\"))
+            {
+                Constants.CurrentSdScriptsPath = @"..\sd-scripts\";
+            }
+            else if (Directory.Exists(@"..\sd_scripts\"))
+            {
+                Constants.CurrentSdScriptsPath = @"..\sd_scripts\";
+            }
+
             //先に親フォルダにpyがあるか確認する。
             //なければボタンを表示する
             //ない状態でカスタムパスにもpyがないなら赤字で設定するよう促す(デバッグ環境のみ)
-            if (!File.Exists(Constants.SdScriptsPath + @"train_network.py"))
+            if (!File.Exists(Constants.CurrentSdScriptsPath + @"train_network.py"))
             {
                 btnInstaller.Visible = true;
 #if DEBUG
@@ -347,7 +356,7 @@ namespace Kohya_lora_trainer
 
         private void btnStartTraining_Click(object sender, EventArgs e)
         {
-            string str = string.IsNullOrEmpty(ScriptPath) ? Constants.SdScriptsPath : ScriptPath + "\\";
+            string str = string.IsNullOrEmpty(ScriptPath) ? Constants.CurrentSdScriptsPath : ScriptPath + "\\";
 
             if (!HasScriptFile(str, true))
                 return;

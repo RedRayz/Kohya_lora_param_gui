@@ -27,7 +27,7 @@ namespace Kohya_lora_trainer {
 
 
         private void btnRunTensorboard_Click(object sender, EventArgs e) {
-            string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.SdScriptsPath : Form1.ScriptPath + "\\";
+            string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.CurrentSdScriptsPath : Form1.ScriptPath + "\\";
             if (!Directory.Exists(path + "venv")) {
                 MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -43,7 +43,7 @@ namespace Kohya_lora_trainer {
                     sb.Append("/d ").Append(Form1.ScriptPath);
                 }
                 else {
-                    sb.Append(Constants.SdScriptsPath);
+                    sb.Append(Constants.CurrentSdScriptsPath);
                 }
 
                 sb.Append(" && .\\venv\\Scripts\\activate && tensorboard --logdir=\"").Append(cof.FileName).Append("\"");
@@ -102,7 +102,7 @@ namespace Kohya_lora_trainer {
 
         private void btnUpdateRepo_Click(object sender, EventArgs e)
         {
-            string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.SdScriptsPath : Form1.ScriptPath + "\\";
+            string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.CurrentSdScriptsPath : Form1.ScriptPath + "\\";
             if (!Directory.Exists(path + "venv"))
             {
                 MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -117,7 +117,7 @@ namespace Kohya_lora_trainer {
             }
             else
             {
-                sb.Append(Constants.SdScriptsPath);
+                sb.Append(Constants.CurrentSdScriptsPath);
             }
 
             sb.Append(" && git pull && .\\venv\\Scripts\\activate && pip install --use-pep517 --upgrade -r requirements.txt");
@@ -131,7 +131,7 @@ namespace Kohya_lora_trainer {
 
         private void btnInstallExtension_Click(object sender, EventArgs e)
         {
-            string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.SdScriptsPath : Form1.ScriptPath + "\\";
+            string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.CurrentSdScriptsPath : Form1.ScriptPath + "\\";
             if (!Directory.Exists(path + "venv"))
             {
                 MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -146,7 +146,7 @@ namespace Kohya_lora_trainer {
             }
             else
             {
-                sb.Append(Constants.SdScriptsPath);
+                sb.Append(Constants.CurrentSdScriptsPath);
             }
 
             sb.Append(" && .\\venv\\Scripts\\activate && pip install -U prodigyopt dadaptation lion-pytorch lycoris_lora");

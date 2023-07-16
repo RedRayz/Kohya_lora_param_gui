@@ -587,7 +587,7 @@ namespace Kohya_lora_trainer
             }
             else
             {
-                sb.Append(Constants.SdScriptsPath);
+                sb.Append(Constants.CurrentSdScriptsPath);
             }
 
             sb.Append(" && .\\venv\\Scripts\\activate && ");
