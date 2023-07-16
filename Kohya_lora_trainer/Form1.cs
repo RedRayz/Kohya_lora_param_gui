@@ -114,7 +114,7 @@ namespace Kohya_lora_trainer
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "SD Model(*.ckpt;*.safetensors)|*.ckpt;*.safetensors";
             ofd.Title = "Select a base model";
-            ofd.RestoreDirectory = true;
+            //ofd.RestoreDirectory = true;
 
             if (File.Exists(TrainParams.Current.ModelPath))
             {
@@ -143,7 +143,7 @@ namespace Kohya_lora_trainer
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
             cof.Title = "Select an image folder";
             cof.IsFolderPicker = true;
-            cof.RestoreDirectory = true;
+            //cof.RestoreDirectory = true;
 
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
             {
@@ -176,7 +176,7 @@ namespace Kohya_lora_trainer
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
             cof.Title = "Select Reg Image Folder";
             cof.IsFolderPicker = true;
-            cof.RestoreDirectory = true;
+            //cof.RestoreDirectory = true;
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 if (Directory.Exists(TrainParams.Current.RegImagePath))
@@ -208,7 +208,7 @@ namespace Kohya_lora_trainer
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
             cof.Title = "Select Output Folder";
             cof.IsFolderPicker = true;
-            cof.RestoreDirectory = true;
+            //cof.RestoreDirectory = true;
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 TrainParams.Current.OutputPath = cof.FileName;

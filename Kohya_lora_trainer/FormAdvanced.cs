@@ -397,7 +397,7 @@ namespace Kohya_lora_trainer {
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
             cof.Title = "Select Image Folder";
             cof.IsFolderPicker = true;
-            cof.RestoreDirectory = true;
+            //cof.RestoreDirectory = true;
 
             if (Directory.Exists(TrainParams.Current.TensorBoardLogPath))
             {
@@ -429,7 +429,7 @@ namespace Kohya_lora_trainer {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "SD Model(*.safetensors)|*.safetensors";
             ofd.Title = "Select a lora";
-            ofd.RestoreDirectory = true;
+            //ofd.RestoreDirectory = true;
 
             if (File.Exists(TrainParams.Current.LoraModelPath))
             {
@@ -449,7 +449,7 @@ namespace Kohya_lora_trainer {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "SD VAE(*.safetensors;*.pt)|*.safetensors;*.pt";
             ofd.Title = "Select a VAE";
-            ofd.RestoreDirectory = true;
+            //ofd.RestoreDirectory = true;
 
             if (File.Exists(TrainParams.Current.VAEPath))
             {
@@ -475,7 +475,7 @@ namespace Kohya_lora_trainer {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "TOML(*.toml)|*.toml";
             ofd.Title = "Select a dataset config";
-            ofd.RestoreDirectory = true;
+            //ofd.RestoreDirectory = true;
 
             if (File.Exists(TrainParams.Current.DatasetConfigPath))
             {

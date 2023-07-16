@@ -42,6 +42,14 @@ namespace Kohya_lora_trainer
             this.lblCpuThreadsCounter = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.cbxPrecision = new System.Windows.Forms.ComboBox();
+            this.cbxCrossAttenType = new System.Windows.Forms.ComboBox();
+            this.cbxScaleVPredLoss = new System.Windows.Forms.CheckBox();
+            this.cbxUseColorAug = new System.Windows.Forms.CheckBox();
+            this.cbxCacheLatents = new System.Windows.Forms.CheckBox();
+            this.cbxMixedPrecision = new System.Windows.Forms.ComboBox();
+            this.nudLRSchedulerCycle = new System.Windows.Forms.NumericUpDown();
+            this.cbxAlgoType = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cbxUseWarmupInit = new System.Windows.Forms.CheckBox();
             this.tbxExtension = new System.Windows.Forms.TextBox();
@@ -53,7 +61,6 @@ namespace Kohya_lora_trainer
             this.label10 = new System.Windows.Forms.Label();
             this.cbxScheduler = new System.Windows.Forms.ComboBox();
             this.nudClipSkip = new System.Windows.Forms.NumericUpDown();
-            this.cbxPrecision = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.btnDiscardAndClose = new System.Windows.Forms.Button();
             this.btnTensorBoardPath = new System.Windows.Forms.Button();
@@ -62,7 +69,6 @@ namespace Kohya_lora_trainer
             this.btnClearTBoardPath = new System.Windows.Forms.Button();
             this.cbxAdvancedTrain = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.cbxCrossAttenType = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cbxUseGradient = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -94,7 +100,6 @@ namespace Kohya_lora_trainer
             this.btnClearConfigPath = new System.Windows.Forms.Button();
             this.btnSelectConfigPath = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.cbxScaleVPredLoss = new System.Windows.Forms.CheckBox();
             this.label39 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
@@ -103,10 +108,8 @@ namespace Kohya_lora_trainer
             this.nudModuleDropout = new System.Windows.Forms.NumericUpDown();
             this.nudRankDropout = new System.Windows.Forms.NumericUpDown();
             this.nudDropout = new System.Windows.Forms.NumericUpDown();
-            this.cbxUseColorAug = new System.Windows.Forms.CheckBox();
             this.cbxCacheLatentsToDisk = new System.Windows.Forms.CheckBox();
             this.cbxUseFastLoading = new System.Windows.Forms.CheckBox();
-            this.cbxCacheLatents = new System.Windows.Forms.CheckBox();
             this.cbxUseV2 = new System.Windows.Forms.CheckBox();
             this.label26 = new System.Windows.Forms.Label();
             this.cbxUseParametarization = new System.Windows.Forms.CheckBox();
@@ -117,8 +120,6 @@ namespace Kohya_lora_trainer
             this.nudMaxTokens = new System.Windows.Forms.NumericUpDown();
             this.cbxFlipAug = new System.Windows.Forms.CheckBox();
             this.nudDataLoaderThreads = new System.Windows.Forms.NumericUpDown();
-            this.cbxMixedPrecision = new System.Windows.Forms.ComboBox();
-            this.nudLRSchedulerCycle = new System.Windows.Forms.NumericUpDown();
             this.label29 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.label43 = new System.Windows.Forms.Label();
@@ -152,13 +153,13 @@ namespace Kohya_lora_trainer
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.cbxAlgoType = new System.Windows.Forms.ComboBox();
             this.pageMisc = new System.Windows.Forms.TabPage();
             this.label41 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.tbxComment = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLRSchedulerCycle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxBucketReso)).BeginInit();
@@ -179,7 +180,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudDropout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxTokens)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDataLoaderThreads)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudLRSchedulerCycle)).BeginInit();
             this.tabPage5.SuspendLayout();
             this.pageConv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudDyLoRAUnit)).BeginInit();
@@ -294,6 +294,115 @@ namespace Kohya_lora_trainer
             this.label7.TabIndex = 13;
             this.label7.Text = "Clip Skip";
             // 
+            // cbxPrecision
+            // 
+            this.cbxPrecision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxPrecision.FormattingEnabled = true;
+            this.cbxPrecision.Items.AddRange(new object[] {
+            "fp16",
+            "bf16",
+            "float"});
+            this.cbxPrecision.Location = new System.Drawing.Point(503, 250);
+            this.cbxPrecision.Name = "cbxPrecision";
+            this.cbxPrecision.Size = new System.Drawing.Size(121, 33);
+            this.cbxPrecision.TabIndex = 29;
+            this.toolTip1.SetToolTip(this.cbxPrecision, "fp16にするとファイルサイズ半減\r\nbf16は互換性の観点から非推奨");
+            // 
+            // cbxCrossAttenType
+            // 
+            this.cbxCrossAttenType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxCrossAttenType.FormattingEnabled = true;
+            this.cbxCrossAttenType.Items.AddRange(new object[] {
+            "xformers",
+            "mem_eff_attn"});
+            this.cbxCrossAttenType.Location = new System.Drawing.Point(373, 195);
+            this.cbxCrossAttenType.Name = "cbxCrossAttenType";
+            this.cbxCrossAttenType.Size = new System.Drawing.Size(207, 33);
+            this.cbxCrossAttenType.TabIndex = 38;
+            this.toolTip1.SetToolTip(this.cbxCrossAttenType, "mef_eff_attenは遅いが省メモリ");
+            // 
+            // cbxScaleVPredLoss
+            // 
+            this.cbxScaleVPredLoss.AutoSize = true;
+            this.cbxScaleVPredLoss.Location = new System.Drawing.Point(39, 218);
+            this.cbxScaleVPredLoss.Name = "cbxScaleVPredLoss";
+            this.cbxScaleVPredLoss.Size = new System.Drawing.Size(265, 29);
+            this.cbxScaleVPredLoss.TabIndex = 26;
+            this.cbxScaleVPredLoss.Text = "v-prediction lossのスケーリング";
+            this.toolTip1.SetToolTip(this.cbxScaleVPredLoss, "SD1.xでは非推奨");
+            this.cbxScaleVPredLoss.UseVisualStyleBackColor = true;
+            // 
+            // cbxUseColorAug
+            // 
+            this.cbxUseColorAug.AutoSize = true;
+            this.cbxUseColorAug.Checked = true;
+            this.cbxUseColorAug.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxUseColorAug.Location = new System.Drawing.Point(39, 42);
+            this.cbxUseColorAug.Name = "cbxUseColorAug";
+            this.cbxUseColorAug.Size = new System.Drawing.Size(165, 29);
+            this.cbxUseColorAug.TabIndex = 7;
+            this.cbxUseColorAug.Text = "color_augを使用";
+            this.toolTip1.SetToolTip(this.cbxUseColorAug, "毎回ランダムに画像の色を変える\r\nlatentのキャッシュとの併用は不可");
+            this.cbxUseColorAug.UseVisualStyleBackColor = true;
+            // 
+            // cbxCacheLatents
+            // 
+            this.cbxCacheLatents.AutoSize = true;
+            this.cbxCacheLatents.Location = new System.Drawing.Point(343, 147);
+            this.cbxCacheLatents.Name = "cbxCacheLatents";
+            this.cbxCacheLatents.Size = new System.Drawing.Size(161, 29);
+            this.cbxCacheLatents.TabIndex = 22;
+            this.cbxCacheLatents.Text = "latentのキャッシュ";
+            this.toolTip1.SetToolTip(this.cbxCacheLatents, "VRAM消費削減および速度改善\r\ngradient_checkpointingと組み合わせると効果的");
+            this.cbxCacheLatents.UseVisualStyleBackColor = true;
+            // 
+            // cbxMixedPrecision
+            // 
+            this.cbxMixedPrecision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxMixedPrecision.FormattingEnabled = true;
+            this.cbxMixedPrecision.Items.AddRange(new object[] {
+            "なし",
+            "fp16",
+            "bf16"});
+            this.cbxMixedPrecision.Location = new System.Drawing.Point(786, 32);
+            this.cbxMixedPrecision.Name = "cbxMixedPrecision";
+            this.cbxMixedPrecision.Size = new System.Drawing.Size(120, 33);
+            this.cbxMixedPrecision.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.cbxMixedPrecision, "bf16はAmpere以降のみ対応");
+            // 
+            // nudLRSchedulerCycle
+            // 
+            this.nudLRSchedulerCycle.Location = new System.Drawing.Point(786, 71);
+            this.nudLRSchedulerCycle.Maximum = new decimal(new int[] {
+            64,
+            0,
+            0,
+            0});
+            this.nudLRSchedulerCycle.Name = "nudLRSchedulerCycle";
+            this.nudLRSchedulerCycle.Size = new System.Drawing.Size(120, 31);
+            this.nudLRSchedulerCycle.TabIndex = 16;
+            this.toolTip1.SetToolTip(this.nudLRSchedulerCycle, "LR調整の周期");
+            this.nudLRSchedulerCycle.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
+            // 
+            // cbxAlgoType
+            // 
+            this.cbxAlgoType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxAlgoType.FormattingEnabled = true;
+            this.cbxAlgoType.Items.AddRange(new object[] {
+            "lora",
+            "loha",
+            "ia3",
+            "lokr"});
+            this.cbxAlgoType.Location = new System.Drawing.Point(330, 97);
+            this.cbxAlgoType.Name = "cbxAlgoType";
+            this.cbxAlgoType.Size = new System.Drawing.Size(121, 33);
+            this.cbxAlgoType.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.cbxAlgoType, "lora以外の実質的なdimはdim^2になる\r\nlora以外は重い");
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -311,6 +420,7 @@ namespace Kohya_lora_trainer
             this.cbxUseWarmupInit.Size = new System.Drawing.Size(302, 29);
             this.cbxUseWarmupInit.TabIndex = 18;
             this.cbxUseWarmupInit.Text = "AdaFactor: warmup_initを使用する";
+            this.toolTip1.SetToolTip(this.cbxUseWarmupInit, "必要なステップ数がだいたい1万以上になる");
             this.cbxUseWarmupInit.UseVisualStyleBackColor = true;
             // 
             // tbxExtension
@@ -461,20 +571,6 @@ namespace Kohya_lora_trainer
             0,
             0});
             // 
-            // cbxPrecision
-            // 
-            this.cbxPrecision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxPrecision.FormattingEnabled = true;
-            this.cbxPrecision.Items.AddRange(new object[] {
-            "fp16",
-            "bf16",
-            "float"});
-            this.cbxPrecision.Location = new System.Drawing.Point(503, 250);
-            this.cbxPrecision.Name = "cbxPrecision";
-            this.cbxPrecision.Size = new System.Drawing.Size(121, 33);
-            this.cbxPrecision.TabIndex = 29;
-            this.toolTip1.SetToolTip(this.cbxPrecision, "fp16にするとファイルサイズ半減\r\nbf16は互換性の観点から非推奨");
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -555,19 +651,6 @@ namespace Kohya_lora_trainer
             this.label13.TabIndex = 37;
             this.label13.Text = "特殊な学習";
             // 
-            // cbxCrossAttenType
-            // 
-            this.cbxCrossAttenType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxCrossAttenType.FormattingEnabled = true;
-            this.cbxCrossAttenType.Items.AddRange(new object[] {
-            "xformers",
-            "mem_eff_attn"});
-            this.cbxCrossAttenType.Location = new System.Drawing.Point(373, 195);
-            this.cbxCrossAttenType.Name = "cbxCrossAttenType";
-            this.cbxCrossAttenType.Size = new System.Drawing.Size(207, 33);
-            this.cbxCrossAttenType.TabIndex = 38;
-            this.toolTip1.SetToolTip(this.cbxCrossAttenType, "mef_eff_attenは遅いが省メモリ");
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -585,6 +668,7 @@ namespace Kohya_lora_trainer
             this.cbxUseGradient.Size = new System.Drawing.Size(301, 29);
             this.cbxUseGradient.TabIndex = 18;
             this.cbxUseGradient.Text = "gradient_checkpointingを使用する";
+            this.toolTip1.SetToolTip(this.cbxUseGradient, "VRAM消費削減および増加抑制");
             this.cbxUseGradient.UseVisualStyleBackColor = true;
             // 
             // label3
@@ -642,6 +726,7 @@ namespace Kohya_lora_trainer
             this.nudNoiseOffset.Name = "nudNoiseOffset";
             this.nudNoiseOffset.Size = new System.Drawing.Size(120, 31);
             this.nudNoiseOffset.TabIndex = 44;
+            this.toolTip1.SetToolTip(this.nudNoiseOffset, "暗い部分の改善効果があるかも");
             // 
             // label14
             // 
@@ -974,17 +1059,6 @@ namespace Kohya_lora_trainer
             this.tabPage4.Text = "ページ3";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // cbxScaleVPredLoss
-            // 
-            this.cbxScaleVPredLoss.AutoSize = true;
-            this.cbxScaleVPredLoss.Location = new System.Drawing.Point(39, 218);
-            this.cbxScaleVPredLoss.Name = "cbxScaleVPredLoss";
-            this.cbxScaleVPredLoss.Size = new System.Drawing.Size(265, 29);
-            this.cbxScaleVPredLoss.TabIndex = 26;
-            this.cbxScaleVPredLoss.Text = "v-prediction lossのスケーリング";
-            this.toolTip1.SetToolTip(this.cbxScaleVPredLoss, "SD1.xでは非推奨");
-            this.cbxScaleVPredLoss.UseVisualStyleBackColor = true;
-            // 
             // label39
             // 
             this.label39.AutoSize = true;
@@ -1092,19 +1166,7 @@ namespace Kohya_lora_trainer
             this.nudDropout.Name = "nudDropout";
             this.nudDropout.Size = new System.Drawing.Size(120, 31);
             this.nudDropout.TabIndex = 24;
-            // 
-            // cbxUseColorAug
-            // 
-            this.cbxUseColorAug.AutoSize = true;
-            this.cbxUseColorAug.Checked = true;
-            this.cbxUseColorAug.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxUseColorAug.Location = new System.Drawing.Point(39, 42);
-            this.cbxUseColorAug.Name = "cbxUseColorAug";
-            this.cbxUseColorAug.Size = new System.Drawing.Size(165, 29);
-            this.cbxUseColorAug.TabIndex = 7;
-            this.cbxUseColorAug.Text = "color_augを使用";
-            this.toolTip1.SetToolTip(this.cbxUseColorAug, "毎回ランダムに画像の色を変える\r\nlatentのキャッシュとの併用は不可");
-            this.cbxUseColorAug.UseVisualStyleBackColor = true;
+            this.toolTip1.SetToolTip(this.nudDropout, "一定確率でキャプションを切り落とす");
             // 
             // cbxCacheLatentsToDisk
             // 
@@ -1127,17 +1189,6 @@ namespace Kohya_lora_trainer
             this.cbxUseFastLoading.TabIndex = 12;
             this.cbxUseFastLoading.Text = "読込の高速化";
             this.cbxUseFastLoading.UseVisualStyleBackColor = true;
-            // 
-            // cbxCacheLatents
-            // 
-            this.cbxCacheLatents.AutoSize = true;
-            this.cbxCacheLatents.Location = new System.Drawing.Point(343, 147);
-            this.cbxCacheLatents.Name = "cbxCacheLatents";
-            this.cbxCacheLatents.Size = new System.Drawing.Size(161, 29);
-            this.cbxCacheLatents.TabIndex = 22;
-            this.cbxCacheLatents.Text = "latentのキャッシュ";
-            this.toolTip1.SetToolTip(this.cbxCacheLatents, "VRAM消費削減および速度改善\r\ngradient_checkpointingと組み合わせると効果的");
-            this.cbxCacheLatents.UseVisualStyleBackColor = true;
             // 
             // cbxUseV2
             // 
@@ -1166,6 +1217,7 @@ namespace Kohya_lora_trainer
             this.cbxUseParametarization.Size = new System.Drawing.Size(221, 29);
             this.cbxUseParametarization.TabIndex = 10;
             this.cbxUseParametarization.Text = "パラメタリゼーションの使用";
+            this.toolTip1.SetToolTip(this.cbxUseParametarization, "SD2.X向け");
             this.cbxUseParametarization.UseVisualStyleBackColor = true;
             // 
             // label27
@@ -1185,6 +1237,7 @@ namespace Kohya_lora_trainer
             this.cbxDontSaveMetadata.Size = new System.Drawing.Size(198, 29);
             this.cbxDontSaveMetadata.TabIndex = 11;
             this.cbxDontSaveMetadata.Text = "メタデータを保存しない";
+            this.toolTip1.SetToolTip(this.cbxDontSaveMetadata, "1111のiボタンで出る学習情報を削除する");
             this.cbxDontSaveMetadata.UseVisualStyleBackColor = true;
             // 
             // label28
@@ -1241,6 +1294,7 @@ namespace Kohya_lora_trainer
             this.cbxFlipAug.Size = new System.Drawing.Size(160, 29);
             this.cbxFlipAug.TabIndex = 8;
             this.cbxFlipAug.Text = "反転画像を使用";
+            this.toolTip1.SetToolTip(this.cbxFlipAug, "latentキャッシュとの併用不可");
             this.cbxFlipAug.UseVisualStyleBackColor = true;
             // 
             // nudDataLoaderThreads
@@ -1259,39 +1313,8 @@ namespace Kohya_lora_trainer
             this.nudDataLoaderThreads.Name = "nudDataLoaderThreads";
             this.nudDataLoaderThreads.Size = new System.Drawing.Size(120, 31);
             this.nudDataLoaderThreads.TabIndex = 18;
+            this.toolTip1.SetToolTip(this.nudDataLoaderThreads, "上げるとCPUボトルネックが減少することがある\r\nページング使用量増加");
             this.nudDataLoaderThreads.Value = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            // 
-            // cbxMixedPrecision
-            // 
-            this.cbxMixedPrecision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxMixedPrecision.FormattingEnabled = true;
-            this.cbxMixedPrecision.Items.AddRange(new object[] {
-            "なし",
-            "fp16",
-            "bf16"});
-            this.cbxMixedPrecision.Location = new System.Drawing.Point(786, 32);
-            this.cbxMixedPrecision.Name = "cbxMixedPrecision";
-            this.cbxMixedPrecision.Size = new System.Drawing.Size(120, 33);
-            this.cbxMixedPrecision.TabIndex = 14;
-            this.toolTip1.SetToolTip(this.cbxMixedPrecision, "bf16はAmpere以降のみ対応");
-            // 
-            // nudLRSchedulerCycle
-            // 
-            this.nudLRSchedulerCycle.Location = new System.Drawing.Point(786, 71);
-            this.nudLRSchedulerCycle.Maximum = new decimal(new int[] {
-            64,
-            0,
-            0,
-            0});
-            this.nudLRSchedulerCycle.Name = "nudLRSchedulerCycle";
-            this.nudLRSchedulerCycle.Size = new System.Drawing.Size(120, 31);
-            this.nudLRSchedulerCycle.TabIndex = 16;
-            this.toolTip1.SetToolTip(this.nudLRSchedulerCycle, "LR調整の周期");
-            this.nudLRSchedulerCycle.Value = new decimal(new int[] {
             4,
             0,
             0,
@@ -1645,21 +1668,6 @@ namespace Kohya_lora_trainer
             this.label25.TabIndex = 15;
             this.label25.Text = "Conv Dim\r\n0で無効";
             // 
-            // cbxAlgoType
-            // 
-            this.cbxAlgoType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxAlgoType.FormattingEnabled = true;
-            this.cbxAlgoType.Items.AddRange(new object[] {
-            "lora",
-            "loha",
-            "ia3",
-            "lokr"});
-            this.cbxAlgoType.Location = new System.Drawing.Point(330, 97);
-            this.cbxAlgoType.Name = "cbxAlgoType";
-            this.cbxAlgoType.Size = new System.Drawing.Size(121, 33);
-            this.cbxAlgoType.TabIndex = 14;
-            this.toolTip1.SetToolTip(this.cbxAlgoType, "lora以外の実質的なdimはdim^2になる\r\nlora以外は重い");
-            // 
             // pageMisc
             // 
             this.pageMisc.Controls.Add(this.label41);
@@ -1734,6 +1742,7 @@ namespace Kohya_lora_trainer
             this.Text = "詳細設定";
             this.Load += new System.EventHandler(this.Form_Advanced_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLRSchedulerCycle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxBucketReso)).EndInit();
@@ -1757,7 +1766,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudDropout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxTokens)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDataLoaderThreads)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudLRSchedulerCycle)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             this.pageConv.ResumeLayout(false);
