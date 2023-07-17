@@ -153,14 +153,13 @@ namespace Kohya_lora_trainer
             cof.Title = "Select an image folder";
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
+            if (Directory.Exists(TrainParams.Current.TrainImagePath))
+            {
+                cof.InitialDirectory = TrainParams.Current.TrainImagePath;
+            }
 
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                if (Directory.Exists(TrainParams.Current.TrainImagePath))
-                {
-                    cof.InitialDirectory = TrainParams.Current.TrainImagePath;
-                }
-
                 HaveNonAscillInImageFolder = false;
                 TrainParams.Current.TrainImagePath = cof.FileName;
                 tbxImagePath.Text = TrainParams.Current.TrainImagePath;
@@ -186,12 +185,15 @@ namespace Kohya_lora_trainer
             cof.Title = "Select Reg Image Folder";
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
+
+            if (Directory.Exists(TrainParams.Current.RegImagePath))
+            {
+                cof.InitialDirectory = TrainParams.Current.RegImagePath;
+            }
+
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                if (Directory.Exists(TrainParams.Current.RegImagePath))
-                {
-                    cof.InitialDirectory = TrainParams.Current.RegImagePath;
-                }
+
                 TrainParams.Current.RegImagePath = cof.FileName;
                 tbxRegImgPath.Text = TrainParams.Current.RegImagePath;
                 int num = 0;
