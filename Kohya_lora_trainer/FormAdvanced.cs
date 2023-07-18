@@ -380,6 +380,7 @@ namespace Kohya_lora_trainer {
 
             cbxUseWarmupInit.Checked = TrainParams.Current.UseBiasCorrection;
             cbxUseSafeguard.Checked = TrainParams.Current.SafeguardWarmup;
+            cbxUseBiasCorrection.Checked = TrainParams.Current.UseBiasCorrection;
 
             tbxProdigyBeta3.Text = TrainParams.Current.ProdigyBeta3.ToString("g");
             tbxDCoef.Text = TrainParams.Current.DCoef.ToString("g");
