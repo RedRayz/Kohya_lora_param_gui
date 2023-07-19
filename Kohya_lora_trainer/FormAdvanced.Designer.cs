@@ -353,7 +353,7 @@ namespace Kohya_lora_trainer
             this.cbxCacheLatents.Size = new System.Drawing.Size(161, 29);
             this.cbxCacheLatents.TabIndex = 22;
             this.cbxCacheLatents.Text = "latentのキャッシュ";
-            this.toolTip1.SetToolTip(this.cbxCacheLatents, "VRAM消費削減および速度改善\r\ngradient_checkpointingと組み合わせると効果的");
+            this.toolTip1.SetToolTip(this.cbxCacheLatents, "VRAM消費削減および速度改善\r\n高解像度でgradient_checkpointingと組み合わせると効果的");
             this.cbxCacheLatents.UseVisualStyleBackColor = true;
             // 
             // cbxMixedPrecision
