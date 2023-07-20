@@ -42,10 +42,11 @@
             this.btnInstallExtension = new System.Windows.Forms.Button();
             this.btnUpdateRepo = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.btnInstallLeco = new System.Windows.Forms.Button();
-            this.btnRunLeco = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnRunLeco = new System.Windows.Forms.Button();
+            this.btnInstallLeco = new System.Windows.Forms.Button();
+            this.btnUpdateLeco = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudTargetDim)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -258,6 +259,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.btnUpdateLeco);
             this.tabPage4.Controls.Add(this.label6);
             this.tabPage4.Controls.Add(this.label5);
             this.tabPage4.Controls.Add(this.btnRunLeco);
@@ -269,19 +271,27 @@
             this.tabPage4.Text = "LECO";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // btnInstallLeco
+            // label6
             // 
-            this.btnInstallLeco.Location = new System.Drawing.Point(241, 47);
-            this.btnInstallLeco.Name = "btnInstallLeco";
-            this.btnInstallLeco.Size = new System.Drawing.Size(169, 38);
-            this.btnInstallLeco.TabIndex = 0;
-            this.btnInstallLeco.Text = "LECOのインストール";
-            this.btnInstallLeco.UseVisualStyleBackColor = true;
-            this.btnInstallLeco.Click += new System.EventHandler(this.btnInstallLeco_Click);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(4, 87);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(296, 25);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "GUIフォルダと同階層にインストールします";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(380, 87);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(232, 25);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "config.yamlを指定してください";
             // 
             // btnRunLeco
             // 
-            this.btnRunLeco.Location = new System.Drawing.Point(241, 163);
+            this.btnRunLeco.Location = new System.Drawing.Point(411, 46);
             this.btnRunLeco.Name = "btnRunLeco";
             this.btnRunLeco.Size = new System.Drawing.Size(169, 38);
             this.btnRunLeco.TabIndex = 0;
@@ -289,23 +299,25 @@
             this.btnRunLeco.UseVisualStyleBackColor = true;
             this.btnRunLeco.Click += new System.EventHandler(this.btnRunLeco_Click);
             // 
-            // label5
+            // btnInstallLeco
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(210, 204);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(232, 25);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "config.yamlを指定してください";
+            this.btnInstallLeco.Location = new System.Drawing.Point(59, 46);
+            this.btnInstallLeco.Name = "btnInstallLeco";
+            this.btnInstallLeco.Size = new System.Drawing.Size(169, 38);
+            this.btnInstallLeco.TabIndex = 0;
+            this.btnInstallLeco.Text = "LECOのインストール";
+            this.btnInstallLeco.UseVisualStyleBackColor = true;
+            this.btnInstallLeco.Click += new System.EventHandler(this.btnInstallLeco_Click);
             // 
-            // label6
+            // btnUpdateLeco
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(186, 88);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(296, 25);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "GUIフォルダと同階層にインストールします";
+            this.btnUpdateLeco.Location = new System.Drawing.Point(59, 134);
+            this.btnUpdateLeco.Name = "btnUpdateLeco";
+            this.btnUpdateLeco.Size = new System.Drawing.Size(169, 37);
+            this.btnUpdateLeco.TabIndex = 3;
+            this.btnUpdateLeco.Text = "LECOの更新";
+            this.btnUpdateLeco.UseVisualStyleBackColor = true;
+            this.btnUpdateLeco.Click += new System.EventHandler(this.btnUpdateLeco_Click);
             // 
             // FormUtils
             // 
@@ -361,5 +373,6 @@
         private System.Windows.Forms.Button btnInstallLeco;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnUpdateLeco;
     }
 }
