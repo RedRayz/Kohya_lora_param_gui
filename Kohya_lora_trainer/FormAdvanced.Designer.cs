@@ -302,7 +302,7 @@ namespace Kohya_lora_trainer
             "fp16",
             "bf16",
             "float"});
-            this.cbxPrecision.Location = new System.Drawing.Point(503, 250);
+            this.cbxPrecision.Location = new System.Drawing.Point(503, 265);
             this.cbxPrecision.Name = "cbxPrecision";
             this.cbxPrecision.Size = new System.Drawing.Size(121, 33);
             this.cbxPrecision.TabIndex = 29;
@@ -522,15 +522,16 @@ namespace Kohya_lora_trainer
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(446, 201);
+            this.label6.Location = new System.Drawing.Point(404, 201);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(51, 25);
+            this.label6.Size = new System.Drawing.Size(94, 50);
             this.label6.TabIndex = 16;
-            this.label6.Text = "Seed";
+            this.label6.Text = "Seed\r\n-1でランダム";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // tbxExtension
             // 
-            this.tbxExtension.Location = new System.Drawing.Point(192, 248);
+            this.tbxExtension.Location = new System.Drawing.Point(192, 263);
             this.tbxExtension.Name = "tbxExtension";
             this.tbxExtension.Size = new System.Drawing.Size(126, 31);
             this.tbxExtension.TabIndex = 19;
@@ -539,7 +540,7 @@ namespace Kohya_lora_trainer
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(34, 251);
+            this.label9.Location = new System.Drawing.Point(34, 266);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(155, 50);
             this.label9.TabIndex = 20;
@@ -564,6 +565,11 @@ namespace Kohya_lora_trainer
             0,
             0,
             0});
+            this.nudSeed.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             this.nudSeed.Name = "nudSeed";
             this.nudSeed.Size = new System.Drawing.Size(120, 31);
             this.nudSeed.TabIndex = 23;
@@ -679,7 +685,7 @@ namespace Kohya_lora_trainer
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(381, 254);
+            this.label11.Location = new System.Drawing.Point(381, 269);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(117, 25);
             this.label11.TabIndex = 30;

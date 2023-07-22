@@ -348,12 +348,16 @@ namespace Kohya_lora_trainer
             }
 
             sb.Append(" --clip_skip ").Append(TrainParams.Current.ClipSkip)
-                .Append(" --seed ").Append(TrainParams.Current.Seed)
                 .Append(" --save_precision \"").Append(TrainParams.Current.SavePrecision.ToString()).Append("\"")
                 .Append(" --lr_scheduler \"").Append(TrainParams.Current.SchedulerType.ToString()).Append("\"")
                 .Append(" --min_bucket_reso ").Append(TrainParams.Current.MinBucketResolution)
                 .Append(" --max_bucket_reso ").Append(TrainParams.Current.MaxBucketResolution)
                 .Append(" --caption_extension \"").Append(TrainParams.Current.CaptionFileExtension).Append("\"");
+
+            if(TrainParams.Current.Seed >= 0)
+            {
+                sb.Append(" --seed ").Append(TrainParams.Current.Seed);
+            }
 
             switch (TrainParams.Current.advancedTrainType)
             {
