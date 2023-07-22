@@ -319,7 +319,7 @@ namespace Kohya_lora_trainer
             this.cbxCrossAttenType.Name = "cbxCrossAttenType";
             this.cbxCrossAttenType.Size = new System.Drawing.Size(207, 33);
             this.cbxCrossAttenType.TabIndex = 38;
-            this.toolTip1.SetToolTip(this.cbxCrossAttenType, "mef_eff_attenは遅いが省メモリ");
+            this.toolTip1.SetToolTip(this.cbxCrossAttenType, "mef_eff_attenは省メモリだが大幅低速化");
             // 
             // cbxScaleVPredLoss
             // 
@@ -353,7 +353,7 @@ namespace Kohya_lora_trainer
             this.cbxCacheLatents.Size = new System.Drawing.Size(161, 29);
             this.cbxCacheLatents.TabIndex = 22;
             this.cbxCacheLatents.Text = "latentのキャッシュ";
-            this.toolTip1.SetToolTip(this.cbxCacheLatents, "VRAM消費削減および速度改善\r\n高解像度でgradient_checkpointingと組み合わせると効果的");
+            this.toolTip1.SetToolTip(this.cbxCacheLatents, "VRAM消費削減および速度改善\r\n高解像度でgradient_checkpointingと組み合わせると、\r\nBatch2でVRAM消費が8GB未満になる");
             this.cbxCacheLatents.UseVisualStyleBackColor = true;
             // 
             // cbxMixedPrecision
@@ -422,7 +422,7 @@ namespace Kohya_lora_trainer
             this.cbxUseGradient.Size = new System.Drawing.Size(301, 29);
             this.cbxUseGradient.TabIndex = 18;
             this.cbxUseGradient.Text = "gradient_checkpointingを使用する";
-            this.toolTip1.SetToolTip(this.cbxUseGradient, "VRAM消費削減および増加抑制");
+            this.toolTip1.SetToolTip(this.cbxUseGradient, "VRAM消費削減および増加を強く抑制\r\n速度がやや低下する");
             this.cbxUseGradient.UseVisualStyleBackColor = true;
             // 
             // nudNoiseOffset
@@ -536,6 +536,7 @@ namespace Kohya_lora_trainer
             this.tbxExtension.Size = new System.Drawing.Size(126, 31);
             this.tbxExtension.TabIndex = 19;
             this.tbxExtension.Text = ".txt";
+            this.toolTip1.SetToolTip(this.tbxExtension, "ピリオド込みで入力する");
             // 
             // label9
             // 
@@ -638,7 +639,7 @@ namespace Kohya_lora_trainer
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(90, 30);
+            this.label10.Location = new System.Drawing.Point(46, 26);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(91, 25);
             this.label10.TabIndex = 26;
@@ -655,7 +656,7 @@ namespace Kohya_lora_trainer
             "polynomial",
             "constant",
             "constant_with_warmup"});
-            this.cbxScheduler.Location = new System.Drawing.Point(203, 27);
+            this.cbxScheduler.Location = new System.Drawing.Point(159, 23);
             this.cbxScheduler.Name = "cbxScheduler";
             this.cbxScheduler.Size = new System.Drawing.Size(212, 33);
             this.cbxScheduler.TabIndex = 27;
@@ -676,6 +677,7 @@ namespace Kohya_lora_trainer
             this.nudClipSkip.Name = "nudClipSkip";
             this.nudClipSkip.Size = new System.Drawing.Size(120, 31);
             this.nudClipSkip.TabIndex = 28;
+            this.toolTip1.SetToolTip(this.nudClipSkip, "イラストは2、実写は1が良いとされる");
             this.nudClipSkip.Value = new decimal(new int[] {
             2,
             0,
@@ -745,10 +747,10 @@ namespace Kohya_lora_trainer
             this.cbxAdvancedTrain.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxAdvancedTrain.FormattingEnabled = true;
             this.cbxAdvancedTrain.Items.AddRange(new object[] {
-            "しない",
+            "両方学習",
             "TextEncoderのみ学習",
             "UNetのみ学習"});
-            this.cbxAdvancedTrain.Location = new System.Drawing.Point(539, 27);
+            this.cbxAdvancedTrain.Location = new System.Drawing.Point(539, 26);
             this.cbxAdvancedTrain.Name = "cbxAdvancedTrain";
             this.cbxAdvancedTrain.Size = new System.Drawing.Size(205, 33);
             this.cbxAdvancedTrain.TabIndex = 36;
@@ -756,11 +758,11 @@ namespace Kohya_lora_trainer
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(434, 30);
+            this.label13.Location = new System.Drawing.Point(398, 29);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(99, 25);
+            this.label13.Size = new System.Drawing.Size(128, 25);
             this.label13.TabIndex = 37;
-            this.label13.Text = "特殊な学習";
+            this.label13.Text = "UNet/TEの学習";
             // 
             // label4
             // 
@@ -896,6 +898,7 @@ namespace Kohya_lora_trainer
             this.cbxUseWeightedCaption.Size = new System.Drawing.Size(242, 54);
             this.cbxUseWeightedCaption.TabIndex = 48;
             this.cbxUseWeightedCaption.Text = "キャプションに重みづけを使用\r\n(weighted_captions)";
+            this.toolTip1.SetToolTip(this.cbxUseWeightedCaption, "キャプションでカッコなどを強調として使用する\r\nAUTOMATIC1111 WebUIと同様の記法");
             this.cbxUseWeightedCaption.UseVisualStyleBackColor = true;
             // 
             // nudAdaptiveNoiseScale

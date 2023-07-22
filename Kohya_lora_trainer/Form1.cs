@@ -86,6 +86,12 @@ namespace Kohya_lora_trainer
                     lblScriptPathDesc.Text = "train_network.pyがみつかりません";
 #endif
             }
+            else
+            {
+                btnCustomScriptPath.Visible = false;
+                lblScriptPathDesc.Visible = false;
+                btnInstaller.Visible = false;
+            }
 
             string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\autosave.xmlora";
             if (File.Exists(str))
@@ -651,6 +657,22 @@ namespace Kohya_lora_trainer
             Form frm = new FormInstaller();
             frm.ShowDialog();
             frm.Dispose();
+
+            if (!File.Exists(Constants.CurrentSdScriptsPath + @"train_network.py"))
+            {
+                btnInstaller.Visible = true;
+                lblScriptPathDesc.Visible = true;
+                lblScriptPathDesc.ForeColor = Color.Red;
+                lblScriptPathDesc.Text = "train_network.pyがみつかりません";
+
+            }
+            else
+            {
+                btnCustomScriptPath.Visible = false;
+                lblScriptPathDesc.Visible = false;
+                btnInstaller.Visible = false;
+            }
+
         }
 
         private void cbxModuleType_SelectedIndexChanged(object sender, EventArgs e)
