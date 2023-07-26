@@ -705,6 +705,13 @@ namespace Kohya_lora_trainer
             }
         }
 
+        private void btnLeco_Click(object sender, EventArgs e)
+        {
+            Form frm = new FormLECO();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+
         private void btnCustomScriptPath_Click(object sender, EventArgs e)
         {
             CommonOpenFileDialog cof = new CommonOpenFileDialog();

@@ -166,6 +166,12 @@
     <Compile Include="FormInstaller.Designer.cs">
       <DependentUpon>FormInstaller.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormLECO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormLECO.Designer.cs">
+      <DependentUpon>FormLECO.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyUtils.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -196,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormInstaller.resx">
       <DependentUpon>FormInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormLECO.resx">
+      <DependentUpon>FormLECO.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUtils.resx">
       <DependentUpon>FormUtils.cs</DependentUpon>
