@@ -41,17 +41,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnInstallExtension = new System.Windows.Forms.Button();
             this.btnUpdateRepo = new System.Windows.Forms.Button();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.btnInstallLeco = new System.Windows.Forms.Button();
-            this.btnRunLeco = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudTargetDim)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnRunTensorboard
@@ -168,7 +162,6 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -256,57 +249,6 @@
             this.btnUpdateRepo.UseVisualStyleBackColor = true;
             this.btnUpdateRepo.Click += new System.EventHandler(this.btnUpdateRepo_Click);
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.label6);
-            this.tabPage4.Controls.Add(this.label5);
-            this.tabPage4.Controls.Add(this.btnRunLeco);
-            this.tabPage4.Controls.Add(this.btnInstallLeco);
-            this.tabPage4.Location = new System.Drawing.Point(4, 34);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(655, 287);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "LECO";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // btnInstallLeco
-            // 
-            this.btnInstallLeco.Location = new System.Drawing.Point(241, 47);
-            this.btnInstallLeco.Name = "btnInstallLeco";
-            this.btnInstallLeco.Size = new System.Drawing.Size(169, 38);
-            this.btnInstallLeco.TabIndex = 0;
-            this.btnInstallLeco.Text = "LECOのインストール";
-            this.btnInstallLeco.UseVisualStyleBackColor = true;
-            this.btnInstallLeco.Click += new System.EventHandler(this.btnInstallLeco_Click);
-            // 
-            // btnRunLeco
-            // 
-            this.btnRunLeco.Location = new System.Drawing.Point(241, 163);
-            this.btnRunLeco.Name = "btnRunLeco";
-            this.btnRunLeco.Size = new System.Drawing.Size(169, 38);
-            this.btnRunLeco.TabIndex = 0;
-            this.btnRunLeco.Text = "LECOの学習";
-            this.btnRunLeco.UseVisualStyleBackColor = true;
-            this.btnRunLeco.Click += new System.EventHandler(this.btnRunLeco_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(210, 204);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(232, 25);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "config.yamlを指定してください";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(186, 88);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(296, 25);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "GUIフォルダと同階層にインストールします";
-            // 
             // FormUtils
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -331,8 +273,6 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -356,10 +296,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnInstallExtension;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Button btnRunLeco;
-        private System.Windows.Forms.Button btnInstallLeco;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
     }
 }

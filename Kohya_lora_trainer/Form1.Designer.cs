@@ -48,6 +48,12 @@ namespace Kohya_lora_trainer
             this.cbxShuffle = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.nudNetworkAlpha = new System.Windows.Forms.NumericUpDown();
+            this.nudNetworkDim = new System.Windows.Forms.NumericUpDown();
+            this.nudResolution = new System.Windows.Forms.NumericUpDown();
+            this.nudKeepTokens = new System.Windows.Forms.NumericUpDown();
+            this.nudBatchSize = new System.Windows.Forms.NumericUpDown();
+            this.nudWarmupSteps = new System.Windows.Forms.NumericUpDown();
             this.btnSavePreset = new System.Windows.Forms.Button();
             this.btnLoadPreset = new System.Windows.Forms.Button();
             this.lblResolution = new System.Windows.Forms.Label();
@@ -57,16 +63,10 @@ namespace Kohya_lora_trainer
             this.label18 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.nudNetworkAlpha = new System.Windows.Forms.NumericUpDown();
-            this.nudNetworkDim = new System.Windows.Forms.NumericUpDown();
             this.nudEpochs = new System.Windows.Forms.NumericUpDown();
-            this.nudResolution = new System.Windows.Forms.NumericUpDown();
-            this.nudKeepTokens = new System.Windows.Forms.NumericUpDown();
             this.nudSaveEpoch = new System.Windows.Forms.NumericUpDown();
-            this.nudBatchSize = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.lblNumSteps = new System.Windows.Forms.Label();
-            this.nudWarmupSteps = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.btnClearRegImagePath = new System.Windows.Forms.Button();
             this.lblNumStepsBatch1 = new System.Windows.Forms.Label();
@@ -92,14 +92,15 @@ namespace Kohya_lora_trainer
             this.btnBatchProcess = new System.Windows.Forms.Button();
             this.btnInstaller = new System.Windows.Forms.Button();
             this.btnGenerateCommands = new System.Windows.Forms.Button();
+            this.btnLeco = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudResolution)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudKeepTokens)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSaveEpoch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWarmupSteps)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSaveEpoch)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -279,6 +280,141 @@ namespace Kohya_lora_trainer
             this.label12.TabIndex = 33;
             this.label12.Text = "トークン保持数#";
             // 
+            // nudNetworkAlpha
+            // 
+            this.nudNetworkAlpha.DecimalPlaces = 2;
+            this.nudNetworkAlpha.Location = new System.Drawing.Point(1017, 226);
+            this.nudNetworkAlpha.Maximum = new decimal(new int[] {
+            1024,
+            0,
+            0,
+            0});
+            this.nudNetworkAlpha.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudNetworkAlpha.Name = "nudNetworkAlpha";
+            this.nudNetworkAlpha.Size = new System.Drawing.Size(120, 31);
+            this.nudNetworkAlpha.TabIndex = 51;
+            this.toolTip1.SetToolTip(this.nudNetworkAlpha, "dimの半分以下の値が望ましい\r\ndimに近い値では生成時に崩壊しやすい");
+            this.nudNetworkAlpha.Value = new decimal(new int[] {
+            128,
+            0,
+            0,
+            0});
+            this.nudNetworkAlpha.ValueChanged += new System.EventHandler(this.nudNetworkAlpha_ValueChanged);
+            // 
+            // nudNetworkDim
+            // 
+            this.nudNetworkDim.Location = new System.Drawing.Point(607, 229);
+            this.nudNetworkDim.Maximum = new decimal(new int[] {
+            1024,
+            0,
+            0,
+            0});
+            this.nudNetworkDim.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudNetworkDim.Name = "nudNetworkDim";
+            this.nudNetworkDim.Size = new System.Drawing.Size(120, 31);
+            this.nudNetworkDim.TabIndex = 52;
+            this.toolTip1.SetToolTip(this.nudNetworkDim, "上げると学習能力が上昇するが、速度低下と生成時の不安定化を招く");
+            this.nudNetworkDim.Value = new decimal(new int[] {
+            128,
+            0,
+            0,
+            0});
+            this.nudNetworkDim.ValueChanged += new System.EventHandler(this.nudNetworkDim_ValueChanged);
+            // 
+            // nudResolution
+            // 
+            this.nudResolution.Increment = new decimal(new int[] {
+            64,
+            0,
+            0,
+            0});
+            this.nudResolution.Location = new System.Drawing.Point(606, 186);
+            this.nudResolution.Maximum = new decimal(new int[] {
+            2048,
+            0,
+            0,
+            0});
+            this.nudResolution.Minimum = new decimal(new int[] {
+            128,
+            0,
+            0,
+            0});
+            this.nudResolution.Name = "nudResolution";
+            this.nudResolution.Size = new System.Drawing.Size(120, 31);
+            this.nudResolution.TabIndex = 54;
+            this.toolTip1.SetToolTip(this.nudResolution, "latentのキャッシュとgradient_checkpointingを使用すると\r\n8GBで1024での学習が可能!!");
+            this.nudResolution.Value = new decimal(new int[] {
+            512,
+            0,
+            0,
+            0});
+            this.nudResolution.ValueChanged += new System.EventHandler(this.nudResolution_ValueChanged);
+            // 
+            // nudKeepTokens
+            // 
+            this.nudKeepTokens.Location = new System.Drawing.Point(606, 272);
+            this.nudKeepTokens.Maximum = new decimal(new int[] {
+            128,
+            0,
+            0,
+            0});
+            this.nudKeepTokens.Name = "nudKeepTokens";
+            this.nudKeepTokens.Size = new System.Drawing.Size(120, 31);
+            this.nudKeepTokens.TabIndex = 55;
+            this.toolTip1.SetToolTip(this.nudKeepTokens, "先頭nトークンをシャッフルの対象外にする。\r\n1トークン=カンマ区切り");
+            this.nudKeepTokens.ValueChanged += new System.EventHandler(this.nudKeepTokens_ValueChanged);
+            // 
+            // nudBatchSize
+            // 
+            this.nudBatchSize.Location = new System.Drawing.Point(1017, 185);
+            this.nudBatchSize.Maximum = new decimal(new int[] {
+            64,
+            0,
+            0,
+            0});
+            this.nudBatchSize.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudBatchSize.Name = "nudBatchSize";
+            this.nudBatchSize.Size = new System.Drawing.Size(120, 31);
+            this.nudBatchSize.TabIndex = 57;
+            this.toolTip1.SetToolTip(this.nudBatchSize, "高batchでは学習効率が低下するので、LRかエポック数を多めにする");
+            this.nudBatchSize.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudBatchSize.ValueChanged += new System.EventHandler(this.nudBatchSize_ValueChanged);
+            // 
+            // nudWarmupSteps
+            // 
+            this.nudWarmupSteps.Location = new System.Drawing.Point(606, 313);
+            this.nudWarmupSteps.Maximum = new decimal(new int[] {
+            50000,
+            0,
+            0,
+            0});
+            this.nudWarmupSteps.Name = "nudWarmupSteps";
+            this.nudWarmupSteps.Size = new System.Drawing.Size(120, 31);
+            this.nudWarmupSteps.TabIndex = 62;
+            this.toolTip1.SetToolTip(this.nudWarmupSteps, "nステップ数まで徐々にLRを上げる");
+            this.nudWarmupSteps.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nudWarmupSteps.ValueChanged += new System.EventHandler(this.nudWarmupSteps_ValueChanged);
+            // 
             // btnSavePreset
             // 
             this.btnSavePreset.Location = new System.Drawing.Point(790, 596);
@@ -361,55 +497,6 @@ namespace Kohya_lora_trainer
             this.label21.TabIndex = 50;
             this.label21.Text = "ネットワークアルファ*";
             // 
-            // nudNetworkAlpha
-            // 
-            this.nudNetworkAlpha.DecimalPlaces = 2;
-            this.nudNetworkAlpha.Location = new System.Drawing.Point(1017, 226);
-            this.nudNetworkAlpha.Maximum = new decimal(new int[] {
-            1024,
-            0,
-            0,
-            0});
-            this.nudNetworkAlpha.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.nudNetworkAlpha.Name = "nudNetworkAlpha";
-            this.nudNetworkAlpha.Size = new System.Drawing.Size(120, 31);
-            this.nudNetworkAlpha.TabIndex = 51;
-            this.toolTip1.SetToolTip(this.nudNetworkAlpha, "dimの半分以下の値が望ましい\r\ndimに近い値では生成時に崩壊しやすい");
-            this.nudNetworkAlpha.Value = new decimal(new int[] {
-            128,
-            0,
-            0,
-            0});
-            this.nudNetworkAlpha.ValueChanged += new System.EventHandler(this.nudNetworkAlpha_ValueChanged);
-            // 
-            // nudNetworkDim
-            // 
-            this.nudNetworkDim.Location = new System.Drawing.Point(607, 229);
-            this.nudNetworkDim.Maximum = new decimal(new int[] {
-            1024,
-            0,
-            0,
-            0});
-            this.nudNetworkDim.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudNetworkDim.Name = "nudNetworkDim";
-            this.nudNetworkDim.Size = new System.Drawing.Size(120, 31);
-            this.nudNetworkDim.TabIndex = 52;
-            this.toolTip1.SetToolTip(this.nudNetworkDim, "上げると学習能力が上昇するが、速度低下と生成時の不安定化を招く");
-            this.nudNetworkDim.Value = new decimal(new int[] {
-            128,
-            0,
-            0,
-            0});
-            this.nudNetworkDim.ValueChanged += new System.EventHandler(this.nudNetworkDim_ValueChanged);
-            // 
             // nudEpochs
             // 
             this.nudEpochs.Location = new System.Drawing.Point(162, 229);
@@ -433,49 +520,6 @@ namespace Kohya_lora_trainer
             0});
             this.nudEpochs.ValueChanged += new System.EventHandler(this.nudEpochs_ValueChanged);
             // 
-            // nudResolution
-            // 
-            this.nudResolution.Increment = new decimal(new int[] {
-            64,
-            0,
-            0,
-            0});
-            this.nudResolution.Location = new System.Drawing.Point(606, 186);
-            this.nudResolution.Maximum = new decimal(new int[] {
-            2048,
-            0,
-            0,
-            0});
-            this.nudResolution.Minimum = new decimal(new int[] {
-            128,
-            0,
-            0,
-            0});
-            this.nudResolution.Name = "nudResolution";
-            this.nudResolution.Size = new System.Drawing.Size(120, 31);
-            this.nudResolution.TabIndex = 54;
-            this.toolTip1.SetToolTip(this.nudResolution, "latentのキャッシュとgradient_checkpointingを使用すると\r\n8GBで1024での学習が可能!!");
-            this.nudResolution.Value = new decimal(new int[] {
-            512,
-            0,
-            0,
-            0});
-            this.nudResolution.ValueChanged += new System.EventHandler(this.nudResolution_ValueChanged);
-            // 
-            // nudKeepTokens
-            // 
-            this.nudKeepTokens.Location = new System.Drawing.Point(606, 272);
-            this.nudKeepTokens.Maximum = new decimal(new int[] {
-            128,
-            0,
-            0,
-            0});
-            this.nudKeepTokens.Name = "nudKeepTokens";
-            this.nudKeepTokens.Size = new System.Drawing.Size(120, 31);
-            this.nudKeepTokens.TabIndex = 55;
-            this.toolTip1.SetToolTip(this.nudKeepTokens, "先頭nトークンをシャッフルの対象外にする。\r\n1トークン=カンマ区切り");
-            this.nudKeepTokens.ValueChanged += new System.EventHandler(this.nudKeepTokens_ValueChanged);
-            // 
             // nudSaveEpoch
             // 
             this.nudSaveEpoch.Location = new System.Drawing.Point(1017, 269);
@@ -488,30 +532,6 @@ namespace Kohya_lora_trainer
             this.nudSaveEpoch.Size = new System.Drawing.Size(120, 31);
             this.nudSaveEpoch.TabIndex = 56;
             this.nudSaveEpoch.ValueChanged += new System.EventHandler(this.nudSaveEpoch_ValueChanged);
-            // 
-            // nudBatchSize
-            // 
-            this.nudBatchSize.Location = new System.Drawing.Point(1017, 185);
-            this.nudBatchSize.Maximum = new decimal(new int[] {
-            64,
-            0,
-            0,
-            0});
-            this.nudBatchSize.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudBatchSize.Name = "nudBatchSize";
-            this.nudBatchSize.Size = new System.Drawing.Size(120, 31);
-            this.nudBatchSize.TabIndex = 57;
-            this.toolTip1.SetToolTip(this.nudBatchSize, "高batchでは学習効率が低下するので、LRかエポック数を多めにする");
-            this.nudBatchSize.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudBatchSize.ValueChanged += new System.EventHandler(this.nudBatchSize_ValueChanged);
             // 
             // label1
             // 
@@ -530,25 +550,6 @@ namespace Kohya_lora_trainer
             this.lblNumSteps.Size = new System.Drawing.Size(84, 25);
             this.lblNumSteps.TabIndex = 61;
             this.lblNumSteps.Text = "16384";
-            // 
-            // nudWarmupSteps
-            // 
-            this.nudWarmupSteps.Location = new System.Drawing.Point(606, 313);
-            this.nudWarmupSteps.Maximum = new decimal(new int[] {
-            50000,
-            0,
-            0,
-            0});
-            this.nudWarmupSteps.Name = "nudWarmupSteps";
-            this.nudWarmupSteps.Size = new System.Drawing.Size(120, 31);
-            this.nudWarmupSteps.TabIndex = 62;
-            this.toolTip1.SetToolTip(this.nudWarmupSteps, "nステップ数まで徐々にLRを上げる");
-            this.nudWarmupSteps.Value = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.nudWarmupSteps.ValueChanged += new System.EventHandler(this.nudWarmupSteps_ValueChanged);
             // 
             // label9
             // 
@@ -798,11 +799,22 @@ namespace Kohya_lora_trainer
             this.btnGenerateCommands.UseVisualStyleBackColor = true;
             this.btnGenerateCommands.Click += new System.EventHandler(this.btnGenerateCommands_Click);
             // 
+            // btnLeco
+            // 
+            this.btnLeco.Location = new System.Drawing.Point(342, 596);
+            this.btnLeco.Name = "btnLeco";
+            this.btnLeco.Size = new System.Drawing.Size(126, 46);
+            this.btnLeco.TabIndex = 84;
+            this.btnLeco.Text = "LECO";
+            this.btnLeco.UseVisualStyleBackColor = true;
+            this.btnLeco.Click += new System.EventHandler(this.btnLeco_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1172, 670);
+            this.Controls.Add(this.btnLeco);
             this.Controls.Add(this.btnGenerateCommands);
             this.Controls.Add(this.btnInstaller);
             this.Controls.Add(this.btnBatchProcess);
@@ -872,12 +884,12 @@ namespace Kohya_lora_trainer
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudResolution)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudKeepTokens)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSaveEpoch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWarmupSteps)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSaveEpoch)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -947,6 +959,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Button btnBatchProcess;
         private System.Windows.Forms.Button btnInstaller;
         private System.Windows.Forms.Button btnGenerateCommands;
+        private System.Windows.Forms.Button btnLeco;
     }
 }
 

@@ -19,24 +19,38 @@ namespace Kohya_lora_trainer {
         }
 
         private void button1_Click(object sender, EventArgs e) {
+            bool IsValid = true;
+            float telr = -1;
+            float unetlr = -1;
+            float weightdecay = 0;
+            float eps = 0;
+            float dzero = 0;
+            float growthrate = 0;
+            float betas0 = 0;
+            float betas1 = 0;
+            float betas2 = 0;
+            float momentum = 0;
+            float beta3 = 0;
+            float dcoef = 0;
+
             if (!string.IsNullOrEmpty(tbxTextEncoLR.Text)) {
                 float lr = -1f;
                 if (float.TryParse(tbxTextEncoLR.Text, out lr)) {
                     if (!CheckUtil.IsValidNum(lr)) {
                         MessageBox.Show("TextEncoder LRに0以下、NaN、無限は指定できません", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                        IsValid = false;
                     }
                     else {
-                        TrainParams.Current.TextEncoderLR = lr;
+                        telr = lr;
                     }
                 }
                 else {
                     MessageBox.Show("TextEncoder LRの値が間違っています", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    IsValid = false;
                 }
             }
             else {
-                TrainParams.Current.TextEncoderLR = -1;
+                telr = -1;
             }
 
             if (!string.IsNullOrEmpty(tbxUnetLR.Text)) {
@@ -44,29 +58,29 @@ namespace Kohya_lora_trainer {
                 if (float.TryParse(tbxUnetLR.Text, out lr)) {
                     if (!CheckUtil.IsValidNum(lr)) {
                         MessageBox.Show("UNet LRに0以下、NaN、無限は指定できません", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                        IsValid = false;
                     }
                     else {
-                        TrainParams.Current.UnetLR = lr;
+                        unetlr = lr;
                     }
                 }
                 else {
                     MessageBox.Show("UNet LRの値が間違っています", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    IsValid = false;
                 }
             }
             else {
-                TrainParams.Current.UnetLR = -1;
+                unetlr = -1;
             }
 
             if(nudMinBucketReso.Value % 64 != 0) {
                 MessageBox.Show("最小バケット解像度の値が間違っています。\n64で割り切れる必要があります。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                IsValid = false;
             }
 
             if (nudMaxBucketReso.Value % 64 != 0) {
                 MessageBox.Show("最大バケット解像度の値が間違っています。\n64で割り切れる必要があります。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                IsValid = false;
             }
 
             float val = 0;
@@ -75,14 +89,14 @@ namespace Kohya_lora_trainer {
                 if (val < 0f)
                 {
                     MessageBox.Show("Weight Decayの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    IsValid = false;
                 }
-                TrainParams.Current.WeightDecay = val;
+                weightdecay = val;
             }
             else
             {
                 MessageBox.Show("Weight Decayの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                IsValid = false;
             }
 
             if (float.TryParse(tbxEps.Text, out val))
@@ -90,14 +104,14 @@ namespace Kohya_lora_trainer {
                 if (val < 0f)
                 {
                     MessageBox.Show("epsの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    IsValid = false;
                 }
-                TrainParams.Current.Eps = val;
+                eps = val;
             }
             else
             {
                 MessageBox.Show("epsの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                IsValid = false;
             }
 
             if (float.TryParse(tbxD0.Text, out val))
@@ -105,14 +119,14 @@ namespace Kohya_lora_trainer {
                 if (val < 0f)
                 {
                     MessageBox.Show("d0の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    IsValid = false;
                 }
-                TrainParams.Current.D0 = val;
+                dzero = val;
             }
             else
             {
                 MessageBox.Show("d0の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                IsValid = false;
             }
 
             if (float.TryParse(tbxGrowthRate.Text, out val))
@@ -120,14 +134,14 @@ namespace Kohya_lora_trainer {
                 if (val < 0f)
                 {
                     MessageBox.Show("growth_rateの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    IsValid = false;
                 }
-                TrainParams.Current.GrowthRate = val;
+                growthrate = val;
             }
             else
             {
                 MessageBox.Show("growth_rateの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                IsValid = false;
             }
 
             if (float.TryParse(tbxBetas0.Text, out val))
@@ -135,14 +149,14 @@ namespace Kohya_lora_trainer {
                 if (val < 0f)
                 {
                     MessageBox.Show("betasの一番目の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    IsValid = false;
                 }
-                TrainParams.Current.Betas0 = val;
+                betas0 = val;
             }
             else
             {
                 MessageBox.Show("betasの一番目の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                IsValid = false;
             }
 
             if (float.TryParse(tbxBetas1.Text, out val))
@@ -150,14 +164,14 @@ namespace Kohya_lora_trainer {
                 if (val < 0f)
                 {
                     MessageBox.Show("betasの二番目の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    IsValid = false;
                 }
-                TrainParams.Current.Betas1 = val;
+                betas1 = val;
             }
             else
             {
                 MessageBox.Show("betasの二番目の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                IsValid = false;
             }
 
             if (float.TryParse(tbxBetas2.Text, out val))
@@ -165,29 +179,29 @@ namespace Kohya_lora_trainer {
                 if (val < 0f)
                 {
                     MessageBox.Show("betasの三番目の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    IsValid = false;
                 }
-                TrainParams.Current.Betas2 = val;
+                betas2 = val;
             }
             else
             {
                 MessageBox.Show("betasの三番目の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                IsValid = false;
             }
 
             if (float.TryParse(tbxMomentum.Text, out val))
             {
                 if (val < 0f)
                 {
-                    MessageBox.Show("momentumの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    MessageBox.Show("DAdaptationのmomentumの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    IsValid = false;
                 }
-                TrainParams.Current.DAdaptMomentum = val;
+                momentum = val;
             }
             else
             {
-                MessageBox.Show("momentumの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                MessageBox.Show("DAdaptationのmomentumの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                IsValid = false;
             }
 
             if (float.TryParse(tbxProdigyBeta3.Text, out val))
@@ -195,14 +209,14 @@ namespace Kohya_lora_trainer {
                 if (val < 0f)
                 {
                     MessageBox.Show("beta3の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    IsValid = false;
                 }
-                TrainParams.Current.ProdigyBeta3 = val;
+                beta3 = val;
             }
             else
             {
                 MessageBox.Show("beta3の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                IsValid = false;
             }
 
             if (float.TryParse(tbxDCoef.Text, out val))
@@ -210,14 +224,14 @@ namespace Kohya_lora_trainer {
                 if (val < 0f)
                 {
                     MessageBox.Show("d coefの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    IsValid = false;
                 }
-                TrainParams.Current.DCoef = val;
+                dcoef = val;
             }
             else
             {
                 MessageBox.Show("d coefの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                IsValid = false;
             }
 
 
@@ -225,13 +239,25 @@ namespace Kohya_lora_trainer {
             if (regex.IsMatch(tbxComment.Text))
             {
                 MessageBox.Show("コメント欄に使用できない文字が含まれています。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            else
-            {
-                TrainParams.Current.Comment = tbxComment.Text;
+                IsValid = false;
             }
 
+            if (!IsValid)
+                return;
+
+            TrainParams.Current.Comment = tbxComment.Text;
+            TrainParams.Current.TextEncoderLR = telr;
+            TrainParams.Current.UnetLR = unetlr;
+            TrainParams.Current.WeightDecay = weightdecay;
+            TrainParams.Current.Eps = eps;
+            TrainParams.Current.D0 = dzero;
+            TrainParams.Current.GrowthRate = growthrate;
+            TrainParams.Current.Betas0 = betas0;
+            TrainParams.Current.Betas1 = betas1;
+            TrainParams.Current.Betas2 = betas2;
+            TrainParams.Current.DAdaptMomentum = momentum;
+            TrainParams.Current.ProdigyBeta3 = beta3;
+            TrainParams.Current.DCoef = dcoef;
 
             TrainParams.Current.CpuThreads = tbrCpuThreads.Value;
             TrainParams.Current.SchedulerType = (SchedulerType)Enum.ToObject(typeof(SchedulerType), cbxScheduler.SelectedIndex);
@@ -380,6 +406,7 @@ namespace Kohya_lora_trainer {
 
             cbxUseWarmupInit.Checked = TrainParams.Current.UseBiasCorrection;
             cbxUseSafeguard.Checked = TrainParams.Current.SafeguardWarmup;
+            cbxUseBiasCorrection.Checked = TrainParams.Current.UseBiasCorrection;
 
             tbxProdigyBeta3.Text = TrainParams.Current.ProdigyBeta3.ToString("g");
             tbxDCoef.Text = TrainParams.Current.DCoef.ToString("g");
