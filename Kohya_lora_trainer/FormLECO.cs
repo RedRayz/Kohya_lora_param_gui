@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace Kohya_lora_trainer
 {
@@ -183,6 +184,88 @@ namespace Kohya_lora_trainer
                 {
                     MessageBox.Show("エラーで保存できません。\r\n" + ex.Message, "おしらせ", MessageBoxButtons.OK);
                 }
+            }
+        }
+
+        private void btnInstallLECO_Click(object sender, EventArgs e)
+        {
+            var res = MessageBox.Show("LECOのインストールをします。よろしいですか。", "確認", MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes)
+            {
+                if (Directory.Exists(Constants.LecoPath))
+                {
+                    MessageBox.Show("すでにLECOフォルダがあります。\n再インストールする場合はLECOフォルダを削除してください。", "確認", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append(@"/c cd ..\");
+
+
+                    sb.Append(@" && git clone https://github.com/p1atdev/LECO.git && cd .\LECO && python -m venv venv && .\venv\Scripts\activate && pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118");
+                    sb.Append(@" && pip install xformers omegaconf && pip install --upgrade -r requirements.txt");
+
+                    ProcessStartInfo ps = new ProcessStartInfo();
+                    ps.FileName = "cmd";
+                    ps.Arguments = sb.ToString();
+
+                    Process.Start(ps);
+                }
+
+
+            }
+        }
+
+        private void btnTrainLECO_Click(object sender, EventArgs e)
+        {
+            string path = Constants.LecoPath;
+            if (!Directory.Exists(path + "venv"))
+            {
+                MessageBox.Show("venvのあるLECOフォルダが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "YAML(*.yaml)|*.yaml";
+            ofd.Title = "Select a config";
+            ofd.RestoreDirectory = true;
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("/k cd ").Append(Constants.LecoPath);
+
+
+                sb.Append(" && .\\venv\\Scripts\\activate && python .\\train_lora.py --config_file \"").Append(ofd.FileName).Append("\"");
+
+                ProcessStartInfo ps = new ProcessStartInfo();
+                ps.FileName = "cmd";
+                ps.Arguments = sb.ToString();
+
+                Process.Start(ps);
+            }
+        }
+
+        private void btnUpdateLECO_Click(object sender, EventArgs e)
+        {
+            var res = MessageBox.Show("LECOの更新をします。よろしいですか。", "確認", MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes)
+            {
+                if (!Directory.Exists(Constants.LecoPath + "venv"))
+                {
+                    MessageBox.Show("venvのあるLECOフォルダが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                StringBuilder sb = new StringBuilder();
+                sb.Append("/c cd ").Append(Constants.LecoPath);
+
+
+                sb.Append(" && git pull && .\\venv\\Scripts\\activate && pip install --use-pep517 --upgrade -r requirements.txt");
+
+                ProcessStartInfo ps = new ProcessStartInfo();
+                ps.FileName = "cmd";
+                ps.Arguments = sb.ToString();
+
+                Process.Start(ps);
             }
         }
     }

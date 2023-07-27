@@ -88,6 +88,12 @@
             this.label24 = new System.Windows.Forms.Label();
             this.cbxMethod = new System.Windows.Forms.ComboBox();
             this.label25 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnInstallLECO = new System.Windows.Forms.Button();
+            this.btnUpdateLECO = new System.Windows.Forms.Button();
+            this.btnTrainLECO = new System.Windows.Forms.Button();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -99,12 +105,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudResolution)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxDenoiseSteps)).BeginInit();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -133,7 +141,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(837, 724);
+            this.tabPage1.Size = new System.Drawing.Size(837, 807);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "prompts生成";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -817,6 +825,68 @@
             this.label25.TabIndex = 5;
             this.label25.Text = "メソッド";
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.label26);
+            this.tabPage3.Controls.Add(this.label27);
+            this.tabPage3.Controls.Add(this.btnTrainLECO);
+            this.tabPage3.Controls.Add(this.btnUpdateLECO);
+            this.tabPage3.Controls.Add(this.btnInstallLECO);
+            this.tabPage3.Location = new System.Drawing.Point(4, 34);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(837, 807);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "インストール・更新・学習";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // btnInstallLECO
+            // 
+            this.btnInstallLECO.Location = new System.Drawing.Point(315, 428);
+            this.btnInstallLECO.Name = "btnInstallLECO";
+            this.btnInstallLECO.Size = new System.Drawing.Size(189, 49);
+            this.btnInstallLECO.TabIndex = 0;
+            this.btnInstallLECO.Text = "LECOのインストール";
+            this.btnInstallLECO.UseVisualStyleBackColor = true;
+            this.btnInstallLECO.Click += new System.EventHandler(this.btnInstallLECO_Click);
+            // 
+            // btnUpdateLECO
+            // 
+            this.btnUpdateLECO.Location = new System.Drawing.Point(315, 564);
+            this.btnUpdateLECO.Name = "btnUpdateLECO";
+            this.btnUpdateLECO.Size = new System.Drawing.Size(189, 49);
+            this.btnUpdateLECO.TabIndex = 0;
+            this.btnUpdateLECO.Text = "LECOの更新";
+            this.btnUpdateLECO.UseVisualStyleBackColor = true;
+            this.btnUpdateLECO.Click += new System.EventHandler(this.btnUpdateLECO_Click);
+            // 
+            // btnTrainLECO
+            // 
+            this.btnTrainLECO.Location = new System.Drawing.Point(315, 227);
+            this.btnTrainLECO.Name = "btnTrainLECO";
+            this.btnTrainLECO.Size = new System.Drawing.Size(189, 49);
+            this.btnTrainLECO.TabIndex = 0;
+            this.btnTrainLECO.Text = "LECOの学習";
+            this.btnTrainLECO.UseVisualStyleBackColor = true;
+            this.btnTrainLECO.Click += new System.EventHandler(this.btnTrainLECO_Click);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(270, 480);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(296, 25);
+            this.label26.TabIndex = 4;
+            this.label26.Text = "GUIフォルダと同階層にインストールします";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(292, 279);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(232, 25);
+            this.label27.TabIndex = 3;
+            this.label27.Text = "config.yamlを指定してください";
+            // 
             // FormLECO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -845,6 +915,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudResolution)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxDenoiseSteps)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -911,5 +983,11 @@
         private System.Windows.Forms.NumericUpDown nudMaxDenoiseSteps;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.ComboBox cbxMethod;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button btnTrainLECO;
+        private System.Windows.Forms.Button btnUpdateLECO;
+        private System.Windows.Forms.Button btnInstallLECO;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
     }
 }
