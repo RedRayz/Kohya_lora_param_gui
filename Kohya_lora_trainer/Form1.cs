@@ -554,6 +554,13 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
+            if (TrainParams.Current.StableDiffusionType == SDType.XL && !File.Exists(Constants.CurrentSdScriptsPath + @"sdxl_train_network.py"))
+            {
+                if (showMsg)
+                    MessageBox.Show("sdxl_train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             return true;
         }
 
@@ -710,6 +717,11 @@ namespace Kohya_lora_trainer
             Form frm = new FormLECO();
             frm.ShowDialog();
             frm.Dispose();
+        }
+
+        private void cbxSDType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TrainParams.Current.StableDiffusionType = (SDType)Enum.ToObject(typeof(SDType), cbxSDType.SelectedIndex);
         }
 
         private void btnCustomScriptPath_Click(object sender, EventArgs e)
@@ -974,6 +986,9 @@ namespace Kohya_lora_trainer
                 tbxFileName.ForeColor = Color.Orange;
                 HaveNonAscillInOutputName = true;
             }
+
+            cbxSDType.SelectedIndex = (int)TrainParams.Current.StableDiffusionType;
+
             //WarmupSteps
             nudWarmupSteps.Value = TrainParams.Current.WarmupSteps;
 
