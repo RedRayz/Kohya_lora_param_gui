@@ -16,8 +16,18 @@ namespace Kohya_lora_trainer
         public static string GenerateCommands()
         {
             StringBuilder sb = new StringBuilder();
+
             sb.Append("accelerate launch --num_cpu_threads_per_process ").Append(TrainParams.Current.CpuThreads);
-            sb.Append(" train_network.py --pretrained_model_name_or_path \"").Append(TrainParams.Current.ModelPath).Append("\"").Append(" --train_data_dir \"")
+            switch (TrainParams.Current.StableDiffusionType)
+            {
+                case SDType.Legacy:
+                    sb.Append(" train_network.py");
+                    break;
+                case SDType.XL:
+                    sb.Append(" sdxl_train_network.py");
+                    break;
+            }
+            sb.Append(" --pretrained_model_name_or_path \"").Append(TrainParams.Current.ModelPath).Append("\"").Append(" --train_data_dir \"")
                 .Append(TrainParams.Current.TrainImagePath).Append("\" --output_dir \"").Append(TrainParams.Current.OutputPath).Append("\"");
             //Optional(RegImage)
             if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath))

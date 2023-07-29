@@ -94,6 +94,7 @@
             this.btnTrainLECO = new System.Windows.Forms.Button();
             this.btnUpdateLECO = new System.Windows.Forms.Button();
             this.btnInstallLECO = new System.Windows.Forms.Button();
+            this.label28 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).BeginInit();
@@ -121,6 +122,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label28);
             this.tabPage1.Controls.Add(this.nudBatchSize);
             this.tabPage1.Controls.Add(this.nudResolution);
             this.tabPage1.Controls.Add(this.label23);
@@ -148,7 +150,7 @@
             // 
             // nudBatchSize
             // 
-            this.nudBatchSize.Location = new System.Drawing.Point(425, 573);
+            this.nudBatchSize.Location = new System.Drawing.Point(427, 615);
             this.nudBatchSize.Maximum = new decimal(new int[] {
             128,
             0,
@@ -175,7 +177,7 @@
             0,
             0,
             0});
-            this.nudResolution.Location = new System.Drawing.Point(235, 573);
+            this.nudResolution.Location = new System.Drawing.Point(237, 615);
             this.nudResolution.Maximum = new decimal(new int[] {
             2048,
             0,
@@ -198,7 +200,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(420, 544);
+            this.label23.Location = new System.Drawing.Point(422, 586);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(94, 25);
             this.label23.TabIndex = 3;
@@ -207,7 +209,7 @@
             // nudGuidanceScale
             // 
             this.nudGuidanceScale.DecimalPlaces = 1;
-            this.nudGuidanceScale.Location = new System.Drawing.Point(32, 572);
+            this.nudGuidanceScale.Location = new System.Drawing.Point(34, 614);
             this.nudGuidanceScale.Maximum = new decimal(new int[] {
             50,
             0,
@@ -230,7 +232,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(230, 544);
+            this.label22.Location = new System.Drawing.Point(232, 586);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(66, 25);
             this.label22.TabIndex = 3;
@@ -238,7 +240,7 @@
             // 
             // btnSavePrompts
             // 
-            this.btnSavePrompts.Location = new System.Drawing.Point(661, 664);
+            this.btnSavePrompts.Location = new System.Drawing.Point(663, 706);
             this.btnSavePrompts.Name = "btnSavePrompts";
             this.btnSavePrompts.Size = new System.Drawing.Size(137, 44);
             this.btnSavePrompts.TabIndex = 4;
@@ -249,7 +251,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(27, 543);
+            this.label21.Location = new System.Drawing.Point(29, 585);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(89, 25);
             this.label21.TabIndex = 3;
@@ -258,7 +260,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 454);
+            this.label5.Location = new System.Drawing.Point(29, 496);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 25);
             this.label5.TabIndex = 3;
@@ -271,7 +273,7 @@
             this.cbxAction.Items.AddRange(new object[] {
             "erase",
             "enhance"});
-            this.cbxAction.Location = new System.Drawing.Point(32, 482);
+            this.cbxAction.Location = new System.Drawing.Point(34, 524);
             this.cbxAction.Name = "cbxAction";
             this.cbxAction.Size = new System.Drawing.Size(176, 33);
             this.cbxAction.TabIndex = 2;
@@ -279,7 +281,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 346);
+            this.label4.Location = new System.Drawing.Point(24, 403);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 25);
             this.label4.TabIndex = 1;
@@ -288,7 +290,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 226);
+            this.label3.Location = new System.Drawing.Point(24, 283);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(120, 25);
             this.label3.TabIndex = 1;
@@ -297,7 +299,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 129);
+            this.label2.Location = new System.Drawing.Point(24, 186);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 25);
             this.label2.TabIndex = 1;
@@ -306,7 +308,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 25);
+            this.label1.Location = new System.Drawing.Point(24, 82);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 25);
             this.label1.TabIndex = 1;
@@ -314,7 +316,7 @@
             // 
             // tbxNeutral
             // 
-            this.tbxNeutral.Location = new System.Drawing.Point(27, 374);
+            this.tbxNeutral.Location = new System.Drawing.Point(29, 431);
             this.tbxNeutral.Multiline = true;
             this.tbxNeutral.Name = "tbxNeutral";
             this.tbxNeutral.Size = new System.Drawing.Size(771, 57);
@@ -322,7 +324,7 @@
             // 
             // tbxNegative
             // 
-            this.tbxNegative.Location = new System.Drawing.Point(27, 254);
+            this.tbxNegative.Location = new System.Drawing.Point(29, 311);
             this.tbxNegative.Multiline = true;
             this.tbxNegative.Name = "tbxNegative";
             this.tbxNegative.Size = new System.Drawing.Size(771, 57);
@@ -330,7 +332,7 @@
             // 
             // tbxPositive
             // 
-            this.tbxPositive.Location = new System.Drawing.Point(27, 157);
+            this.tbxPositive.Location = new System.Drawing.Point(29, 214);
             this.tbxPositive.Multiline = true;
             this.tbxPositive.Name = "tbxPositive";
             this.tbxPositive.Size = new System.Drawing.Size(771, 57);
@@ -338,7 +340,7 @@
             // 
             // tbxTarget
             // 
-            this.tbxTarget.Location = new System.Drawing.Point(27, 53);
+            this.tbxTarget.Location = new System.Drawing.Point(29, 110);
             this.tbxTarget.Multiline = true;
             this.tbxTarget.Name = "tbxTarget";
             this.tbxTarget.Size = new System.Drawing.Size(771, 57);
@@ -887,6 +889,15 @@
             this.btnInstallLECO.UseVisualStyleBackColor = true;
             this.btnInstallLECO.Click += new System.EventHandler(this.btnInstallLECO_Click);
             // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(29, 24);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(397, 25);
+            this.label28.TabIndex = 6;
+            this.label28.Text = "※改行はお控えください。LECOで読み込めなくなります";
+            // 
             // FormLECO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -989,5 +1000,6 @@
         private System.Windows.Forms.Button btnInstallLECO;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
     }
 }
