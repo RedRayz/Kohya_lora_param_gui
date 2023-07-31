@@ -58,8 +58,10 @@ namespace Kohya_lora_trainer
             this.cbxDontSaveMetadata = new System.Windows.Forms.CheckBox();
             this.cbxFlipAug = new System.Windows.Forms.CheckBox();
             this.nudDataLoaderThreads = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
             this.tbxExtension = new System.Windows.Forms.TextBox();
+            this.nudClipSkip = new System.Windows.Forms.NumericUpDown();
+            this.cbxUseWeightedCaption = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.nudSeed = new System.Windows.Forms.NumericUpDown();
@@ -67,7 +69,6 @@ namespace Kohya_lora_trainer
             this.nudMaxBucketReso = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.cbxScheduler = new System.Windows.Forms.ComboBox();
-            this.nudClipSkip = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.btnDiscardAndClose = new System.Windows.Forms.Button();
             this.btnTensorBoardPath = new System.Windows.Forms.Button();
@@ -88,7 +89,6 @@ namespace Kohya_lora_trainer
             this.btnClearVAE = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.lblVAEPath = new System.Windows.Forms.Label();
-            this.cbxUseWeightedCaption = new System.Windows.Forms.CheckBox();
             this.nudAdaptiveNoiseScale = new System.Windows.Forms.NumericUpDown();
             this.label17 = new System.Windows.Forms.Label();
             this.nudMinSNRGamma = new System.Windows.Forms.NumericUpDown();
@@ -158,15 +158,16 @@ namespace Kohya_lora_trainer
             this.label40 = new System.Windows.Forms.Label();
             this.tbxComment = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.cbxNoHalfVae = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLRSchedulerCycle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoiseOffset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDropout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDataLoaderThreads)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudClipSkip)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxBucketReso)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudClipSkip)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMomentum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdaptiveNoiseScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinSNRGamma)).BeginInit();
@@ -406,7 +407,7 @@ namespace Kohya_lora_trainer
             // cbxUseWarmupInit
             // 
             this.cbxUseWarmupInit.AutoSize = true;
-            this.cbxUseWarmupInit.Location = new System.Drawing.Point(37, 288);
+            this.cbxUseWarmupInit.Location = new System.Drawing.Point(42, 288);
             this.cbxUseWarmupInit.Name = "cbxUseWarmupInit";
             this.cbxUseWarmupInit.Size = new System.Drawing.Size(302, 29);
             this.cbxUseWarmupInit.TabIndex = 18;
@@ -519,6 +520,49 @@ namespace Kohya_lora_trainer
             0,
             0});
             // 
+            // tbxExtension
+            // 
+            this.tbxExtension.Location = new System.Drawing.Point(192, 263);
+            this.tbxExtension.Name = "tbxExtension";
+            this.tbxExtension.Size = new System.Drawing.Size(126, 31);
+            this.tbxExtension.TabIndex = 19;
+            this.tbxExtension.Text = ".txt";
+            this.toolTip1.SetToolTip(this.tbxExtension, "ピリオド込みで入力する");
+            // 
+            // nudClipSkip
+            // 
+            this.nudClipSkip.Location = new System.Drawing.Point(191, 199);
+            this.nudClipSkip.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.nudClipSkip.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudClipSkip.Name = "nudClipSkip";
+            this.nudClipSkip.Size = new System.Drawing.Size(120, 31);
+            this.nudClipSkip.TabIndex = 28;
+            this.toolTip1.SetToolTip(this.nudClipSkip, "イラストは2、実写は1が良いとされる");
+            this.nudClipSkip.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // cbxUseWeightedCaption
+            // 
+            this.cbxUseWeightedCaption.AutoSize = true;
+            this.cbxUseWeightedCaption.Location = new System.Drawing.Point(42, 228);
+            this.cbxUseWeightedCaption.Name = "cbxUseWeightedCaption";
+            this.cbxUseWeightedCaption.Size = new System.Drawing.Size(242, 54);
+            this.cbxUseWeightedCaption.TabIndex = 48;
+            this.cbxUseWeightedCaption.Text = "キャプションに重みづけを使用\r\n(weighted_captions)";
+            this.toolTip1.SetToolTip(this.cbxUseWeightedCaption, "キャプションでカッコなどを強調として使用する\r\nAUTOMATIC1111 WebUIと同様の記法");
+            this.cbxUseWeightedCaption.UseVisualStyleBackColor = true;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -528,15 +572,6 @@ namespace Kohya_lora_trainer
             this.label6.TabIndex = 16;
             this.label6.Text = "Seed\r\n-1でランダム";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // tbxExtension
-            // 
-            this.tbxExtension.Location = new System.Drawing.Point(192, 263);
-            this.tbxExtension.Name = "tbxExtension";
-            this.tbxExtension.Size = new System.Drawing.Size(126, 31);
-            this.tbxExtension.TabIndex = 19;
-            this.tbxExtension.Text = ".txt";
-            this.toolTip1.SetToolTip(this.tbxExtension, "ピリオド込みで入力する");
             // 
             // label9
             // 
@@ -660,29 +695,6 @@ namespace Kohya_lora_trainer
             this.cbxScheduler.Name = "cbxScheduler";
             this.cbxScheduler.Size = new System.Drawing.Size(212, 33);
             this.cbxScheduler.TabIndex = 27;
-            // 
-            // nudClipSkip
-            // 
-            this.nudClipSkip.Location = new System.Drawing.Point(191, 199);
-            this.nudClipSkip.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.nudClipSkip.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudClipSkip.Name = "nudClipSkip";
-            this.nudClipSkip.Size = new System.Drawing.Size(120, 31);
-            this.nudClipSkip.TabIndex = 28;
-            this.toolTip1.SetToolTip(this.nudClipSkip, "イラストは2、実写は1が良いとされる");
-            this.nudClipSkip.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
             // 
             // label11
             // 
@@ -890,17 +902,6 @@ namespace Kohya_lora_trainer
             this.lblVAEPath.TabIndex = 43;
             this.lblVAEPath.Text = "C:\\Sample\\SuperLong\\Multibyte\\and\\spaces\\日本語.safetensors";
             // 
-            // cbxUseWeightedCaption
-            // 
-            this.cbxUseWeightedCaption.AutoSize = true;
-            this.cbxUseWeightedCaption.Location = new System.Drawing.Point(42, 228);
-            this.cbxUseWeightedCaption.Name = "cbxUseWeightedCaption";
-            this.cbxUseWeightedCaption.Size = new System.Drawing.Size(242, 54);
-            this.cbxUseWeightedCaption.TabIndex = 48;
-            this.cbxUseWeightedCaption.Text = "キャプションに重みづけを使用\r\n(weighted_captions)";
-            this.toolTip1.SetToolTip(this.cbxUseWeightedCaption, "キャプションでカッコなどを強調として使用する\r\nAUTOMATIC1111 WebUIと同様の記法");
-            this.cbxUseWeightedCaption.UseVisualStyleBackColor = true;
-            // 
             // nudAdaptiveNoiseScale
             // 
             this.nudAdaptiveNoiseScale.DecimalPlaces = 1;
@@ -1019,6 +1020,7 @@ namespace Kohya_lora_trainer
             this.tabPage1.Controls.Add(this.cbxNoUpscale);
             this.tabPage1.Controls.Add(this.nudAdaptiveNoiseScale);
             this.tabPage1.Controls.Add(this.cbxUseWeightedCaption);
+            this.tabPage1.Controls.Add(this.cbxNoHalfVae);
             this.tabPage1.Controls.Add(this.cbxUseWarmupInit);
             this.tabPage1.Controls.Add(this.cbxUseGradient);
             this.tabPage1.Controls.Add(this.label15);
@@ -1733,6 +1735,16 @@ namespace Kohya_lora_trainer
             this.label8.TabIndex = 31;
             this.label8.Text = "通常編集する必要のない設定";
             // 
+            // cbxNoHalfVae
+            // 
+            this.cbxNoHalfVae.AutoSize = true;
+            this.cbxNoHalfVae.Location = new System.Drawing.Point(41, 323);
+            this.cbxNoHalfVae.Name = "cbxNoHalfVae";
+            this.cbxNoHalfVae.Size = new System.Drawing.Size(291, 29);
+            this.cbxNoHalfVae.TabIndex = 18;
+            this.cbxNoHalfVae.Text = "VAEを32ビットで使用(SDXLで必須)";
+            this.cbxNoHalfVae.UseVisualStyleBackColor = true;
+            // 
             // FormAdvanced
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
@@ -1755,10 +1767,10 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudNoiseOffset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDropout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDataLoaderThreads)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudClipSkip)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinBucketReso)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxBucketReso)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudClipSkip)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMomentum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAdaptiveNoiseScale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinSNRGamma)).EndInit();
@@ -1918,5 +1930,6 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.CheckBox cbxUseBiasCorrection;
         private System.Windows.Forms.TextBox tbxDCoef;
         private System.Windows.Forms.TextBox tbxProdigyBeta3;
+        private System.Windows.Forms.CheckBox cbxNoHalfVae;
     }
 }

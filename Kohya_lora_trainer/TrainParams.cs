@@ -82,6 +82,8 @@ namespace Kohya_lora_trainer {
 
         public SDType StableDiffusionType = SDType.Legacy;
 
+        public bool NoHalfVAE = false;
+
 
         [NonSerialized]
         public static TrainParams Current;

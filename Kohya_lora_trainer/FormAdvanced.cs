@@ -319,6 +319,7 @@ namespace Kohya_lora_trainer {
 
             TrainParams.Current.SafeguardWarmup = cbxUseSafeguard.Checked;
             TrainParams.Current.UseBiasCorrection = cbxUseBiasCorrection.Checked;
+            TrainParams.Current.NoHalfVAE=cbxNoHalfVae.Checked;
 
             Close();
         }
@@ -410,6 +411,8 @@ namespace Kohya_lora_trainer {
 
             tbxProdigyBeta3.Text = TrainParams.Current.ProdigyBeta3.ToString("g");
             tbxDCoef.Text = TrainParams.Current.DCoef.ToString("g");
+
+            cbxNoHalfVae.Checked = TrainParams.Current.NoHalfVAE;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e) {

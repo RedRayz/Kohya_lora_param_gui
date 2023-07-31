@@ -443,6 +443,11 @@ namespace Kohya_lora_trainer
                 sb.Append(" --network_dropout ").Append(TrainParams.Current.NetworkDropout.ToString());
             }
 
+            if (TrainParams.Current.NoHalfVAE)
+            {
+                sb.Append(" --no_half_vae");
+            }
+
             if (!string.IsNullOrEmpty(TrainParams.Current.Comment))
             {
                 sb.Append(" --training_comment \"").Append(TrainParams.Current.Comment).Append("\"");
