@@ -70,3 +70,6 @@ Windows 11(10は不明)
 ## ガイドなど
 
 * [キャラLoRAの学習手順](./docs/guide_for_chara.md)
+* サンプルプリセット: https://mega.nz/folder/ILdnzaxT#gTGQmcPUgdxKlLpIl9x__g
+
+おすすめは「キャラLoRA_4096steps_OUT01-07のみ_DAdaptLion.xmlora」
