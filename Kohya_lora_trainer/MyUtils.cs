@@ -448,6 +448,11 @@ namespace Kohya_lora_trainer
                 sb.Append(" --no_half_vae");
             }
 
+            if (TrainParams.Current.CacheTextencoder)
+            {
+                sb.Append(" --cache_text_encoder_outputs");
+            }
+
             if (!string.IsNullOrEmpty(TrainParams.Current.Comment))
             {
                 sb.Append(" --training_comment \"").Append(TrainParams.Current.Comment).Append("\"");

@@ -99,6 +99,7 @@ namespace Kohya_lora_trainer
             this.label20 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.cbxNoHalfVae = new System.Windows.Forms.CheckBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lblConfigPath = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -158,7 +159,7 @@ namespace Kohya_lora_trainer
             this.label40 = new System.Windows.Forms.Label();
             this.tbxComment = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.cbxNoHalfVae = new System.Windows.Forms.CheckBox();
+            this.cbxCacheTextEncoder = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLRSchedulerCycle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoiseOffset)).BeginInit();
@@ -247,7 +248,7 @@ namespace Kohya_lora_trainer
             // cbxNoUpscale
             // 
             this.cbxNoUpscale.AutoSize = true;
-            this.cbxNoUpscale.Location = new System.Drawing.Point(42, 157);
+            this.cbxNoUpscale.Location = new System.Drawing.Point(41, 157);
             this.cbxNoUpscale.Name = "cbxNoUpscale";
             this.cbxNoUpscale.Size = new System.Drawing.Size(283, 29);
             this.cbxNoUpscale.TabIndex = 8;
@@ -407,7 +408,7 @@ namespace Kohya_lora_trainer
             // cbxUseWarmupInit
             // 
             this.cbxUseWarmupInit.AutoSize = true;
-            this.cbxUseWarmupInit.Location = new System.Drawing.Point(42, 288);
+            this.cbxUseWarmupInit.Location = new System.Drawing.Point(42, 263);
             this.cbxUseWarmupInit.Name = "cbxUseWarmupInit";
             this.cbxUseWarmupInit.Size = new System.Drawing.Size(302, 29);
             this.cbxUseWarmupInit.TabIndex = 18;
@@ -418,7 +419,7 @@ namespace Kohya_lora_trainer
             // cbxUseGradient
             // 
             this.cbxUseGradient.AutoSize = true;
-            this.cbxUseGradient.Location = new System.Drawing.Point(41, 192);
+            this.cbxUseGradient.Location = new System.Drawing.Point(42, 195);
             this.cbxUseGradient.Name = "cbxUseGradient";
             this.cbxUseGradient.Size = new System.Drawing.Size(301, 29);
             this.cbxUseGradient.TabIndex = 18;
@@ -557,9 +558,9 @@ namespace Kohya_lora_trainer
             this.cbxUseWeightedCaption.AutoSize = true;
             this.cbxUseWeightedCaption.Location = new System.Drawing.Point(42, 228);
             this.cbxUseWeightedCaption.Name = "cbxUseWeightedCaption";
-            this.cbxUseWeightedCaption.Size = new System.Drawing.Size(242, 54);
+            this.cbxUseWeightedCaption.Size = new System.Drawing.Size(242, 29);
             this.cbxUseWeightedCaption.TabIndex = 48;
-            this.cbxUseWeightedCaption.Text = "キャプションに重みづけを使用\r\n(weighted_captions)";
+            this.cbxUseWeightedCaption.Text = "キャプションに重みづけを使用";
             this.toolTip1.SetToolTip(this.cbxUseWeightedCaption, "キャプションでカッコなどを強調として使用する\r\nAUTOMATIC1111 WebUIと同様の記法");
             this.cbxUseWeightedCaption.UseVisualStyleBackColor = true;
             // 
@@ -1020,6 +1021,7 @@ namespace Kohya_lora_trainer
             this.tabPage1.Controls.Add(this.cbxNoUpscale);
             this.tabPage1.Controls.Add(this.nudAdaptiveNoiseScale);
             this.tabPage1.Controls.Add(this.cbxUseWeightedCaption);
+            this.tabPage1.Controls.Add(this.cbxCacheTextEncoder);
             this.tabPage1.Controls.Add(this.cbxNoHalfVae);
             this.tabPage1.Controls.Add(this.cbxUseWarmupInit);
             this.tabPage1.Controls.Add(this.cbxUseGradient);
@@ -1042,6 +1044,16 @@ namespace Kohya_lora_trainer
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ページ1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // cbxNoHalfVae
+            // 
+            this.cbxNoHalfVae.AutoSize = true;
+            this.cbxNoHalfVae.Location = new System.Drawing.Point(42, 298);
+            this.cbxNoHalfVae.Name = "cbxNoHalfVae";
+            this.cbxNoHalfVae.Size = new System.Drawing.Size(291, 29);
+            this.cbxNoHalfVae.TabIndex = 18;
+            this.cbxNoHalfVae.Text = "VAEを32ビットで使用(SDXLで必須)";
+            this.cbxNoHalfVae.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
@@ -1735,15 +1747,16 @@ namespace Kohya_lora_trainer
             this.label8.TabIndex = 31;
             this.label8.Text = "通常編集する必要のない設定";
             // 
-            // cbxNoHalfVae
+            // cbxCacheTextEncoder
             // 
-            this.cbxNoHalfVae.AutoSize = true;
-            this.cbxNoHalfVae.Location = new System.Drawing.Point(41, 323);
-            this.cbxNoHalfVae.Name = "cbxNoHalfVae";
-            this.cbxNoHalfVae.Size = new System.Drawing.Size(291, 29);
-            this.cbxNoHalfVae.TabIndex = 18;
-            this.cbxNoHalfVae.Text = "VAEを32ビットで使用(SDXLで必須)";
-            this.cbxNoHalfVae.UseVisualStyleBackColor = true;
+            this.cbxCacheTextEncoder.AutoSize = true;
+            this.cbxCacheTextEncoder.Location = new System.Drawing.Point(42, 333);
+            this.cbxCacheTextEncoder.Name = "cbxCacheTextEncoder";
+            this.cbxCacheTextEncoder.Size = new System.Drawing.Size(256, 29);
+            this.cbxCacheTextEncoder.TabIndex = 18;
+            this.cbxCacheTextEncoder.Text = "TEの出力のキャッシュ(SDXL用)";
+            this.toolTip1.SetToolTip(this.cbxCacheTextEncoder, "トークン関連のオプションは使用不可");
+            this.cbxCacheTextEncoder.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
@@ -1931,5 +1944,6 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.TextBox tbxDCoef;
         private System.Windows.Forms.TextBox tbxProdigyBeta3;
         private System.Windows.Forms.CheckBox cbxNoHalfVae;
+        private System.Windows.Forms.CheckBox cbxCacheTextEncoder;
     }
 }
