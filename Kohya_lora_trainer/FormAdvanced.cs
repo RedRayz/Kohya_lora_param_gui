@@ -12,13 +12,17 @@ using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.WindowsAPICodePack.Shell;
 using System.IO;
 
-namespace Kohya_lora_trainer {
-    public partial class FormAdvanced : Form {
-        public FormAdvanced() {
+namespace Kohya_lora_trainer
+{
+    public partial class FormAdvanced : Form
+    {
+        public FormAdvanced()
+        {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void button1_Click(object sender, EventArgs e)
+        {
             bool IsValid = true;
             float telr = -1;
             float unetlr = -1;
@@ -33,52 +37,66 @@ namespace Kohya_lora_trainer {
             float beta3 = 0;
             float dcoef = 0;
 
-            if (!string.IsNullOrEmpty(tbxTextEncoLR.Text)) {
+            if (!string.IsNullOrEmpty(tbxTextEncoLR.Text))
+            {
                 float lr = -1f;
-                if (float.TryParse(tbxTextEncoLR.Text, out lr)) {
-                    if (!CheckUtil.IsValidNum(lr)) {
+                if (float.TryParse(tbxTextEncoLR.Text, out lr))
+                {
+                    if (!CheckUtil.IsValidNum(lr))
+                    {
                         MessageBox.Show("TextEncoder LRに0以下、NaN、無限は指定できません", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         IsValid = false;
                     }
-                    else {
+                    else
+                    {
                         telr = lr;
                     }
                 }
-                else {
+                else
+                {
                     MessageBox.Show("TextEncoder LRの値が間違っています", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     IsValid = false;
                 }
             }
-            else {
+            else
+            {
                 telr = -1;
             }
 
-            if (!string.IsNullOrEmpty(tbxUnetLR.Text)) {
+            if (!string.IsNullOrEmpty(tbxUnetLR.Text))
+            {
                 float lr = -1f;
-                if (float.TryParse(tbxUnetLR.Text, out lr)) {
-                    if (!CheckUtil.IsValidNum(lr)) {
+                if (float.TryParse(tbxUnetLR.Text, out lr))
+                {
+                    if (!CheckUtil.IsValidNum(lr))
+                    {
                         MessageBox.Show("UNet LRに0以下、NaN、無限は指定できません", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         IsValid = false;
                     }
-                    else {
+                    else
+                    {
                         unetlr = lr;
                     }
                 }
-                else {
+                else
+                {
                     MessageBox.Show("UNet LRの値が間違っています", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     IsValid = false;
                 }
             }
-            else {
+            else
+            {
                 unetlr = -1;
             }
 
-            if(nudMinBucketReso.Value % 64 != 0) {
+            if (nudMinBucketReso.Value % 64 != 0)
+            {
                 MessageBox.Show("最小バケット解像度の値が間違っています。\n64で割り切れる必要があります。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 IsValid = false;
             }
 
-            if (nudMaxBucketReso.Value % 64 != 0) {
+            if (nudMaxBucketReso.Value % 64 != 0)
+            {
                 MessageBox.Show("最大バケット解像度の値が間違っています。\n64で割り切れる必要があります。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 IsValid = false;
             }
@@ -319,11 +337,15 @@ namespace Kohya_lora_trainer {
 
             TrainParams.Current.SafeguardWarmup = cbxUseSafeguard.Checked;
             TrainParams.Current.UseBiasCorrection = cbxUseBiasCorrection.Checked;
+            TrainParams.Current.NoHalfVAE = cbxNoHalfVae.Checked;
+            TrainParams.Current.CacheTextencoder = cbxCacheTextEncoder.Checked;
+            TrainParams.Current.CacheTextencoderToDisk = cbxCacheTextencoderToDisk.Checked;
 
             Close();
         }
 
-        private void Form_Advanced_Load(object sender, EventArgs e) {
+        private void Form_Advanced_Load(object sender, EventArgs e)
+        {
             tbrCpuThreads.Value = TrainParams.Current.CpuThreads;
             lblCpuThreadsCounter.Text = TrainParams.Current.CpuThreads.ToString();
             cbxScheduler.SelectedIndex = (int)TrainParams.Current.SchedulerType;
@@ -410,17 +432,24 @@ namespace Kohya_lora_trainer {
 
             tbxProdigyBeta3.Text = TrainParams.Current.ProdigyBeta3.ToString("g");
             tbxDCoef.Text = TrainParams.Current.DCoef.ToString("g");
+
+            cbxNoHalfVae.Checked = TrainParams.Current.NoHalfVAE;
+            cbxCacheTextEncoder.Checked = TrainParams.Current.CacheTextencoder;
+            cbxCacheTextencoderToDisk.Checked = TrainParams.Current.CacheTextencoderToDisk;
         }
 
-        private void tbrCpuThreads_Scroll(object sender, EventArgs e) {
+        private void tbrCpuThreads_Scroll(object sender, EventArgs e)
+        {
             lblCpuThreadsCounter.Text = tbrCpuThreads.Value.ToString();
         }
 
-        private void btnDiscardAndClose_Click(object sender, EventArgs e) {
+        private void btnDiscardAndClose_Click(object sender, EventArgs e)
+        {
             Close();
         }
 
-        private void button2_Click(object sender, EventArgs e) {
+        private void button2_Click(object sender, EventArgs e)
+        {
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
             cof.Title = "Select Image Folder";
             cof.IsFolderPicker = true;
@@ -431,28 +460,33 @@ namespace Kohya_lora_trainer {
                 cof.InitialDirectory = TrainParams.Current.TensorBoardLogPath;
             }
 
-            if (cof.ShowDialog() == CommonFileDialogResult.Ok) {
+            if (cof.ShowDialog() == CommonFileDialogResult.Ok)
+            {
                 TrainParams.Current.TensorBoardLogPath = cof.FileName;
                 lblTBoardPath.Text = cof.FileName;
             }
         }
 
-        private void btnClearTBoardPath_Click(object sender, EventArgs e) {
+        private void btnClearTBoardPath_Click(object sender, EventArgs e)
+        {
             lblTBoardPath.Text = string.Empty;
             TrainParams.Current.TensorBoardLogPath = string.Empty;
         }
 
-        private void nudMinBucketReso_ValueChanged(object sender, EventArgs e) {
+        private void nudMinBucketReso_ValueChanged(object sender, EventArgs e)
+        {
             bool valid = nudMinBucketReso.Value % 64 == 0;
             lblMinBucketReso.ForeColor = valid ? Color.Black : Color.Red;
         }
 
-        private void nudMaxBucketReso_ValueChanged(object sender, EventArgs e) {
+        private void nudMaxBucketReso_ValueChanged(object sender, EventArgs e)
+        {
             bool valid = nudMaxBucketReso.Value % 64 == 0;
             lblMaxBucketReso.ForeColor = valid ? Color.Black : Color.Red;
         }
 
-        private void btnSelectLoRAmodel_Click(object sender, EventArgs e) {
+        private void btnSelectLoRAmodel_Click(object sender, EventArgs e)
+        {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "SD Model(*.safetensors)|*.safetensors";
             ofd.Title = "Select a lora";
@@ -463,16 +497,19 @@ namespace Kohya_lora_trainer {
                 ofd.InitialDirectory = MyUtils.RemoveFileName(TrainParams.Current.LoraModelPath);
             }
 
-            if(ofd.ShowDialog() == DialogResult.OK) {
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
                 lblLoRAmodelPath.Text = ofd.FileName;
             }
         }
 
-        private void btnClearLoRAmodel_Click(object sender, EventArgs e) {
+        private void btnClearLoRAmodel_Click(object sender, EventArgs e)
+        {
             lblLoRAmodelPath.Text = string.Empty;
         }
 
-        private void btnSelectVAE_Click(object sender, EventArgs e) {
+        private void btnSelectVAE_Click(object sender, EventArgs e)
+        {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "SD VAE(*.safetensors;*.pt)|*.safetensors;*.pt";
             ofd.Title = "Select a VAE";
@@ -483,12 +520,14 @@ namespace Kohya_lora_trainer {
                 ofd.InitialDirectory = MyUtils.RemoveFileName(TrainParams.Current.VAEPath);
             }
 
-            if (ofd.ShowDialog() == DialogResult.OK) {
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
                 lblVAEPath.Text = ofd.FileName;
             }
         }
 
-        private void btnClearVAE_Click(object sender, EventArgs e) {
+        private void btnClearVAE_Click(object sender, EventArgs e)
+        {
             lblVAEPath.Text = string.Empty;
         }
 

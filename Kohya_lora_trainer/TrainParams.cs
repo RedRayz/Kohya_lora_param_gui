@@ -82,6 +82,8 @@ namespace Kohya_lora_trainer {
 
         public SDType StableDiffusionType = SDType.Legacy;
 
+        public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false;
+
 
         [NonSerialized]
         public static TrainParams Current;
@@ -227,7 +229,9 @@ namespace Kohya_lora_trainer {
         DAdaptSGD,
         DAdaptAdanIP,
         DAdaptLion,
-        prodigy
+        prodigy,
+        PagedAdamW8bit,
+        PagedLion8bit
     }
 
     public enum SavePrecision {

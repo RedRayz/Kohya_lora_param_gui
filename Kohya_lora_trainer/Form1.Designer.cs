@@ -54,6 +54,7 @@ namespace Kohya_lora_trainer
             this.nudKeepTokens = new System.Windows.Forms.NumericUpDown();
             this.nudBatchSize = new System.Windows.Forms.NumericUpDown();
             this.nudWarmupSteps = new System.Windows.Forms.NumericUpDown();
+            this.cbxSDType = new System.Windows.Forms.ComboBox();
             this.btnSavePreset = new System.Windows.Forms.Button();
             this.btnLoadPreset = new System.Windows.Forms.Button();
             this.lblResolution = new System.Windows.Forms.Label();
@@ -93,7 +94,6 @@ namespace Kohya_lora_trainer
             this.btnInstaller = new System.Windows.Forms.Button();
             this.btnGenerateCommands = new System.Windows.Forms.Button();
             this.btnLeco = new System.Windows.Forms.Button();
-            this.cbxSDType = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
@@ -206,12 +206,14 @@ namespace Kohya_lora_trainer
             "DAdaptSGD",
             "DAdaptAdanIP",
             "DAdaptLion",
-            "Prodigy"});
+            "Prodigy",
+            "PagedAdamW8bit",
+            "PagedLion8bit"});
             this.cbxOptimizer.Location = new System.Drawing.Point(166, 315);
             this.cbxOptimizer.Name = "cbxOptimizer";
             this.cbxOptimizer.Size = new System.Drawing.Size(176, 33);
             this.cbxOptimizer.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.cbxOptimizer, "AdamWとDAdaptLionがおすすめ");
+            this.toolTip1.SetToolTip(this.cbxOptimizer, "AdamWとDAdaptLionがおすすめ\r\nPaged系はdevブランチに切り替え後bitsandbytesの更新が必要");
             this.cbxOptimizer.SelectedIndexChanged += new System.EventHandler(this.cbxOptimizer_SelectedIndexChanged);
             // 
             // label10
@@ -416,6 +418,20 @@ namespace Kohya_lora_trainer
             0,
             0});
             this.nudWarmupSteps.ValueChanged += new System.EventHandler(this.nudWarmupSteps_ValueChanged);
+            // 
+            // cbxSDType
+            // 
+            this.cbxSDType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxSDType.FormattingEnabled = true;
+            this.cbxSDType.Items.AddRange(new object[] {
+            "1.x/2.x",
+            "XL"});
+            this.cbxSDType.Location = new System.Drawing.Point(166, 367);
+            this.cbxSDType.Name = "cbxSDType";
+            this.cbxSDType.Size = new System.Drawing.Size(176, 33);
+            this.cbxSDType.TabIndex = 85;
+            this.toolTip1.SetToolTip(this.cbxSDType, "SDXLは要求スペックもXLサイズ\r\nVRAM12GB以上、メインメモリ32GB以上必要\r\nちなみにVRAM8GBでも一応動くらしい");
+            this.cbxSDType.SelectedIndexChanged += new System.EventHandler(this.cbxSDType_SelectedIndexChanged);
             // 
             // btnSavePreset
             // 
@@ -810,20 +826,6 @@ namespace Kohya_lora_trainer
             this.btnLeco.Text = "LECO";
             this.btnLeco.UseVisualStyleBackColor = true;
             this.btnLeco.Click += new System.EventHandler(this.btnLeco_Click);
-            // 
-            // cbxSDType
-            // 
-            this.cbxSDType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxSDType.FormattingEnabled = true;
-            this.cbxSDType.Items.AddRange(new object[] {
-            "1.x/2.x",
-            "XL"});
-            this.cbxSDType.Location = new System.Drawing.Point(166, 367);
-            this.cbxSDType.Name = "cbxSDType";
-            this.cbxSDType.Size = new System.Drawing.Size(176, 33);
-            this.cbxSDType.TabIndex = 85;
-            this.toolTip1.SetToolTip(this.cbxSDType, "SDXLは要求スペックもXLサイズ\r\nVRAM16GB以上推奨?");
-            this.cbxSDType.SelectedIndexChanged += new System.EventHandler(this.cbxSDType_SelectedIndexChanged);
             // 
             // label13
             // 
