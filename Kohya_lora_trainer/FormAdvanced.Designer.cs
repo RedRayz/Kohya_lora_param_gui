@@ -160,6 +160,8 @@ namespace Kohya_lora_trainer
             this.tbxComment = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cbxCacheTextEncoder = new System.Windows.Forms.CheckBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.cbxCacheTextencoderToDisk = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLRSchedulerCycle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoiseOffset)).BeginInit();
@@ -188,6 +190,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudConvAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudConvDim)).BeginInit();
             this.pageMisc.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbxUnetLR
@@ -997,6 +1000,7 @@ namespace Kohya_lora_trainer
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.pageConv);
             this.tabControl1.Controls.Add(this.pageMisc);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1021,8 +1025,6 @@ namespace Kohya_lora_trainer
             this.tabPage1.Controls.Add(this.cbxNoUpscale);
             this.tabPage1.Controls.Add(this.nudAdaptiveNoiseScale);
             this.tabPage1.Controls.Add(this.cbxUseWeightedCaption);
-            this.tabPage1.Controls.Add(this.cbxCacheTextEncoder);
-            this.tabPage1.Controls.Add(this.cbxNoHalfVae);
             this.tabPage1.Controls.Add(this.cbxUseWarmupInit);
             this.tabPage1.Controls.Add(this.cbxUseGradient);
             this.tabPage1.Controls.Add(this.label15);
@@ -1048,7 +1050,7 @@ namespace Kohya_lora_trainer
             // cbxNoHalfVae
             // 
             this.cbxNoHalfVae.AutoSize = true;
-            this.cbxNoHalfVae.Location = new System.Drawing.Point(42, 298);
+            this.cbxNoHalfVae.Location = new System.Drawing.Point(36, 43);
             this.cbxNoHalfVae.Name = "cbxNoHalfVae";
             this.cbxNoHalfVae.Size = new System.Drawing.Size(291, 29);
             this.cbxNoHalfVae.TabIndex = 18;
@@ -1750,13 +1752,35 @@ namespace Kohya_lora_trainer
             // cbxCacheTextEncoder
             // 
             this.cbxCacheTextEncoder.AutoSize = true;
-            this.cbxCacheTextEncoder.Location = new System.Drawing.Point(42, 333);
+            this.cbxCacheTextEncoder.Location = new System.Drawing.Point(36, 78);
             this.cbxCacheTextEncoder.Name = "cbxCacheTextEncoder";
-            this.cbxCacheTextEncoder.Size = new System.Drawing.Size(256, 29);
+            this.cbxCacheTextEncoder.Size = new System.Drawing.Size(186, 29);
             this.cbxCacheTextEncoder.TabIndex = 18;
-            this.cbxCacheTextEncoder.Text = "TEの出力のキャッシュ(SDXL用)";
-            this.toolTip1.SetToolTip(this.cbxCacheTextEncoder, "トークン関連のオプションは使用不可");
+            this.cbxCacheTextEncoder.Text = "TEの出力のキャッシュ";
+            this.toolTip1.SetToolTip(this.cbxCacheTextEncoder, "キャプション関連のオプションは使用不可");
             this.cbxCacheTextEncoder.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.cbxNoHalfVae);
+            this.tabPage3.Controls.Add(this.cbxCacheTextencoderToDisk);
+            this.tabPage3.Controls.Add(this.cbxCacheTextEncoder);
+            this.tabPage3.Location = new System.Drawing.Point(4, 34);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1072, 393);
+            this.tabPage3.TabIndex = 6;
+            this.tabPage3.Text = "SDXL関連";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // cbxCacheTextencoderToDisk
+            // 
+            this.cbxCacheTextencoderToDisk.AutoSize = true;
+            this.cbxCacheTextencoderToDisk.Location = new System.Drawing.Point(36, 113);
+            this.cbxCacheTextencoderToDisk.Name = "cbxCacheTextencoderToDisk";
+            this.cbxCacheTextencoderToDisk.Size = new System.Drawing.Size(252, 29);
+            this.cbxCacheTextencoderToDisk.TabIndex = 18;
+            this.cbxCacheTextencoderToDisk.Text = "TEの出力をディスクにキャッシュ";
+            this.cbxCacheTextencoderToDisk.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
@@ -1809,6 +1833,8 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudConvDim)).EndInit();
             this.pageMisc.ResumeLayout(false);
             this.pageMisc.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1945,5 +1971,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.TextBox tbxProdigyBeta3;
         private System.Windows.Forms.CheckBox cbxNoHalfVae;
         private System.Windows.Forms.CheckBox cbxCacheTextEncoder;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.CheckBox cbxCacheTextencoderToDisk;
     }
 }

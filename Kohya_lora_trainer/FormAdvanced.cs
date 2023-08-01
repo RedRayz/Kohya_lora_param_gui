@@ -339,6 +339,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.UseBiasCorrection = cbxUseBiasCorrection.Checked;
             TrainParams.Current.NoHalfVAE = cbxNoHalfVae.Checked;
             TrainParams.Current.CacheTextencoder = cbxCacheTextEncoder.Checked;
+            TrainParams.Current.CacheTextencoderToDisk = cbxCacheTextencoderToDisk.Checked;
 
             Close();
         }
@@ -434,6 +435,7 @@ namespace Kohya_lora_trainer
 
             cbxNoHalfVae.Checked = TrainParams.Current.NoHalfVAE;
             cbxCacheTextEncoder.Checked = TrainParams.Current.CacheTextencoder;
+            cbxCacheTextencoderToDisk.Checked = TrainParams.Current.CacheTextencoderToDisk;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)

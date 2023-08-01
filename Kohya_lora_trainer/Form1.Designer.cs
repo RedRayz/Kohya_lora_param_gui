@@ -430,7 +430,7 @@ namespace Kohya_lora_trainer
             this.cbxSDType.Name = "cbxSDType";
             this.cbxSDType.Size = new System.Drawing.Size(176, 33);
             this.cbxSDType.TabIndex = 85;
-            this.toolTip1.SetToolTip(this.cbxSDType, "SDXLは要求スペックもXLサイズ\r\nVRAM16GB以上、メインメモリ32GB以上必要");
+            this.toolTip1.SetToolTip(this.cbxSDType, "SDXLは要求スペックもXLサイズ\r\nVRAM12GB以上、メインメモリ32GB以上必要\r\nちなみにVRAM8GBでも一応動くらしい");
             this.cbxSDType.SelectedIndexChanged += new System.EventHandler(this.cbxSDType_SelectedIndexChanged);
             // 
             // btnSavePreset

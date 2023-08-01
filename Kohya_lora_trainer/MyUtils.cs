@@ -451,6 +451,10 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.CacheTextencoder)
             {
                 sb.Append(" --cache_text_encoder_outputs");
+                if (TrainParams.Current.CacheTextencoderToDisk)
+                {
+                    sb.Append(" --cache_text_encoder_outputs_to_disk");
+                }
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.Comment))
