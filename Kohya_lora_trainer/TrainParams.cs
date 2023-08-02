@@ -66,9 +66,9 @@ namespace Kohya_lora_trainer {
         public int BlockAlphaMid = -1;
         public int[] BlockAlphaOut = Array.Empty<int>();
 
-        public decimal[] BlockAlphaInM = { 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32 };
-        public decimal BlockAlphaMidM = 32;
-        public decimal[] BlockAlphaOutM = { 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32 };
+        public decimal[] BlockAlphaInM = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
+        public decimal BlockAlphaMidM = 16;
+        public decimal[] BlockAlphaOutM = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
 
         //Advanced1
         public bool UseColorAug = false, UseFastLoading = true, UseSDV2 = false, DontSaveMetadata = false, UseFlipAug = false, CropRandomly = false, UseParameterization = false, CacheLatents = false, CacheLatentsToDisk = false;

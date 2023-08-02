@@ -303,7 +303,7 @@ namespace Kohya_lora_trainer
             this.nudNetworkAlpha.TabIndex = 51;
             this.toolTip1.SetToolTip(this.nudNetworkAlpha, "dimの半分以下の値が望ましい\r\ndimに近い値では生成時に崩壊しやすい");
             this.nudNetworkAlpha.Value = new decimal(new int[] {
-            128,
+            16,
             0,
             0,
             0});
@@ -327,7 +327,7 @@ namespace Kohya_lora_trainer
             this.nudNetworkDim.TabIndex = 52;
             this.toolTip1.SetToolTip(this.nudNetworkDim, "上げると学習能力が上昇するが、速度低下と生成時の不安定化を招く");
             this.nudNetworkDim.Value = new decimal(new int[] {
-            128,
+            64,
             0,
             0,
             0});

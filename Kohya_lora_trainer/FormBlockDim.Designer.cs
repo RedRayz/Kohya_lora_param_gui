@@ -209,7 +209,7 @@
             this.nudAlphaIn00.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn00.TabIndex = 1;
             this.nudAlphaIn00.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -301,7 +301,7 @@
             this.nudAlphaIn01.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn01.TabIndex = 1;
             this.nudAlphaIn01.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -355,7 +355,7 @@
             this.nudAlphaIn02.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn02.TabIndex = 1;
             this.nudAlphaIn02.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -400,7 +400,7 @@
             this.nudAlphaIn03.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn03.TabIndex = 1;
             this.nudAlphaIn03.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -463,7 +463,7 @@
             this.nudAlphaIn04.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn04.TabIndex = 1;
             this.nudAlphaIn04.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -508,7 +508,7 @@
             this.nudAlphaIn05.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn05.TabIndex = 1;
             this.nudAlphaIn05.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -571,7 +571,7 @@
             this.nudAlphaIn06.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn06.TabIndex = 1;
             this.nudAlphaIn06.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -616,7 +616,7 @@
             this.nudAlphaIn07.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn07.TabIndex = 1;
             this.nudAlphaIn07.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -679,7 +679,7 @@
             this.nudAlphaIn08.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn08.TabIndex = 1;
             this.nudAlphaIn08.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -724,7 +724,7 @@
             this.nudAlphaIn09.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn09.TabIndex = 1;
             this.nudAlphaIn09.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -787,7 +787,7 @@
             this.nudAlphaIn10.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn10.TabIndex = 1;
             this.nudAlphaIn10.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -832,7 +832,7 @@
             this.nudAlphaIn11.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaIn11.TabIndex = 1;
             this.nudAlphaIn11.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -895,7 +895,7 @@
             this.nudAlphaMid.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaMid.TabIndex = 1;
             this.nudAlphaMid.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -949,7 +949,7 @@
             this.nudAlphaOut11.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut11.TabIndex = 1;
             this.nudAlphaOut11.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -994,7 +994,7 @@
             this.nudAlphaOut09.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut09.TabIndex = 1;
             this.nudAlphaOut09.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -1039,7 +1039,7 @@
             this.nudAlphaOut07.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut07.TabIndex = 1;
             this.nudAlphaOut07.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -1084,7 +1084,7 @@
             this.nudAlphaOut05.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut05.TabIndex = 1;
             this.nudAlphaOut05.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -1129,7 +1129,7 @@
             this.nudAlphaOut03.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut03.TabIndex = 1;
             this.nudAlphaOut03.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -1174,7 +1174,7 @@
             this.nudAlphaOut01.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut01.TabIndex = 1;
             this.nudAlphaOut01.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -1329,7 +1329,7 @@
             this.nudAlphaOut10.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut10.TabIndex = 1;
             this.nudAlphaOut10.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -1352,7 +1352,7 @@
             this.nudAlphaOut08.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut08.TabIndex = 1;
             this.nudAlphaOut08.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -1375,7 +1375,7 @@
             this.nudAlphaOut06.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut06.TabIndex = 1;
             this.nudAlphaOut06.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -1398,7 +1398,7 @@
             this.nudAlphaOut04.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut04.TabIndex = 1;
             this.nudAlphaOut04.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -1421,7 +1421,7 @@
             this.nudAlphaOut02.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut02.TabIndex = 1;
             this.nudAlphaOut02.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
@@ -1444,7 +1444,7 @@
             this.nudAlphaOut00.Size = new System.Drawing.Size(120, 31);
             this.nudAlphaOut00.TabIndex = 1;
             this.nudAlphaOut00.Value = new decimal(new int[] {
-            64,
+            16,
             0,
             0,
             0});
