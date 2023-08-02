@@ -104,7 +104,7 @@ namespace Kohya_lora_trainer {
                     else
                     {
                         Console.WriteLine("Found Missing Array Element in BlockAlphaInM!");
-                        BlockAlphaInM = new decimal[] { 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32 };
+                        BlockAlphaInM = new decimal[] { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
                         break;
                     }
                 }
@@ -122,7 +122,7 @@ namespace Kohya_lora_trainer {
                     else
                     {
                         Console.WriteLine("Found Missing Array Element in BlockAlphaOutM!");
-                        BlockAlphaOutM = new decimal[] { 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32 };
+                        BlockAlphaOutM = new decimal[] { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
                         break;
                     }
 
@@ -163,19 +163,19 @@ namespace Kohya_lora_trainer {
 
             if(BlockAlphaInM.Length < 12)
             {
-                BlockAlphaInM = new decimal[] { 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32 };
+                BlockAlphaInM = new decimal[] { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
                 broken = true;
             }
 
             if(BlockAlphaMidM <= 0)
             {
-                BlockAlphaMidM = 32;
+                BlockAlphaMidM = 16;
                 broken = true;
             }
 
             if(BlockAlphaOutM.Length < 12)
             {
-                BlockAlphaOutM = new decimal[] { 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32 };
+                BlockAlphaOutM = new decimal[] { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
                 broken = true;
             }
 
@@ -195,13 +195,13 @@ namespace Kohya_lora_trainer {
 
                 if (BlockAlphaInM[i] <= 0)
                 {
-                    BlockAlphaInM[i] = 32;
+                    BlockAlphaInM[i] = 16;
                     broken = true;
                 }
 
                 if (BlockAlphaOutM[i] <= 0)
                 {
-                    BlockAlphaOutM[i] = 32;
+                    BlockAlphaOutM[i] = 16;
                     broken = true;
                 }
 
