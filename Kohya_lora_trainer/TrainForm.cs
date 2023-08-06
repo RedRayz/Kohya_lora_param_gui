@@ -112,7 +112,7 @@ namespace Kohya_lora_trainer
         {
             if (process != null && !process.HasExited)
             {
-                DialogResult result = MessageBox.Show("学習中に閉じると学習は中止されます。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("学習中に閉じると学習は中止されます。よろしいですか。\r\nなお、Windowsのバージョンによっては処理が終了するまで閉じません。\r\nその場合は×ボタンで閉じてください。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     //メッセージボックスが出ている間に閉じたかもしれないので再度確認
