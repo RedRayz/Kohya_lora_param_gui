@@ -900,7 +900,7 @@ namespace Kohya_lora_trainer
             else
             {
                 lblNumSteps.Text = TrainParams.Current.Epochs.ToString("#,0");
-                lblNumStepsBatch1.Text = (TrainParams.Current.Epochs / TrainParams.Current.BatchSize).ToString("#,0");
+                lblNumStepsBatch1.Text = (TrainParams.Current.Epochs * TrainParams.Current.BatchSize).ToString("#,0");
             }
 
         }

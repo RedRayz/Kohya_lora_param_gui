@@ -469,6 +469,7 @@ namespace Kohya_lora_trainer
             this.tbxFileName.Name = "tbxFileName";
             this.tbxFileName.Size = new System.Drawing.Size(474, 31);
             this.tbxFileName.TabIndex = 38;
+            this.toolTip1.SetToolTip(this.tbxFileName, "空白、マルチバイト文字(日本語など)は非推奨");
             this.tbxFileName.TextChanged += new System.EventHandler(this.tbxFileName_TextChanged);
             // 
             // lblFileName
