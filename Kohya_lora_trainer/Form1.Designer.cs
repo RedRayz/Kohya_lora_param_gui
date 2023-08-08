@@ -95,6 +95,7 @@ namespace Kohya_lora_trainer
             this.btnGenerateCommands = new System.Windows.Forms.Button();
             this.btnLeco = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
+            this.cbxEpochOrStep = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudResolution)).BeginInit();
@@ -228,11 +229,11 @@ namespace Kohya_lora_trainer
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(57, 231);
+            this.label17.Location = new System.Drawing.Point(30, 231);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(93, 25);
+            this.label17.Size = new System.Drawing.Size(126, 25);
             this.label17.TabIndex = 23;
-            this.label17.Text = "エポック数*";
+            this.label17.Text = "epochs/steps*";
             // 
             // btnAdvanced
             // 
@@ -519,7 +520,7 @@ namespace Kohya_lora_trainer
             // 
             this.nudEpochs.Location = new System.Drawing.Point(162, 229);
             this.nudEpochs.Maximum = new decimal(new int[] {
-            5000,
+            200000,
             0,
             0,
             0});
@@ -554,7 +555,7 @@ namespace Kohya_lora_trainer
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(900, 510);
+            this.label1.Location = new System.Drawing.Point(865, 510);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 25);
             this.label1.TabIndex = 60;
@@ -563,11 +564,11 @@ namespace Kohya_lora_trainer
             // lblNumSteps
             // 
             this.lblNumSteps.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblNumSteps.Location = new System.Drawing.Point(1058, 507);
+            this.lblNumSteps.Location = new System.Drawing.Point(1023, 507);
             this.lblNumSteps.Name = "lblNumSteps";
-            this.lblNumSteps.Size = new System.Drawing.Size(84, 25);
+            this.lblNumSteps.Size = new System.Drawing.Size(125, 25);
             this.lblNumSteps.TabIndex = 61;
-            this.lblNumSteps.Text = "16384";
+            this.lblNumSteps.Text = "999,999,999";
             // 
             // label9
             // 
@@ -591,16 +592,16 @@ namespace Kohya_lora_trainer
             // lblNumStepsBatch1
             // 
             this.lblNumStepsBatch1.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblNumStepsBatch1.Location = new System.Drawing.Point(1058, 545);
+            this.lblNumStepsBatch1.Location = new System.Drawing.Point(1023, 545);
             this.lblNumStepsBatch1.Name = "lblNumStepsBatch1";
-            this.lblNumStepsBatch1.Size = new System.Drawing.Size(84, 25);
+            this.lblNumStepsBatch1.Size = new System.Drawing.Size(125, 25);
             this.lblNumStepsBatch1.TabIndex = 61;
-            this.lblNumStepsBatch1.Text = "16384";
+            this.lblNumStepsBatch1.Text = "999,999,999";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(900, 545);
+            this.label5.Location = new System.Drawing.Point(865, 545);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(152, 25);
             this.label5.TabIndex = 60;
@@ -836,11 +837,25 @@ namespace Kohya_lora_trainer
             this.label13.TabIndex = 14;
             this.label13.Text = "SDのバージョン";
             // 
+            // cbxEpochOrStep
+            // 
+            this.cbxEpochOrStep.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxEpochOrStep.FormattingEnabled = true;
+            this.cbxEpochOrStep.Items.AddRange(new object[] {
+            "エポック",
+            "ステップ"});
+            this.cbxEpochOrStep.Location = new System.Drawing.Point(288, 228);
+            this.cbxEpochOrStep.Name = "cbxEpochOrStep";
+            this.cbxEpochOrStep.Size = new System.Drawing.Size(121, 33);
+            this.cbxEpochOrStep.TabIndex = 86;
+            this.cbxEpochOrStep.SelectedIndexChanged += new System.EventHandler(this.cbxEpochOrStep_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1172, 714);
+            this.Controls.Add(this.cbxEpochOrStep);
             this.Controls.Add(this.cbxSDType);
             this.Controls.Add(this.btnLeco);
             this.Controls.Add(this.btnGenerateCommands);
@@ -991,6 +1006,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Button btnLeco;
         private System.Windows.Forms.ComboBox cbxSDType;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox cbxEpochOrStep;
     }
 }
 

@@ -17,6 +17,7 @@ gradioを使用するものと比べ以下のメリットがあります。
 * 複数LoRAの一括学習
 * Dimのリサイズ
 * sd-scriptsのインストール・更新
+* LECOの学習およびconfig,promptsの生成
 
 ## 注意事項
 [sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法でセットアップしている環境を前提としています。
@@ -70,6 +71,7 @@ Windows 11(10は不明)
 ## ガイドなど
 
 * [キャラLoRAの学習手順](./docs/guide_for_chara.md)
+* [学習のヒントなど](./docs/tips.md)
 * サンプルプリセット: https://mega.nz/folder/ILdnzaxT#gTGQmcPUgdxKlLpIl9x__g
 
 おすすめは「キャラLoRA_4096steps_OUT01-07のみ_DAdaptLion.xmlora」

@@ -193,8 +193,17 @@ namespace Kohya_lora_trainer
             //Main
             sb.Append(" --learning_rate ").Append(TrainParams.Current.LearningRate.ToString("g"))
                 .Append(" --resolution ").Append(TrainParams.Current.Resolution)
-                .Append(" --train_batch_size ").Append(TrainParams.Current.BatchSize)
-                .Append(" --max_train_epochs ").Append(TrainParams.Current.Epochs);
+                .Append(" --train_batch_size ").Append(TrainParams.Current.BatchSize);
+
+            if (TrainParams.Current.IsEpoch)
+            {
+                sb.Append(" --max_train_epochs ").Append(TrainParams.Current.Epochs);
+            }
+            else
+            {
+                sb.Append(" --max_train_steps ").Append(TrainParams.Current.Epochs);
+            }
+                
 
             sb.Append(" --network_dim ").Append(TrainParams.Current.NetworkDim)
             .Append(" --network_alpha ").Append(TrainParams.Current.NetworkAlpha);
