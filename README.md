@@ -64,9 +64,9 @@ LECOも同じようにします。
 Kohya_lora_trainer.exeをダブルクリックする。ショートカット作ると便利かも?
 
 ## 推奨動作環境
-Windows 11(10は不明)
+Windows 10(1903以降),11
 
-.NET Framework 4.7.2
+.NET Framework 4.7.2(通常は元から入ってるはずです)
 
 ## ガイドなど
 

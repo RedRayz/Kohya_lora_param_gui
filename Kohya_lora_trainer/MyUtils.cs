@@ -366,8 +366,13 @@ namespace Kohya_lora_trainer
                 sb.Append(" --bucket_no_upscale");
             }
 
-            sb.Append(" --clip_skip ").Append(TrainParams.Current.ClipSkip)
-                .Append(" --save_precision \"").Append(TrainParams.Current.SavePrecision.ToString()).Append("\"")
+            
+            if(TrainParams.Current.StableDiffusionType != SDType.XL)
+            {
+                sb.Append(" --clip_skip ").Append(TrainParams.Current.ClipSkip);
+            }
+
+                sb.Append(" --save_precision \"").Append(TrainParams.Current.SavePrecision.ToString()).Append("\"")
                 .Append(" --lr_scheduler \"").Append(TrainParams.Current.SchedulerType.ToString()).Append("\"")
                 .Append(" --min_bucket_reso ").Append(TrainParams.Current.MinBucketResolution)
                 .Append(" --max_bucket_reso ").Append(TrainParams.Current.MaxBucketResolution)
