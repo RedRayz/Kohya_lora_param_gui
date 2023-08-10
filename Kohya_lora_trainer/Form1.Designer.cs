@@ -56,6 +56,7 @@ namespace Kohya_lora_trainer
             this.nudWarmupSteps = new System.Windows.Forms.NumericUpDown();
             this.cbxSDType = new System.Windows.Forms.ComboBox();
             this.tbxFileName = new System.Windows.Forms.TextBox();
+            this.cbxModuleType = new System.Windows.Forms.ComboBox();
             this.btnSavePreset = new System.Windows.Forms.Button();
             this.btnLoadPreset = new System.Windows.Forms.Button();
             this.lblResolution = new System.Windows.Forms.Label();
@@ -82,7 +83,6 @@ namespace Kohya_lora_trainer
             this.tbxImagePath = new System.Windows.Forms.TextBox();
             this.tbxRegImgPath = new System.Windows.Forms.TextBox();
             this.tbxOutputPath = new System.Windows.Forms.TextBox();
-            this.cbxModuleType = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnBlockWeight = new System.Windows.Forms.Button();
             this.btnBlockDim = new System.Windows.Forms.Button();
@@ -274,6 +274,7 @@ namespace Kohya_lora_trainer
             this.cbxShuffle.Size = new System.Drawing.Size(194, 29);
             this.cbxShuffle.TabIndex = 30;
             this.cbxShuffle.Text = "キャプションのシャッフル";
+            this.toolTip1.SetToolTip(this.cbxShuffle, "カンマ区切りでシャッフルする");
             this.cbxShuffle.UseVisualStyleBackColor = true;
             this.cbxShuffle.CheckedChanged += new System.EventHandler(this.cbxShuffle_CheckedChanged);
             // 
@@ -382,7 +383,7 @@ namespace Kohya_lora_trainer
             // 
             this.nudBatchSize.Location = new System.Drawing.Point(1017, 185);
             this.nudBatchSize.Maximum = new decimal(new int[] {
-            64,
+            256,
             0,
             0,
             0});
@@ -444,6 +445,21 @@ namespace Kohya_lora_trainer
             this.toolTip1.SetToolTip(this.tbxFileName, "空白、マルチバイト文字(日本語など)は非推奨");
             this.tbxFileName.TextChanged += new System.EventHandler(this.tbxFileName_TextChanged);
             // 
+            // cbxModuleType
+            // 
+            this.cbxModuleType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxModuleType.FormattingEnabled = true;
+            this.cbxModuleType.Items.AddRange(new object[] {
+            "LoRA",
+            "LyCORIS",
+            "DyLoRA"});
+            this.cbxModuleType.Location = new System.Drawing.Point(1017, 312);
+            this.cbxModuleType.Name = "cbxModuleType";
+            this.cbxModuleType.Size = new System.Drawing.Size(120, 33);
+            this.cbxModuleType.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.cbxModuleType, "LyCORISは品質面でのメリットなし");
+            this.cbxModuleType.SelectedIndexChanged += new System.EventHandler(this.cbxModuleType_SelectedIndexChanged);
+            // 
             // btnSavePreset
             // 
             this.btnSavePreset.Location = new System.Drawing.Point(795, 639);
@@ -485,11 +501,11 @@ namespace Kohya_lora_trainer
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(847, 271);
+            this.label16.Location = new System.Drawing.Point(810, 271);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(163, 25);
+            this.label16.Size = new System.Drawing.Size(202, 25);
             this.label16.TabIndex = 42;
-            this.label16.Text = "nエポックごとに保存#";
+            this.label16.Text = "保存頻度(Epochs/Steps)";
             // 
             // label18
             // 
@@ -545,13 +561,14 @@ namespace Kohya_lora_trainer
             // 
             this.nudSaveEpoch.Location = new System.Drawing.Point(1017, 269);
             this.nudSaveEpoch.Maximum = new decimal(new int[] {
-            128,
+            200000,
             0,
             0,
             0});
             this.nudSaveEpoch.Name = "nudSaveEpoch";
             this.nudSaveEpoch.Size = new System.Drawing.Size(120, 31);
             this.nudSaveEpoch.TabIndex = 56;
+            this.toolTip1.SetToolTip(this.nudSaveEpoch, "指定した間隔で成果物を書き出す\r\nエポックかステップのどちらを使用するかは\r\nepochs/stepsの設定に従う");
             this.nudSaveEpoch.ValueChanged += new System.EventHandler(this.nudSaveEpoch_ValueChanged);
             // 
             // label1
@@ -692,6 +709,7 @@ namespace Kohya_lora_trainer
             this.tbxRegImgPath.Name = "tbxRegImgPath";
             this.tbxRegImgPath.Size = new System.Drawing.Size(324, 29);
             this.tbxRegImgPath.TabIndex = 71;
+            this.toolTip1.SetToolTip(this.tbxRegImgPath, "特定のものだけ\r\n出てくればいいなら不要");
             this.tbxRegImgPath.TextChanged += new System.EventHandler(this.tbxRegImgPath_TextChanged);
             // 
             // tbxOutputPath
@@ -702,21 +720,6 @@ namespace Kohya_lora_trainer
             this.tbxOutputPath.Size = new System.Drawing.Size(328, 29);
             this.tbxOutputPath.TabIndex = 71;
             this.tbxOutputPath.TextChanged += new System.EventHandler(this.tbxOutputPath_TextChanged);
-            // 
-            // cbxModuleType
-            // 
-            this.cbxModuleType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxModuleType.FormattingEnabled = true;
-            this.cbxModuleType.Items.AddRange(new object[] {
-            "LoRA",
-            "LyCORIS",
-            "DyLoRA"});
-            this.cbxModuleType.Location = new System.Drawing.Point(1017, 312);
-            this.cbxModuleType.Name = "cbxModuleType";
-            this.cbxModuleType.Size = new System.Drawing.Size(120, 33);
-            this.cbxModuleType.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.cbxModuleType, "LyCORISは品質面でのメリットなし");
-            this.cbxModuleType.SelectedIndexChanged += new System.EventHandler(this.cbxModuleType_SelectedIndexChanged);
             // 
             // label6
             // 
