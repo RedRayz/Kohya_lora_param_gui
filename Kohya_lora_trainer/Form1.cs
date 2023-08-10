@@ -724,6 +724,12 @@ namespace Kohya_lora_trainer
             TrainParams.Current.StableDiffusionType = (SDType)Enum.ToObject(typeof(SDType), cbxSDType.SelectedIndex);
         }
 
+        private void cbxEpochOrStep_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TrainParams.Current.IsEpoch = cbxEpochOrStep.SelectedIndex == 0;
+            UpdateTotalStepCount();
+        }
+
         private void btnCustomScriptPath_Click(object sender, EventArgs e)
         {
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
@@ -865,28 +871,36 @@ namespace Kohya_lora_trainer
 
         private void UpdateTotalStepCount()
         {
-            if (StepsPerEpoch <= 0 || (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath) && !Directory.Exists(TrainParams.Current.RegImagePath)))
+            if(TrainParams.Current.IsEpoch)
             {
-                lblNumSteps.Text = "?";
-                lblNumStepsBatch1.Text = "?";
+                if (StepsPerEpoch <= 0 || (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath) && !Directory.Exists(TrainParams.Current.RegImagePath)))
+                {
+                    lblNumSteps.Text = "?";
+                    lblNumStepsBatch1.Text = "?";
+                }
+                else
+                {
+                    //sd-scriptsに近い計算式でもずれるときはずれる。accelerateとかの影響?
+                    decimal eps = (decimal)StepsPerEpoch / TrainParams.Current.BatchSize;
+
+                    TotalSteps = TrainParams.Current.Epochs * Math.Ceiling(eps);
+
+                    TotalStepsBatch1 = TotalSteps * TrainParams.Current.BatchSize;
+                    if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
+                    {
+                        TotalSteps *= 2;
+                        TotalStepsBatch1 *= 2;
+                    }
+
+
+                    lblNumSteps.Text = TotalSteps.ToString("#,0");
+                    lblNumStepsBatch1.Text = TotalStepsBatch1.ToString("#,0");
+                }
             }
             else
             {
-                //sd-scriptsに近い計算式でもずれるときはずれる。accelerateとかの影響?
-                decimal eps = (decimal)StepsPerEpoch / TrainParams.Current.BatchSize;
-
-                TotalSteps = TrainParams.Current.Epochs * Math.Ceiling(eps);
-                
-                TotalStepsBatch1 = TotalSteps * TrainParams.Current.BatchSize;
-                if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
-                {
-                    TotalSteps *= 2;
-                    TotalStepsBatch1 *= 2;
-                }
-
-
-                lblNumSteps.Text = TotalSteps.ToString();
-                lblNumStepsBatch1.Text = TotalStepsBatch1.ToString();
+                lblNumSteps.Text = TrainParams.Current.Epochs.ToString("#,0");
+                lblNumStepsBatch1.Text = (TrainParams.Current.Epochs * TrainParams.Current.BatchSize).ToString("#,0");
             }
 
         }
@@ -991,6 +1005,9 @@ namespace Kohya_lora_trainer
 
             //WarmupSteps
             nudWarmupSteps.Value = TrainParams.Current.WarmupSteps;
+
+            cbxEpochOrStep.SelectedIndex = TrainParams.Current.IsEpoch ? 0 : 1;
+
 
             UpdateTotalStepCount();
         }

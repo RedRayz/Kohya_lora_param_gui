@@ -82,7 +82,7 @@ namespace Kohya_lora_trainer {
 
         public SDType StableDiffusionType = SDType.Legacy;
 
-        public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false;
+        public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true;
 
 
         [NonSerialized]

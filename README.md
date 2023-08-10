@@ -17,6 +17,7 @@ gradioを使用するものと比べ以下のメリットがあります。
 * 複数LoRAの一括学習
 * Dimのリサイズ
 * sd-scriptsのインストール・更新
+* LECOの学習およびconfig,promptsの生成
 
 ## 注意事項
 [sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法でセットアップしている環境を前提としています。
@@ -63,13 +64,14 @@ LECOも同じようにします。
 Kohya_lora_trainer.exeをダブルクリックする。ショートカット作ると便利かも?
 
 ## 推奨動作環境
-Windows 11(10は不明)
+Windows 10(1903以降),11
 
-.NET Framework 4.7.2
+.NET Framework 4.7.2(通常は元から入ってるはずです)
 
 ## ガイドなど
 
 * [キャラLoRAの学習手順](./docs/guide_for_chara.md)
+* [学習のヒントなど](./docs/tips.md)
 * サンプルプリセット: https://mega.nz/folder/ILdnzaxT#gTGQmcPUgdxKlLpIl9x__g
 
 おすすめは「キャラLoRA_4096steps_OUT01-07のみ_DAdaptLion.xmlora」
