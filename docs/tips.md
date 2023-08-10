@@ -51,3 +51,9 @@ https://rentry.co/irir_lora#%E3%82%BF%E3%82%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%
 ## 「Setting different lr values in different parameter groups」なんとかって何？
 
 一部のDAdaptation系のオプティマイザでは、UNetとTextEncoderの個別のLR設定や層別学習で0と1以外の設定はできない。
+
+## SD1.Xおよび2.Xが苦手な物
+
+複雑かつ決められた形状(ヘイロー、文字など)。武器などの細長い手持ちの物体。
+
+これらはSDXLで改善している。

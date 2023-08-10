@@ -55,10 +55,10 @@ namespace Kohya_lora_trainer
             this.nudBatchSize = new System.Windows.Forms.NumericUpDown();
             this.nudWarmupSteps = new System.Windows.Forms.NumericUpDown();
             this.cbxSDType = new System.Windows.Forms.ComboBox();
+            this.tbxFileName = new System.Windows.Forms.TextBox();
             this.btnSavePreset = new System.Windows.Forms.Button();
             this.btnLoadPreset = new System.Windows.Forms.Button();
             this.lblResolution = new System.Windows.Forms.Label();
-            this.tbxFileName = new System.Windows.Forms.TextBox();
             this.lblFileName = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -214,7 +214,8 @@ namespace Kohya_lora_trainer
             this.cbxOptimizer.Name = "cbxOptimizer";
             this.cbxOptimizer.Size = new System.Drawing.Size(176, 33);
             this.cbxOptimizer.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.cbxOptimizer, "AdamWとDAdaptLionがおすすめ\r\nPaged系はdevブランチに切り替え後bitsandbytesの更新が必要");
+            this.toolTip1.SetToolTip(this.cbxOptimizer, "AdamWとDAdaptLionがおすすめ\r\nDADaptation系はCPUボトルネックが大きい傾向\r\nPaged系はdevブランチに切り替え後bitsandb" +
+        "ytesの更新が必要");
             this.cbxOptimizer.SelectedIndexChanged += new System.EventHandler(this.cbxOptimizer_SelectedIndexChanged);
             // 
             // label10
@@ -355,7 +356,7 @@ namespace Kohya_lora_trainer
             this.nudResolution.Name = "nudResolution";
             this.nudResolution.Size = new System.Drawing.Size(120, 31);
             this.nudResolution.TabIndex = 54;
-            this.toolTip1.SetToolTip(this.nudResolution, "latentのキャッシュとgradient_checkpointingを使用すると\r\n8GBで1024での学習が可能!!");
+            this.toolTip1.SetToolTip(this.nudResolution, "SD1.Xが512、2.Xが768、XLが1024推奨\r\n解像度を上げると細部が若干改善することがある");
             this.nudResolution.Value = new decimal(new int[] {
             512,
             0,
@@ -431,8 +432,17 @@ namespace Kohya_lora_trainer
             this.cbxSDType.Name = "cbxSDType";
             this.cbxSDType.Size = new System.Drawing.Size(176, 33);
             this.cbxSDType.TabIndex = 85;
-            this.toolTip1.SetToolTip(this.cbxSDType, "SDXLは要求スペックもXLサイズ\r\nVRAM12GB以上、メインメモリ32GB以上必要\r\nちなみにVRAM8GBでも一応動くらしい");
+            this.toolTip1.SetToolTip(this.cbxSDType, "SDXLは要求スペックもXLサイズ\r\nVRAM12GB以上、メインメモリ32GB以上必要\r\nVRAM8GBでもかろうじて動く");
             this.cbxSDType.SelectedIndexChanged += new System.EventHandler(this.cbxSDType_SelectedIndexChanged);
+            // 
+            // tbxFileName
+            // 
+            this.tbxFileName.Location = new System.Drawing.Point(167, 415);
+            this.tbxFileName.Name = "tbxFileName";
+            this.tbxFileName.Size = new System.Drawing.Size(474, 31);
+            this.tbxFileName.TabIndex = 38;
+            this.toolTip1.SetToolTip(this.tbxFileName, "空白、マルチバイト文字(日本語など)は非推奨");
+            this.tbxFileName.TextChanged += new System.EventHandler(this.tbxFileName_TextChanged);
             // 
             // btnSavePreset
             // 
@@ -462,15 +472,6 @@ namespace Kohya_lora_trainer
             this.lblResolution.Size = new System.Drawing.Size(74, 25);
             this.lblResolution.TabIndex = 36;
             this.lblResolution.Text = "解像度*";
-            // 
-            // tbxFileName
-            // 
-            this.tbxFileName.Location = new System.Drawing.Point(167, 415);
-            this.tbxFileName.Name = "tbxFileName";
-            this.tbxFileName.Size = new System.Drawing.Size(474, 31);
-            this.tbxFileName.TabIndex = 38;
-            this.toolTip1.SetToolTip(this.tbxFileName, "空白、マルチバイト文字(日本語など)は非推奨");
-            this.tbxFileName.TextChanged += new System.EventHandler(this.tbxFileName_TextChanged);
             // 
             // lblFileName
             // 
@@ -714,6 +715,7 @@ namespace Kohya_lora_trainer
             this.cbxModuleType.Name = "cbxModuleType";
             this.cbxModuleType.Size = new System.Drawing.Size(120, 33);
             this.cbxModuleType.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.cbxModuleType, "LyCORISは品質面でのメリットなし");
             this.cbxModuleType.SelectedIndexChanged += new System.EventHandler(this.cbxModuleType_SelectedIndexChanged);
             // 
             // label6
