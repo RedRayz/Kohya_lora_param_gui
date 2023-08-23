@@ -606,7 +606,7 @@ namespace Kohya_lora_trainer
             this.cbxAdvancedTrain.Name = "cbxAdvancedTrain";
             this.cbxAdvancedTrain.Size = new System.Drawing.Size(205, 33);
             this.cbxAdvancedTrain.TabIndex = 36;
-            this.toolTip1.SetToolTip(this.cbxAdvancedTrain, "SDXLはTEが2つあるため、unetのみ推奨");
+            this.toolTip1.SetToolTip(this.cbxAdvancedTrain, "SDXLの場合はTEが2つあるため、unetのみ推奨");
             // 
             // nudMaxTokens
             // 
@@ -1140,6 +1140,7 @@ namespace Kohya_lora_trainer
             this.cbxCropRandomly.Size = new System.Drawing.Size(206, 29);
             this.cbxCropRandomly.TabIndex = 9;
             this.cbxCropRandomly.Text = "画像をランダムにクロップ";
+            this.toolTip1.SetToolTip(this.cbxCropRandomly, "latentキャッシュとの併用不可");
             this.cbxCropRandomly.UseVisualStyleBackColor = true;
             // 
             // tabPage2

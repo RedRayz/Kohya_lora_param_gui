@@ -57,6 +57,8 @@ namespace Kohya_lora_trainer
             this.cbxSDType = new System.Windows.Forms.ComboBox();
             this.tbxFileName = new System.Windows.Forms.TextBox();
             this.cbxModuleType = new System.Windows.Forms.ComboBox();
+            this.nudSaveEpoch = new System.Windows.Forms.NumericUpDown();
+            this.tbxRegImgPath = new System.Windows.Forms.TextBox();
             this.btnSavePreset = new System.Windows.Forms.Button();
             this.btnLoadPreset = new System.Windows.Forms.Button();
             this.lblResolution = new System.Windows.Forms.Label();
@@ -66,7 +68,6 @@ namespace Kohya_lora_trainer
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.nudEpochs = new System.Windows.Forms.NumericUpDown();
-            this.nudSaveEpoch = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.lblNumSteps = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -81,7 +82,6 @@ namespace Kohya_lora_trainer
             this.btnUtilities = new System.Windows.Forms.Button();
             this.tbxModelPath = new System.Windows.Forms.TextBox();
             this.tbxImagePath = new System.Windows.Forms.TextBox();
-            this.tbxRegImgPath = new System.Windows.Forms.TextBox();
             this.tbxOutputPath = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.btnBlockWeight = new System.Windows.Forms.Button();
@@ -102,8 +102,8 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudKeepTokens)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWarmupSteps)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveEpoch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -460,6 +460,30 @@ namespace Kohya_lora_trainer
             this.toolTip1.SetToolTip(this.cbxModuleType, "LyCORISは品質面でのメリットなし");
             this.cbxModuleType.SelectedIndexChanged += new System.EventHandler(this.cbxModuleType_SelectedIndexChanged);
             // 
+            // nudSaveEpoch
+            // 
+            this.nudSaveEpoch.Location = new System.Drawing.Point(1017, 269);
+            this.nudSaveEpoch.Maximum = new decimal(new int[] {
+            200000,
+            0,
+            0,
+            0});
+            this.nudSaveEpoch.Name = "nudSaveEpoch";
+            this.nudSaveEpoch.Size = new System.Drawing.Size(120, 31);
+            this.nudSaveEpoch.TabIndex = 56;
+            this.toolTip1.SetToolTip(this.nudSaveEpoch, "指定した間隔で成果物を書き出す\r\nエポックかステップのどちらを使用するかは\r\nepochs/stepsの設定に従う");
+            this.nudSaveEpoch.ValueChanged += new System.EventHandler(this.nudSaveEpoch_ValueChanged);
+            // 
+            // tbxRegImgPath
+            // 
+            this.tbxRegImgPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbxRegImgPath.Location = new System.Drawing.Point(813, 134);
+            this.tbxRegImgPath.Name = "tbxRegImgPath";
+            this.tbxRegImgPath.Size = new System.Drawing.Size(324, 29);
+            this.tbxRegImgPath.TabIndex = 71;
+            this.toolTip1.SetToolTip(this.tbxRegImgPath, "特定のものだけ\r\n出てくればいいなら不要");
+            this.tbxRegImgPath.TextChanged += new System.EventHandler(this.tbxRegImgPath_TextChanged);
+            // 
             // btnSavePreset
             // 
             this.btnSavePreset.Location = new System.Drawing.Point(795, 639);
@@ -501,11 +525,11 @@ namespace Kohya_lora_trainer
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(810, 271);
+            this.label16.Location = new System.Drawing.Point(798, 271);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(202, 25);
+            this.label16.Size = new System.Drawing.Size(213, 25);
             this.label16.TabIndex = 42;
-            this.label16.Text = "保存頻度(Epochs/Steps)";
+            this.label16.Text = "保存頻度(Epochs/Steps)#";
             // 
             // label18
             // 
@@ -556,20 +580,6 @@ namespace Kohya_lora_trainer
             0,
             0});
             this.nudEpochs.ValueChanged += new System.EventHandler(this.nudEpochs_ValueChanged);
-            // 
-            // nudSaveEpoch
-            // 
-            this.nudSaveEpoch.Location = new System.Drawing.Point(1017, 269);
-            this.nudSaveEpoch.Maximum = new decimal(new int[] {
-            200000,
-            0,
-            0,
-            0});
-            this.nudSaveEpoch.Name = "nudSaveEpoch";
-            this.nudSaveEpoch.Size = new System.Drawing.Size(120, 31);
-            this.nudSaveEpoch.TabIndex = 56;
-            this.toolTip1.SetToolTip(this.nudSaveEpoch, "指定した間隔で成果物を書き出す\r\nエポックかステップのどちらを使用するかは\r\nepochs/stepsの設定に従う");
-            this.nudSaveEpoch.ValueChanged += new System.EventHandler(this.nudSaveEpoch_ValueChanged);
             // 
             // label1
             // 
@@ -701,16 +711,6 @@ namespace Kohya_lora_trainer
             this.tbxImagePath.Size = new System.Drawing.Size(312, 29);
             this.tbxImagePath.TabIndex = 71;
             this.tbxImagePath.TextChanged += new System.EventHandler(this.tbxImagePath_TextChanged);
-            // 
-            // tbxRegImgPath
-            // 
-            this.tbxRegImgPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbxRegImgPath.Location = new System.Drawing.Point(813, 134);
-            this.tbxRegImgPath.Name = "tbxRegImgPath";
-            this.tbxRegImgPath.Size = new System.Drawing.Size(324, 29);
-            this.tbxRegImgPath.TabIndex = 71;
-            this.toolTip1.SetToolTip(this.tbxRegImgPath, "特定のものだけ\r\n出てくればいいなら不要");
-            this.tbxRegImgPath.TextChanged += new System.EventHandler(this.tbxRegImgPath_TextChanged);
             // 
             // tbxOutputPath
             // 
@@ -938,8 +938,8 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.nudKeepTokens)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWarmupSteps)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSaveEpoch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

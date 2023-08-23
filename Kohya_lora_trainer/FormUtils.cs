@@ -13,22 +13,27 @@ using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.WindowsAPICodePack.Shell;
 
-namespace Kohya_lora_trainer {
-    public partial class FormUtils : Form {
+namespace Kohya_lora_trainer
+{
+    public partial class FormUtils : Form
+    {
         private delegate void UpdateUIEventHandler(string text);
         private delegate void DelegateEnableButton();
 
         private event UpdateUIEventHandler UpdateUI = null;
         private Process process = null;
 
-        public FormUtils() {
+        public FormUtils()
+        {
             InitializeComponent();
         }
 
 
-        private void btnRunTensorboard_Click(object sender, EventArgs e) {
+        private void btnRunTensorboard_Click(object sender, EventArgs e)
+        {
             string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.CurrentSdScriptsPath : Form1.ScriptPath + "\\";
-            if (!Directory.Exists(path + "venv")) {
+            if (!Directory.Exists(path + "venv"))
+            {
                 MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -36,13 +41,16 @@ namespace Kohya_lora_trainer {
             cof.Title = "ログディレクトリの選択";
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
-            if(cof.ShowDialog() == CommonFileDialogResult.Ok) {
+            if (cof.ShowDialog() == CommonFileDialogResult.Ok)
+            {
                 StringBuilder sb = new StringBuilder();
                 sb.Append("/c cd ");
-                if (!string.IsNullOrEmpty(Form1.ScriptPath)) {
+                if (!string.IsNullOrEmpty(Form1.ScriptPath))
+                {
                     sb.Append("/d ").Append(Form1.ScriptPath);
                 }
-                else {
+                else
+                {
                     sb.Append(Constants.CurrentSdScriptsPath);
                 }
 
@@ -156,6 +164,53 @@ namespace Kohya_lora_trainer {
             ps.Arguments = sb.ToString();
 
             Process.Start(ps);
+        }
+
+        private void btnRunTagger_Click(object sender, EventArgs e)
+        {
+            string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.CurrentSdScriptsPath : Form1.ScriptPath + "\\";
+            if (!Directory.Exists(path + "venv"))
+            {
+                MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else if (!Directory.Exists(lblTaggerDir.Text))
+            {
+                MessageBox.Show("尋問するディレクトリが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("/k cd ");
+            if (!string.IsNullOrEmpty(Form1.ScriptPath))
+            {
+                sb.Append("/d ").Append(Form1.ScriptPath);
+            }
+            else
+            {
+                sb.Append(Constants.CurrentSdScriptsPath);
+            }
+            //.Append(nudTaggerBatchSize.Value.ToString())
+            sb.Append(" && .\\venv\\Scripts\\activate && python .\\finetune\\tag_images_by_wd14_tagger.py --remove_underscore --undesired_tags \"").Append(tbxTaggerExclude.Text).Append("\" --thresh ").Append(nudThresh.Value.ToString())
+                .Append(" --batch_size ").Append(nudTaggerBatchSize.Value.ToString()).Append(" ").Append(lblTaggerDir.Text);
+
+            ProcessStartInfo ps = new ProcessStartInfo();
+            ps.FileName = "cmd";
+            ps.Arguments = sb.ToString();
+
+            Process.Start(ps);
+        }
+
+        private void btnTaggetSelectDir_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog cof = new CommonOpenFileDialog();
+            cof.Title = "ログディレクトリの選択";
+            cof.IsFolderPicker = true;
+            cof.RestoreDirectory = true;
+            if (cof.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                lblTaggerDir.Text = cof.FileName;
+            }
         }
     }
 }

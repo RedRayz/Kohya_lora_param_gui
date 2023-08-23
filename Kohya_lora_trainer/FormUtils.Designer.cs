@@ -43,28 +43,26 @@
             this.btnInstallExtension = new System.Windows.Forms.Button();
             this.btnUpdateRepo = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tbxTaggerExclude = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.nudTaggerBatchSize = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btnTaggetSelectDir = new System.Windows.Forms.Button();
-            this.lblTaggerDir = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.btnRunTagger = new System.Windows.Forms.Button();
-            this.cbxTaggerModel = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.nudThresh = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblTaggerDir = new System.Windows.Forms.Label();
+            this.btnTaggetSelectDir = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.nudThresh = new System.Windows.Forms.NumericUpDown();
+            this.nudTaggerBatchSize = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbxTaggerExclude = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudTargetDim)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTaggerBatchSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudThresh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTaggerBatchSize)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRunTensorboard
@@ -271,19 +269,17 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.cbxTaggerModel);
+            this.tabPage4.Controls.Add(this.label5);
             this.tabPage4.Controls.Add(this.btnRunTagger);
             this.tabPage4.Controls.Add(this.label9);
             this.tabPage4.Controls.Add(this.lblTaggerDir);
             this.tabPage4.Controls.Add(this.btnTaggetSelectDir);
-            this.tabPage4.Controls.Add(this.label10);
             this.tabPage4.Controls.Add(this.label11);
             this.tabPage4.Controls.Add(this.label7);
             this.tabPage4.Controls.Add(this.nudThresh);
             this.tabPage4.Controls.Add(this.nudTaggerBatchSize);
             this.tabPage4.Controls.Add(this.label6);
             this.tabPage4.Controls.Add(this.tbxTaggerExclude);
-            this.tabPage4.Controls.Add(this.label5);
             this.tabPage4.Location = new System.Drawing.Point(4, 34);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(804, 384);
@@ -291,35 +287,88 @@
             this.tabPage4.Text = "Tagger";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // btnRunTagger
             // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(26, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(66, 25);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "未実装";
+            this.btnRunTagger.Location = new System.Drawing.Point(663, 323);
+            this.btnRunTagger.Name = "btnRunTagger";
+            this.btnRunTagger.Size = new System.Drawing.Size(112, 43);
+            this.btnRunTagger.TabIndex = 7;
+            this.btnRunTagger.Text = "尋問";
+            this.btnRunTagger.UseVisualStyleBackColor = true;
+            this.btnRunTagger.Click += new System.EventHandler(this.btnRunTagger_Click);
             // 
-            // tbxTaggerExclude
+            // label9
             // 
-            this.tbxTaggerExclude.Location = new System.Drawing.Point(26, 159);
-            this.tbxTaggerExclude.Name = "tbxTaggerExclude";
-            this.tbxTaggerExclude.Size = new System.Drawing.Size(749, 31);
-            this.tbxTaggerExclude.TabIndex = 1;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(26, 115);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(89, 25);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "ディレクトリ";
             // 
-            // label6
+            // lblTaggerDir
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 131);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(314, 25);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "除外タグ(アンダースコア込み)。コンマ区切り";
+            this.lblTaggerDir.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.lblTaggerDir.Location = new System.Drawing.Point(149, 143);
+            this.lblTaggerDir.Name = "lblTaggerDir";
+            this.lblTaggerDir.Size = new System.Drawing.Size(626, 31);
+            this.lblTaggerDir.TabIndex = 6;
+            this.lblTaggerDir.Text = "選択してください";
+            // 
+            // btnTaggetSelectDir
+            // 
+            this.btnTaggetSelectDir.Location = new System.Drawing.Point(26, 143);
+            this.btnTaggetSelectDir.Name = "btnTaggetSelectDir";
+            this.btnTaggetSelectDir.Size = new System.Drawing.Size(117, 38);
+            this.btnTaggetSelectDir.TabIndex = 5;
+            this.btnTaggetSelectDir.Text = "選択";
+            this.btnTaggetSelectDir.UseVisualStyleBackColor = true;
+            this.btnTaggetSelectDir.Click += new System.EventHandler(this.btnTaggetSelectDir_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(197, 264);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(127, 25);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "タグ検出の閾値";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(26, 264);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 25);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Batch size";
+            // 
+            // nudThresh
+            // 
+            this.nudThresh.DecimalPlaces = 2;
+            this.nudThresh.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.nudThresh.Location = new System.Drawing.Point(202, 292);
+            this.nudThresh.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudThresh.Name = "nudThresh";
+            this.nudThresh.Size = new System.Drawing.Size(120, 31);
+            this.nudThresh.TabIndex = 3;
+            this.nudThresh.Value = new decimal(new int[] {
+            35,
+            0,
+            0,
+            131072});
             // 
             // nudTaggerBatchSize
             // 
-            this.nudTaggerBatchSize.Location = new System.Drawing.Point(26, 228);
+            this.nudTaggerBatchSize.Location = new System.Drawing.Point(26, 292);
             this.nudTaggerBatchSize.Maximum = new decimal(new int[] {
             64,
             0,
@@ -339,104 +388,31 @@
             0,
             0});
             // 
-            // label7
+            // label6
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(26, 200);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(89, 25);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Batch size";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(21, 195);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(334, 25);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "除外タグ(アンダースコア込み)、複数指定不可";
             // 
-            // btnTaggetSelectDir
+            // tbxTaggerExclude
             // 
-            this.btnTaggetSelectDir.Location = new System.Drawing.Point(26, 72);
-            this.btnTaggetSelectDir.Name = "btnTaggetSelectDir";
-            this.btnTaggetSelectDir.Size = new System.Drawing.Size(117, 38);
-            this.btnTaggetSelectDir.TabIndex = 5;
-            this.btnTaggetSelectDir.Text = "選択";
-            this.btnTaggetSelectDir.UseVisualStyleBackColor = true;
+            this.tbxTaggerExclude.Location = new System.Drawing.Point(26, 223);
+            this.tbxTaggerExclude.Name = "tbxTaggerExclude";
+            this.tbxTaggerExclude.Size = new System.Drawing.Size(749, 31);
+            this.tbxTaggerExclude.TabIndex = 1;
             // 
-            // lblTaggerDir
+            // label5
             // 
-            this.lblTaggerDir.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblTaggerDir.Location = new System.Drawing.Point(149, 79);
-            this.lblTaggerDir.Name = "lblTaggerDir";
-            this.lblTaggerDir.Size = new System.Drawing.Size(626, 31);
-            this.lblTaggerDir.TabIndex = 6;
-            this.lblTaggerDir.Text = "選択してください";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(26, 44);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(89, 25);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "ディレクトリ";
-            // 
-            // btnRunTagger
-            // 
-            this.btnRunTagger.Location = new System.Drawing.Point(663, 323);
-            this.btnRunTagger.Name = "btnRunTagger";
-            this.btnRunTagger.Size = new System.Drawing.Size(112, 43);
-            this.btnRunTagger.TabIndex = 7;
-            this.btnRunTagger.Text = "尋問";
-            this.btnRunTagger.UseVisualStyleBackColor = true;
-            // 
-            // cbxTaggerModel
-            // 
-            this.cbxTaggerModel.FormattingEnabled = true;
-            this.cbxTaggerModel.Items.AddRange(new object[] {
-            "convnext-v2",
-            "convnext",
-            "vit-v2",
-            "vit"});
-            this.cbxTaggerModel.Location = new System.Drawing.Point(26, 302);
-            this.cbxTaggerModel.Name = "cbxTaggerModel";
-            this.cbxTaggerModel.Size = new System.Drawing.Size(163, 33);
-            this.cbxTaggerModel.TabIndex = 8;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(21, 274);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(53, 25);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "モデル";
-            // 
-            // nudThresh
-            // 
-            this.nudThresh.DecimalPlaces = 2;
-            this.nudThresh.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.nudThresh.Location = new System.Drawing.Point(202, 228);
-            this.nudThresh.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudThresh.Name = "nudThresh";
-            this.nudThresh.Size = new System.Drawing.Size(120, 31);
-            this.nudThresh.TabIndex = 3;
-            this.nudThresh.Value = new decimal(new int[] {
-            35,
-            0,
-            0,
-            131072});
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(197, 200);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(127, 25);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "タグ検出の閾値";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(26, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(577, 75);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "AIを用いてDanbooruタグを推論します。\r\nsd-scriptsのTaggerは簡易的なものとなります。\r\n細かい設定をしたい方はAUTOMATIC1111" +
+    " WebUIのTaggerをご利用ください。";
             // 
             // FormUtils
             // 
@@ -464,8 +440,8 @@
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTaggerBatchSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudThresh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTaggerBatchSize)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -490,7 +466,6 @@
         private System.Windows.Forms.Button btnInstallExtension;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnRunTagger;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblTaggerDir;
@@ -499,10 +474,9 @@
         private System.Windows.Forms.NumericUpDown nudTaggerBatchSize;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbxTaggerExclude;
-        private System.Windows.Forms.ComboBox cbxTaggerModel;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.NumericUpDown nudThresh;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label label5;
     }
 }
