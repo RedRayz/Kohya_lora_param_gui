@@ -191,7 +191,14 @@ namespace Kohya_lora_trainer
                 sb.Append(Constants.CurrentSdScriptsPath);
             }
             //.Append(nudTaggerBatchSize.Value.ToString())
-            sb.Append(" && .\\venv\\Scripts\\activate && python .\\finetune\\tag_images_by_wd14_tagger.py --remove_underscore --undesired_tags \"").Append(tbxTaggerExclude.Text).Append("\" --thresh ").Append(nudThresh.Value.ToString())
+            sb.Append(" && .\\venv\\Scripts\\activate && python .\\finetune\\tag_images_by_wd14_tagger.py --remove_underscore");
+
+            if (!string.IsNullOrEmpty(tbxTaggerExclude.Text))
+            {
+                sb.Append(" --undesired_tags \"").Append(tbxTaggerExclude.Text).Append("\"");
+            }
+
+            sb.Append(" --thresh ").Append(nudThresh.Value.ToString())
                 .Append(" --batch_size ").Append(nudTaggerBatchSize.Value.ToString()).Append(" ").Append(lblTaggerDir.Text);
 
             ProcessStartInfo ps = new ProcessStartInfo();
