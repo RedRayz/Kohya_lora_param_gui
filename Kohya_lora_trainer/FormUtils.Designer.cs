@@ -43,6 +43,7 @@
             this.btnInstallExtension = new System.Windows.Forms.Button();
             this.btnUpdateRepo = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnRunTagger = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.lblTaggerDir = new System.Windows.Forms.Label();
@@ -54,7 +55,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tbxTaggerExclude = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudTargetDim)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -287,6 +287,16 @@
             this.tabPage4.Text = "Tagger";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(26, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(577, 75);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "AIを用いてDanbooruタグを推論します。\r\nsd-scriptsのTaggerは簡易的なものとなります。\r\n細かい設定をしたい方はAUTOMATIC1111" +
+    " WebUIのTaggerをご利用ください。";
+            // 
             // btnRunTagger
             // 
             this.btnRunTagger.Location = new System.Drawing.Point(663, 323);
@@ -404,20 +414,10 @@
             this.tbxTaggerExclude.Size = new System.Drawing.Size(749, 31);
             this.tbxTaggerExclude.TabIndex = 1;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(26, 14);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(577, 75);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "AIを用いてDanbooruタグを推論します。\r\nsd-scriptsのTaggerは簡易的なものとなります。\r\n細かい設定をしたい方はAUTOMATIC1111" +
-    " WebUIのTaggerをご利用ください。";
-            // 
             // FormUtils
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(840, 446);
             this.Controls.Add(this.tabControl1);

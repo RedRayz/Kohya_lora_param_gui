@@ -36,9 +36,10 @@
             // 
             this.btnStop.BackColor = System.Drawing.Color.MistyRose;
             this.btnStop.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnStop.Location = new System.Drawing.Point(90, 37);
+            this.btnStop.Location = new System.Drawing.Point(60, 25);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(257, 47);
+            this.btnStop.Size = new System.Drawing.Size(171, 31);
             this.btnStop.TabIndex = 1;
             this.btnStop.Text = "ターミナルを閉じる";
             this.btnStop.UseVisualStyleBackColor = false;
@@ -47,9 +48,10 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Yu Gothic UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnClose.Location = new System.Drawing.Point(90, 90);
+            this.btnClose.Location = new System.Drawing.Point(60, 60);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(257, 47);
+            this.btnClose.Size = new System.Drawing.Size(171, 31);
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "このウィンドウを閉じる";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -58,18 +60,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(55, 9);
+            this.label1.Location = new System.Drawing.Point(37, 6);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(325, 25);
+            this.label1.Size = new System.Drawing.Size(213, 15);
             this.label1.TabIndex = 3;
             this.label1.Text = "注意!ターミナルを閉じると学習は中止します!";
             // 
             // btnCopyCmd
             // 
             this.btnCopyCmd.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnCopyCmd.Location = new System.Drawing.Point(209, 229);
+            this.btnCopyCmd.Location = new System.Drawing.Point(123, 148);
+            this.btnCopyCmd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCopyCmd.Name = "btnCopyCmd";
-            this.btnCopyCmd.Size = new System.Drawing.Size(210, 32);
+            this.btnCopyCmd.Size = new System.Drawing.Size(153, 23);
             this.btnCopyCmd.TabIndex = 4;
             this.btnCopyCmd.Text = "コマンドをクリップボードにコピー";
             this.btnCopyCmd.UseVisualStyleBackColor = true;
@@ -80,9 +84,10 @@
             this.lblCountdown.AutoSize = true;
             this.lblCountdown.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lblCountdown.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblCountdown.Location = new System.Drawing.Point(55, 149);
+            this.lblCountdown.Location = new System.Drawing.Point(23, 93);
+            this.lblCountdown.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCountdown.Name = "lblCountdown";
-            this.lblCountdown.Size = new System.Drawing.Size(344, 56);
+            this.lblCountdown.Size = new System.Drawing.Size(244, 38);
             this.lblCountdown.TabIndex = 6;
             this.lblCountdown.Text = "30秒後にシャットダウンします\r\nしない場合はこのウィンドウを閉じてください";
             this.lblCountdown.Visible = false;
@@ -93,9 +98,9 @@
             // 
             // TrainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(431, 273);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(287, 182);
             this.ControlBox = false;
             this.Controls.Add(this.lblCountdown);
             this.Controls.Add(this.btnCopyCmd);
@@ -104,7 +109,7 @@
             this.Controls.Add(this.btnStop);
             this.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TrainForm";

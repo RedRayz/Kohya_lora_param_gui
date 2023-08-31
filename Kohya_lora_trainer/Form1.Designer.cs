@@ -109,10 +109,10 @@ namespace Kohya_lora_trainer
             // 
             // btnModel
             // 
-            this.btnModel.Location = new System.Drawing.Point(176, 82);
-            this.btnModel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnModel.Location = new System.Drawing.Point(117, 55);
+            this.btnModel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnModel.Name = "btnModel";
-            this.btnModel.Size = new System.Drawing.Size(166, 46);
+            this.btnModel.Size = new System.Drawing.Size(111, 31);
             this.btnModel.TabIndex = 1;
             this.btnModel.Text = "選択";
             this.btnModel.UseVisualStyleBackColor = true;
@@ -120,10 +120,10 @@ namespace Kohya_lora_trainer
             // 
             // btnImage
             // 
-            this.btnImage.Location = new System.Drawing.Point(560, 82);
-            this.btnImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnImage.Location = new System.Drawing.Point(373, 55);
+            this.btnImage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnImage.Name = "btnImage";
-            this.btnImage.Size = new System.Drawing.Size(166, 46);
+            this.btnImage.Size = new System.Drawing.Size(111, 31);
             this.btnImage.TabIndex = 1;
             this.btnImage.Text = "選択";
             this.btnImage.UseVisualStyleBackColor = true;
@@ -132,27 +132,29 @@ namespace Kohya_lora_trainer
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 93);
+            this.label2.Location = new System.Drawing.Point(27, 62);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 25);
+            this.label2.Size = new System.Drawing.Size(76, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "学習元モデル*";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(409, 93);
+            this.label3.Location = new System.Drawing.Point(273, 62);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(145, 25);
+            this.label3.Size = new System.Drawing.Size(95, 15);
             this.label3.TabIndex = 3;
             this.label3.Text = "教師画像フォルダ*";
             // 
             // btnRegImage
             // 
-            this.btnRegImage.Location = new System.Drawing.Point(971, 81);
-            this.btnRegImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRegImage.Location = new System.Drawing.Point(647, 54);
+            this.btnRegImage.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnRegImage.Name = "btnRegImage";
-            this.btnRegImage.Size = new System.Drawing.Size(76, 46);
+            this.btnRegImage.Size = new System.Drawing.Size(51, 31);
             this.btnRegImage.TabIndex = 1;
             this.btnRegImage.Text = "選択";
             this.btnRegImage.UseVisualStyleBackColor = true;
@@ -161,17 +163,19 @@ namespace Kohya_lora_trainer
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(810, 93);
+            this.label4.Location = new System.Drawing.Point(540, 62);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(155, 25);
+            this.label4.Size = new System.Drawing.Size(102, 15);
             this.label4.TabIndex = 3;
             this.label4.Text = "正則化画像フォルダ";
             // 
             // tbxLR
             // 
-            this.tbxLR.Location = new System.Drawing.Point(162, 186);
+            this.tbxLR.Location = new System.Drawing.Point(108, 124);
+            this.tbxLR.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxLR.Name = "tbxLR";
-            this.tbxLR.Size = new System.Drawing.Size(120, 31);
+            this.tbxLR.Size = new System.Drawing.Size(81, 23);
             this.tbxLR.TabIndex = 4;
             this.tbxLR.Text = "1e-4";
             this.toolTip1.SetToolTip(this.tbxLR, "AdamW系は0.0001、AdaFactorは0.001、DAdaptation系は1推奨");
@@ -181,9 +185,10 @@ namespace Kohya_lora_trainer
             // 
             this.lblLR.AutoSize = true;
             this.lblLR.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblLR.Location = new System.Drawing.Point(57, 189);
+            this.lblLR.Location = new System.Drawing.Point(38, 126);
+            this.lblLR.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLR.Name = "lblLR";
-            this.lblLR.Size = new System.Drawing.Size(103, 25);
+            this.lblLR.Size = new System.Drawing.Size(69, 15);
             this.lblLR.TabIndex = 5;
             this.lblLR.Text = "学習率(LR)*";
             // 
@@ -210,9 +215,10 @@ namespace Kohya_lora_trainer
             "Prodigy",
             "PagedAdamW8bit",
             "PagedLion8bit"});
-            this.cbxOptimizer.Location = new System.Drawing.Point(166, 315);
+            this.cbxOptimizer.Location = new System.Drawing.Point(111, 210);
+            this.cbxOptimizer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxOptimizer.Name = "cbxOptimizer";
-            this.cbxOptimizer.Size = new System.Drawing.Size(176, 33);
+            this.cbxOptimizer.Size = new System.Drawing.Size(119, 23);
             this.cbxOptimizer.TabIndex = 6;
             this.toolTip1.SetToolTip(this.cbxOptimizer, "AdamWとDAdaptLionがおすすめ\r\nDADaptation系はCPUボトルネックが大きい傾向\r\nPaged系はdevブランチに切り替え後bitsandb" +
         "ytesの更新が必要");
@@ -221,26 +227,29 @@ namespace Kohya_lora_trainer
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(46, 320);
+            this.label10.Location = new System.Drawing.Point(31, 213);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(114, 25);
+            this.label10.Size = new System.Drawing.Size(73, 15);
             this.label10.TabIndex = 14;
             this.label10.Text = "オプティマイザ*";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(30, 231);
+            this.label17.Location = new System.Drawing.Point(20, 154);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(126, 25);
+            this.label17.Size = new System.Drawing.Size(82, 15);
             this.label17.TabIndex = 23;
             this.label17.Text = "epochs/steps*";
             // 
             // btnAdvanced
             // 
-            this.btnAdvanced.Location = new System.Drawing.Point(29, 597);
+            this.btnAdvanced.Location = new System.Drawing.Point(19, 398);
+            this.btnAdvanced.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdvanced.Name = "btnAdvanced";
-            this.btnAdvanced.Size = new System.Drawing.Size(112, 41);
+            this.btnAdvanced.Size = new System.Drawing.Size(75, 27);
             this.btnAdvanced.TabIndex = 26;
             this.btnAdvanced.Text = "詳細設定";
             this.btnAdvanced.UseVisualStyleBackColor = true;
@@ -249,9 +258,10 @@ namespace Kohya_lora_trainer
             // btnStartTraining
             // 
             this.btnStartTraining.Font = new System.Drawing.Font("Yu Gothic UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnStartTraining.Location = new System.Drawing.Point(956, 630);
+            this.btnStartTraining.Location = new System.Drawing.Point(637, 420);
+            this.btnStartTraining.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStartTraining.Name = "btnStartTraining";
-            this.btnStartTraining.Size = new System.Drawing.Size(192, 58);
+            this.btnStartTraining.Size = new System.Drawing.Size(128, 39);
             this.btnStartTraining.TabIndex = 27;
             this.btnStartTraining.Text = "学習開始";
             this.btnStartTraining.UseVisualStyleBackColor = true;
@@ -260,18 +270,20 @@ namespace Kohya_lora_trainer
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(19, 13);
+            this.label7.Location = new System.Drawing.Point(13, 9);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(417, 25);
+            this.label7.Size = new System.Drawing.Size(274, 15);
             this.label7.TabIndex = 29;
             this.label7.Text = "*がつく項目は必須。#がつく項目は0を指定すると無効化";
             // 
             // cbxShuffle
             // 
             this.cbxShuffle.AutoSize = true;
-            this.cbxShuffle.Location = new System.Drawing.Point(93, 270);
+            this.cbxShuffle.Location = new System.Drawing.Point(62, 180);
+            this.cbxShuffle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxShuffle.Name = "cbxShuffle";
-            this.cbxShuffle.Size = new System.Drawing.Size(194, 29);
+            this.cbxShuffle.Size = new System.Drawing.Size(131, 19);
             this.cbxShuffle.TabIndex = 30;
             this.cbxShuffle.Text = "キャプションのシャッフル";
             this.toolTip1.SetToolTip(this.cbxShuffle, "カンマ区切りでシャッフルする");
@@ -281,16 +293,18 @@ namespace Kohya_lora_trainer
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(475, 274);
+            this.label12.Location = new System.Drawing.Point(317, 183);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(128, 25);
+            this.label12.Size = new System.Drawing.Size(84, 15);
             this.label12.TabIndex = 33;
             this.label12.Text = "トークン保持数#";
             // 
             // nudNetworkAlpha
             // 
             this.nudNetworkAlpha.DecimalPlaces = 2;
-            this.nudNetworkAlpha.Location = new System.Drawing.Point(1017, 226);
+            this.nudNetworkAlpha.Location = new System.Drawing.Point(678, 151);
+            this.nudNetworkAlpha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nudNetworkAlpha.Maximum = new decimal(new int[] {
             1024,
             0,
@@ -302,7 +316,7 @@ namespace Kohya_lora_trainer
             0,
             131072});
             this.nudNetworkAlpha.Name = "nudNetworkAlpha";
-            this.nudNetworkAlpha.Size = new System.Drawing.Size(120, 31);
+            this.nudNetworkAlpha.Size = new System.Drawing.Size(80, 23);
             this.nudNetworkAlpha.TabIndex = 51;
             this.toolTip1.SetToolTip(this.nudNetworkAlpha, "dimの半分以下の値が望ましい\r\ndimに近い値では生成時に崩壊しやすい");
             this.nudNetworkAlpha.Value = new decimal(new int[] {
@@ -314,7 +328,8 @@ namespace Kohya_lora_trainer
             // 
             // nudNetworkDim
             // 
-            this.nudNetworkDim.Location = new System.Drawing.Point(607, 229);
+            this.nudNetworkDim.Location = new System.Drawing.Point(405, 153);
+            this.nudNetworkDim.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nudNetworkDim.Maximum = new decimal(new int[] {
             1024,
             0,
@@ -326,7 +341,7 @@ namespace Kohya_lora_trainer
             0,
             0});
             this.nudNetworkDim.Name = "nudNetworkDim";
-            this.nudNetworkDim.Size = new System.Drawing.Size(120, 31);
+            this.nudNetworkDim.Size = new System.Drawing.Size(80, 23);
             this.nudNetworkDim.TabIndex = 52;
             this.toolTip1.SetToolTip(this.nudNetworkDim, "上げると学習能力が上昇するが、速度低下と生成時の不安定化を招く");
             this.nudNetworkDim.Value = new decimal(new int[] {
@@ -343,7 +358,8 @@ namespace Kohya_lora_trainer
             0,
             0,
             0});
-            this.nudResolution.Location = new System.Drawing.Point(606, 186);
+            this.nudResolution.Location = new System.Drawing.Point(404, 124);
+            this.nudResolution.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nudResolution.Maximum = new decimal(new int[] {
             2048,
             0,
@@ -355,7 +371,7 @@ namespace Kohya_lora_trainer
             0,
             0});
             this.nudResolution.Name = "nudResolution";
-            this.nudResolution.Size = new System.Drawing.Size(120, 31);
+            this.nudResolution.Size = new System.Drawing.Size(80, 23);
             this.nudResolution.TabIndex = 54;
             this.toolTip1.SetToolTip(this.nudResolution, "SD1.Xが512、2.Xが768、XLが1024推奨\r\n解像度を上げると細部が若干改善することがある");
             this.nudResolution.Value = new decimal(new int[] {
@@ -367,21 +383,23 @@ namespace Kohya_lora_trainer
             // 
             // nudKeepTokens
             // 
-            this.nudKeepTokens.Location = new System.Drawing.Point(606, 272);
+            this.nudKeepTokens.Location = new System.Drawing.Point(404, 181);
+            this.nudKeepTokens.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nudKeepTokens.Maximum = new decimal(new int[] {
             128,
             0,
             0,
             0});
             this.nudKeepTokens.Name = "nudKeepTokens";
-            this.nudKeepTokens.Size = new System.Drawing.Size(120, 31);
+            this.nudKeepTokens.Size = new System.Drawing.Size(80, 23);
             this.nudKeepTokens.TabIndex = 55;
             this.toolTip1.SetToolTip(this.nudKeepTokens, "先頭nトークンをシャッフルの対象外にする。\r\n1トークン=カンマ区切り");
             this.nudKeepTokens.ValueChanged += new System.EventHandler(this.nudKeepTokens_ValueChanged);
             // 
             // nudBatchSize
             // 
-            this.nudBatchSize.Location = new System.Drawing.Point(1017, 185);
+            this.nudBatchSize.Location = new System.Drawing.Point(678, 123);
+            this.nudBatchSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nudBatchSize.Maximum = new decimal(new int[] {
             256,
             0,
@@ -393,7 +411,7 @@ namespace Kohya_lora_trainer
             0,
             0});
             this.nudBatchSize.Name = "nudBatchSize";
-            this.nudBatchSize.Size = new System.Drawing.Size(120, 31);
+            this.nudBatchSize.Size = new System.Drawing.Size(80, 23);
             this.nudBatchSize.TabIndex = 57;
             this.toolTip1.SetToolTip(this.nudBatchSize, "高batchでは学習効率が低下するので、LRかエポック数を多めにする");
             this.nudBatchSize.Value = new decimal(new int[] {
@@ -405,14 +423,15 @@ namespace Kohya_lora_trainer
             // 
             // nudWarmupSteps
             // 
-            this.nudWarmupSteps.Location = new System.Drawing.Point(606, 313);
+            this.nudWarmupSteps.Location = new System.Drawing.Point(404, 209);
+            this.nudWarmupSteps.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nudWarmupSteps.Maximum = new decimal(new int[] {
             50000,
             0,
             0,
             0});
             this.nudWarmupSteps.Name = "nudWarmupSteps";
-            this.nudWarmupSteps.Size = new System.Drawing.Size(120, 31);
+            this.nudWarmupSteps.Size = new System.Drawing.Size(80, 23);
             this.nudWarmupSteps.TabIndex = 62;
             this.toolTip1.SetToolTip(this.nudWarmupSteps, "nステップ数まで徐々にLRを上げる");
             this.nudWarmupSteps.Value = new decimal(new int[] {
@@ -429,18 +448,20 @@ namespace Kohya_lora_trainer
             this.cbxSDType.Items.AddRange(new object[] {
             "1.x/2.x",
             "XL"});
-            this.cbxSDType.Location = new System.Drawing.Point(166, 367);
+            this.cbxSDType.Location = new System.Drawing.Point(111, 245);
+            this.cbxSDType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxSDType.Name = "cbxSDType";
-            this.cbxSDType.Size = new System.Drawing.Size(176, 33);
+            this.cbxSDType.Size = new System.Drawing.Size(119, 23);
             this.cbxSDType.TabIndex = 85;
             this.toolTip1.SetToolTip(this.cbxSDType, "SDXLは要求スペックもXLサイズ\r\nVRAM12GB以上、メインメモリ32GB以上必要\r\nVRAM8GBでもかろうじて動く");
             this.cbxSDType.SelectedIndexChanged += new System.EventHandler(this.cbxSDType_SelectedIndexChanged);
             // 
             // tbxFileName
             // 
-            this.tbxFileName.Location = new System.Drawing.Point(167, 415);
+            this.tbxFileName.Location = new System.Drawing.Point(111, 277);
+            this.tbxFileName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxFileName.Name = "tbxFileName";
-            this.tbxFileName.Size = new System.Drawing.Size(474, 31);
+            this.tbxFileName.Size = new System.Drawing.Size(317, 23);
             this.tbxFileName.TabIndex = 38;
             this.toolTip1.SetToolTip(this.tbxFileName, "空白、マルチバイト文字(日本語など)は非推奨");
             this.tbxFileName.TextChanged += new System.EventHandler(this.tbxFileName_TextChanged);
@@ -453,23 +474,25 @@ namespace Kohya_lora_trainer
             "LoRA",
             "LyCORIS",
             "DyLoRA"});
-            this.cbxModuleType.Location = new System.Drawing.Point(1017, 312);
+            this.cbxModuleType.Location = new System.Drawing.Point(678, 208);
+            this.cbxModuleType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxModuleType.Name = "cbxModuleType";
-            this.cbxModuleType.Size = new System.Drawing.Size(120, 33);
+            this.cbxModuleType.Size = new System.Drawing.Size(81, 23);
             this.cbxModuleType.TabIndex = 6;
             this.toolTip1.SetToolTip(this.cbxModuleType, "LyCORISは品質面でのメリットなし");
             this.cbxModuleType.SelectedIndexChanged += new System.EventHandler(this.cbxModuleType_SelectedIndexChanged);
             // 
             // nudSaveEpoch
             // 
-            this.nudSaveEpoch.Location = new System.Drawing.Point(1017, 269);
+            this.nudSaveEpoch.Location = new System.Drawing.Point(678, 179);
+            this.nudSaveEpoch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nudSaveEpoch.Maximum = new decimal(new int[] {
             200000,
             0,
             0,
             0});
             this.nudSaveEpoch.Name = "nudSaveEpoch";
-            this.nudSaveEpoch.Size = new System.Drawing.Size(120, 31);
+            this.nudSaveEpoch.Size = new System.Drawing.Size(80, 23);
             this.nudSaveEpoch.TabIndex = 56;
             this.toolTip1.SetToolTip(this.nudSaveEpoch, "指定した間隔で成果物を書き出す\r\nエポックかステップのどちらを使用するかは\r\nepochs/stepsの設定に従う");
             this.nudSaveEpoch.ValueChanged += new System.EventHandler(this.nudSaveEpoch_ValueChanged);
@@ -477,18 +500,20 @@ namespace Kohya_lora_trainer
             // tbxRegImgPath
             // 
             this.tbxRegImgPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbxRegImgPath.Location = new System.Drawing.Point(813, 134);
+            this.tbxRegImgPath.Location = new System.Drawing.Point(542, 89);
+            this.tbxRegImgPath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxRegImgPath.Name = "tbxRegImgPath";
-            this.tbxRegImgPath.Size = new System.Drawing.Size(324, 29);
+            this.tbxRegImgPath.Size = new System.Drawing.Size(217, 22);
             this.tbxRegImgPath.TabIndex = 71;
             this.toolTip1.SetToolTip(this.tbxRegImgPath, "特定のものだけ\r\n出てくればいいなら不要");
             this.tbxRegImgPath.TextChanged += new System.EventHandler(this.tbxRegImgPath_TextChanged);
             // 
             // btnSavePreset
             // 
-            this.btnSavePreset.Location = new System.Drawing.Point(795, 639);
+            this.btnSavePreset.Location = new System.Drawing.Point(530, 426);
+            this.btnSavePreset.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSavePreset.Name = "btnSavePreset";
-            this.btnSavePreset.Size = new System.Drawing.Size(146, 46);
+            this.btnSavePreset.Size = new System.Drawing.Size(97, 31);
             this.btnSavePreset.TabIndex = 34;
             this.btnSavePreset.Text = "プリセットの保存";
             this.btnSavePreset.UseVisualStyleBackColor = true;
@@ -496,9 +521,10 @@ namespace Kohya_lora_trainer
             // 
             // btnLoadPreset
             // 
-            this.btnLoadPreset.Location = new System.Drawing.Point(629, 639);
+            this.btnLoadPreset.Location = new System.Drawing.Point(419, 426);
+            this.btnLoadPreset.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLoadPreset.Name = "btnLoadPreset";
-            this.btnLoadPreset.Size = new System.Drawing.Size(160, 46);
+            this.btnLoadPreset.Size = new System.Drawing.Size(107, 31);
             this.btnLoadPreset.TabIndex = 35;
             this.btnLoadPreset.Text = "プリセットの読込";
             this.btnLoadPreset.UseVisualStyleBackColor = true;
@@ -507,60 +533,67 @@ namespace Kohya_lora_trainer
             // lblResolution
             // 
             this.lblResolution.AutoSize = true;
-            this.lblResolution.Location = new System.Drawing.Point(526, 188);
+            this.lblResolution.Location = new System.Drawing.Point(351, 125);
+            this.lblResolution.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblResolution.Name = "lblResolution";
-            this.lblResolution.Size = new System.Drawing.Size(74, 25);
+            this.lblResolution.Size = new System.Drawing.Size(48, 15);
             this.lblResolution.TabIndex = 36;
             this.lblResolution.Text = "解像度*";
             // 
             // lblFileName
             // 
             this.lblFileName.AutoSize = true;
-            this.lblFileName.Location = new System.Drawing.Point(44, 418);
+            this.lblFileName.Location = new System.Drawing.Point(29, 279);
+            this.lblFileName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(117, 25);
+            this.lblFileName.Size = new System.Drawing.Size(77, 15);
             this.lblFileName.TabIndex = 39;
             this.lblFileName.Text = "出力ファイル名";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(798, 271);
+            this.label16.Location = new System.Drawing.Point(532, 181);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(213, 25);
+            this.label16.Size = new System.Drawing.Size(141, 15);
             this.label16.TabIndex = 42;
             this.label16.Text = "保存頻度(Epochs/Steps)#";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(909, 187);
+            this.label18.Location = new System.Drawing.Point(606, 125);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(102, 25);
+            this.label18.Size = new System.Drawing.Size(67, 15);
             this.label18.TabIndex = 44;
             this.label18.Text = "バッチサイズ*";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(449, 232);
+            this.label20.Location = new System.Drawing.Point(299, 155);
+            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(152, 25);
+            this.label20.Size = new System.Drawing.Size(100, 15);
             this.label20.TabIndex = 48;
             this.label20.Text = "ネットワーク次元数*";
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(862, 228);
+            this.label21.Location = new System.Drawing.Point(575, 152);
+            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(150, 25);
+            this.label21.Size = new System.Drawing.Size(98, 15);
             this.label21.TabIndex = 50;
             this.label21.Text = "ネットワークアルファ*";
             // 
             // nudEpochs
             // 
-            this.nudEpochs.Location = new System.Drawing.Point(162, 229);
+            this.nudEpochs.Location = new System.Drawing.Point(108, 153);
+            this.nudEpochs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.nudEpochs.Maximum = new decimal(new int[] {
             200000,
             0,
@@ -572,7 +605,7 @@ namespace Kohya_lora_trainer
             0,
             0});
             this.nudEpochs.Name = "nudEpochs";
-            this.nudEpochs.Size = new System.Drawing.Size(120, 31);
+            this.nudEpochs.Size = new System.Drawing.Size(80, 23);
             this.nudEpochs.TabIndex = 53;
             this.nudEpochs.Value = new decimal(new int[] {
             4,
@@ -584,35 +617,39 @@ namespace Kohya_lora_trainer
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(865, 510);
+            this.label1.Location = new System.Drawing.Point(551, 338);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 25);
+            this.label1.Size = new System.Drawing.Size(101, 15);
             this.label1.TabIndex = 60;
             this.label1.Text = "総ステップ数(目安):";
             // 
             // lblNumSteps
             // 
             this.lblNumSteps.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblNumSteps.Location = new System.Drawing.Point(1023, 507);
+            this.lblNumSteps.Location = new System.Drawing.Point(656, 336);
+            this.lblNumSteps.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNumSteps.Name = "lblNumSteps";
-            this.lblNumSteps.Size = new System.Drawing.Size(125, 25);
+            this.lblNumSteps.Size = new System.Drawing.Size(102, 17);
             this.lblNumSteps.TabIndex = 61;
             this.lblNumSteps.Text = "999,999,999";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(417, 318);
+            this.label9.Location = new System.Drawing.Point(278, 212);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(186, 25);
+            this.label9.Size = new System.Drawing.Size(121, 15);
             this.label9.TabIndex = 63;
             this.label9.Text = "ウォームアップステップ数#";
             // 
             // btnClearRegImagePath
             // 
-            this.btnClearRegImagePath.Location = new System.Drawing.Point(1061, 82);
+            this.btnClearRegImagePath.Location = new System.Drawing.Point(707, 55);
+            this.btnClearRegImagePath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnClearRegImagePath.Name = "btnClearRegImagePath";
-            this.btnClearRegImagePath.Size = new System.Drawing.Size(76, 45);
+            this.btnClearRegImagePath.Size = new System.Drawing.Size(51, 30);
             this.btnClearRegImagePath.TabIndex = 64;
             this.btnClearRegImagePath.Text = "クリア";
             this.btnClearRegImagePath.UseVisualStyleBackColor = true;
@@ -621,44 +658,49 @@ namespace Kohya_lora_trainer
             // lblNumStepsBatch1
             // 
             this.lblNumStepsBatch1.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblNumStepsBatch1.Location = new System.Drawing.Point(1023, 545);
+            this.lblNumStepsBatch1.Location = new System.Drawing.Point(656, 361);
+            this.lblNumStepsBatch1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNumStepsBatch1.Name = "lblNumStepsBatch1";
-            this.lblNumStepsBatch1.Size = new System.Drawing.Size(125, 25);
+            this.lblNumStepsBatch1.Size = new System.Drawing.Size(102, 17);
             this.lblNumStepsBatch1.TabIndex = 61;
             this.lblNumStepsBatch1.Text = "999,999,999";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(865, 545);
+            this.label5.Location = new System.Drawing.Point(551, 361);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(152, 25);
+            this.label5.Size = new System.Drawing.Size(102, 15);
             this.label5.TabIndex = 60;
             this.label5.Text = "batch1相当(目安):";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(176, 449);
+            this.label8.Location = new System.Drawing.Point(108, 310);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(307, 25);
+            this.label8.Size = new System.Drawing.Size(203, 15);
             this.label8.TabIndex = 65;
             this.label8.Text = "次の文字は使用できません /\\?:*<>|\"＆\'`\r\n";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(854, 427);
+            this.label11.Location = new System.Drawing.Point(569, 285);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(127, 25);
+            this.label11.Size = new System.Drawing.Size(83, 15);
             this.label11.TabIndex = 3;
             this.label11.Text = "出力先フォルダ*";
             // 
             // btnOutputPath
             // 
-            this.btnOutputPath.Location = new System.Drawing.Point(987, 415);
+            this.btnOutputPath.Location = new System.Drawing.Point(658, 277);
+            this.btnOutputPath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnOutputPath.Name = "btnOutputPath";
-            this.btnOutputPath.Size = new System.Drawing.Size(159, 44);
+            this.btnOutputPath.Size = new System.Drawing.Size(106, 29);
             this.btnOutputPath.TabIndex = 66;
             this.btnOutputPath.Text = "選択";
             this.btnOutputPath.UseVisualStyleBackColor = true;
@@ -666,9 +708,10 @@ namespace Kohya_lora_trainer
             // 
             // btnCustomScriptPath
             // 
-            this.btnCustomScriptPath.Location = new System.Drawing.Point(971, 13);
+            this.btnCustomScriptPath.Location = new System.Drawing.Point(647, 9);
+            this.btnCustomScriptPath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCustomScriptPath.Name = "btnCustomScriptPath";
-            this.btnCustomScriptPath.Size = new System.Drawing.Size(166, 37);
+            this.btnCustomScriptPath.Size = new System.Drawing.Size(111, 25);
             this.btnCustomScriptPath.TabIndex = 67;
             this.btnCustomScriptPath.Text = "選択";
             this.btnCustomScriptPath.UseVisualStyleBackColor = true;
@@ -678,17 +721,19 @@ namespace Kohya_lora_trainer
             // 
             this.lblScriptPathDesc.AutoSize = true;
             this.lblScriptPathDesc.ForeColor = System.Drawing.Color.Black;
-            this.lblScriptPathDesc.Location = new System.Drawing.Point(804, 19);
+            this.lblScriptPathDesc.Location = new System.Drawing.Point(536, 13);
+            this.lblScriptPathDesc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblScriptPathDesc.Name = "lblScriptPathDesc";
-            this.lblScriptPathDesc.Size = new System.Drawing.Size(161, 25);
+            this.lblScriptPathDesc.Size = new System.Drawing.Size(106, 15);
             this.lblScriptPathDesc.TabIndex = 68;
             this.lblScriptPathDesc.Text = "sd-scripts場所選択";
             // 
             // btnUtilities
             // 
-            this.btnUtilities.Location = new System.Drawing.Point(485, 639);
+            this.btnUtilities.Location = new System.Drawing.Point(323, 426);
+            this.btnUtilities.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnUtilities.Name = "btnUtilities";
-            this.btnUtilities.Size = new System.Drawing.Size(117, 46);
+            this.btnUtilities.Size = new System.Drawing.Size(78, 31);
             this.btnUtilities.TabIndex = 69;
             this.btnUtilities.Text = "ユーティリティ";
             this.btnUtilities.UseVisualStyleBackColor = true;
@@ -697,44 +742,49 @@ namespace Kohya_lora_trainer
             // tbxModelPath
             // 
             this.tbxModelPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbxModelPath.Location = new System.Drawing.Point(24, 135);
+            this.tbxModelPath.Location = new System.Drawing.Point(16, 90);
+            this.tbxModelPath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxModelPath.Name = "tbxModelPath";
-            this.tbxModelPath.Size = new System.Drawing.Size(318, 29);
+            this.tbxModelPath.Size = new System.Drawing.Size(213, 22);
             this.tbxModelPath.TabIndex = 71;
             this.tbxModelPath.TextChanged += new System.EventHandler(this.tbxModelPath_TextChanged);
             // 
             // tbxImagePath
             // 
             this.tbxImagePath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbxImagePath.Location = new System.Drawing.Point(414, 134);
+            this.tbxImagePath.Location = new System.Drawing.Point(276, 89);
+            this.tbxImagePath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxImagePath.Name = "tbxImagePath";
-            this.tbxImagePath.Size = new System.Drawing.Size(312, 29);
+            this.tbxImagePath.Size = new System.Drawing.Size(209, 22);
             this.tbxImagePath.TabIndex = 71;
             this.tbxImagePath.TextChanged += new System.EventHandler(this.tbxImagePath_TextChanged);
             // 
             // tbxOutputPath
             // 
             this.tbxOutputPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbxOutputPath.Location = new System.Drawing.Point(820, 465);
+            this.tbxOutputPath.Location = new System.Drawing.Point(547, 310);
+            this.tbxOutputPath.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tbxOutputPath.Name = "tbxOutputPath";
-            this.tbxOutputPath.Size = new System.Drawing.Size(328, 29);
+            this.tbxOutputPath.Size = new System.Drawing.Size(220, 22);
             this.tbxOutputPath.TabIndex = 71;
             this.tbxOutputPath.TextChanged += new System.EventHandler(this.tbxOutputPath_TextChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(873, 315);
+            this.label6.Location = new System.Drawing.Point(582, 210);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(138, 25);
+            this.label6.Size = new System.Drawing.Size(91, 15);
             this.label6.TabIndex = 72;
             this.label6.Text = "モジュールの種類*";
             // 
             // btnBlockWeight
             // 
-            this.btnBlockWeight.Location = new System.Drawing.Point(29, 646);
+            this.btnBlockWeight.Location = new System.Drawing.Point(19, 431);
+            this.btnBlockWeight.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBlockWeight.Name = "btnBlockWeight";
-            this.btnBlockWeight.Size = new System.Drawing.Size(112, 42);
+            this.btnBlockWeight.Size = new System.Drawing.Size(75, 28);
             this.btnBlockWeight.TabIndex = 75;
             this.btnBlockWeight.Text = "層別学習率";
             this.btnBlockWeight.UseVisualStyleBackColor = true;
@@ -742,9 +792,10 @@ namespace Kohya_lora_trainer
             // 
             // btnBlockDim
             // 
-            this.btnBlockDim.Location = new System.Drawing.Point(147, 647);
+            this.btnBlockDim.Location = new System.Drawing.Point(98, 431);
+            this.btnBlockDim.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBlockDim.Name = "btnBlockDim";
-            this.btnBlockDim.Size = new System.Drawing.Size(113, 41);
+            this.btnBlockDim.Size = new System.Drawing.Size(75, 27);
             this.btnBlockDim.TabIndex = 76;
             this.btnBlockDim.Text = "層別dim";
             this.btnBlockDim.UseVisualStyleBackColor = true;
@@ -755,9 +806,11 @@ namespace Kohya_lora_trainer
             this.groupBox1.Controls.Add(this.rbtShutdown);
             this.groupBox1.Controls.Add(this.rbtBenckmark);
             this.groupBox1.Controls.Add(this.rbtDoNothing);
-            this.groupBox1.Location = new System.Drawing.Point(29, 507);
+            this.groupBox1.Location = new System.Drawing.Point(19, 338);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(460, 68);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(307, 45);
             this.groupBox1.TabIndex = 79;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "学習終了後の動作";
@@ -765,9 +818,10 @@ namespace Kohya_lora_trainer
             // rbtShutdown
             // 
             this.rbtShutdown.AutoSize = true;
-            this.rbtShutdown.Location = new System.Drawing.Point(318, 27);
+            this.rbtShutdown.Location = new System.Drawing.Point(212, 18);
+            this.rbtShutdown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rbtShutdown.Name = "rbtShutdown";
-            this.rbtShutdown.Size = new System.Drawing.Size(126, 29);
+            this.rbtShutdown.Size = new System.Drawing.Size(86, 19);
             this.rbtShutdown.TabIndex = 2;
             this.rbtShutdown.Text = "シャットダウン";
             this.rbtShutdown.UseVisualStyleBackColor = true;
@@ -775,9 +829,10 @@ namespace Kohya_lora_trainer
             // rbtBenckmark
             // 
             this.rbtBenckmark.AutoSize = true;
-            this.rbtBenckmark.Location = new System.Drawing.Point(132, 28);
+            this.rbtBenckmark.Location = new System.Drawing.Point(88, 19);
+            this.rbtBenckmark.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rbtBenckmark.Name = "rbtBenckmark";
-            this.rbtBenckmark.Size = new System.Drawing.Size(160, 29);
+            this.rbtBenckmark.Size = new System.Drawing.Size(107, 19);
             this.rbtBenckmark.TabIndex = 1;
             this.rbtBenckmark.Text = "経過時間の表示";
             this.rbtBenckmark.UseVisualStyleBackColor = true;
@@ -786,9 +841,10 @@ namespace Kohya_lora_trainer
             // 
             this.rbtDoNothing.AutoSize = true;
             this.rbtDoNothing.Checked = true;
-            this.rbtDoNothing.Location = new System.Drawing.Point(20, 29);
+            this.rbtDoNothing.Location = new System.Drawing.Point(13, 19);
+            this.rbtDoNothing.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rbtDoNothing.Name = "rbtDoNothing";
-            this.rbtDoNothing.Size = new System.Drawing.Size(68, 29);
+            this.rbtDoNothing.Size = new System.Drawing.Size(45, 19);
             this.rbtDoNothing.TabIndex = 0;
             this.rbtDoNothing.TabStop = true;
             this.rbtDoNothing.Text = "無し";
@@ -796,9 +852,10 @@ namespace Kohya_lora_trainer
             // 
             // btnBatchProcess
             // 
-            this.btnBatchProcess.Location = new System.Drawing.Point(148, 597);
+            this.btnBatchProcess.Location = new System.Drawing.Point(99, 398);
+            this.btnBatchProcess.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBatchProcess.Name = "btnBatchProcess";
-            this.btnBatchProcess.Size = new System.Drawing.Size(112, 41);
+            this.btnBatchProcess.Size = new System.Drawing.Size(75, 27);
             this.btnBatchProcess.TabIndex = 80;
             this.btnBatchProcess.Text = "バッチ処理";
             this.btnBatchProcess.UseVisualStyleBackColor = true;
@@ -806,9 +863,10 @@ namespace Kohya_lora_trainer
             // 
             // btnInstaller
             // 
-            this.btnInstaller.Location = new System.Drawing.Point(538, 13);
+            this.btnInstaller.Location = new System.Drawing.Point(359, 9);
+            this.btnInstaller.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnInstaller.Name = "btnInstaller";
-            this.btnInstaller.Size = new System.Drawing.Size(189, 42);
+            this.btnInstaller.Size = new System.Drawing.Size(126, 28);
             this.btnInstaller.TabIndex = 82;
             this.btnInstaller.Text = "簡易インストーラー";
             this.btnInstaller.UseVisualStyleBackColor = true;
@@ -816,9 +874,10 @@ namespace Kohya_lora_trainer
             // 
             // btnGenerateCommands
             // 
-            this.btnGenerateCommands.Location = new System.Drawing.Point(956, 586);
+            this.btnGenerateCommands.Location = new System.Drawing.Point(637, 391);
+            this.btnGenerateCommands.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnGenerateCommands.Name = "btnGenerateCommands";
-            this.btnGenerateCommands.Size = new System.Drawing.Size(192, 38);
+            this.btnGenerateCommands.Size = new System.Drawing.Size(128, 25);
             this.btnGenerateCommands.TabIndex = 83;
             this.btnGenerateCommands.Text = "コマンドの生成とコピー";
             this.btnGenerateCommands.UseVisualStyleBackColor = true;
@@ -826,9 +885,10 @@ namespace Kohya_lora_trainer
             // 
             // btnLeco
             // 
-            this.btnLeco.Location = new System.Drawing.Point(347, 639);
+            this.btnLeco.Location = new System.Drawing.Point(231, 426);
+            this.btnLeco.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLeco.Name = "btnLeco";
-            this.btnLeco.Size = new System.Drawing.Size(126, 46);
+            this.btnLeco.Size = new System.Drawing.Size(84, 31);
             this.btnLeco.TabIndex = 84;
             this.btnLeco.Text = "LECO";
             this.btnLeco.UseVisualStyleBackColor = true;
@@ -837,9 +897,10 @@ namespace Kohya_lora_trainer
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(40, 370);
+            this.label13.Location = new System.Drawing.Point(27, 247);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(116, 25);
+            this.label13.Size = new System.Drawing.Size(75, 15);
             this.label13.TabIndex = 14;
             this.label13.Text = "SDのバージョン";
             // 
@@ -850,17 +911,18 @@ namespace Kohya_lora_trainer
             this.cbxEpochOrStep.Items.AddRange(new object[] {
             "エポック",
             "ステップ"});
-            this.cbxEpochOrStep.Location = new System.Drawing.Point(288, 228);
+            this.cbxEpochOrStep.Location = new System.Drawing.Point(192, 152);
+            this.cbxEpochOrStep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxEpochOrStep.Name = "cbxEpochOrStep";
-            this.cbxEpochOrStep.Size = new System.Drawing.Size(121, 33);
+            this.cbxEpochOrStep.Size = new System.Drawing.Size(82, 23);
             this.cbxEpochOrStep.TabIndex = 86;
             this.cbxEpochOrStep.SelectedIndexChanged += new System.EventHandler(this.cbxEpochOrStep_SelectedIndexChanged);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1172, 714);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(781, 476);
             this.Controls.Add(this.cbxEpochOrStep);
             this.Controls.Add(this.cbxSDType);
             this.Controls.Add(this.btnLeco);
@@ -925,7 +987,7 @@ namespace Kohya_lora_trainer
             this.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
