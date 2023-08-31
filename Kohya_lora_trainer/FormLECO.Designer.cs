@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label28 = new System.Windows.Forms.Label();
             this.nudBatchSize = new System.Windows.Forms.NumericUpDown();
             this.nudResolution = new System.Windows.Forms.NumericUpDown();
             this.label23 = new System.Windows.Forms.Label();
@@ -94,7 +95,6 @@
             this.btnTrainLECO = new System.Windows.Forms.Button();
             this.btnUpdateLECO = new System.Windows.Forms.Button();
             this.btnInstallLECO = new System.Windows.Forms.Button();
-            this.label28 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).BeginInit();
@@ -147,6 +147,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "prompts生成";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(29, 24);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(397, 25);
+            this.label28.TabIndex = 6;
+            this.label28.Text = "※改行はお控えください。LECOで読み込めなくなります";
             // 
             // nudBatchSize
             // 
@@ -889,19 +898,10 @@
             this.btnInstallLECO.UseVisualStyleBackColor = true;
             this.btnInstallLECO.Click += new System.EventHandler(this.btnInstallLECO_Click);
             // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(29, 24);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(397, 25);
-            this.label28.TabIndex = 6;
-            this.label28.Text = "※改行はお控えください。LECOで読み込めなくなります";
-            // 
             // FormLECO
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(876, 869);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));

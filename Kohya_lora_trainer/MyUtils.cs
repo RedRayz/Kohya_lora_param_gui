@@ -220,7 +220,7 @@ namespace Kohya_lora_trainer
 
             if (TrainParams.Current.SaveEveryNEpochs > 0)
             {
-                sb.Append(" --save_every_n_epochs ").Append(TrainParams.Current.SaveEveryNEpochs);
+                sb.Append(TrainParams.Current.IsEpoch ? " --save_every_n_epochs " : " --save_every_n_steps ").Append(TrainParams.Current.SaveEveryNEpochs);
             }
 
             sb.Append(" --optimizer_type \"").Append(TrainParams.Current.OptimizerType.ToString()).Append("\"");
