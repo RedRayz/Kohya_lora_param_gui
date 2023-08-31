@@ -110,60 +110,68 @@ namespace Kohya_lora_trainer
 
         private void btnUpdateRepo_Click(object sender, EventArgs e)
         {
-            string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.CurrentSdScriptsPath : Form1.ScriptPath + "\\";
-            if (!Directory.Exists(path + "venv"))
+            var res = MessageBox.Show("sd-scriptsの更新をします。よろしいですか。", "確認", MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes)
             {
-                MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.CurrentSdScriptsPath : Form1.ScriptPath + "\\";
+                if (!Directory.Exists(path + "venv"))
+                {
+                    MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                StringBuilder sb = new StringBuilder();
+                sb.Append("/c cd ");
+                if (!string.IsNullOrEmpty(Form1.ScriptPath))
+                {
+                    sb.Append("/d ").Append(Form1.ScriptPath);
+                }
+                else
+                {
+                    sb.Append(Constants.CurrentSdScriptsPath);
+                }
+
+                sb.Append(" && git pull && .\\venv\\Scripts\\activate && pip install --use-pep517 --upgrade -r requirements.txt");
+
+                ProcessStartInfo ps = new ProcessStartInfo();
+                ps.FileName = "cmd";
+                ps.Arguments = sb.ToString();
+
+                Process.Start(ps);
             }
-
-            StringBuilder sb = new StringBuilder();
-            sb.Append("/c cd ");
-            if (!string.IsNullOrEmpty(Form1.ScriptPath))
-            {
-                sb.Append("/d ").Append(Form1.ScriptPath);
-            }
-            else
-            {
-                sb.Append(Constants.CurrentSdScriptsPath);
-            }
-
-            sb.Append(" && git pull && .\\venv\\Scripts\\activate && pip install --use-pep517 --upgrade -r requirements.txt");
-
-            ProcessStartInfo ps = new ProcessStartInfo();
-            ps.FileName = "cmd";
-            ps.Arguments = sb.ToString();
-
-            Process.Start(ps);
         }
 
         private void btnInstallExtension_Click(object sender, EventArgs e)
         {
-            string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.CurrentSdScriptsPath : Form1.ScriptPath + "\\";
-            if (!Directory.Exists(path + "venv"))
+            var res = MessageBox.Show("LyCORISなどのインストールをします。よろしいですか。", "確認", MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes)
             {
-                MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.CurrentSdScriptsPath : Form1.ScriptPath + "\\";
+                if (!Directory.Exists(path + "venv"))
+                {
+                    MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                StringBuilder sb = new StringBuilder();
+                sb.Append("/k cd ");
+                if (!string.IsNullOrEmpty(Form1.ScriptPath))
+                {
+                    sb.Append("/d ").Append(Form1.ScriptPath);
+                }
+                else
+                {
+                    sb.Append(Constants.CurrentSdScriptsPath);
+                }
+
+                sb.Append(" && .\\venv\\Scripts\\activate && pip install -U prodigyopt dadaptation lion-pytorch lycoris_lora");
+
+                ProcessStartInfo ps = new ProcessStartInfo();
+                ps.FileName = "cmd";
+                ps.Arguments = sb.ToString();
+
+                Process.Start(ps);
             }
-
-            StringBuilder sb = new StringBuilder();
-            sb.Append("/k cd ");
-            if (!string.IsNullOrEmpty(Form1.ScriptPath))
-            {
-                sb.Append("/d ").Append(Form1.ScriptPath);
-            }
-            else
-            {
-                sb.Append(Constants.CurrentSdScriptsPath);
-            }
-
-            sb.Append(" && .\\venv\\Scripts\\activate && pip install -U prodigyopt dadaptation lion-pytorch lycoris_lora");
-
-            ProcessStartInfo ps = new ProcessStartInfo();
-            ps.FileName = "cmd";
-            ps.Arguments = sb.ToString();
-
-            Process.Start(ps);
         }
 
         private void btnRunTagger_Click(object sender, EventArgs e)
