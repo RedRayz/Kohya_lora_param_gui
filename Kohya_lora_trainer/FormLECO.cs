@@ -154,8 +154,6 @@ namespace Kohya_lora_trainer
 
         private void btnSavePrompts_Click(object sender, EventArgs e)
         {
-
-
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.FileName = "prompts.yaml";
             sfd.Filter = "YAML(*.yaml)|*.yaml";
@@ -211,8 +209,6 @@ namespace Kohya_lora_trainer
 
                     Process.Start(ps);
                 }
-
-
             }
         }
 
@@ -257,8 +253,6 @@ namespace Kohya_lora_trainer
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("/c cd ").Append(Constants.LecoPath);
-
-
                 sb.Append(" && git pull && .\\venv\\Scripts\\activate && pip install --use-pep517 --upgrade -r requirements.txt");
 
                 ProcessStartInfo ps = new ProcessStartInfo();
