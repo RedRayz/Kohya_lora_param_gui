@@ -426,7 +426,6 @@ namespace Kohya_lora_trainer
             cbxNoProx.Checked = TrainParams.Current.NoProx;
             tbxComment.Text = TrainParams.Current.Comment;
 
-            cbxUseWarmupInit.Checked = TrainParams.Current.UseBiasCorrection;
             cbxUseSafeguard.Checked = TrainParams.Current.SafeguardWarmup;
             cbxUseBiasCorrection.Checked = TrainParams.Current.UseBiasCorrection;
 
