@@ -299,11 +299,12 @@
             // 
             // btnRunTagger
             // 
-            this.btnRunTagger.Location = new System.Drawing.Point(663, 323);
+            this.btnRunTagger.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnRunTagger.Location = new System.Drawing.Point(639, 323);
             this.btnRunTagger.Name = "btnRunTagger";
-            this.btnRunTagger.Size = new System.Drawing.Size(112, 43);
+            this.btnRunTagger.Size = new System.Drawing.Size(136, 46);
             this.btnRunTagger.TabIndex = 7;
-            this.btnRunTagger.Text = "尋問";
+            this.btnRunTagger.Text = "推論開始";
             this.btnRunTagger.UseVisualStyleBackColor = true;
             this.btnRunTagger.Click += new System.EventHandler(this.btnRunTagger_Click);
             // 
