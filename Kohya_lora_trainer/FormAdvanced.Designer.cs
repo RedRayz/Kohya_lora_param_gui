@@ -53,7 +53,7 @@ namespace Kohya_lora_trainer
             this.cbxUseWarmupInit = new System.Windows.Forms.CheckBox();
             this.cbxUseGradient = new System.Windows.Forms.CheckBox();
             this.nudNoiseOffset = new System.Windows.Forms.NumericUpDown();
-            this.nudDropout = new System.Windows.Forms.NumericUpDown();
+            this.nudCaptionDropout = new System.Windows.Forms.NumericUpDown();
             this.cbxUseParametarization = new System.Windows.Forms.CheckBox();
             this.cbxDontSaveMetadata = new System.Windows.Forms.CheckBox();
             this.nudDataLoaderThreads = new System.Windows.Forms.NumericUpDown();
@@ -68,6 +68,7 @@ namespace Kohya_lora_trainer
             this.nudConvDim = new System.Windows.Forms.NumericUpDown();
             this.cbxCacheLatentsToDisk = new System.Windows.Forms.CheckBox();
             this.cbxCropRandomly = new System.Windows.Forms.CheckBox();
+            this.cbxNoHalfVae = new System.Windows.Forms.CheckBox();
             this.cbxFlipAug = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -127,7 +128,6 @@ namespace Kohya_lora_trainer
             this.label28 = new System.Windows.Forms.Label();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cbxNoHalfVae = new System.Windows.Forms.CheckBox();
             this.cbxCacheTextencoderToDisk = new System.Windows.Forms.CheckBox();
             this.cbxUseFastLoading = new System.Windows.Forms.CheckBox();
             this.label29 = new System.Windows.Forms.Label();
@@ -169,7 +169,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLRSchedulerCycle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoiseOffset)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDropout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCaptionDropout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDataLoaderThreads)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudClipSkip)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).BeginInit();
@@ -453,24 +453,24 @@ namespace Kohya_lora_trainer
             this.nudNoiseOffset.TabIndex = 44;
             this.toolTip1.SetToolTip(this.nudNoiseOffset, "暗い部分の改善効果があるかも");
             // 
-            // nudDropout
+            // nudCaptionDropout
             // 
-            this.nudDropout.DecimalPlaces = 2;
-            this.nudDropout.Increment = new decimal(new int[] {
+            this.nudCaptionDropout.DecimalPlaces = 2;
+            this.nudCaptionDropout.Increment = new decimal(new int[] {
             1,
             0,
             0,
             131072});
-            this.nudDropout.Location = new System.Drawing.Point(717, 104);
-            this.nudDropout.Maximum = new decimal(new int[] {
+            this.nudCaptionDropout.Location = new System.Drawing.Point(717, 104);
+            this.nudCaptionDropout.Maximum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.nudDropout.Name = "nudDropout";
-            this.nudDropout.Size = new System.Drawing.Size(120, 31);
-            this.nudDropout.TabIndex = 24;
-            this.toolTip1.SetToolTip(this.nudDropout, "一定確率でキャプションを切り落とす");
+            this.nudCaptionDropout.Name = "nudCaptionDropout";
+            this.nudCaptionDropout.Size = new System.Drawing.Size(120, 31);
+            this.nudCaptionDropout.TabIndex = 24;
+            this.toolTip1.SetToolTip(this.nudCaptionDropout, "一定確率でキャプションを切り落とす");
             // 
             // cbxUseParametarization
             // 
@@ -681,6 +681,17 @@ namespace Kohya_lora_trainer
             this.cbxCropRandomly.Text = "画像をランダムにクロップ";
             this.toolTip1.SetToolTip(this.cbxCropRandomly, "latentキャッシュとの併用不可");
             this.cbxCropRandomly.UseVisualStyleBackColor = true;
+            // 
+            // cbxNoHalfVae
+            // 
+            this.cbxNoHalfVae.AutoSize = true;
+            this.cbxNoHalfVae.Location = new System.Drawing.Point(15, 30);
+            this.cbxNoHalfVae.Name = "cbxNoHalfVae";
+            this.cbxNoHalfVae.Size = new System.Drawing.Size(322, 29);
+            this.cbxNoHalfVae.TabIndex = 18;
+            this.cbxNoHalfVae.Text = "VAEを32ビットで使用(SDXLでほぼ必須)";
+            this.toolTip1.SetToolTip(this.cbxNoHalfVae, "no-half VAE\r\nVAEのNaN演算をなくす");
+            this.cbxNoHalfVae.UseVisualStyleBackColor = true;
             // 
             // cbxFlipAug
             // 
@@ -1128,7 +1139,7 @@ namespace Kohya_lora_trainer
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(930, 392);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ページ1";
@@ -1235,7 +1246,7 @@ namespace Kohya_lora_trainer
             this.tabPage4.Controls.Add(this.nudNetworkDropout);
             this.tabPage4.Controls.Add(this.nudModuleDropout);
             this.tabPage4.Controls.Add(this.nudRankDropout);
-            this.tabPage4.Controls.Add(this.nudDropout);
+            this.tabPage4.Controls.Add(this.nudCaptionDropout);
             this.tabPage4.Controls.Add(this.cbxUseV2);
             this.tabPage4.Controls.Add(this.label26);
             this.tabPage4.Controls.Add(this.cbxUseParametarization);
@@ -1428,17 +1439,6 @@ namespace Kohya_lora_trainer
             this.groupBox1.TabIndex = 25;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SDXL関連";
-            // 
-            // cbxNoHalfVae
-            // 
-            this.cbxNoHalfVae.AutoSize = true;
-            this.cbxNoHalfVae.Location = new System.Drawing.Point(15, 30);
-            this.cbxNoHalfVae.Name = "cbxNoHalfVae";
-            this.cbxNoHalfVae.Size = new System.Drawing.Size(322, 29);
-            this.cbxNoHalfVae.TabIndex = 18;
-            this.cbxNoHalfVae.Text = "VAEを32ビットで使用(SDXLでほぼ必須)";
-            this.toolTip1.SetToolTip(this.cbxNoHalfVae, "no-half VAE\r\nVAEのNaN演算をなくす");
-            this.cbxNoHalfVae.UseVisualStyleBackColor = true;
             // 
             // cbxCacheTextencoderToDisk
             // 
@@ -1723,7 +1723,7 @@ namespace Kohya_lora_trainer
             this.tabPage2.Controls.Add(this.label16);
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(930, 392);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "パス";
@@ -1862,7 +1862,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)(this.tbrCpuThreads)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLRSchedulerCycle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoiseOffset)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDropout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCaptionDropout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDataLoaderThreads)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudClipSkip)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSeed)).EndInit();
@@ -2016,7 +2016,7 @@ namespace Kohya_lora_trainer
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.NumericUpDown nudModuleDropout;
         private System.Windows.Forms.NumericUpDown nudRankDropout;
-        private System.Windows.Forms.NumericUpDown nudDropout;
+        private System.Windows.Forms.NumericUpDown nudCaptionDropout;
         private System.Windows.Forms.CheckBox cbxScaleVPredLoss;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.NumericUpDown nudMaxNormReg;
