@@ -326,7 +326,8 @@ namespace Kohya_lora_trainer
             TrainParams.Current.DataLoaderThreads = (int)nudDataLoaderThreads.Value;
             TrainParams.Current.MaxTokens = (int)nudMaxTokens.Value;
 
-            TrainParams.Current.NetworkDropout = nudDropout.Value;
+            TrainParams.Current.CaptionDropout = nudCaptionDropout.Value;
+            TrainParams.Current.NetworkDropout = nudNetworkDropout.Value;
             TrainParams.Current.RankDropout = nudRankDropout.Value;
             TrainParams.Current.ModuleDropout = nudModuleDropout.Value;
             TrainParams.Current.ScaleVPredLoss = cbxScaleVPredLoss.Checked;
@@ -416,7 +417,7 @@ namespace Kohya_lora_trainer
             tbxBetas2.Text = TrainParams.Current.Betas2.ToString("g");
             tbxMomentum.Text = TrainParams.Current.DAdaptMomentum.ToString("g");
 
-            nudDropout.Value = TrainParams.Current.NetworkDropout;
+            nudCaptionDropout.Value = TrainParams.Current.NetworkDropout;
             nudRankDropout.Value = TrainParams.Current.RankDropout;
             nudModuleDropout.Value = TrainParams.Current.ModuleDropout;
             cbxScaleVPredLoss.Checked = TrainParams.Current.ScaleVPredLoss;
