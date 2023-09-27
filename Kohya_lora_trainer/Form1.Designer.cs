@@ -214,7 +214,7 @@ namespace Kohya_lora_trainer
             this.cbxOptimizer.Name = "cbxOptimizer";
             this.cbxOptimizer.Size = new System.Drawing.Size(204, 33);
             this.cbxOptimizer.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.cbxOptimizer, "AdamWとDAdaptLionがおすすめ\r\nDADaptation系はCPUボトルネックが大きい傾向\r\nPaged系はdevブランチに切り替え後bitsandb" +
+            this.toolTip1.SetToolTip(this.cbxOptimizer, "AdamWとDAdaptLionがおすすめ\r\nDAdaptation系はCPUボトルネックが大きい傾向\r\nPaged系はdevブランチに切り替え後bitsandb" +
         "ytesの更新が必要");
             this.cbxOptimizer.SelectedIndexChanged += new System.EventHandler(this.cbxOptimizer_SelectedIndexChanged);
             // 

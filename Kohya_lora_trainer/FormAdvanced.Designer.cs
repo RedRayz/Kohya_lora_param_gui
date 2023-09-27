@@ -491,7 +491,7 @@ namespace Kohya_lora_trainer
             this.cbxDontSaveMetadata.Size = new System.Drawing.Size(198, 29);
             this.cbxDontSaveMetadata.TabIndex = 11;
             this.cbxDontSaveMetadata.Text = "メタデータを保存しない";
-            this.toolTip1.SetToolTip(this.cbxDontSaveMetadata, "1111のiボタンで出る学習情報を書き込まない");
+            this.toolTip1.SetToolTip(this.cbxDontSaveMetadata, "1111のiボタンで出る学習情報に最小限の情報のみ書き込む\r\nnetwork_dim/alphaやSDバージョンなどのみでデータセット関連は書き込まない");
             this.cbxDontSaveMetadata.UseVisualStyleBackColor = true;
             // 
             // nudDataLoaderThreads
@@ -701,6 +701,7 @@ namespace Kohya_lora_trainer
             this.cbxFlipAug.Size = new System.Drawing.Size(160, 29);
             this.cbxFlipAug.TabIndex = 8;
             this.cbxFlipAug.Text = "反転画像を使用";
+            this.toolTip1.SetToolTip(this.cbxFlipAug, "反転画像でデータセットを水増し");
             this.cbxFlipAug.UseVisualStyleBackColor = true;
             // 
             // label6
