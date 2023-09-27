@@ -269,7 +269,7 @@ namespace Kohya_lora_trainer
             // cbxShuffle
             // 
             this.cbxShuffle.AutoSize = true;
-            this.cbxShuffle.Location = new System.Drawing.Point(93, 270);
+            this.cbxShuffle.Location = new System.Drawing.Point(167, 274);
             this.cbxShuffle.Name = "cbxShuffle";
             this.cbxShuffle.Size = new System.Drawing.Size(194, 29);
             this.cbxShuffle.TabIndex = 30;

@@ -629,7 +629,7 @@ namespace Kohya_lora_trainer
             this.nudMaxTokens.Name = "nudMaxTokens";
             this.nudMaxTokens.Size = new System.Drawing.Size(120, 31);
             this.nudMaxTokens.TabIndex = 17;
-            this.toolTip1.SetToolTip(this.nudMaxTokens, "ここのトークンはおそらくCLIPのトークン数");
+            this.toolTip1.SetToolTip(this.nudMaxTokens, "コンマ区切りではなくCLIPのトークン数");
             this.nudMaxTokens.Value = new decimal(new int[] {
             75,
             0,
