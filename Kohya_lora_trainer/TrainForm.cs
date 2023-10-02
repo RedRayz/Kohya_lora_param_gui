@@ -120,7 +120,7 @@ namespace Kohya_lora_trainer
                     {
                         //Killしても閉じない・・・Win11の仕様変更?
                         Console.WriteLine("Try kill terminal: " + process.ProcessName);
-                        process.Kill();
+                        process.Kill(true);
                         process.Dispose();
                     }
 
