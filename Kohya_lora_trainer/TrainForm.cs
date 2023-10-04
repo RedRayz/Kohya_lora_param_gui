@@ -55,7 +55,7 @@ namespace Kohya_lora_trainer
             if (BatchProcess.IsRunning)
                 btnStop.Text = "バッチ処理の中止";
 
-            
+
             StringBuilder sbCmd = new StringBuilder();
 
             if (BenchMarkMode || ShutdownAfterComplete || BatchProcess.IsRunning)
@@ -112,13 +112,13 @@ namespace Kohya_lora_trainer
         {
             if (process != null && !process.HasExited)
             {
-                DialogResult result = MessageBox.Show("学習中に閉じると学習は中止されます。よろしいですか。\r\nなお、Windowsのバージョンによっては処理が終了するまで閉じません。\r\nその場合は×ボタンで閉じてください。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("学習中のデータは失われます。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     //メッセージボックスが出ている間に閉じたかもしれないので再度確認
                     if (process != null && !process.HasExited)
                     {
-                        //Killしても閉じない・・・Win11の仕様変更?
+                        //Killしても閉じない・・・が.NET6.0にして解決
                         Console.WriteLine("Try kill terminal: " + process.ProcessName);
                         process.Kill(true);
                         process.Dispose();
