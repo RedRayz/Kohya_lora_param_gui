@@ -64,8 +64,6 @@ Kohya_lora_trainer.exeをダブルクリックする。ショートカット作�
 ## 推奨動作環境
 Windows 10/11 21H2以降
 
-.NET Framework 4.7.2(通常は元から入ってるはずです)
-
 ## SDXL学習について
 初期状態ではsd-scriptsリポジトリがmainブランチになっているため、そのままではSDXLの学習はできません。
 
