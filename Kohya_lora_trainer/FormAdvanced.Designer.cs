@@ -385,7 +385,7 @@ namespace Kohya_lora_trainer
             // 
             cbxAlgoType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxAlgoType.FormattingEnabled = true;
-            cbxAlgoType.Items.AddRange(new object[] { "lora", "loha", "ia3", "lokr" });
+            cbxAlgoType.Items.AddRange(new object[] { "lora", "loha", "ia3", "lokr", "full" });
             cbxAlgoType.Location = new Point(202, 182);
             cbxAlgoType.Name = "cbxAlgoType";
             cbxAlgoType.Size = new Size(121, 33);
