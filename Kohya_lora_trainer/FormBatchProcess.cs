@@ -38,7 +38,7 @@ namespace Kohya_lora_trainer
             PresetListText = tbxPrestList.Text;
 
             BatchProcess.LoadBatchPresetText(tbxPrestList.Text);
-            
+
             Close();
         }
 
