@@ -91,7 +91,7 @@ namespace Kohya_lora_trainer
                     {
                         sb.Append(" --network_module \"").Append("networks.dylora").Append("\"");
                         sb.Append(" --network_args");
-                        sb.Append(" \"unit ").Append(TrainParams.Current.DyLoRAUnit.ToString()).Append("\"");
+                        sb.Append(" \"unit=").Append(TrainParams.Current.DyLoRAUnit.ToString()).Append("\"");
                         sb.Append(GenerateDropoutCommands());
                         if (TrainParams.Current.UseConv2dExtend)
                         {
