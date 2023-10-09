@@ -90,8 +90,9 @@ namespace Kohya_lora_trainer
                 case ModuleType.DyLoRA:
                     {
                         sb.Append(" --network_module \"").Append("networks.dylora").Append("\"");
+                        //sd-scriptsの仕様上network_argsの引数名と値の区切りに=以外はエラーになるので注意
                         sb.Append(" --network_args");
-                        sb.Append(" \"unit ").Append(TrainParams.Current.DyLoRAUnit.ToString()).Append("\"");
+                        sb.Append(" \"unit=").Append(TrainParams.Current.DyLoRAUnit.ToString()).Append("\"");
                         sb.Append(GenerateDropoutCommands());
                         if (TrainParams.Current.UseConv2dExtend)
                         {

@@ -265,7 +265,8 @@ namespace Kohya_lora_trainer {
         lora,
         loha,
         ia3,
-        lokr
+        lokr,
+        full
     }
 
     public enum CrossAttenType {
