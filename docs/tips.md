@@ -30,13 +30,15 @@ Prodigyは学習結果に癖があるように感じる。
 
 AdaFactorはLoRA学習で特にメリットはない。
 
+画風は癖のないAdamWがいい感じだった。
+
 ## キャプショニングはどうする？
 
 https://rentry.co/irir_lora#%E3%82%BF%E3%82%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6
 
 ## おすすめのステップ数は？
 
-キャラが3000-6000、画風が5000-10000、構図,シチュエーション,ポーズは9000以上。
+キャラが3000-7000、画風が5000-10000、構図,シチュエーション,ポーズは9000以上。
 
 ## CUDA error: Out Of Memoryって出た！なにこれ？
 
@@ -47,6 +49,8 @@ https://rentry.co/irir_lora#%E3%82%BF%E3%82%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%
 バッチサイズを下げる、cache_latentsを有効にする、不要なアプリは終了する。
 
 それでもダメなら、解像度を下げるか、gradient_checkpointing使用する。
+
+それでもダメなら・・・クロスアテンションの最適化にxformersではなくmem_eff_attnを使用する。
 
 ## 「Setting different lr values in different parameter groups」なんとかって何？
 
