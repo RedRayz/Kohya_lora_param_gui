@@ -417,9 +417,10 @@ namespace Kohya_lora_trainer
             tbxBetas2.Text = TrainParams.Current.Betas2.ToString("g");
             tbxMomentum.Text = TrainParams.Current.DAdaptMomentum.ToString("g");
 
-            nudCaptionDropout.Value = TrainParams.Current.NetworkDropout;
+            nudCaptionDropout.Value = TrainParams.Current.CaptionDropout;
             nudRankDropout.Value = TrainParams.Current.RankDropout;
             nudModuleDropout.Value = TrainParams.Current.ModuleDropout;
+            nudNetworkDropout.Value = TrainParams.Current.NetworkDropout;
             cbxScaleVPredLoss.Checked = TrainParams.Current.ScaleVPredLoss;
             nudMaxNormReg.Value = TrainParams.Current.MaxNormReg;
 
