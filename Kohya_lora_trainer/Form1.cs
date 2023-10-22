@@ -484,13 +484,6 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
-            if (!Directory.Exists(str + "venv"))
-            {
-                if (showMsg)
-                    MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
             return true;
         }
 
@@ -509,7 +502,7 @@ namespace Kohya_lora_trainer
             if (!Directory.Exists(Constants.CurrentSdScriptsPath + @"venv"))
             {
                 if (showMsg)
-                    MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。\r\nユーティリティからvenvの再生成ができます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
