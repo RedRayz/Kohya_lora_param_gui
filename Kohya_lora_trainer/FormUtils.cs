@@ -242,7 +242,7 @@ namespace Kohya_lora_trainer
                 StringBuilder sb = new StringBuilder();
                 sb.Append(@"/k cd ").Append(Constants.CurrentSdScriptsPath);
 
-                sb.Append(@" && python -m venv venv && .\venv\Scripts\activate && pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu121 && pip install bitsandbytes==0.41.1 --prefer-binary --extra-index-url=https://jllllll.github.io/bitsandbytes-windows-webui && pip install --upgrade -r requirements.txt && pip install --pre -U xformers && copy /y .\bitsandbytes_windows\*.dll .\venv\Lib\site-packages\bitsandbytes\ && copy /y .\bitsandbytes_windows\cextension.py .\venv\Lib\site-packages\bitsandbytes\cextension.py && copy /y .\bitsandbytes_windows\main.py .\venv\Lib\site-packages\bitsandbytes\cuda_setup\main.py && ");
+                sb.Append(@" && python -m venv venv && .\venv\Scripts\activate && pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu121 && pip install bitsandbytes==0.41.1 --prefer-binary --extra-index-url=https://jllllll.github.io/bitsandbytes-windows-webui && pip install --upgrade -r requirements.txt && pip install --pre -U xformers && ");
                 sb.Append("pip install prodigyopt dadaptation lion-pytorch lycoris_lora");
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
