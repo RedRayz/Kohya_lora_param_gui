@@ -227,5 +227,30 @@ namespace Kohya_lora_trainer
                 lblTaggerDir.Text = cof.FileName;
             }
         }
+
+        private void btnRegenVenv_Click(object sender, EventArgs e)
+        {
+            var res = MessageBox.Show("vnevの再生成をします。よろしいですか。", "確認", MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes)
+            {
+                if (Directory.Exists(Constants.CurrentSdScriptsPath + @"venv"))
+                {
+                    MessageBox.Show("Pythonの仮想環境(venv)がすでに存在します。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                StringBuilder sb = new StringBuilder();
+                sb.Append(@"/k cd ").Append(Constants.CurrentSdScriptsPath);
+
+                sb.Append(@" && python -m venv venv && .\venv\Scripts\activate && pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu121 && pip install bitsandbytes==0.41.1 --prefer-binary --extra-index-url=https://jllllll.github.io/bitsandbytes-windows-webui && pip install --upgrade -r requirements.txt && pip install --pre -U xformers && ");
+                sb.Append("pip install prodigyopt dadaptation lion-pytorch lycoris_lora");
+                ProcessStartInfo ps = new ProcessStartInfo();
+                ps.FileName = "cmd";
+                ps.Arguments = sb.ToString();
+                var process = new Process();
+                process.StartInfo = ps;
+                process.Start();
+            }
+        }
     }
 }
