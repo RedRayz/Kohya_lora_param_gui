@@ -483,6 +483,14 @@ namespace Kohya_lora_trainer
                     MessageBox.Show("train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+
+            if (!Directory.Exists(str + "venv"))
+            {
+                if (showMsg)
+                    MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             return true;
         }
 
@@ -495,6 +503,13 @@ namespace Kohya_lora_trainer
                     MessageBox.Show("設定が間違っています。設定を見直してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
+                return false;
+            }
+
+            if (!Directory.Exists(Constants.CurrentSdScriptsPath + @"venv"))
+            {
+                if (showMsg)
+                    MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 

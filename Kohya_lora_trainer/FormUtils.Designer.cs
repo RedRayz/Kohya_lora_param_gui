@@ -1,5 +1,7 @@
-﻿namespace Kohya_lora_trainer {
-    partial class FormUtils {
+﻿namespace Kohya_lora_trainer
+{
+    partial class FormUtils
+    {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -9,8 +11,10 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing) {
-            if (disposing && (components != null)) {
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -22,462 +26,451 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
-            this.components = new System.ComponentModel.Container();
-            this.btnRunTensorboard = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnSelectModel = new System.Windows.Forms.Button();
-            this.btnResizeDim = new System.Windows.Forms.Button();
-            this.cbxCudaConversion = new System.Windows.Forms.CheckBox();
-            this.lblLoraPath = new System.Windows.Forms.Label();
-            this.lblOutputPath = new System.Windows.Forms.Label();
-            this.nudTargetDim = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnSelectOutputPath = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnInstallExtension = new System.Windows.Forms.Button();
-            this.btnUpdateRepo = new System.Windows.Forms.Button();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.label5 = new System.Windows.Forms.Label();
-            this.btnRunTagger = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lblTaggerDir = new System.Windows.Forms.Label();
-            this.btnTaggetSelectDir = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.nudThresh = new System.Windows.Forms.NumericUpDown();
-            this.nudTaggerBatchSize = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbxTaggerExclude = new System.Windows.Forms.TextBox();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.nudTargetDim)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudThresh)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTaggerBatchSize)).BeginInit();
-            this.SuspendLayout();
+        private void InitializeComponent()
+        {
+            components = new System.ComponentModel.Container();
+            btnRunTensorboard = new Button();
+            label3 = new Label();
+            btnSelectModel = new Button();
+            btnResizeDim = new Button();
+            cbxCudaConversion = new CheckBox();
+            lblLoraPath = new Label();
+            lblOutputPath = new Label();
+            nudTargetDim = new NumericUpDown();
+            label2 = new Label();
+            btnSelectOutputPath = new Button();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            tabPage2 = new TabPage();
+            tabPage3 = new TabPage();
+            label4 = new Label();
+            label1 = new Label();
+            btnInstallExtension = new Button();
+            btnUpdateRepo = new Button();
+            tabPage4 = new TabPage();
+            label5 = new Label();
+            btnRunTagger = new Button();
+            label9 = new Label();
+            lblTaggerDir = new Label();
+            btnTaggetSelectDir = new Button();
+            label11 = new Label();
+            label7 = new Label();
+            nudThresh = new NumericUpDown();
+            nudTaggerBatchSize = new NumericUpDown();
+            label6 = new Label();
+            tbxTaggerExclude = new TextBox();
+            toolTip1 = new ToolTip(components);
+            btnRegenVenv = new Button();
+            label8 = new Label();
+            ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            tabPage3.SuspendLayout();
+            tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudThresh).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudTaggerBatchSize).BeginInit();
+            SuspendLayout();
             // 
             // btnRunTensorboard
             // 
-            this.btnRunTensorboard.Location = new System.Drawing.Point(308, 158);
-            this.btnRunTensorboard.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnRunTensorboard.Name = "btnRunTensorboard";
-            this.btnRunTensorboard.Size = new System.Drawing.Size(214, 44);
-            this.btnRunTensorboard.TabIndex = 0;
-            this.btnRunTensorboard.Text = "tensorboard起動";
-            this.btnRunTensorboard.UseVisualStyleBackColor = true;
-            this.btnRunTensorboard.Click += new System.EventHandler(this.btnRunTensorboard_Click);
+            btnRunTensorboard.Location = new Point(279, 54);
+            btnRunTensorboard.Margin = new Padding(3, 4, 3, 4);
+            btnRunTensorboard.Name = "btnRunTensorboard";
+            btnRunTensorboard.Size = new Size(214, 44);
+            btnRunTensorboard.TabIndex = 0;
+            btnRunTensorboard.Text = "tensorboard起動";
+            btnRunTensorboard.UseVisualStyleBackColor = true;
+            btnRunTensorboard.Click += btnRunTensorboard_Click;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(292, 206);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(239, 25);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "ターミナルは手動で閉じてください";
+            label3.AutoSize = true;
+            label3.Location = new Point(263, 102);
+            label3.Name = "label3";
+            label3.Size = new Size(239, 25);
+            label3.TabIndex = 1;
+            label3.Text = "ターミナルは手動で閉じてください";
             // 
             // btnSelectModel
             // 
-            this.btnSelectModel.Location = new System.Drawing.Point(60, 43);
-            this.btnSelectModel.Name = "btnSelectModel";
-            this.btnSelectModel.Size = new System.Drawing.Size(134, 37);
-            this.btnSelectModel.TabIndex = 5;
-            this.btnSelectModel.Text = "変換元の選択";
-            this.btnSelectModel.UseVisualStyleBackColor = true;
-            this.btnSelectModel.Click += new System.EventHandler(this.btnSelectModel_Click);
+            btnSelectModel.Location = new Point(60, 43);
+            btnSelectModel.Name = "btnSelectModel";
+            btnSelectModel.Size = new Size(134, 37);
+            btnSelectModel.TabIndex = 5;
+            btnSelectModel.Text = "変換元の選択";
+            btnSelectModel.UseVisualStyleBackColor = true;
+            btnSelectModel.Click += btnSelectModel_Click;
             // 
             // btnResizeDim
             // 
-            this.btnResizeDim.Location = new System.Drawing.Point(60, 232);
-            this.btnResizeDim.Name = "btnResizeDim";
-            this.btnResizeDim.Size = new System.Drawing.Size(134, 37);
-            this.btnResizeDim.TabIndex = 5;
-            this.btnResizeDim.Text = "変換";
-            this.btnResizeDim.UseVisualStyleBackColor = true;
-            this.btnResizeDim.Click += new System.EventHandler(this.btnResizeDim_Click);
+            btnResizeDim.Location = new Point(60, 232);
+            btnResizeDim.Name = "btnResizeDim";
+            btnResizeDim.Size = new Size(134, 37);
+            btnResizeDim.TabIndex = 5;
+            btnResizeDim.Text = "変換";
+            btnResizeDim.UseVisualStyleBackColor = true;
+            btnResizeDim.Click += btnResizeDim_Click;
             // 
             // cbxCudaConversion
             // 
-            this.cbxCudaConversion.AutoSize = true;
-            this.cbxCudaConversion.Location = new System.Drawing.Point(204, 159);
-            this.cbxCudaConversion.Name = "cbxCudaConversion";
-            this.cbxCudaConversion.Size = new System.Drawing.Size(136, 29);
-            this.cbxCudaConversion.TabIndex = 6;
-            this.cbxCudaConversion.Text = "CUDAで変換";
-            this.cbxCudaConversion.UseVisualStyleBackColor = true;
+            cbxCudaConversion.AutoSize = true;
+            cbxCudaConversion.Location = new Point(204, 159);
+            cbxCudaConversion.Name = "cbxCudaConversion";
+            cbxCudaConversion.Size = new Size(136, 29);
+            cbxCudaConversion.TabIndex = 6;
+            cbxCudaConversion.Text = "CUDAで変換";
+            cbxCudaConversion.UseVisualStyleBackColor = true;
             // 
             // lblLoraPath
             // 
-            this.lblLoraPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblLoraPath.Location = new System.Drawing.Point(200, 43);
-            this.lblLoraPath.Name = "lblLoraPath";
-            this.lblLoraPath.Size = new System.Drawing.Size(581, 37);
-            this.lblLoraPath.TabIndex = 7;
-            this.lblLoraPath.Text = "G:\\SD\\model\\lora\\longlongname\\aaaaa.safetensors";
+            lblLoraPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblLoraPath.Location = new Point(200, 43);
+            lblLoraPath.Name = "lblLoraPath";
+            lblLoraPath.Size = new Size(581, 37);
+            lblLoraPath.TabIndex = 7;
+            lblLoraPath.Text = "G:\\SD\\model\\lora\\longlongname\\aaaaa.safetensors";
             // 
             // lblOutputPath
             // 
-            this.lblOutputPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblOutputPath.Location = new System.Drawing.Point(200, 86);
-            this.lblOutputPath.Name = "lblOutputPath";
-            this.lblOutputPath.Size = new System.Drawing.Size(581, 37);
-            this.lblOutputPath.TabIndex = 7;
-            this.lblOutputPath.Text = "G:\\SD\\model\\lora\\longlongname\\aaaaa.safetensors";
+            lblOutputPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblOutputPath.Location = new Point(200, 86);
+            lblOutputPath.Name = "lblOutputPath";
+            lblOutputPath.Size = new Size(581, 37);
+            lblOutputPath.TabIndex = 7;
+            lblOutputPath.Text = "G:\\SD\\model\\lora\\longlongname\\aaaaa.safetensors";
             // 
             // nudTargetDim
             // 
-            this.nudTargetDim.Location = new System.Drawing.Point(60, 159);
-            this.nudTargetDim.Maximum = new decimal(new int[] {
-            1024,
-            0,
-            0,
-            0});
-            this.nudTargetDim.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudTargetDim.Name = "nudTargetDim";
-            this.nudTargetDim.Size = new System.Drawing.Size(134, 31);
-            this.nudTargetDim.TabIndex = 8;
-            this.nudTargetDim.Value = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
+            nudTargetDim.Location = new Point(60, 159);
+            nudTargetDim.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
+            nudTargetDim.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudTargetDim.Name = "nudTargetDim";
+            nudTargetDim.Size = new Size(134, 31);
+            nudTargetDim.TabIndex = 8;
+            nudTargetDim.Value = new decimal(new int[] { 4, 0, 0, 0 });
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(55, 131);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 25);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "次元数";
+            label2.AutoSize = true;
+            label2.Location = new Point(55, 131);
+            label2.Name = "label2";
+            label2.Size = new Size(66, 25);
+            label2.TabIndex = 9;
+            label2.Text = "次元数";
             // 
             // btnSelectOutputPath
             // 
-            this.btnSelectOutputPath.Location = new System.Drawing.Point(60, 86);
-            this.btnSelectOutputPath.Name = "btnSelectOutputPath";
-            this.btnSelectOutputPath.Size = new System.Drawing.Size(134, 37);
-            this.btnSelectOutputPath.TabIndex = 10;
-            this.btnSelectOutputPath.Text = "出力先の選択";
-            this.btnSelectOutputPath.UseVisualStyleBackColor = true;
-            this.btnSelectOutputPath.Click += new System.EventHandler(this.btnSelectOutputPath_Click);
+            btnSelectOutputPath.Location = new Point(60, 86);
+            btnSelectOutputPath.Name = "btnSelectOutputPath";
+            btnSelectOutputPath.Size = new Size(134, 37);
+            btnSelectOutputPath.TabIndex = 10;
+            btnSelectOutputPath.Text = "出力先の選択";
+            btnSelectOutputPath.UseVisualStyleBackColor = true;
+            btnSelectOutputPath.Click += btnSelectOutputPath_Click;
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(812, 422);
-            this.tabControl1.TabIndex = 11;
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(tabPage4);
+            tabControl1.Location = new Point(12, 12);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(812, 422);
+            tabControl1.TabIndex = 11;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.btnRunTensorboard);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Location = new System.Drawing.Point(4, 34);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(804, 384);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Tensorboard";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Controls.Add(btnRegenVenv);
+            tabPage1.Controls.Add(btnRunTensorboard);
+            tabPage1.Controls.Add(label8);
+            tabPage1.Controls.Add(label3);
+            tabPage1.Location = new Point(4, 34);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(804, 384);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "ユーティリティ";
+            tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.btnSelectModel);
-            this.tabPage2.Controls.Add(this.btnSelectOutputPath);
-            this.tabPage2.Controls.Add(this.btnResizeDim);
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.cbxCudaConversion);
-            this.tabPage2.Controls.Add(this.nudTargetDim);
-            this.tabPage2.Controls.Add(this.lblLoraPath);
-            this.tabPage2.Controls.Add(this.lblOutputPath);
-            this.tabPage2.Location = new System.Drawing.Point(4, 34);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(804, 384);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Dimリサイズ";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            tabPage2.Controls.Add(btnSelectModel);
+            tabPage2.Controls.Add(btnSelectOutputPath);
+            tabPage2.Controls.Add(btnResizeDim);
+            tabPage2.Controls.Add(label2);
+            tabPage2.Controls.Add(cbxCudaConversion);
+            tabPage2.Controls.Add(nudTargetDim);
+            tabPage2.Controls.Add(lblLoraPath);
+            tabPage2.Controls.Add(lblOutputPath);
+            tabPage2.Location = new Point(4, 34);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(804, 384);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Dimリサイズ";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.label4);
-            this.tabPage3.Controls.Add(this.label1);
-            this.tabPage3.Controls.Add(this.btnInstallExtension);
-            this.tabPage3.Controls.Add(this.btnUpdateRepo);
-            this.tabPage3.Location = new System.Drawing.Point(4, 34);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(804, 384);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "更新";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            tabPage3.Controls.Add(label4);
+            tabPage3.Controls.Add(label1);
+            tabPage3.Controls.Add(btnInstallExtension);
+            tabPage3.Controls.Add(btnUpdateRepo);
+            tabPage3.Location = new Point(4, 34);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(804, 384);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "更新";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(225, 123);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(388, 25);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "リポジトリと必須のpythonパッケージの更新をします。";
+            label4.AutoSize = true;
+            label4.Location = new Point(225, 123);
+            label4.Name = "label4";
+            label4.Size = new Size(388, 25);
+            label4.TabIndex = 3;
+            label4.Text = "リポジトリと必須のpythonパッケージの更新をします。";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(288, 225);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(265, 50);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "lycorisおよび追加のオプティマイザを\r\nインストールまたは更新をします。";
+            label1.AutoSize = true;
+            label1.Location = new Point(288, 225);
+            label1.Name = "label1";
+            label1.Size = new Size(265, 50);
+            label1.TabIndex = 2;
+            label1.Text = "lycorisおよび追加のオプティマイザを\r\nインストールまたは更新をします。";
             // 
             // btnInstallExtension
             // 
-            this.btnInstallExtension.Location = new System.Drawing.Point(293, 177);
-            this.btnInstallExtension.Name = "btnInstallExtension";
-            this.btnInstallExtension.Size = new System.Drawing.Size(235, 45);
-            this.btnInstallExtension.TabIndex = 1;
-            this.btnInstallExtension.Text = "拡張機能のインストール・更新";
-            this.btnInstallExtension.UseVisualStyleBackColor = true;
-            this.btnInstallExtension.Click += new System.EventHandler(this.btnInstallExtension_Click);
+            btnInstallExtension.Location = new Point(293, 177);
+            btnInstallExtension.Name = "btnInstallExtension";
+            btnInstallExtension.Size = new Size(235, 45);
+            btnInstallExtension.TabIndex = 1;
+            btnInstallExtension.Text = "拡張機能のインストール・更新";
+            btnInstallExtension.UseVisualStyleBackColor = true;
+            btnInstallExtension.Click += btnInstallExtension_Click;
             // 
             // btnUpdateRepo
             // 
-            this.btnUpdateRepo.Location = new System.Drawing.Point(293, 75);
-            this.btnUpdateRepo.Name = "btnUpdateRepo";
-            this.btnUpdateRepo.Size = new System.Drawing.Size(235, 45);
-            this.btnUpdateRepo.TabIndex = 0;
-            this.btnUpdateRepo.Text = "sd-scriptsのアップデート";
-            this.btnUpdateRepo.UseVisualStyleBackColor = true;
-            this.btnUpdateRepo.Click += new System.EventHandler(this.btnUpdateRepo_Click);
+            btnUpdateRepo.Location = new Point(293, 75);
+            btnUpdateRepo.Name = "btnUpdateRepo";
+            btnUpdateRepo.Size = new Size(235, 45);
+            btnUpdateRepo.TabIndex = 0;
+            btnUpdateRepo.Text = "sd-scriptsのアップデート";
+            btnUpdateRepo.UseVisualStyleBackColor = true;
+            btnUpdateRepo.Click += btnUpdateRepo_Click;
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.label5);
-            this.tabPage4.Controls.Add(this.btnRunTagger);
-            this.tabPage4.Controls.Add(this.label9);
-            this.tabPage4.Controls.Add(this.lblTaggerDir);
-            this.tabPage4.Controls.Add(this.btnTaggetSelectDir);
-            this.tabPage4.Controls.Add(this.label11);
-            this.tabPage4.Controls.Add(this.label7);
-            this.tabPage4.Controls.Add(this.nudThresh);
-            this.tabPage4.Controls.Add(this.nudTaggerBatchSize);
-            this.tabPage4.Controls.Add(this.label6);
-            this.tabPage4.Controls.Add(this.tbxTaggerExclude);
-            this.tabPage4.Location = new System.Drawing.Point(4, 34);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(804, 384);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Tagger";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            tabPage4.Controls.Add(label5);
+            tabPage4.Controls.Add(btnRunTagger);
+            tabPage4.Controls.Add(label9);
+            tabPage4.Controls.Add(lblTaggerDir);
+            tabPage4.Controls.Add(btnTaggetSelectDir);
+            tabPage4.Controls.Add(label11);
+            tabPage4.Controls.Add(label7);
+            tabPage4.Controls.Add(nudThresh);
+            tabPage4.Controls.Add(nudTaggerBatchSize);
+            tabPage4.Controls.Add(label6);
+            tabPage4.Controls.Add(tbxTaggerExclude);
+            tabPage4.Location = new Point(4, 34);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Size = new Size(804, 384);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "Tagger";
+            tabPage4.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(26, 14);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(577, 75);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "AIを用いてDanbooruタグを推論します。\r\nsd-scriptsのTaggerは簡易的なものとなります。\r\n細かい設定をしたい方はAUTOMATIC1111" +
-    " WebUIのTaggerをご利用ください。";
+            label5.AutoSize = true;
+            label5.Location = new Point(26, 14);
+            label5.Name = "label5";
+            label5.Size = new Size(577, 75);
+            label5.TabIndex = 8;
+            label5.Text = "AIを用いてDanbooruタグを推論します。\r\nsd-scriptsのTaggerは簡易的なものとなります。\r\n細かい設定をしたい方はAUTOMATIC1111 WebUIのTaggerをご利用ください。";
             // 
             // btnRunTagger
             // 
-            this.btnRunTagger.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnRunTagger.Location = new System.Drawing.Point(639, 323);
-            this.btnRunTagger.Name = "btnRunTagger";
-            this.btnRunTagger.Size = new System.Drawing.Size(136, 46);
-            this.btnRunTagger.TabIndex = 7;
-            this.btnRunTagger.Text = "推論開始";
-            this.btnRunTagger.UseVisualStyleBackColor = true;
-            this.btnRunTagger.Click += new System.EventHandler(this.btnRunTagger_Click);
+            btnRunTagger.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRunTagger.Location = new Point(639, 323);
+            btnRunTagger.Name = "btnRunTagger";
+            btnRunTagger.Size = new Size(136, 46);
+            btnRunTagger.TabIndex = 7;
+            btnRunTagger.Text = "推論開始";
+            btnRunTagger.UseVisualStyleBackColor = true;
+            btnRunTagger.Click += btnRunTagger_Click;
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(26, 115);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(89, 25);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "ディレクトリ";
+            label9.AutoSize = true;
+            label9.Location = new Point(26, 115);
+            label9.Name = "label9";
+            label9.Size = new Size(89, 25);
+            label9.TabIndex = 6;
+            label9.Text = "ディレクトリ";
             // 
             // lblTaggerDir
             // 
-            this.lblTaggerDir.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblTaggerDir.Location = new System.Drawing.Point(149, 143);
-            this.lblTaggerDir.Name = "lblTaggerDir";
-            this.lblTaggerDir.Size = new System.Drawing.Size(626, 31);
-            this.lblTaggerDir.TabIndex = 6;
-            this.lblTaggerDir.Text = "選択してください";
+            lblTaggerDir.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTaggerDir.Location = new Point(149, 143);
+            lblTaggerDir.Name = "lblTaggerDir";
+            lblTaggerDir.Size = new Size(626, 31);
+            lblTaggerDir.TabIndex = 6;
+            lblTaggerDir.Text = "選択してください";
             // 
             // btnTaggetSelectDir
             // 
-            this.btnTaggetSelectDir.Location = new System.Drawing.Point(26, 143);
-            this.btnTaggetSelectDir.Name = "btnTaggetSelectDir";
-            this.btnTaggetSelectDir.Size = new System.Drawing.Size(117, 38);
-            this.btnTaggetSelectDir.TabIndex = 5;
-            this.btnTaggetSelectDir.Text = "選択";
-            this.btnTaggetSelectDir.UseVisualStyleBackColor = true;
-            this.btnTaggetSelectDir.Click += new System.EventHandler(this.btnTaggetSelectDir_Click);
+            btnTaggetSelectDir.Location = new Point(26, 143);
+            btnTaggetSelectDir.Name = "btnTaggetSelectDir";
+            btnTaggetSelectDir.Size = new Size(117, 38);
+            btnTaggetSelectDir.TabIndex = 5;
+            btnTaggetSelectDir.Text = "選択";
+            btnTaggetSelectDir.UseVisualStyleBackColor = true;
+            btnTaggetSelectDir.Click += btnTaggetSelectDir_Click;
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(197, 264);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(127, 25);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "タグ検出の閾値";
+            label11.AutoSize = true;
+            label11.Location = new Point(197, 264);
+            label11.Name = "label11";
+            label11.Size = new Size(127, 25);
+            label11.TabIndex = 4;
+            label11.Text = "タグ検出の閾値";
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(26, 264);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(89, 25);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Batch size";
+            label7.AutoSize = true;
+            label7.Location = new Point(26, 264);
+            label7.Name = "label7";
+            label7.Size = new Size(89, 25);
+            label7.TabIndex = 4;
+            label7.Text = "Batch size";
             // 
             // nudThresh
             // 
-            this.nudThresh.DecimalPlaces = 2;
-            this.nudThresh.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.nudThresh.Location = new System.Drawing.Point(202, 292);
-            this.nudThresh.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudThresh.Name = "nudThresh";
-            this.nudThresh.Size = new System.Drawing.Size(120, 31);
-            this.nudThresh.TabIndex = 3;
-            this.nudThresh.Value = new decimal(new int[] {
-            35,
-            0,
-            0,
-            131072});
+            nudThresh.DecimalPlaces = 2;
+            nudThresh.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            nudThresh.Location = new Point(202, 292);
+            nudThresh.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudThresh.Name = "nudThresh";
+            nudThresh.Size = new Size(120, 31);
+            nudThresh.TabIndex = 3;
+            nudThresh.Value = new decimal(new int[] { 35, 0, 0, 131072 });
             // 
             // nudTaggerBatchSize
             // 
-            this.nudTaggerBatchSize.Location = new System.Drawing.Point(26, 292);
-            this.nudTaggerBatchSize.Maximum = new decimal(new int[] {
-            64,
-            0,
-            0,
-            0});
-            this.nudTaggerBatchSize.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudTaggerBatchSize.Name = "nudTaggerBatchSize";
-            this.nudTaggerBatchSize.Size = new System.Drawing.Size(120, 31);
-            this.nudTaggerBatchSize.TabIndex = 3;
-            this.nudTaggerBatchSize.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            nudTaggerBatchSize.Location = new Point(26, 292);
+            nudTaggerBatchSize.Maximum = new decimal(new int[] { 64, 0, 0, 0 });
+            nudTaggerBatchSize.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudTaggerBatchSize.Name = "nudTaggerBatchSize";
+            nudTaggerBatchSize.Size = new Size(120, 31);
+            nudTaggerBatchSize.TabIndex = 3;
+            nudTaggerBatchSize.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 195);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(334, 25);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "除外タグ(アンダースコア込み)、複数指定不可";
+            label6.AutoSize = true;
+            label6.Location = new Point(21, 195);
+            label6.Name = "label6";
+            label6.Size = new Size(334, 25);
+            label6.TabIndex = 2;
+            label6.Text = "除外タグ(アンダースコア込み)、複数指定不可";
             // 
             // tbxTaggerExclude
             // 
-            this.tbxTaggerExclude.Location = new System.Drawing.Point(26, 223);
-            this.tbxTaggerExclude.Name = "tbxTaggerExclude";
-            this.tbxTaggerExclude.Size = new System.Drawing.Size(749, 31);
-            this.tbxTaggerExclude.TabIndex = 1;
+            tbxTaggerExclude.Location = new Point(26, 223);
+            tbxTaggerExclude.Name = "tbxTaggerExclude";
+            tbxTaggerExclude.Size = new Size(749, 31);
+            tbxTaggerExclude.TabIndex = 1;
+            // 
+            // btnRegenVenv
+            // 
+            btnRegenVenv.Location = new Point(279, 155);
+            btnRegenVenv.Name = "btnRegenVenv";
+            btnRegenVenv.Size = new Size(214, 44);
+            btnRegenVenv.TabIndex = 2;
+            btnRegenVenv.Text = "venv再生成";
+            btnRegenVenv.UseVisualStyleBackColor = true;
+            btnRegenVenv.Click += btnRegenVenv_Click;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(159, 202);
+            label8.Name = "label8";
+            label8.Size = new Size(477, 50);
+            label8.TabIndex = 1;
+            label8.Text = "ターミナルは手動で閉じてください\r\nvnevがない場合に再生成し、必要なパッケージをインストールします";
+            label8.TextAlign = ContentAlignment.TopCenter;
             // 
             // FormUtils
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(840, 446);
-            this.Controls.Add(this.tabControl1);
-            this.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "FormUtils";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Utils";
-            this.Load += new System.EventHandler(this.FormUtils_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.nudTargetDim)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudThresh)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTaggerBatchSize)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(144F, 144F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            AutoScroll = true;
+            ClientSize = new Size(840, 446);
+            Controls.Add(tabControl1);
+            Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "FormUtils";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Utils";
+            Load += FormUtils_Load;
+            ((System.ComponentModel.ISupportInitialize)nudTargetDim).EndInit();
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
+            tabPage4.ResumeLayout(false);
+            tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudThresh).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudTaggerBatchSize).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
-        private System.Windows.Forms.Button btnRunTensorboard;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnSelectModel;
-        private System.Windows.Forms.Button btnResizeDim;
-        private System.Windows.Forms.CheckBox cbxCudaConversion;
-        private System.Windows.Forms.Label lblLoraPath;
-        private System.Windows.Forms.Label lblOutputPath;
-        private System.Windows.Forms.NumericUpDown nudTargetDim;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnSelectOutputPath;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button btnUpdateRepo;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnInstallExtension;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Button btnRunTagger;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lblTaggerDir;
-        private System.Windows.Forms.Button btnTaggetSelectDir;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown nudTaggerBatchSize;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tbxTaggerExclude;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.NumericUpDown nudThresh;
-        private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Label label5;
+        private Button btnRunTensorboard;
+        private Label label3;
+        private Button btnSelectModel;
+        private Button btnResizeDim;
+        private CheckBox cbxCudaConversion;
+        private Label lblLoraPath;
+        private Label lblOutputPath;
+        private NumericUpDown nudTargetDim;
+        private Label label2;
+        private Button btnSelectOutputPath;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private TabPage tabPage3;
+        private Button btnUpdateRepo;
+        private Label label1;
+        private Button btnInstallExtension;
+        private Label label4;
+        private TabPage tabPage4;
+        private Button btnRunTagger;
+        private Label label9;
+        private Label lblTaggerDir;
+        private Button btnTaggetSelectDir;
+        private Label label7;
+        private NumericUpDown nudTaggerBatchSize;
+        private Label label6;
+        private TextBox tbxTaggerExclude;
+        private Label label11;
+        private NumericUpDown nudThresh;
+        private ToolTip toolTip1;
+        private Label label5;
+        private Button btnRegenVenv;
+        private Label label8;
     }
 }
