@@ -29,990 +29,884 @@ namespace Kohya_lora_trainer
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.btnModel = new System.Windows.Forms.Button();
-            this.btnImage = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnRegImage = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tbxLR = new System.Windows.Forms.TextBox();
-            this.lblLR = new System.Windows.Forms.Label();
-            this.cbxOptimizer = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.btnAdvanced = new System.Windows.Forms.Button();
-            this.btnStartTraining = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cbxShuffle = new System.Windows.Forms.CheckBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.nudNetworkAlpha = new System.Windows.Forms.NumericUpDown();
-            this.nudNetworkDim = new System.Windows.Forms.NumericUpDown();
-            this.nudResolution = new System.Windows.Forms.NumericUpDown();
-            this.nudKeepTokens = new System.Windows.Forms.NumericUpDown();
-            this.nudBatchSize = new System.Windows.Forms.NumericUpDown();
-            this.nudWarmupSteps = new System.Windows.Forms.NumericUpDown();
-            this.cbxSDType = new System.Windows.Forms.ComboBox();
-            this.tbxFileName = new System.Windows.Forms.TextBox();
-            this.cbxModuleType = new System.Windows.Forms.ComboBox();
-            this.nudSaveEpoch = new System.Windows.Forms.NumericUpDown();
-            this.tbxRegImgPath = new System.Windows.Forms.TextBox();
-            this.btnSavePreset = new System.Windows.Forms.Button();
-            this.btnLoadPreset = new System.Windows.Forms.Button();
-            this.lblResolution = new System.Windows.Forms.Label();
-            this.lblFileName = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.nudEpochs = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblNumSteps = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.btnClearRegImagePath = new System.Windows.Forms.Button();
-            this.lblNumStepsBatch1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.btnOutputPath = new System.Windows.Forms.Button();
-            this.btnCustomScriptPath = new System.Windows.Forms.Button();
-            this.lblScriptPathDesc = new System.Windows.Forms.Label();
-            this.btnUtilities = new System.Windows.Forms.Button();
-            this.tbxModelPath = new System.Windows.Forms.TextBox();
-            this.tbxImagePath = new System.Windows.Forms.TextBox();
-            this.tbxOutputPath = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnBlockWeight = new System.Windows.Forms.Button();
-            this.btnBlockDim = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbtShutdown = new System.Windows.Forms.RadioButton();
-            this.rbtBenckmark = new System.Windows.Forms.RadioButton();
-            this.rbtDoNothing = new System.Windows.Forms.RadioButton();
-            this.btnBatchProcess = new System.Windows.Forms.Button();
-            this.btnInstaller = new System.Windows.Forms.Button();
-            this.btnGenerateCommands = new System.Windows.Forms.Button();
-            this.btnLeco = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.cbxEpochOrStep = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudResolution)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudKeepTokens)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudWarmupSteps)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSaveEpoch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.SuspendLayout();
+            btnModel = new Button();
+            btnImage = new Button();
+            label2 = new Label();
+            label3 = new Label();
+            btnRegImage = new Button();
+            label4 = new Label();
+            tbxLR = new TextBox();
+            lblLR = new Label();
+            cbxOptimizer = new ComboBox();
+            label10 = new Label();
+            label17 = new Label();
+            btnAdvanced = new Button();
+            btnStartTraining = new Button();
+            label7 = new Label();
+            cbxShuffle = new CheckBox();
+            label12 = new Label();
+            toolTip1 = new ToolTip(components);
+            nudNetworkAlpha = new NumericUpDown();
+            nudNetworkDim = new NumericUpDown();
+            nudResolution = new NumericUpDown();
+            nudKeepTokens = new NumericUpDown();
+            nudBatchSize = new NumericUpDown();
+            nudWarmupSteps = new NumericUpDown();
+            cbxSDType = new ComboBox();
+            tbxFileName = new TextBox();
+            cbxModuleType = new ComboBox();
+            nudSaveEpoch = new NumericUpDown();
+            tbxRegImgPath = new TextBox();
+            btnSavePreset = new Button();
+            btnLoadPreset = new Button();
+            lblResolution = new Label();
+            lblFileName = new Label();
+            label16 = new Label();
+            label18 = new Label();
+            label20 = new Label();
+            label21 = new Label();
+            nudEpochs = new NumericUpDown();
+            label1 = new Label();
+            lblNumSteps = new Label();
+            label9 = new Label();
+            btnClearRegImagePath = new Button();
+            lblNumStepsBatch1 = new Label();
+            label5 = new Label();
+            label8 = new Label();
+            label11 = new Label();
+            btnOutputPath = new Button();
+            btnCustomScriptPath = new Button();
+            lblScriptPathDesc = new Label();
+            btnUtilities = new Button();
+            tbxModelPath = new TextBox();
+            tbxImagePath = new TextBox();
+            tbxOutputPath = new TextBox();
+            label6 = new Label();
+            btnBlockWeight = new Button();
+            btnBlockDim = new Button();
+            groupBox1 = new GroupBox();
+            rbtShutdown = new RadioButton();
+            rbtBenckmark = new RadioButton();
+            rbtDoNothing = new RadioButton();
+            btnBatchProcess = new Button();
+            btnInstaller = new Button();
+            btnGenerateCommands = new Button();
+            btnLeco = new Button();
+            label13 = new Label();
+            cbxEpochOrStep = new ComboBox();
+            ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudNetworkDim).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudResolution).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudKeepTokens).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudBatchSize).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudWarmupSteps).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudSaveEpoch).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudEpochs).BeginInit();
+            groupBox1.SuspendLayout();
+            SuspendLayout();
             // 
             // btnModel
             // 
-            this.btnModel.Location = new System.Drawing.Point(176, 82);
-            this.btnModel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnModel.Name = "btnModel";
-            this.btnModel.Size = new System.Drawing.Size(166, 46);
-            this.btnModel.TabIndex = 1;
-            this.btnModel.Text = "選択";
-            this.btnModel.UseVisualStyleBackColor = true;
-            this.btnModel.Click += new System.EventHandler(this.btnModel_Click);
+            btnModel.Location = new Point(176, 82);
+            btnModel.Margin = new Padding(3, 4, 3, 4);
+            btnModel.Name = "btnModel";
+            btnModel.Size = new Size(166, 46);
+            btnModel.TabIndex = 1;
+            btnModel.Text = "選択";
+            btnModel.UseVisualStyleBackColor = true;
+            btnModel.Click += btnModel_Click;
             // 
             // btnImage
             // 
-            this.btnImage.Location = new System.Drawing.Point(560, 82);
-            this.btnImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnImage.Name = "btnImage";
-            this.btnImage.Size = new System.Drawing.Size(166, 46);
-            this.btnImage.TabIndex = 1;
-            this.btnImage.Text = "選択";
-            this.btnImage.UseVisualStyleBackColor = true;
-            this.btnImage.Click += new System.EventHandler(this.btnImage_Click);
+            btnImage.Location = new Point(560, 82);
+            btnImage.Margin = new Padding(3, 4, 3, 4);
+            btnImage.Name = "btnImage";
+            btnImage.Size = new Size(166, 46);
+            btnImage.TabIndex = 1;
+            btnImage.Text = "選択";
+            btnImage.UseVisualStyleBackColor = true;
+            btnImage.Click += btnImage_Click;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 93);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 25);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "学習元モデル*";
+            label2.AutoSize = true;
+            label2.Location = new Point(40, 93);
+            label2.Name = "label2";
+            label2.Size = new Size(115, 25);
+            label2.TabIndex = 2;
+            label2.Text = "学習元モデル*";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(410, 93);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(145, 25);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "教師画像フォルダ*";
+            label3.AutoSize = true;
+            label3.Location = new Point(410, 93);
+            label3.Name = "label3";
+            label3.Size = new Size(145, 25);
+            label3.TabIndex = 3;
+            label3.Text = "教師画像フォルダ*";
             // 
             // btnRegImage
             // 
-            this.btnRegImage.Location = new System.Drawing.Point(970, 81);
-            this.btnRegImage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnRegImage.Name = "btnRegImage";
-            this.btnRegImage.Size = new System.Drawing.Size(76, 46);
-            this.btnRegImage.TabIndex = 1;
-            this.btnRegImage.Text = "選択";
-            this.btnRegImage.UseVisualStyleBackColor = true;
-            this.btnRegImage.Click += new System.EventHandler(this.btnRegImage_Click);
+            btnRegImage.Location = new Point(970, 81);
+            btnRegImage.Margin = new Padding(3, 4, 3, 4);
+            btnRegImage.Name = "btnRegImage";
+            btnRegImage.Size = new Size(76, 46);
+            btnRegImage.TabIndex = 1;
+            btnRegImage.Text = "選択";
+            btnRegImage.UseVisualStyleBackColor = true;
+            btnRegImage.Click += btnRegImage_Click;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(810, 93);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(155, 25);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "正則化画像フォルダ";
+            label4.AutoSize = true;
+            label4.Location = new Point(810, 93);
+            label4.Name = "label4";
+            label4.Size = new Size(155, 25);
+            label4.TabIndex = 3;
+            label4.Text = "正則化画像フォルダ";
             // 
             // tbxLR
             // 
-            this.tbxLR.Location = new System.Drawing.Point(162, 186);
-            this.tbxLR.Name = "tbxLR";
-            this.tbxLR.Size = new System.Drawing.Size(120, 31);
-            this.tbxLR.TabIndex = 4;
-            this.tbxLR.Text = "1e-4";
-            this.toolTip1.SetToolTip(this.tbxLR, "AdamW系は0.0001、AdaFactorは0.001、DAdaptation系は1推奨");
-            this.tbxLR.TextChanged += new System.EventHandler(this.tbxLR_TextChanged);
+            tbxLR.Location = new Point(162, 186);
+            tbxLR.Name = "tbxLR";
+            tbxLR.Size = new Size(120, 31);
+            tbxLR.TabIndex = 4;
+            tbxLR.Text = "1e-4";
+            toolTip1.SetToolTip(tbxLR, "AdamW系は0.0001、AdaFactorは0.001、DAdaptation系は1推奨");
+            tbxLR.TextChanged += tbxLR_TextChanged;
             // 
             // lblLR
             // 
-            this.lblLR.AutoSize = true;
-            this.lblLR.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblLR.Location = new System.Drawing.Point(57, 189);
-            this.lblLR.Name = "lblLR";
-            this.lblLR.Size = new System.Drawing.Size(103, 25);
-            this.lblLR.TabIndex = 5;
-            this.lblLR.Text = "学習率(LR)*";
+            lblLR.AutoSize = true;
+            lblLR.ForeColor = SystemColors.ControlText;
+            lblLR.Location = new Point(57, 189);
+            lblLR.Name = "lblLR";
+            lblLR.Size = new Size(103, 25);
+            lblLR.TabIndex = 5;
+            lblLR.Text = "学習率(LR)*";
             // 
             // cbxOptimizer
             // 
-            this.cbxOptimizer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxOptimizer.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cbxOptimizer.FormattingEnabled = true;
-            this.cbxOptimizer.Items.AddRange(new object[] {
-            "AdamW8bit",
-            "AdamW",
-            "AdaFactor",
-            "Lion",
-            "SGDNesterov",
-            "SGDNesterov8bit",
-            "DAdaptAdamPreprint",
-            "Lion8bit",
-            "DAdaptAdaGrad",
-            "DAdaptAdam",
-            "DAdaptAdan",
-            "DAdaptSGD",
-            "DAdaptAdanIP",
-            "DAdaptLion",
-            "Prodigy",
-            "PagedAdamW8bit",
-            "PagedLion8bit"});
-            this.cbxOptimizer.Location = new System.Drawing.Point(166, 315);
-            this.cbxOptimizer.Name = "cbxOptimizer";
-            this.cbxOptimizer.Size = new System.Drawing.Size(204, 33);
-            this.cbxOptimizer.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.cbxOptimizer, "AdamWとDAdaptLionがおすすめ\r\nDAdaptation系はCPUボトルネックが大きい傾向\r\nPaged系はdevブランチに切り替え後bitsandb" +
-        "ytesの更新が必要");
-            this.cbxOptimizer.SelectedIndexChanged += new System.EventHandler(this.cbxOptimizer_SelectedIndexChanged);
+            cbxOptimizer.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxOptimizer.ForeColor = SystemColors.WindowText;
+            cbxOptimizer.FormattingEnabled = true;
+            cbxOptimizer.Items.AddRange(new object[] { "AdamW8bit", "AdamW", "AdaFactor", "Lion", "SGDNesterov", "SGDNesterov8bit", "DAdaptAdamPreprint", "Lion8bit", "DAdaptAdaGrad", "DAdaptAdam", "DAdaptAdan", "DAdaptSGD", "DAdaptAdanIP", "DAdaptLion", "Prodigy", "PagedAdamW8bit", "PagedLion8bit" });
+            cbxOptimizer.Location = new Point(166, 315);
+            cbxOptimizer.Name = "cbxOptimizer";
+            cbxOptimizer.Size = new Size(204, 33);
+            cbxOptimizer.TabIndex = 6;
+            toolTip1.SetToolTip(cbxOptimizer, "AdamWとDAdaptLionがおすすめ\r\nDAdaptation系はCPUボトルネックが大きい傾向\r\nPaged系はdevブランチに切り替え後bitsandbytesの更新が必要");
+            cbxOptimizer.SelectedIndexChanged += cbxOptimizer_SelectedIndexChanged;
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(46, 320);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(114, 25);
-            this.label10.TabIndex = 14;
-            this.label10.Text = "オプティマイザ*";
+            label10.AutoSize = true;
+            label10.Location = new Point(46, 320);
+            label10.Name = "label10";
+            label10.Size = new Size(114, 25);
+            label10.TabIndex = 14;
+            label10.Text = "オプティマイザ*";
             // 
             // label17
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(30, 231);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(126, 25);
-            this.label17.TabIndex = 23;
-            this.label17.Text = "epochs/steps*";
+            label17.AutoSize = true;
+            label17.Location = new Point(30, 231);
+            label17.Name = "label17";
+            label17.Size = new Size(126, 25);
+            label17.TabIndex = 23;
+            label17.Text = "epochs/steps*";
             // 
             // btnAdvanced
             // 
-            this.btnAdvanced.Location = new System.Drawing.Point(28, 597);
-            this.btnAdvanced.Name = "btnAdvanced";
-            this.btnAdvanced.Size = new System.Drawing.Size(112, 40);
-            this.btnAdvanced.TabIndex = 26;
-            this.btnAdvanced.Text = "詳細設定";
-            this.btnAdvanced.UseVisualStyleBackColor = true;
-            this.btnAdvanced.Click += new System.EventHandler(this.button4_Click);
+            btnAdvanced.Location = new Point(28, 597);
+            btnAdvanced.Name = "btnAdvanced";
+            btnAdvanced.Size = new Size(112, 40);
+            btnAdvanced.TabIndex = 26;
+            btnAdvanced.Text = "詳細設定";
+            btnAdvanced.UseVisualStyleBackColor = true;
+            btnAdvanced.Click += button4_Click;
             // 
             // btnStartTraining
             // 
-            this.btnStartTraining.Font = new System.Drawing.Font("Yu Gothic UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnStartTraining.Location = new System.Drawing.Point(956, 630);
-            this.btnStartTraining.Name = "btnStartTraining";
-            this.btnStartTraining.Size = new System.Drawing.Size(192, 58);
-            this.btnStartTraining.TabIndex = 27;
-            this.btnStartTraining.Text = "学習開始";
-            this.btnStartTraining.UseVisualStyleBackColor = true;
-            this.btnStartTraining.Click += new System.EventHandler(this.btnStartTraining_Click);
+            btnStartTraining.Font = new Font("Yu Gothic UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            btnStartTraining.Location = new Point(956, 630);
+            btnStartTraining.Name = "btnStartTraining";
+            btnStartTraining.Size = new Size(192, 58);
+            btnStartTraining.TabIndex = 27;
+            btnStartTraining.Text = "学習開始";
+            btnStartTraining.UseVisualStyleBackColor = true;
+            btnStartTraining.Click += btnStartTraining_Click;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 14);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(417, 25);
-            this.label7.TabIndex = 29;
-            this.label7.Text = "*がつく項目は必須。#がつく項目は0を指定すると無効化";
+            label7.AutoSize = true;
+            label7.Location = new Point(20, 14);
+            label7.Name = "label7";
+            label7.Size = new Size(417, 25);
+            label7.TabIndex = 29;
+            label7.Text = "*がつく項目は必須。#がつく項目は0を指定すると無効化";
             // 
             // cbxShuffle
             // 
-            this.cbxShuffle.AutoSize = true;
-            this.cbxShuffle.Location = new System.Drawing.Point(167, 274);
-            this.cbxShuffle.Name = "cbxShuffle";
-            this.cbxShuffle.Size = new System.Drawing.Size(194, 29);
-            this.cbxShuffle.TabIndex = 30;
-            this.cbxShuffle.Text = "キャプションのシャッフル";
-            this.toolTip1.SetToolTip(this.cbxShuffle, "カンマ区切りでシャッフルする");
-            this.cbxShuffle.UseVisualStyleBackColor = true;
-            this.cbxShuffle.CheckedChanged += new System.EventHandler(this.cbxShuffle_CheckedChanged);
+            cbxShuffle.AutoSize = true;
+            cbxShuffle.Location = new Point(167, 274);
+            cbxShuffle.Name = "cbxShuffle";
+            cbxShuffle.Size = new Size(194, 29);
+            cbxShuffle.TabIndex = 30;
+            cbxShuffle.Text = "キャプションのシャッフル";
+            toolTip1.SetToolTip(cbxShuffle, "カンマ区切りでシャッフルする");
+            cbxShuffle.UseVisualStyleBackColor = true;
+            cbxShuffle.CheckedChanged += cbxShuffle_CheckedChanged;
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(476, 274);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(128, 25);
-            this.label12.TabIndex = 33;
-            this.label12.Text = "トークン保持数#";
+            label12.AutoSize = true;
+            label12.Location = new Point(476, 274);
+            label12.Name = "label12";
+            label12.Size = new Size(128, 25);
+            label12.TabIndex = 33;
+            label12.Text = "トークン保持数#";
             // 
             // nudNetworkAlpha
             // 
-            this.nudNetworkAlpha.DecimalPlaces = 2;
-            this.nudNetworkAlpha.Location = new System.Drawing.Point(1017, 226);
-            this.nudNetworkAlpha.Maximum = new decimal(new int[] {
-            1024,
-            0,
-            0,
-            0});
-            this.nudNetworkAlpha.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.nudNetworkAlpha.Name = "nudNetworkAlpha";
-            this.nudNetworkAlpha.Size = new System.Drawing.Size(120, 31);
-            this.nudNetworkAlpha.TabIndex = 51;
-            this.toolTip1.SetToolTip(this.nudNetworkAlpha, "dimの半分以下の値が望ましい\r\ndimに近い値では生成時に崩壊しやすい");
-            this.nudNetworkAlpha.Value = new decimal(new int[] {
-            16,
-            0,
-            0,
-            0});
-            this.nudNetworkAlpha.ValueChanged += new System.EventHandler(this.nudNetworkAlpha_ValueChanged);
+            nudNetworkAlpha.DecimalPlaces = 2;
+            nudNetworkAlpha.Location = new Point(1017, 226);
+            nudNetworkAlpha.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
+            nudNetworkAlpha.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
+            nudNetworkAlpha.Name = "nudNetworkAlpha";
+            nudNetworkAlpha.Size = new Size(120, 31);
+            nudNetworkAlpha.TabIndex = 51;
+            toolTip1.SetToolTip(nudNetworkAlpha, "dimの半分以下の値が望ましい\r\ndimに近い値では生成時に崩壊しやすい");
+            nudNetworkAlpha.Value = new decimal(new int[] { 16, 0, 0, 0 });
+            nudNetworkAlpha.ValueChanged += nudNetworkAlpha_ValueChanged;
             // 
             // nudNetworkDim
             // 
-            this.nudNetworkDim.Location = new System.Drawing.Point(608, 230);
-            this.nudNetworkDim.Maximum = new decimal(new int[] {
-            1024,
-            0,
-            0,
-            0});
-            this.nudNetworkDim.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudNetworkDim.Name = "nudNetworkDim";
-            this.nudNetworkDim.Size = new System.Drawing.Size(120, 31);
-            this.nudNetworkDim.TabIndex = 52;
-            this.toolTip1.SetToolTip(this.nudNetworkDim, "上げると学習能力が上昇するが、速度低下と生成時の不安定化を招く");
-            this.nudNetworkDim.Value = new decimal(new int[] {
-            64,
-            0,
-            0,
-            0});
-            this.nudNetworkDim.ValueChanged += new System.EventHandler(this.nudNetworkDim_ValueChanged);
+            nudNetworkDim.Location = new Point(608, 230);
+            nudNetworkDim.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
+            nudNetworkDim.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudNetworkDim.Name = "nudNetworkDim";
+            nudNetworkDim.Size = new Size(120, 31);
+            nudNetworkDim.TabIndex = 52;
+            toolTip1.SetToolTip(nudNetworkDim, "上げると学習能力が上昇するが、速度低下と生成時の不安定化を招く");
+            nudNetworkDim.Value = new decimal(new int[] { 64, 0, 0, 0 });
+            nudNetworkDim.ValueChanged += nudNetworkDim_ValueChanged;
             // 
             // nudResolution
             // 
-            this.nudResolution.Increment = new decimal(new int[] {
-            64,
-            0,
-            0,
-            0});
-            this.nudResolution.Location = new System.Drawing.Point(606, 186);
-            this.nudResolution.Maximum = new decimal(new int[] {
-            2048,
-            0,
-            0,
-            0});
-            this.nudResolution.Minimum = new decimal(new int[] {
-            128,
-            0,
-            0,
-            0});
-            this.nudResolution.Name = "nudResolution";
-            this.nudResolution.Size = new System.Drawing.Size(120, 31);
-            this.nudResolution.TabIndex = 54;
-            this.toolTip1.SetToolTip(this.nudResolution, "SD1.Xが512、2.Xが768、XLが1024推奨\r\n解像度を上げると細部が若干改善することがある");
-            this.nudResolution.Value = new decimal(new int[] {
-            512,
-            0,
-            0,
-            0});
-            this.nudResolution.ValueChanged += new System.EventHandler(this.nudResolution_ValueChanged);
+            nudResolution.Increment = new decimal(new int[] { 64, 0, 0, 0 });
+            nudResolution.Location = new Point(606, 186);
+            nudResolution.Maximum = new decimal(new int[] { 2048, 0, 0, 0 });
+            nudResolution.Minimum = new decimal(new int[] { 128, 0, 0, 0 });
+            nudResolution.Name = "nudResolution";
+            nudResolution.Size = new Size(120, 31);
+            nudResolution.TabIndex = 54;
+            toolTip1.SetToolTip(nudResolution, "SD1.Xが512、2.Xが768、XLが1024推奨\r\n解像度を上げると細部が若干改善することがある");
+            nudResolution.Value = new decimal(new int[] { 512, 0, 0, 0 });
+            nudResolution.ValueChanged += nudResolution_ValueChanged;
             // 
             // nudKeepTokens
             // 
-            this.nudKeepTokens.Location = new System.Drawing.Point(606, 272);
-            this.nudKeepTokens.Maximum = new decimal(new int[] {
-            128,
-            0,
-            0,
-            0});
-            this.nudKeepTokens.Name = "nudKeepTokens";
-            this.nudKeepTokens.Size = new System.Drawing.Size(120, 31);
-            this.nudKeepTokens.TabIndex = 55;
-            this.toolTip1.SetToolTip(this.nudKeepTokens, "先頭nトークンをシャッフルの対象外にする。\r\n1トークン=カンマ区切り");
-            this.nudKeepTokens.ValueChanged += new System.EventHandler(this.nudKeepTokens_ValueChanged);
+            nudKeepTokens.Location = new Point(606, 272);
+            nudKeepTokens.Maximum = new decimal(new int[] { 128, 0, 0, 0 });
+            nudKeepTokens.Name = "nudKeepTokens";
+            nudKeepTokens.Size = new Size(120, 31);
+            nudKeepTokens.TabIndex = 55;
+            toolTip1.SetToolTip(nudKeepTokens, "先頭nトークンをシャッフルの対象外にする。\r\n1トークン=カンマ区切り");
+            nudKeepTokens.ValueChanged += nudKeepTokens_ValueChanged;
             // 
             // nudBatchSize
             // 
-            this.nudBatchSize.Location = new System.Drawing.Point(1017, 184);
-            this.nudBatchSize.Maximum = new decimal(new int[] {
-            256,
-            0,
-            0,
-            0});
-            this.nudBatchSize.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudBatchSize.Name = "nudBatchSize";
-            this.nudBatchSize.Size = new System.Drawing.Size(120, 31);
-            this.nudBatchSize.TabIndex = 57;
-            this.toolTip1.SetToolTip(this.nudBatchSize, "高batchでは学習効率が低下するので、LRかエポック数を多めにする");
-            this.nudBatchSize.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudBatchSize.ValueChanged += new System.EventHandler(this.nudBatchSize_ValueChanged);
+            nudBatchSize.Location = new Point(1017, 184);
+            nudBatchSize.Maximum = new decimal(new int[] { 256, 0, 0, 0 });
+            nudBatchSize.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudBatchSize.Name = "nudBatchSize";
+            nudBatchSize.Size = new Size(120, 31);
+            nudBatchSize.TabIndex = 57;
+            toolTip1.SetToolTip(nudBatchSize, "高batchでは学習効率が低下するので、LRかエポック数を多めにする");
+            nudBatchSize.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nudBatchSize.ValueChanged += nudBatchSize_ValueChanged;
             // 
             // nudWarmupSteps
             // 
-            this.nudWarmupSteps.Location = new System.Drawing.Point(606, 314);
-            this.nudWarmupSteps.Maximum = new decimal(new int[] {
-            50000,
-            0,
-            0,
-            0});
-            this.nudWarmupSteps.Name = "nudWarmupSteps";
-            this.nudWarmupSteps.Size = new System.Drawing.Size(120, 31);
-            this.nudWarmupSteps.TabIndex = 62;
-            this.toolTip1.SetToolTip(this.nudWarmupSteps, "nステップ数まで徐々にLRを上げる");
-            this.nudWarmupSteps.Value = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.nudWarmupSteps.ValueChanged += new System.EventHandler(this.nudWarmupSteps_ValueChanged);
+            nudWarmupSteps.Location = new Point(606, 314);
+            nudWarmupSteps.Maximum = new decimal(new int[] { 50000, 0, 0, 0 });
+            nudWarmupSteps.Name = "nudWarmupSteps";
+            nudWarmupSteps.Size = new Size(120, 31);
+            nudWarmupSteps.TabIndex = 62;
+            toolTip1.SetToolTip(nudWarmupSteps, "nステップ数まで徐々にLRを上げる");
+            nudWarmupSteps.Value = new decimal(new int[] { 500, 0, 0, 0 });
+            nudWarmupSteps.ValueChanged += nudWarmupSteps_ValueChanged;
             // 
             // cbxSDType
             // 
-            this.cbxSDType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxSDType.FormattingEnabled = true;
-            this.cbxSDType.Items.AddRange(new object[] {
-            "1.x/2.x",
-            "XL"});
-            this.cbxSDType.Location = new System.Drawing.Point(166, 368);
-            this.cbxSDType.Name = "cbxSDType";
-            this.cbxSDType.Size = new System.Drawing.Size(204, 33);
-            this.cbxSDType.TabIndex = 85;
-            this.toolTip1.SetToolTip(this.cbxSDType, "SDXLは要求スペックもXLサイズ\r\nVRAM12GB以上、メインメモリ32GB以上必要\r\nVRAM8GBでもかろうじて動く");
-            this.cbxSDType.SelectedIndexChanged += new System.EventHandler(this.cbxSDType_SelectedIndexChanged);
+            cbxSDType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxSDType.FormattingEnabled = true;
+            cbxSDType.Items.AddRange(new object[] { "1.x/2.x", "XL" });
+            cbxSDType.Location = new Point(166, 368);
+            cbxSDType.Name = "cbxSDType";
+            cbxSDType.Size = new Size(204, 33);
+            cbxSDType.TabIndex = 85;
+            toolTip1.SetToolTip(cbxSDType, "SDXLは要求スペックもXLサイズ\r\nVRAM12GB以上、メインメモリ32GB以上必要\r\nVRAM8GBでもかろうじて動く");
+            cbxSDType.SelectedIndexChanged += cbxSDType_SelectedIndexChanged;
             // 
             // tbxFileName
             // 
-            this.tbxFileName.Location = new System.Drawing.Point(166, 416);
-            this.tbxFileName.Name = "tbxFileName";
-            this.tbxFileName.Size = new System.Drawing.Size(474, 31);
-            this.tbxFileName.TabIndex = 38;
-            this.toolTip1.SetToolTip(this.tbxFileName, "空白、マルチバイト文字(日本語など)は非推奨");
-            this.tbxFileName.TextChanged += new System.EventHandler(this.tbxFileName_TextChanged);
+            tbxFileName.Location = new Point(166, 416);
+            tbxFileName.Name = "tbxFileName";
+            tbxFileName.Size = new Size(474, 31);
+            tbxFileName.TabIndex = 38;
+            toolTip1.SetToolTip(tbxFileName, "空白、マルチバイト文字(日本語など)は非推奨");
+            tbxFileName.TextChanged += tbxFileName_TextChanged;
             // 
             // cbxModuleType
             // 
-            this.cbxModuleType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxModuleType.FormattingEnabled = true;
-            this.cbxModuleType.Items.AddRange(new object[] {
-            "LoRA",
-            "LyCORIS",
-            "DyLoRA"});
-            this.cbxModuleType.Location = new System.Drawing.Point(1017, 312);
-            this.cbxModuleType.Name = "cbxModuleType";
-            this.cbxModuleType.Size = new System.Drawing.Size(120, 33);
-            this.cbxModuleType.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.cbxModuleType, "LyCORISは品質面でのメリットなし");
-            this.cbxModuleType.SelectedIndexChanged += new System.EventHandler(this.cbxModuleType_SelectedIndexChanged);
+            cbxModuleType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxModuleType.FormattingEnabled = true;
+            cbxModuleType.Items.AddRange(new object[] { "LoRA", "LyCORIS", "DyLoRA", "LoRA-FA" });
+            cbxModuleType.Location = new Point(1017, 312);
+            cbxModuleType.Name = "cbxModuleType";
+            cbxModuleType.Size = new Size(120, 33);
+            cbxModuleType.TabIndex = 6;
+            toolTip1.SetToolTip(cbxModuleType, "LyCORISは品質面でのメリットなし\r\nLoRA-FAはメモリ消費が減少する");
+            cbxModuleType.SelectedIndexChanged += cbxModuleType_SelectedIndexChanged;
             // 
             // nudSaveEpoch
             // 
-            this.nudSaveEpoch.Location = new System.Drawing.Point(1017, 268);
-            this.nudSaveEpoch.Maximum = new decimal(new int[] {
-            200000,
-            0,
-            0,
-            0});
-            this.nudSaveEpoch.Name = "nudSaveEpoch";
-            this.nudSaveEpoch.Size = new System.Drawing.Size(120, 31);
-            this.nudSaveEpoch.TabIndex = 56;
-            this.toolTip1.SetToolTip(this.nudSaveEpoch, "指定した間隔で成果物を書き出す\r\nエポックかステップのどちらを使用するかは\r\nepochs/stepsの設定に従う");
-            this.nudSaveEpoch.ValueChanged += new System.EventHandler(this.nudSaveEpoch_ValueChanged);
+            nudSaveEpoch.Location = new Point(1017, 268);
+            nudSaveEpoch.Maximum = new decimal(new int[] { 200000, 0, 0, 0 });
+            nudSaveEpoch.Name = "nudSaveEpoch";
+            nudSaveEpoch.Size = new Size(120, 31);
+            nudSaveEpoch.TabIndex = 56;
+            toolTip1.SetToolTip(nudSaveEpoch, "指定した間隔で成果物を書き出す\r\nエポックかステップのどちらを使用するかは\r\nepochs/stepsの設定に従う");
+            nudSaveEpoch.ValueChanged += nudSaveEpoch_ValueChanged;
             // 
             // tbxRegImgPath
             // 
-            this.tbxRegImgPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbxRegImgPath.Location = new System.Drawing.Point(813, 134);
-            this.tbxRegImgPath.Name = "tbxRegImgPath";
-            this.tbxRegImgPath.Size = new System.Drawing.Size(324, 29);
-            this.tbxRegImgPath.TabIndex = 71;
-            this.toolTip1.SetToolTip(this.tbxRegImgPath, "特定のものだけ\r\n出てくればいいなら不要");
-            this.tbxRegImgPath.TextChanged += new System.EventHandler(this.tbxRegImgPath_TextChanged);
+            tbxRegImgPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxRegImgPath.Location = new Point(813, 134);
+            tbxRegImgPath.Name = "tbxRegImgPath";
+            tbxRegImgPath.Size = new Size(324, 29);
+            tbxRegImgPath.TabIndex = 71;
+            toolTip1.SetToolTip(tbxRegImgPath, "特定のものだけ\r\n出てくればいいなら不要");
+            tbxRegImgPath.TextChanged += tbxRegImgPath_TextChanged;
             // 
             // btnSavePreset
             // 
-            this.btnSavePreset.Location = new System.Drawing.Point(795, 639);
-            this.btnSavePreset.Name = "btnSavePreset";
-            this.btnSavePreset.Size = new System.Drawing.Size(146, 46);
-            this.btnSavePreset.TabIndex = 34;
-            this.btnSavePreset.Text = "プリセットの保存";
-            this.btnSavePreset.UseVisualStyleBackColor = true;
-            this.btnSavePreset.Click += new System.EventHandler(this.btnSavePreset_Click);
+            btnSavePreset.Location = new Point(795, 639);
+            btnSavePreset.Name = "btnSavePreset";
+            btnSavePreset.Size = new Size(146, 46);
+            btnSavePreset.TabIndex = 34;
+            btnSavePreset.Text = "プリセットの保存";
+            btnSavePreset.UseVisualStyleBackColor = true;
+            btnSavePreset.Click += btnSavePreset_Click;
             // 
             // btnLoadPreset
             // 
-            this.btnLoadPreset.Location = new System.Drawing.Point(628, 639);
-            this.btnLoadPreset.Name = "btnLoadPreset";
-            this.btnLoadPreset.Size = new System.Drawing.Size(160, 46);
-            this.btnLoadPreset.TabIndex = 35;
-            this.btnLoadPreset.Text = "プリセットの読込";
-            this.btnLoadPreset.UseVisualStyleBackColor = true;
-            this.btnLoadPreset.Click += new System.EventHandler(this.btnLoadPreset_Click);
+            btnLoadPreset.Location = new Point(628, 639);
+            btnLoadPreset.Name = "btnLoadPreset";
+            btnLoadPreset.Size = new Size(160, 46);
+            btnLoadPreset.TabIndex = 35;
+            btnLoadPreset.Text = "プリセットの読込";
+            btnLoadPreset.UseVisualStyleBackColor = true;
+            btnLoadPreset.Click += btnLoadPreset_Click;
             // 
             // lblResolution
             // 
-            this.lblResolution.AutoSize = true;
-            this.lblResolution.Location = new System.Drawing.Point(526, 188);
-            this.lblResolution.Name = "lblResolution";
-            this.lblResolution.Size = new System.Drawing.Size(74, 25);
-            this.lblResolution.TabIndex = 36;
-            this.lblResolution.Text = "解像度*";
+            lblResolution.AutoSize = true;
+            lblResolution.Location = new Point(526, 188);
+            lblResolution.Name = "lblResolution";
+            lblResolution.Size = new Size(74, 25);
+            lblResolution.TabIndex = 36;
+            lblResolution.Text = "解像度*";
             // 
             // lblFileName
             // 
-            this.lblFileName.AutoSize = true;
-            this.lblFileName.Location = new System.Drawing.Point(44, 418);
-            this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(117, 25);
-            this.lblFileName.TabIndex = 39;
-            this.lblFileName.Text = "出力ファイル名";
+            lblFileName.AutoSize = true;
+            lblFileName.Location = new Point(44, 418);
+            lblFileName.Name = "lblFileName";
+            lblFileName.Size = new Size(117, 25);
+            lblFileName.TabIndex = 39;
+            lblFileName.Text = "出力ファイル名";
             // 
             // label16
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(798, 272);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(213, 25);
-            this.label16.TabIndex = 42;
-            this.label16.Text = "保存頻度(Epochs/Steps)#";
+            label16.AutoSize = true;
+            label16.Location = new Point(798, 272);
+            label16.Name = "label16";
+            label16.Size = new Size(213, 25);
+            label16.TabIndex = 42;
+            label16.Text = "保存頻度(Epochs/Steps)#";
             // 
             // label18
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(909, 188);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(102, 25);
-            this.label18.TabIndex = 44;
-            this.label18.Text = "バッチサイズ*";
+            label18.AutoSize = true;
+            label18.Location = new Point(909, 188);
+            label18.Name = "label18";
+            label18.Size = new Size(102, 25);
+            label18.TabIndex = 44;
+            label18.Text = "バッチサイズ*";
             // 
             // label20
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(448, 232);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(152, 25);
-            this.label20.TabIndex = 48;
-            this.label20.Text = "ネットワーク次元数*";
+            label20.AutoSize = true;
+            label20.Location = new Point(448, 232);
+            label20.Name = "label20";
+            label20.Size = new Size(152, 25);
+            label20.TabIndex = 48;
+            label20.Text = "ネットワーク次元数*";
             // 
             // label21
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(862, 228);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(150, 25);
-            this.label21.TabIndex = 50;
-            this.label21.Text = "ネットワークアルファ*";
+            label21.AutoSize = true;
+            label21.Location = new Point(862, 228);
+            label21.Name = "label21";
+            label21.Size = new Size(150, 25);
+            label21.TabIndex = 50;
+            label21.Text = "ネットワークアルファ*";
             // 
             // nudEpochs
             // 
-            this.nudEpochs.Location = new System.Drawing.Point(162, 230);
-            this.nudEpochs.Maximum = new decimal(new int[] {
-            200000,
-            0,
-            0,
-            0});
-            this.nudEpochs.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudEpochs.Name = "nudEpochs";
-            this.nudEpochs.Size = new System.Drawing.Size(120, 31);
-            this.nudEpochs.TabIndex = 53;
-            this.nudEpochs.Value = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            this.nudEpochs.ValueChanged += new System.EventHandler(this.nudEpochs_ValueChanged);
+            nudEpochs.Location = new Point(162, 230);
+            nudEpochs.Maximum = new decimal(new int[] { 200000, 0, 0, 0 });
+            nudEpochs.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudEpochs.Name = "nudEpochs";
+            nudEpochs.Size = new Size(120, 31);
+            nudEpochs.TabIndex = 53;
+            nudEpochs.Value = new decimal(new int[] { 4, 0, 0, 0 });
+            nudEpochs.ValueChanged += nudEpochs_ValueChanged;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(826, 507);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 25);
-            this.label1.TabIndex = 60;
-            this.label1.Text = "総ステップ数(目安):";
+            label1.AutoSize = true;
+            label1.Location = new Point(826, 507);
+            label1.Name = "label1";
+            label1.Size = new Size(152, 25);
+            label1.TabIndex = 60;
+            label1.Text = "総ステップ数(目安):";
             // 
             // lblNumSteps
             // 
-            this.lblNumSteps.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblNumSteps.Location = new System.Drawing.Point(984, 504);
-            this.lblNumSteps.Name = "lblNumSteps";
-            this.lblNumSteps.Size = new System.Drawing.Size(153, 26);
-            this.lblNumSteps.TabIndex = 61;
-            this.lblNumSteps.Text = "999,999,999";
+            lblNumSteps.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblNumSteps.Location = new Point(984, 504);
+            lblNumSteps.Name = "lblNumSteps";
+            lblNumSteps.Size = new Size(153, 26);
+            lblNumSteps.TabIndex = 61;
+            lblNumSteps.Text = "999,999,999";
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(417, 318);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(186, 25);
-            this.label9.TabIndex = 63;
-            this.label9.Text = "ウォームアップステップ数#";
+            label9.AutoSize = true;
+            label9.Location = new Point(417, 318);
+            label9.Name = "label9";
+            label9.Size = new Size(186, 25);
+            label9.TabIndex = 63;
+            label9.Text = "ウォームアップステップ数#";
             // 
             // btnClearRegImagePath
             // 
-            this.btnClearRegImagePath.Location = new System.Drawing.Point(1060, 82);
-            this.btnClearRegImagePath.Name = "btnClearRegImagePath";
-            this.btnClearRegImagePath.Size = new System.Drawing.Size(76, 45);
-            this.btnClearRegImagePath.TabIndex = 64;
-            this.btnClearRegImagePath.Text = "クリア";
-            this.btnClearRegImagePath.UseVisualStyleBackColor = true;
-            this.btnClearRegImagePath.Click += new System.EventHandler(this.btnClearRegImagePath_Click);
+            btnClearRegImagePath.Location = new Point(1060, 82);
+            btnClearRegImagePath.Name = "btnClearRegImagePath";
+            btnClearRegImagePath.Size = new Size(76, 45);
+            btnClearRegImagePath.TabIndex = 64;
+            btnClearRegImagePath.Text = "クリア";
+            btnClearRegImagePath.UseVisualStyleBackColor = true;
+            btnClearRegImagePath.Click += btnClearRegImagePath_Click;
             // 
             // lblNumStepsBatch1
             // 
-            this.lblNumStepsBatch1.Font = new System.Drawing.Font("Yu Gothic UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.lblNumStepsBatch1.Location = new System.Drawing.Point(984, 542);
-            this.lblNumStepsBatch1.Name = "lblNumStepsBatch1";
-            this.lblNumStepsBatch1.Size = new System.Drawing.Size(153, 26);
-            this.lblNumStepsBatch1.TabIndex = 61;
-            this.lblNumStepsBatch1.Text = "999,999,999";
+            lblNumStepsBatch1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblNumStepsBatch1.Location = new Point(984, 542);
+            lblNumStepsBatch1.Name = "lblNumStepsBatch1";
+            lblNumStepsBatch1.Size = new Size(153, 26);
+            lblNumStepsBatch1.TabIndex = 61;
+            lblNumStepsBatch1.Text = "999,999,999";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(826, 542);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(152, 25);
-            this.label5.TabIndex = 60;
-            this.label5.Text = "batch1相当(目安):";
+            label5.AutoSize = true;
+            label5.Location = new Point(826, 542);
+            label5.Name = "label5";
+            label5.Size = new Size(152, 25);
+            label5.TabIndex = 60;
+            label5.Text = "batch1相当(目安):";
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(162, 465);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(307, 25);
-            this.label8.TabIndex = 65;
-            this.label8.Text = "次の文字は使用できません /\\?:*<>|\"＆\'`\r\n";
+            label8.AutoSize = true;
+            label8.Location = new Point(162, 465);
+            label8.Name = "label8";
+            label8.Size = new Size(307, 25);
+            label8.TabIndex = 65;
+            label8.Text = "次の文字は使用できません /\\?:*<>|\"＆'`\r\n";
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(854, 428);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(127, 25);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "出力先フォルダ*";
+            label11.AutoSize = true;
+            label11.Location = new Point(854, 428);
+            label11.Name = "label11";
+            label11.Size = new Size(127, 25);
+            label11.TabIndex = 3;
+            label11.Text = "出力先フォルダ*";
             // 
             // btnOutputPath
             // 
-            this.btnOutputPath.Location = new System.Drawing.Point(987, 416);
-            this.btnOutputPath.Name = "btnOutputPath";
-            this.btnOutputPath.Size = new System.Drawing.Size(159, 44);
-            this.btnOutputPath.TabIndex = 66;
-            this.btnOutputPath.Text = "選択";
-            this.btnOutputPath.UseVisualStyleBackColor = true;
-            this.btnOutputPath.Click += new System.EventHandler(this.btnOutputPath_Click);
+            btnOutputPath.Location = new Point(987, 416);
+            btnOutputPath.Name = "btnOutputPath";
+            btnOutputPath.Size = new Size(159, 44);
+            btnOutputPath.TabIndex = 66;
+            btnOutputPath.Text = "選択";
+            btnOutputPath.UseVisualStyleBackColor = true;
+            btnOutputPath.Click += btnOutputPath_Click;
             // 
             // btnCustomScriptPath
             // 
-            this.btnCustomScriptPath.Location = new System.Drawing.Point(1028, 14);
-            this.btnCustomScriptPath.Name = "btnCustomScriptPath";
-            this.btnCustomScriptPath.Size = new System.Drawing.Size(120, 38);
-            this.btnCustomScriptPath.TabIndex = 67;
-            this.btnCustomScriptPath.Text = "選択";
-            this.btnCustomScriptPath.UseVisualStyleBackColor = true;
-            this.btnCustomScriptPath.Click += new System.EventHandler(this.btnCustomScriptPath_Click);
+            btnCustomScriptPath.Location = new Point(1028, 14);
+            btnCustomScriptPath.Name = "btnCustomScriptPath";
+            btnCustomScriptPath.Size = new Size(120, 38);
+            btnCustomScriptPath.TabIndex = 67;
+            btnCustomScriptPath.Text = "選択";
+            btnCustomScriptPath.UseVisualStyleBackColor = true;
+            btnCustomScriptPath.Click += btnCustomScriptPath_Click;
             // 
             // lblScriptPathDesc
             // 
-            this.lblScriptPathDesc.AutoSize = true;
-            this.lblScriptPathDesc.ForeColor = System.Drawing.Color.Black;
-            this.lblScriptPathDesc.Location = new System.Drawing.Point(782, 21);
-            this.lblScriptPathDesc.Name = "lblScriptPathDesc";
-            this.lblScriptPathDesc.Size = new System.Drawing.Size(161, 25);
-            this.lblScriptPathDesc.TabIndex = 68;
-            this.lblScriptPathDesc.Text = "sd-scripts場所選択";
+            lblScriptPathDesc.AutoSize = true;
+            lblScriptPathDesc.ForeColor = Color.Black;
+            lblScriptPathDesc.Location = new Point(782, 21);
+            lblScriptPathDesc.Name = "lblScriptPathDesc";
+            lblScriptPathDesc.Size = new Size(161, 25);
+            lblScriptPathDesc.TabIndex = 68;
+            lblScriptPathDesc.Text = "sd-scripts場所選択";
             // 
             // btnUtilities
             // 
-            this.btnUtilities.Location = new System.Drawing.Point(484, 639);
-            this.btnUtilities.Name = "btnUtilities";
-            this.btnUtilities.Size = new System.Drawing.Size(117, 46);
-            this.btnUtilities.TabIndex = 69;
-            this.btnUtilities.Text = "ユーティリティ";
-            this.btnUtilities.UseVisualStyleBackColor = true;
-            this.btnUtilities.Click += new System.EventHandler(this.btnUtilities_Click);
+            btnUtilities.Location = new Point(484, 639);
+            btnUtilities.Name = "btnUtilities";
+            btnUtilities.Size = new Size(117, 46);
+            btnUtilities.TabIndex = 69;
+            btnUtilities.Text = "ユーティリティ";
+            btnUtilities.UseVisualStyleBackColor = true;
+            btnUtilities.Click += btnUtilities_Click;
             // 
             // tbxModelPath
             // 
-            this.tbxModelPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbxModelPath.Location = new System.Drawing.Point(24, 135);
-            this.tbxModelPath.Name = "tbxModelPath";
-            this.tbxModelPath.Size = new System.Drawing.Size(318, 29);
-            this.tbxModelPath.TabIndex = 71;
-            this.tbxModelPath.TextChanged += new System.EventHandler(this.tbxModelPath_TextChanged);
+            tbxModelPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxModelPath.Location = new Point(24, 135);
+            tbxModelPath.Name = "tbxModelPath";
+            tbxModelPath.Size = new Size(318, 29);
+            tbxModelPath.TabIndex = 71;
+            tbxModelPath.TextChanged += tbxModelPath_TextChanged;
             // 
             // tbxImagePath
             // 
-            this.tbxImagePath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbxImagePath.Location = new System.Drawing.Point(414, 134);
-            this.tbxImagePath.Name = "tbxImagePath";
-            this.tbxImagePath.Size = new System.Drawing.Size(312, 29);
-            this.tbxImagePath.TabIndex = 71;
-            this.tbxImagePath.TextChanged += new System.EventHandler(this.tbxImagePath_TextChanged);
+            tbxImagePath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxImagePath.Location = new Point(414, 134);
+            tbxImagePath.Name = "tbxImagePath";
+            tbxImagePath.Size = new Size(312, 29);
+            tbxImagePath.TabIndex = 71;
+            tbxImagePath.TextChanged += tbxImagePath_TextChanged;
             // 
             // tbxOutputPath
             // 
-            this.tbxOutputPath.Font = new System.Drawing.Font("Yu Gothic UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbxOutputPath.Location = new System.Drawing.Point(820, 465);
-            this.tbxOutputPath.Name = "tbxOutputPath";
-            this.tbxOutputPath.Size = new System.Drawing.Size(328, 29);
-            this.tbxOutputPath.TabIndex = 71;
-            this.tbxOutputPath.TextChanged += new System.EventHandler(this.tbxOutputPath_TextChanged);
+            tbxOutputPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxOutputPath.Location = new Point(820, 465);
+            tbxOutputPath.Name = "tbxOutputPath";
+            tbxOutputPath.Size = new Size(328, 29);
+            tbxOutputPath.TabIndex = 71;
+            tbxOutputPath.TextChanged += tbxOutputPath_TextChanged;
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(873, 315);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(138, 25);
-            this.label6.TabIndex = 72;
-            this.label6.Text = "モジュールの種類*";
+            label6.AutoSize = true;
+            label6.Location = new Point(873, 315);
+            label6.Name = "label6";
+            label6.Size = new Size(138, 25);
+            label6.TabIndex = 72;
+            label6.Text = "モジュールの種類*";
             // 
             // btnBlockWeight
             // 
-            this.btnBlockWeight.Location = new System.Drawing.Point(28, 646);
-            this.btnBlockWeight.Name = "btnBlockWeight";
-            this.btnBlockWeight.Size = new System.Drawing.Size(112, 42);
-            this.btnBlockWeight.TabIndex = 75;
-            this.btnBlockWeight.Text = "層別学習率";
-            this.btnBlockWeight.UseVisualStyleBackColor = true;
-            this.btnBlockWeight.Click += new System.EventHandler(this.btnBlockWeight_Click);
+            btnBlockWeight.Location = new Point(28, 646);
+            btnBlockWeight.Name = "btnBlockWeight";
+            btnBlockWeight.Size = new Size(112, 42);
+            btnBlockWeight.TabIndex = 75;
+            btnBlockWeight.Text = "層別学習率";
+            btnBlockWeight.UseVisualStyleBackColor = true;
+            btnBlockWeight.Click += btnBlockWeight_Click;
             // 
             // btnBlockDim
             // 
-            this.btnBlockDim.Location = new System.Drawing.Point(147, 646);
-            this.btnBlockDim.Name = "btnBlockDim";
-            this.btnBlockDim.Size = new System.Drawing.Size(112, 40);
-            this.btnBlockDim.TabIndex = 76;
-            this.btnBlockDim.Text = "層別dim";
-            this.btnBlockDim.UseVisualStyleBackColor = true;
-            this.btnBlockDim.Click += new System.EventHandler(this.btnBlockDim_Click);
+            btnBlockDim.Location = new Point(147, 646);
+            btnBlockDim.Name = "btnBlockDim";
+            btnBlockDim.Size = new Size(112, 40);
+            btnBlockDim.TabIndex = 76;
+            btnBlockDim.Text = "層別dim";
+            btnBlockDim.UseVisualStyleBackColor = true;
+            btnBlockDim.Click += btnBlockDim_Click;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.rbtShutdown);
-            this.groupBox1.Controls.Add(this.rbtBenckmark);
-            this.groupBox1.Controls.Add(this.rbtDoNothing);
-            this.groupBox1.Location = new System.Drawing.Point(28, 507);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(460, 68);
-            this.groupBox1.TabIndex = 79;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "学習終了後の動作";
+            groupBox1.Controls.Add(rbtShutdown);
+            groupBox1.Controls.Add(rbtBenckmark);
+            groupBox1.Controls.Add(rbtDoNothing);
+            groupBox1.Location = new Point(28, 507);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(460, 68);
+            groupBox1.TabIndex = 79;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "学習終了後の動作";
             // 
             // rbtShutdown
             // 
-            this.rbtShutdown.AutoSize = true;
-            this.rbtShutdown.Location = new System.Drawing.Point(318, 27);
-            this.rbtShutdown.Name = "rbtShutdown";
-            this.rbtShutdown.Size = new System.Drawing.Size(126, 29);
-            this.rbtShutdown.TabIndex = 2;
-            this.rbtShutdown.Text = "シャットダウン";
-            this.rbtShutdown.UseVisualStyleBackColor = true;
+            rbtShutdown.AutoSize = true;
+            rbtShutdown.Location = new Point(318, 27);
+            rbtShutdown.Name = "rbtShutdown";
+            rbtShutdown.Size = new Size(126, 29);
+            rbtShutdown.TabIndex = 2;
+            rbtShutdown.Text = "シャットダウン";
+            rbtShutdown.UseVisualStyleBackColor = true;
             // 
             // rbtBenckmark
             // 
-            this.rbtBenckmark.AutoSize = true;
-            this.rbtBenckmark.Location = new System.Drawing.Point(132, 28);
-            this.rbtBenckmark.Name = "rbtBenckmark";
-            this.rbtBenckmark.Size = new System.Drawing.Size(160, 29);
-            this.rbtBenckmark.TabIndex = 1;
-            this.rbtBenckmark.Text = "経過時間の表示";
-            this.rbtBenckmark.UseVisualStyleBackColor = true;
+            rbtBenckmark.AutoSize = true;
+            rbtBenckmark.Location = new Point(132, 28);
+            rbtBenckmark.Name = "rbtBenckmark";
+            rbtBenckmark.Size = new Size(160, 29);
+            rbtBenckmark.TabIndex = 1;
+            rbtBenckmark.Text = "経過時間の表示";
+            rbtBenckmark.UseVisualStyleBackColor = true;
             // 
             // rbtDoNothing
             // 
-            this.rbtDoNothing.AutoSize = true;
-            this.rbtDoNothing.Checked = true;
-            this.rbtDoNothing.Location = new System.Drawing.Point(20, 28);
-            this.rbtDoNothing.Name = "rbtDoNothing";
-            this.rbtDoNothing.Size = new System.Drawing.Size(68, 29);
-            this.rbtDoNothing.TabIndex = 0;
-            this.rbtDoNothing.TabStop = true;
-            this.rbtDoNothing.Text = "無し";
-            this.rbtDoNothing.UseVisualStyleBackColor = true;
+            rbtDoNothing.AutoSize = true;
+            rbtDoNothing.Checked = true;
+            rbtDoNothing.Location = new Point(20, 28);
+            rbtDoNothing.Name = "rbtDoNothing";
+            rbtDoNothing.Size = new Size(68, 29);
+            rbtDoNothing.TabIndex = 0;
+            rbtDoNothing.TabStop = true;
+            rbtDoNothing.Text = "無し";
+            rbtDoNothing.UseVisualStyleBackColor = true;
             // 
             // btnBatchProcess
             // 
-            this.btnBatchProcess.Location = new System.Drawing.Point(148, 597);
-            this.btnBatchProcess.Name = "btnBatchProcess";
-            this.btnBatchProcess.Size = new System.Drawing.Size(112, 40);
-            this.btnBatchProcess.TabIndex = 80;
-            this.btnBatchProcess.Text = "バッチ処理";
-            this.btnBatchProcess.UseVisualStyleBackColor = true;
-            this.btnBatchProcess.Click += new System.EventHandler(this.btnBatchProcess_Click);
+            btnBatchProcess.Location = new Point(148, 597);
+            btnBatchProcess.Name = "btnBatchProcess";
+            btnBatchProcess.Size = new Size(112, 40);
+            btnBatchProcess.TabIndex = 80;
+            btnBatchProcess.Text = "バッチ処理";
+            btnBatchProcess.UseVisualStyleBackColor = true;
+            btnBatchProcess.Click += btnBatchProcess_Click;
             // 
             // btnInstaller
             // 
-            this.btnInstaller.Location = new System.Drawing.Point(538, 14);
-            this.btnInstaller.Name = "btnInstaller";
-            this.btnInstaller.Size = new System.Drawing.Size(189, 42);
-            this.btnInstaller.TabIndex = 82;
-            this.btnInstaller.Text = "簡易インストーラー";
-            this.btnInstaller.UseVisualStyleBackColor = true;
-            this.btnInstaller.Click += new System.EventHandler(this.btnInstaller_Click);
+            btnInstaller.Location = new Point(538, 14);
+            btnInstaller.Name = "btnInstaller";
+            btnInstaller.Size = new Size(189, 42);
+            btnInstaller.TabIndex = 82;
+            btnInstaller.Text = "簡易インストーラー";
+            btnInstaller.UseVisualStyleBackColor = true;
+            btnInstaller.Click += btnInstaller_Click;
             // 
             // btnGenerateCommands
             // 
-            this.btnGenerateCommands.Location = new System.Drawing.Point(956, 586);
-            this.btnGenerateCommands.Name = "btnGenerateCommands";
-            this.btnGenerateCommands.Size = new System.Drawing.Size(192, 38);
-            this.btnGenerateCommands.TabIndex = 83;
-            this.btnGenerateCommands.Text = "コマンドの生成とコピー";
-            this.btnGenerateCommands.UseVisualStyleBackColor = true;
-            this.btnGenerateCommands.Click += new System.EventHandler(this.btnGenerateCommands_Click);
+            btnGenerateCommands.Location = new Point(956, 586);
+            btnGenerateCommands.Name = "btnGenerateCommands";
+            btnGenerateCommands.Size = new Size(192, 38);
+            btnGenerateCommands.TabIndex = 83;
+            btnGenerateCommands.Text = "コマンドの生成とコピー";
+            btnGenerateCommands.UseVisualStyleBackColor = true;
+            btnGenerateCommands.Click += btnGenerateCommands_Click;
             // 
             // btnLeco
             // 
-            this.btnLeco.Location = new System.Drawing.Point(346, 639);
-            this.btnLeco.Name = "btnLeco";
-            this.btnLeco.Size = new System.Drawing.Size(126, 46);
-            this.btnLeco.TabIndex = 84;
-            this.btnLeco.Text = "LECO";
-            this.btnLeco.UseVisualStyleBackColor = true;
-            this.btnLeco.Click += new System.EventHandler(this.btnLeco_Click);
+            btnLeco.Location = new Point(346, 639);
+            btnLeco.Name = "btnLeco";
+            btnLeco.Size = new Size(126, 46);
+            btnLeco.TabIndex = 84;
+            btnLeco.Text = "LECO";
+            btnLeco.UseVisualStyleBackColor = true;
+            btnLeco.Click += btnLeco_Click;
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(40, 370);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(116, 25);
-            this.label13.TabIndex = 14;
-            this.label13.Text = "SDのバージョン";
+            label13.AutoSize = true;
+            label13.Location = new Point(40, 370);
+            label13.Name = "label13";
+            label13.Size = new Size(116, 25);
+            label13.TabIndex = 14;
+            label13.Text = "SDのバージョン";
             // 
             // cbxEpochOrStep
             // 
-            this.cbxEpochOrStep.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxEpochOrStep.FormattingEnabled = true;
-            this.cbxEpochOrStep.Items.AddRange(new object[] {
-            "エポック",
-            "ステップ"});
-            this.cbxEpochOrStep.Location = new System.Drawing.Point(288, 228);
-            this.cbxEpochOrStep.Name = "cbxEpochOrStep";
-            this.cbxEpochOrStep.Size = new System.Drawing.Size(121, 33);
-            this.cbxEpochOrStep.TabIndex = 86;
-            this.cbxEpochOrStep.SelectedIndexChanged += new System.EventHandler(this.cbxEpochOrStep_SelectedIndexChanged);
+            cbxEpochOrStep.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxEpochOrStep.FormattingEnabled = true;
+            cbxEpochOrStep.Items.AddRange(new object[] { "エポック", "ステップ" });
+            cbxEpochOrStep.Location = new Point(288, 228);
+            cbxEpochOrStep.Name = "cbxEpochOrStep";
+            cbxEpochOrStep.Size = new Size(121, 33);
+            cbxEpochOrStep.TabIndex = 86;
+            cbxEpochOrStep.SelectedIndexChanged += cbxEpochOrStep_SelectedIndexChanged;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1172, 714);
-            this.Controls.Add(this.cbxEpochOrStep);
-            this.Controls.Add(this.cbxSDType);
-            this.Controls.Add(this.btnLeco);
-            this.Controls.Add(this.btnGenerateCommands);
-            this.Controls.Add(this.btnInstaller);
-            this.Controls.Add(this.btnBatchProcess);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.btnBlockDim);
-            this.Controls.Add(this.btnBlockWeight);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.tbxOutputPath);
-            this.Controls.Add(this.tbxRegImgPath);
-            this.Controls.Add(this.tbxImagePath);
-            this.Controls.Add(this.tbxModelPath);
-            this.Controls.Add(this.btnUtilities);
-            this.Controls.Add(this.lblScriptPathDesc);
-            this.Controls.Add(this.btnCustomScriptPath);
-            this.Controls.Add(this.btnOutputPath);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.btnClearRegImagePath);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.lblNumStepsBatch1);
-            this.Controls.Add(this.nudWarmupSteps);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.lblNumSteps);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.nudBatchSize);
-            this.Controls.Add(this.nudSaveEpoch);
-            this.Controls.Add(this.nudKeepTokens);
-            this.Controls.Add(this.nudResolution);
-            this.Controls.Add(this.nudEpochs);
-            this.Controls.Add(this.nudNetworkDim);
-            this.Controls.Add(this.nudNetworkAlpha);
-            this.Controls.Add(this.label21);
-            this.Controls.Add(this.label20);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.lblFileName);
-            this.Controls.Add(this.tbxFileName);
-            this.Controls.Add(this.lblResolution);
-            this.Controls.Add(this.btnLoadPreset);
-            this.Controls.Add(this.btnSavePreset);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.cbxShuffle);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.btnStartTraining);
-            this.Controls.Add(this.btnAdvanced);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.cbxModuleType);
-            this.Controls.Add(this.cbxOptimizer);
-            this.Controls.Add(this.lblLR);
-            this.Controls.Add(this.tbxLR);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnRegImage);
-            this.Controls.Add(this.btnImage);
-            this.Controls.Add(this.btnModel);
-            this.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LoRA Training GUI";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.nudNetworkAlpha)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNetworkDim)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudResolution)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudKeepTokens)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudWarmupSteps)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSaveEpoch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudEpochs)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(144F, 144F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(1172, 714);
+            Controls.Add(cbxEpochOrStep);
+            Controls.Add(cbxSDType);
+            Controls.Add(btnLeco);
+            Controls.Add(btnGenerateCommands);
+            Controls.Add(btnInstaller);
+            Controls.Add(btnBatchProcess);
+            Controls.Add(groupBox1);
+            Controls.Add(btnBlockDim);
+            Controls.Add(btnBlockWeight);
+            Controls.Add(label6);
+            Controls.Add(tbxOutputPath);
+            Controls.Add(tbxRegImgPath);
+            Controls.Add(tbxImagePath);
+            Controls.Add(tbxModelPath);
+            Controls.Add(btnUtilities);
+            Controls.Add(lblScriptPathDesc);
+            Controls.Add(btnCustomScriptPath);
+            Controls.Add(btnOutputPath);
+            Controls.Add(label8);
+            Controls.Add(btnClearRegImagePath);
+            Controls.Add(label9);
+            Controls.Add(lblNumStepsBatch1);
+            Controls.Add(nudWarmupSteps);
+            Controls.Add(label5);
+            Controls.Add(lblNumSteps);
+            Controls.Add(label1);
+            Controls.Add(nudBatchSize);
+            Controls.Add(nudSaveEpoch);
+            Controls.Add(nudKeepTokens);
+            Controls.Add(nudResolution);
+            Controls.Add(nudEpochs);
+            Controls.Add(nudNetworkDim);
+            Controls.Add(nudNetworkAlpha);
+            Controls.Add(label21);
+            Controls.Add(label20);
+            Controls.Add(label18);
+            Controls.Add(label16);
+            Controls.Add(lblFileName);
+            Controls.Add(tbxFileName);
+            Controls.Add(lblResolution);
+            Controls.Add(btnLoadPreset);
+            Controls.Add(btnSavePreset);
+            Controls.Add(label12);
+            Controls.Add(cbxShuffle);
+            Controls.Add(label7);
+            Controls.Add(btnStartTraining);
+            Controls.Add(btnAdvanced);
+            Controls.Add(label17);
+            Controls.Add(label13);
+            Controls.Add(label10);
+            Controls.Add(cbxModuleType);
+            Controls.Add(cbxOptimizer);
+            Controls.Add(lblLR);
+            Controls.Add(tbxLR);
+            Controls.Add(label11);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(btnRegImage);
+            Controls.Add(btnImage);
+            Controls.Add(btnModel);
+            Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "LoRA Training GUI";
+            FormClosing += Form1_FormClosing;
+            Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudNetworkDim).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudResolution).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudKeepTokens).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudBatchSize).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudWarmupSteps).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudSaveEpoch).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudEpochs).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-        private System.Windows.Forms.Button btnModel;
-        private System.Windows.Forms.Button btnImage;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnRegImage;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbxLR;
-        private System.Windows.Forms.Label lblLR;
-        private System.Windows.Forms.ComboBox cbxOptimizer;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button btnAdvanced;
-        private System.Windows.Forms.Button btnStartTraining;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.CheckBox cbxShuffle;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Button btnSavePreset;
-        private System.Windows.Forms.Button btnLoadPreset;
-        private System.Windows.Forms.Label lblResolution;
-        private System.Windows.Forms.TextBox tbxFileName;
-        private System.Windows.Forms.Label lblFileName;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.NumericUpDown nudNetworkAlpha;
-        private System.Windows.Forms.NumericUpDown nudNetworkDim;
-        private System.Windows.Forms.NumericUpDown nudEpochs;
-        private System.Windows.Forms.NumericUpDown nudResolution;
-        private System.Windows.Forms.NumericUpDown nudKeepTokens;
-        private System.Windows.Forms.NumericUpDown nudSaveEpoch;
-        private System.Windows.Forms.NumericUpDown nudBatchSize;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblNumSteps;
-        private System.Windows.Forms.NumericUpDown nudWarmupSteps;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btnClearRegImagePath;
-        private System.Windows.Forms.Label lblNumStepsBatch1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button btnOutputPath;
-        private System.Windows.Forms.Button btnCustomScriptPath;
-        private System.Windows.Forms.Label lblScriptPathDesc;
-        private System.Windows.Forms.Button btnUtilities;
-        private System.Windows.Forms.TextBox tbxModelPath;
-        private System.Windows.Forms.TextBox tbxImagePath;
-        private System.Windows.Forms.TextBox tbxRegImgPath;
-        private System.Windows.Forms.TextBox tbxOutputPath;
-        private System.Windows.Forms.ComboBox cbxModuleType;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btnBlockWeight;
-        private System.Windows.Forms.Button btnBlockDim;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton rbtBenckmark;
-        private System.Windows.Forms.RadioButton rbtDoNothing;
-        private System.Windows.Forms.RadioButton rbtShutdown;
-        private System.Windows.Forms.Button btnBatchProcess;
-        private System.Windows.Forms.Button btnInstaller;
-        private System.Windows.Forms.Button btnGenerateCommands;
-        private System.Windows.Forms.Button btnLeco;
-        private System.Windows.Forms.ComboBox cbxSDType;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox cbxEpochOrStep;
+        private Button btnModel;
+        private Button btnImage;
+        private Label label2;
+        private Label label3;
+        private Button btnRegImage;
+        private Label label4;
+        private TextBox tbxLR;
+        private Label lblLR;
+        private ComboBox cbxOptimizer;
+        private Label label10;
+        private Label label17;
+        private Button btnAdvanced;
+        private Button btnStartTraining;
+        private Label label7;
+        private CheckBox cbxShuffle;
+        private Label label12;
+        private ToolTip toolTip1;
+        private Button btnSavePreset;
+        private Button btnLoadPreset;
+        private Label lblResolution;
+        private TextBox tbxFileName;
+        private Label lblFileName;
+        private Label label16;
+        private Label label18;
+        private Label label20;
+        private Label label21;
+        private NumericUpDown nudNetworkAlpha;
+        private NumericUpDown nudNetworkDim;
+        private NumericUpDown nudEpochs;
+        private NumericUpDown nudResolution;
+        private NumericUpDown nudKeepTokens;
+        private NumericUpDown nudSaveEpoch;
+        private NumericUpDown nudBatchSize;
+        private Label label1;
+        private Label lblNumSteps;
+        private NumericUpDown nudWarmupSteps;
+        private Label label9;
+        private Button btnClearRegImagePath;
+        private Label lblNumStepsBatch1;
+        private Label label5;
+        private Label label8;
+        private Label label11;
+        private Button btnOutputPath;
+        private Button btnCustomScriptPath;
+        private Label lblScriptPathDesc;
+        private Button btnUtilities;
+        private TextBox tbxModelPath;
+        private TextBox tbxImagePath;
+        private TextBox tbxRegImgPath;
+        private TextBox tbxOutputPath;
+        private ComboBox cbxModuleType;
+        private Label label6;
+        private Button btnBlockWeight;
+        private Button btnBlockDim;
+        private GroupBox groupBox1;
+        private RadioButton rbtBenckmark;
+        private RadioButton rbtDoNothing;
+        private RadioButton rbtShutdown;
+        private Button btnBatchProcess;
+        private Button btnInstaller;
+        private Button btnGenerateCommands;
+        private Button btnLeco;
+        private ComboBox cbxSDType;
+        private Label label13;
+        private ComboBox cbxEpochOrStep;
     }
 }
 

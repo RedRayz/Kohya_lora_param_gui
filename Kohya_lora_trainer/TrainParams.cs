@@ -258,7 +258,8 @@ namespace Kohya_lora_trainer {
     public enum ModuleType {
         LoRA,
         LyCORIS,
-        DyLoRA
+        DyLoRA,
+        LoRAFA
     }
 
     public enum AlgoType {
