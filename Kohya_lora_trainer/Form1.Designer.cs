@@ -370,7 +370,7 @@ namespace Kohya_lora_trainer
             cbxModuleType.Name = "cbxModuleType";
             cbxModuleType.Size = new Size(120, 33);
             cbxModuleType.TabIndex = 6;
-            toolTip1.SetToolTip(cbxModuleType, "LyCORISは品質面でのメリットなし\r\nLoRA-FAはメモリ消費が減少する");
+            toolTip1.SetToolTip(cbxModuleType, "LyCORISは品質面でのメリットなし\r\nLoRA-FAはメモリ消費が減少するが減少量は雀の涙");
             cbxModuleType.SelectedIndexChanged += cbxModuleType_SelectedIndexChanged;
             // 
             // nudSaveEpoch
