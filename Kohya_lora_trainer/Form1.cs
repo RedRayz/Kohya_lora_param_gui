@@ -1042,7 +1042,7 @@ namespace Kohya_lora_trainer
                 case OptimizerType.AdaFactor:
                     {
                         if (TrainParams.Current.LearningRate > 0.02f)
-                            return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.00005-0.001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.00001-0.001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
                 case OptimizerType.DAdaptation:
