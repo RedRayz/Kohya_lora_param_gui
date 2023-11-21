@@ -40,8 +40,9 @@ namespace Kohya_lora_trainer
             switch (TrainParams.Current.ModuleType)
             {
                 case ModuleType.LoRA:
+                case ModuleType.LoRAFA:
                     {
-                        sb.Append(" --network_module \"").Append("networks.lora").Append("\"");
+                        sb.Append(" --network_module \"").Append(TrainParams.Current.ModuleType == ModuleType.LoRA ? "networks.lora": "networks.lora_fa").Append("\"");
                         if (TrainParams.Current.UseConv2dExtend)
                         {
                             bool di = TrainParams.Current.ConvDim > 0;

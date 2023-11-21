@@ -81,9 +81,9 @@ namespace Kohya_lora_trainer
                     lblScriptPathDesc.Text = "sd-scriptsの場所変更";
                 }
 #else
-                    lblScriptPathDesc.Visible = true;
-                    lblScriptPathDesc.ForeColor = Color.Red;
-                    lblScriptPathDesc.Text = "train_network.pyがみつかりません";
+                lblScriptPathDesc.Visible = true;
+                lblScriptPathDesc.ForeColor = Color.Red;
+                lblScriptPathDesc.Text = "train_network.pyがみつかりません";
 #endif
             }
             else
@@ -398,7 +398,7 @@ namespace Kohya_lora_trainer
                         {
                             BatchProcess.LogText += pth + "\r\nプリセットがないためスキップ\r\n\r\n";
                         }
-              
+
                         BatchProcess.SkippedCount++;
                         continue;
                     }
@@ -421,7 +421,7 @@ namespace Kohya_lora_trainer
                 if (!BatchProcess.IsCancel && !string.IsNullOrWhiteSpace(BatchProcess.LogText))
                 {
                     string sstr = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\batchlog-" + DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss") + ".txt";
-                    using(StreamWriter sw = new StreamWriter(sstr, false, new UTF8Encoding(false)))
+                    using (StreamWriter sw = new StreamWriter(sstr, false, new UTF8Encoding(false)))
                     {
                         sw.WriteLine(BatchProcess.LogText);
                     }
@@ -437,7 +437,7 @@ namespace Kohya_lora_trainer
                 {
                     StringBuilder sb = new StringBuilder();
                     sb.Append("バッチ処理が終了しました。\n").Append(BatchProcess.CompletedCount).Append("件が完了し");
-                    if(BatchProcess.SkippedCount > 0)
+                    if (BatchProcess.SkippedCount > 0)
                     {
                         sb.Append("、").Append(BatchProcess.SkippedCount).Append("件がスキップされました。");
                     }
@@ -446,7 +446,7 @@ namespace Kohya_lora_trainer
                         sb.Append("ました。");
                     }
 
-                    if(BatchProcess.FailCount > 0)
+                    if (BatchProcess.FailCount > 0)
                     {
                         sb.Append("\n完了したものの内").Append(BatchProcess.FailCount).Append("件が失敗した可能性があります。");
                     }
@@ -573,6 +573,13 @@ namespace Kohya_lora_trainer
             {
                 if (showMsg)
                     MessageBox.Show("sdxl_train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (TrainParams.Current.StableDiffusionType == SDType.XL && (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim))
+            {
+                if (showMsg)
+                    MessageBox.Show("SDXLでは層別学習および層別Dimは使用できません。\r\nエラーで即落ちします。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -886,7 +893,7 @@ namespace Kohya_lora_trainer
 
         private void UpdateTotalStepCount()
         {
-            if(TrainParams.Current.IsEpoch)
+            if (TrainParams.Current.IsEpoch)
             {
                 if (StepsPerEpoch <= 0 || (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath) && !Directory.Exists(TrainParams.Current.RegImagePath)))
                 {
@@ -1023,7 +1030,6 @@ namespace Kohya_lora_trainer
 
             cbxEpochOrStep.SelectedIndex = TrainParams.Current.IsEpoch ? 0 : 1;
 
-
             UpdateTotalStepCount();
         }
 
@@ -1036,7 +1042,7 @@ namespace Kohya_lora_trainer
                 case OptimizerType.AdaFactor:
                     {
                         if (TrainParams.Current.LearningRate > 0.02f)
-                            return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.00005-0.001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.00001-0.001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
                 case OptimizerType.DAdaptation:
