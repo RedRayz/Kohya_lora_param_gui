@@ -173,7 +173,7 @@ namespace Kohya_lora_trainer
             pageXLBW = new TabPage();
             label48 = new Label();
             textBox3 = new TextBox();
-            checkBox1 = new CheckBox();
+            cbxEnableXLBlockWeight = new CheckBox();
             label49 = new Label();
             textBox4 = new TextBox();
             label50 = new Label();
@@ -218,6 +218,10 @@ namespace Kohya_lora_trainer
             textBox24 = new TextBox();
             label70 = new Label();
             textBox25 = new TextBox();
+            label71 = new Label();
+            textBox26 = new TextBox();
+            label72 = new Label();
+            textBox27 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -556,7 +560,7 @@ namespace Kohya_lora_trainer
             // cbxCacheTextEncoder
             // 
             cbxCacheTextEncoder.AutoSize = true;
-            cbxCacheTextEncoder.Location = new Point(91, 111);
+            cbxCacheTextEncoder.Location = new Point(89, 167);
             cbxCacheTextEncoder.Name = "cbxCacheTextEncoder";
             cbxCacheTextEncoder.Size = new Size(267, 29);
             cbxCacheTextEncoder.TabIndex = 18;
@@ -643,7 +647,7 @@ namespace Kohya_lora_trainer
             // cbxNoHalfVae
             // 
             cbxNoHalfVae.AutoSize = true;
-            cbxNoHalfVae.Location = new Point(91, 76);
+            cbxNoHalfVae.Location = new Point(89, 132);
             cbxNoHalfVae.Name = "cbxNoHalfVae";
             cbxNoHalfVae.Size = new Size(266, 29);
             cbxNoHalfVae.TabIndex = 18;
@@ -1273,7 +1277,7 @@ namespace Kohya_lora_trainer
             // cbxCacheTextencoderToDisk
             // 
             cbxCacheTextencoderToDisk.AutoSize = true;
-            cbxCacheTextencoderToDisk.Location = new Point(91, 146);
+            cbxCacheTextencoderToDisk.Location = new Point(89, 202);
             cbxCacheTextencoderToDisk.Name = "cbxCacheTextencoderToDisk";
             cbxCacheTextencoderToDisk.Size = new Size(333, 29);
             cbxCacheTextencoderToDisk.TabIndex = 18;
@@ -1674,7 +1678,7 @@ namespace Kohya_lora_trainer
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(91, 24);
+            textBox1.Location = new Point(176, 27);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(100, 31);
             textBox1.TabIndex = 49;
@@ -1682,7 +1686,7 @@ namespace Kohya_lora_trainer
             // label46
             // 
             label46.AutoSize = true;
-            label46.Location = new Point(21, 27);
+            label46.Location = new Point(100, 30);
             label46.Name = "label46";
             label46.Size = new Size(64, 25);
             label46.TabIndex = 3;
@@ -1691,7 +1695,7 @@ namespace Kohya_lora_trainer
             // label47
             // 
             label47.AutoSize = true;
-            label47.Location = new Point(204, 27);
+            label47.Location = new Point(386, 33);
             label47.Name = "label47";
             label47.Size = new Size(64, 25);
             label47.TabIndex = 3;
@@ -1699,30 +1703,35 @@ namespace Kohya_lora_trainer
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(274, 24);
+            textBox2.Location = new Point(456, 30);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(100, 31);
             textBox2.TabIndex = 49;
+            toolTip1.SetToolTip(textBox2, "0で学習しない");
             // 
             // pageXL
             // 
             pageXL.Controls.Add(cbxCacheTextencoderToDisk);
             pageXL.Controls.Add(cbxCacheTextEncoder);
             pageXL.Controls.Add(cbxNoHalfVae);
+            pageXL.Controls.Add(textBox27);
             pageXL.Controls.Add(textBox2);
+            pageXL.Controls.Add(label72);
             pageXL.Controls.Add(label47);
+            pageXL.Controls.Add(textBox26);
+            pageXL.Controls.Add(label71);
             pageXL.Controls.Add(textBox1);
             pageXL.Controls.Add(label46);
             pageXL.Location = new Point(4, 34);
             pageXL.Name = "pageXL";
-            pageXL.Size = new Size(930, 422);
+            pageXL.Size = new Size(930, 459);
             pageXL.TabIndex = 9;
             pageXL.Text = "SDXL";
             pageXL.UseVisualStyleBackColor = true;
             // 
             // pageXLBW
             // 
-            pageXLBW.Controls.Add(checkBox1);
+            pageXLBW.Controls.Add(cbxEnableXLBlockWeight);
             pageXLBW.Controls.Add(textBox15);
             pageXLBW.Controls.Add(label60);
             pageXLBW.Controls.Add(textBox14);
@@ -1792,15 +1801,15 @@ namespace Kohya_lora_trainer
             textBox3.Size = new Size(114, 31);
             textBox3.TabIndex = 1;
             // 
-            // checkBox1
+            // cbxEnableXLBlockWeight
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(45, 15);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(74, 29);
-            checkBox1.TabIndex = 2;
-            checkBox1.Text = "有効";
-            checkBox1.UseVisualStyleBackColor = true;
+            cbxEnableXLBlockWeight.AutoSize = true;
+            cbxEnableXLBlockWeight.Location = new Point(45, 15);
+            cbxEnableXLBlockWeight.Name = "cbxEnableXLBlockWeight";
+            cbxEnableXLBlockWeight.Size = new Size(74, 29);
+            cbxEnableXLBlockWeight.TabIndex = 2;
+            cbxEnableXLBlockWeight.Text = "有効";
+            cbxEnableXLBlockWeight.UseVisualStyleBackColor = true;
             // 
             // label49
             // 
@@ -2154,6 +2163,38 @@ namespace Kohya_lora_trainer
             textBox25.Size = new Size(114, 31);
             textBox25.TabIndex = 1;
             // 
+            // label71
+            // 
+            label71.AutoSize = true;
+            label71.Location = new Point(21, 77);
+            label71.Name = "label71";
+            label71.Size = new Size(143, 25);
+            label71.TabIndex = 3;
+            label71.Text = "最小タイムステップ";
+            // 
+            // textBox26
+            // 
+            textBox26.Location = new Point(176, 77);
+            textBox26.Name = "textBox26";
+            textBox26.Size = new Size(100, 31);
+            textBox26.TabIndex = 49;
+            // 
+            // label72
+            // 
+            label72.AutoSize = true;
+            label72.Location = new Point(307, 80);
+            label72.Name = "label72";
+            label72.Size = new Size(143, 25);
+            label72.TabIndex = 3;
+            label72.Text = "最大タイムステップ";
+            // 
+            // textBox27
+            // 
+            textBox27.Location = new Point(456, 77);
+            textBox27.Name = "textBox27";
+            textBox27.Size = new Size(100, 31);
+            textBox27.TabIndex = 49;
+            // 
             // FormAdvanced
             // 
             AutoScaleDimensions = new SizeF(144F, 144F);
@@ -2358,7 +2399,7 @@ namespace Kohya_lora_trainer
         private TextBox textBox1;
         private Label label46;
         private TabPage pageXLBW;
-        private CheckBox checkBox1;
+        private CheckBox cbxEnableXLBlockWeight;
         private TextBox textBox15;
         private Label label60;
         private TextBox textBox14;
@@ -2405,5 +2446,9 @@ namespace Kohya_lora_trainer
         private Label label62;
         private TextBox textBox25;
         private Label label70;
+        private TextBox textBox27;
+        private Label label72;
+        private TextBox textBox26;
+        private Label label71;
     }
 }
