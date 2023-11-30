@@ -235,7 +235,7 @@ namespace Kohya_lora_trainer
             {
                 if (Directory.Exists(Constants.CurrentSdScriptsPath + @"venv"))
                 {
-                    MessageBox.Show("Pythonの仮想環境(venv)がすでに存在します。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Pythonの仮想環境(venv)がすでに存在します。\r\n先にvenvフォルダを消去してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
