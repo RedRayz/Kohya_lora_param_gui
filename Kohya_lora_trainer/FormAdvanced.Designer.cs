@@ -70,6 +70,7 @@ namespace Kohya_lora_trainer
             cbxCropRandomly = new CheckBox();
             cbxNoHalfVae = new CheckBox();
             cbxFlipAug = new CheckBox();
+            textBox2 = new TextBox();
             label6 = new Label();
             label9 = new Label();
             button1 = new Button();
@@ -127,8 +128,7 @@ namespace Kohya_lora_trainer
             label26 = new Label();
             label28 = new Label();
             tabPage7 = new TabPage();
-            groupBox1 = new GroupBox();
-            cbxCacheTextencoderToDisk = new CheckBox();
+            cbxUseFullFp16 = new CheckBox();
             cbxUseFastLoading = new CheckBox();
             label29 = new Label();
             label27 = new Label();
@@ -166,6 +166,64 @@ namespace Kohya_lora_trainer
             tbxComment = new TextBox();
             label8 = new Label();
             tabPage6 = new TabPage();
+            pageXL = new TabPage();
+            cbxCacheTextencoderToDisk = new CheckBox();
+            textBox27 = new TextBox();
+            label72 = new Label();
+            label47 = new Label();
+            textBox26 = new TextBox();
+            label71 = new Label();
+            textBox1 = new TextBox();
+            label46 = new Label();
+            pageXLBW = new TabPage();
+            label73 = new Label();
+            cbxEnableXLBlockWeight = new CheckBox();
+            textBox15 = new TextBox();
+            label60 = new Label();
+            textBox14 = new TextBox();
+            label59 = new Label();
+            textBox13 = new TextBox();
+            label58 = new Label();
+            textBox12 = new TextBox();
+            label57 = new Label();
+            textBox11 = new TextBox();
+            label56 = new Label();
+            textBox10 = new TextBox();
+            label55 = new Label();
+            textBox9 = new TextBox();
+            label54 = new Label();
+            textBox8 = new TextBox();
+            label53 = new Label();
+            textBox7 = new TextBox();
+            label52 = new Label();
+            textBox6 = new TextBox();
+            label51 = new Label();
+            textBox5 = new TextBox();
+            label50 = new Label();
+            textBox24 = new TextBox();
+            label69 = new Label();
+            textBox23 = new TextBox();
+            label68 = new Label();
+            textBox22 = new TextBox();
+            label67 = new Label();
+            textBox21 = new TextBox();
+            label66 = new Label();
+            textBox20 = new TextBox();
+            label65 = new Label();
+            textBox19 = new TextBox();
+            label64 = new Label();
+            textBox18 = new TextBox();
+            label63 = new Label();
+            textBox17 = new TextBox();
+            label62 = new Label();
+            textBox25 = new TextBox();
+            label70 = new Label();
+            textBox16 = new TextBox();
+            label61 = new Label();
+            textBox4 = new TextBox();
+            label49 = new Label();
+            textBox3 = new TextBox();
+            label48 = new Label();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -192,11 +250,12 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudModuleDropout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudRankDropout).BeginInit();
             tabPage7.SuspendLayout();
-            groupBox1.SuspendLayout();
             tabPage5.SuspendLayout();
             tabPage2.SuspendLayout();
             pageMisc.SuspendLayout();
             tabPage6.SuspendLayout();
+            pageXL.SuspendLayout();
+            pageXLBW.SuspendLayout();
             SuspendLayout();
             // 
             // tbxUnetLR
@@ -239,7 +298,7 @@ namespace Kohya_lora_trainer
             // lblMinBucketReso
             // 
             lblMinBucketReso.AutoSize = true;
-            lblMinBucketReso.Location = new Point(38, 111);
+            lblMinBucketReso.Location = new Point(38, 107);
             lblMinBucketReso.Name = "lblMinBucketReso";
             lblMinBucketReso.Size = new Size(163, 25);
             lblMinBucketReso.TabIndex = 4;
@@ -248,7 +307,7 @@ namespace Kohya_lora_trainer
             // lblMaxBucketReso
             // 
             lblMaxBucketReso.AutoSize = true;
-            lblMaxBucketReso.Location = new Point(370, 111);
+            lblMaxBucketReso.Location = new Point(370, 107);
             lblMaxBucketReso.Name = "lblMaxBucketReso";
             lblMaxBucketReso.Size = new Size(163, 25);
             lblMaxBucketReso.TabIndex = 7;
@@ -257,7 +316,7 @@ namespace Kohya_lora_trainer
             // cbxNoUpscale
             // 
             cbxNoUpscale.AutoSize = true;
-            cbxNoUpscale.Location = new Point(123, 291);
+            cbxNoUpscale.Location = new Point(123, 287);
             cbxNoUpscale.Name = "cbxNoUpscale";
             cbxNoUpscale.Size = new Size(283, 29);
             cbxNoUpscale.TabIndex = 8;
@@ -341,7 +400,7 @@ namespace Kohya_lora_trainer
             // cbxUseColorAug
             // 
             cbxUseColorAug.AutoSize = true;
-            cbxUseColorAug.Location = new Point(460, 290);
+            cbxUseColorAug.Location = new Point(460, 286);
             cbxUseColorAug.Name = "cbxUseColorAug";
             cbxUseColorAug.Size = new Size(222, 29);
             cbxUseColorAug.TabIndex = 7;
@@ -386,7 +445,7 @@ namespace Kohya_lora_trainer
             cbxAlgoType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxAlgoType.FormattingEnabled = true;
             cbxAlgoType.Items.AddRange(new object[] { "lora", "loha", "ia3", "lokr", "full" });
-            cbxAlgoType.Location = new Point(202, 182);
+            cbxAlgoType.Location = new Point(202, 178);
             cbxAlgoType.Name = "cbxAlgoType";
             cbxAlgoType.Size = new Size(121, 33);
             cbxAlgoType.TabIndex = 14;
@@ -492,7 +551,7 @@ namespace Kohya_lora_trainer
             // cbxUseWeightedCaption
             // 
             cbxUseWeightedCaption.AutoSize = true;
-            cbxUseWeightedCaption.Location = new Point(123, 326);
+            cbxUseWeightedCaption.Location = new Point(123, 322);
             cbxUseWeightedCaption.Name = "cbxUseWeightedCaption";
             cbxUseWeightedCaption.Size = new Size(242, 29);
             cbxUseWeightedCaption.TabIndex = 48;
@@ -503,7 +562,7 @@ namespace Kohya_lora_trainer
             // cbxCacheTextEncoder
             // 
             cbxCacheTextEncoder.AutoSize = true;
-            cbxCacheTextEncoder.Location = new Point(15, 64);
+            cbxCacheTextEncoder.Location = new Point(89, 167);
             cbxCacheTextEncoder.Name = "cbxCacheTextEncoder";
             cbxCacheTextEncoder.Size = new Size(267, 29);
             cbxCacheTextEncoder.TabIndex = 18;
@@ -548,7 +607,7 @@ namespace Kohya_lora_trainer
             // cbxUseConv2d
             // 
             cbxUseConv2d.AutoSize = true;
-            cbxUseConv2d.Location = new Point(123, 256);
+            cbxUseConv2d.Location = new Point(123, 252);
             cbxUseConv2d.Name = "cbxUseConv2d";
             cbxUseConv2d.Size = new Size(242, 29);
             cbxUseConv2d.TabIndex = 20;
@@ -558,7 +617,7 @@ namespace Kohya_lora_trainer
             // 
             // nudConvDim
             // 
-            nudConvDim.Location = new Point(202, 144);
+            nudConvDim.Location = new Point(202, 140);
             nudConvDim.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
             nudConvDim.Name = "nudConvDim";
             nudConvDim.Size = new Size(120, 31);
@@ -579,7 +638,7 @@ namespace Kohya_lora_trainer
             // cbxCropRandomly
             // 
             cbxCropRandomly.AutoSize = true;
-            cbxCropRandomly.Location = new Point(460, 324);
+            cbxCropRandomly.Location = new Point(460, 320);
             cbxCropRandomly.Name = "cbxCropRandomly";
             cbxCropRandomly.Size = new Size(206, 29);
             cbxCropRandomly.TabIndex = 9;
@@ -590,24 +649,34 @@ namespace Kohya_lora_trainer
             // cbxNoHalfVae
             // 
             cbxNoHalfVae.AutoSize = true;
-            cbxNoHalfVae.Location = new Point(15, 30);
+            cbxNoHalfVae.Location = new Point(89, 132);
             cbxNoHalfVae.Name = "cbxNoHalfVae";
-            cbxNoHalfVae.Size = new Size(322, 29);
+            cbxNoHalfVae.Size = new Size(266, 29);
             cbxNoHalfVae.TabIndex = 18;
-            cbxNoHalfVae.Text = "VAEを32ビットで使用(SDXLでほぼ必須)";
+            cbxNoHalfVae.Text = "VAEを32ビットで使用(ほぼ必須)";
             toolTip1.SetToolTip(cbxNoHalfVae, "no-half VAE\r\nVAEのNaN演算をなくす");
             cbxNoHalfVae.UseVisualStyleBackColor = true;
             // 
             // cbxFlipAug
             // 
             cbxFlipAug.AutoSize = true;
-            cbxFlipAug.Location = new Point(460, 256);
+            cbxFlipAug.Location = new Point(460, 252);
             cbxFlipAug.Name = "cbxFlipAug";
             cbxFlipAug.Size = new Size(160, 29);
             cbxFlipAug.TabIndex = 8;
             cbxFlipAug.Text = "反転画像を使用";
             toolTip1.SetToolTip(cbxFlipAug, "反転画像でデータセットを水増し");
             cbxFlipAug.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            textBox2.Enabled = false;
+            textBox2.Location = new Point(456, 30);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(100, 31);
+            textBox2.TabIndex = 49;
+            toolTip1.SetToolTip(textBox2, "0で学習しない");
+            textBox2.Visible = false;
             // 
             // label6
             // 
@@ -631,7 +700,7 @@ namespace Kohya_lora_trainer
             // button1
             // 
             button1.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(690, 460);
+            button1.Location = new Point(694, 535);
             button1.Name = "button1";
             button1.Size = new Size(260, 44);
             button1.TabIndex = 22;
@@ -642,7 +711,7 @@ namespace Kohya_lora_trainer
             // nudMinBucketReso
             // 
             nudMinBucketReso.Increment = new decimal(new int[] { 64, 0, 0, 0 });
-            nudMinBucketReso.Location = new Point(202, 110);
+            nudMinBucketReso.Location = new Point(202, 106);
             nudMinBucketReso.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
             nudMinBucketReso.Minimum = new decimal(new int[] { 64, 0, 0, 0 });
             nudMinBucketReso.Name = "nudMinBucketReso";
@@ -654,7 +723,7 @@ namespace Kohya_lora_trainer
             // nudMaxBucketReso
             // 
             nudMaxBucketReso.Increment = new decimal(new int[] { 64, 0, 0, 0 });
-            nudMaxBucketReso.Location = new Point(538, 110);
+            nudMaxBucketReso.Location = new Point(538, 106);
             nudMaxBucketReso.Maximum = new decimal(new int[] { 2048, 0, 0, 0 });
             nudMaxBucketReso.Minimum = new decimal(new int[] { 128, 0, 0, 0 });
             nudMaxBucketReso.Name = "nudMaxBucketReso";
@@ -694,7 +763,7 @@ namespace Kohya_lora_trainer
             // btnDiscardAndClose
             // 
             btnDiscardAndClose.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            btnDiscardAndClose.Location = new Point(422, 460);
+            btnDiscardAndClose.Location = new Point(426, 535);
             btnDiscardAndClose.Name = "btnDiscardAndClose";
             btnDiscardAndClose.Size = new Size(256, 44);
             btnDiscardAndClose.TabIndex = 31;
@@ -942,10 +1011,12 @@ namespace Kohya_lora_trainer
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(pageMisc);
             tabControl1.Controls.Add(tabPage6);
+            tabControl1.Controls.Add(pageXL);
+            tabControl1.Controls.Add(pageXLBW);
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(938, 430);
+            tabControl1.Size = new Size(938, 497);
             tabControl1.TabIndex = 57;
             // 
             // tabPage1
@@ -980,7 +1051,7 @@ namespace Kohya_lora_trainer
             tabPage1.Location = new Point(4, 34);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(930, 392);
+            tabPage1.Size = new Size(930, 459);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "ページ1";
             tabPage1.UseVisualStyleBackColor = true;
@@ -988,7 +1059,7 @@ namespace Kohya_lora_trainer
             // label22
             // 
             label22.AutoSize = true;
-            label22.Location = new Point(412, 184);
+            label22.Location = new Point(412, 180);
             label22.Name = "label22";
             label22.Size = new Size(121, 25);
             label22.TabIndex = 22;
@@ -997,7 +1068,7 @@ namespace Kohya_lora_trainer
             // label45
             // 
             label45.AutoSize = true;
-            label45.Location = new Point(454, 228);
+            label45.Location = new Point(454, 224);
             label45.Name = "label45";
             label45.Size = new Size(159, 25);
             label45.TabIndex = 27;
@@ -1005,7 +1076,7 @@ namespace Kohya_lora_trainer
             // 
             // nudDyLoRAUnit
             // 
-            nudDyLoRAUnit.Location = new Point(538, 184);
+            nudDyLoRAUnit.Location = new Point(538, 180);
             nudDyLoRAUnit.Maximum = new decimal(new int[] { 256, 0, 0, 0 });
             nudDyLoRAUnit.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDyLoRAUnit.Name = "nudDyLoRAUnit";
@@ -1016,7 +1087,7 @@ namespace Kohya_lora_trainer
             // nudConvAlpha
             // 
             nudConvAlpha.DecimalPlaces = 2;
-            nudConvAlpha.Location = new Point(538, 146);
+            nudConvAlpha.Location = new Point(538, 142);
             nudConvAlpha.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
             nudConvAlpha.Name = "nudConvAlpha";
             nudConvAlpha.Size = new Size(120, 31);
@@ -1026,7 +1097,7 @@ namespace Kohya_lora_trainer
             // label23
             // 
             label23.AutoSize = true;
-            label23.Location = new Point(10, 184);
+            label23.Location = new Point(10, 180);
             label23.Name = "label23";
             label23.Size = new Size(176, 25);
             label23.TabIndex = 17;
@@ -1035,7 +1106,7 @@ namespace Kohya_lora_trainer
             // label25
             // 
             label25.AutoSize = true;
-            label25.Location = new Point(106, 146);
+            label25.Location = new Point(106, 142);
             label25.Name = "label25";
             label25.Size = new Size(91, 25);
             label25.TabIndex = 15;
@@ -1044,7 +1115,7 @@ namespace Kohya_lora_trainer
             // label24
             // 
             label24.AutoSize = true;
-            label24.Location = new Point(429, 146);
+            label24.Location = new Point(429, 142);
             label24.Name = "label24";
             label24.Size = new Size(104, 25);
             label24.TabIndex = 16;
@@ -1075,7 +1146,7 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(nudLRSchedulerCycle);
             tabPage4.Location = new Point(4, 34);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(930, 392);
+            tabPage4.Size = new Size(930, 459);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "ページ2";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1195,7 +1266,7 @@ namespace Kohya_lora_trainer
             // 
             // tabPage7
             // 
-            tabPage7.Controls.Add(groupBox1);
+            tabPage7.Controls.Add(cbxUseFullFp16);
             tabPage7.Controls.Add(cbxCacheLatents);
             tabPage7.Controls.Add(cbxUseGradient);
             tabPage7.Controls.Add(cbxCrossAttenType);
@@ -1211,32 +1282,20 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(label5);
             tabPage7.Location = new Point(4, 34);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(930, 392);
+            tabPage7.Size = new Size(930, 459);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // cbxUseFullFp16
             // 
-            groupBox1.Controls.Add(cbxNoHalfVae);
-            groupBox1.Controls.Add(cbxCacheTextEncoder);
-            groupBox1.Controls.Add(cbxCacheTextencoderToDisk);
-            groupBox1.Location = new Point(446, 213);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(393, 142);
-            groupBox1.TabIndex = 25;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "SDXL関連";
-            // 
-            // cbxCacheTextencoderToDisk
-            // 
-            cbxCacheTextencoderToDisk.AutoSize = true;
-            cbxCacheTextencoderToDisk.Location = new Point(15, 100);
-            cbxCacheTextencoderToDisk.Name = "cbxCacheTextencoderToDisk";
-            cbxCacheTextencoderToDisk.Size = new Size(333, 29);
-            cbxCacheTextencoderToDisk.TabIndex = 18;
-            cbxCacheTextencoderToDisk.Text = "Text Encoderの出力をディスクにキャッシュ";
-            cbxCacheTextencoderToDisk.UseVisualStyleBackColor = true;
+            cbxUseFullFp16.AutoSize = true;
+            cbxUseFullFp16.Location = new Point(52, 362);
+            cbxUseFullFp16.Name = "cbxUseFullFp16";
+            cbxUseFullFp16.Size = new Size(158, 29);
+            cbxUseFullFp16.TabIndex = 41;
+            cbxUseFullFp16.Text = "Full FP16を使用";
+            cbxUseFullFp16.UseVisualStyleBackColor = true;
             // 
             // cbxUseFastLoading
             // 
@@ -1294,7 +1353,7 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(tbxGrowthRate);
             tabPage5.Location = new Point(4, 34);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(930, 392);
+            tabPage5.Size = new Size(930, 459);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "DAdaptation";
             tabPage5.UseVisualStyleBackColor = true;
@@ -1512,7 +1571,7 @@ namespace Kohya_lora_trainer
             tabPage2.Location = new Point(4, 34);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(930, 392);
+            tabPage2.Size = new Size(930, 459);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -1571,7 +1630,7 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(nudClipSkip);
             pageMisc.Location = new Point(4, 34);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(930, 392);
+            pageMisc.Size = new Size(930, 459);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -1625,16 +1684,605 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(label14);
             tabPage6.Location = new Point(4, 34);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(930, 392);
+            tabPage6.Size = new Size(930, 459);
             tabPage6.TabIndex = 7;
             tabPage6.Text = "ノイズ関連";
             tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // pageXL
+            // 
+            pageXL.Controls.Add(cbxCacheTextencoderToDisk);
+            pageXL.Controls.Add(cbxCacheTextEncoder);
+            pageXL.Controls.Add(cbxNoHalfVae);
+            pageXL.Controls.Add(textBox27);
+            pageXL.Controls.Add(textBox2);
+            pageXL.Controls.Add(label72);
+            pageXL.Controls.Add(label47);
+            pageXL.Controls.Add(textBox26);
+            pageXL.Controls.Add(label71);
+            pageXL.Controls.Add(textBox1);
+            pageXL.Controls.Add(label46);
+            pageXL.Location = new Point(4, 34);
+            pageXL.Name = "pageXL";
+            pageXL.Size = new Size(930, 459);
+            pageXL.TabIndex = 9;
+            pageXL.Text = "SDXL";
+            pageXL.UseVisualStyleBackColor = true;
+            // 
+            // cbxCacheTextencoderToDisk
+            // 
+            cbxCacheTextencoderToDisk.AutoSize = true;
+            cbxCacheTextencoderToDisk.Location = new Point(89, 202);
+            cbxCacheTextencoderToDisk.Name = "cbxCacheTextencoderToDisk";
+            cbxCacheTextencoderToDisk.Size = new Size(333, 29);
+            cbxCacheTextencoderToDisk.TabIndex = 18;
+            cbxCacheTextencoderToDisk.Text = "Text Encoderの出力をディスクにキャッシュ";
+            cbxCacheTextencoderToDisk.UseVisualStyleBackColor = true;
+            // 
+            // textBox27
+            // 
+            textBox27.Enabled = false;
+            textBox27.Location = new Point(456, 77);
+            textBox27.Name = "textBox27";
+            textBox27.Size = new Size(100, 31);
+            textBox27.TabIndex = 49;
+            textBox27.Visible = false;
+            // 
+            // label72
+            // 
+            label72.AutoSize = true;
+            label72.Location = new Point(307, 80);
+            label72.Name = "label72";
+            label72.Size = new Size(143, 25);
+            label72.TabIndex = 3;
+            label72.Text = "最大タイムステップ";
+            label72.Visible = false;
+            // 
+            // label47
+            // 
+            label47.AutoSize = true;
+            label47.Location = new Point(386, 33);
+            label47.Name = "label47";
+            label47.Size = new Size(64, 25);
+            label47.TabIndex = 3;
+            label47.Text = "TE2 LR";
+            label47.Visible = false;
+            // 
+            // textBox26
+            // 
+            textBox26.Enabled = false;
+            textBox26.Location = new Point(176, 77);
+            textBox26.Name = "textBox26";
+            textBox26.Size = new Size(100, 31);
+            textBox26.TabIndex = 49;
+            textBox26.Visible = false;
+            // 
+            // label71
+            // 
+            label71.AutoSize = true;
+            label71.Location = new Point(21, 77);
+            label71.Name = "label71";
+            label71.Size = new Size(143, 25);
+            label71.TabIndex = 3;
+            label71.Text = "最小タイムステップ";
+            label71.Visible = false;
+            // 
+            // textBox1
+            // 
+            textBox1.Enabled = false;
+            textBox1.Location = new Point(176, 27);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 31);
+            textBox1.TabIndex = 49;
+            textBox1.Visible = false;
+            // 
+            // label46
+            // 
+            label46.AutoSize = true;
+            label46.Location = new Point(100, 30);
+            label46.Name = "label46";
+            label46.Size = new Size(64, 25);
+            label46.TabIndex = 3;
+            label46.Text = "TE1 LR";
+            label46.Visible = false;
+            // 
+            // pageXLBW
+            // 
+            pageXLBW.Controls.Add(label73);
+            pageXLBW.Controls.Add(cbxEnableXLBlockWeight);
+            pageXLBW.Controls.Add(textBox15);
+            pageXLBW.Controls.Add(label60);
+            pageXLBW.Controls.Add(textBox14);
+            pageXLBW.Controls.Add(label59);
+            pageXLBW.Controls.Add(textBox13);
+            pageXLBW.Controls.Add(label58);
+            pageXLBW.Controls.Add(textBox12);
+            pageXLBW.Controls.Add(label57);
+            pageXLBW.Controls.Add(textBox11);
+            pageXLBW.Controls.Add(label56);
+            pageXLBW.Controls.Add(textBox10);
+            pageXLBW.Controls.Add(label55);
+            pageXLBW.Controls.Add(textBox9);
+            pageXLBW.Controls.Add(label54);
+            pageXLBW.Controls.Add(textBox8);
+            pageXLBW.Controls.Add(label53);
+            pageXLBW.Controls.Add(textBox7);
+            pageXLBW.Controls.Add(label52);
+            pageXLBW.Controls.Add(textBox6);
+            pageXLBW.Controls.Add(label51);
+            pageXLBW.Controls.Add(textBox5);
+            pageXLBW.Controls.Add(label50);
+            pageXLBW.Controls.Add(textBox24);
+            pageXLBW.Controls.Add(label69);
+            pageXLBW.Controls.Add(textBox23);
+            pageXLBW.Controls.Add(label68);
+            pageXLBW.Controls.Add(textBox22);
+            pageXLBW.Controls.Add(label67);
+            pageXLBW.Controls.Add(textBox21);
+            pageXLBW.Controls.Add(label66);
+            pageXLBW.Controls.Add(textBox20);
+            pageXLBW.Controls.Add(label65);
+            pageXLBW.Controls.Add(textBox19);
+            pageXLBW.Controls.Add(label64);
+            pageXLBW.Controls.Add(textBox18);
+            pageXLBW.Controls.Add(label63);
+            pageXLBW.Controls.Add(textBox17);
+            pageXLBW.Controls.Add(label62);
+            pageXLBW.Controls.Add(textBox25);
+            pageXLBW.Controls.Add(label70);
+            pageXLBW.Controls.Add(textBox16);
+            pageXLBW.Controls.Add(label61);
+            pageXLBW.Controls.Add(textBox4);
+            pageXLBW.Controls.Add(label49);
+            pageXLBW.Controls.Add(textBox3);
+            pageXLBW.Controls.Add(label48);
+            pageXLBW.Location = new Point(4, 34);
+            pageXLBW.Name = "pageXLBW";
+            pageXLBW.Size = new Size(930, 459);
+            pageXLBW.TabIndex = 10;
+            pageXLBW.Text = "XL層別";
+            pageXLBW.UseVisualStyleBackColor = true;
+            // 
+            // label73
+            // 
+            label73.AutoSize = true;
+            label73.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            label73.Location = new Point(366, 15);
+            label73.Name = "label73";
+            label73.Size = new Size(142, 30);
+            label73.TabIndex = 3;
+            label73.Text = "Coming soon";
+            // 
+            // cbxEnableXLBlockWeight
+            // 
+            cbxEnableXLBlockWeight.AutoSize = true;
+            cbxEnableXLBlockWeight.Location = new Point(45, 15);
+            cbxEnableXLBlockWeight.Name = "cbxEnableXLBlockWeight";
+            cbxEnableXLBlockWeight.Size = new Size(74, 29);
+            cbxEnableXLBlockWeight.TabIndex = 2;
+            cbxEnableXLBlockWeight.Text = "有効";
+            cbxEnableXLBlockWeight.UseVisualStyleBackColor = true;
+            cbxEnableXLBlockWeight.Visible = false;
+            // 
+            // textBox15
+            // 
+            textBox15.Location = new Point(438, 400);
+            textBox15.Name = "textBox15";
+            textBox15.Size = new Size(114, 31);
+            textBox15.TabIndex = 1;
+            textBox15.Visible = false;
+            // 
+            // label60
+            // 
+            label60.AutoSize = true;
+            label60.Location = new Point(366, 400);
+            label60.Name = "label60";
+            label60.Size = new Size(66, 25);
+            label60.TabIndex = 0;
+            label60.Text = "MID00";
+            label60.Visible = false;
+            // 
+            // textBox14
+            // 
+            textBox14.Location = new Point(438, 363);
+            textBox14.Name = "textBox14";
+            textBox14.Size = new Size(114, 31);
+            textBox14.TabIndex = 1;
+            textBox14.Visible = false;
+            // 
+            // label59
+            // 
+            label59.AutoSize = true;
+            label59.Location = new Point(366, 366);
+            label59.Name = "label59";
+            label59.Size = new Size(66, 25);
+            label59.TabIndex = 0;
+            label59.Text = "MID01";
+            label59.Visible = false;
+            // 
+            // textBox13
+            // 
+            textBox13.Location = new Point(438, 326);
+            textBox13.Name = "textBox13";
+            textBox13.Size = new Size(114, 31);
+            textBox13.TabIndex = 1;
+            textBox13.Visible = false;
+            // 
+            // label58
+            // 
+            label58.AutoSize = true;
+            label58.Location = new Point(366, 326);
+            label58.Name = "label58";
+            label58.Size = new Size(66, 25);
+            label58.TabIndex = 0;
+            label58.Text = "MID02";
+            label58.Visible = false;
+            // 
+            // textBox12
+            // 
+            textBox12.Location = new Point(217, 406);
+            textBox12.Name = "textBox12";
+            textBox12.Size = new Size(114, 31);
+            textBox12.TabIndex = 1;
+            textBox12.Visible = false;
+            // 
+            // label57
+            // 
+            label57.AutoSize = true;
+            label57.Location = new Point(161, 409);
+            label57.Name = "label57";
+            label57.Size = new Size(50, 25);
+            label57.TabIndex = 0;
+            label57.Text = "IN00";
+            label57.Visible = false;
+            // 
+            // textBox11
+            // 
+            textBox11.Location = new Point(217, 369);
+            textBox11.Name = "textBox11";
+            textBox11.Size = new Size(114, 31);
+            textBox11.TabIndex = 1;
+            textBox11.Visible = false;
+            // 
+            // label56
+            // 
+            label56.AutoSize = true;
+            label56.Location = new Point(161, 372);
+            label56.Name = "label56";
+            label56.Size = new Size(50, 25);
+            label56.TabIndex = 0;
+            label56.Text = "IN00";
+            label56.Visible = false;
+            // 
+            // textBox10
+            // 
+            textBox10.Location = new Point(217, 332);
+            textBox10.Name = "textBox10";
+            textBox10.Size = new Size(114, 31);
+            textBox10.TabIndex = 1;
+            textBox10.Visible = false;
+            // 
+            // label55
+            // 
+            label55.AutoSize = true;
+            label55.Location = new Point(161, 335);
+            label55.Name = "label55";
+            label55.Size = new Size(50, 25);
+            label55.TabIndex = 0;
+            label55.Text = "IN00";
+            label55.Visible = false;
+            // 
+            // textBox9
+            // 
+            textBox9.Location = new Point(217, 295);
+            textBox9.Name = "textBox9";
+            textBox9.Size = new Size(114, 31);
+            textBox9.TabIndex = 1;
+            textBox9.Visible = false;
+            // 
+            // label54
+            // 
+            label54.AutoSize = true;
+            label54.Location = new Point(161, 298);
+            label54.Name = "label54";
+            label54.Size = new Size(50, 25);
+            label54.TabIndex = 0;
+            label54.Text = "IN00";
+            label54.Visible = false;
+            // 
+            // textBox8
+            // 
+            textBox8.Location = new Point(217, 258);
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(114, 31);
+            textBox8.TabIndex = 1;
+            textBox8.Visible = false;
+            // 
+            // label53
+            // 
+            label53.AutoSize = true;
+            label53.Location = new Point(161, 261);
+            label53.Name = "label53";
+            label53.Size = new Size(50, 25);
+            label53.TabIndex = 0;
+            label53.Text = "IN00";
+            label53.Visible = false;
+            // 
+            // textBox7
+            // 
+            textBox7.Location = new Point(217, 221);
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(114, 31);
+            textBox7.TabIndex = 1;
+            textBox7.Visible = false;
+            // 
+            // label52
+            // 
+            label52.AutoSize = true;
+            label52.Location = new Point(161, 224);
+            label52.Name = "label52";
+            label52.Size = new Size(50, 25);
+            label52.TabIndex = 0;
+            label52.Text = "IN00";
+            label52.Visible = false;
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(217, 184);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(114, 31);
+            textBox6.TabIndex = 1;
+            textBox6.Visible = false;
+            // 
+            // label51
+            // 
+            label51.AutoSize = true;
+            label51.Location = new Point(161, 187);
+            label51.Name = "label51";
+            label51.Size = new Size(50, 25);
+            label51.TabIndex = 0;
+            label51.Text = "IN00";
+            label51.Visible = false;
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(217, 147);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(114, 31);
+            textBox5.TabIndex = 1;
+            textBox5.Visible = false;
+            // 
+            // label50
+            // 
+            label50.AutoSize = true;
+            label50.Location = new Point(161, 150);
+            label50.Name = "label50";
+            label50.Size = new Size(50, 25);
+            label50.TabIndex = 0;
+            label50.Text = "IN00";
+            label50.Visible = false;
+            // 
+            // textBox24
+            // 
+            textBox24.Location = new Point(664, 403);
+            textBox24.Name = "textBox24";
+            textBox24.Size = new Size(114, 31);
+            textBox24.TabIndex = 1;
+            textBox24.Visible = false;
+            // 
+            // label69
+            // 
+            label69.AutoSize = true;
+            label69.Location = new Point(591, 406);
+            label69.Name = "label69";
+            label69.Size = new Size(67, 25);
+            label69.TabIndex = 0;
+            label69.Text = "OUT00";
+            label69.Visible = false;
+            // 
+            // textBox23
+            // 
+            textBox23.Location = new Point(664, 366);
+            textBox23.Name = "textBox23";
+            textBox23.Size = new Size(114, 31);
+            textBox23.TabIndex = 1;
+            textBox23.Visible = false;
+            // 
+            // label68
+            // 
+            label68.AutoSize = true;
+            label68.Location = new Point(591, 369);
+            label68.Name = "label68";
+            label68.Size = new Size(67, 25);
+            label68.TabIndex = 0;
+            label68.Text = "OUT01";
+            label68.Visible = false;
+            // 
+            // textBox22
+            // 
+            textBox22.Location = new Point(664, 329);
+            textBox22.Name = "textBox22";
+            textBox22.Size = new Size(114, 31);
+            textBox22.TabIndex = 1;
+            textBox22.Visible = false;
+            // 
+            // label67
+            // 
+            label67.AutoSize = true;
+            label67.Location = new Point(591, 332);
+            label67.Name = "label67";
+            label67.Size = new Size(67, 25);
+            label67.TabIndex = 0;
+            label67.Text = "OUT02";
+            label67.Visible = false;
+            // 
+            // textBox21
+            // 
+            textBox21.Location = new Point(664, 292);
+            textBox21.Name = "textBox21";
+            textBox21.Size = new Size(114, 31);
+            textBox21.TabIndex = 1;
+            textBox21.Visible = false;
+            // 
+            // label66
+            // 
+            label66.AutoSize = true;
+            label66.Location = new Point(591, 295);
+            label66.Name = "label66";
+            label66.Size = new Size(67, 25);
+            label66.TabIndex = 0;
+            label66.Text = "OUT03";
+            label66.Visible = false;
+            // 
+            // textBox20
+            // 
+            textBox20.Location = new Point(664, 255);
+            textBox20.Name = "textBox20";
+            textBox20.Size = new Size(114, 31);
+            textBox20.TabIndex = 1;
+            textBox20.Visible = false;
+            // 
+            // label65
+            // 
+            label65.AutoSize = true;
+            label65.Location = new Point(591, 258);
+            label65.Name = "label65";
+            label65.Size = new Size(67, 25);
+            label65.TabIndex = 0;
+            label65.Text = "OUT04";
+            label65.Visible = false;
+            // 
+            // textBox19
+            // 
+            textBox19.Location = new Point(664, 218);
+            textBox19.Name = "textBox19";
+            textBox19.Size = new Size(114, 31);
+            textBox19.TabIndex = 1;
+            textBox19.Visible = false;
+            // 
+            // label64
+            // 
+            label64.AutoSize = true;
+            label64.Location = new Point(591, 221);
+            label64.Name = "label64";
+            label64.Size = new Size(67, 25);
+            label64.TabIndex = 0;
+            label64.Text = "OUT05";
+            label64.Visible = false;
+            // 
+            // textBox18
+            // 
+            textBox18.Location = new Point(664, 181);
+            textBox18.Name = "textBox18";
+            textBox18.Size = new Size(114, 31);
+            textBox18.TabIndex = 1;
+            textBox18.Visible = false;
+            // 
+            // label63
+            // 
+            label63.AutoSize = true;
+            label63.Location = new Point(591, 184);
+            label63.Name = "label63";
+            label63.Size = new Size(67, 25);
+            label63.TabIndex = 0;
+            label63.Text = "OUT06";
+            label63.Visible = false;
+            // 
+            // textBox17
+            // 
+            textBox17.Location = new Point(664, 141);
+            textBox17.Name = "textBox17";
+            textBox17.Size = new Size(114, 31);
+            textBox17.TabIndex = 1;
+            textBox17.Visible = false;
+            // 
+            // label62
+            // 
+            label62.AutoSize = true;
+            label62.Location = new Point(591, 144);
+            label62.Name = "label62";
+            label62.Size = new Size(67, 25);
+            label62.TabIndex = 0;
+            label62.Text = "OUT07";
+            label62.Visible = false;
+            // 
+            // textBox25
+            // 
+            textBox25.Location = new Point(664, 70);
+            textBox25.Name = "textBox25";
+            textBox25.Size = new Size(114, 31);
+            textBox25.TabIndex = 1;
+            textBox25.Visible = false;
+            // 
+            // label70
+            // 
+            label70.AutoSize = true;
+            label70.Location = new Point(591, 73);
+            label70.Name = "label70";
+            label70.Size = new Size(47, 25);
+            label70.TabIndex = 0;
+            label70.Text = "OUT";
+            label70.Visible = false;
+            // 
+            // textBox16
+            // 
+            textBox16.Location = new Point(664, 107);
+            textBox16.Name = "textBox16";
+            textBox16.Size = new Size(114, 31);
+            textBox16.TabIndex = 1;
+            textBox16.Visible = false;
+            // 
+            // label61
+            // 
+            label61.AutoSize = true;
+            label61.Location = new Point(591, 110);
+            label61.Name = "label61";
+            label61.Size = new Size(67, 25);
+            label61.TabIndex = 0;
+            label61.Text = "OUT08";
+            label61.Visible = false;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(217, 110);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(114, 31);
+            textBox4.TabIndex = 1;
+            textBox4.Visible = false;
+            // 
+            // label49
+            // 
+            label49.AutoSize = true;
+            label49.Location = new Point(161, 113);
+            label49.Name = "label49";
+            label49.Size = new Size(50, 25);
+            label49.TabIndex = 0;
+            label49.Text = "IN00";
+            label49.Visible = false;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(217, 63);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(114, 31);
+            textBox3.TabIndex = 1;
+            textBox3.Visible = false;
+            // 
+            // label48
+            // 
+            label48.AutoSize = true;
+            label48.Location = new Point(120, 66);
+            label48.Name = "label48";
+            label48.Size = new Size(91, 25);
+            label48.TabIndex = 0;
+            label48.Text = "time/label";
+            label48.Visible = false;
             // 
             // FormAdvanced
             // 
             AutoScaleDimensions = new SizeF(144F, 144F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(971, 516);
+            ClientSize = new Size(971, 600);
             Controls.Add(tabControl1);
             Controls.Add(btnDiscardAndClose);
             Controls.Add(button1);
@@ -1676,8 +2324,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudRankDropout).EndInit();
             tabPage7.ResumeLayout(false);
             tabPage7.PerformLayout();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
             tabPage5.ResumeLayout(false);
             tabPage5.PerformLayout();
             tabPage2.ResumeLayout(false);
@@ -1686,6 +2332,10 @@ namespace Kohya_lora_trainer
             pageMisc.PerformLayout();
             tabPage6.ResumeLayout(false);
             tabPage6.PerformLayout();
+            pageXL.ResumeLayout(false);
+            pageXL.PerformLayout();
+            pageXLBW.ResumeLayout(false);
+            pageXLBW.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1826,6 +2476,64 @@ namespace Kohya_lora_trainer
         private NumericUpDown nudNetworkDropout;
         private Label label45;
         private TabPage tabPage7;
-        private GroupBox groupBox1;
+        private TabPage pageXL;
+        private TextBox textBox2;
+        private Label label47;
+        private TextBox textBox1;
+        private Label label46;
+        private TabPage pageXLBW;
+        private CheckBox cbxEnableXLBlockWeight;
+        private TextBox textBox15;
+        private Label label60;
+        private TextBox textBox14;
+        private Label label59;
+        private TextBox textBox13;
+        private Label label58;
+        private TextBox textBox12;
+        private Label label57;
+        private TextBox textBox11;
+        private Label label56;
+        private TextBox textBox10;
+        private Label label55;
+        private TextBox textBox9;
+        private Label label54;
+        private TextBox textBox8;
+        private Label label53;
+        private TextBox textBox7;
+        private Label label52;
+        private TextBox textBox6;
+        private Label label51;
+        private TextBox textBox5;
+        private Label label50;
+        private TextBox textBox16;
+        private Label label61;
+        private TextBox textBox4;
+        private Label label49;
+        private TextBox textBox3;
+        private Label label48;
+        private TextBox textBox24;
+        private Label label69;
+        private TextBox textBox23;
+        private Label label68;
+        private TextBox textBox22;
+        private Label label67;
+        private TextBox textBox21;
+        private Label label66;
+        private TextBox textBox20;
+        private Label label65;
+        private TextBox textBox19;
+        private Label label64;
+        private TextBox textBox18;
+        private Label label63;
+        private TextBox textBox17;
+        private Label label62;
+        private TextBox textBox25;
+        private Label label70;
+        private TextBox textBox27;
+        private Label label72;
+        private TextBox textBox26;
+        private Label label71;
+        private CheckBox cbxUseFullFp16;
+        private Label label73;
     }
 }
