@@ -162,6 +162,11 @@ namespace Kohya_lora_trainer
                 sb.Append(" --v2");
             }
 
+            if (TrainParams.Current.UseFullFP16)
+            {
+                sb.Append(" --full_fp16");
+            }
+
             if (TrainParams.Current.UseParameterization)
                 sb.Append(" --v_parameterization");
 
