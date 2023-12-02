@@ -17,6 +17,8 @@ using Microsoft.Win32;
 using System.Security.Cryptography;
 using System.Diagnostics;
 
+#pragma warning disable CA1418
+
 namespace Kohya_lora_trainer
 {
     public partial class Form1 : Form
