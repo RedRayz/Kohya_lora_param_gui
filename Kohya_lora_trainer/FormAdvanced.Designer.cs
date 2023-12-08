@@ -1223,9 +1223,10 @@ namespace Kohya_lora_trainer
             cbxUseFullFp16.AutoSize = true;
             cbxUseFullFp16.Location = new Point(52, 362);
             cbxUseFullFp16.Name = "cbxUseFullFp16";
-            cbxUseFullFp16.Size = new Size(158, 29);
+            cbxUseFullFp16.Size = new Size(222, 29);
             cbxUseFullFp16.TabIndex = 41;
-            cbxUseFullFp16.Text = "Full FP16を使用";
+            cbxUseFullFp16.Text = "Full FP16を使用(非推奨)";
+            toolTip1.SetToolTip(cbxUseFullFp16, "学習能力が低下するため非推奨\r\n特にSDXLでは学習能力を完全に失うほどの悪影響あり");
             cbxUseFullFp16.UseVisualStyleBackColor = true;
             // 
             // cbxUseFastLoading

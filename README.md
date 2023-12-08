@@ -68,8 +68,5 @@ Windows 10/11 21H2以降
 
 ## ガイドなど
 
-* [キャラLoRAの学習手順](./docs/guide_for_chara.md)
 * [学習のヒントなど](./docs/tips.md)
 * サンプルプリセット: https://mega.nz/folder/ILdnzaxT#gTGQmcPUgdxKlLpIl9x__g
-
-おすすめは「キャラLoRA_4096steps_IN04-07_OUT03-06のみ.xmlora」

@@ -585,6 +585,8 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
+
+
             return true;
         }
 
@@ -1063,7 +1065,10 @@ namespace Kohya_lora_trainer
                     }
                     break;
             }
-
+            if (TrainParams.Current.UseFullFP16)
+            {
+                return MessageBox.Show("非推奨のオプション「full fp16を使用」が有効になっています。\r\n学習能力の低下がありますが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
             return DialogResult.Yes;
         }
 
