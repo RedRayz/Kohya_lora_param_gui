@@ -86,7 +86,7 @@ namespace Kohya_lora_trainer
 
             if (string.IsNullOrEmpty(lblOutputPath.Text))
             {
-                var res = MessageBox.Show("リサイズ後上書きします。よろしいですか。", "確認", MessageBoxButtons.YesNo);
+                var res = MessageBox.Show("リサイズ後に変換元を上書きします。よろしいですか。", "確認", MessageBoxButtons.YesNo);
                 if (res == DialogResult.Yes)
                 {
                     MyUtils.ResizeLora(lblLoraPath.Text, lblLoraPath.Text, nudTargetDim.Value, cbxCudaConversion.Checked);

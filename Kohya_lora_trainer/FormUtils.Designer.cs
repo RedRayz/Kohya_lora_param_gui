@@ -44,6 +44,8 @@
             btnRegenVenv = new Button();
             label8 = new Label();
             tabPage2 = new TabPage();
+            btnClearResizeOutput = new Button();
+            label10 = new Label();
             tabPage3 = new TabPage();
             label4 = new Label();
             label1 = new Label();
@@ -62,8 +64,6 @@
             label6 = new Label();
             tbxTaggerExclude = new TextBox();
             toolTip1 = new ToolTip(components);
-            label10 = new Label();
-            btnClearResizeOutput = new Button();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -236,6 +236,25 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Dimリサイズ";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnClearResizeOutput
+            // 
+            btnClearResizeOutput.Location = new Point(60, 113);
+            btnClearResizeOutput.Name = "btnClearResizeOutput";
+            btnClearResizeOutput.Size = new Size(134, 34);
+            btnClearResizeOutput.TabIndex = 12;
+            btnClearResizeOutput.Text = "クリア";
+            btnClearResizeOutput.UseVisualStyleBackColor = true;
+            btnClearResizeOutput.Click += btnClearResizeOutput_Click;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(204, 113);
+            label10.Name = "label10";
+            label10.Size = new Size(413, 25);
+            label10.TabIndex = 11;
+            label10.Text = "注意:出力先が未指定の場合は変換元を上書きします。";
             // 
             // tabPage3
             // 
@@ -410,25 +429,6 @@
             tbxTaggerExclude.Name = "tbxTaggerExclude";
             tbxTaggerExclude.Size = new Size(749, 31);
             tbxTaggerExclude.TabIndex = 1;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(204, 113);
-            label10.Name = "label10";
-            label10.Size = new Size(327, 25);
-            label10.TabIndex = 11;
-            label10.Text = "注意:出力が未指定の場合は上書きします。";
-            // 
-            // btnClearResizeOutput
-            // 
-            btnClearResizeOutput.Location = new Point(60, 113);
-            btnClearResizeOutput.Name = "btnClearResizeOutput";
-            btnClearResizeOutput.Size = new Size(134, 34);
-            btnClearResizeOutput.TabIndex = 12;
-            btnClearResizeOutput.Text = "クリア";
-            btnClearResizeOutput.UseVisualStyleBackColor = true;
-            btnClearResizeOutput.Click += btnClearResizeOutput_Click;
             // 
             // FormUtils
             // 
