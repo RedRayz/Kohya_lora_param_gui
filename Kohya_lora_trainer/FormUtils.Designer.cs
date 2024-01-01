@@ -41,6 +41,8 @@
             btnSelectOutputPath = new Button();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            btnRegenVenv = new Button();
+            label8 = new Label();
             tabPage2 = new TabPage();
             tabPage3 = new TabPage();
             label4 = new Label();
@@ -60,8 +62,8 @@
             label6 = new Label();
             tbxTaggerExclude = new TextBox();
             toolTip1 = new ToolTip(components);
-            btnRegenVenv = new Button();
-            label8 = new Label();
+            label10 = new Label();
+            btnClearResizeOutput = new Button();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -94,7 +96,7 @@
             // 
             // btnSelectModel
             // 
-            btnSelectModel.Location = new Point(60, 43);
+            btnSelectModel.Location = new Point(60, 18);
             btnSelectModel.Name = "btnSelectModel";
             btnSelectModel.Size = new Size(134, 37);
             btnSelectModel.TabIndex = 5;
@@ -104,7 +106,7 @@
             // 
             // btnResizeDim
             // 
-            btnResizeDim.Location = new Point(60, 232);
+            btnResizeDim.Location = new Point(60, 269);
             btnResizeDim.Name = "btnResizeDim";
             btnResizeDim.Size = new Size(134, 37);
             btnResizeDim.TabIndex = 5;
@@ -115,7 +117,7 @@
             // cbxCudaConversion
             // 
             cbxCudaConversion.AutoSize = true;
-            cbxCudaConversion.Location = new Point(204, 159);
+            cbxCudaConversion.Location = new Point(204, 215);
             cbxCudaConversion.Name = "cbxCudaConversion";
             cbxCudaConversion.Size = new Size(136, 29);
             cbxCudaConversion.TabIndex = 6;
@@ -125,7 +127,7 @@
             // lblLoraPath
             // 
             lblLoraPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblLoraPath.Location = new Point(200, 43);
+            lblLoraPath.Location = new Point(204, 18);
             lblLoraPath.Name = "lblLoraPath";
             lblLoraPath.Size = new Size(581, 37);
             lblLoraPath.TabIndex = 7;
@@ -134,7 +136,7 @@
             // lblOutputPath
             // 
             lblOutputPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblOutputPath.Location = new Point(200, 86);
+            lblOutputPath.Location = new Point(204, 70);
             lblOutputPath.Name = "lblOutputPath";
             lblOutputPath.Size = new Size(581, 37);
             lblOutputPath.TabIndex = 7;
@@ -142,7 +144,7 @@
             // 
             // nudTargetDim
             // 
-            nudTargetDim.Location = new Point(60, 159);
+            nudTargetDim.Location = new Point(60, 215);
             nudTargetDim.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
             nudTargetDim.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudTargetDim.Name = "nudTargetDim";
@@ -153,7 +155,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(55, 131);
+            label2.Location = new Point(55, 187);
             label2.Name = "label2";
             label2.Size = new Size(66, 25);
             label2.TabIndex = 9;
@@ -161,7 +163,7 @@
             // 
             // btnSelectOutputPath
             // 
-            btnSelectOutputPath.Location = new Point(60, 86);
+            btnSelectOutputPath.Location = new Point(60, 70);
             btnSelectOutputPath.Name = "btnSelectOutputPath";
             btnSelectOutputPath.Size = new Size(134, 37);
             btnSelectOutputPath.TabIndex = 10;
@@ -195,8 +197,30 @@
             tabPage1.Text = "ユーティリティ";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnRegenVenv
+            // 
+            btnRegenVenv.Location = new Point(279, 155);
+            btnRegenVenv.Name = "btnRegenVenv";
+            btnRegenVenv.Size = new Size(214, 44);
+            btnRegenVenv.TabIndex = 2;
+            btnRegenVenv.Text = "venv再生成";
+            btnRegenVenv.UseVisualStyleBackColor = true;
+            btnRegenVenv.Click += btnRegenVenv_Click;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(159, 202);
+            label8.Name = "label8";
+            label8.Size = new Size(477, 50);
+            label8.TabIndex = 1;
+            label8.Text = "ターミナルは手動で閉じてください\r\nvnevがない場合に再生成し、必要なパッケージをインストールします";
+            label8.TextAlign = ContentAlignment.TopCenter;
+            // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(btnClearResizeOutput);
+            tabPage2.Controls.Add(label10);
             tabPage2.Controls.Add(btnSelectModel);
             tabPage2.Controls.Add(btnSelectOutputPath);
             tabPage2.Controls.Add(btnResizeDim);
@@ -387,25 +411,24 @@
             tbxTaggerExclude.Size = new Size(749, 31);
             tbxTaggerExclude.TabIndex = 1;
             // 
-            // btnRegenVenv
+            // label10
             // 
-            btnRegenVenv.Location = new Point(279, 155);
-            btnRegenVenv.Name = "btnRegenVenv";
-            btnRegenVenv.Size = new Size(214, 44);
-            btnRegenVenv.TabIndex = 2;
-            btnRegenVenv.Text = "venv再生成";
-            btnRegenVenv.UseVisualStyleBackColor = true;
-            btnRegenVenv.Click += btnRegenVenv_Click;
+            label10.AutoSize = true;
+            label10.Location = new Point(204, 113);
+            label10.Name = "label10";
+            label10.Size = new Size(327, 25);
+            label10.TabIndex = 11;
+            label10.Text = "注意:出力が未指定の場合は上書きします。";
             // 
-            // label8
+            // btnClearResizeOutput
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(159, 202);
-            label8.Name = "label8";
-            label8.Size = new Size(477, 50);
-            label8.TabIndex = 1;
-            label8.Text = "ターミナルは手動で閉じてください\r\nvnevがない場合に再生成し、必要なパッケージをインストールします";
-            label8.TextAlign = ContentAlignment.TopCenter;
+            btnClearResizeOutput.Location = new Point(60, 113);
+            btnClearResizeOutput.Name = "btnClearResizeOutput";
+            btnClearResizeOutput.Size = new Size(134, 34);
+            btnClearResizeOutput.TabIndex = 12;
+            btnClearResizeOutput.Text = "クリア";
+            btnClearResizeOutput.UseVisualStyleBackColor = true;
+            btnClearResizeOutput.Click += btnClearResizeOutput_Click;
             // 
             // FormUtils
             // 
@@ -472,5 +495,7 @@
         private Label label5;
         private Button btnRegenVenv;
         private Label label8;
+        private Button btnClearResizeOutput;
+        private Label label10;
     }
 }
