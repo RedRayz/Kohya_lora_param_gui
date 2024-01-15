@@ -52,7 +52,10 @@ AdaFactorはLoRA学習で特にメリットはない。
 
 タスクマネージャーのパフォーマンスタブのGPUが以下のようになってるならVRAM不足。
 
-GPU-ZやMSI Afterburnerのグラフを見るのもあり。それのグラフでGPU使用率100%張り付きで消費電力が定格より大幅に少なくなってるならVRAM不足。
+※タスクマネージャーのGPU使用率は2D/3Dレンダリングの負荷なのであてにならない
+![ss184846](https://github.com/RedRayz/Kohya_lora_param_gui/assets/71994877/885dd37a-943a-443e-b0d5-dd98b6b6d9e7)
+
+GPU-ZやMSI Afterburnerのグラフを見るのもあり。それのグラフでVRAM使用量が上限に近い状態で、GPU使用率100%張り付きで、消費電力が定格より大幅に低くなってるならVRAM不足。
 
 ## 「Setting different lr values in different parameter groups」なんとかっていうエラーは何？
 
