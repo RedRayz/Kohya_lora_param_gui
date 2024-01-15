@@ -70,6 +70,7 @@ namespace Kohya_lora_trainer
             cbxCropRandomly = new CheckBox();
             cbxNoHalfVae = new CheckBox();
             cbxFlipAug = new CheckBox();
+            cbxUseFullFp16 = new CheckBox();
             label6 = new Label();
             label9 = new Label();
             button1 = new Button();
@@ -127,7 +128,6 @@ namespace Kohya_lora_trainer
             label26 = new Label();
             label28 = new Label();
             tabPage7 = new TabPage();
-            cbxUseFullFp16 = new CheckBox();
             cbxUseFastLoading = new CheckBox();
             label29 = new Label();
             label27 = new Label();
@@ -167,6 +167,8 @@ namespace Kohya_lora_trainer
             tabPage6 = new TabPage();
             pageXL = new TabPage();
             cbxCacheTextencoderToDisk = new CheckBox();
+            label46 = new Label();
+            tbxTokensSeparator = new TextBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -609,6 +611,17 @@ namespace Kohya_lora_trainer
             cbxFlipAug.Text = "反転画像を使用";
             toolTip1.SetToolTip(cbxFlipAug, "反転画像でデータセットを水増し");
             cbxFlipAug.UseVisualStyleBackColor = true;
+            // 
+            // cbxUseFullFp16
+            // 
+            cbxUseFullFp16.AutoSize = true;
+            cbxUseFullFp16.Location = new Point(52, 362);
+            cbxUseFullFp16.Name = "cbxUseFullFp16";
+            cbxUseFullFp16.Size = new Size(222, 29);
+            cbxUseFullFp16.TabIndex = 41;
+            cbxUseFullFp16.Text = "Full FP16を使用(非推奨)";
+            toolTip1.SetToolTip(cbxUseFullFp16, "学習能力が低下するため非推奨\r\n特にSDXLでは学習能力を完全に失うほどの悪影響あり");
+            cbxUseFullFp16.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -1054,6 +1067,8 @@ namespace Kohya_lora_trainer
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(tbxTokensSeparator);
+            tabPage4.Controls.Add(label46);
             tabPage4.Controls.Add(cbxScaleVPredLoss);
             tabPage4.Controls.Add(label39);
             tabPage4.Controls.Add(cbxDontSaveMetadata);
@@ -1217,17 +1232,6 @@ namespace Kohya_lora_trainer
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
-            // 
-            // cbxUseFullFp16
-            // 
-            cbxUseFullFp16.AutoSize = true;
-            cbxUseFullFp16.Location = new Point(52, 362);
-            cbxUseFullFp16.Name = "cbxUseFullFp16";
-            cbxUseFullFp16.Size = new Size(222, 29);
-            cbxUseFullFp16.TabIndex = 41;
-            cbxUseFullFp16.Text = "Full FP16を使用(非推奨)";
-            toolTip1.SetToolTip(cbxUseFullFp16, "学習能力が低下するため非推奨\r\n特にSDXLでは学習能力を完全に失うほどの悪影響あり");
-            cbxUseFullFp16.UseVisualStyleBackColor = true;
             // 
             // cbxUseFastLoading
             // 
@@ -1643,6 +1647,22 @@ namespace Kohya_lora_trainer
             cbxCacheTextencoderToDisk.Text = "Text Encoderの出力をディスクにキャッシュ";
             cbxCacheTextencoderToDisk.UseVisualStyleBackColor = true;
             // 
+            // label46
+            // 
+            label46.AutoSize = true;
+            label46.Location = new Point(50, 218);
+            label46.Name = "label46";
+            label46.Size = new Size(147, 25);
+            label46.TabIndex = 46;
+            label46.Text = "トークンのセパレータ";
+            // 
+            // tbxTokensSeparator
+            // 
+            tbxTokensSeparator.Location = new Point(50, 247);
+            tbxTokensSeparator.Name = "tbxTokensSeparator";
+            tbxTokensSeparator.Size = new Size(243, 31);
+            tbxTokensSeparator.TabIndex = 47;
+            // 
             // FormAdvanced
             // 
             AutoScaleDimensions = new SizeF(144F, 144F);
@@ -1841,5 +1861,7 @@ namespace Kohya_lora_trainer
         private TabPage tabPage7;
         private TabPage pageXL;
         private CheckBox cbxUseFullFp16;
+        private TextBox tbxTokensSeparator;
+        private Label label46;
     }
 }

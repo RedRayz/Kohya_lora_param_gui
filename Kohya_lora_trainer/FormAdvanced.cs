@@ -342,6 +342,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.CacheTextencoder = cbxCacheTextEncoder.Checked;
             TrainParams.Current.CacheTextencoderToDisk = cbxCacheTextencoderToDisk.Checked;
             TrainParams.Current.UseFullFP16 = cbxUseFullFp16.Checked;
+            TrainParams.Current.TokensSeparator = tbxTokensSeparator.Text;
             Close();
         }
 
@@ -438,6 +439,7 @@ namespace Kohya_lora_trainer
             cbxCacheTextEncoder.Checked = TrainParams.Current.CacheTextencoder;
             cbxCacheTextencoderToDisk.Checked = TrainParams.Current.CacheTextencoderToDisk;
             cbxUseFullFp16.Checked = TrainParams.Current.UseFullFP16;
+            tbxTokensSeparator.Text = TrainParams.Current.TokensSeparator;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)
