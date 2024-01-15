@@ -78,13 +78,26 @@ namespace Kohya_lora_trainer
 
         private void btnResizeDim_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(lblLoraPath.Text) || string.IsNullOrEmpty(lblOutputPath.Text))
+            if (string.IsNullOrEmpty(lblLoraPath.Text))
             {
-                MessageBox.Show("変更するモデルと出力先の両方を指定してください", "おしらせ", MessageBoxButtons.OK);
+                MessageBox.Show("変更するモデルを指定してください", "おしらせ", MessageBoxButtons.OK);
                 return;
             }
 
-            MyUtils.ResizeLora(lblLoraPath.Text, lblOutputPath.Text, nudTargetDim.Value, cbxCudaConversion.Checked);
+            if (string.IsNullOrEmpty(lblOutputPath.Text))
+            {
+                var res = MessageBox.Show("リサイズ後に変換元を上書きします。よろしいですか。", "確認", MessageBoxButtons.YesNo);
+                if (res == DialogResult.Yes)
+                {
+                    MyUtils.ResizeLora(lblLoraPath.Text, lblLoraPath.Text, nudTargetDim.Value, cbxCudaConversion.Checked);
+                }
+                
+            }
+            else
+            {
+                MyUtils.ResizeLora(lblLoraPath.Text, lblOutputPath.Text, nudTargetDim.Value, cbxCudaConversion.Checked);
+            }
+
         }
 
 
@@ -251,6 +264,11 @@ namespace Kohya_lora_trainer
                 process.StartInfo = ps;
                 process.Start();
             }
+        }
+
+        private void btnClearResizeOutput_Click(object sender, EventArgs e)
+        {
+            lblOutputPath.Text = string.Empty;
         }
     }
 }
