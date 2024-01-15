@@ -55,17 +55,17 @@ namespace Kohya_lora_trainer
                                 if (al)
                                     sb.Append(" \"conv_alpha=").Append(TrainParams.Current.ConvAlpha.ToString()).Append('"');
                                 if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
-                                    sb.Append(" ").Append(lbw);
+                                    sb.Append(' ').Append(lbw);
                                 sb.Append(GenerateDropoutCommands());
                             }
                         }
                         else if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
                         {
-                            sb.Append(" --network_args").Append(" ").Append(lbw);
+                            sb.Append(" --network_args").Append(' ').Append(lbw);
                             sb.Append(GenerateDropoutCommands());
                         }else if(TrainParams.Current.RankDropout > 0 || TrainParams.Current.ModuleDropout > 0)
                         {
-                            sb.Append(" --network_args").Append(" ").Append(GenerateDropoutCommands());
+                            sb.Append(" --network_args").Append(' ').Append(GenerateDropoutCommands());
                         }
 
                     }
@@ -83,7 +83,7 @@ namespace Kohya_lora_trainer
                             if (al)
                                 sb.Append(" \"conv_alpha=").Append(TrainParams.Current.ConvAlpha.ToString()).Append('"');
                             if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
-                                sb.Append(" ").Append(lbw);
+                                sb.Append(' ').Append(lbw);
                         }
                         sb.Append(GenerateDropoutCommands());
                     }
@@ -106,12 +106,12 @@ namespace Kohya_lora_trainer
                                 if (al)
                                     sb.Append(" \"conv_alpha=").Append(TrainParams.Current.ConvAlpha.ToString()).Append('"');
                                 if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
-                                    sb.Append(" ").Append(lbw);
+                                    sb.Append(' ').Append(lbw);
                             }
                         }
                         else if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
                         {
-                            sb.Append(" ").Append(lbw);
+                            sb.Append(' ').Append(lbw);
                         }
                     }
                     break;
@@ -259,7 +259,7 @@ namespace Kohya_lora_trainer
                     break;
                 case OptimizerType.DAdaptAdam:
                     {
-                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
+                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
                             .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
                             .Append(TrainParams.Current.D0.ToString("g")).Append("\" \"decouple=").Append(TrainParams.Current.Decouple.ToString()).Append('"');
 
@@ -272,7 +272,7 @@ namespace Kohya_lora_trainer
                     break;
                 case OptimizerType.DAdaptAdan:
                     {
-                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g")).Append(",").Append(TrainParams.Current.Betas2.ToString("g")).Append("\" \"eps=")
+                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).Append(',').Append(TrainParams.Current.Betas2.ToString("g")).Append("\" \"eps=")
     .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
     .Append(TrainParams.Current.D0.ToString("g")).Append("\" \"no_prox=").Append(TrainParams.Current.NoProx.ToString()).Append('"');
 
@@ -284,7 +284,7 @@ namespace Kohya_lora_trainer
                     break;
                 case OptimizerType.DAdaptLion:
                     {
-                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g"))
+                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g"))
                             .Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
                             .Append(TrainParams.Current.D0.ToString("g")).Append('"');
                     }
@@ -304,7 +304,7 @@ namespace Kohya_lora_trainer
                 //DAdaptAdamPreprint
                 case OptimizerType.DAdaptation:
                     {
-                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
+                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
     .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
     .Append(TrainParams.Current.D0.ToString("g")).Append("\" \"decouple=").Append(TrainParams.Current.Decouple.ToString()).Append('"');
 
@@ -316,7 +316,7 @@ namespace Kohya_lora_trainer
                     break;
                 case OptimizerType.DAdaptAdanIP:
                     {
-                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g")).Append(",").Append(TrainParams.Current.Betas2.ToString("g")).Append("\" \"eps=")
+                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).Append(',').Append(TrainParams.Current.Betas2.ToString("g")).Append("\" \"eps=")
     .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
     .Append(TrainParams.Current.D0.ToString("g")).Append("\" \"no_prox=").Append(TrainParams.Current.NoProx.ToString()).Append('"');
 
@@ -328,7 +328,7 @@ namespace Kohya_lora_trainer
                     break;
                 case OptimizerType.prodigy:
                     {
-                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(",").Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
+                        sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
     .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
     .Append(TrainParams.Current.D0.ToString("g")).Append("\" \"decouple=").Append(TrainParams.Current.Decouple.ToString()).Append("\" \"d_coef=").Append(TrainParams.Current.DCoef.ToString("g"))
     .Append("\" \"use_bias_correction=").Append(TrainParams.Current.UseBiasCorrection.ToString()).Append("\" \"safeguard_warmup=").Append(TrainParams.Current.SafeguardWarmup.ToString()).Append('"');
@@ -531,7 +531,7 @@ namespace Kohya_lora_trainer
                             {
                                 sb.Append((0.05f * TrainParams.Current.BlockWeightIn[i]).ToString());
                                 if (i < 11)
-                                    sb.Append(",");
+                                    sb.Append(',');
                             }
                             sb.Append('"');
                         }
@@ -560,7 +560,7 @@ namespace Kohya_lora_trainer
                             {
                                 sb.Append((0.05f * TrainParams.Current.BlockWeightOut[i]).ToString());
                                 if (i < 11)
-                                    sb.Append(",");
+                                    sb.Append(',');
                             }
                             sb.Append('"');
                         }
@@ -570,7 +570,7 @@ namespace Kohya_lora_trainer
                             sb.Append(" \"up_lr_weight=").Append(TrainParams.Current.BlockWeightPresetTypeOut.ToString());
                             if (TrainParams.Current.BlockWeightOffsetOut >= 0.25m)
                             {
-                                sb.Append("+").Append(TrainParams.Current.BlockWeightOffsetOut.ToString());
+                                sb.Append('+').Append(TrainParams.Current.BlockWeightOffsetOut.ToString());
                             }
 
                             sb.Append('"');
@@ -591,17 +591,17 @@ namespace Kohya_lora_trainer
                 for (int i = 0; i < 12; i++)
                 {
                     sb.Append(TrainParams.Current.BlockDimIn[i]);
-                    sb.Append(",");
+                    sb.Append(',');
                 }
                 //DIM MID
-                sb.Append(TrainParams.Current.BlockDimMid).Append(",");
+                sb.Append(TrainParams.Current.BlockDimMid).Append(',');
 
                 //DIM OUT
                 for (int i = 0; i < 12; i++)
                 {
                     sb.Append(TrainParams.Current.BlockDimOut[i]);
                     if (i < 11)
-                        sb.Append(",");
+                        sb.Append(',');
                 }
                 sb.Append('"');
 
@@ -610,17 +610,17 @@ namespace Kohya_lora_trainer
                 for (int i = 0; i < 12; i++)
                 {
                     sb.Append(TrainParams.Current.BlockAlphaInM[i]);
-                    sb.Append(",");
+                    sb.Append(',');
                 }
                 //ALPHA MID
-                sb.Append(TrainParams.Current.BlockAlphaMidM).Append(",");
+                sb.Append(TrainParams.Current.BlockAlphaMidM).Append(',');
 
                 //ALPHA OUT
                 for (int i = 0; i < 12; i++)
                 {
                     sb.Append(TrainParams.Current.BlockAlphaOutM[i]);
                     if (i < 11)
-                        sb.Append(",");
+                        sb.Append(',');
                 }
                 sb.Append('"');
             }
