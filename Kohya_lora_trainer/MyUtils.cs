@@ -125,6 +125,9 @@ namespace Kohya_lora_trainer
                 case CrossAttenType.mem_eff_attn:
                     sb.Append(" --mem_eff_attn");
                     break;
+                case CrossAttenType.sdpa:
+                    sb.Append(" --sdpa");
+                    break;
             }
 
             if (TrainParams.Current.UseGradient)
@@ -481,6 +484,11 @@ namespace Kohya_lora_trainer
                 {
                     sb.Append(" --cache_text_encoder_outputs_to_disk");
                 }
+            }
+
+            if(TrainParams.Current.UseFP8Base)
+            {
+                sb.Append(" --fp8_base");
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.TokensSeparator))

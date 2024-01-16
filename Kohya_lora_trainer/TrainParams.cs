@@ -82,7 +82,7 @@ namespace Kohya_lora_trainer {
 
         public SDType StableDiffusionType = SDType.Legacy;
 
-        public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true, UseFullFP16 = false;
+        public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true, UseFullFP16 = false, UseFP8Base = false;
         public string TokensSeparator;
 
 
@@ -273,7 +273,8 @@ namespace Kohya_lora_trainer {
 
     public enum CrossAttenType {
         xformers,
-        mem_eff_attn
+        mem_eff_attn,
+        sdpa
     }
 
     public enum BlockWeightPresetType
