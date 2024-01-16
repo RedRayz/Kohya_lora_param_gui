@@ -29,6 +29,7 @@ namespace Kohya_lora_trainer
             cbxMethod.SelectedIndex = 0;
         }
 
+        //ポンコツWinDefenderにマルウェア判定食らってるっぽい？
         private void btnSaveConfig_Click(object sender, EventArgs e)
         {
             float lr = 0;
