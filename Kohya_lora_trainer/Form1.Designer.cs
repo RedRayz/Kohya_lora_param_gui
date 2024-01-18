@@ -634,6 +634,7 @@ namespace Kohya_lora_trainer
             btnBlockWeight.Size = new Size(112, 42);
             btnBlockWeight.TabIndex = 75;
             btnBlockWeight.Text = "層別学習率";
+            toolTip1.SetToolTip(btnBlockWeight, "SDXLは非対応(sd-scriptsの仕様)");
             btnBlockWeight.UseVisualStyleBackColor = true;
             btnBlockWeight.Click += btnBlockWeight_Click;
             // 
@@ -644,6 +645,7 @@ namespace Kohya_lora_trainer
             btnBlockDim.Size = new Size(112, 40);
             btnBlockDim.TabIndex = 76;
             btnBlockDim.Text = "層別dim";
+            toolTip1.SetToolTip(btnBlockDim, "SDXLは非対応(sd-scriptsの仕様)");
             btnBlockDim.UseVisualStyleBackColor = true;
             btnBlockDim.Click += btnBlockDim_Click;
             // 

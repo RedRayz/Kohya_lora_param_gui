@@ -581,7 +581,7 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.StableDiffusionType == SDType.XL && (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim))
             {
                 if (showMsg)
-                    MessageBox.Show("SDXLでは層別学習および層別Dimは使用できません。\r\nエラーで即落ちします。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("SDXLでは層別学習および層別Dimは非対応です。\r\n有効にするとエラーで落ちます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -906,7 +906,7 @@ namespace Kohya_lora_trainer
                 }
                 else
                 {
-                    //sd-scriptsに近い計算式でもずれるときはずれる。accelerateとかの影響?
+                    //sd-scriptsに近い計算式でもずれるときはずれる。Bucketingの影響らしい
                     decimal eps = (decimal)StepsPerEpoch / TrainParams.Current.BatchSize;
 
                     TotalSteps = TrainParams.Current.Epochs * Math.Ceiling(eps);

@@ -596,10 +596,10 @@ namespace Kohya_lora_trainer
             cbxNoHalfVae.AutoSize = true;
             cbxNoHalfVae.Location = new Point(32, 28);
             cbxNoHalfVae.Name = "cbxNoHalfVae";
-            cbxNoHalfVae.Size = new Size(266, 29);
+            cbxNoHalfVae.Size = new Size(189, 29);
             cbxNoHalfVae.TabIndex = 18;
-            cbxNoHalfVae.Text = "VAEを32ビットで使用(ほぼ必須)";
-            toolTip1.SetToolTip(cbxNoHalfVae, "no-half VAE\r\nVAEのNaN演算をなくす");
+            cbxNoHalfVae.Text = "VAEを32ビットで使用";
+            toolTip1.SetToolTip(cbxNoHalfVae, "no-half VAE\r\nVAEのNaN演算をなくす\r\nStabilityAIのVAEはこの設定が必須");
             cbxNoHalfVae.UseVisualStyleBackColor = true;
             // 
             // cbxFlipAug
@@ -629,10 +629,10 @@ namespace Kohya_lora_trainer
             cbxUseFP8.AutoSize = true;
             cbxUseFP8.Location = new Point(52, 397);
             cbxUseFP8.Name = "cbxUseFP8";
-            cbxUseFP8.Size = new Size(315, 29);
+            cbxUseFP8.Size = new Size(201, 29);
             cbxUseFP8.TabIndex = 42;
-            cbxUseFP8.Text = "モデルをfp8で読み込む(フォーク版必要)";
-            toolTip1.SetToolTip(cbxUseFP8, "KohakuBlueLeaf氏のフォーク版のfp8-experimentsブランチに切り替える必要あり");
+            cbxUseFP8.Text = "モデルをfp8で読み込む";
+            toolTip1.SetToolTip(cbxUseFP8, "若干の速度低下と引き換えにモデルによるVRAM消費が半減する");
             cbxUseFP8.UseVisualStyleBackColor = true;
             // 
             // label6
