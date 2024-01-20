@@ -29,61 +29,58 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInstaller));
-            this.btnInstall = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            btnInstall = new Button();
+            label1 = new Label();
+            label2 = new Label();
+            SuspendLayout();
             // 
             // btnInstall
             // 
-            this.btnInstall.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnInstall.Location = new System.Drawing.Point(238, 28);
-            this.btnInstall.Name = "btnInstall";
-            this.btnInstall.Size = new System.Drawing.Size(174, 72);
-            this.btnInstall.TabIndex = 0;
-            this.btnInstall.Text = "インストール";
-            this.btnInstall.UseVisualStyleBackColor = true;
-            this.btnInstall.Click += new System.EventHandler(this.btnInstall_Click);
+            btnInstall.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnInstall.Location = new Point(238, 28);
+            btnInstall.Name = "btnInstall";
+            btnInstall.Size = new Size(174, 72);
+            btnInstall.TabIndex = 0;
+            btnInstall.Text = "インストール";
+            btnInstall.UseVisualStyleBackColor = true;
+            btnInstall.Click += btnInstall_Click;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(32, 120);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(532, 175);
-            this.label1.TabIndex = 1;
-            this.label1.Text = resources.GetString("label1.Text");
+            label1.AutoSize = true;
+            label1.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(32, 120);
+            label1.Name = "label1";
+            label1.Size = new Size(532, 175);
+            label1.TabIndex = 1;
+            label1.Text = resources.GetString("label1.Text");
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 309);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(587, 275);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "- This machine\r\n- No distributed training\r\n- NO\r\n- NO\r\n- NO\r\n- all\r\n- fp16\r\n注意:日本" +
-    "語環境では選択のためにカーソルキーを押すと落ちます。\r\n数字キーの0、1、2……で選択できますので、そちらを使ってください。\r\n\r\naccelerateの設定後" +
-    "(venv) 〇:\\〇〇\\sd-scripts>とでたらインストール完了です。";
+            label2.AutoSize = true;
+            label2.Location = new Point(32, 309);
+            label2.Name = "label2";
+            label2.Size = new Size(587, 300);
+            label2.TabIndex = 2;
+            label2.Text = resources.GetString("label2.Text");
             // 
             // FormInstaller
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(687, 607);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnInstall);
-            this.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MaximizeBox = false;
-            this.Name = "FormInstaller";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "簡易インストーラ";
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(144F, 144F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(687, 629);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(btnInstall);
+            Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            Name = "FormInstaller";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "簡易インストーラ";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
