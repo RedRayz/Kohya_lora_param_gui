@@ -91,7 +91,7 @@ namespace Kohya_lora_trainer
                 {
                     MyUtils.ResizeLora(lblLoraPath.Text, lblLoraPath.Text, nudTargetDim.Value, cbxCudaConversion.Checked);
                 }
-                
+
             }
             else
             {
@@ -255,7 +255,13 @@ namespace Kohya_lora_trainer
                 StringBuilder sb = new StringBuilder();
                 sb.Append(@"/k cd ").Append(Constants.CurrentSdScriptsPath);
 
-                sb.Append(@" && python -m venv venv && .\venv\Scripts\activate && pip install torch==2.0.1+cu118 torchvision==0.15.2+cu118 --index-url https://download.pytorch.org/whl/cu118 && pip install bitsandbytes==0.41.1 --prefer-binary --extra-index-url=https://jllllll.github.io/bitsandbytes-windows-webui && pip install --upgrade -r requirements.txt && pip install xformers==0.0.20 && ");
+                sb.Append(@"python -m venv venv && .\venv\Scripts\activate && pip install torch==")
+                    .Append(Constants.TORCH_VERSION).Append(" torchvision==")
+                    .Append(Constants.TORCHVISION_VERSION).Append(" --index-url ")
+                    .Append(Constants.INDEX_URL)
+                    .Append(" && pip install bitsandbytes==0.41.1 --prefer-binary --extra-index-url=https://jllllll.github.io/bitsandbytes-windows-webui && pip install --upgrade -r requirements.txt && pip install xformers==")
+                    .Append(Constants.XFORMERS_VERSION).Append(" && ");
+
                 sb.Append("pip install prodigyopt dadaptation lion-pytorch lycoris_lora");
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
