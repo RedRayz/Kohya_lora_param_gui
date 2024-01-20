@@ -12,5 +12,10 @@ namespace Kohya_lora_trainer
         public const string LecoPath = @"..\LECO\";
 
         public static string CurrentSdScriptsPath;
+
+        public const string TORCH_VERSION = "2.1.2+cu121";
+        public const string TORCHVISION_VERSION = "0.16.2+cu121";
+        public const string XFORMERS_VERSION = "0.0.23.post1";
+        public const string INDEX_URL = "https://download.pytorch.org/whl/cu121";
     }
 }

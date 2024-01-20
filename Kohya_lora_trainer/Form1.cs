@@ -385,7 +385,7 @@ namespace Kohya_lora_trainer
                 {
                     if (!HasScriptFile(str, false))
                     {
-                        Console.WriteLine("Skipping training. train_network.py not found");
+                        Debug.WriteLine("Skipping training. train_network.py not found");
                         BatchProcess.LogText += TrainParams.Current.OutputPath + "\\" + TrainParams.Current.OutputName + ".safetensors\r\ntrain_network.pyがないためスキップ\r\n\r\n";
 
                         BatchProcess.SkippedCount++;
@@ -395,7 +395,7 @@ namespace Kohya_lora_trainer
                     string pth = BatchProcess.BatchStack.Pop();
                     if (!File.Exists(pth))
                     {
-                        Console.WriteLine("Skipping training. Invalid path: " + pth);
+                        Debug.WriteLine("Skipping training. Invalid path: " + pth);
                         if (!string.IsNullOrEmpty(pth))
                         {
                             BatchProcess.LogText += pth + "\r\nプリセットがないためスキップ\r\n\r\n";
@@ -408,12 +408,12 @@ namespace Kohya_lora_trainer
                     LoadPreset(pth, false);
                     if (!IsTrainingAvailable(false))
                     {
-                        Console.WriteLine("Skipping training. Invalid params in: " + pth);
+                        Debug.WriteLine("Skipping training. Invalid params in: " + pth);
                         BatchProcess.LogText += pth + "\r\nプリセットの設定が不適切なためスキップ\r\n\r\n";
                         BatchProcess.SkippedCount++;
                         continue;
                     }
-                    Console.WriteLine("Start training: " + pth);
+                    Debug.WriteLine("Start training: " + pth);
                     Form train0 = new TrainForm(rbtBenckmark.Checked, rbtShutdown.Checked, false);
                     train0.ShowDialog();
                     train0.Dispose();
@@ -581,7 +581,7 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.StableDiffusionType == SDType.XL && (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim))
             {
                 if (showMsg)
-                    MessageBox.Show("SDXLでは層別学習および層別Dimは使用できません。\r\nエラーで即落ちします。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("SDXLでは層別学習および層別Dimは非対応です。\r\n有効にするとエラーで落ちます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -615,7 +615,7 @@ namespace Kohya_lora_trainer
             }
             catch
             {
-                Console.WriteLine("Failed to load preset");
+                Debug.WriteLine("Failed to load preset");
                 if (ShowMsg)
                     MessageBox.Show("プリセットを読み込めません。破損しているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -734,7 +734,7 @@ namespace Kohya_lora_trainer
             }
             catch
             {
-                Console.WriteLine("自動保存書き込みできない");
+                Debug.WriteLine("自動保存書き込みできない");
             }
         }
 
@@ -906,7 +906,7 @@ namespace Kohya_lora_trainer
                 }
                 else
                 {
-                    //sd-scriptsに近い計算式でもずれるときはずれる。accelerateとかの影響?
+                    //sd-scriptsに近い計算式でもずれるときはずれる。Bucketingの影響らしい
                     decimal eps = (decimal)StepsPerEpoch / TrainParams.Current.BatchSize;
 
                     TotalSteps = TrainParams.Current.Epochs * Math.Ceiling(eps);
