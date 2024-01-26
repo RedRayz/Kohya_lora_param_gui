@@ -171,6 +171,8 @@ namespace Kohya_lora_trainer
             cbxCacheTextencoderToDisk = new CheckBox();
             pageSD2 = new TabPage();
             cbxUseV2 = new CheckBox();
+            cbxRelativeStep = new CheckBox();
+            cbxScaleParameter = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -456,7 +458,7 @@ namespace Kohya_lora_trainer
             // cbxDontSaveMetadata
             // 
             cbxDontSaveMetadata.AutoSize = true;
-            cbxDontSaveMetadata.Location = new Point(44, 67);
+            cbxDontSaveMetadata.Location = new Point(44, 163);
             cbxDontSaveMetadata.Name = "cbxDontSaveMetadata";
             cbxDontSaveMetadata.Size = new Size(198, 29);
             cbxDontSaveMetadata.TabIndex = 11;
@@ -1098,6 +1100,8 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(label46);
             tabPage4.Controls.Add(label39);
             tabPage4.Controls.Add(cbxDontSaveMetadata);
+            tabPage4.Controls.Add(cbxScaleParameter);
+            tabPage4.Controls.Add(cbxRelativeStep);
             tabPage4.Controls.Add(cbxUseWarmupInit);
             tabPage4.Controls.Add(nudMomentum);
             tabPage4.Controls.Add(label15);
@@ -1123,7 +1127,7 @@ namespace Kohya_lora_trainer
             // 
             // tbxTokensSeparator
             // 
-            tbxTokensSeparator.Location = new Point(44, 143);
+            tbxTokensSeparator.Location = new Point(44, 239);
             tbxTokensSeparator.Name = "tbxTokensSeparator";
             tbxTokensSeparator.Size = new Size(243, 31);
             tbxTokensSeparator.TabIndex = 47;
@@ -1131,7 +1135,7 @@ namespace Kohya_lora_trainer
             // label46
             // 
             label46.AutoSize = true;
-            label46.Location = new Point(44, 114);
+            label46.Location = new Point(44, 210);
             label46.Name = "label46";
             label46.Size = new Size(147, 25);
             label46.TabIndex = 46;
@@ -1688,6 +1692,26 @@ namespace Kohya_lora_trainer
             cbxUseV2.Text = "Stable Diffusion 2.Xを使用";
             cbxUseV2.UseVisualStyleBackColor = true;
             // 
+            // cbxRelativeStep
+            // 
+            cbxRelativeStep.AutoSize = true;
+            cbxRelativeStep.Location = new Point(44, 64);
+            cbxRelativeStep.Name = "cbxRelativeStep";
+            cbxRelativeStep.Size = new Size(303, 29);
+            cbxRelativeStep.TabIndex = 18;
+            cbxRelativeStep.Text = "AdaFactor: relative_stepを使用する";
+            cbxRelativeStep.UseVisualStyleBackColor = true;
+            // 
+            // cbxScaleParameter
+            // 
+            cbxScaleParameter.AutoSize = true;
+            cbxScaleParameter.Location = new Point(44, 99);
+            cbxScaleParameter.Name = "cbxScaleParameter";
+            cbxScaleParameter.Size = new Size(332, 29);
+            cbxScaleParameter.TabIndex = 18;
+            cbxScaleParameter.Text = "AdaFactor: scale_parameterを使用する";
+            cbxScaleParameter.UseVisualStyleBackColor = true;
+            // 
             // FormAdvanced
             // 
             AutoScaleDimensions = new SizeF(144F, 144F);
@@ -1892,5 +1916,7 @@ namespace Kohya_lora_trainer
         private Label label46;
         private CheckBox cbxUseFP8;
         private TabPage pageSD2;
+        private CheckBox cbxScaleParameter;
+        private CheckBox cbxRelativeStep;
     }
 }
