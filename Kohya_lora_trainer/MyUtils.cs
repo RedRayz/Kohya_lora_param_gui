@@ -240,7 +240,7 @@ namespace Kohya_lora_trainer
             {
                 case OptimizerType.AdaFactor:
                     {
-                        sb.Append(" --optimizer_args \"relative_step=True\" \"scale_parameter=True\" \"warmup_init=").Append(TrainParams.Current.UseWarmupInit.ToString()).Append('"');
+                        sb.Append(" --optimizer_args \"relative_step=").Append(TrainParams.Current.RelativeStep.ToString()).Append("\" \"scale_parameter=").Append(TrainParams.Current.ScaleParameter.ToString()).Append("\" \"warmup_init=").Append(TrainParams.Current.UseWarmupInit.ToString()).Append('"');
                     }
                     break;
                 case OptimizerType.SGDNesterov:
