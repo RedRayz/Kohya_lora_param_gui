@@ -120,6 +120,8 @@ namespace Kohya_lora_trainer
             tbxTokensSeparator = new TextBox();
             label46 = new Label();
             label39 = new Label();
+            cbxScaleParameter = new CheckBox();
+            cbxRelativeStep = new CheckBox();
             label44 = new Label();
             label38 = new Label();
             label37 = new Label();
@@ -171,8 +173,6 @@ namespace Kohya_lora_trainer
             cbxCacheTextencoderToDisk = new CheckBox();
             pageSD2 = new TabPage();
             cbxUseV2 = new CheckBox();
-            cbxRelativeStep = new CheckBox();
-            cbxScaleParameter = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -381,12 +381,13 @@ namespace Kohya_lora_trainer
             // 
             // nudLRSchedulerCycle
             // 
+            nudLRSchedulerCycle.DecimalPlaces = 1;
             nudLRSchedulerCycle.Location = new Point(717, 28);
             nudLRSchedulerCycle.Maximum = new decimal(new int[] { 64, 0, 0, 0 });
             nudLRSchedulerCycle.Name = "nudLRSchedulerCycle";
             nudLRSchedulerCycle.Size = new Size(120, 31);
             nudLRSchedulerCycle.TabIndex = 16;
-            toolTip1.SetToolTip(nudLRSchedulerCycle, "LR調整の周期");
+            toolTip1.SetToolTip(nudLRSchedulerCycle, "一度の学習のLR調整の回数\r\ncosine_with_restartsの場合はコサイン波の数(整数のみ)\r\npolynomialの場合は減衰の乗数");
             nudLRSchedulerCycle.Value = new decimal(new int[] { 4, 0, 0, 0 });
             // 
             // cbxAlgoType
@@ -723,6 +724,7 @@ namespace Kohya_lora_trainer
             cbxScheduler.Name = "cbxScheduler";
             cbxScheduler.Size = new Size(212, 33);
             cbxScheduler.TabIndex = 27;
+            toolTip1.SetToolTip(cbxScheduler, "LR調整アルゴリズム");
             // 
             // label11
             // 
@@ -1149,6 +1151,26 @@ namespace Kohya_lora_trainer
             label39.Size = new Size(224, 25);
             label39.TabIndex = 25;
             label39.Text = "Max Norm Regularization#";
+            // 
+            // cbxScaleParameter
+            // 
+            cbxScaleParameter.AutoSize = true;
+            cbxScaleParameter.Location = new Point(44, 99);
+            cbxScaleParameter.Name = "cbxScaleParameter";
+            cbxScaleParameter.Size = new Size(332, 29);
+            cbxScaleParameter.TabIndex = 18;
+            cbxScaleParameter.Text = "AdaFactor: scale_parameterを使用する";
+            cbxScaleParameter.UseVisualStyleBackColor = true;
+            // 
+            // cbxRelativeStep
+            // 
+            cbxRelativeStep.AutoSize = true;
+            cbxRelativeStep.Location = new Point(44, 64);
+            cbxRelativeStep.Name = "cbxRelativeStep";
+            cbxRelativeStep.Size = new Size(303, 29);
+            cbxRelativeStep.TabIndex = 18;
+            cbxRelativeStep.Text = "AdaFactor: relative_stepを使用する";
+            cbxRelativeStep.UseVisualStyleBackColor = true;
             // 
             // label44
             // 
@@ -1691,26 +1713,6 @@ namespace Kohya_lora_trainer
             cbxUseV2.TabIndex = 13;
             cbxUseV2.Text = "Stable Diffusion 2.Xを使用";
             cbxUseV2.UseVisualStyleBackColor = true;
-            // 
-            // cbxRelativeStep
-            // 
-            cbxRelativeStep.AutoSize = true;
-            cbxRelativeStep.Location = new Point(44, 64);
-            cbxRelativeStep.Name = "cbxRelativeStep";
-            cbxRelativeStep.Size = new Size(303, 29);
-            cbxRelativeStep.TabIndex = 18;
-            cbxRelativeStep.Text = "AdaFactor: relative_stepを使用する";
-            cbxRelativeStep.UseVisualStyleBackColor = true;
-            // 
-            // cbxScaleParameter
-            // 
-            cbxScaleParameter.AutoSize = true;
-            cbxScaleParameter.Location = new Point(44, 99);
-            cbxScaleParameter.Name = "cbxScaleParameter";
-            cbxScaleParameter.Size = new Size(332, 29);
-            cbxScaleParameter.TabIndex = 18;
-            cbxScaleParameter.Text = "AdaFactor: scale_parameterを使用する";
-            cbxScaleParameter.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
