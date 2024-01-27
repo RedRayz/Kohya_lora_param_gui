@@ -98,3 +98,17 @@ tritonはWindows向けビルドが無いので使用できないしなくても�
 lossが上下に振れるのが普通。振れ方はseed値によって変化すると思われる。
 
 lossの急上昇は発散の兆候。上昇を続けてlossがNaNになったら学習は失敗。発散を避けるにはLRを下げよう。
+
+## LR Schedulerについて
+LR調整アルゴリズム。
+- cosine_with_restarts
+推奨。
+num_lr_scheduler_cycleで指定した分だけコサイン波を繰り返す。warmupが指定されているなら0から始まりwarmupまで線形でLRを上げる。
+- cosine
+コサイン波形で減衰
+- linear
+線形に減衰。
+- constant_with_warmup
+warmupまで線形でLRを上げた後は一定。非推奨。
+- constant
+LRは常に一定。非推奨。

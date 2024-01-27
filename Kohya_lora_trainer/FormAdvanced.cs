@@ -322,7 +322,7 @@ namespace Kohya_lora_trainer
 
             TrainParams.Current.mixedPrecisionType = (MixedPrecisionType)Enum.ToObject(typeof(MixedPrecisionType), cbxMixedPrecision.SelectedIndex);
 
-            TrainParams.Current.LRSchedulerCycle = (int)nudLRSchedulerCycle.Value;
+            TrainParams.Current.LRSchedulerCycle = nudLRSchedulerCycle.Value;
             TrainParams.Current.DataLoaderThreads = (int)nudDataLoaderThreads.Value;
             TrainParams.Current.MaxTokens = (int)nudMaxTokens.Value;
 

@@ -72,6 +72,7 @@ namespace Kohya_lora_trainer
             cbxUseFullFp16 = new CheckBox();
             cbxUseFP8 = new CheckBox();
             cbxUseFastLoading = new CheckBox();
+            cbxScheduler = new ComboBox();
             cbxAdvancedTrain = new ComboBox();
             label6 = new Label();
             label9 = new Label();
@@ -79,7 +80,6 @@ namespace Kohya_lora_trainer
             nudMinBucketReso = new NumericUpDown();
             nudMaxBucketReso = new NumericUpDown();
             label10 = new Label();
-            cbxScheduler = new ComboBox();
             label11 = new Label();
             btnDiscardAndClose = new Button();
             btnTensorBoardPath = new Button();
@@ -365,7 +365,7 @@ namespace Kohya_lora_trainer
             cbxCacheLatents.Size = new Size(161, 29);
             cbxCacheLatents.TabIndex = 22;
             cbxCacheLatents.Text = "latentのキャッシュ";
-            toolTip1.SetToolTip(cbxCacheLatents, "VRAM消費削減および速度改善\r\n画像反転以外のaugmentationは利用不可");
+            toolTip1.SetToolTip(cbxCacheLatents, "VRAM消費削減および速度改善\r\n画像反転以外のaugmentationは利用不可\r\nあらかじめ画像をVAEでエンコードしておくことで高速化するもの");
             cbxCacheLatents.UseVisualStyleBackColor = true;
             // 
             // cbxMixedPrecision
@@ -420,7 +420,7 @@ namespace Kohya_lora_trainer
             cbxUseGradient.Size = new Size(301, 29);
             cbxUseGradient.TabIndex = 18;
             cbxUseGradient.Text = "gradient_checkpointingを使用する";
-            toolTip1.SetToolTip(cbxUseGradient, "VRAM消費削減および増加を強く抑制\r\n速度がやや低下する\r\nVRAM不足の場合のみオン推奨");
+            toolTip1.SetToolTip(cbxUseGradient, "VRAM消費削減および増加を強く抑制\r\n速度がやや低下する");
             cbxUseGradient.UseVisualStyleBackColor = true;
             // 
             // nudNoiseOffset
@@ -571,7 +571,7 @@ namespace Kohya_lora_trainer
             cbxCacheLatentsToDisk.Size = new Size(227, 29);
             cbxCacheLatentsToDisk.TabIndex = 23;
             cbxCacheLatentsToDisk.Text = "latentをディスクにキャッシュ";
-            toolTip1.SetToolTip(cbxCacheLatentsToDisk, "latentのキャッシュもオンにする必要あり");
+            toolTip1.SetToolTip(cbxCacheLatentsToDisk, "latentのキャッシュもオンにする必要あり\r\n2回目以降の学習開始が高速化");
             cbxCacheLatentsToDisk.UseVisualStyleBackColor = true;
             // 
             // cbxCropRandomly
@@ -641,6 +641,17 @@ namespace Kohya_lora_trainer
             cbxUseFastLoading.Text = "読込の高速化";
             toolTip1.SetToolTip(cbxUseFastLoading, "次のエポックへの移行が速くなる");
             cbxUseFastLoading.UseVisualStyleBackColor = true;
+            // 
+            // cbxScheduler
+            // 
+            cbxScheduler.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxScheduler.FormattingEnabled = true;
+            cbxScheduler.Items.AddRange(new object[] { "cosine_with_restarts", "cosine", "linear", "polynomial", "constant", "constant_with_warmup" });
+            cbxScheduler.Location = new Point(159, 22);
+            cbxScheduler.Name = "cbxScheduler";
+            cbxScheduler.Size = new Size(212, 33);
+            cbxScheduler.TabIndex = 27;
+            toolTip1.SetToolTip(cbxScheduler, "LR調整アルゴリズム");
             // 
             // cbxAdvancedTrain
             // 
@@ -714,17 +725,6 @@ namespace Kohya_lora_trainer
             label10.Size = new Size(91, 25);
             label10.TabIndex = 26;
             label10.Text = "スケジューラ";
-            // 
-            // cbxScheduler
-            // 
-            cbxScheduler.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbxScheduler.FormattingEnabled = true;
-            cbxScheduler.Items.AddRange(new object[] { "cosine_with_restarts", "cosine", "linear", "polynomial", "constant", "constant_with_warmup" });
-            cbxScheduler.Location = new Point(159, 22);
-            cbxScheduler.Name = "cbxScheduler";
-            cbxScheduler.Size = new Size(212, 33);
-            cbxScheduler.TabIndex = 27;
-            toolTip1.SetToolTip(cbxScheduler, "LR調整アルゴリズム");
             // 
             // label11
             // 
@@ -932,6 +932,7 @@ namespace Kohya_lora_trainer
             nudMinSNRGamma.Name = "nudMinSNRGamma";
             nudMinSNRGamma.Size = new Size(120, 31);
             nudMinSNRGamma.TabIndex = 51;
+            toolTip1.SetToolTip(nudMinSNRGamma, "設定するとLoRA重ね掛けしたときに不安定になる？");
             // 
             // label18
             // 
