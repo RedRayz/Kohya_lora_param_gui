@@ -73,6 +73,7 @@ namespace Kohya_lora_trainer
             cbxUseFP8 = new CheckBox();
             cbxUseFastLoading = new CheckBox();
             cbxScheduler = new ComboBox();
+            nudMinSNRGamma = new NumericUpDown();
             cbxAdvancedTrain = new ComboBox();
             label6 = new Label();
             label9 = new Label();
@@ -101,7 +102,6 @@ namespace Kohya_lora_trainer
             lblVAEPath = new Label();
             nudAdaptiveNoiseScale = new NumericUpDown();
             label17 = new Label();
-            nudMinSNRGamma = new NumericUpDown();
             label18 = new Label();
             nudMultiresNoiseIterations = new NumericUpDown();
             label19 = new Label();
@@ -182,11 +182,11 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudSeed).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxTokens).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudConvDim).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudMinSNRGamma).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMomentum).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudAdaptiveNoiseScale).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudMinSNRGamma).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseIterations).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseDiscount).BeginInit();
             tabControl1.SuspendLayout();
@@ -282,7 +282,7 @@ namespace Kohya_lora_trainer
             tbrCpuThreads.Name = "tbrCpuThreads";
             tbrCpuThreads.Size = new Size(470, 69);
             tbrCpuThreads.TabIndex = 9;
-            toolTip1.SetToolTip(tbrCpuThreads, "基本的に上げても速くならない\r\nページング使用量増加");
+            toolTip1.SetToolTip(tbrCpuThreads, "ほとんどの処理がシングルスレッドで動くため基本的に上げても速くならない\r\nページング使用量増加");
             tbrCpuThreads.Value = 12;
             tbrCpuThreads.Scroll += tbrCpuThreads_Scroll;
             // 
@@ -333,7 +333,7 @@ namespace Kohya_lora_trainer
             cbxCrossAttenType.Name = "cbxCrossAttenType";
             cbxCrossAttenType.Size = new Size(192, 33);
             cbxCrossAttenType.TabIndex = 38;
-            toolTip1.SetToolTip(cbxCrossAttenType, "mef_eff_attenは省メモリだが遅い\r\nxformersはNVIDIAのみ対応\r\nsdpaは他のメーカーのGPUでも動作");
+            toolTip1.SetToolTip(cbxCrossAttenType, "最適化アルゴリズムの種類\r\nmef_eff_attenは省メモリだが遅い\r\nxformersはNVIDIAのみ対応\r\nsdpaは他のメーカーのGPUでも動作");
             // 
             // cbxScaleVPredLoss
             // 
@@ -365,7 +365,7 @@ namespace Kohya_lora_trainer
             cbxCacheLatents.Size = new Size(161, 29);
             cbxCacheLatents.TabIndex = 22;
             cbxCacheLatents.Text = "latentのキャッシュ";
-            toolTip1.SetToolTip(cbxCacheLatents, "VRAM消費削減および速度改善\r\n画像反転以外のaugmentationは利用不可\r\nあらかじめ画像をVAEでエンコードしておくことで高速化するもの");
+            toolTip1.SetToolTip(cbxCacheLatents, "VRAM消費削減および速度改善\r\n画像反転以外のaugmentationは利用不可\r\nあらかじめ画像をVAEでlatentに変換しておくことで高速化するもの");
             cbxCacheLatents.UseVisualStyleBackColor = true;
             // 
             // cbxMixedPrecision
@@ -475,7 +475,7 @@ namespace Kohya_lora_trainer
             nudDataLoaderThreads.Name = "nudDataLoaderThreads";
             nudDataLoaderThreads.Size = new Size(192, 31);
             nudDataLoaderThreads.TabIndex = 18;
-            toolTip1.SetToolTip(nudDataLoaderThreads, "基本的に上げても速くならない\r\nページング使用量増加");
+            toolTip1.SetToolTip(nudDataLoaderThreads, "ほとんどの処理がシングルスレッドで動くため基本的に上げても速くならない\r\nページング使用量増加");
             nudDataLoaderThreads.Value = new decimal(new int[] { 4, 0, 0, 0 });
             // 
             // tbxExtension
@@ -495,7 +495,7 @@ namespace Kohya_lora_trainer
             nudClipSkip.Name = "nudClipSkip";
             nudClipSkip.Size = new Size(120, 31);
             nudClipSkip.TabIndex = 28;
-            toolTip1.SetToolTip(nudClipSkip, "イラストは2、実写は1が良いとされる\r\nSDXLでは使用されない");
+            toolTip1.SetToolTip(nudClipSkip, "イラストは2、実写は1が良いとされる\r\nSD1.X/2.X専用でSDXLでは使用されない");
             nudClipSkip.Value = new decimal(new int[] { 2, 0, 0, 0 });
             // 
             // cbxUseWeightedCaption
@@ -653,6 +653,14 @@ namespace Kohya_lora_trainer
             cbxScheduler.TabIndex = 27;
             toolTip1.SetToolTip(cbxScheduler, "LR調整アルゴリズム");
             // 
+            // nudMinSNRGamma
+            // 
+            nudMinSNRGamma.Location = new Point(242, 116);
+            nudMinSNRGamma.Name = "nudMinSNRGamma";
+            nudMinSNRGamma.Size = new Size(120, 31);
+            nudMinSNRGamma.TabIndex = 51;
+            toolTip1.SetToolTip(nudMinSNRGamma, "設定するとLoRA重ね掛けしたときに不安定になる？");
+            // 
             // cbxAdvancedTrain
             // 
             cbxAdvancedTrain.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -709,7 +717,7 @@ namespace Kohya_lora_trainer
             // 
             nudMaxBucketReso.Increment = new decimal(new int[] { 64, 0, 0, 0 });
             nudMaxBucketReso.Location = new Point(538, 106);
-            nudMaxBucketReso.Maximum = new decimal(new int[] { 2048, 0, 0, 0 });
+            nudMaxBucketReso.Maximum = new decimal(new int[] { 4096, 0, 0, 0 });
             nudMaxBucketReso.Minimum = new decimal(new int[] { 128, 0, 0, 0 });
             nudMaxBucketReso.Name = "nudMaxBucketReso";
             nudMaxBucketReso.Size = new Size(120, 31);
@@ -796,7 +804,7 @@ namespace Kohya_lora_trainer
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(66, 164);
+            label4.Location = new Point(64, 162);
             label4.Name = "label4";
             label4.Size = new Size(183, 25);
             label4.TabIndex = 40;
@@ -925,14 +933,6 @@ namespace Kohya_lora_trainer
             label17.Size = new Size(152, 25);
             label17.TabIndex = 50;
             label17.Text = "適応ノイズスケール#";
-            // 
-            // nudMinSNRGamma
-            // 
-            nudMinSNRGamma.Location = new Point(242, 116);
-            nudMinSNRGamma.Name = "nudMinSNRGamma";
-            nudMinSNRGamma.Size = new Size(120, 31);
-            nudMinSNRGamma.TabIndex = 51;
-            toolTip1.SetToolTip(nudMinSNRGamma, "設定するとLoRA重ね掛けしたときに不安定になる？");
             // 
             // label18
             // 
@@ -1741,11 +1741,11 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudSeed).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxTokens).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudConvDim).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudMinSNRGamma).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMomentum).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudAdaptiveNoiseScale).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudMinSNRGamma).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseIterations).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseDiscount).EndInit();
             tabControl1.ResumeLayout(false);

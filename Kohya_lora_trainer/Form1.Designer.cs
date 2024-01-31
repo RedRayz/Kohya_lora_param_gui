@@ -59,6 +59,8 @@ namespace Kohya_lora_trainer
             cbxModuleType = new ComboBox();
             nudSaveEpoch = new NumericUpDown();
             tbxRegImgPath = new TextBox();
+            btnBlockWeight = new Button();
+            btnBlockDim = new Button();
             btnSavePreset = new Button();
             btnLoadPreset = new Button();
             lblResolution = new Label();
@@ -84,8 +86,6 @@ namespace Kohya_lora_trainer
             tbxImagePath = new TextBox();
             tbxOutputPath = new TextBox();
             label6 = new Label();
-            btnBlockWeight = new Button();
-            btnBlockDim = new Button();
             groupBox1 = new GroupBox();
             rbtShutdown = new RadioButton();
             rbtBenckmark = new RadioButton();
@@ -197,7 +197,7 @@ namespace Kohya_lora_trainer
             cbxOptimizer.Name = "cbxOptimizer";
             cbxOptimizer.Size = new Size(204, 33);
             cbxOptimizer.TabIndex = 6;
-            toolTip1.SetToolTip(cbxOptimizer, "AdamWとDAdaptLionがおすすめ\r\nDAdaptation系はCPUボトルネックが大きい傾向\r\nPaged系はdevブランチに切り替え後bitsandbytesの更新が必要");
+            toolTip1.SetToolTip(cbxOptimizer, "AdamWとDAdaptLionがおすすめ\r\nDAdaptation系はCPUボトルネックが大きい傾向");
             cbxOptimizer.SelectedIndexChanged += cbxOptimizer_SelectedIndexChanged;
             // 
             // label10
@@ -392,6 +392,28 @@ namespace Kohya_lora_trainer
             tbxRegImgPath.TabIndex = 71;
             toolTip1.SetToolTip(tbxRegImgPath, "特定のものだけ\r\n出てくればいいなら不要");
             tbxRegImgPath.TextChanged += tbxRegImgPath_TextChanged;
+            // 
+            // btnBlockWeight
+            // 
+            btnBlockWeight.Location = new Point(28, 646);
+            btnBlockWeight.Name = "btnBlockWeight";
+            btnBlockWeight.Size = new Size(112, 42);
+            btnBlockWeight.TabIndex = 75;
+            btnBlockWeight.Text = "層別学習率";
+            toolTip1.SetToolTip(btnBlockWeight, "SDXLは非対応(sd-scriptsの仕様)");
+            btnBlockWeight.UseVisualStyleBackColor = true;
+            btnBlockWeight.Click += btnBlockWeight_Click;
+            // 
+            // btnBlockDim
+            // 
+            btnBlockDim.Location = new Point(147, 646);
+            btnBlockDim.Name = "btnBlockDim";
+            btnBlockDim.Size = new Size(112, 40);
+            btnBlockDim.TabIndex = 76;
+            btnBlockDim.Text = "層別dim";
+            toolTip1.SetToolTip(btnBlockDim, "SDXLは非対応(sd-scriptsの仕様)");
+            btnBlockDim.UseVisualStyleBackColor = true;
+            btnBlockDim.Click += btnBlockDim_Click;
             // 
             // btnSavePreset
             // 
@@ -626,28 +648,6 @@ namespace Kohya_lora_trainer
             label6.Size = new Size(138, 25);
             label6.TabIndex = 72;
             label6.Text = "モジュールの種類*";
-            // 
-            // btnBlockWeight
-            // 
-            btnBlockWeight.Location = new Point(28, 646);
-            btnBlockWeight.Name = "btnBlockWeight";
-            btnBlockWeight.Size = new Size(112, 42);
-            btnBlockWeight.TabIndex = 75;
-            btnBlockWeight.Text = "層別学習率";
-            toolTip1.SetToolTip(btnBlockWeight, "SDXLは非対応(sd-scriptsの仕様)");
-            btnBlockWeight.UseVisualStyleBackColor = true;
-            btnBlockWeight.Click += btnBlockWeight_Click;
-            // 
-            // btnBlockDim
-            // 
-            btnBlockDim.Location = new Point(147, 646);
-            btnBlockDim.Name = "btnBlockDim";
-            btnBlockDim.Size = new Size(112, 40);
-            btnBlockDim.TabIndex = 76;
-            btnBlockDim.Text = "層別dim";
-            toolTip1.SetToolTip(btnBlockDim, "SDXLは非対応(sd-scriptsの仕様)");
-            btnBlockDim.UseVisualStyleBackColor = true;
-            btnBlockDim.Click += btnBlockDim_Click;
             // 
             // groupBox1
             // 
