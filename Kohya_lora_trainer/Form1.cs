@@ -1041,12 +1041,18 @@ namespace Kohya_lora_trainer
         {
             switch (TrainParams.Current.OptimizerType)
             {
-                case OptimizerType.AdamW8bit:
-                case OptimizerType.AdamW:
                 case OptimizerType.AdaFactor:
                     {
-                        if (TrainParams.Current.LearningRate > 0.02f)
-                            return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.00001-0.001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (TrainParams.Current.LearningRate > 0.01f)
+                            return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
+                    break;
+                case OptimizerType.AdamW:
+                case OptimizerType.AdamW8bit:
+                case OptimizerType.Lion:
+                    {
+                        if (TrainParams.Current.LearningRate > 0.00035f)
+                            return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.0001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
                 case OptimizerType.DAdaptation:

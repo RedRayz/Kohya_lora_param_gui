@@ -322,7 +322,7 @@ namespace Kohya_lora_trainer
 
             TrainParams.Current.mixedPrecisionType = (MixedPrecisionType)Enum.ToObject(typeof(MixedPrecisionType), cbxMixedPrecision.SelectedIndex);
 
-            TrainParams.Current.LRSchedulerCycle = (int)nudLRSchedulerCycle.Value;
+            TrainParams.Current.LRSchedulerCycle = nudLRSchedulerCycle.Value;
             TrainParams.Current.DataLoaderThreads = (int)nudDataLoaderThreads.Value;
             TrainParams.Current.MaxTokens = (int)nudMaxTokens.Value;
 
@@ -344,6 +344,9 @@ namespace Kohya_lora_trainer
             TrainParams.Current.UseFullFP16 = cbxUseFullFp16.Checked;
             TrainParams.Current.TokensSeparator = tbxTokensSeparator.Text;
             TrainParams.Current.UseFP8Base = cbxUseFP8.Checked;
+
+            TrainParams.Current.RelativeStep = cbxRelativeStep.Checked;
+            TrainParams.Current.ScaleParameter = cbxScaleParameter.Checked;
             Close();
         }
 
@@ -442,6 +445,8 @@ namespace Kohya_lora_trainer
             cbxUseFullFp16.Checked = TrainParams.Current.UseFullFP16;
             tbxTokensSeparator.Text = TrainParams.Current.TokensSeparator;
             cbxUseFP8.Checked = TrainParams.Current.UseFP8Base;
+            cbxRelativeStep.Checked = TrainParams.Current.RelativeStep;
+            cbxScaleParameter.Checked = TrainParams.Current.ScaleParameter;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)

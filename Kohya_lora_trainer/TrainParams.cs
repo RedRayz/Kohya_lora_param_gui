@@ -73,7 +73,8 @@ namespace Kohya_lora_trainer {
         //Advanced1
         public bool UseColorAug = false, UseFastLoading = true, UseSDV2 = false, DontSaveMetadata = false, UseFlipAug = false, CropRandomly = false, UseParameterization = false, CacheLatents = false, CacheLatentsToDisk = false;
         //public string ModelConfigPath = string.Empty;
-        public int LRSchedulerCycle = 4, DataLoaderThreads = 1, MaxTokens = 75;
+        public decimal LRSchedulerCycle = 4m;
+        public int DataLoaderThreads = 1, MaxTokens = 75;
         public MixedPrecisionType mixedPrecisionType = MixedPrecisionType.fp16;
 
         //DAdaptation関連
@@ -82,7 +83,7 @@ namespace Kohya_lora_trainer {
 
         public SDType StableDiffusionType = SDType.Legacy;
 
-        public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true, UseFullFP16 = false, UseFP8Base = false;
+        public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true, UseFullFP16 = false, UseFP8Base = false, RelativeStep = true, ScaleParameter = true;
         public string TokensSeparator;
 
 
