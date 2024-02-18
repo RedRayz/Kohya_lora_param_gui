@@ -40,9 +40,9 @@
             // 
             btnStop.BackColor = Color.MistyRose;
             btnStop.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnStop.Location = new Point(116, 37);
+            btnStop.Location = new Point(61, 12);
             btnStop.Name = "btnStop";
-            btnStop.Size = new Size(256, 46);
+            btnStop.Size = new Size(170, 36);
             btnStop.TabIndex = 1;
             btnStop.Text = "学習中止";
             btnStop.UseVisualStyleBackColor = false;
@@ -51,9 +51,9 @@
             // btnClose
             // 
             btnClose.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            btnClose.Location = new Point(116, 89);
+            btnClose.Location = new Point(61, 54);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(256, 46);
+            btnClose.Size = new Size(170, 36);
             btnClose.TabIndex = 2;
             btnClose.Text = "このウィンドウを閉じる";
             btnClose.UseVisualStyleBackColor = true;
@@ -62,9 +62,9 @@
             // btnCopyCmd
             // 
             btnCopyCmd.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCopyCmd.Location = new Point(216, 246);
+            btnCopyCmd.Location = new Point(121, 166);
             btnCopyCmd.Name = "btnCopyCmd";
-            btnCopyCmd.Size = new Size(230, 34);
+            btnCopyCmd.Size = new Size(147, 24);
             btnCopyCmd.TabIndex = 4;
             btnCopyCmd.Text = "コマンドをクリップボードにコピー";
             btnCopyCmd.UseVisualStyleBackColor = true;
@@ -75,9 +75,9 @@
             lblCountdown.AutoSize = true;
             lblCountdown.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             lblCountdown.ForeColor = Color.OrangeRed;
-            lblCountdown.Location = new Point(75, 138);
+            lblCountdown.Location = new Point(24, 114);
             lblCountdown.Name = "lblCountdown";
-            lblCountdown.Size = new Size(344, 56);
+            lblCountdown.Size = new Size(244, 38);
             lblCountdown.TabIndex = 6;
             lblCountdown.Text = "30秒後にシャットダウンします\r\nしない場合はこのウィンドウを閉じてください";
             lblCountdown.Visible = false;
@@ -88,9 +88,9 @@
             // 
             // TrainForm
             // 
-            AutoScaleDimensions = new SizeF(144F, 144F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(470, 303);
+            ClientSize = new Size(280, 202);
             ControlBox = false;
             Controls.Add(lblCountdown);
             Controls.Add(btnCopyCmd);
