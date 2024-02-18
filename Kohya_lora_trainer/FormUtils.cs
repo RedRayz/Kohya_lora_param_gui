@@ -80,7 +80,7 @@ namespace Kohya_lora_trainer
         {
             if (string.IsNullOrEmpty(lblLoraPath.Text))
             {
-                MessageBox.Show("変更するモデルを指定してください", "おしらせ", MessageBoxButtons.OK);
+                MessageBox.Show("変更するLoRAを指定してください", "おしらせ", MessageBoxButtons.OK);
                 return;
             }
 
@@ -197,7 +197,7 @@ namespace Kohya_lora_trainer
             }
             else if (!Directory.Exists(lblTaggerDir.Text))
             {
-                MessageBox.Show("尋問するディレクトリが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("推論するディレクトリが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
