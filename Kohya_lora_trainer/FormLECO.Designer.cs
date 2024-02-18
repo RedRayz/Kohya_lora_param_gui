@@ -28,908 +28,800 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label28 = new System.Windows.Forms.Label();
-            this.nudBatchSize = new System.Windows.Forms.NumericUpDown();
-            this.nudResolution = new System.Windows.Forms.NumericUpDown();
-            this.label23 = new System.Windows.Forms.Label();
-            this.nudGuidanceScale = new System.Windows.Forms.NumericUpDown();
-            this.label22 = new System.Windows.Forms.Label();
-            this.btnSavePrompts = new System.Windows.Forms.Button();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cbxAction = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbxNeutral = new System.Windows.Forms.TextBox();
-            this.tbxNegative = new System.Windows.Forms.TextBox();
-            this.tbxPositive = new System.Windows.Forms.TextBox();
-            this.tbxTarget = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnSaveConfig = new System.Windows.Forms.Button();
-            this.tbxOutputPath = new System.Windows.Forms.TextBox();
-            this.tbxOutputName = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.tbxLRScheduler = new System.Windows.Forms.TextBox();
-            this.tbxOptimizer = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.tbxLR = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.nudAlpha = new System.Windows.Forms.NumericUpDown();
-            this.nudMaxDenoiseSteps = new System.Windows.Forms.NumericUpDown();
-            this.nudSteps = new System.Windows.Forms.NumericUpDown();
-            this.nudSaveEveryNSteps = new System.Windows.Forms.NumericUpDown();
-            this.nudDim = new System.Windows.Forms.NumericUpDown();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cbxNoiseScheduler = new System.Windows.Forms.ComboBox();
-            this.cbxSavePrecision = new System.Windows.Forms.ComboBox();
-            this.cbxMethod = new System.Windows.Forms.ComboBox();
-            this.cbxTrainPrecision = new System.Windows.Forms.ComboBox();
-            this.cbxType = new System.Windows.Forms.ComboBox();
-            this.cbxUseXformers = new System.Windows.Forms.CheckBox();
-            this.cbxVerbose = new System.Windows.Forms.CheckBox();
-            this.cbxUseWandb = new System.Windows.Forms.CheckBox();
-            this.cbxUseVPrediction = new System.Windows.Forms.CheckBox();
-            this.cbxUseSDV2 = new System.Windows.Forms.CheckBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbxPromptPath = new System.Windows.Forms.TextBox();
-            this.tbxModelPath = new System.Windows.Forms.TextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.btnTrainLECO = new System.Windows.Forms.Button();
-            this.btnUpdateLECO = new System.Windows.Forms.Button();
-            this.btnInstallLECO = new System.Windows.Forms.Button();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudResolution)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudGuidanceScale)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAlpha)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxDenoiseSteps)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSteps)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSaveEveryNSteps)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDim)).BeginInit();
-            this.tabPage3.SuspendLayout();
-            this.SuspendLayout();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            label28 = new Label();
+            nudBatchSize = new NumericUpDown();
+            nudResolution = new NumericUpDown();
+            label23 = new Label();
+            nudGuidanceScale = new NumericUpDown();
+            label22 = new Label();
+            btnSavePrompts = new Button();
+            label21 = new Label();
+            label5 = new Label();
+            cbxAction = new ComboBox();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            tbxNeutral = new TextBox();
+            tbxNegative = new TextBox();
+            tbxPositive = new TextBox();
+            tbxTarget = new TextBox();
+            tabPage2 = new TabPage();
+            btnSaveConfig = new Button();
+            tbxOutputPath = new TextBox();
+            tbxOutputName = new TextBox();
+            label17 = new Label();
+            tbxLRScheduler = new TextBox();
+            tbxOptimizer = new TextBox();
+            label16 = new Label();
+            tbxLR = new TextBox();
+            label14 = new Label();
+            label9 = new Label();
+            label13 = new Label();
+            label24 = new Label();
+            label12 = new Label();
+            label20 = new Label();
+            label8 = new Label();
+            nudAlpha = new NumericUpDown();
+            nudMaxDenoiseSteps = new NumericUpDown();
+            nudSteps = new NumericUpDown();
+            nudSaveEveryNSteps = new NumericUpDown();
+            nudDim = new NumericUpDown();
+            label15 = new Label();
+            label11 = new Label();
+            label19 = new Label();
+            label25 = new Label();
+            label10 = new Label();
+            label7 = new Label();
+            cbxNoiseScheduler = new ComboBox();
+            cbxSavePrecision = new ComboBox();
+            cbxMethod = new ComboBox();
+            cbxTrainPrecision = new ComboBox();
+            cbxType = new ComboBox();
+            cbxUseXformers = new CheckBox();
+            cbxVerbose = new CheckBox();
+            cbxUseWandb = new CheckBox();
+            cbxUseVPrediction = new CheckBox();
+            cbxUseSDV2 = new CheckBox();
+            label18 = new Label();
+            label6 = new Label();
+            tbxPromptPath = new TextBox();
+            tbxModelPath = new TextBox();
+            tabPage3 = new TabPage();
+            label26 = new Label();
+            label27 = new Label();
+            btnTrainLECO = new Button();
+            btnUpdateLECO = new Button();
+            btnInstallLECO = new Button();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudBatchSize).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudResolution).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudGuidanceScale).BeginInit();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudAlpha).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudMaxDenoiseSteps).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudSteps).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudSaveEveryNSteps).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudDim).BeginInit();
+            tabPage3.SuspendLayout();
+            SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(845, 745);
-            this.tabControl1.TabIndex = 0;
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Location = new Point(12, 12);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(610, 554);
+            tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.label28);
-            this.tabPage1.Controls.Add(this.nudBatchSize);
-            this.tabPage1.Controls.Add(this.nudResolution);
-            this.tabPage1.Controls.Add(this.label23);
-            this.tabPage1.Controls.Add(this.nudGuidanceScale);
-            this.tabPage1.Controls.Add(this.label22);
-            this.tabPage1.Controls.Add(this.btnSavePrompts);
-            this.tabPage1.Controls.Add(this.label21);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.cbxAction);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.tbxNeutral);
-            this.tabPage1.Controls.Add(this.tbxNegative);
-            this.tabPage1.Controls.Add(this.tbxPositive);
-            this.tabPage1.Controls.Add(this.tbxTarget);
-            this.tabPage1.Location = new System.Drawing.Point(4, 34);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(837, 707);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "prompts生成";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Controls.Add(label28);
+            tabPage1.Controls.Add(nudBatchSize);
+            tabPage1.Controls.Add(nudResolution);
+            tabPage1.Controls.Add(label23);
+            tabPage1.Controls.Add(nudGuidanceScale);
+            tabPage1.Controls.Add(label22);
+            tabPage1.Controls.Add(btnSavePrompts);
+            tabPage1.Controls.Add(label21);
+            tabPage1.Controls.Add(label5);
+            tabPage1.Controls.Add(cbxAction);
+            tabPage1.Controls.Add(label4);
+            tabPage1.Controls.Add(label3);
+            tabPage1.Controls.Add(label2);
+            tabPage1.Controls.Add(label1);
+            tabPage1.Controls.Add(tbxNeutral);
+            tabPage1.Controls.Add(tbxNegative);
+            tabPage1.Controls.Add(tbxPositive);
+            tabPage1.Controls.Add(tbxTarget);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(602, 526);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "prompts生成";
+            tabPage1.UseVisualStyleBackColor = true;
             // 
             // label28
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(29, 24);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(397, 25);
-            this.label28.TabIndex = 6;
-            this.label28.Text = "※改行はお控えください。LECOで読み込めなくなります";
+            label28.AutoSize = true;
+            label28.Location = new Point(29, 24);
+            label28.Name = "label28";
+            label28.Size = new Size(263, 15);
+            label28.TabIndex = 6;
+            label28.Text = "※改行はお控えください。LECOで読み込めなくなります";
             // 
             // nudBatchSize
             // 
-            this.nudBatchSize.Location = new System.Drawing.Point(427, 586);
-            this.nudBatchSize.Maximum = new decimal(new int[] {
-            128,
-            0,
-            0,
-            0});
-            this.nudBatchSize.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudBatchSize.Name = "nudBatchSize";
-            this.nudBatchSize.Size = new System.Drawing.Size(120, 31);
-            this.nudBatchSize.TabIndex = 5;
-            this.nudBatchSize.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            nudBatchSize.Location = new Point(229, 456);
+            nudBatchSize.Maximum = new decimal(new int[] { 128, 0, 0, 0 });
+            nudBatchSize.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudBatchSize.Name = "nudBatchSize";
+            nudBatchSize.Size = new Size(72, 23);
+            nudBatchSize.TabIndex = 5;
+            nudBatchSize.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // nudResolution
             // 
-            this.nudResolution.Increment = new decimal(new int[] {
-            64,
-            0,
-            0,
-            0});
-            this.nudResolution.Location = new System.Drawing.Point(237, 586);
-            this.nudResolution.Maximum = new decimal(new int[] {
-            2048,
-            0,
-            0,
-            0});
-            this.nudResolution.Minimum = new decimal(new int[] {
-            64,
-            0,
-            0,
-            0});
-            this.nudResolution.Name = "nudResolution";
-            this.nudResolution.Size = new System.Drawing.Size(120, 31);
-            this.nudResolution.TabIndex = 5;
-            this.nudResolution.Value = new decimal(new int[] {
-            512,
-            0,
-            0,
-            0});
+            nudResolution.Increment = new decimal(new int[] { 64, 0, 0, 0 });
+            nudResolution.Location = new Point(130, 456);
+            nudResolution.Maximum = new decimal(new int[] { 2048, 0, 0, 0 });
+            nudResolution.Minimum = new decimal(new int[] { 64, 0, 0, 0 });
+            nudResolution.Name = "nudResolution";
+            nudResolution.Size = new Size(72, 23);
+            nudResolution.TabIndex = 5;
+            nudResolution.Value = new decimal(new int[] { 512, 0, 0, 0 });
             // 
             // label23
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(422, 557);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(94, 25);
-            this.label23.TabIndex = 3;
-            this.label23.Text = "バッチサイズ";
+            label23.AutoSize = true;
+            label23.Location = new Point(229, 438);
+            label23.Name = "label23";
+            label23.Size = new Size(62, 15);
+            label23.TabIndex = 3;
+            label23.Text = "バッチサイズ";
             // 
             // nudGuidanceScale
             // 
-            this.nudGuidanceScale.DecimalPlaces = 1;
-            this.nudGuidanceScale.Location = new System.Drawing.Point(34, 585);
-            this.nudGuidanceScale.Maximum = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.nudGuidanceScale.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudGuidanceScale.Name = "nudGuidanceScale";
-            this.nudGuidanceScale.Size = new System.Drawing.Size(120, 31);
-            this.nudGuidanceScale.TabIndex = 5;
-            this.nudGuidanceScale.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            nudGuidanceScale.DecimalPlaces = 1;
+            nudGuidanceScale.Location = new Point(34, 456);
+            nudGuidanceScale.Maximum = new decimal(new int[] { 50, 0, 0, 0 });
+            nudGuidanceScale.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudGuidanceScale.Name = "nudGuidanceScale";
+            nudGuidanceScale.Size = new Size(72, 23);
+            nudGuidanceScale.TabIndex = 5;
+            nudGuidanceScale.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label22
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(232, 557);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(66, 25);
-            this.label22.TabIndex = 3;
-            this.label22.Text = "解像度";
+            label22.AutoSize = true;
+            label22.Location = new Point(130, 438);
+            label22.Name = "label22";
+            label22.Size = new Size(43, 15);
+            label22.TabIndex = 3;
+            label22.Text = "解像度";
             // 
             // btnSavePrompts
             // 
-            this.btnSavePrompts.Location = new System.Drawing.Point(663, 641);
-            this.btnSavePrompts.Name = "btnSavePrompts";
-            this.btnSavePrompts.Size = new System.Drawing.Size(137, 44);
-            this.btnSavePrompts.TabIndex = 4;
-            this.btnSavePrompts.Text = "保存";
-            this.btnSavePrompts.UseVisualStyleBackColor = true;
-            this.btnSavePrompts.Click += new System.EventHandler(this.btnSavePrompts_Click);
+            btnSavePrompts.Location = new Point(404, 438);
+            btnSavePrompts.Name = "btnSavePrompts";
+            btnSavePrompts.Size = new Size(137, 44);
+            btnSavePrompts.TabIndex = 4;
+            btnSavePrompts.Text = "保存";
+            btnSavePrompts.UseVisualStyleBackColor = true;
+            btnSavePrompts.Click += btnSavePrompts_Click;
             // 
             // label21
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(29, 556);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(89, 25);
-            this.label21.TabIndex = 3;
-            this.label21.Text = "CFG Scale";
+            label21.AutoSize = true;
+            label21.Location = new Point(29, 438);
+            label21.Name = "label21";
+            label21.Size = new Size(58, 15);
+            label21.TabIndex = 3;
+            label21.Text = "CFG Scale";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 467);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 25);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "アクション";
+            label5.AutoSize = true;
+            label5.Location = new Point(33, 375);
+            label5.Name = "label5";
+            label5.Size = new Size(51, 15);
+            label5.TabIndex = 3;
+            label5.Text = "アクション";
             // 
             // cbxAction
             // 
-            this.cbxAction.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxAction.FormattingEnabled = true;
-            this.cbxAction.Items.AddRange(new object[] {
-            "erase",
-            "enhance"});
-            this.cbxAction.Location = new System.Drawing.Point(34, 495);
-            this.cbxAction.Name = "cbxAction";
-            this.cbxAction.Size = new System.Drawing.Size(176, 33);
-            this.cbxAction.TabIndex = 2;
+            cbxAction.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxAction.FormattingEnabled = true;
+            cbxAction.Items.AddRange(new object[] { "erase", "enhance" });
+            cbxAction.Location = new Point(34, 393);
+            cbxAction.Name = "cbxAction";
+            cbxAction.Size = new Size(128, 23);
+            cbxAction.TabIndex = 2;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(24, 374);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 25);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "neutral";
+            label4.AutoSize = true;
+            label4.Location = new Point(33, 288);
+            label4.Name = "label4";
+            label4.Size = new Size(44, 15);
+            label4.TabIndex = 1;
+            label4.Text = "neutral";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 265);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 25);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "unconditional";
+            label3.AutoSize = true;
+            label3.Location = new Point(29, 217);
+            label3.Name = "label3";
+            label3.Size = new Size(81, 15);
+            label3.TabIndex = 1;
+            label3.Text = "unconditional";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 166);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 25);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "positive";
+            label2.AutoSize = true;
+            label2.Location = new Point(29, 146);
+            label2.Name = "label2";
+            label2.Size = new Size(48, 15);
+            label2.TabIndex = 1;
+            label2.Text = "positive";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 64);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "target";
+            label1.AutoSize = true;
+            label1.Location = new Point(24, 64);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 1;
+            label1.Text = "target";
             // 
             // tbxNeutral
             // 
-            this.tbxNeutral.Location = new System.Drawing.Point(29, 402);
-            this.tbxNeutral.Multiline = true;
-            this.tbxNeutral.Name = "tbxNeutral";
-            this.tbxNeutral.Size = new System.Drawing.Size(771, 57);
-            this.tbxNeutral.TabIndex = 0;
+            tbxNeutral.Location = new Point(33, 306);
+            tbxNeutral.Multiline = true;
+            tbxNeutral.Name = "tbxNeutral";
+            tbxNeutral.Size = new Size(512, 38);
+            tbxNeutral.TabIndex = 0;
             // 
             // tbxNegative
             // 
-            this.tbxNegative.Location = new System.Drawing.Point(29, 293);
-            this.tbxNegative.Multiline = true;
-            this.tbxNegative.Name = "tbxNegative";
-            this.tbxNegative.Size = new System.Drawing.Size(771, 57);
-            this.tbxNegative.TabIndex = 0;
+            tbxNegative.Location = new Point(29, 235);
+            tbxNegative.Multiline = true;
+            tbxNegative.Name = "tbxNegative";
+            tbxNegative.Size = new Size(512, 38);
+            tbxNegative.TabIndex = 0;
             // 
             // tbxPositive
             // 
-            this.tbxPositive.Location = new System.Drawing.Point(29, 194);
-            this.tbxPositive.Multiline = true;
-            this.tbxPositive.Name = "tbxPositive";
-            this.tbxPositive.Size = new System.Drawing.Size(771, 57);
-            this.tbxPositive.TabIndex = 0;
+            tbxPositive.Location = new Point(29, 164);
+            tbxPositive.Multiline = true;
+            tbxPositive.Name = "tbxPositive";
+            tbxPositive.Size = new Size(512, 38);
+            tbxPositive.TabIndex = 0;
             // 
             // tbxTarget
             // 
-            this.tbxTarget.Location = new System.Drawing.Point(29, 92);
-            this.tbxTarget.Multiline = true;
-            this.tbxTarget.Name = "tbxTarget";
-            this.tbxTarget.Size = new System.Drawing.Size(771, 57);
-            this.tbxTarget.TabIndex = 0;
+            tbxTarget.Location = new Point(29, 92);
+            tbxTarget.Multiline = true;
+            tbxTarget.Name = "tbxTarget";
+            tbxTarget.Size = new Size(512, 38);
+            tbxTarget.TabIndex = 0;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.btnSaveConfig);
-            this.tabPage2.Controls.Add(this.tbxOutputPath);
-            this.tabPage2.Controls.Add(this.tbxOutputName);
-            this.tabPage2.Controls.Add(this.label17);
-            this.tabPage2.Controls.Add(this.tbxLRScheduler);
-            this.tabPage2.Controls.Add(this.tbxOptimizer);
-            this.tabPage2.Controls.Add(this.label16);
-            this.tabPage2.Controls.Add(this.tbxLR);
-            this.tabPage2.Controls.Add(this.label14);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.label13);
-            this.tabPage2.Controls.Add(this.label24);
-            this.tabPage2.Controls.Add(this.label12);
-            this.tabPage2.Controls.Add(this.label20);
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.nudAlpha);
-            this.tabPage2.Controls.Add(this.nudMaxDenoiseSteps);
-            this.tabPage2.Controls.Add(this.nudSteps);
-            this.tabPage2.Controls.Add(this.nudSaveEveryNSteps);
-            this.tabPage2.Controls.Add(this.nudDim);
-            this.tabPage2.Controls.Add(this.label15);
-            this.tabPage2.Controls.Add(this.label11);
-            this.tabPage2.Controls.Add(this.label19);
-            this.tabPage2.Controls.Add(this.label25);
-            this.tabPage2.Controls.Add(this.label10);
-            this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.cbxNoiseScheduler);
-            this.tabPage2.Controls.Add(this.cbxSavePrecision);
-            this.tabPage2.Controls.Add(this.cbxMethod);
-            this.tabPage2.Controls.Add(this.cbxTrainPrecision);
-            this.tabPage2.Controls.Add(this.cbxType);
-            this.tabPage2.Controls.Add(this.cbxUseXformers);
-            this.tabPage2.Controls.Add(this.cbxVerbose);
-            this.tabPage2.Controls.Add(this.cbxUseWandb);
-            this.tabPage2.Controls.Add(this.cbxUseVPrediction);
-            this.tabPage2.Controls.Add(this.cbxUseSDV2);
-            this.tabPage2.Controls.Add(this.label18);
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.tbxPromptPath);
-            this.tabPage2.Controls.Add(this.tbxModelPath);
-            this.tabPage2.Location = new System.Drawing.Point(4, 34);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(837, 707);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "config生成";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            tabPage2.Controls.Add(btnSaveConfig);
+            tabPage2.Controls.Add(tbxOutputPath);
+            tabPage2.Controls.Add(tbxOutputName);
+            tabPage2.Controls.Add(label17);
+            tabPage2.Controls.Add(tbxLRScheduler);
+            tabPage2.Controls.Add(tbxOptimizer);
+            tabPage2.Controls.Add(label16);
+            tabPage2.Controls.Add(tbxLR);
+            tabPage2.Controls.Add(label14);
+            tabPage2.Controls.Add(label9);
+            tabPage2.Controls.Add(label13);
+            tabPage2.Controls.Add(label24);
+            tabPage2.Controls.Add(label12);
+            tabPage2.Controls.Add(label20);
+            tabPage2.Controls.Add(label8);
+            tabPage2.Controls.Add(nudAlpha);
+            tabPage2.Controls.Add(nudMaxDenoiseSteps);
+            tabPage2.Controls.Add(nudSteps);
+            tabPage2.Controls.Add(nudSaveEveryNSteps);
+            tabPage2.Controls.Add(nudDim);
+            tabPage2.Controls.Add(label15);
+            tabPage2.Controls.Add(label11);
+            tabPage2.Controls.Add(label19);
+            tabPage2.Controls.Add(label25);
+            tabPage2.Controls.Add(label10);
+            tabPage2.Controls.Add(label7);
+            tabPage2.Controls.Add(cbxNoiseScheduler);
+            tabPage2.Controls.Add(cbxSavePrecision);
+            tabPage2.Controls.Add(cbxMethod);
+            tabPage2.Controls.Add(cbxTrainPrecision);
+            tabPage2.Controls.Add(cbxType);
+            tabPage2.Controls.Add(cbxUseXformers);
+            tabPage2.Controls.Add(cbxVerbose);
+            tabPage2.Controls.Add(cbxUseWandb);
+            tabPage2.Controls.Add(cbxUseVPrediction);
+            tabPage2.Controls.Add(cbxUseSDV2);
+            tabPage2.Controls.Add(label18);
+            tabPage2.Controls.Add(label6);
+            tabPage2.Controls.Add(tbxPromptPath);
+            tabPage2.Controls.Add(tbxModelPath);
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(602, 526);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "config生成";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // btnSaveConfig
             // 
-            this.btnSaveConfig.Location = new System.Drawing.Point(691, 648);
-            this.btnSaveConfig.Name = "btnSaveConfig";
-            this.btnSaveConfig.Size = new System.Drawing.Size(126, 48);
-            this.btnSaveConfig.TabIndex = 9;
-            this.btnSaveConfig.Text = "保存";
-            this.btnSaveConfig.UseVisualStyleBackColor = true;
-            this.btnSaveConfig.Click += new System.EventHandler(this.btnSaveConfig_Click);
+            btnSaveConfig.Location = new Point(500, 487);
+            btnSaveConfig.Name = "btnSaveConfig";
+            btnSaveConfig.Size = new Size(96, 33);
+            btnSaveConfig.TabIndex = 9;
+            btnSaveConfig.Text = "保存";
+            btnSaveConfig.UseVisualStyleBackColor = true;
+            btnSaveConfig.Click += btnSaveConfig_Click;
             // 
             // tbxOutputPath
             // 
-            this.tbxOutputPath.Location = new System.Drawing.Point(142, 468);
-            this.tbxOutputPath.Name = "tbxOutputPath";
-            this.tbxOutputPath.Size = new System.Drawing.Size(675, 31);
-            this.tbxOutputPath.TabIndex = 8;
-            this.tbxOutputPath.Text = "./output";
+            tbxOutputPath.Location = new Point(116, 318);
+            tbxOutputPath.Name = "tbxOutputPath";
+            tbxOutputPath.Size = new Size(346, 23);
+            tbxOutputPath.TabIndex = 8;
+            tbxOutputPath.Text = "./output";
             // 
             // tbxOutputName
             // 
-            this.tbxOutputName.Location = new System.Drawing.Point(142, 431);
-            this.tbxOutputName.Name = "tbxOutputName";
-            this.tbxOutputName.Size = new System.Drawing.Size(675, 31);
-            this.tbxOutputName.TabIndex = 8;
-            this.tbxOutputName.Text = "sample";
+            tbxOutputName.Location = new Point(116, 289);
+            tbxOutputName.Name = "tbxOutputName";
+            tbxOutputName.Size = new Size(346, 23);
+            tbxOutputName.TabIndex = 8;
+            tbxOutputName.Text = "sample";
             // 
             // label17
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(70, 471);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(66, 25);
-            this.label17.TabIndex = 7;
-            this.label17.Text = "保存先";
+            label17.AutoSize = true;
+            label17.Location = new Point(72, 321);
+            label17.Name = "label17";
+            label17.Size = new Size(43, 15);
+            label17.TabIndex = 7;
+            label17.Text = "保存先";
             // 
             // tbxLRScheduler
             // 
-            this.tbxLRScheduler.Location = new System.Drawing.Point(144, 365);
-            this.tbxLRScheduler.Name = "tbxLRScheduler";
-            this.tbxLRScheduler.Size = new System.Drawing.Size(344, 31);
-            this.tbxLRScheduler.TabIndex = 8;
-            this.tbxLRScheduler.Text = "constant";
+            tbxLRScheduler.Location = new Point(118, 260);
+            tbxLRScheduler.Name = "tbxLRScheduler";
+            tbxLRScheduler.Size = new Size(158, 23);
+            tbxLRScheduler.TabIndex = 8;
+            tbxLRScheduler.Text = "constant";
             // 
             // tbxOptimizer
             // 
-            this.tbxOptimizer.Location = new System.Drawing.Point(142, 328);
-            this.tbxOptimizer.Name = "tbxOptimizer";
-            this.tbxOptimizer.Size = new System.Drawing.Size(344, 31);
-            this.tbxOptimizer.TabIndex = 8;
-            this.tbxOptimizer.Text = "AdamW";
+            tbxOptimizer.Location = new Point(118, 231);
+            tbxOptimizer.Name = "tbxOptimizer";
+            tbxOptimizer.Size = new Size(158, 23);
+            tbxOptimizer.TabIndex = 8;
+            tbxOptimizer.Text = "AdamW";
             // 
             // label16
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(70, 434);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(66, 25);
-            this.label16.TabIndex = 7;
-            this.label16.Text = "保存名";
+            label16.AutoSize = true;
+            label16.Location = new Point(70, 292);
+            label16.Name = "label16";
+            label16.Size = new Size(43, 15);
+            label16.TabIndex = 7;
+            label16.Text = "保存名";
             // 
             // tbxLR
             // 
-            this.tbxLR.Location = new System.Drawing.Point(609, 255);
-            this.tbxLR.Name = "tbxLR";
-            this.tbxLR.Size = new System.Drawing.Size(100, 31);
-            this.tbxLR.TabIndex = 8;
-            this.tbxLR.Text = "0.0001";
+            tbxLR.Location = new Point(345, 202);
+            tbxLR.Name = "tbxLR";
+            tbxLR.Size = new Size(100, 23);
+            tbxLR.TabIndex = 8;
+            tbxLR.Text = "0.0001";
             // 
             // label14
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(30, 331);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(106, 25);
-            this.label14.TabIndex = 7;
-            this.label14.Text = "オプティマイザ";
+            label14.AutoSize = true;
+            label14.Location = new Point(47, 234);
+            label14.Name = "label14";
+            label14.Size = new Size(68, 15);
+            label14.TabIndex = 7;
+            label14.Text = "オプティマイザ";
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(537, 116);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(64, 25);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "アルファ";
+            label9.AutoSize = true;
+            label9.Location = new Point(383, 115);
+            label9.Name = "label9";
+            label9.Size = new Size(41, 15);
+            label9.TabIndex = 7;
+            label9.Text = "アルファ";
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(519, 258);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(66, 25);
-            this.label13.TabIndex = 7;
-            this.label13.Text = "学習率";
+            label13.AutoSize = true;
+            label13.Location = new Point(298, 207);
+            label13.Name = "label13";
+            label13.Size = new Size(43, 15);
+            label13.TabIndex = 7;
+            label13.Text = "学習率";
             // 
             // label24
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(244, 261);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(100, 50);
-            this.label24.TabIndex = 7;
-            this.label24.Text = "最大デノイズ\r\nステップ数";
+            label24.AutoSize = true;
+            label24.Location = new Point(274, 170);
+            label24.Name = "label24";
+            label24.Size = new Size(65, 30);
+            label24.TabIndex = 7;
+            label24.Text = "最大デノイズ\r\nステップ数";
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(26, 261);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(84, 25);
-            this.label12.TabIndex = 7;
-            this.label12.Text = "ステップ数";
+            label12.AutoSize = true;
+            label12.Location = new Point(61, 205);
+            label12.Name = "label12";
+            label12.Size = new Size(54, 15);
+            label12.TabIndex = 7;
+            label12.Text = "ステップ数";
             // 
             // label20
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(52, 565);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(84, 25);
-            this.label20.TabIndex = 7;
-            this.label20.Text = "保存周期";
+            label20.AutoSize = true;
+            label20.Location = new Point(59, 378);
+            label20.Name = "label20";
+            label20.Size = new Size(55, 15);
+            label20.TabIndex = 7;
+            label20.Text = "保存周期";
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(296, 115);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(66, 25);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "次元数";
+            label8.AutoSize = true;
+            label8.Location = new Point(266, 114);
+            label8.Name = "label8";
+            label8.Size = new Size(43, 15);
+            label8.TabIndex = 7;
+            label8.Text = "次元数";
             // 
             // nudAlpha
             // 
-            this.nudAlpha.DecimalPlaces = 1;
-            this.nudAlpha.Location = new System.Drawing.Point(609, 113);
-            this.nudAlpha.Maximum = new decimal(new int[] {
-            1024,
-            0,
-            0,
-            0});
-            this.nudAlpha.Name = "nudAlpha";
-            this.nudAlpha.Size = new System.Drawing.Size(120, 31);
-            this.nudAlpha.TabIndex = 6;
-            this.nudAlpha.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            nudAlpha.DecimalPlaces = 1;
+            nudAlpha.Location = new Point(430, 112);
+            nudAlpha.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
+            nudAlpha.Name = "nudAlpha";
+            nudAlpha.Size = new Size(72, 23);
+            nudAlpha.TabIndex = 6;
+            nudAlpha.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // nudMaxDenoiseSteps
             // 
-            this.nudMaxDenoiseSteps.Location = new System.Drawing.Point(350, 259);
-            this.nudMaxDenoiseSteps.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.nudMaxDenoiseSteps.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudMaxDenoiseSteps.Name = "nudMaxDenoiseSteps";
-            this.nudMaxDenoiseSteps.Size = new System.Drawing.Size(120, 31);
-            this.nudMaxDenoiseSteps.TabIndex = 6;
-            this.nudMaxDenoiseSteps.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
+            nudMaxDenoiseSteps.Location = new Point(345, 173);
+            nudMaxDenoiseSteps.Maximum = new decimal(new int[] { 200, 0, 0, 0 });
+            nudMaxDenoiseSteps.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudMaxDenoiseSteps.Name = "nudMaxDenoiseSteps";
+            nudMaxDenoiseSteps.Size = new Size(68, 23);
+            nudMaxDenoiseSteps.TabIndex = 6;
+            nudMaxDenoiseSteps.Value = new decimal(new int[] { 50, 0, 0, 0 });
             // 
             // nudSteps
             // 
-            this.nudSteps.Location = new System.Drawing.Point(118, 261);
-            this.nudSteps.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
-            this.nudSteps.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudSteps.Name = "nudSteps";
-            this.nudSteps.Size = new System.Drawing.Size(120, 31);
-            this.nudSteps.TabIndex = 6;
-            this.nudSteps.Value = new decimal(new int[] {
-            250,
-            0,
-            0,
-            0});
+            nudSteps.Location = new Point(118, 202);
+            nudSteps.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            nudSteps.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudSteps.Name = "nudSteps";
+            nudSteps.Size = new Size(120, 23);
+            nudSteps.TabIndex = 6;
+            nudSteps.Value = new decimal(new int[] { 250, 0, 0, 0 });
             // 
             // nudSaveEveryNSteps
             // 
-            this.nudSaveEveryNSteps.Location = new System.Drawing.Point(142, 563);
-            this.nudSaveEveryNSteps.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nudSaveEveryNSteps.Name = "nudSaveEveryNSteps";
-            this.nudSaveEveryNSteps.Size = new System.Drawing.Size(120, 31);
-            this.nudSaveEveryNSteps.TabIndex = 6;
-            this.nudSaveEveryNSteps.Value = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
+            nudSaveEveryNSteps.Location = new Point(119, 376);
+            nudSaveEveryNSteps.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+            nudSaveEveryNSteps.Name = "nudSaveEveryNSteps";
+            nudSaveEveryNSteps.Size = new Size(95, 23);
+            nudSaveEveryNSteps.TabIndex = 6;
+            nudSaveEveryNSteps.Value = new decimal(new int[] { 50, 0, 0, 0 });
             // 
             // nudDim
             // 
-            this.nudDim.Location = new System.Drawing.Point(368, 112);
-            this.nudDim.Maximum = new decimal(new int[] {
-            1024,
-            0,
-            0,
-            0});
-            this.nudDim.Name = "nudDim";
-            this.nudDim.Size = new System.Drawing.Size(120, 31);
-            this.nudDim.TabIndex = 6;
-            this.nudDim.Value = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
+            nudDim.Location = new Point(315, 112);
+            nudDim.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
+            nudDim.Name = "nudDim";
+            nudDim.Size = new Size(62, 23);
+            nudDim.TabIndex = 6;
+            nudDim.Value = new decimal(new int[] { 4, 0, 0, 0 });
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(307, 163);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(129, 25);
-            this.label15.TabIndex = 5;
-            this.label15.Text = "ノイズスケジューラ";
+            label15.AutoSize = true;
+            label15.Location = new Point(256, 144);
+            label15.Name = "label15";
+            label15.Size = new Size(85, 15);
+            label15.TabIndex = 5;
+            label15.Text = "ノイズスケジューラ";
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(26, 371);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(110, 25);
-            this.label11.TabIndex = 5;
-            this.label11.Text = "LRスケジューラ";
+            label11.AutoSize = true;
+            label11.Location = new Point(41, 263);
+            label11.Name = "label11";
+            label11.Size = new Size(72, 15);
+            label11.TabIndex = 5;
+            label11.Text = "LRスケジューラ";
             // 
             // label19
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(52, 517);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(84, 25);
-            this.label19.TabIndex = 5;
-            this.label19.Text = "保存精度";
+            label19.AutoSize = true;
+            label19.Location = new Point(58, 353);
+            label19.Name = "label19";
+            label19.Size = new Size(55, 15);
+            label19.TabIndex = 5;
+            label19.Text = "保存精度";
             // 
             // label25
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(38, 211);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(63, 25);
-            this.label25.TabIndex = 5;
-            this.label25.Text = "メソッド";
+            label25.AutoSize = true;
+            label25.Location = new Point(75, 173);
+            label25.Name = "label25";
+            label25.Size = new Size(40, 15);
+            label25.TabIndex = 5;
+            label25.Text = "メソッド";
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(53, 163);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(48, 25);
-            this.label10.TabIndex = 5;
-            this.label10.Text = "精度";
+            label10.AutoSize = true;
+            label10.Location = new Point(82, 144);
+            label10.Name = "label10";
+            label10.Size = new Size(31, 15);
+            label10.TabIndex = 5;
+            label10.Text = "精度";
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(53, 115);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 25);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "種類";
+            label7.AutoSize = true;
+            label7.Location = new Point(79, 115);
+            label7.Name = "label7";
+            label7.Size = new Size(31, 15);
+            label7.TabIndex = 5;
+            label7.Text = "種類";
             // 
             // cbxNoiseScheduler
             // 
-            this.cbxNoiseScheduler.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxNoiseScheduler.FormattingEnabled = true;
-            this.cbxNoiseScheduler.Items.AddRange(new object[] {
-            "ddim",
-            "ddpm",
-            "lms",
-            "euler_a"});
-            this.cbxNoiseScheduler.Location = new System.Drawing.Point(442, 160);
-            this.cbxNoiseScheduler.Name = "cbxNoiseScheduler";
-            this.cbxNoiseScheduler.Size = new System.Drawing.Size(169, 33);
-            this.cbxNoiseScheduler.TabIndex = 4;
+            cbxNoiseScheduler.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxNoiseScheduler.FormattingEnabled = true;
+            cbxNoiseScheduler.Items.AddRange(new object[] { "ddim", "ddpm", "lms", "euler_a" });
+            cbxNoiseScheduler.Location = new Point(345, 141);
+            cbxNoiseScheduler.Name = "cbxNoiseScheduler";
+            cbxNoiseScheduler.Size = new Size(141, 23);
+            cbxNoiseScheduler.TabIndex = 4;
             // 
             // cbxSavePrecision
             // 
-            this.cbxSavePrecision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxSavePrecision.FormattingEnabled = true;
-            this.cbxSavePrecision.Items.AddRange(new object[] {
-            "float16",
-            "float32",
-            "bfloat16"});
-            this.cbxSavePrecision.Location = new System.Drawing.Point(142, 514);
-            this.cbxSavePrecision.Name = "cbxSavePrecision";
-            this.cbxSavePrecision.Size = new System.Drawing.Size(169, 33);
-            this.cbxSavePrecision.TabIndex = 4;
+            cbxSavePrecision.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxSavePrecision.FormattingEnabled = true;
+            cbxSavePrecision.Items.AddRange(new object[] { "float16", "float32", "bfloat16" });
+            cbxSavePrecision.Location = new Point(119, 347);
+            cbxSavePrecision.Name = "cbxSavePrecision";
+            cbxSavePrecision.Size = new Size(95, 23);
+            cbxSavePrecision.TabIndex = 4;
             // 
             // cbxMethod
             // 
-            this.cbxMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxMethod.FormattingEnabled = true;
-            this.cbxMethod.Items.AddRange(new object[] {
-            "full",
-            "selfattn",
-            "xattn",
-            "noxattn",
-            "innoxattn"});
-            this.cbxMethod.Location = new System.Drawing.Point(116, 208);
-            this.cbxMethod.Name = "cbxMethod";
-            this.cbxMethod.Size = new System.Drawing.Size(169, 33);
-            this.cbxMethod.TabIndex = 4;
+            cbxMethod.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxMethod.FormattingEnabled = true;
+            cbxMethod.Items.AddRange(new object[] { "full", "selfattn", "xattn", "noxattn", "innoxattn" });
+            cbxMethod.Location = new Point(118, 170);
+            cbxMethod.Name = "cbxMethod";
+            cbxMethod.Size = new Size(120, 23);
+            cbxMethod.TabIndex = 4;
             // 
             // cbxTrainPrecision
             // 
-            this.cbxTrainPrecision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxTrainPrecision.FormattingEnabled = true;
-            this.cbxTrainPrecision.Items.AddRange(new object[] {
-            "float32",
-            "bfloat16(RTX30以降のみ)",
-            "float16(不安定)"});
-            this.cbxTrainPrecision.Location = new System.Drawing.Point(116, 160);
-            this.cbxTrainPrecision.Name = "cbxTrainPrecision";
-            this.cbxTrainPrecision.Size = new System.Drawing.Size(169, 33);
-            this.cbxTrainPrecision.TabIndex = 4;
+            cbxTrainPrecision.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxTrainPrecision.FormattingEnabled = true;
+            cbxTrainPrecision.Items.AddRange(new object[] { "float32", "bfloat16(RTX30以降のみ)", "float16(不安定)" });
+            cbxTrainPrecision.Location = new Point(116, 141);
+            cbxTrainPrecision.Name = "cbxTrainPrecision";
+            cbxTrainPrecision.Size = new Size(122, 23);
+            cbxTrainPrecision.TabIndex = 4;
             // 
             // cbxType
             // 
-            this.cbxType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxType.FormattingEnabled = true;
-            this.cbxType.Items.AddRange(new object[] {
-            "Lierla",
-            "C3Lier"});
-            this.cbxType.Location = new System.Drawing.Point(116, 112);
-            this.cbxType.Name = "cbxType";
-            this.cbxType.Size = new System.Drawing.Size(169, 33);
-            this.cbxType.TabIndex = 4;
+            cbxType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxType.FormattingEnabled = true;
+            cbxType.Items.AddRange(new object[] { "Lierla", "C3Lier" });
+            cbxType.Location = new Point(116, 112);
+            cbxType.Name = "cbxType";
+            cbxType.Size = new Size(122, 23);
+            cbxType.TabIndex = 4;
             // 
             // cbxUseXformers
             // 
-            this.cbxUseXformers.AutoSize = true;
-            this.cbxUseXformers.Location = new System.Drawing.Point(75, 650);
-            this.cbxUseXformers.Name = "cbxUseXformers";
-            this.cbxUseXformers.Size = new System.Drawing.Size(152, 29);
-            this.cbxUseXformers.TabIndex = 3;
-            this.cbxUseXformers.Text = "xfomersを使用";
-            this.cbxUseXformers.UseVisualStyleBackColor = true;
+            cbxUseXformers.AutoSize = true;
+            cbxUseXformers.Location = new Point(61, 441);
+            cbxUseXformers.Name = "cbxUseXformers";
+            cbxUseXformers.Size = new Size(101, 19);
+            cbxUseXformers.TabIndex = 3;
+            cbxUseXformers.Text = "xfomersを使用";
+            cbxUseXformers.UseVisualStyleBackColor = true;
             // 
             // cbxVerbose
             // 
-            this.cbxVerbose.AutoSize = true;
-            this.cbxVerbose.Location = new System.Drawing.Point(265, 615);
-            this.cbxVerbose.Name = "cbxVerbose";
-            this.cbxVerbose.Size = new System.Drawing.Size(101, 29);
-            this.cbxVerbose.TabIndex = 3;
-            this.cbxVerbose.Text = "verbose";
-            this.cbxVerbose.UseVisualStyleBackColor = true;
+            cbxVerbose.AutoSize = true;
+            cbxVerbose.Location = new Point(162, 416);
+            cbxVerbose.Name = "cbxVerbose";
+            cbxVerbose.Size = new Size(67, 19);
+            cbxVerbose.TabIndex = 3;
+            cbxVerbose.Text = "verbose";
+            cbxVerbose.UseVisualStyleBackColor = true;
             // 
             // cbxUseWandb
             // 
-            this.cbxUseWandb.AutoSize = true;
-            this.cbxUseWandb.Location = new System.Drawing.Point(75, 615);
-            this.cbxUseWandb.Name = "cbxUseWandb";
-            this.cbxUseWandb.Size = new System.Drawing.Size(142, 29);
-            this.cbxUseWandb.TabIndex = 3;
-            this.cbxUseWandb.Text = "wandbを使用";
-            this.cbxUseWandb.UseVisualStyleBackColor = true;
+            cbxUseWandb.AutoSize = true;
+            cbxUseWandb.Location = new Point(61, 416);
+            cbxUseWandb.Name = "cbxUseWandb";
+            cbxUseWandb.Size = new Size(95, 19);
+            cbxUseWandb.TabIndex = 3;
+            cbxUseWandb.Text = "wandbを使用";
+            cbxUseWandb.UseVisualStyleBackColor = true;
             // 
             // cbxUseVPrediction
             // 
-            this.cbxUseVPrediction.AutoSize = true;
-            this.cbxUseVPrediction.Location = new System.Drawing.Point(401, 615);
-            this.cbxUseVPrediction.Name = "cbxUseVPrediction";
-            this.cbxUseVPrediction.Size = new System.Drawing.Size(184, 29);
-            this.cbxUseVPrediction.TabIndex = 3;
-            this.cbxUseVPrediction.Text = "v-predictionを使用";
-            this.cbxUseVPrediction.UseVisualStyleBackColor = true;
+            cbxUseVPrediction.AutoSize = true;
+            cbxUseVPrediction.Location = new Point(235, 416);
+            cbxUseVPrediction.Name = "cbxUseVPrediction";
+            cbxUseVPrediction.Size = new Size(124, 19);
+            cbxUseVPrediction.TabIndex = 3;
+            cbxUseVPrediction.Text = "v-predictionを使用";
+            cbxUseVPrediction.UseVisualStyleBackColor = true;
             // 
             // cbxUseSDV2
             // 
-            this.cbxUseSDV2.AutoSize = true;
-            this.cbxUseSDV2.Location = new System.Drawing.Point(265, 650);
-            this.cbxUseSDV2.Name = "cbxUseSDV2";
-            this.cbxUseSDV2.Size = new System.Drawing.Size(136, 29);
-            this.cbxUseSDV2.TabIndex = 3;
-            this.cbxUseSDV2.Text = "SD2.Xを使用";
-            this.cbxUseSDV2.UseVisualStyleBackColor = true;
+            cbxUseSDV2.AutoSize = true;
+            cbxUseSDV2.Location = new Point(162, 441);
+            cbxUseSDV2.Name = "cbxUseSDV2";
+            cbxUseSDV2.Size = new Size(89, 19);
+            cbxUseSDV2.TabIndex = 3;
+            cbxUseSDV2.Text = "SD2.Xを使用";
+            cbxUseSDV2.UseVisualStyleBackColor = true;
             // 
             // label18
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(6, 31);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(167, 25);
-            this.label18.TabIndex = 2;
-            this.label18.Text = "prompts.yamlのパス";
+            label18.AutoSize = true;
+            label18.Location = new Point(6, 31);
+            label18.Name = "label18";
+            label18.Size = new Size(108, 15);
+            label18.TabIndex = 2;
+            label18.Text = "prompts.yamlのパス";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(76, 68);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(97, 25);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "モデルのパス";
+            label6.AutoSize = true;
+            label6.Location = new Point(43, 55);
+            label6.Name = "label6";
+            label6.Size = new Size(64, 15);
+            label6.TabIndex = 2;
+            label6.Text = "モデルのパス";
             // 
             // tbxPromptPath
             // 
-            this.tbxPromptPath.Location = new System.Drawing.Point(179, 28);
-            this.tbxPromptPath.Name = "tbxPromptPath";
-            this.tbxPromptPath.Size = new System.Drawing.Size(630, 31);
-            this.tbxPromptPath.TabIndex = 0;
-            this.tbxPromptPath.Text = "./sample/prompts.yaml";
+            tbxPromptPath.Location = new Point(116, 28);
+            tbxPromptPath.Name = "tbxPromptPath";
+            tbxPromptPath.Size = new Size(385, 23);
+            tbxPromptPath.TabIndex = 0;
+            tbxPromptPath.Text = "./sample/prompts.yaml";
             // 
             // tbxModelPath
             // 
-            this.tbxModelPath.Location = new System.Drawing.Point(179, 65);
-            this.tbxModelPath.Name = "tbxModelPath";
-            this.tbxModelPath.Size = new System.Drawing.Size(630, 31);
-            this.tbxModelPath.TabIndex = 0;
+            tbxModelPath.Location = new Point(116, 65);
+            tbxModelPath.Name = "tbxModelPath";
+            tbxModelPath.Size = new Size(385, 23);
+            tbxModelPath.TabIndex = 0;
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.label26);
-            this.tabPage3.Controls.Add(this.label27);
-            this.tabPage3.Controls.Add(this.btnTrainLECO);
-            this.tabPage3.Controls.Add(this.btnUpdateLECO);
-            this.tabPage3.Controls.Add(this.btnInstallLECO);
-            this.tabPage3.Location = new System.Drawing.Point(4, 34);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(837, 707);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "インストール・更新・学習";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            tabPage3.Controls.Add(label26);
+            tabPage3.Controls.Add(label27);
+            tabPage3.Controls.Add(btnTrainLECO);
+            tabPage3.Controls.Add(btnUpdateLECO);
+            tabPage3.Controls.Add(btnInstallLECO);
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(602, 526);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "インストール・更新・学習";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
             // label26
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(270, 407);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(296, 25);
-            this.label26.TabIndex = 4;
-            this.label26.Text = "GUIフォルダと同階層にインストールします";
+            label26.AutoSize = true;
+            label26.Location = new Point(199, 276);
+            label26.Name = "label26";
+            label26.Size = new Size(195, 15);
+            label26.TabIndex = 4;
+            label26.Text = "GUIフォルダと同階層にインストールします";
             // 
             // label27
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(292, 279);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(232, 25);
-            this.label27.TabIndex = 3;
-            this.label27.Text = "config.yamlを指定してください";
+            label27.AutoSize = true;
+            label27.Location = new Point(222, 178);
+            label27.Name = "label27";
+            label27.Size = new Size(152, 15);
+            label27.TabIndex = 3;
+            label27.Text = "config.yamlを指定してください";
             // 
             // btnTrainLECO
             // 
-            this.btnTrainLECO.Location = new System.Drawing.Point(315, 227);
-            this.btnTrainLECO.Name = "btnTrainLECO";
-            this.btnTrainLECO.Size = new System.Drawing.Size(189, 49);
-            this.btnTrainLECO.TabIndex = 0;
-            this.btnTrainLECO.Text = "LECOの学習";
-            this.btnTrainLECO.UseVisualStyleBackColor = true;
-            this.btnTrainLECO.Click += new System.EventHandler(this.btnTrainLECO_Click);
+            btnTrainLECO.Location = new Point(222, 140);
+            btnTrainLECO.Name = "btnTrainLECO";
+            btnTrainLECO.Size = new Size(140, 35);
+            btnTrainLECO.TabIndex = 0;
+            btnTrainLECO.Text = "LECOの学習";
+            btnTrainLECO.UseVisualStyleBackColor = true;
+            btnTrainLECO.Click += btnTrainLECO_Click;
             // 
             // btnUpdateLECO
             // 
-            this.btnUpdateLECO.Location = new System.Drawing.Point(315, 491);
-            this.btnUpdateLECO.Name = "btnUpdateLECO";
-            this.btnUpdateLECO.Size = new System.Drawing.Size(189, 49);
-            this.btnUpdateLECO.TabIndex = 0;
-            this.btnUpdateLECO.Text = "LECOの更新";
-            this.btnUpdateLECO.UseVisualStyleBackColor = true;
-            this.btnUpdateLECO.Click += new System.EventHandler(this.btnUpdateLECO_Click);
+            btnUpdateLECO.Location = new Point(222, 336);
+            btnUpdateLECO.Name = "btnUpdateLECO";
+            btnUpdateLECO.Size = new Size(140, 35);
+            btnUpdateLECO.TabIndex = 0;
+            btnUpdateLECO.Text = "LECOの更新";
+            btnUpdateLECO.UseVisualStyleBackColor = true;
+            btnUpdateLECO.Click += btnUpdateLECO_Click;
             // 
             // btnInstallLECO
             // 
-            this.btnInstallLECO.Location = new System.Drawing.Point(315, 355);
-            this.btnInstallLECO.Name = "btnInstallLECO";
-            this.btnInstallLECO.Size = new System.Drawing.Size(189, 49);
-            this.btnInstallLECO.TabIndex = 0;
-            this.btnInstallLECO.Text = "LECOのインストール";
-            this.btnInstallLECO.UseVisualStyleBackColor = true;
-            this.btnInstallLECO.Click += new System.EventHandler(this.btnInstallLECO_Click);
+            btnInstallLECO.Location = new Point(222, 238);
+            btnInstallLECO.Name = "btnInstallLECO";
+            btnInstallLECO.Size = new Size(140, 35);
+            btnInstallLECO.TabIndex = 0;
+            btnInstallLECO.Text = "LECOのインストール";
+            btnInstallLECO.UseVisualStyleBackColor = true;
+            btnInstallLECO.Click += btnInstallLECO_Click;
             // 
             // FormLECO
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(876, 776);
-            this.Controls.Add(this.tabControl1);
-            this.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "FormLECO";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "LECO";
-            this.Load += new System.EventHandler(this.FormLECO_Load);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudBatchSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudResolution)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudGuidanceScale)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudAlpha)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMaxDenoiseSteps)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSteps)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSaveEveryNSteps)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDim)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(633, 577);
+            Controls.Add(tabControl1);
+            Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "FormLECO";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "LECO";
+            Load += FormLECO_Load;
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudBatchSize).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudResolution).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudGuidanceScale).EndInit();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudAlpha).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudMaxDenoiseSteps).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudSteps).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudSaveEveryNSteps).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudDim).EndInit();
+            tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion

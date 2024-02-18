@@ -22,1156 +22,1128 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent() {
-            this.tbrIn00 = new System.Windows.Forms.TrackBar();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblIn00 = new System.Windows.Forms.Label();
-            this.cbxEnableBlockWeight = new System.Windows.Forms.CheckBox();
-            this.tbrIn01 = new System.Windows.Forms.TrackBar();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblIn01 = new System.Windows.Forms.Label();
-            this.tbrIn02 = new System.Windows.Forms.TrackBar();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblIn02 = new System.Windows.Forms.Label();
-            this.tbrIn03 = new System.Windows.Forms.TrackBar();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblIn03 = new System.Windows.Forms.Label();
-            this.tbrIn04 = new System.Windows.Forms.TrackBar();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lblIn04 = new System.Windows.Forms.Label();
-            this.tbrIn05 = new System.Windows.Forms.TrackBar();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lblIn05 = new System.Windows.Forms.Label();
-            this.tbrIn06 = new System.Windows.Forms.TrackBar();
-            this.label13 = new System.Windows.Forms.Label();
-            this.lblIn06 = new System.Windows.Forms.Label();
-            this.tbrIn07 = new System.Windows.Forms.TrackBar();
-            this.label15 = new System.Windows.Forms.Label();
-            this.lblIn07 = new System.Windows.Forms.Label();
-            this.tbrIn08 = new System.Windows.Forms.TrackBar();
-            this.label17 = new System.Windows.Forms.Label();
-            this.lblIn08 = new System.Windows.Forms.Label();
-            this.tbrIn09 = new System.Windows.Forms.TrackBar();
-            this.label19 = new System.Windows.Forms.Label();
-            this.lblIn09 = new System.Windows.Forms.Label();
-            this.tbrIn10 = new System.Windows.Forms.TrackBar();
-            this.label21 = new System.Windows.Forms.Label();
-            this.lblIn10 = new System.Windows.Forms.Label();
-            this.tbrIn11 = new System.Windows.Forms.TrackBar();
-            this.label23 = new System.Windows.Forms.Label();
-            this.lblIn11 = new System.Windows.Forms.Label();
-            this.btnDiscardChanges = new System.Windows.Forms.Button();
-            this.btnApplyChanges = new System.Windows.Forms.Button();
-            this.tbrOut11 = new System.Windows.Forms.TrackBar();
-            this.label25 = new System.Windows.Forms.Label();
-            this.tbrOut10 = new System.Windows.Forms.TrackBar();
-            this.lblOut11 = new System.Windows.Forms.Label();
-            this.tbrOut09 = new System.Windows.Forms.TrackBar();
-            this.label27 = new System.Windows.Forms.Label();
-            this.tbrOut08 = new System.Windows.Forms.TrackBar();
-            this.lblOut10 = new System.Windows.Forms.Label();
-            this.tbrOut07 = new System.Windows.Forms.TrackBar();
-            this.label29 = new System.Windows.Forms.Label();
-            this.tbrOut06 = new System.Windows.Forms.TrackBar();
-            this.lblOut09 = new System.Windows.Forms.Label();
-            this.tbrOut05 = new System.Windows.Forms.TrackBar();
-            this.label31 = new System.Windows.Forms.Label();
-            this.tbrOut04 = new System.Windows.Forms.TrackBar();
-            this.lblOut08 = new System.Windows.Forms.Label();
-            this.tbrOut03 = new System.Windows.Forms.TrackBar();
-            this.label33 = new System.Windows.Forms.Label();
-            this.tbrOut02 = new System.Windows.Forms.TrackBar();
-            this.lblOut07 = new System.Windows.Forms.Label();
-            this.tbrOut01 = new System.Windows.Forms.TrackBar();
-            this.label35 = new System.Windows.Forms.Label();
-            this.tbrOut00 = new System.Windows.Forms.TrackBar();
-            this.lblOut06 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.lblOut05 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.lblOut04 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.lblOut03 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.lblOut02 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.lblOut01 = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.lblOut00 = new System.Windows.Forms.Label();
-            this.tbrMid = new System.Windows.Forms.TrackBar();
-            this.label49 = new System.Windows.Forms.Label();
-            this.lblMId = new System.Windows.Forms.Label();
-            this.cbxPresetIn = new System.Windows.Forms.ComboBox();
-            this.label51 = new System.Windows.Forms.Label();
-            this.nudOffsetIn = new System.Windows.Forms.NumericUpDown();
-            this.label52 = new System.Windows.Forms.Label();
-            this.cbxPresetOut = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.nudOffsetOut = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.tbrThreshold = new System.Windows.Forms.TrackBar();
-            this.label12 = new System.Windows.Forms.Label();
-            this.lblThreshold = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn00)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn01)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn02)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn03)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn04)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn05)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn06)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn07)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn08)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn09)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut09)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut08)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut07)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut06)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut05)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut04)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut03)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut02)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut01)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut00)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrMid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudOffsetIn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudOffsetOut)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrThreshold)).BeginInit();
-            this.SuspendLayout();
+        private void InitializeComponent()
+        {
+            tbrIn00 = new TrackBar();
+            label1 = new Label();
+            lblIn00 = new Label();
+            cbxEnableBlockWeight = new CheckBox();
+            tbrIn01 = new TrackBar();
+            label3 = new Label();
+            lblIn01 = new Label();
+            tbrIn02 = new TrackBar();
+            label5 = new Label();
+            lblIn02 = new Label();
+            tbrIn03 = new TrackBar();
+            label7 = new Label();
+            lblIn03 = new Label();
+            tbrIn04 = new TrackBar();
+            label9 = new Label();
+            lblIn04 = new Label();
+            tbrIn05 = new TrackBar();
+            label11 = new Label();
+            lblIn05 = new Label();
+            tbrIn06 = new TrackBar();
+            label13 = new Label();
+            lblIn06 = new Label();
+            tbrIn07 = new TrackBar();
+            label15 = new Label();
+            lblIn07 = new Label();
+            tbrIn08 = new TrackBar();
+            label17 = new Label();
+            lblIn08 = new Label();
+            tbrIn09 = new TrackBar();
+            label19 = new Label();
+            lblIn09 = new Label();
+            tbrIn10 = new TrackBar();
+            label21 = new Label();
+            lblIn10 = new Label();
+            tbrIn11 = new TrackBar();
+            label23 = new Label();
+            lblIn11 = new Label();
+            btnDiscardChanges = new Button();
+            btnApplyChanges = new Button();
+            tbrOut11 = new TrackBar();
+            label25 = new Label();
+            tbrOut10 = new TrackBar();
+            lblOut11 = new Label();
+            tbrOut09 = new TrackBar();
+            label27 = new Label();
+            tbrOut08 = new TrackBar();
+            lblOut10 = new Label();
+            tbrOut07 = new TrackBar();
+            label29 = new Label();
+            tbrOut06 = new TrackBar();
+            lblOut09 = new Label();
+            tbrOut05 = new TrackBar();
+            label31 = new Label();
+            tbrOut04 = new TrackBar();
+            lblOut08 = new Label();
+            tbrOut03 = new TrackBar();
+            label33 = new Label();
+            tbrOut02 = new TrackBar();
+            lblOut07 = new Label();
+            tbrOut01 = new TrackBar();
+            label35 = new Label();
+            tbrOut00 = new TrackBar();
+            lblOut06 = new Label();
+            label37 = new Label();
+            lblOut05 = new Label();
+            label39 = new Label();
+            lblOut04 = new Label();
+            label41 = new Label();
+            lblOut03 = new Label();
+            label43 = new Label();
+            lblOut02 = new Label();
+            label45 = new Label();
+            lblOut01 = new Label();
+            label47 = new Label();
+            lblOut00 = new Label();
+            tbrMid = new TrackBar();
+            label49 = new Label();
+            lblMId = new Label();
+            cbxPresetIn = new ComboBox();
+            label51 = new Label();
+            nudOffsetIn = new NumericUpDown();
+            label52 = new Label();
+            cbxPresetOut = new ComboBox();
+            label2 = new Label();
+            label4 = new Label();
+            label6 = new Label();
+            nudOffsetOut = new NumericUpDown();
+            label8 = new Label();
+            label10 = new Label();
+            tbrThreshold = new TrackBar();
+            label12 = new Label();
+            lblThreshold = new Label();
+            ((System.ComponentModel.ISupportInitialize)tbrIn00).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn01).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn02).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn03).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn04).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn05).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn06).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn07).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn08).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn09).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn10).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn11).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut11).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut10).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut09).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut08).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut07).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut06).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut05).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut04).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut03).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut02).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut01).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut00).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrMid).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudOffsetIn).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudOffsetOut).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrThreshold).BeginInit();
+            SuspendLayout();
             // 
             // tbrIn00
             // 
-            this.tbrIn00.Location = new System.Drawing.Point(82, 44);
-            this.tbrIn00.Maximum = 20;
-            this.tbrIn00.Name = "tbrIn00";
-            this.tbrIn00.Size = new System.Drawing.Size(356, 69);
-            this.tbrIn00.TabIndex = 0;
-            this.tbrIn00.Value = 20;
-            this.tbrIn00.Scroll += new System.EventHandler(this.tbrIn00_Scroll);
+            tbrIn00.Location = new Point(82, 44);
+            tbrIn00.Maximum = 20;
+            tbrIn00.Name = "tbrIn00";
+            tbrIn00.Size = new Size(220, 45);
+            tbrIn00.TabIndex = 0;
+            tbrIn00.Value = 20;
+            tbrIn00.Scroll += tbrIn00_Scroll;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "IN00";
+            label1.AutoSize = true;
+            label1.Location = new Point(24, 44);
+            label1.Name = "label1";
+            label1.Size = new Size(31, 15);
+            label1.TabIndex = 1;
+            label1.Text = "IN00";
             // 
             // lblIn00
             // 
-            this.lblIn00.AutoSize = true;
-            this.lblIn00.Location = new System.Drawing.Point(444, 44);
-            this.lblIn00.Name = "lblIn00";
-            this.lblIn00.Size = new System.Drawing.Size(36, 25);
-            this.lblIn00.TabIndex = 2;
-            this.lblIn00.Text = "0.0";
+            lblIn00.AutoSize = true;
+            lblIn00.Location = new Point(308, 44);
+            lblIn00.Name = "lblIn00";
+            lblIn00.Size = new Size(22, 15);
+            lblIn00.TabIndex = 2;
+            lblIn00.Text = "0.0";
             // 
             // cbxEnableBlockWeight
             // 
-            this.cbxEnableBlockWeight.AutoSize = true;
-            this.cbxEnableBlockWeight.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.cbxEnableBlockWeight.Location = new System.Drawing.Point(1039, 637);
-            this.cbxEnableBlockWeight.Name = "cbxEnableBlockWeight";
-            this.cbxEnableBlockWeight.Size = new System.Drawing.Size(252, 36);
-            this.cbxEnableBlockWeight.TabIndex = 3;
-            this.cbxEnableBlockWeight.Text = "層別学習率の有効化";
-            this.cbxEnableBlockWeight.UseVisualStyleBackColor = true;
+            cbxEnableBlockWeight.AutoSize = true;
+            cbxEnableBlockWeight.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            cbxEnableBlockWeight.Location = new Point(693, 447);
+            cbxEnableBlockWeight.Name = "cbxEnableBlockWeight";
+            cbxEnableBlockWeight.Size = new Size(170, 25);
+            cbxEnableBlockWeight.TabIndex = 3;
+            cbxEnableBlockWeight.Text = "層別学習率の有効化";
+            cbxEnableBlockWeight.UseVisualStyleBackColor = true;
             // 
             // tbrIn01
             // 
-            this.tbrIn01.Location = new System.Drawing.Point(82, 99);
-            this.tbrIn01.Maximum = 20;
-            this.tbrIn01.Name = "tbrIn01";
-            this.tbrIn01.Size = new System.Drawing.Size(356, 69);
-            this.tbrIn01.TabIndex = 0;
-            this.tbrIn01.Value = 20;
-            this.tbrIn01.Scroll += new System.EventHandler(this.tbrIn01_Scroll);
+            tbrIn01.Location = new Point(82, 79);
+            tbrIn01.Maximum = 20;
+            tbrIn01.Name = "tbrIn01";
+            tbrIn01.Size = new Size(220, 45);
+            tbrIn01.TabIndex = 0;
+            tbrIn01.Value = 20;
+            tbrIn01.Scroll += tbrIn01_Scroll;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 99);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 25);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "IN01";
+            label3.AutoSize = true;
+            label3.Location = new Point(24, 79);
+            label3.Name = "label3";
+            label3.Size = new Size(31, 15);
+            label3.TabIndex = 1;
+            label3.Text = "IN01";
             // 
             // lblIn01
             // 
-            this.lblIn01.AutoSize = true;
-            this.lblIn01.Location = new System.Drawing.Point(444, 99);
-            this.lblIn01.Name = "lblIn01";
-            this.lblIn01.Size = new System.Drawing.Size(36, 25);
-            this.lblIn01.TabIndex = 2;
-            this.lblIn01.Text = "0.0";
+            lblIn01.AutoSize = true;
+            lblIn01.Location = new Point(308, 79);
+            lblIn01.Name = "lblIn01";
+            lblIn01.Size = new Size(22, 15);
+            lblIn01.TabIndex = 2;
+            lblIn01.Text = "0.0";
             // 
             // tbrIn02
             // 
-            this.tbrIn02.Location = new System.Drawing.Point(82, 155);
-            this.tbrIn02.Maximum = 20;
-            this.tbrIn02.Name = "tbrIn02";
-            this.tbrIn02.Size = new System.Drawing.Size(356, 69);
-            this.tbrIn02.TabIndex = 0;
-            this.tbrIn02.Value = 20;
-            this.tbrIn02.Scroll += new System.EventHandler(this.tbrIn02_Scroll);
+            tbrIn02.Location = new Point(82, 119);
+            tbrIn02.Maximum = 20;
+            tbrIn02.Name = "tbrIn02";
+            tbrIn02.Size = new Size(220, 45);
+            tbrIn02.TabIndex = 0;
+            tbrIn02.Value = 20;
+            tbrIn02.Scroll += tbrIn02_Scroll;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 155);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 25);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "IN02";
+            label5.AutoSize = true;
+            label5.Location = new Point(24, 119);
+            label5.Name = "label5";
+            label5.Size = new Size(31, 15);
+            label5.TabIndex = 1;
+            label5.Text = "IN02";
             // 
             // lblIn02
             // 
-            this.lblIn02.AutoSize = true;
-            this.lblIn02.Location = new System.Drawing.Point(444, 155);
-            this.lblIn02.Name = "lblIn02";
-            this.lblIn02.Size = new System.Drawing.Size(36, 25);
-            this.lblIn02.TabIndex = 2;
-            this.lblIn02.Text = "0.0";
+            lblIn02.AutoSize = true;
+            lblIn02.Location = new Point(308, 119);
+            lblIn02.Name = "lblIn02";
+            lblIn02.Size = new Size(22, 15);
+            lblIn02.TabIndex = 2;
+            lblIn02.Text = "0.0";
             // 
             // tbrIn03
             // 
-            this.tbrIn03.Location = new System.Drawing.Point(82, 209);
-            this.tbrIn03.Maximum = 20;
-            this.tbrIn03.Name = "tbrIn03";
-            this.tbrIn03.Size = new System.Drawing.Size(356, 69);
-            this.tbrIn03.TabIndex = 0;
-            this.tbrIn03.Value = 20;
-            this.tbrIn03.Scroll += new System.EventHandler(this.tbrIn03_Scroll);
+            tbrIn03.Location = new Point(82, 155);
+            tbrIn03.Maximum = 20;
+            tbrIn03.Name = "tbrIn03";
+            tbrIn03.Size = new Size(220, 45);
+            tbrIn03.TabIndex = 0;
+            tbrIn03.Value = 20;
+            tbrIn03.Scroll += tbrIn03_Scroll;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(24, 209);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(50, 25);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "IN03";
+            label7.AutoSize = true;
+            label7.Location = new Point(24, 155);
+            label7.Name = "label7";
+            label7.Size = new Size(31, 15);
+            label7.TabIndex = 1;
+            label7.Text = "IN03";
             // 
             // lblIn03
             // 
-            this.lblIn03.AutoSize = true;
-            this.lblIn03.Location = new System.Drawing.Point(444, 209);
-            this.lblIn03.Name = "lblIn03";
-            this.lblIn03.Size = new System.Drawing.Size(36, 25);
-            this.lblIn03.TabIndex = 2;
-            this.lblIn03.Text = "0.0";
+            lblIn03.AutoSize = true;
+            lblIn03.Location = new Point(308, 155);
+            lblIn03.Name = "lblIn03";
+            lblIn03.Size = new Size(22, 15);
+            lblIn03.TabIndex = 2;
+            lblIn03.Text = "0.0";
             // 
             // tbrIn04
             // 
-            this.tbrIn04.Location = new System.Drawing.Point(82, 260);
-            this.tbrIn04.Maximum = 20;
-            this.tbrIn04.Name = "tbrIn04";
-            this.tbrIn04.Size = new System.Drawing.Size(356, 69);
-            this.tbrIn04.TabIndex = 0;
-            this.tbrIn04.Value = 20;
-            this.tbrIn04.Scroll += new System.EventHandler(this.tbrIn04_Scroll);
+            tbrIn04.Location = new Point(82, 195);
+            tbrIn04.Maximum = 20;
+            tbrIn04.Name = "tbrIn04";
+            tbrIn04.Size = new Size(220, 45);
+            tbrIn04.TabIndex = 0;
+            tbrIn04.Value = 20;
+            tbrIn04.Scroll += tbrIn04_Scroll;
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(24, 260);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(50, 25);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "IN04";
+            label9.AutoSize = true;
+            label9.Location = new Point(24, 195);
+            label9.Name = "label9";
+            label9.Size = new Size(31, 15);
+            label9.TabIndex = 1;
+            label9.Text = "IN04";
             // 
             // lblIn04
             // 
-            this.lblIn04.AutoSize = true;
-            this.lblIn04.Location = new System.Drawing.Point(444, 260);
-            this.lblIn04.Name = "lblIn04";
-            this.lblIn04.Size = new System.Drawing.Size(36, 25);
-            this.lblIn04.TabIndex = 2;
-            this.lblIn04.Text = "0.0";
+            lblIn04.AutoSize = true;
+            lblIn04.Location = new Point(308, 195);
+            lblIn04.Name = "lblIn04";
+            lblIn04.Size = new Size(22, 15);
+            lblIn04.TabIndex = 2;
+            lblIn04.Text = "0.0";
             // 
             // tbrIn05
             // 
-            this.tbrIn05.Location = new System.Drawing.Point(82, 312);
-            this.tbrIn05.Maximum = 20;
-            this.tbrIn05.Name = "tbrIn05";
-            this.tbrIn05.Size = new System.Drawing.Size(356, 69);
-            this.tbrIn05.TabIndex = 0;
-            this.tbrIn05.Value = 20;
-            this.tbrIn05.Scroll += new System.EventHandler(this.tbrIn05_Scroll);
+            tbrIn05.Location = new Point(82, 237);
+            tbrIn05.Maximum = 20;
+            tbrIn05.Name = "tbrIn05";
+            tbrIn05.Size = new Size(220, 45);
+            tbrIn05.TabIndex = 0;
+            tbrIn05.Value = 20;
+            tbrIn05.Scroll += tbrIn05_Scroll;
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(24, 312);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(50, 25);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "IN05";
+            label11.AutoSize = true;
+            label11.Location = new Point(24, 237);
+            label11.Name = "label11";
+            label11.Size = new Size(31, 15);
+            label11.TabIndex = 1;
+            label11.Text = "IN05";
             // 
             // lblIn05
             // 
-            this.lblIn05.AutoSize = true;
-            this.lblIn05.Location = new System.Drawing.Point(444, 312);
-            this.lblIn05.Name = "lblIn05";
-            this.lblIn05.Size = new System.Drawing.Size(36, 25);
-            this.lblIn05.TabIndex = 2;
-            this.lblIn05.Text = "0.0";
+            lblIn05.AutoSize = true;
+            lblIn05.Location = new Point(308, 237);
+            lblIn05.Name = "lblIn05";
+            lblIn05.Size = new Size(22, 15);
+            lblIn05.TabIndex = 2;
+            lblIn05.Text = "0.0";
             // 
             // tbrIn06
             // 
-            this.tbrIn06.Location = new System.Drawing.Point(82, 368);
-            this.tbrIn06.Maximum = 20;
-            this.tbrIn06.Name = "tbrIn06";
-            this.tbrIn06.Size = new System.Drawing.Size(356, 69);
-            this.tbrIn06.TabIndex = 0;
-            this.tbrIn06.Value = 20;
-            this.tbrIn06.Scroll += new System.EventHandler(this.tbrIn06_Scroll);
+            tbrIn06.Location = new Point(82, 276);
+            tbrIn06.Maximum = 20;
+            tbrIn06.Name = "tbrIn06";
+            tbrIn06.Size = new Size(220, 45);
+            tbrIn06.TabIndex = 0;
+            tbrIn06.Value = 20;
+            tbrIn06.Scroll += tbrIn06_Scroll;
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(24, 368);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(50, 25);
-            this.label13.TabIndex = 1;
-            this.label13.Text = "IN06";
+            label13.AutoSize = true;
+            label13.Location = new Point(24, 276);
+            label13.Name = "label13";
+            label13.Size = new Size(31, 15);
+            label13.TabIndex = 1;
+            label13.Text = "IN06";
             // 
             // lblIn06
             // 
-            this.lblIn06.AutoSize = true;
-            this.lblIn06.Location = new System.Drawing.Point(444, 368);
-            this.lblIn06.Name = "lblIn06";
-            this.lblIn06.Size = new System.Drawing.Size(36, 25);
-            this.lblIn06.TabIndex = 2;
-            this.lblIn06.Text = "0.0";
+            lblIn06.AutoSize = true;
+            lblIn06.Location = new Point(308, 276);
+            lblIn06.Name = "lblIn06";
+            lblIn06.Size = new Size(22, 15);
+            lblIn06.TabIndex = 2;
+            lblIn06.Text = "0.0";
             // 
             // tbrIn07
             // 
-            this.tbrIn07.Location = new System.Drawing.Point(82, 426);
-            this.tbrIn07.Maximum = 20;
-            this.tbrIn07.Name = "tbrIn07";
-            this.tbrIn07.Size = new System.Drawing.Size(356, 69);
-            this.tbrIn07.TabIndex = 0;
-            this.tbrIn07.Value = 20;
-            this.tbrIn07.Scroll += new System.EventHandler(this.tbrIn07_Scroll);
+            tbrIn07.Location = new Point(82, 310);
+            tbrIn07.Maximum = 20;
+            tbrIn07.Name = "tbrIn07";
+            tbrIn07.Size = new Size(220, 45);
+            tbrIn07.TabIndex = 0;
+            tbrIn07.Value = 20;
+            tbrIn07.Scroll += tbrIn07_Scroll;
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(24, 426);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(50, 25);
-            this.label15.TabIndex = 1;
-            this.label15.Text = "IN07";
+            label15.AutoSize = true;
+            label15.Location = new Point(24, 310);
+            label15.Name = "label15";
+            label15.Size = new Size(31, 15);
+            label15.TabIndex = 1;
+            label15.Text = "IN07";
             // 
             // lblIn07
             // 
-            this.lblIn07.AutoSize = true;
-            this.lblIn07.Location = new System.Drawing.Point(444, 426);
-            this.lblIn07.Name = "lblIn07";
-            this.lblIn07.Size = new System.Drawing.Size(36, 25);
-            this.lblIn07.TabIndex = 2;
-            this.lblIn07.Text = "0.0";
+            lblIn07.AutoSize = true;
+            lblIn07.Location = new Point(308, 310);
+            lblIn07.Name = "lblIn07";
+            lblIn07.Size = new Size(22, 15);
+            lblIn07.TabIndex = 2;
+            lblIn07.Text = "0.0";
             // 
             // tbrIn08
             // 
-            this.tbrIn08.Location = new System.Drawing.Point(82, 479);
-            this.tbrIn08.Maximum = 20;
-            this.tbrIn08.Name = "tbrIn08";
-            this.tbrIn08.Size = new System.Drawing.Size(356, 69);
-            this.tbrIn08.TabIndex = 0;
-            this.tbrIn08.Value = 20;
-            this.tbrIn08.Scroll += new System.EventHandler(this.tbrIn08_Scroll);
+            tbrIn08.Location = new Point(82, 348);
+            tbrIn08.Maximum = 20;
+            tbrIn08.Name = "tbrIn08";
+            tbrIn08.Size = new Size(220, 45);
+            tbrIn08.TabIndex = 0;
+            tbrIn08.Value = 20;
+            tbrIn08.Scroll += tbrIn08_Scroll;
             // 
             // label17
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(24, 479);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(50, 25);
-            this.label17.TabIndex = 1;
-            this.label17.Text = "IN08";
+            label17.AutoSize = true;
+            label17.Location = new Point(24, 348);
+            label17.Name = "label17";
+            label17.Size = new Size(31, 15);
+            label17.TabIndex = 1;
+            label17.Text = "IN08";
             // 
             // lblIn08
             // 
-            this.lblIn08.AutoSize = true;
-            this.lblIn08.Location = new System.Drawing.Point(444, 479);
-            this.lblIn08.Name = "lblIn08";
-            this.lblIn08.Size = new System.Drawing.Size(36, 25);
-            this.lblIn08.TabIndex = 2;
-            this.lblIn08.Text = "0.0";
+            lblIn08.AutoSize = true;
+            lblIn08.Location = new Point(308, 348);
+            lblIn08.Name = "lblIn08";
+            lblIn08.Size = new Size(22, 15);
+            lblIn08.TabIndex = 2;
+            lblIn08.Text = "0.0";
             // 
             // tbrIn09
             // 
-            this.tbrIn09.Location = new System.Drawing.Point(82, 530);
-            this.tbrIn09.Maximum = 20;
-            this.tbrIn09.Name = "tbrIn09";
-            this.tbrIn09.Size = new System.Drawing.Size(356, 69);
-            this.tbrIn09.TabIndex = 0;
-            this.tbrIn09.Value = 20;
-            this.tbrIn09.Scroll += new System.EventHandler(this.tbrIn09_Scroll);
+            tbrIn09.Location = new Point(82, 390);
+            tbrIn09.Maximum = 20;
+            tbrIn09.Name = "tbrIn09";
+            tbrIn09.Size = new Size(220, 45);
+            tbrIn09.TabIndex = 0;
+            tbrIn09.Value = 20;
+            tbrIn09.Scroll += tbrIn09_Scroll;
             // 
             // label19
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(24, 530);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(50, 25);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "IN09";
+            label19.AutoSize = true;
+            label19.Location = new Point(24, 390);
+            label19.Name = "label19";
+            label19.Size = new Size(31, 15);
+            label19.TabIndex = 1;
+            label19.Text = "IN09";
             // 
             // lblIn09
             // 
-            this.lblIn09.AutoSize = true;
-            this.lblIn09.Location = new System.Drawing.Point(444, 530);
-            this.lblIn09.Name = "lblIn09";
-            this.lblIn09.Size = new System.Drawing.Size(36, 25);
-            this.lblIn09.TabIndex = 2;
-            this.lblIn09.Text = "0.0";
+            lblIn09.AutoSize = true;
+            lblIn09.Location = new Point(308, 390);
+            lblIn09.Name = "lblIn09";
+            lblIn09.Size = new Size(22, 15);
+            lblIn09.TabIndex = 2;
+            lblIn09.Text = "0.0";
             // 
             // tbrIn10
             // 
-            this.tbrIn10.Location = new System.Drawing.Point(82, 581);
-            this.tbrIn10.Maximum = 20;
-            this.tbrIn10.Name = "tbrIn10";
-            this.tbrIn10.Size = new System.Drawing.Size(356, 69);
-            this.tbrIn10.TabIndex = 0;
-            this.tbrIn10.Value = 20;
-            this.tbrIn10.Scroll += new System.EventHandler(this.tbrIn10_Scroll);
+            tbrIn10.Location = new Point(82, 421);
+            tbrIn10.Maximum = 20;
+            tbrIn10.Name = "tbrIn10";
+            tbrIn10.Size = new Size(220, 45);
+            tbrIn10.TabIndex = 0;
+            tbrIn10.Value = 20;
+            tbrIn10.Scroll += tbrIn10_Scroll;
             // 
             // label21
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(24, 581);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(50, 25);
-            this.label21.TabIndex = 1;
-            this.label21.Text = "IN10";
+            label21.AutoSize = true;
+            label21.Location = new Point(24, 421);
+            label21.Name = "label21";
+            label21.Size = new Size(31, 15);
+            label21.TabIndex = 1;
+            label21.Text = "IN10";
             // 
             // lblIn10
             // 
-            this.lblIn10.AutoSize = true;
-            this.lblIn10.Location = new System.Drawing.Point(446, 581);
-            this.lblIn10.Name = "lblIn10";
-            this.lblIn10.Size = new System.Drawing.Size(36, 25);
-            this.lblIn10.TabIndex = 2;
-            this.lblIn10.Text = "0.0";
+            lblIn10.AutoSize = true;
+            lblIn10.Location = new Point(308, 421);
+            lblIn10.Name = "lblIn10";
+            lblIn10.Size = new Size(22, 15);
+            lblIn10.TabIndex = 2;
+            lblIn10.Text = "0.0";
             // 
             // tbrIn11
             // 
-            this.tbrIn11.Location = new System.Drawing.Point(82, 637);
-            this.tbrIn11.Maximum = 20;
-            this.tbrIn11.Name = "tbrIn11";
-            this.tbrIn11.Size = new System.Drawing.Size(356, 69);
-            this.tbrIn11.TabIndex = 0;
-            this.tbrIn11.Value = 20;
-            this.tbrIn11.Scroll += new System.EventHandler(this.tbrIn11_Scroll);
+            tbrIn11.Location = new Point(82, 453);
+            tbrIn11.Maximum = 20;
+            tbrIn11.Name = "tbrIn11";
+            tbrIn11.Size = new Size(220, 45);
+            tbrIn11.TabIndex = 0;
+            tbrIn11.Value = 20;
+            tbrIn11.Scroll += tbrIn11_Scroll;
             // 
             // label23
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(24, 637);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(50, 25);
-            this.label23.TabIndex = 1;
-            this.label23.Text = "IN11";
+            label23.AutoSize = true;
+            label23.Location = new Point(24, 453);
+            label23.Name = "label23";
+            label23.Size = new Size(31, 15);
+            label23.TabIndex = 1;
+            label23.Text = "IN11";
             // 
             // lblIn11
             // 
-            this.lblIn11.AutoSize = true;
-            this.lblIn11.Location = new System.Drawing.Point(444, 637);
-            this.lblIn11.Name = "lblIn11";
-            this.lblIn11.Size = new System.Drawing.Size(36, 25);
-            this.lblIn11.TabIndex = 2;
-            this.lblIn11.Text = "0.0";
+            lblIn11.AutoSize = true;
+            lblIn11.Location = new Point(308, 453);
+            lblIn11.Name = "lblIn11";
+            lblIn11.Size = new Size(22, 15);
+            lblIn11.TabIndex = 2;
+            lblIn11.Text = "0.0";
             // 
             // btnDiscardChanges
             // 
-            this.btnDiscardChanges.Location = new System.Drawing.Point(877, 685);
-            this.btnDiscardChanges.Name = "btnDiscardChanges";
-            this.btnDiscardChanges.Size = new System.Drawing.Size(201, 41);
-            this.btnDiscardChanges.TabIndex = 4;
-            this.btnDiscardChanges.Text = "設定を反映せずに閉じる";
-            this.btnDiscardChanges.UseVisualStyleBackColor = true;
-            this.btnDiscardChanges.Click += new System.EventHandler(this.btnDiscardChanges_Click);
+            btnDiscardChanges.Location = new Point(581, 511);
+            btnDiscardChanges.Name = "btnDiscardChanges";
+            btnDiscardChanges.Size = new Size(148, 32);
+            btnDiscardChanges.TabIndex = 4;
+            btnDiscardChanges.Text = "設定を反映せずに閉じる";
+            btnDiscardChanges.UseVisualStyleBackColor = true;
+            btnDiscardChanges.Click += btnDiscardChanges_Click;
             // 
             // btnApplyChanges
             // 
-            this.btnApplyChanges.Location = new System.Drawing.Point(1102, 685);
-            this.btnApplyChanges.Name = "btnApplyChanges";
-            this.btnApplyChanges.Size = new System.Drawing.Size(201, 41);
-            this.btnApplyChanges.TabIndex = 4;
-            this.btnApplyChanges.Text = "設定を反映して閉じる";
-            this.btnApplyChanges.UseVisualStyleBackColor = true;
-            this.btnApplyChanges.Click += new System.EventHandler(this.btnApplyChanges_Click);
+            btnApplyChanges.Location = new Point(735, 511);
+            btnApplyChanges.Name = "btnApplyChanges";
+            btnApplyChanges.Size = new Size(148, 32);
+            btnApplyChanges.TabIndex = 4;
+            btnApplyChanges.Text = "設定を反映して閉じる";
+            btnApplyChanges.UseVisualStyleBackColor = true;
+            btnApplyChanges.Click += btnApplyChanges_Click;
             // 
             // tbrOut11
             // 
-            this.tbrOut11.Location = new System.Drawing.Point(571, 44);
-            this.tbrOut11.Maximum = 20;
-            this.tbrOut11.Name = "tbrOut11";
-            this.tbrOut11.Size = new System.Drawing.Size(356, 69);
-            this.tbrOut11.TabIndex = 0;
-            this.tbrOut11.Value = 20;
-            this.tbrOut11.Scroll += new System.EventHandler(this.tbrOut11_Scroll);
+            tbrOut11.Location = new Point(401, 44);
+            tbrOut11.Maximum = 20;
+            tbrOut11.Name = "tbrOut11";
+            tbrOut11.Size = new Size(220, 45);
+            tbrOut11.TabIndex = 0;
+            tbrOut11.Value = 20;
+            tbrOut11.Scroll += tbrOut11_Scroll;
             // 
             // label25
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(513, 44);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(67, 25);
-            this.label25.TabIndex = 1;
-            this.label25.Text = "OUT11";
+            label25.AutoSize = true;
+            label25.Location = new Point(353, 44);
+            label25.Name = "label25";
+            label25.Size = new Size(42, 15);
+            label25.TabIndex = 1;
+            label25.Text = "OUT11";
             // 
             // tbrOut10
             // 
-            this.tbrOut10.Location = new System.Drawing.Point(571, 99);
-            this.tbrOut10.Maximum = 20;
-            this.tbrOut10.Name = "tbrOut10";
-            this.tbrOut10.Size = new System.Drawing.Size(356, 69);
-            this.tbrOut10.TabIndex = 0;
-            this.tbrOut10.Value = 20;
-            this.tbrOut10.Scroll += new System.EventHandler(this.tbrOut10_Scroll);
+            tbrOut10.Location = new Point(401, 79);
+            tbrOut10.Maximum = 20;
+            tbrOut10.Name = "tbrOut10";
+            tbrOut10.Size = new Size(220, 45);
+            tbrOut10.TabIndex = 0;
+            tbrOut10.Value = 20;
+            tbrOut10.Scroll += tbrOut10_Scroll;
             // 
             // lblOut11
             // 
-            this.lblOut11.AutoSize = true;
-            this.lblOut11.Location = new System.Drawing.Point(933, 44);
-            this.lblOut11.Name = "lblOut11";
-            this.lblOut11.Size = new System.Drawing.Size(36, 25);
-            this.lblOut11.TabIndex = 2;
-            this.lblOut11.Text = "0.0";
+            lblOut11.AutoSize = true;
+            lblOut11.Location = new Point(625, 44);
+            lblOut11.Name = "lblOut11";
+            lblOut11.Size = new Size(22, 15);
+            lblOut11.TabIndex = 2;
+            lblOut11.Text = "0.0";
             // 
             // tbrOut09
             // 
-            this.tbrOut09.Location = new System.Drawing.Point(571, 155);
-            this.tbrOut09.Maximum = 20;
-            this.tbrOut09.Name = "tbrOut09";
-            this.tbrOut09.Size = new System.Drawing.Size(356, 69);
-            this.tbrOut09.TabIndex = 0;
-            this.tbrOut09.Value = 20;
-            this.tbrOut09.Scroll += new System.EventHandler(this.tbrOut09_Scroll);
+            tbrOut09.Location = new Point(401, 119);
+            tbrOut09.Maximum = 20;
+            tbrOut09.Name = "tbrOut09";
+            tbrOut09.Size = new Size(220, 45);
+            tbrOut09.TabIndex = 0;
+            tbrOut09.Value = 20;
+            tbrOut09.Scroll += tbrOut09_Scroll;
             // 
             // label27
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(513, 99);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(67, 25);
-            this.label27.TabIndex = 1;
-            this.label27.Text = "OUT10";
+            label27.AutoSize = true;
+            label27.Location = new Point(353, 79);
+            label27.Name = "label27";
+            label27.Size = new Size(42, 15);
+            label27.TabIndex = 1;
+            label27.Text = "OUT10";
             // 
             // tbrOut08
             // 
-            this.tbrOut08.Location = new System.Drawing.Point(571, 209);
-            this.tbrOut08.Maximum = 20;
-            this.tbrOut08.Name = "tbrOut08";
-            this.tbrOut08.Size = new System.Drawing.Size(356, 69);
-            this.tbrOut08.TabIndex = 0;
-            this.tbrOut08.Value = 20;
-            this.tbrOut08.Scroll += new System.EventHandler(this.tbrOut08_Scroll);
+            tbrOut08.Location = new Point(401, 155);
+            tbrOut08.Maximum = 20;
+            tbrOut08.Name = "tbrOut08";
+            tbrOut08.Size = new Size(220, 45);
+            tbrOut08.TabIndex = 0;
+            tbrOut08.Value = 20;
+            tbrOut08.Scroll += tbrOut08_Scroll;
             // 
             // lblOut10
             // 
-            this.lblOut10.AutoSize = true;
-            this.lblOut10.Location = new System.Drawing.Point(933, 99);
-            this.lblOut10.Name = "lblOut10";
-            this.lblOut10.Size = new System.Drawing.Size(36, 25);
-            this.lblOut10.TabIndex = 2;
-            this.lblOut10.Text = "0.0";
+            lblOut10.AutoSize = true;
+            lblOut10.Location = new Point(625, 79);
+            lblOut10.Name = "lblOut10";
+            lblOut10.Size = new Size(22, 15);
+            lblOut10.TabIndex = 2;
+            lblOut10.Text = "0.0";
             // 
             // tbrOut07
             // 
-            this.tbrOut07.Location = new System.Drawing.Point(571, 260);
-            this.tbrOut07.Maximum = 20;
-            this.tbrOut07.Name = "tbrOut07";
-            this.tbrOut07.Size = new System.Drawing.Size(356, 69);
-            this.tbrOut07.TabIndex = 0;
-            this.tbrOut07.Value = 20;
-            this.tbrOut07.Scroll += new System.EventHandler(this.tbrOut07_Scroll);
+            tbrOut07.Location = new Point(401, 195);
+            tbrOut07.Maximum = 20;
+            tbrOut07.Name = "tbrOut07";
+            tbrOut07.Size = new Size(220, 45);
+            tbrOut07.TabIndex = 0;
+            tbrOut07.Value = 20;
+            tbrOut07.Scroll += tbrOut07_Scroll;
             // 
             // label29
             // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(513, 155);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(67, 25);
-            this.label29.TabIndex = 1;
-            this.label29.Text = "OUT09";
+            label29.AutoSize = true;
+            label29.Location = new Point(353, 119);
+            label29.Name = "label29";
+            label29.Size = new Size(42, 15);
+            label29.TabIndex = 1;
+            label29.Text = "OUT09";
             // 
             // tbrOut06
             // 
-            this.tbrOut06.Location = new System.Drawing.Point(571, 312);
-            this.tbrOut06.Maximum = 20;
-            this.tbrOut06.Name = "tbrOut06";
-            this.tbrOut06.Size = new System.Drawing.Size(356, 69);
-            this.tbrOut06.TabIndex = 0;
-            this.tbrOut06.Value = 20;
-            this.tbrOut06.Scroll += new System.EventHandler(this.tbrOut06_Scroll);
+            tbrOut06.Location = new Point(401, 237);
+            tbrOut06.Maximum = 20;
+            tbrOut06.Name = "tbrOut06";
+            tbrOut06.Size = new Size(220, 45);
+            tbrOut06.TabIndex = 0;
+            tbrOut06.Value = 20;
+            tbrOut06.Scroll += tbrOut06_Scroll;
             // 
             // lblOut09
             // 
-            this.lblOut09.AutoSize = true;
-            this.lblOut09.Location = new System.Drawing.Point(933, 155);
-            this.lblOut09.Name = "lblOut09";
-            this.lblOut09.Size = new System.Drawing.Size(36, 25);
-            this.lblOut09.TabIndex = 2;
-            this.lblOut09.Text = "0.0";
+            lblOut09.AutoSize = true;
+            lblOut09.Location = new Point(625, 119);
+            lblOut09.Name = "lblOut09";
+            lblOut09.Size = new Size(22, 15);
+            lblOut09.TabIndex = 2;
+            lblOut09.Text = "0.0";
             // 
             // tbrOut05
             // 
-            this.tbrOut05.Location = new System.Drawing.Point(571, 368);
-            this.tbrOut05.Maximum = 20;
-            this.tbrOut05.Name = "tbrOut05";
-            this.tbrOut05.Size = new System.Drawing.Size(356, 69);
-            this.tbrOut05.TabIndex = 0;
-            this.tbrOut05.Value = 20;
-            this.tbrOut05.Scroll += new System.EventHandler(this.tbrOut05_Scroll);
+            tbrOut05.Location = new Point(401, 276);
+            tbrOut05.Maximum = 20;
+            tbrOut05.Name = "tbrOut05";
+            tbrOut05.Size = new Size(220, 45);
+            tbrOut05.TabIndex = 0;
+            tbrOut05.Value = 20;
+            tbrOut05.Scroll += tbrOut05_Scroll;
             // 
             // label31
             // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(513, 209);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(67, 25);
-            this.label31.TabIndex = 1;
-            this.label31.Text = "OUT08";
+            label31.AutoSize = true;
+            label31.Location = new Point(353, 155);
+            label31.Name = "label31";
+            label31.Size = new Size(42, 15);
+            label31.TabIndex = 1;
+            label31.Text = "OUT08";
             // 
             // tbrOut04
             // 
-            this.tbrOut04.Location = new System.Drawing.Point(571, 426);
-            this.tbrOut04.Maximum = 20;
-            this.tbrOut04.Name = "tbrOut04";
-            this.tbrOut04.Size = new System.Drawing.Size(356, 69);
-            this.tbrOut04.TabIndex = 0;
-            this.tbrOut04.Value = 20;
-            this.tbrOut04.Scroll += new System.EventHandler(this.tbrOut04_Scroll);
+            tbrOut04.Location = new Point(401, 310);
+            tbrOut04.Maximum = 20;
+            tbrOut04.Name = "tbrOut04";
+            tbrOut04.Size = new Size(220, 45);
+            tbrOut04.TabIndex = 0;
+            tbrOut04.Value = 20;
+            tbrOut04.Scroll += tbrOut04_Scroll;
             // 
             // lblOut08
             // 
-            this.lblOut08.AutoSize = true;
-            this.lblOut08.Location = new System.Drawing.Point(933, 209);
-            this.lblOut08.Name = "lblOut08";
-            this.lblOut08.Size = new System.Drawing.Size(36, 25);
-            this.lblOut08.TabIndex = 2;
-            this.lblOut08.Text = "0.0";
+            lblOut08.AutoSize = true;
+            lblOut08.Location = new Point(625, 155);
+            lblOut08.Name = "lblOut08";
+            lblOut08.Size = new Size(22, 15);
+            lblOut08.TabIndex = 2;
+            lblOut08.Text = "0.0";
             // 
             // tbrOut03
             // 
-            this.tbrOut03.Location = new System.Drawing.Point(571, 479);
-            this.tbrOut03.Maximum = 20;
-            this.tbrOut03.Name = "tbrOut03";
-            this.tbrOut03.Size = new System.Drawing.Size(356, 69);
-            this.tbrOut03.TabIndex = 0;
-            this.tbrOut03.Value = 20;
-            this.tbrOut03.Scroll += new System.EventHandler(this.tbrOut03_Scroll);
+            tbrOut03.Location = new Point(401, 348);
+            tbrOut03.Maximum = 20;
+            tbrOut03.Name = "tbrOut03";
+            tbrOut03.Size = new Size(220, 45);
+            tbrOut03.TabIndex = 0;
+            tbrOut03.Value = 20;
+            tbrOut03.Scroll += tbrOut03_Scroll;
             // 
             // label33
             // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(513, 260);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(67, 25);
-            this.label33.TabIndex = 1;
-            this.label33.Text = "OUT07";
+            label33.AutoSize = true;
+            label33.Location = new Point(353, 195);
+            label33.Name = "label33";
+            label33.Size = new Size(42, 15);
+            label33.TabIndex = 1;
+            label33.Text = "OUT07";
             // 
             // tbrOut02
             // 
-            this.tbrOut02.Location = new System.Drawing.Point(571, 530);
-            this.tbrOut02.Maximum = 20;
-            this.tbrOut02.Name = "tbrOut02";
-            this.tbrOut02.Size = new System.Drawing.Size(356, 69);
-            this.tbrOut02.TabIndex = 0;
-            this.tbrOut02.Value = 20;
-            this.tbrOut02.Scroll += new System.EventHandler(this.tbrOut02_Scroll);
+            tbrOut02.Location = new Point(401, 390);
+            tbrOut02.Maximum = 20;
+            tbrOut02.Name = "tbrOut02";
+            tbrOut02.Size = new Size(220, 45);
+            tbrOut02.TabIndex = 0;
+            tbrOut02.Value = 20;
+            tbrOut02.Scroll += tbrOut02_Scroll;
             // 
             // lblOut07
             // 
-            this.lblOut07.AutoSize = true;
-            this.lblOut07.Location = new System.Drawing.Point(933, 260);
-            this.lblOut07.Name = "lblOut07";
-            this.lblOut07.Size = new System.Drawing.Size(36, 25);
-            this.lblOut07.TabIndex = 2;
-            this.lblOut07.Text = "0.0";
+            lblOut07.AutoSize = true;
+            lblOut07.Location = new Point(625, 195);
+            lblOut07.Name = "lblOut07";
+            lblOut07.Size = new Size(22, 15);
+            lblOut07.TabIndex = 2;
+            lblOut07.Text = "0.0";
             // 
             // tbrOut01
             // 
-            this.tbrOut01.Location = new System.Drawing.Point(571, 581);
-            this.tbrOut01.Maximum = 20;
-            this.tbrOut01.Name = "tbrOut01";
-            this.tbrOut01.Size = new System.Drawing.Size(356, 69);
-            this.tbrOut01.TabIndex = 0;
-            this.tbrOut01.Value = 20;
-            this.tbrOut01.Scroll += new System.EventHandler(this.tbrOut01_Scroll);
+            tbrOut01.Location = new Point(401, 421);
+            tbrOut01.Maximum = 20;
+            tbrOut01.Name = "tbrOut01";
+            tbrOut01.Size = new Size(220, 45);
+            tbrOut01.TabIndex = 0;
+            tbrOut01.Value = 20;
+            tbrOut01.Scroll += tbrOut01_Scroll;
             // 
             // label35
             // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(513, 312);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(67, 25);
-            this.label35.TabIndex = 1;
-            this.label35.Text = "OUT06";
+            label35.AutoSize = true;
+            label35.Location = new Point(353, 237);
+            label35.Name = "label35";
+            label35.Size = new Size(42, 15);
+            label35.TabIndex = 1;
+            label35.Text = "OUT06";
             // 
             // tbrOut00
             // 
-            this.tbrOut00.Location = new System.Drawing.Point(571, 637);
-            this.tbrOut00.Maximum = 20;
-            this.tbrOut00.Name = "tbrOut00";
-            this.tbrOut00.Size = new System.Drawing.Size(356, 69);
-            this.tbrOut00.TabIndex = 0;
-            this.tbrOut00.Value = 20;
-            this.tbrOut00.Scroll += new System.EventHandler(this.tbrOut00_Scroll);
+            tbrOut00.Location = new Point(401, 453);
+            tbrOut00.Maximum = 20;
+            tbrOut00.Name = "tbrOut00";
+            tbrOut00.Size = new Size(220, 45);
+            tbrOut00.TabIndex = 0;
+            tbrOut00.Value = 20;
+            tbrOut00.Scroll += tbrOut00_Scroll;
             // 
             // lblOut06
             // 
-            this.lblOut06.AutoSize = true;
-            this.lblOut06.Location = new System.Drawing.Point(933, 312);
-            this.lblOut06.Name = "lblOut06";
-            this.lblOut06.Size = new System.Drawing.Size(36, 25);
-            this.lblOut06.TabIndex = 2;
-            this.lblOut06.Text = "0.0";
+            lblOut06.AutoSize = true;
+            lblOut06.Location = new Point(625, 237);
+            lblOut06.Name = "lblOut06";
+            lblOut06.Size = new Size(22, 15);
+            lblOut06.TabIndex = 2;
+            lblOut06.Text = "0.0";
             // 
             // label37
             // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(513, 368);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(67, 25);
-            this.label37.TabIndex = 1;
-            this.label37.Text = "OUT05";
+            label37.AutoSize = true;
+            label37.Location = new Point(353, 276);
+            label37.Name = "label37";
+            label37.Size = new Size(42, 15);
+            label37.TabIndex = 1;
+            label37.Text = "OUT05";
             // 
             // lblOut05
             // 
-            this.lblOut05.AutoSize = true;
-            this.lblOut05.Location = new System.Drawing.Point(933, 368);
-            this.lblOut05.Name = "lblOut05";
-            this.lblOut05.Size = new System.Drawing.Size(36, 25);
-            this.lblOut05.TabIndex = 2;
-            this.lblOut05.Text = "0.0";
+            lblOut05.AutoSize = true;
+            lblOut05.Location = new Point(625, 276);
+            lblOut05.Name = "lblOut05";
+            lblOut05.Size = new Size(22, 15);
+            lblOut05.TabIndex = 2;
+            lblOut05.Text = "0.0";
             // 
             // label39
             // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(513, 426);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(67, 25);
-            this.label39.TabIndex = 1;
-            this.label39.Text = "OUT04";
+            label39.AutoSize = true;
+            label39.Location = new Point(353, 310);
+            label39.Name = "label39";
+            label39.Size = new Size(42, 15);
+            label39.TabIndex = 1;
+            label39.Text = "OUT04";
             // 
             // lblOut04
             // 
-            this.lblOut04.AutoSize = true;
-            this.lblOut04.Location = new System.Drawing.Point(933, 426);
-            this.lblOut04.Name = "lblOut04";
-            this.lblOut04.Size = new System.Drawing.Size(36, 25);
-            this.lblOut04.TabIndex = 2;
-            this.lblOut04.Text = "0.0";
+            lblOut04.AutoSize = true;
+            lblOut04.Location = new Point(625, 310);
+            lblOut04.Name = "lblOut04";
+            lblOut04.Size = new Size(22, 15);
+            lblOut04.TabIndex = 2;
+            lblOut04.Text = "0.0";
             // 
             // label41
             // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(513, 479);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(67, 25);
-            this.label41.TabIndex = 1;
-            this.label41.Text = "OUT03";
+            label41.AutoSize = true;
+            label41.Location = new Point(353, 348);
+            label41.Name = "label41";
+            label41.Size = new Size(42, 15);
+            label41.TabIndex = 1;
+            label41.Text = "OUT03";
             // 
             // lblOut03
             // 
-            this.lblOut03.AutoSize = true;
-            this.lblOut03.Location = new System.Drawing.Point(933, 479);
-            this.lblOut03.Name = "lblOut03";
-            this.lblOut03.Size = new System.Drawing.Size(36, 25);
-            this.lblOut03.TabIndex = 2;
-            this.lblOut03.Text = "0.0";
+            lblOut03.AutoSize = true;
+            lblOut03.Location = new Point(625, 348);
+            lblOut03.Name = "lblOut03";
+            lblOut03.Size = new Size(22, 15);
+            lblOut03.TabIndex = 2;
+            lblOut03.Text = "0.0";
             // 
             // label43
             // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(513, 530);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(67, 25);
-            this.label43.TabIndex = 1;
-            this.label43.Text = "OUT02";
+            label43.AutoSize = true;
+            label43.Location = new Point(353, 390);
+            label43.Name = "label43";
+            label43.Size = new Size(42, 15);
+            label43.TabIndex = 1;
+            label43.Text = "OUT02";
             // 
             // lblOut02
             // 
-            this.lblOut02.AutoSize = true;
-            this.lblOut02.Location = new System.Drawing.Point(933, 530);
-            this.lblOut02.Name = "lblOut02";
-            this.lblOut02.Size = new System.Drawing.Size(36, 25);
-            this.lblOut02.TabIndex = 2;
-            this.lblOut02.Text = "0.0";
+            lblOut02.AutoSize = true;
+            lblOut02.Location = new Point(625, 390);
+            lblOut02.Name = "lblOut02";
+            lblOut02.Size = new Size(22, 15);
+            lblOut02.TabIndex = 2;
+            lblOut02.Text = "0.0";
             // 
             // label45
             // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(513, 581);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(67, 25);
-            this.label45.TabIndex = 1;
-            this.label45.Text = "OUT01";
+            label45.AutoSize = true;
+            label45.Location = new Point(353, 421);
+            label45.Name = "label45";
+            label45.Size = new Size(42, 15);
+            label45.TabIndex = 1;
+            label45.Text = "OUT01";
             // 
             // lblOut01
             // 
-            this.lblOut01.AutoSize = true;
-            this.lblOut01.Location = new System.Drawing.Point(935, 581);
-            this.lblOut01.Name = "lblOut01";
-            this.lblOut01.Size = new System.Drawing.Size(36, 25);
-            this.lblOut01.TabIndex = 2;
-            this.lblOut01.Text = "0.0";
+            lblOut01.AutoSize = true;
+            lblOut01.Location = new Point(627, 421);
+            lblOut01.Name = "lblOut01";
+            lblOut01.Size = new Size(22, 15);
+            lblOut01.TabIndex = 2;
+            lblOut01.Text = "0.0";
             // 
             // label47
             // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(513, 637);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(67, 25);
-            this.label47.TabIndex = 1;
-            this.label47.Text = "OUT00";
+            label47.AutoSize = true;
+            label47.Location = new Point(353, 453);
+            label47.Name = "label47";
+            label47.Size = new Size(42, 15);
+            label47.TabIndex = 1;
+            label47.Text = "OUT00";
             // 
             // lblOut00
             // 
-            this.lblOut00.AutoSize = true;
-            this.lblOut00.Location = new System.Drawing.Point(933, 637);
-            this.lblOut00.Name = "lblOut00";
-            this.lblOut00.Size = new System.Drawing.Size(36, 25);
-            this.lblOut00.TabIndex = 2;
-            this.lblOut00.Text = "0.0";
+            lblOut00.AutoSize = true;
+            lblOut00.Location = new Point(627, 453);
+            lblOut00.Name = "lblOut00";
+            lblOut00.Size = new Size(22, 15);
+            lblOut00.TabIndex = 2;
+            lblOut00.Text = "0.0";
             // 
             // tbrMid
             // 
-            this.tbrMid.Location = new System.Drawing.Point(335, 694);
-            this.tbrMid.Maximum = 20;
-            this.tbrMid.Name = "tbrMid";
-            this.tbrMid.Size = new System.Drawing.Size(356, 69);
-            this.tbrMid.TabIndex = 0;
-            this.tbrMid.Value = 20;
-            this.tbrMid.Scroll += new System.EventHandler(this.tbrMid_Scroll);
+            tbrMid.Location = new Point(273, 504);
+            tbrMid.Maximum = 20;
+            tbrMid.Name = "tbrMid";
+            tbrMid.Size = new Size(195, 45);
+            tbrMid.TabIndex = 0;
+            tbrMid.Value = 20;
+            tbrMid.Scroll += tbrMid_Scroll;
             // 
             // label49
             // 
-            this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(277, 694);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(46, 25);
-            this.label49.TabIndex = 1;
-            this.label49.Text = "MID";
+            label49.AutoSize = true;
+            label49.Location = new Point(238, 504);
+            label49.Name = "label49";
+            label49.Size = new Size(29, 15);
+            label49.TabIndex = 1;
+            label49.Text = "MID";
             // 
             // lblMId
             // 
-            this.lblMId.AutoSize = true;
-            this.lblMId.Location = new System.Drawing.Point(697, 694);
-            this.lblMId.Name = "lblMId";
-            this.lblMId.Size = new System.Drawing.Size(36, 25);
-            this.lblMId.TabIndex = 2;
-            this.lblMId.Text = "0.0";
+            lblMId.AutoSize = true;
+            lblMId.Location = new Point(474, 504);
+            lblMId.Name = "lblMId";
+            lblMId.Size = new Size(22, 15);
+            lblMId.TabIndex = 2;
+            lblMId.Text = "0.0";
             // 
             // cbxPresetIn
             // 
-            this.cbxPresetIn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxPresetIn.FormattingEnabled = true;
-            this.cbxPresetIn.Items.AddRange(new object[] {
-            "無し",
-            "sine",
-            "cosine",
-            "linear",
-            "reverse_linear",
-            "zeros"});
-            this.cbxPresetIn.Location = new System.Drawing.Point(1081, 155);
-            this.cbxPresetIn.Name = "cbxPresetIn";
-            this.cbxPresetIn.Size = new System.Drawing.Size(193, 33);
-            this.cbxPresetIn.TabIndex = 5;
+            cbxPresetIn.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxPresetIn.FormattingEnabled = true;
+            cbxPresetIn.Items.AddRange(new object[] { "無し", "sine", "cosine", "linear", "reverse_linear", "zeros" });
+            cbxPresetIn.Location = new Point(686, 120);
+            cbxPresetIn.Name = "cbxPresetIn";
+            cbxPresetIn.Size = new Size(124, 23);
+            cbxPresetIn.TabIndex = 5;
             // 
             // label51
             // 
-            this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(1076, 119);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(110, 25);
-            this.label51.TabIndex = 6;
-            this.label51.Text = "INのプリセット";
+            label51.AutoSize = true;
+            label51.Location = new Point(686, 102);
+            label51.Name = "label51";
+            label51.Size = new Size(72, 15);
+            label51.TabIndex = 6;
+            label51.Text = "INのプリセット";
             // 
             // nudOffsetIn
             // 
-            this.nudOffsetIn.DecimalPlaces = 2;
-            this.nudOffsetIn.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            131072});
-            this.nudOffsetIn.Location = new System.Drawing.Point(1088, 248);
-            this.nudOffsetIn.Maximum = new decimal(new int[] {
-            125,
-            0,
-            0,
-            131072});
-            this.nudOffsetIn.Name = "nudOffsetIn";
-            this.nudOffsetIn.Size = new System.Drawing.Size(120, 31);
-            this.nudOffsetIn.TabIndex = 7;
+            nudOffsetIn.DecimalPlaces = 2;
+            nudOffsetIn.Increment = new decimal(new int[] { 5, 0, 0, 131072 });
+            nudOffsetIn.Location = new Point(686, 179);
+            nudOffsetIn.Maximum = new decimal(new int[] { 125, 0, 0, 131072 });
+            nudOffsetIn.Name = "nudOffsetIn";
+            nudOffsetIn.Size = new Size(86, 23);
+            nudOffsetIn.TabIndex = 7;
             // 
             // label52
             // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(1083, 195);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(132, 50);
-            this.label52.TabIndex = 8;
-            this.label52.Text = "INのオフセット\r\n0.25未満で無効";
+            label52.AutoSize = true;
+            label52.Location = new Point(686, 146);
+            label52.Name = "label52";
+            label52.Size = new Size(86, 30);
+            label52.TabIndex = 8;
+            label52.Text = "INのオフセット\r\n0.25未満で無効";
             // 
             // cbxPresetOut
             // 
-            this.cbxPresetOut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxPresetOut.FormattingEnabled = true;
-            this.cbxPresetOut.Items.AddRange(new object[] {
-            "無し",
-            "sine",
-            "cosine",
-            "linear",
-            "reverse_linear",
-            "zeros"});
-            this.cbxPresetOut.Location = new System.Drawing.Point(1081, 348);
-            this.cbxPresetOut.Name = "cbxPresetOut";
-            this.cbxPresetOut.Size = new System.Drawing.Size(193, 33);
-            this.cbxPresetOut.TabIndex = 5;
+            cbxPresetOut.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxPresetOut.FormattingEnabled = true;
+            cbxPresetOut.Items.AddRange(new object[] { "無し", "sine", "cosine", "linear", "reverse_linear", "zeros" });
+            cbxPresetOut.Location = new Point(686, 236);
+            cbxPresetOut.Name = "cbxPresetOut";
+            cbxPresetOut.Size = new Size(131, 23);
+            cbxPresetOut.TabIndex = 5;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1081, 320);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 25);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "OUTのプリセット";
+            label2.AutoSize = true;
+            label2.Location = new Point(686, 218);
+            label2.Name = "label2";
+            label2.Size = new Size(83, 15);
+            label2.TabIndex = 6;
+            label2.Text = "OUTのプリセット";
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label4.Location = new System.Drawing.Point(26, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(195, 32);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "ウェイトの手動調整";
+            label4.AutoSize = true;
+            label4.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(26, 9);
+            label4.Name = "label4";
+            label4.Size = new Size(131, 21);
+            label4.TabIndex = 9;
+            label4.Text = "ウェイトの手動調整";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label6.Location = new System.Drawing.Point(1075, 9);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(186, 32);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "ウェイトのプリセット";
+            label6.AutoSize = true;
+            label6.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(686, 32);
+            label6.Name = "label6";
+            label6.Size = new Size(124, 21);
+            label6.TabIndex = 9;
+            label6.Text = "ウェイトのプリセット";
             // 
             // nudOffsetOut
             // 
-            this.nudOffsetOut.DecimalPlaces = 2;
-            this.nudOffsetOut.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            131072});
-            this.nudOffsetOut.Location = new System.Drawing.Point(1088, 443);
-            this.nudOffsetOut.Maximum = new decimal(new int[] {
-            125,
-            0,
-            0,
-            131072});
-            this.nudOffsetOut.Name = "nudOffsetOut";
-            this.nudOffsetOut.Size = new System.Drawing.Size(120, 31);
-            this.nudOffsetOut.TabIndex = 7;
+            nudOffsetOut.DecimalPlaces = 2;
+            nudOffsetOut.Increment = new decimal(new int[] { 5, 0, 0, 131072 });
+            nudOffsetOut.Location = new Point(686, 295);
+            nudOffsetOut.Maximum = new decimal(new int[] { 125, 0, 0, 131072 });
+            nudOffsetOut.Name = "nudOffsetOut";
+            nudOffsetOut.Size = new Size(86, 23);
+            nudOffsetOut.TabIndex = 7;
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1083, 390);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(132, 50);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "OUTのオフセット\r\n0.25未満で無効";
+            label8.AutoSize = true;
+            label8.Location = new Point(686, 262);
+            label8.Name = "label8";
+            label8.Size = new Size(86, 30);
+            label8.TabIndex = 8;
+            label8.Text = "OUTのオフセット\r\n0.25未満で無効";
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(1076, 41);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(239, 50);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "これを使用すると、\r\n手動調整の値は使用されません";
+            label10.AutoSize = true;
+            label10.Location = new Point(686, 67);
+            label10.Name = "label10";
+            label10.Size = new Size(158, 30);
+            label10.TabIndex = 10;
+            label10.Text = "これを使用すると、\r\n手動調整の値は使用されません";
             // 
             // tbrThreshold
             // 
-            this.tbrThreshold.Location = new System.Drawing.Point(1024, 555);
-            this.tbrThreshold.Maximum = 20;
-            this.tbrThreshold.Name = "tbrThreshold";
-            this.tbrThreshold.Size = new System.Drawing.Size(293, 69);
-            this.tbrThreshold.TabIndex = 0;
-            this.tbrThreshold.Scroll += new System.EventHandler(this.tbrThreshold_Scroll);
+            tbrThreshold.Location = new Point(686, 366);
+            tbrThreshold.Maximum = 20;
+            tbrThreshold.Name = "tbrThreshold";
+            tbrThreshold.Size = new Size(177, 45);
+            tbrThreshold.TabIndex = 0;
+            tbrThreshold.Scroll += tbrThreshold_Scroll;
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(1034, 505);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(297, 50);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "モジュール無効化の閾値\r\nこの値以下のモジュールは作成されません";
+            label12.AutoSize = true;
+            label12.Location = new Point(686, 333);
+            label12.Name = "label12";
+            label12.Size = new Size(197, 30);
+            label12.TabIndex = 1;
+            label12.Text = "モジュール無効化の閾値\r\nこの値以下のモジュールは作成されません";
             // 
             // lblThreshold
             // 
-            this.lblThreshold.AutoSize = true;
-            this.lblThreshold.Location = new System.Drawing.Point(1323, 555);
-            this.lblThreshold.Name = "lblThreshold";
-            this.lblThreshold.Size = new System.Drawing.Size(36, 25);
-            this.lblThreshold.TabIndex = 2;
-            this.lblThreshold.Text = "0.0";
+            lblThreshold.AutoSize = true;
+            lblThreshold.Location = new Point(869, 366);
+            lblThreshold.Name = "lblThreshold";
+            lblThreshold.Size = new Size(22, 15);
+            lblThreshold.TabIndex = 2;
+            lblThreshold.Text = "0.0";
             // 
             // FormBlockWeight
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1389, 754);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.nudOffsetOut);
-            this.Controls.Add(this.label52);
-            this.Controls.Add(this.nudOffsetIn);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label51);
-            this.Controls.Add(this.cbxPresetOut);
-            this.Controls.Add(this.cbxPresetIn);
-            this.Controls.Add(this.btnApplyChanges);
-            this.Controls.Add(this.btnDiscardChanges);
-            this.Controls.Add(this.cbxEnableBlockWeight);
-            this.Controls.Add(this.lblThreshold);
-            this.Controls.Add(this.lblMId);
-            this.Controls.Add(this.lblOut00);
-            this.Controls.Add(this.lblIn11);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label49);
-            this.Controls.Add(this.label47);
-            this.Controls.Add(this.label23);
-            this.Controls.Add(this.lblOut01);
-            this.Controls.Add(this.lblIn10);
-            this.Controls.Add(this.label45);
-            this.Controls.Add(this.label21);
-            this.Controls.Add(this.lblOut02);
-            this.Controls.Add(this.lblIn09);
-            this.Controls.Add(this.label43);
-            this.Controls.Add(this.label19);
-            this.Controls.Add(this.lblOut03);
-            this.Controls.Add(this.lblIn08);
-            this.Controls.Add(this.label41);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.lblOut04);
-            this.Controls.Add(this.lblIn07);
-            this.Controls.Add(this.label39);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.lblOut05);
-            this.Controls.Add(this.lblIn06);
-            this.Controls.Add(this.label37);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.lblOut06);
-            this.Controls.Add(this.lblIn05);
-            this.Controls.Add(this.tbrThreshold);
-            this.Controls.Add(this.tbrMid);
-            this.Controls.Add(this.tbrOut00);
-            this.Controls.Add(this.tbrIn11);
-            this.Controls.Add(this.label35);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.tbrOut01);
-            this.Controls.Add(this.tbrIn10);
-            this.Controls.Add(this.lblOut07);
-            this.Controls.Add(this.lblIn04);
-            this.Controls.Add(this.tbrOut02);
-            this.Controls.Add(this.tbrIn09);
-            this.Controls.Add(this.label33);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.tbrOut03);
-            this.Controls.Add(this.tbrIn08);
-            this.Controls.Add(this.lblOut08);
-            this.Controls.Add(this.lblIn03);
-            this.Controls.Add(this.tbrOut04);
-            this.Controls.Add(this.tbrIn07);
-            this.Controls.Add(this.label31);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.tbrOut05);
-            this.Controls.Add(this.tbrIn06);
-            this.Controls.Add(this.lblOut09);
-            this.Controls.Add(this.lblIn02);
-            this.Controls.Add(this.tbrOut06);
-            this.Controls.Add(this.tbrIn05);
-            this.Controls.Add(this.label29);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.tbrOut07);
-            this.Controls.Add(this.tbrIn04);
-            this.Controls.Add(this.lblOut10);
-            this.Controls.Add(this.lblIn01);
-            this.Controls.Add(this.tbrOut08);
-            this.Controls.Add(this.tbrIn03);
-            this.Controls.Add(this.label27);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.tbrOut09);
-            this.Controls.Add(this.tbrIn02);
-            this.Controls.Add(this.lblOut11);
-            this.Controls.Add(this.lblIn00);
-            this.Controls.Add(this.tbrOut10);
-            this.Controls.Add(this.tbrIn01);
-            this.Controls.Add(this.label25);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.tbrOut11);
-            this.Controls.Add(this.tbrIn00);
-            this.Font = new System.Drawing.Font("Yu Gothic UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MaximizeBox = false;
-            this.Name = "FormBlockWeight";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Block Weight";
-            this.Load += new System.EventHandler(this.FormBlockWeight_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn00)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn01)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn02)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn03)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn04)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn05)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn06)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn07)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn08)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn09)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrIn11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut09)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut08)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut07)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut06)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut05)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut04)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut03)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut02)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut01)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrOut00)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrMid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudOffsetIn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudOffsetOut)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbrThreshold)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(907, 555);
+            Controls.Add(label10);
+            Controls.Add(label6);
+            Controls.Add(label4);
+            Controls.Add(label8);
+            Controls.Add(nudOffsetOut);
+            Controls.Add(label52);
+            Controls.Add(nudOffsetIn);
+            Controls.Add(label2);
+            Controls.Add(label51);
+            Controls.Add(cbxPresetOut);
+            Controls.Add(cbxPresetIn);
+            Controls.Add(btnApplyChanges);
+            Controls.Add(btnDiscardChanges);
+            Controls.Add(cbxEnableBlockWeight);
+            Controls.Add(lblThreshold);
+            Controls.Add(lblMId);
+            Controls.Add(lblOut00);
+            Controls.Add(lblIn11);
+            Controls.Add(label12);
+            Controls.Add(label49);
+            Controls.Add(label47);
+            Controls.Add(label23);
+            Controls.Add(lblOut01);
+            Controls.Add(lblIn10);
+            Controls.Add(label45);
+            Controls.Add(label21);
+            Controls.Add(lblOut02);
+            Controls.Add(lblIn09);
+            Controls.Add(label43);
+            Controls.Add(label19);
+            Controls.Add(lblOut03);
+            Controls.Add(lblIn08);
+            Controls.Add(label41);
+            Controls.Add(label17);
+            Controls.Add(lblOut04);
+            Controls.Add(lblIn07);
+            Controls.Add(label39);
+            Controls.Add(label15);
+            Controls.Add(lblOut05);
+            Controls.Add(lblIn06);
+            Controls.Add(label37);
+            Controls.Add(label13);
+            Controls.Add(lblOut06);
+            Controls.Add(lblIn05);
+            Controls.Add(tbrThreshold);
+            Controls.Add(tbrMid);
+            Controls.Add(tbrOut00);
+            Controls.Add(tbrIn11);
+            Controls.Add(label35);
+            Controls.Add(label11);
+            Controls.Add(tbrOut01);
+            Controls.Add(tbrIn10);
+            Controls.Add(lblOut07);
+            Controls.Add(lblIn04);
+            Controls.Add(tbrOut02);
+            Controls.Add(tbrIn09);
+            Controls.Add(label33);
+            Controls.Add(label9);
+            Controls.Add(tbrOut03);
+            Controls.Add(tbrIn08);
+            Controls.Add(lblOut08);
+            Controls.Add(lblIn03);
+            Controls.Add(tbrOut04);
+            Controls.Add(tbrIn07);
+            Controls.Add(label31);
+            Controls.Add(label7);
+            Controls.Add(tbrOut05);
+            Controls.Add(tbrIn06);
+            Controls.Add(lblOut09);
+            Controls.Add(lblIn02);
+            Controls.Add(tbrOut06);
+            Controls.Add(tbrIn05);
+            Controls.Add(label29);
+            Controls.Add(label5);
+            Controls.Add(tbrOut07);
+            Controls.Add(tbrIn04);
+            Controls.Add(lblOut10);
+            Controls.Add(lblIn01);
+            Controls.Add(tbrOut08);
+            Controls.Add(tbrIn03);
+            Controls.Add(label27);
+            Controls.Add(label3);
+            Controls.Add(tbrOut09);
+            Controls.Add(tbrIn02);
+            Controls.Add(lblOut11);
+            Controls.Add(lblIn00);
+            Controls.Add(tbrOut10);
+            Controls.Add(tbrIn01);
+            Controls.Add(label25);
+            Controls.Add(label1);
+            Controls.Add(tbrOut11);
+            Controls.Add(tbrIn00);
+            Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            Name = "FormBlockWeight";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Block Weight";
+            Load += FormBlockWeight_Load;
+            ((System.ComponentModel.ISupportInitialize)tbrIn00).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn01).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn02).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn03).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn04).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn05).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn06).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn07).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn08).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn09).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn10).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrIn11).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut11).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut10).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut09).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut08).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut07).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut06).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut05).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut04).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut03).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut02).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut01).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrOut00).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrMid).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudOffsetIn).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudOffsetOut).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrThreshold).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
