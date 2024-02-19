@@ -251,7 +251,7 @@ namespace Kohya_lora_trainer
             // cbxShuffle
             // 
             cbxShuffle.AutoSize = true;
-            cbxShuffle.Location = new Point(100, 181);
+            cbxShuffle.Location = new Point(102, 184);
             cbxShuffle.Name = "cbxShuffle";
             cbxShuffle.Size = new Size(131, 19);
             cbxShuffle.TabIndex = 30;
@@ -456,7 +456,7 @@ namespace Kohya_lora_trainer
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(521, 187);
+            label16.Location = new Point(521, 182);
             label16.Name = "label16";
             label16.Size = new Size(141, 15);
             label16.TabIndex = 42;
@@ -549,7 +549,7 @@ namespace Kohya_lora_trainer
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(534, 364);
+            label5.Location = new Point(538, 364);
             label5.Name = "label5";
             label5.Size = new Size(102, 15);
             label5.TabIndex = 60;
