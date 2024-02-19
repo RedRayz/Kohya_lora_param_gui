@@ -374,6 +374,24 @@ namespace Kohya_lora_trainer
             if (NotifyBadParams() != DialogResult.Yes)
                 return;
 
+            if (File.Exists(TrainParams.Current.OutputPath + "\\" + TrainParams.Current.OutputName + ".safetensors"))
+            {
+                var res = MessageBox.Show("出力先に同名のファイルが存在します。学習完了時に上書きされますがよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(res == DialogResult.No) return;
+            }
+            TrainCompleteAction act = TrainCompleteAction.None;
+            if(rbtShutdown.Checked)
+            {
+                act = TrainCompleteAction.Shutdown;
+            }else if (rbtSleep.Checked)
+            {
+                act = TrainCompleteAction.Suspend;
+            }else if (rbtBenckmark.Checked)
+            {
+                act = TrainCompleteAction.ShowTimetaken;
+            }
+
+
             if (BatchProcess.BatchStack.Count > 0)
             {
                 BatchProcess.IsCancel = false;
@@ -414,7 +432,7 @@ namespace Kohya_lora_trainer
                         continue;
                     }
                     Debug.WriteLine("Start training: " + pth);
-                    Form train0 = new TrainForm(rbtBenckmark.Checked, rbtShutdown.Checked, false);
+                    Form train0 = new TrainForm(act, false);
                     train0.ShowDialog();
                     train0.Dispose();
                     BatchProcess.CompletedCount++;
@@ -429,9 +447,9 @@ namespace Kohya_lora_trainer
                     }
                 }
 
-                if (rbtShutdown.Checked && !BatchProcess.IsCancel)
+                if ((act == TrainCompleteAction.Shutdown || act == TrainCompleteAction.Suspend) && !BatchProcess.IsCancel)
                 {
-                    Form train0 = new TrainForm(false, rbtShutdown.Checked, true);
+                    Form train0 = new TrainForm(act, true);
                     train0.ShowDialog();
                     train0.Dispose();
                 }
@@ -472,7 +490,7 @@ namespace Kohya_lora_trainer
                     return;
             }
 
-            Form train = new TrainForm(rbtBenckmark.Checked, rbtShutdown.Checked, false);
+            Form train = new TrainForm(act, false);
             train.ShowDialog();
             train.Dispose();
         }

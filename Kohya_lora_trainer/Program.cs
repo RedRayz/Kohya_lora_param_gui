@@ -16,9 +16,7 @@ namespace Kohya_lora_trainer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-#if NET5_0_OR_GREATER
             Application.SetHighDpiMode(HighDpiMode.DpiUnaware);
-#endif
             Application.Run(new Form1());
         }
     }

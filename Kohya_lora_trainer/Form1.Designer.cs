@@ -96,6 +96,7 @@ namespace Kohya_lora_trainer
             btnLeco = new Button();
             label13 = new Label();
             cbxEpochOrStep = new ComboBox();
+            rbtSleep = new RadioButton();
             ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDim).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudResolution).BeginInit();
@@ -251,7 +252,7 @@ namespace Kohya_lora_trainer
             // cbxShuffle
             // 
             cbxShuffle.AutoSize = true;
-            cbxShuffle.Location = new Point(100, 181);
+            cbxShuffle.Location = new Point(102, 184);
             cbxShuffle.Name = "cbxShuffle";
             cbxShuffle.Size = new Size(131, 19);
             cbxShuffle.TabIndex = 30;
@@ -456,7 +457,7 @@ namespace Kohya_lora_trainer
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(521, 187);
+            label16.Location = new Point(521, 182);
             label16.Name = "label16";
             label16.Size = new Size(141, 15);
             label16.TabIndex = 42;
@@ -549,7 +550,7 @@ namespace Kohya_lora_trainer
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(534, 364);
+            label5.Location = new Point(538, 364);
             label5.Name = "label5";
             label5.Size = new Size(102, 15);
             label5.TabIndex = 60;
@@ -651,12 +652,13 @@ namespace Kohya_lora_trainer
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(rbtSleep);
             groupBox1.Controls.Add(rbtShutdown);
             groupBox1.Controls.Add(rbtBenckmark);
             groupBox1.Controls.Add(rbtDoNothing);
             groupBox1.Location = new Point(20, 338);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(295, 46);
+            groupBox1.Size = new Size(386, 46);
             groupBox1.TabIndex = 79;
             groupBox1.TabStop = false;
             groupBox1.Text = "学習終了後の動作";
@@ -752,6 +754,16 @@ namespace Kohya_lora_trainer
             cbxEpochOrStep.Size = new Size(76, 23);
             cbxEpochOrStep.TabIndex = 86;
             cbxEpochOrStep.SelectedIndexChanged += cbxEpochOrStep_SelectedIndexChanged;
+            // 
+            // rbtSleep
+            // 
+            rbtSleep.AutoSize = true;
+            rbtSleep.Location = new Point(263, 21);
+            rbtSleep.Name = "rbtSleep";
+            rbtSleep.Size = new Size(59, 19);
+            rbtSleep.TabIndex = 2;
+            rbtSleep.Text = "スリープ";
+            rbtSleep.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -909,6 +921,7 @@ namespace Kohya_lora_trainer
         private ComboBox cbxSDType;
         private Label label13;
         private ComboBox cbxEpochOrStep;
+        private RadioButton rbtSleep;
     }
 }
 
