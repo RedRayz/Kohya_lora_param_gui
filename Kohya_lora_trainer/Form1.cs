@@ -374,6 +374,12 @@ namespace Kohya_lora_trainer
             if (NotifyBadParams() != DialogResult.Yes)
                 return;
 
+            if (File.Exists(TrainParams.Current.OutputPath + "\\" + TrainParams.Current.OutputName + ".safetensors"))
+            {
+                var res = MessageBox.Show("出力先に同名のファイルが存在します。学習完了時に上書きされますがよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if(res == DialogResult.No) return;
+            }
+
             if (BatchProcess.BatchStack.Count > 0)
             {
                 BatchProcess.IsCancel = false;
