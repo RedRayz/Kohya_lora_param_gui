@@ -15,22 +15,22 @@ namespace Kohya_lora_trainer
 {
     public partial class TrainForm : Form
     {
-        private Process process;
-        private bool BenchMarkMode, ShutdownAfterComplete, ShutdownOnly;
-        private Stopwatch stopwatch;
+        private Process? process;
+        private bool ShutdownOnly;
+        private Stopwatch? stopwatch;
         private int Duration = 60;
+        private TrainCompleteAction TrainCompletedAction;
 
-        public TrainForm(bool benchMarkMode, bool shutdownAfterComplete, bool shutdownOnly)
+        public TrainForm(TrainCompleteAction act, bool shutdownOnly)
         {
             InitializeComponent();
-            BenchMarkMode = benchMarkMode;
-            ShutdownAfterComplete = shutdownAfterComplete;
             ShutdownOnly = shutdownOnly;
+            TrainCompletedAction = act;
         }
 
         private void TrainForm_Load(object sender, EventArgs e)
         {
-            if (ShutdownOnly && ShutdownAfterComplete)
+            if (ShutdownOnly && (TrainCompletedAction == TrainCompleteAction.Shutdown || TrainCompletedAction == TrainCompleteAction.Suspend))
             {
                 btnCopyCmd.Enabled = false;
                 btnStop.Enabled = false;
@@ -38,7 +38,7 @@ namespace Kohya_lora_trainer
                 lblCountdown.Visible = true;
                 timer1.Interval = 1000;
                 timer1.Start();
-                lblCountdown.Text = Duration.ToString() + "秒後にシャットダウンします \n しない場合はこのウィンドウを閉じてください";
+                UpdateCountdownText();
                 return;
             }
 
@@ -58,7 +58,7 @@ namespace Kohya_lora_trainer
 
             StringBuilder sbCmd = new StringBuilder();
 
-            if (BenchMarkMode || ShutdownAfterComplete || BatchProcess.IsRunning)
+            if (TrainCompletedAction != TrainCompleteAction.None || BatchProcess.IsRunning)
             {
                 sbCmd.Append(@"/c ");
             }
@@ -82,7 +82,7 @@ namespace Kohya_lora_trainer
             lblCountdown.Text = string.Empty;
             sbCmd.Append(MyUtils.GenerateCommands());
 
-            if (BenchMarkMode || (BatchProcess.IsRunning && BatchProcess.LogResultText))
+            if (TrainCompletedAction == TrainCompleteAction.ShowTimetaken || (BatchProcess.IsRunning && BatchProcess.LogResultText))
             {
                 stopwatch = Stopwatch.StartNew();
             }
@@ -100,7 +100,7 @@ namespace Kohya_lora_trainer
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if (ShutdownAfterComplete)
+            if (TrainCompletedAction == TrainCompleteAction.Shutdown || TrainCompletedAction == TrainCompleteAction.Suspend)
             {
                 Duration = 60;
                 timer1.Stop();
@@ -182,7 +182,7 @@ namespace Kohya_lora_trainer
                 return;
             }
 
-            if (BenchMarkMode && stopwatch != null)
+            if (TrainCompletedAction == TrainCompleteAction.ShowTimetaken && stopwatch != null)
             {
                 stopwatch.Stop();
                 double tos = stopwatch.Elapsed.TotalSeconds;
@@ -199,12 +199,12 @@ namespace Kohya_lora_trainer
 
 
 
-            if (ShutdownAfterComplete)
+            if (TrainCompletedAction == TrainCompleteAction.Shutdown || TrainCompletedAction == TrainCompleteAction.Suspend)
             {
                 lblCountdown.Visible = true;
                 timer1.Interval = 1000;
                 timer1.Start();
-                lblCountdown.Text = Duration.ToString() + "秒後にシャットダウンします \n しない場合はこのウィンドウを閉じてください";
+                UpdateCountdownText();
             }
         }
 
@@ -232,28 +232,49 @@ namespace Kohya_lora_trainer
                 Duration = -1;
                 if (timer1.Enabled)
                     timer1.Stop();
-                ShutdownPC();
+                ShutdownOrSuspendPC();
                 Close();
                 //MessageBox.Show("ここでシャットダウンする", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (Duration > 0)
             {
                 Duration--;
-                lblCountdown.Text = Duration.ToString() + "秒後にシャットダウンします \n しない場合はこのウィンドウを閉じてください";
+                UpdateCountdownText();
             }
         }
 
-        private void ShutdownPC()
+        private void UpdateCountdownText()
         {
-            ProcessStartInfo ps = new ProcessStartInfo()
+            switch (TrainCompletedAction)
             {
-                FileName = "shutdown.exe",
-                Arguments = "/s /t 1",
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
+                case TrainCompleteAction.Shutdown:
+                    lblCountdown.Text = Duration.ToString() + "秒後にシャットダウンします \n しない場合はこのウィンドウを閉じてください";
+                    break;
+                case TrainCompleteAction.Suspend:
+                    lblCountdown.Text = Duration.ToString() + "秒後にスリープします \n しない場合はこのウィンドウを閉じてください";
+                    break;
+            }
+        }
 
-            Process.Start(ps);
+        private void ShutdownOrSuspendPC()
+        {
+            switch(TrainCompletedAction)
+            {
+                case TrainCompleteAction.Shutdown:
+                    ProcessStartInfo ps = new ProcessStartInfo()
+                    {
+                        FileName = "shutdown.exe",
+                        Arguments = "/s /t 1",
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    };
+
+                    Process.Start(ps);
+                    break;
+                case TrainCompleteAction.Suspend:
+                    Application.SetSuspendState(PowerState.Suspend, false, false);
+                    break;
+            }
         }
     }
 }

@@ -301,4 +301,11 @@ namespace Kohya_lora_trainer {
         XL
     }
 
+    public enum TrainCompleteAction
+    {
+        None,
+        ShowTimetaken,
+        Shutdown,
+        Suspend
+    }
 }
