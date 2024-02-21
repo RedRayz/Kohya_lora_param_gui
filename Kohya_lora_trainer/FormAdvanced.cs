@@ -287,7 +287,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.NoBucketUpscaling = cbxNoUpscale.Checked;
             TrainParams.Current.UseWarmupInit = cbxUseWarmupInit.Checked;
             TrainParams.Current.ClipSkip = (int)nudClipSkip.Value;
-            TrainParams.Current.Seed = (int)nudSeed.Value;
+            TrainParams.Current.Seed = (long)nudSeed.Value;
             TrainParams.Current.CaptionFileExtension = tbxExtension.Text;
             TrainParams.Current.UseGradient = cbxUseGradient.Checked;
             TrainParams.Current.LoraModelPath = lblLoRAmodelPath.Text;
