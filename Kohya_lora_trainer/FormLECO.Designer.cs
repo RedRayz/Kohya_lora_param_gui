@@ -95,6 +95,7 @@
             btnTrainLECO = new Button();
             btnUpdateLECO = new Button();
             btnInstallLECO = new Button();
+            label29 = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudBatchSize).BeginInit();
@@ -122,6 +123,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(label29);
             tabPage1.Controls.Add(label28);
             tabPage1.Controls.Add(nudBatchSize);
             tabPage1.Controls.Add(nudResolution);
@@ -355,10 +357,10 @@
             tabPage2.Controls.Add(label6);
             tabPage2.Controls.Add(tbxPromptPath);
             tabPage2.Controls.Add(tbxModelPath);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(602, 526);
+            tabPage2.Size = new Size(602, 524);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "config生成";
             tabPage2.UseVisualStyleBackColor = true;
@@ -736,9 +738,9 @@
             tabPage3.Controls.Add(btnTrainLECO);
             tabPage3.Controls.Add(btnUpdateLECO);
             tabPage3.Controls.Add(btnInstallLECO);
-            tabPage3.Location = new Point(4, 24);
+            tabPage3.Location = new Point(4, 26);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(602, 526);
+            tabPage3.Size = new Size(602, 524);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "インストール・更新・学習";
             tabPage3.UseVisualStyleBackColor = true;
@@ -791,6 +793,15 @@
             btnInstallLECO.UseVisualStyleBackColor = true;
             btnInstallLECO.Click += btnInstallLECO_Click;
             // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Location = new Point(394, 494);
+            label29.Name = "label29";
+            label29.Size = new Size(162, 15);
+            label29.TabIndex = 7;
+            label29.Text = "注意:SD1.5のみ対応しています。";
+            // 
             // FormLECO
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -804,7 +815,7 @@
             MinimizeBox = false;
             Name = "FormLECO";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "LECO";
+            Text = "LECO(SD1.5 only)";
             Load += FormLECO_Load;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
@@ -893,5 +904,6 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label28;
+        private Label label29;
     }
 }
