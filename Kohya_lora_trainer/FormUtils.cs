@@ -13,6 +13,8 @@ using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.WindowsAPICodePack.Shell;
 
+
+#pragma warning disable CA1416
 namespace Kohya_lora_trainer
 {
     public partial class FormUtils : Form
@@ -275,6 +277,54 @@ namespace Kohya_lora_trainer
         private void btnClearResizeOutput_Click(object sender, EventArgs e)
         {
             lblOutputPath.Text = string.Empty;
+        }
+
+        private void btnDeleteNpz_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog cof = new CommonOpenFileDialog();
+            cof.Title = "npzが入ったディレクトリの選択";
+            cof.IsFolderPicker = true;
+            cof.RestoreDirectory = true;
+            if (cof.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                int removedCnt = 0;
+                int errorCount = 0;
+                string[] files = Directory.GetFiles(cof.FileName);
+                foreach (string file in files)
+                {
+                    try
+                    {
+                        string ext = Path.GetExtension(file).ToLower();
+                        if (ext == ".npz")
+                        {
+                            File.Delete(file);
+                            removedCnt++;
+                        }
+                    }
+                    catch
+                    {
+                        errorCount++;
+                    }
+                }
+
+                if (removedCnt > 0)
+                {
+                    if (errorCount == 0)
+                    {
+                        MessageBox.Show($"{removedCnt}件のキャッシュを消去しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        
+                    }
+                    else
+                    {
+                        MessageBox.Show($"{removedCnt}件のキャッシュを消去し、\n{errorCount}件がエラーで失敗しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    
+                }
+                else
+                    MessageBox.Show("対象のファイルはありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            }
         }
     }
 }

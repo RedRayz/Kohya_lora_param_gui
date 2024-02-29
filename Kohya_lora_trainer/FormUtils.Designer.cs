@@ -64,6 +64,8 @@
             label6 = new Label();
             tbxTaggerExclude = new TextBox();
             toolTip1 = new ToolTip(components);
+            btnDeleteNpz = new Button();
+            label12 = new Label();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -76,7 +78,7 @@
             // 
             // btnRunTensorboard
             // 
-            btnRunTensorboard.Location = new Point(184, 66);
+            btnRunTensorboard.Location = new Point(183, 29);
             btnRunTensorboard.Margin = new Padding(3, 4, 3, 4);
             btnRunTensorboard.Name = "btnRunTensorboard";
             btnRunTensorboard.Size = new Size(150, 35);
@@ -88,7 +90,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(184, 105);
+            label3.Location = new Point(183, 68);
             label3.Name = "label3";
             label3.Size = new Size(158, 15);
             label3.TabIndex = 1;
@@ -185,6 +187,8 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(label12);
+            tabPage1.Controls.Add(btnDeleteNpz);
             tabPage1.Controls.Add(btnRegenVenv);
             tabPage1.Controls.Add(btnRunTensorboard);
             tabPage1.Controls.Add(label8);
@@ -199,7 +203,7 @@
             // 
             // btnRegenVenv
             // 
-            btnRegenVenv.Location = new Point(184, 149);
+            btnRegenVenv.Location = new Point(183, 112);
             btnRegenVenv.Name = "btnRegenVenv";
             btnRegenVenv.Size = new Size(150, 35);
             btnRegenVenv.TabIndex = 2;
@@ -210,7 +214,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(104, 187);
+            label8.Location = new Point(103, 150);
             label8.Name = "label8";
             label8.Size = new Size(315, 30);
             label8.TabIndex = 1;
@@ -320,9 +324,9 @@
             tabPage4.Controls.Add(nudTaggerBatchSize);
             tabPage4.Controls.Add(label6);
             tabPage4.Controls.Add(tbxTaggerExclude);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 26);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(525, 319);
+            tabPage4.Size = new Size(525, 317);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Tagger";
             tabPage4.UseVisualStyleBackColor = true;
@@ -430,6 +434,25 @@
             tbxTaggerExclude.Size = new Size(432, 23);
             tbxTaggerExclude.TabIndex = 1;
             // 
+            // btnDeleteNpz
+            // 
+            btnDeleteNpz.Location = new Point(183, 199);
+            btnDeleteNpz.Name = "btnDeleteNpz";
+            btnDeleteNpz.Size = new Size(150, 35);
+            btnDeleteNpz.TabIndex = 3;
+            btnDeleteNpz.Text = ".npzの消去";
+            btnDeleteNpz.UseVisualStyleBackColor = true;
+            btnDeleteNpz.Click += btnDeleteNpz_Click;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(135, 237);
+            label12.Name = "label12";
+            label12.Size = new Size(253, 15);
+            label12.TabIndex = 4;
+            label12.Text = "latentやte_outputのキャッシュファイルを消去します。";
+            // 
             // FormUtils
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -497,5 +520,7 @@
         private Label label8;
         private Button btnClearResizeOutput;
         private Label label10;
+        private Label label12;
+        private Button btnDeleteNpz;
     }
 }
