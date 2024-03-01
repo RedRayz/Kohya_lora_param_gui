@@ -48,6 +48,8 @@
             tabPage2 = new TabPage();
             btnClearResizeOutput = new Button();
             label10 = new Label();
+            label13 = new Label();
+            numericUpDown1 = new NumericUpDown();
             tabPage3 = new TabPage();
             label4 = new Label();
             label1 = new Label();
@@ -66,17 +68,15 @@
             label6 = new Label();
             tbxTaggerExclude = new TextBox();
             toolTip1 = new ToolTip(components);
-            numericUpDown1 = new NumericUpDown();
-            label13 = new Label();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudThresh).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudTaggerBatchSize).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // btnRunTensorboard
@@ -207,11 +207,11 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(135, 237);
+            label12.Location = new Point(103, 237);
             label12.Name = "label12";
-            label12.Size = new Size(257, 30);
+            label12.Size = new Size(343, 60);
             label12.TabIndex = 4;
-            label12.Text = "latentやte_outputのキャッシュファイルを消去します。\r\nなお、サブディレクトリ内のキャッシュは消去されません。";
+            label12.Text = "latentやte_outputのキャッシュファイルを消去します。\r\nサブディレクトリ内のキャッシュも消去します。\r\nつまり、「繰り返し数_名前のフォルダ」が複数入ったフォルダを\r\n指定すると同階層にあるすべてのフォルダ内のnpzをまとめて消去します。";
             // 
             // btnDeleteNpz
             // 
@@ -257,10 +257,10 @@
             tabPage2.Controls.Add(nudTargetDim);
             tabPage2.Controls.Add(lblLoraPath);
             tabPage2.Controls.Add(lblOutputPath);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(525, 319);
+            tabPage2.Size = new Size(525, 317);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Dimリサイズ";
             tabPage2.UseVisualStyleBackColor = true;
@@ -283,6 +283,23 @@
             label10.Size = new Size(273, 15);
             label10.TabIndex = 11;
             label10.Text = "注意:出力先が未指定の場合は変換元を上書きします。";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(23, 191);
+            label13.Name = "label13";
+            label13.Size = new Size(234, 15);
+            label13.TabIndex = 9;
+            label13.Text = "畳み込み層(Conv)の次元数、0で未指定にする";
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(23, 209);
+            numericUpDown1.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(90, 23);
+            numericUpDown1.TabIndex = 8;
             // 
             // tabPage3
             // 
@@ -458,23 +475,6 @@
             tbxTaggerExclude.Size = new Size(432, 23);
             tbxTaggerExclude.TabIndex = 1;
             // 
-            // numericUpDown1
-            // 
-            numericUpDown1.Location = new Point(23, 209);
-            numericUpDown1.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(90, 23);
-            numericUpDown1.TabIndex = 8;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(23, 191);
-            label13.Name = "label13";
-            label13.Size = new Size(234, 15);
-            label13.TabIndex = 9;
-            label13.Text = "畳み込み層(Conv)の次元数、0で未指定にする";
-            // 
             // FormUtils
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -497,13 +497,13 @@
             tabPage1.PerformLayout();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             tabPage4.ResumeLayout(false);
             tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudThresh).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudTaggerBatchSize).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
         }
 
