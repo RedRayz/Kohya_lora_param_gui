@@ -87,6 +87,7 @@ namespace Kohya_lora_trainer
             tbxOutputPath = new TextBox();
             label6 = new Label();
             groupBox1 = new GroupBox();
+            rbtSleep = new RadioButton();
             rbtShutdown = new RadioButton();
             rbtBenckmark = new RadioButton();
             rbtDoNothing = new RadioButton();
@@ -96,7 +97,6 @@ namespace Kohya_lora_trainer
             btnLeco = new Button();
             label13 = new Label();
             cbxEpochOrStep = new ComboBox();
-            rbtSleep = new RadioButton();
             ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDim).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudResolution).BeginInit();
@@ -175,7 +175,7 @@ namespace Kohya_lora_trainer
             tbxLR.Size = new Size(85, 23);
             tbxLR.TabIndex = 4;
             tbxLR.Text = "1e-4";
-            toolTip1.SetToolTip(tbxLR, "AdamW系は0.0001、AdaFactorは0.001、DAdaptation系は1推奨");
+            toolTip1.SetToolTip(tbxLR, "AdamW/Lionは0.0001、AdaFactorは0.001、DAdaptation系は1推奨");
             tbxLR.TextChanged += tbxLR_TextChanged;
             // 
             // lblLR
@@ -198,7 +198,7 @@ namespace Kohya_lora_trainer
             cbxOptimizer.Name = "cbxOptimizer";
             cbxOptimizer.Size = new Size(139, 23);
             cbxOptimizer.TabIndex = 6;
-            toolTip1.SetToolTip(cbxOptimizer, "AdamWとDAdaptLionがおすすめ\r\nDAdaptation系はCPUボトルネックが大きい傾向");
+            toolTip1.SetToolTip(cbxOptimizer, "AdamWとDAdaptLionがおすすめ\r\nDAdaptation系はCPUボトルネックが大きい傾向\r\nPonyDiffusionでDAdaptを使うならLRを下げるべき");
             cbxOptimizer.SelectedIndexChanged += cbxOptimizer_SelectedIndexChanged;
             // 
             // label10
@@ -291,7 +291,7 @@ namespace Kohya_lora_trainer
             nudNetworkDim.Name = "nudNetworkDim";
             nudNetworkDim.Size = new Size(72, 23);
             nudNetworkDim.TabIndex = 52;
-            toolTip1.SetToolTip(nudNetworkDim, "上げると学習能力が上昇するが、速度低下と生成時の不安定化を招く");
+            toolTip1.SetToolTip(nudNetworkDim, "上げると学習能力が上昇するが、速度低下と生成時の不安定化を招く\r\nファイルサイズの目安(SDXL,MiB):dim*6.817\r\nconvをオンにするとさらに増加");
             nudNetworkDim.Value = new decimal(new int[] { 64, 0, 0, 0 });
             nudNetworkDim.ValueChanged += nudNetworkDim_ValueChanged;
             // 
@@ -304,7 +304,7 @@ namespace Kohya_lora_trainer
             nudResolution.Name = "nudResolution";
             nudResolution.Size = new Size(72, 23);
             nudResolution.TabIndex = 54;
-            toolTip1.SetToolTip(nudResolution, "SD1.Xが512、2.Xが768、XLが1024推奨\r\n解像度を上げると細部が若干改善することがある");
+            toolTip1.SetToolTip(nudResolution, "SD1.Xが512、2.Xが768、XLが1024推奨\r\n解像度を上げると細部が若干改善することがある\r\n上記の推奨未満の解像度にすると胴体分裂などの悪影響あり");
             nudResolution.Value = new decimal(new int[] { 512, 0, 0, 0 });
             nudResolution.ValueChanged += nudResolution_ValueChanged;
             // 
@@ -315,7 +315,7 @@ namespace Kohya_lora_trainer
             nudKeepTokens.Name = "nudKeepTokens";
             nudKeepTokens.Size = new Size(72, 23);
             nudKeepTokens.TabIndex = 55;
-            toolTip1.SetToolTip(nudKeepTokens, "先頭nトークンをシャッフルの対象外にする。\r\n1トークン=カンマ区切り");
+            toolTip1.SetToolTip(nudKeepTokens, "先頭nトークンをシャッフルの対象外にする。\r\n1トークン=カンマ区切り(デフォルト)");
             nudKeepTokens.ValueChanged += nudKeepTokens_ValueChanged;
             // 
             // nudBatchSize
@@ -337,7 +337,7 @@ namespace Kohya_lora_trainer
             nudWarmupSteps.Name = "nudWarmupSteps";
             nudWarmupSteps.Size = new Size(72, 23);
             nudWarmupSteps.TabIndex = 62;
-            toolTip1.SetToolTip(nudWarmupSteps, "nステップ数まで徐々にLRを上げる");
+            toolTip1.SetToolTip(nudWarmupSteps, "指定ステップ数まで徐々にLRを上げる");
             nudWarmupSteps.Value = new decimal(new int[] { 500, 0, 0, 0 });
             nudWarmupSteps.ValueChanged += nudWarmupSteps_ValueChanged;
             // 
@@ -663,6 +663,16 @@ namespace Kohya_lora_trainer
             groupBox1.TabStop = false;
             groupBox1.Text = "学習終了後の動作";
             // 
+            // rbtSleep
+            // 
+            rbtSleep.AutoSize = true;
+            rbtSleep.Location = new Point(263, 21);
+            rbtSleep.Name = "rbtSleep";
+            rbtSleep.Size = new Size(59, 19);
+            rbtSleep.TabIndex = 2;
+            rbtSleep.Text = "スリープ";
+            rbtSleep.UseVisualStyleBackColor = true;
+            // 
             // rbtShutdown
             // 
             rbtShutdown.AutoSize = true;
@@ -754,16 +764,6 @@ namespace Kohya_lora_trainer
             cbxEpochOrStep.Size = new Size(76, 23);
             cbxEpochOrStep.TabIndex = 86;
             cbxEpochOrStep.SelectedIndexChanged += cbxEpochOrStep_SelectedIndexChanged;
-            // 
-            // rbtSleep
-            // 
-            rbtSleep.AutoSize = true;
-            rbtSleep.Location = new Point(263, 21);
-            rbtSleep.Name = "rbtSleep";
-            rbtSleep.Size = new Size(59, 19);
-            rbtSleep.TabIndex = 2;
-            rbtSleep.Text = "スリープ";
-            rbtSleep.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
