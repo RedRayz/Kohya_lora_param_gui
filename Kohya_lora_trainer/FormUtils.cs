@@ -91,13 +91,13 @@ namespace Kohya_lora_trainer
                 var res = MessageBox.Show("リサイズ後に変換元を上書きします。よろしいですか。", "確認", MessageBoxButtons.YesNo);
                 if (res == DialogResult.Yes)
                 {
-                    MyUtils.ResizeLora(lblLoraPath.Text, lblLoraPath.Text, nudTargetDim.Value, cbxCudaConversion.Checked);
+                    MyUtils.ResizeLora(lblLoraPath.Text, lblLoraPath.Text, nudTargetDim.Value, 0, cbxCudaConversion.Checked);
                 }
 
             }
             else
             {
-                MyUtils.ResizeLora(lblLoraPath.Text, lblOutputPath.Text, nudTargetDim.Value, cbxCudaConversion.Checked);
+                MyUtils.ResizeLora(lblLoraPath.Text, lblOutputPath.Text, nudTargetDim.Value, 0, cbxCudaConversion.Checked);
             }
 
         }

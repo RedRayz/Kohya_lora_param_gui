@@ -644,7 +644,7 @@ namespace Kohya_lora_trainer
         /// <param name="outputPath">変換後の保存先</param>
         /// <param name="dim">このDimする</param>
         /// <param name="cudaConversion">CUDAで変換</param>
-        public static void ResizeLora(string inputPath, string outputPath, decimal dim, bool cudaConversion)
+        public static void ResizeLora(string inputPath, string outputPath, decimal dim, decimal convDim, bool cudaConversion)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(@"/c cd ");
@@ -662,6 +662,11 @@ namespace Kohya_lora_trainer
             sb.Append("python .\\networks\\resize_lora.py").Append("  --model \"").Append(inputPath).Append('"')
                 .Append("  --save_to \"").Append(outputPath).Append('"').Append("  --save_precision \"fp16\"")
                 .Append("  --new_rank ").Append(dim.ToString());
+
+            if (convDim > 0)
+            {
+                sb.Append("  --new_conv_rank ").Append(convDim.ToString());
+            }
 
             if (cudaConversion)
             {
