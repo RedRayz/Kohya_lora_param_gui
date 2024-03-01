@@ -290,6 +290,7 @@ namespace Kohya_lora_trainer
                 int removedCnt = 0;
                 int errorCount = 0;
                 string[] files = Directory.GetFiles(cof.FileName);
+                //直下にあるnpzの消去
                 foreach (string file in files)
                 {
                     try
@@ -307,23 +308,44 @@ namespace Kohya_lora_trainer
                     }
                 }
 
+                //サブディレクトリ内のnpzの消去
+                string[] subDirs = Directory.GetDirectories(cof.FileName);
+                foreach (string dir in subDirs)
+                {
+                    files = Directory.GetFiles(dir);
+                    foreach (string file in files)
+                    {
+                        try
+                        {
+                            string ext = Path.GetExtension(file).ToLower();
+                            if (ext == ".npz")
+                            {
+                                File.Delete(file);
+                                removedCnt++;
+                            }
+                        }
+                        catch
+                        {
+                            errorCount++;
+                        }
+                    }
+                }
+
                 if (removedCnt > 0)
                 {
                     if (errorCount == 0)
                     {
                         MessageBox.Show($"{removedCnt}件のキャッシュを消去しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        
+
                     }
                     else
                     {
                         MessageBox.Show($"{removedCnt}件のキャッシュを消去し、\n{errorCount}件がエラーで失敗しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    
+
                 }
                 else
                     MessageBox.Show("対象のファイルはありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
             }
         }
     }
