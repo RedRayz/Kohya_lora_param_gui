@@ -68,6 +68,7 @@
             label6 = new Label();
             tbxTaggerExclude = new TextBox();
             toolTip1 = new ToolTip(components);
+            lblProcessingNpz = new Label();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -190,6 +191,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(lblProcessingNpz);
             tabPage1.Controls.Add(label12);
             tabPage1.Controls.Add(btnDeleteNpz);
             tabPage1.Controls.Add(btnRegenVenv);
@@ -475,6 +477,17 @@
             tbxTaggerExclude.Size = new Size(432, 23);
             tbxTaggerExclude.TabIndex = 1;
             // 
+            // lblProcessingNpz
+            // 
+            lblProcessingNpz.AutoSize = true;
+            lblProcessingNpz.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblProcessingNpz.Location = new Point(339, 207);
+            lblProcessingNpz.Name = "lblProcessingNpz";
+            lblProcessingNpz.Size = new Size(61, 19);
+            lblProcessingNpz.TabIndex = 5;
+            lblProcessingNpz.Text = "処理中…";
+            lblProcessingNpz.Visible = false;
+            // 
             // FormUtils
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -547,5 +560,6 @@
         private Button btnDeleteNpz;
         private Label label13;
         private NumericUpDown numericUpDown1;
+        private Label lblProcessingNpz;
     }
 }

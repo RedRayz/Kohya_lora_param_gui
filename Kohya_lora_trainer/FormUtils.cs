@@ -287,6 +287,8 @@ namespace Kohya_lora_trainer
             cof.RestoreDirectory = true;
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
             {
+                lblProcessingNpz.Visible = true;
+                Update();
                 int removedCnt = 0;
                 int errorCount = 0;
                 string[] files = Directory.GetFiles(cof.FileName);
@@ -330,6 +332,8 @@ namespace Kohya_lora_trainer
                         }
                     }
                 }
+
+                lblProcessingNpz.Visible = false;
 
                 if (removedCnt > 0)
                 {
