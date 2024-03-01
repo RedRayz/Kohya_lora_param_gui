@@ -41,6 +41,8 @@
             btnSelectOutputPath = new Button();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            label12 = new Label();
+            btnDeleteNpz = new Button();
             btnRegenVenv = new Button();
             label8 = new Label();
             tabPage2 = new TabPage();
@@ -64,6 +66,8 @@
             label6 = new Label();
             tbxTaggerExclude = new TextBox();
             toolTip1 = new ToolTip(components);
+            numericUpDown1 = new NumericUpDown();
+            label13 = new Label();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -72,11 +76,12 @@
             tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudThresh).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudTaggerBatchSize).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // btnRunTensorboard
             // 
-            btnRunTensorboard.Location = new Point(184, 66);
+            btnRunTensorboard.Location = new Point(183, 29);
             btnRunTensorboard.Margin = new Padding(3, 4, 3, 4);
             btnRunTensorboard.Name = "btnRunTensorboard";
             btnRunTensorboard.Size = new Size(150, 35);
@@ -88,7 +93,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(184, 105);
+            label3.Location = new Point(183, 68);
             label3.Name = "label3";
             label3.Size = new Size(158, 15);
             label3.TabIndex = 1;
@@ -106,7 +111,7 @@
             // 
             // btnResizeDim
             // 
-            btnResizeDim.Location = new Point(23, 250);
+            btnResizeDim.Location = new Point(23, 270);
             btnResizeDim.Name = "btnResizeDim";
             btnResizeDim.Size = new Size(90, 32);
             btnResizeDim.TabIndex = 5;
@@ -117,11 +122,11 @@
             // cbxCudaConversion
             // 
             cbxCudaConversion.AutoSize = true;
-            cbxCudaConversion.Location = new Point(119, 175);
+            cbxCudaConversion.Location = new Point(119, 278);
             cbxCudaConversion.Name = "cbxCudaConversion";
-            cbxCudaConversion.Size = new Size(91, 19);
+            cbxCudaConversion.Size = new Size(172, 19);
             cbxCudaConversion.TabIndex = 6;
-            cbxCudaConversion.Text = "CUDAで変換";
+            cbxCudaConversion.Text = "CUDA(NVIDIA製GPU)で変換";
             cbxCudaConversion.UseVisualStyleBackColor = true;
             // 
             // lblLoraPath
@@ -144,7 +149,7 @@
             // 
             // nudTargetDim
             // 
-            nudTargetDim.Location = new Point(23, 174);
+            nudTargetDim.Location = new Point(23, 156);
             nudTargetDim.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
             nudTargetDim.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudTargetDim.Name = "nudTargetDim";
@@ -155,7 +160,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(18, 146);
+            label2.Location = new Point(23, 138);
             label2.Name = "label2";
             label2.Size = new Size(43, 15);
             label2.TabIndex = 9;
@@ -185,6 +190,8 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(label12);
+            tabPage1.Controls.Add(btnDeleteNpz);
             tabPage1.Controls.Add(btnRegenVenv);
             tabPage1.Controls.Add(btnRunTensorboard);
             tabPage1.Controls.Add(label8);
@@ -197,9 +204,28 @@
             tabPage1.Text = "ユーティリティ";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(135, 237);
+            label12.Name = "label12";
+            label12.Size = new Size(257, 30);
+            label12.TabIndex = 4;
+            label12.Text = "latentやte_outputのキャッシュファイルを消去します。\r\nなお、サブディレクトリ内のキャッシュは消去されません。";
+            // 
+            // btnDeleteNpz
+            // 
+            btnDeleteNpz.Location = new Point(183, 199);
+            btnDeleteNpz.Name = "btnDeleteNpz";
+            btnDeleteNpz.Size = new Size(150, 35);
+            btnDeleteNpz.TabIndex = 3;
+            btnDeleteNpz.Text = ".npzの消去";
+            btnDeleteNpz.UseVisualStyleBackColor = true;
+            btnDeleteNpz.Click += btnDeleteNpz_Click;
+            // 
             // btnRegenVenv
             // 
-            btnRegenVenv.Location = new Point(184, 149);
+            btnRegenVenv.Location = new Point(183, 112);
             btnRegenVenv.Name = "btnRegenVenv";
             btnRegenVenv.Size = new Size(150, 35);
             btnRegenVenv.TabIndex = 2;
@@ -210,7 +236,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(104, 187);
+            label8.Location = new Point(103, 150);
             label8.Name = "label8";
             label8.Size = new Size(315, 30);
             label8.TabIndex = 1;
@@ -224,15 +250,17 @@
             tabPage2.Controls.Add(btnSelectModel);
             tabPage2.Controls.Add(btnSelectOutputPath);
             tabPage2.Controls.Add(btnResizeDim);
+            tabPage2.Controls.Add(label13);
             tabPage2.Controls.Add(label2);
             tabPage2.Controls.Add(cbxCudaConversion);
+            tabPage2.Controls.Add(numericUpDown1);
             tabPage2.Controls.Add(nudTargetDim);
             tabPage2.Controls.Add(lblLoraPath);
             tabPage2.Controls.Add(lblOutputPath);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(525, 317);
+            tabPage2.Size = new Size(525, 319);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Dimリサイズ";
             tabPage2.UseVisualStyleBackColor = true;
@@ -320,9 +348,9 @@
             tabPage4.Controls.Add(nudTaggerBatchSize);
             tabPage4.Controls.Add(label6);
             tabPage4.Controls.Add(tbxTaggerExclude);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 26);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(525, 319);
+            tabPage4.Size = new Size(525, 317);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Tagger";
             tabPage4.UseVisualStyleBackColor = true;
@@ -430,6 +458,23 @@
             tbxTaggerExclude.Size = new Size(432, 23);
             tbxTaggerExclude.TabIndex = 1;
             // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(23, 209);
+            numericUpDown1.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(90, 23);
+            numericUpDown1.TabIndex = 8;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(23, 191);
+            label13.Name = "label13";
+            label13.Size = new Size(234, 15);
+            label13.TabIndex = 9;
+            label13.Text = "畳み込み層(Conv)の次元数、0で未指定にする";
+            // 
             // FormUtils
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -458,6 +503,7 @@
             tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudThresh).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudTaggerBatchSize).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
         }
 
@@ -497,5 +543,9 @@
         private Label label8;
         private Button btnClearResizeOutput;
         private Label label10;
+        private Label label12;
+        private Button btnDeleteNpz;
+        private Label label13;
+        private NumericUpDown numericUpDown1;
     }
 }

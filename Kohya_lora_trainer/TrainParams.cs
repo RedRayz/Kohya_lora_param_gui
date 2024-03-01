@@ -24,7 +24,8 @@ namespace Kohya_lora_trainer {
         //Advanced
         public  int CpuThreads = 4;
         public  bool NoBucketUpscaling = false, UseWarmupInit = false;
-        public  int ClipSkip = 2, Seed = 42;
+        public  int ClipSkip = 2;
+        public long Seed = 42;
         public  SavePrecision SavePrecision = SavePrecision.fp16;
         public  SchedulerType SchedulerType = SchedulerType.cosine_with_restarts;
         public  int MinBucketResolution = 320, MaxBucketResolution = 1024;

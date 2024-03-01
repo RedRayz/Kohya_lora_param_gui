@@ -258,7 +258,7 @@ namespace Kohya_lora_trainer
 
         private void ShutdownOrSuspendPC()
         {
-            switch(TrainCompletedAction)
+            switch (TrainCompletedAction)
             {
                 case TrainCompleteAction.Shutdown:
                     ProcessStartInfo ps = new ProcessStartInfo()

@@ -74,16 +74,19 @@ namespace Kohya_lora_trainer
                     {
                         sb.Append(" --network_module \"").Append("lycoris.kohya\"");
                         sb.Append(" --network_args \"algo=").Append(TrainParams.Current.AlgoType.ToString()).Append('"');
-                        bool di = TrainParams.Current.ConvDim > 0;
-                        bool al = TrainParams.Current.ConvAlpha > 0;
-                        if (di || al)
+                        if (TrainParams.Current.UseConv2dExtend)
                         {
-                            if (di)
-                                sb.Append(" \"conv_dim=").Append(TrainParams.Current.ConvDim.ToString()).Append('"');
-                            if (al)
-                                sb.Append(" \"conv_alpha=").Append(TrainParams.Current.ConvAlpha.ToString()).Append('"');
-                            if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
-                                sb.Append(' ').Append(lbw);
+                            bool di = TrainParams.Current.ConvDim > 0;
+                            bool al = TrainParams.Current.ConvAlpha > 0;
+                            if (di || al)
+                            {
+                                if (di)
+                                    sb.Append(" \"conv_dim=").Append(TrainParams.Current.ConvDim.ToString()).Append('"');
+                                if (al)
+                                    sb.Append(" \"conv_alpha=").Append(TrainParams.Current.ConvAlpha.ToString()).Append('"');
+                                if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
+                                    sb.Append(' ').Append(lbw);
+                            }
                         }
                         sb.Append(GenerateDropoutCommands());
                     }
@@ -644,7 +647,7 @@ namespace Kohya_lora_trainer
         /// <param name="outputPath">変換後の保存先</param>
         /// <param name="dim">このDimする</param>
         /// <param name="cudaConversion">CUDAで変換</param>
-        public static void ResizeLora(string inputPath, string outputPath, decimal dim, bool cudaConversion)
+        public static void ResizeLora(string inputPath, string outputPath, decimal dim, decimal convDim, bool cudaConversion)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(@"/c cd ");
@@ -662,6 +665,11 @@ namespace Kohya_lora_trainer
             sb.Append("python .\\networks\\resize_lora.py").Append("  --model \"").Append(inputPath).Append('"')
                 .Append("  --save_to \"").Append(outputPath).Append('"').Append("  --save_precision \"fp16\"")
                 .Append("  --new_rank ").Append(dim.ToString());
+
+            if (convDim > 0)
+            {
+                sb.Append("  --new_conv_rank ").Append(convDim.ToString());
+            }
 
             if (cudaConversion)
             {
