@@ -72,8 +72,29 @@ namespace Kohya_lora_trainer
                     break;
                 case ModuleType.LyCORIS:
                     {
+                        string algo = TrainParams.Current.AlgoType == AlgoType.diag_oft ? "diag-oft" : TrainParams.Current.AlgoType.ToString();
+
                         sb.Append(" --network_module \"").Append("lycoris.kohya\"");
-                        sb.Append(" --network_args \"algo=").Append(TrainParams.Current.AlgoType.ToString()).Append('"');
+                        sb.Append(" --network_args \"algo=").Append(algo).Append('"');
+
+                        if (TrainParams.Current.WeightDocomposition)
+                            sb.Append(" \"dora_wd=True\"");
+
+                        if (TrainParams.Current.TrainNorm)
+                            sb.Append(" \"train_norm=True\"");
+
+                        if (TrainParams.Current.RescaledOFT)
+                            sb.Append(" \"rescaled=True\"");
+
+                        if (TrainParams.Current.ConstrainedOFT)
+                            sb.Append(" \"constrain=FLOAT\"");
+
+                        if (TrainParams.Current.UseTucker)
+                            sb.Append(" \"use_tucker=True\"");
+
+                        if (TrainParams.Current.UseScalar)
+                            sb.Append(" \"use_scalar=True\"");
+
                         if (TrainParams.Current.UseConv2dExtend)
                         {
                             bool di = TrainParams.Current.ConvDim > 0;
@@ -88,6 +109,9 @@ namespace Kohya_lora_trainer
                                     sb.Append(' ').Append(lbw);
                             }
                         }
+
+
+
                         sb.Append(GenerateDropoutCommands());
                     }
                     break;
