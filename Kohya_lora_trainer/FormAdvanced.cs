@@ -347,6 +347,14 @@ namespace Kohya_lora_trainer
 
             TrainParams.Current.RelativeStep = cbxRelativeStep.Checked;
             TrainParams.Current.ScaleParameter = cbxScaleParameter.Checked;
+
+            TrainParams.Current.WeightDocomposition = cbxWeightDecomposition.Checked;
+            TrainParams.Current.TrainNorm = cbxTrainNorm.Checked;
+            TrainParams.Current.RescaledOFT = cbxRescaledOFT.Checked;
+            TrainParams.Current.ConstrainedOFT = cbxConstrainedOFT.Checked;
+            TrainParams.Current.UseTucker = cbxUseTucker.Checked;
+            TrainParams.Current.UseScalar = cbxUseScalar.Checked;
+
             Close();
         }
 
@@ -447,6 +455,14 @@ namespace Kohya_lora_trainer
             cbxUseFP8.Checked = TrainParams.Current.UseFP8Base;
             cbxRelativeStep.Checked = TrainParams.Current.RelativeStep;
             cbxScaleParameter.Checked = TrainParams.Current.ScaleParameter;
+
+            cbxWeightDecomposition.Checked = TrainParams.Current.WeightDocomposition;
+            cbxTrainNorm.Checked = TrainParams.Current.TrainNorm;
+            cbxRescaledOFT.Checked = TrainParams.Current.RescaledOFT;
+            cbxConstrainedOFT.Checked = TrainParams.Current.ConstrainedOFT;
+            cbxUseTucker.Checked = TrainParams.Current.UseTucker;
+            cbxUseScalar.Checked = TrainParams.Current.UseScalar;
+
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)

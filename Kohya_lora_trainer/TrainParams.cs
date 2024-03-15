@@ -45,6 +45,7 @@ namespace Kohya_lora_trainer {
         public bool UseConv2dExtend = false;
         public decimal DyLoRAUnit = 4;
         public string DatasetConfigPath = string.Empty;
+        public bool TrainNorm = false, RescaledOFT = false, ConstrainedOFT = false, UseScalar = false, UseTucker = false, WeightDocomposition = false;
 
         //Block Weight
         public bool UseBlockWeight = false;
@@ -270,7 +271,10 @@ namespace Kohya_lora_trainer {
         loha,
         ia3,
         lokr,
-        full
+        full,
+        glora,
+        diag_oft,
+        boft
     }
 
     public enum CrossAttenType {
