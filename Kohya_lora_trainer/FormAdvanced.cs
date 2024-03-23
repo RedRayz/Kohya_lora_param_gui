@@ -525,7 +525,7 @@ namespace Kohya_lora_trainer
 
             if (File.Exists(TrainParams.Current.LoraModelPath))
             {
-                ofd.InitialDirectory = MyUtils.RemoveFileName(TrainParams.Current.LoraModelPath);
+                ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.LoraModelPath);
             }
             else if (Directory.Exists(Properties.Settings.Default.DefaultLoRADir))
             {

@@ -18,7 +18,7 @@ using System.Security.Cryptography;
 using System.Diagnostics;
 
 #pragma warning disable CA1418
-
+#pragma warning disable CS8602
 namespace Kohya_lora_trainer
 {
     public partial class Form1 : Form

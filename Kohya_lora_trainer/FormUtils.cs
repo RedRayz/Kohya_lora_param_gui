@@ -22,8 +22,8 @@ namespace Kohya_lora_trainer
         private delegate void UpdateUIEventHandler(string text);
         private delegate void DelegateEnableButton();
 
-        private event UpdateUIEventHandler UpdateUI = null;
-        private Process process = null;
+        private event UpdateUIEventHandler? UpdateUI = null;
+        private Process? process = null;
 
         public FormUtils()
         {

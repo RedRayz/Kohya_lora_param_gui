@@ -90,7 +90,7 @@ namespace Kohya_lora_trainer {
 
 
         [NonSerialized]
-        public static TrainParams Current;
+        public static TrainParams? Current;
 
         public TrainParams() {
             Current = this;
