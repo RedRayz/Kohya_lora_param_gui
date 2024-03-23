@@ -377,16 +377,18 @@ namespace Kohya_lora_trainer
             if (File.Exists(TrainParams.Current.OutputPath + "\\" + TrainParams.Current.OutputName + ".safetensors"))
             {
                 var res = MessageBox.Show("出力先に同名のファイルが存在します。学習完了時に上書きされますがよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if(res == DialogResult.No) return;
+                if (res == DialogResult.No) return;
             }
             TrainCompleteAction act = TrainCompleteAction.None;
-            if(rbtShutdown.Checked)
+            if (rbtShutdown.Checked)
             {
                 act = TrainCompleteAction.Shutdown;
-            }else if (rbtSleep.Checked)
+            }
+            else if (rbtSleep.Checked)
             {
                 act = TrainCompleteAction.Suspend;
-            }else if (rbtBenckmark.Checked)
+            }
+            else if (rbtBenckmark.Checked)
             {
                 act = TrainCompleteAction.ShowTimetaken;
             }
@@ -1096,5 +1098,14 @@ namespace Kohya_lora_trainer
             return DialogResult.Yes;
         }
 
+        private void 設定ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 終了ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
