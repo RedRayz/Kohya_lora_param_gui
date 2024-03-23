@@ -93,20 +93,12 @@ namespace Kohya_lora_trainer
 
         private void btnSelectPreset_Click(object sender, EventArgs e)
         {
-            CommonOpenFileDialog cof = new CommonOpenFileDialog();
-            cof.Title = "Select a directory";
-            cof.IsFolderPicker = true;
-            cof.RestoreDirectory = true;
 
-            if (cof.ShowDialog() == CommonFileDialogResult.Ok)
-            {
-                tbxPreset.Text = cof.FileName;
-            }
         }
 
         private void btnClearPreset_Click(object sender, EventArgs e)
         {
-            tbxPreset.Text = string.Empty;
+            
         }
 
         private void btnSelectVAE_Click(object sender, EventArgs e)
@@ -174,10 +166,12 @@ namespace Kohya_lora_trainer
             Properties.Settings.Default.DefaultImageDir = tbxImage.Text;
             Properties.Settings.Default.DefaultRegImageDir = tbxRegImage.Text;
             Properties.Settings.Default.DefaultOutputDir = tbxOutput.Text;
-            Properties.Settings.Default.DefaultPresetDir = tbxPreset.Text;
+            Properties.Settings.Default.DefaultLoadPresetDir = tbxLoadPreset.Text;
+            Properties.Settings.Default.DefaultSavePresetDir = tbxSavePreset.Text;
             Properties.Settings.Default.DefaultVAEDir = tbxVAE.Text;
             Properties.Settings.Default.DefaultTensorboardDir = tbxTensorboard.Text;
             Properties.Settings.Default.DefaultConfigDir = tbxConfig.Text;
+            Properties.Settings.Default.DefaultLoRADir = tbxLoRA.Text;
 
             Properties.Settings.Default.Save();
             Close();
@@ -189,10 +183,66 @@ namespace Kohya_lora_trainer
             tbxImage.Text = Properties.Settings.Default.DefaultImageDir;
             tbxRegImage.Text = Properties.Settings.Default.DefaultRegImageDir;
             tbxOutput.Text = Properties.Settings.Default.DefaultOutputDir;
-            tbxPreset.Text = Properties.Settings.Default.DefaultPresetDir;
+            tbxLoadPreset.Text = Properties.Settings.Default.DefaultLoadPresetDir;
+            tbxSavePreset.Text = Properties.Settings.Default.DefaultSavePresetDir;
             tbxVAE.Text = Properties.Settings.Default.DefaultVAEDir;
             tbxTensorboard.Text = Properties.Settings.Default.DefaultTensorboardDir;
             tbxConfig.Text = Properties.Settings.Default.DefaultConfigDir;
+            tbxLoRA.Text = Properties.Settings.Default.DefaultLoRADir;
+        }
+
+        private void btnLoRA_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog cof = new CommonOpenFileDialog();
+            cof.Title = "Select a directory";
+            cof.IsFolderPicker = true;
+            cof.RestoreDirectory = true;
+
+            if (cof.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                tbxLoRA.Text = cof.FileName;
+            }
+        }
+
+        private void btnClearLoRA_Click(object sender, EventArgs e)
+        {
+            tbxLoRA.Text = string.Empty;
+        }
+
+        private void btnSelectSavePreset_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog cof = new CommonOpenFileDialog();
+            cof.Title = "Select a directory";
+            cof.IsFolderPicker = true;
+            cof.RestoreDirectory = true;
+
+            if (cof.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                tbxSavePreset.Text = cof.FileName;
+            }
+        }
+
+        private void btnClearSavePreset_Click(object sender, EventArgs e)
+        {
+            tbxSavePreset.Text = string.Empty;
+        }
+
+        private void btnSelectLoadPreset_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog cof = new CommonOpenFileDialog();
+            cof.Title = "Select a directory";
+            cof.IsFolderPicker = true;
+            cof.RestoreDirectory = true;
+
+            if (cof.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                tbxLoadPreset.Text = cof.FileName;
+            }
+        }
+
+        private void btnClearLoadPreset_Click(object sender, EventArgs e)
+        {
+            tbxLoadPreset.Text = string.Empty;
         }
     }
 }

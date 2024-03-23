@@ -74,12 +74,12 @@ namespace Kohya_lora_trainer.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DefaultPresetDir {
+        public string DefaultSavePresetDir {
             get {
-                return ((string)(this["DefaultPresetDir"]));
+                return ((string)(this["DefaultSavePresetDir"]));
             }
             set {
-                this["DefaultPresetDir"] = value;
+                this["DefaultSavePresetDir"] = value;
             }
         }
         
@@ -116,6 +116,30 @@ namespace Kohya_lora_trainer.Properties {
             }
             set {
                 this["DefaultConfigDir"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultLoRADir {
+            get {
+                return ((string)(this["DefaultLoRADir"]));
+            }
+            set {
+                this["DefaultLoRADir"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultLoadPresetDir {
+            get {
+                return ((string)(this["DefaultLoadPresetDir"]));
+            }
+            set {
+                this["DefaultLoadPresetDir"] = value;
             }
         }
     }

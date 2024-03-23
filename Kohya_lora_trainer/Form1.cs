@@ -135,7 +135,11 @@ namespace Kohya_lora_trainer
 
             if (File.Exists(TrainParams.Current.ModelPath))
             {
-                ofd.InitialDirectory = MyUtils.RemoveFileName(TrainParams.Current.ModelPath);
+                ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.ModelPath);
+            }
+            else if(Directory.Exists(Properties.Settings.Default.DefaultModelDir))
+            {
+                ofd.InitialDirectory = Properties.Settings.Default.DefaultModelDir;
             }
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -164,6 +168,10 @@ namespace Kohya_lora_trainer
             if (Directory.Exists(TrainParams.Current.TrainImagePath))
             {
                 cof.InitialDirectory = TrainParams.Current.TrainImagePath;
+            }
+            else if (Directory.Exists(Properties.Settings.Default.DefaultImageDir))
+            {
+                cof.InitialDirectory = Properties.Settings.Default.DefaultImageDir;
             }
 
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
@@ -197,6 +205,10 @@ namespace Kohya_lora_trainer
             if (Directory.Exists(TrainParams.Current.RegImagePath))
             {
                 cof.InitialDirectory = TrainParams.Current.RegImagePath;
+            }
+            else if (Directory.Exists(Properties.Settings.Default.DefaultRegImageDir))
+            {
+                cof.InitialDirectory = Properties.Settings.Default.DefaultRegImageDir;
             }
 
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
@@ -232,6 +244,10 @@ namespace Kohya_lora_trainer
             if (Directory.Exists(TrainParams.Current.OutputPath))
             {
                 cof.InitialDirectory = TrainParams.Current.OutputPath;
+            }
+            else if (Directory.Exists(Properties.Settings.Default.DefaultOutputDir))
+            {
+                cof.InitialDirectory = Properties.Settings.Default.DefaultOutputDir;
             }
 
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
@@ -351,6 +367,12 @@ namespace Kohya_lora_trainer
             sfd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
             sfd.Title = "Save a preset";
             sfd.RestoreDirectory = true;
+            if (Directory.Exists(Properties.Settings.Default.DefaultSavePresetDir))
+            {
+                sfd.InitialDirectory = Properties.Settings.Default.DefaultSavePresetDir;
+            }
+
+
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -621,6 +643,12 @@ namespace Kohya_lora_trainer
             ofd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
             ofd.Title = "Select a preset";
             ofd.RestoreDirectory = true;
+            if(Directory.Exists(Properties.Settings.Default.DefaultLoadPresetDir))
+            {
+                ofd.InitialDirectory = Properties.Settings.Default.DefaultLoadPresetDir;
+            }
+
+
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 LoadPreset(ofd.FileName, true);
@@ -1122,12 +1150,12 @@ namespace Kohya_lora_trainer
 
         private void プリセットを開くToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ShowLoadPresetDialog();
         }
 
         private void プリセットを保存ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ShowSavePresetDialog();
         }
     }
 }

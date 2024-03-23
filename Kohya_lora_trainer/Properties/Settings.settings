@@ -14,7 +14,7 @@
     <Setting Name="DefaultOutputDir" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="DefaultPresetDir" Type="System.String" Scope="User">
+    <Setting Name="DefaultSavePresetDir" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DefaultVAEDir" Type="System.String" Scope="User">
@@ -24,6 +24,12 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="DefaultConfigDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DefaultLoRADir" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DefaultLoadPresetDir" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>
