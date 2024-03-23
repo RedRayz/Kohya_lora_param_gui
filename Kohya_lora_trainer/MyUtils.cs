@@ -713,6 +713,7 @@ namespace Kohya_lora_trainer
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
+        [Obsolete("This function will be removed. Use Path.GetDirectoryName instead")]
         public static string RemoveFileName(string str)
         {
             if (string.IsNullOrEmpty(str))

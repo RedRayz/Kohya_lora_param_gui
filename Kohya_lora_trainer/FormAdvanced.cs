@@ -486,6 +486,10 @@ namespace Kohya_lora_trainer
             {
                 cof.InitialDirectory = TrainParams.Current.TensorBoardLogPath;
             }
+            else if (Directory.Exists(Properties.Settings.Default.DefaultTensorboardDir))
+            {
+                cof.InitialDirectory = Properties.Settings.Default.DefaultTensorboardDir;
+            }
 
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
             {
@@ -521,7 +525,11 @@ namespace Kohya_lora_trainer
 
             if (File.Exists(TrainParams.Current.LoraModelPath))
             {
-                ofd.InitialDirectory = MyUtils.RemoveFileName(TrainParams.Current.LoraModelPath);
+                ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.LoraModelPath);
+            }
+            else if (Directory.Exists(Properties.Settings.Default.DefaultLoRADir))
+            {
+                ofd.InitialDirectory = Properties.Settings.Default.DefaultLoRADir;
             }
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -544,7 +552,11 @@ namespace Kohya_lora_trainer
 
             if (File.Exists(TrainParams.Current.VAEPath))
             {
-                ofd.InitialDirectory = MyUtils.RemoveFileName(TrainParams.Current.VAEPath);
+                ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.VAEPath);
+            }
+            else if (Directory.Exists(Properties.Settings.Default.DefaultVAEDir))
+            {
+                ofd.InitialDirectory = Properties.Settings.Default.DefaultVAEDir;
             }
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -572,7 +584,11 @@ namespace Kohya_lora_trainer
 
             if (File.Exists(TrainParams.Current.DatasetConfigPath))
             {
-                ofd.InitialDirectory = MyUtils.RemoveFileName(TrainParams.Current.DatasetConfigPath);
+                ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.DatasetConfigPath);
+            }
+            else if (Directory.Exists(Properties.Settings.Default.DefaultConfigDir))
+            {
+                ofd.InitialDirectory = Properties.Settings.Default.DefaultConfigDir;
             }
 
             if (ofd.ShowDialog() == DialogResult.OK)
