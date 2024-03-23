@@ -63,13 +63,14 @@
             btnSelectConfig = new Button();
             btnClearConfig = new Button();
             btnApplyAndClose = new Button();
+            label10 = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(25, 9);
             label1.Name = "label1";
             label1.Size = new Size(175, 21);
             label1.TabIndex = 0;
@@ -78,7 +79,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(16, 45);
+            label2.Location = new Point(25, 95);
             label2.Name = "label2";
             label2.Size = new Size(71, 15);
             label2.TabIndex = 1;
@@ -86,33 +87,35 @@
             // 
             // tbxModel
             // 
-            tbxModel.Location = new Point(283, 42);
+            tbxModel.Location = new Point(292, 92);
             tbxModel.Name = "tbxModel";
             tbxModel.Size = new Size(402, 23);
             tbxModel.TabIndex = 2;
             // 
             // btnSelectModel
             // 
-            btnSelectModel.Location = new Point(121, 38);
+            btnSelectModel.Location = new Point(130, 88);
             btnSelectModel.Name = "btnSelectModel";
             btnSelectModel.Size = new Size(75, 29);
             btnSelectModel.TabIndex = 3;
             btnSelectModel.Text = "選択";
             btnSelectModel.UseVisualStyleBackColor = true;
+            btnSelectModel.Click += btnSelectModel_Click;
             // 
             // brnClearModel
             // 
-            brnClearModel.Location = new Point(202, 38);
+            brnClearModel.Location = new Point(211, 88);
             brnClearModel.Name = "brnClearModel";
             brnClearModel.Size = new Size(75, 29);
             brnClearModel.TabIndex = 3;
             brnClearModel.Text = "クリア";
             brnClearModel.UseVisualStyleBackColor = true;
+            brnClearModel.Click += brnClearModel_Click;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(16, 80);
+            label3.Location = new Point(25, 130);
             label3.Name = "label3";
             label3.Size = new Size(90, 15);
             label3.TabIndex = 1;
@@ -120,33 +123,35 @@
             // 
             // tbxImage
             // 
-            tbxImage.Location = new Point(283, 77);
+            tbxImage.Location = new Point(292, 127);
             tbxImage.Name = "tbxImage";
             tbxImage.Size = new Size(402, 23);
             tbxImage.TabIndex = 2;
             // 
             // btnSelectImage
             // 
-            btnSelectImage.Location = new Point(121, 73);
+            btnSelectImage.Location = new Point(130, 123);
             btnSelectImage.Name = "btnSelectImage";
             btnSelectImage.Size = new Size(75, 29);
             btnSelectImage.TabIndex = 3;
             btnSelectImage.Text = "選択";
             btnSelectImage.UseVisualStyleBackColor = true;
+            btnSelectImage.Click += btnSelectImage_Click;
             // 
             // btnClearImage
             // 
-            btnClearImage.Location = new Point(202, 73);
+            btnClearImage.Location = new Point(211, 123);
             btnClearImage.Name = "btnClearImage";
             btnClearImage.Size = new Size(75, 29);
             btnClearImage.TabIndex = 3;
             btnClearImage.Text = "クリア";
             btnClearImage.UseVisualStyleBackColor = true;
+            btnClearImage.Click += btnClearImage_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(16, 115);
+            label4.Location = new Point(25, 165);
             label4.Name = "label4";
             label4.Size = new Size(102, 15);
             label4.TabIndex = 1;
@@ -154,33 +159,35 @@
             // 
             // tbxRegImage
             // 
-            tbxRegImage.Location = new Point(283, 112);
+            tbxRegImage.Location = new Point(292, 162);
             tbxRegImage.Name = "tbxRegImage";
             tbxRegImage.Size = new Size(402, 23);
             tbxRegImage.TabIndex = 2;
             // 
             // btnSelectRegImage
             // 
-            btnSelectRegImage.Location = new Point(121, 108);
+            btnSelectRegImage.Location = new Point(130, 158);
             btnSelectRegImage.Name = "btnSelectRegImage";
             btnSelectRegImage.Size = new Size(75, 29);
             btnSelectRegImage.TabIndex = 3;
             btnSelectRegImage.Text = "選択";
             btnSelectRegImage.UseVisualStyleBackColor = true;
+            btnSelectRegImage.Click += btnSelectRegImage_Click;
             // 
             // btnClearRegImage
             // 
-            btnClearRegImage.Location = new Point(202, 108);
+            btnClearRegImage.Location = new Point(211, 158);
             btnClearRegImage.Name = "btnClearRegImage";
             btnClearRegImage.Size = new Size(75, 29);
             btnClearRegImage.TabIndex = 3;
             btnClearRegImage.Text = "クリア";
             btnClearRegImage.UseVisualStyleBackColor = true;
+            btnClearRegImage.Click += btnClearRegImage_Click;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(16, 150);
+            label5.Location = new Point(25, 200);
             label5.Name = "label5";
             label5.Size = new Size(43, 15);
             label5.TabIndex = 1;
@@ -188,33 +195,35 @@
             // 
             // tbxOutput
             // 
-            tbxOutput.Location = new Point(283, 147);
+            tbxOutput.Location = new Point(292, 197);
             tbxOutput.Name = "tbxOutput";
             tbxOutput.Size = new Size(402, 23);
             tbxOutput.TabIndex = 2;
             // 
             // btnSelectOutput
             // 
-            btnSelectOutput.Location = new Point(121, 143);
+            btnSelectOutput.Location = new Point(130, 193);
             btnSelectOutput.Name = "btnSelectOutput";
             btnSelectOutput.Size = new Size(75, 29);
             btnSelectOutput.TabIndex = 3;
             btnSelectOutput.Text = "選択";
             btnSelectOutput.UseVisualStyleBackColor = true;
+            btnSelectOutput.Click += btnSelectOutput_Click;
             // 
             // btnClearOutput
             // 
-            btnClearOutput.Location = new Point(202, 143);
+            btnClearOutput.Location = new Point(211, 193);
             btnClearOutput.Name = "btnClearOutput";
             btnClearOutput.Size = new Size(75, 29);
             btnClearOutput.TabIndex = 3;
             btnClearOutput.Text = "クリア";
             btnClearOutput.UseVisualStyleBackColor = true;
+            btnClearOutput.Click += btnClearOutput_Click;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(16, 185);
+            label6.Location = new Point(25, 235);
             label6.Name = "label6";
             label6.Size = new Size(50, 15);
             label6.TabIndex = 1;
@@ -222,42 +231,45 @@
             // 
             // tbxPreset
             // 
-            tbxPreset.Location = new Point(283, 182);
+            tbxPreset.Location = new Point(292, 232);
             tbxPreset.Name = "tbxPreset";
             tbxPreset.Size = new Size(402, 23);
             tbxPreset.TabIndex = 2;
             // 
             // btnSelectPreset
             // 
-            btnSelectPreset.Location = new Point(121, 178);
+            btnSelectPreset.Location = new Point(130, 228);
             btnSelectPreset.Name = "btnSelectPreset";
             btnSelectPreset.Size = new Size(75, 29);
             btnSelectPreset.TabIndex = 3;
             btnSelectPreset.Text = "選択";
             btnSelectPreset.UseVisualStyleBackColor = true;
+            btnSelectPreset.Click += btnSelectPreset_Click;
             // 
             // btnClearPreset
             // 
-            btnClearPreset.Location = new Point(202, 178);
+            btnClearPreset.Location = new Point(211, 228);
             btnClearPreset.Name = "btnClearPreset";
             btnClearPreset.Size = new Size(75, 29);
             btnClearPreset.TabIndex = 3;
             btnClearPreset.Text = "クリア";
             btnClearPreset.UseVisualStyleBackColor = true;
+            btnClearPreset.Click += btnClearPreset_Click;
             // 
             // btnDiscardAndClose
             // 
-            btnDiscardAndClose.Location = new Point(409, 334);
+            btnDiscardAndClose.Location = new Point(398, 376);
             btnDiscardAndClose.Name = "btnDiscardAndClose";
             btnDiscardAndClose.Size = new Size(144, 28);
             btnDiscardAndClose.TabIndex = 4;
             btnDiscardAndClose.Text = "設定を保存せず閉じる";
             btnDiscardAndClose.UseVisualStyleBackColor = true;
+            btnDiscardAndClose.Click += btnDiscardAndClose_Click;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(16, 220);
+            label7.Location = new Point(25, 270);
             label7.Name = "label7";
             label7.Size = new Size(28, 15);
             label7.TabIndex = 1;
@@ -265,33 +277,35 @@
             // 
             // tbxVAE
             // 
-            tbxVAE.Location = new Point(283, 217);
+            tbxVAE.Location = new Point(292, 267);
             tbxVAE.Name = "tbxVAE";
             tbxVAE.Size = new Size(402, 23);
             tbxVAE.TabIndex = 2;
             // 
             // btnSelectVAE
             // 
-            btnSelectVAE.Location = new Point(121, 213);
+            btnSelectVAE.Location = new Point(130, 263);
             btnSelectVAE.Name = "btnSelectVAE";
             btnSelectVAE.Size = new Size(75, 29);
             btnSelectVAE.TabIndex = 3;
             btnSelectVAE.Text = "選択";
             btnSelectVAE.UseVisualStyleBackColor = true;
+            btnSelectVAE.Click += btnSelectVAE_Click;
             // 
             // btnClearVAE
             // 
-            btnClearVAE.Location = new Point(202, 213);
+            btnClearVAE.Location = new Point(211, 263);
             btnClearVAE.Name = "btnClearVAE";
             btnClearVAE.Size = new Size(75, 29);
             btnClearVAE.TabIndex = 3;
             btnClearVAE.Text = "クリア";
             btnClearVAE.UseVisualStyleBackColor = true;
+            btnClearVAE.Click += btnClearVAE_Click;
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(16, 255);
+            label8.Location = new Point(25, 305);
             label8.Name = "label8";
             label8.Size = new Size(72, 15);
             label8.TabIndex = 1;
@@ -299,33 +313,35 @@
             // 
             // tbxTensorboard
             // 
-            tbxTensorboard.Location = new Point(283, 252);
+            tbxTensorboard.Location = new Point(292, 302);
             tbxTensorboard.Name = "tbxTensorboard";
             tbxTensorboard.Size = new Size(402, 23);
             tbxTensorboard.TabIndex = 2;
             // 
             // btnSelectTensorboard
             // 
-            btnSelectTensorboard.Location = new Point(121, 248);
+            btnSelectTensorboard.Location = new Point(130, 298);
             btnSelectTensorboard.Name = "btnSelectTensorboard";
             btnSelectTensorboard.Size = new Size(75, 29);
             btnSelectTensorboard.TabIndex = 3;
             btnSelectTensorboard.Text = "選択";
             btnSelectTensorboard.UseVisualStyleBackColor = true;
+            btnSelectTensorboard.Click += btnSelectTensorboard_Click;
             // 
             // btnClearTensorboard
             // 
-            btnClearTensorboard.Location = new Point(202, 248);
+            btnClearTensorboard.Location = new Point(211, 298);
             btnClearTensorboard.Name = "btnClearTensorboard";
             btnClearTensorboard.Size = new Size(75, 29);
             btnClearTensorboard.TabIndex = 3;
             btnClearTensorboard.Text = "クリア";
             btnClearTensorboard.UseVisualStyleBackColor = true;
+            btnClearTensorboard.Click += btnClearTensorboard_Click;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(16, 290);
+            label9.Location = new Point(25, 340);
             label9.Name = "label9";
             label9.Size = new Size(82, 15);
             label9.TabIndex = 1;
@@ -333,43 +349,56 @@
             // 
             // tbxConfig
             // 
-            tbxConfig.Location = new Point(283, 287);
+            tbxConfig.Location = new Point(292, 337);
             tbxConfig.Name = "tbxConfig";
             tbxConfig.Size = new Size(402, 23);
             tbxConfig.TabIndex = 2;
             // 
             // btnSelectConfig
             // 
-            btnSelectConfig.Location = new Point(121, 283);
+            btnSelectConfig.Location = new Point(130, 333);
             btnSelectConfig.Name = "btnSelectConfig";
             btnSelectConfig.Size = new Size(75, 29);
             btnSelectConfig.TabIndex = 3;
             btnSelectConfig.Text = "選択";
             btnSelectConfig.UseVisualStyleBackColor = true;
+            btnSelectConfig.Click += btnSelectConfig_Click;
             // 
             // btnClearConfig
             // 
-            btnClearConfig.Location = new Point(202, 283);
+            btnClearConfig.Location = new Point(211, 333);
             btnClearConfig.Name = "btnClearConfig";
             btnClearConfig.Size = new Size(75, 29);
             btnClearConfig.TabIndex = 3;
             btnClearConfig.Text = "クリア";
             btnClearConfig.UseVisualStyleBackColor = true;
+            btnClearConfig.Click += btnClearConfig_Click;
             // 
             // btnApplyAndClose
             // 
-            btnApplyAndClose.Location = new Point(572, 334);
+            btnApplyAndClose.Location = new Point(561, 376);
             btnApplyAndClose.Name = "btnApplyAndClose";
             btnApplyAndClose.Size = new Size(133, 28);
             btnApplyAndClose.TabIndex = 4;
             btnApplyAndClose.Text = "設定を保存して閉じる";
             btnApplyAndClose.UseVisualStyleBackColor = true;
+            btnApplyAndClose.Click += btnApplyAndClose_Click;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(25, 42);
+            label10.Name = "label10";
+            label10.Size = new Size(614, 30);
+            label10.TabIndex = 5;
+            label10.Text = "ファイルやディレクトリを指定する項目で、未指定や存在しないパスの場合に選択画面でデフォルトで開くディレクトリを選択できます。\r\nここの設定が空欄か存在しないパスの場合は無視されます。";
             // 
             // FormSettings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(726, 374);
+            ClientSize = new Size(726, 416);
+            Controls.Add(label10);
             Controls.Add(label1);
             Controls.Add(label2);
             Controls.Add(btnClearConfig);
@@ -411,6 +440,7 @@
             MinimizeBox = false;
             Name = "FormSettings";
             Text = "設定";
+            Load += FormSettings_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -452,5 +482,6 @@
         private TextBox tbxConfig;
         private Label label9;
         private Button btnApplyAndClose;
+        private Label label10;
     }
 }

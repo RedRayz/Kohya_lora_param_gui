@@ -335,6 +335,11 @@ namespace Kohya_lora_trainer
 
         private void btnSavePreset_Click(object sender, EventArgs e)
         {
+            ShowSavePresetDialog();
+        }
+
+        private void ShowSavePresetDialog()
+        {
             if (IsInvalidOutputName)
             {
                 MessageBox.Show("出力ファイル名が間違った状態では\nプリセットの保存はできません", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -610,7 +615,7 @@ namespace Kohya_lora_trainer
             return true;
         }
 
-        private void btnLoadPreset_Click(object sender, EventArgs e)
+        private void ShowLoadPresetDialog()
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
@@ -620,6 +625,11 @@ namespace Kohya_lora_trainer
             {
                 LoadPreset(ofd.FileName, true);
             }
+        }
+
+        private void btnLoadPreset_Click(object sender, EventArgs e)
+        {
+            ShowLoadPresetDialog();
         }
 
         private void LoadPreset(string path, bool ShowMsg)
@@ -1100,12 +1110,24 @@ namespace Kohya_lora_trainer
 
         private void 設定ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            FormSettings frm = new FormSettings();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+
+        private void 終了ToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void プリセットを開くToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
         }
 
-        private void 終了ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void プリセットを保存ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+
         }
     }
 }

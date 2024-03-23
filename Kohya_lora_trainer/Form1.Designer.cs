@@ -100,6 +100,8 @@ namespace Kohya_lora_trainer
             menuStrip1 = new MenuStrip();
             ファイルToolStripMenuItem = new ToolStripMenuItem();
             設定ToolStripMenuItem = new ToolStripMenuItem();
+            プリセットを開くToolStripMenuItem = new ToolStripMenuItem();
+            プリセットを保存ToolStripMenuItem = new ToolStripMenuItem();
             終了ToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDim).BeginInit();
@@ -782,7 +784,7 @@ namespace Kohya_lora_trainer
             // 
             // ファイルToolStripMenuItem
             // 
-            ファイルToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 設定ToolStripMenuItem, 終了ToolStripMenuItem });
+            ファイルToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 設定ToolStripMenuItem, プリセットを開くToolStripMenuItem, プリセットを保存ToolStripMenuItem, 終了ToolStripMenuItem });
             ファイルToolStripMenuItem.Name = "ファイルToolStripMenuItem";
             ファイルToolStripMenuItem.Size = new Size(63, 21);
             ファイルToolStripMenuItem.Text = "ファイル";
@@ -794,12 +796,26 @@ namespace Kohya_lora_trainer
             設定ToolStripMenuItem.Text = "設定";
             設定ToolStripMenuItem.Click += 設定ToolStripMenuItem_Click;
             // 
+            // プリセットを開くToolStripMenuItem
+            // 
+            プリセットを開くToolStripMenuItem.Name = "プリセットを開くToolStripMenuItem";
+            プリセットを開くToolStripMenuItem.Size = new Size(180, 22);
+            プリセットを開くToolStripMenuItem.Text = "プリセットを開く";
+            プリセットを開くToolStripMenuItem.Click += プリセットを開くToolStripMenuItem_Click;
+            // 
+            // プリセットを保存ToolStripMenuItem
+            // 
+            プリセットを保存ToolStripMenuItem.Name = "プリセットを保存ToolStripMenuItem";
+            プリセットを保存ToolStripMenuItem.Size = new Size(180, 22);
+            プリセットを保存ToolStripMenuItem.Text = "プリセットを保存";
+            プリセットを保存ToolStripMenuItem.Click += プリセットを保存ToolStripMenuItem_Click;
+            // 
             // 終了ToolStripMenuItem
             // 
             終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
             終了ToolStripMenuItem.Size = new Size(180, 22);
             終了ToolStripMenuItem.Text = "終了";
-            終了ToolStripMenuItem.Click += 終了ToolStripMenuItem_Click;
+            終了ToolStripMenuItem.Click += 終了ToolStripMenuItem_Click_1;
             // 
             // Form1
             // 
@@ -965,6 +981,8 @@ namespace Kohya_lora_trainer
         private MenuStrip menuStrip1;
         private ToolStripMenuItem ファイルToolStripMenuItem;
         private ToolStripMenuItem 設定ToolStripMenuItem;
+        private ToolStripMenuItem プリセットを開くToolStripMenuItem;
+        private ToolStripMenuItem プリセットを保存ToolStripMenuItem;
         private ToolStripMenuItem 終了ToolStripMenuItem;
     }
 }

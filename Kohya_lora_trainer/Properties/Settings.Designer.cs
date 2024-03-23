@@ -46,5 +46,77 @@ namespace Kohya_lora_trainer.Properties {
                 this["DefaultImageDir"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultRegImageDir {
+            get {
+                return ((string)(this["DefaultRegImageDir"]));
+            }
+            set {
+                this["DefaultRegImageDir"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultOutputDir {
+            get {
+                return ((string)(this["DefaultOutputDir"]));
+            }
+            set {
+                this["DefaultOutputDir"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultPresetDir {
+            get {
+                return ((string)(this["DefaultPresetDir"]));
+            }
+            set {
+                this["DefaultPresetDir"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultVAEDir {
+            get {
+                return ((string)(this["DefaultVAEDir"]));
+            }
+            set {
+                this["DefaultVAEDir"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultTensorboardDir {
+            get {
+                return ((string)(this["DefaultTensorboardDir"]));
+            }
+            set {
+                this["DefaultTensorboardDir"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultConfigDir {
+            get {
+                return ((string)(this["DefaultConfigDir"]));
+            }
+            set {
+                this["DefaultConfigDir"] = value;
+            }
+        }
     }
 }
