@@ -355,6 +355,8 @@ namespace Kohya_lora_trainer
             TrainParams.Current.UseTucker = cbxUseTucker.Checked;
             TrainParams.Current.UseScalar = cbxUseScalar.Checked;
 
+            TrainParams.Current.HighVRAM = cbxHighVRAM.Checked;
+
             Close();
         }
 
@@ -462,6 +464,7 @@ namespace Kohya_lora_trainer
             cbxConstrainedOFT.Checked = TrainParams.Current.ConstrainedOFT;
             cbxUseTucker.Checked = TrainParams.Current.UseTucker;
             cbxUseScalar.Checked = TrainParams.Current.UseScalar;
+            cbxHighVRAM.Checked = TrainParams.Current.HighVRAM;
 
         }
 

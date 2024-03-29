@@ -528,6 +528,10 @@ namespace Kohya_lora_trainer
                 sb.Append(" --training_comment \"").Append(TrainParams.Current.Comment).Append('"');
             }
 
+            if (TrainParams.Current.HighVRAM)
+            {
+                sb.Append(" --highvram");
+            }
             return sb.ToString();
         }
 

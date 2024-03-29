@@ -73,7 +73,7 @@ namespace Kohya_lora_trainer {
         public decimal[] BlockAlphaOutM = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
 
         //Advanced1
-        public bool UseColorAug = false, UseFastLoading = true, UseSDV2 = false, DontSaveMetadata = false, UseFlipAug = false, CropRandomly = false, UseParameterization = false, CacheLatents = false, CacheLatentsToDisk = false;
+        public bool UseColorAug = false, UseFastLoading = true, UseSDV2 = false, DontSaveMetadata = false, UseFlipAug = false, CropRandomly = false, UseParameterization = false, CacheLatents = false, CacheLatentsToDisk = false, HighVRAM = false;
         //public string ModelConfigPath = string.Empty;
         public decimal LRSchedulerCycle = 4m;
         public int DataLoaderThreads = 1, MaxTokens = 75;
