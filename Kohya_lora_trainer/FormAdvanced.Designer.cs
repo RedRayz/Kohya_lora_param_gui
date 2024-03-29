@@ -181,6 +181,7 @@ namespace Kohya_lora_trainer
             cbxRescaledOFT = new CheckBox();
             cbxTrainNorm = new CheckBox();
             label23 = new Label();
+            cbxHighVRAM = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -1282,6 +1283,7 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxUseFP8);
             tabPage7.Controls.Add(cbxUseFullFp16);
             tabPage7.Controls.Add(cbxCacheLatents);
+            tabPage7.Controls.Add(cbxHighVRAM);
             tabPage7.Controls.Add(cbxUseGradient);
             tabPage7.Controls.Add(cbxCrossAttenType);
             tabPage7.Controls.Add(label4);
@@ -1294,9 +1296,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 26);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(612, 272);
+            tabPage7.Size = new Size(612, 274);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -1736,9 +1738,9 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(cbxTrainNorm);
             tabPage3.Controls.Add(cbxAlgoType);
             tabPage3.Controls.Add(label23);
-            tabPage3.Location = new Point(4, 24);
+            tabPage3.Location = new Point(4, 26);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(612, 274);
+            tabPage3.Size = new Size(612, 272);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;
@@ -1811,6 +1813,16 @@ namespace Kohya_lora_trainer
             label23.Size = new Size(114, 15);
             label23.TabIndex = 17;
             label23.Text = "LyCORISのアルゴリズム";
+            // 
+            // cbxHighVRAM
+            // 
+            cbxHighVRAM.AutoSize = true;
+            cbxHighVRAM.Location = new Point(45, 212);
+            cbxHighVRAM.Name = "cbxHighVRAM";
+            cbxHighVRAM.Size = new Size(198, 19);
+            cbxHighVRAM.TabIndex = 18;
+            cbxHighVRAM.Text = "高VRAM(latentキャッシュの高速化)";
+            cbxHighVRAM.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
@@ -2028,5 +2040,6 @@ namespace Kohya_lora_trainer
         private CheckBox cbxRescaledOFT;
         private CheckBox cbxConstrainedOFT;
         private Label label47;
+        private CheckBox cbxHighVRAM;
     }
 }
