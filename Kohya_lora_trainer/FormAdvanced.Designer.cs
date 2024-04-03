@@ -133,6 +133,7 @@ namespace Kohya_lora_trainer
             label26 = new Label();
             label28 = new Label();
             tabPage7 = new TabPage();
+            cbxHighVRAM = new CheckBox();
             label29 = new Label();
             label27 = new Label();
             tabPage5 = new TabPage();
@@ -181,7 +182,6 @@ namespace Kohya_lora_trainer
             cbxRescaledOFT = new CheckBox();
             cbxTrainNorm = new CheckBox();
             label23 = new Label();
-            cbxHighVRAM = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -1303,6 +1303,17 @@ namespace Kohya_lora_trainer
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
             // 
+            // cbxHighVRAM
+            // 
+            cbxHighVRAM.AutoSize = true;
+            cbxHighVRAM.Location = new Point(45, 212);
+            cbxHighVRAM.Name = "cbxHighVRAM";
+            cbxHighVRAM.Size = new Size(198, 19);
+            cbxHighVRAM.TabIndex = 18;
+            cbxHighVRAM.Text = "高VRAM(latentキャッシュの高速化)";
+            toolTip1.SetToolTip(cbxHighVRAM, "現時点でlatentのキャッシュのみに影響\r\n高VRAMといっても8GB未満の使用量で済む");
+            cbxHighVRAM.UseVisualStyleBackColor = true;
+            // 
             // label29
             // 
             label29.AutoSize = true;
@@ -1345,9 +1356,9 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(label35);
             tabPage5.Controls.Add(tbxD0);
             tabPage5.Controls.Add(tbxGrowthRate);
-            tabPage5.Location = new Point(4, 26);
+            tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(612, 272);
+            tabPage5.Size = new Size(612, 274);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "DAdaptation";
             tabPage5.UseVisualStyleBackColor = true;
@@ -1562,10 +1573,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(612, 272);
+            tabPage2.Size = new Size(612, 274);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -1813,16 +1824,6 @@ namespace Kohya_lora_trainer
             label23.Size = new Size(114, 15);
             label23.TabIndex = 17;
             label23.Text = "LyCORISのアルゴリズム";
-            // 
-            // cbxHighVRAM
-            // 
-            cbxHighVRAM.AutoSize = true;
-            cbxHighVRAM.Location = new Point(45, 212);
-            cbxHighVRAM.Name = "cbxHighVRAM";
-            cbxHighVRAM.Size = new Size(198, 19);
-            cbxHighVRAM.TabIndex = 18;
-            cbxHighVRAM.Text = "高VRAM(latentキャッシュの高速化)";
-            cbxHighVRAM.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
