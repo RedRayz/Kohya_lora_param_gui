@@ -222,7 +222,18 @@ namespace Kohya_lora_trainer
             sb.Append(" --max_data_loader_n_workers ").Append(TrainParams.Current.DataLoaderThreads);
 
             //Automatic
-            sb.Append(" --enable_bucket --save_model_as \"safetensors\" --lr_scheduler_num_cycles ").Append(TrainParams.Current.LRSchedulerCycle);
+            sb.Append(" --enable_bucket --save_model_as \"safetensors\"");
+
+            switch (TrainParams.Current.SchedulerType)
+            {
+                case SchedulerType.polynomial:
+                    sb.Append(" --lr_scheduler_power ").Append(TrainParams.Current.LRSchedulerCycle);
+                    break;
+                default:
+                    sb.Append(" --lr_scheduler_num_cycles ").Append(TrainParams.Current.LRSchedulerCycle);
+                    break;
+            }
+
 
             if (TrainParams.Current.mixedPrecisionType != MixedPrecisionType.None)
                 sb.Append(" --mixed_precision \"").Append(TrainParams.Current.mixedPrecisionType.ToString()).Append('"');
