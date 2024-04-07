@@ -1283,11 +1283,11 @@ namespace Kohya_lora_trainer
             // label28
             // 
             label28.AutoSize = true;
-            label28.Location = new Point(287, 17);
+            label28.Location = new Point(286, 17);
             label28.Name = "label28";
             label28.Size = new Size(125, 30);
             label28.TabIndex = 21;
-            label28.Text = "LRスケジューラのサイクル/\r\n多項式の減衰";
+            label28.Text = "LRスケジューラのサイクル/\r\npolynomialの減衰";
             toolTip1.SetToolTip(label28, "polynomialの場合はpowerとして使用される");
             // 
             // tabPage7
