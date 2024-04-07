@@ -88,6 +88,11 @@ namespace Kohya_lora_trainer {
         public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true, UseFullFP16 = false, UseFP8Base = false, RelativeStep = true, ScaleParameter = true;
         public string TokensSeparator;
 
+        //Huber関連
+        public LossType LossType;
+        public HuberScheduleType HuberScheduleType;
+        public decimal HuberC = 0.1m;
+
 
         [NonSerialized]
         public static TrainParams? Current;
@@ -312,5 +317,19 @@ namespace Kohya_lora_trainer {
         ShowTimetaken,
         Shutdown,
         Suspend
+    }
+
+    public enum  LossType
+    {
+        LTwo,
+        Huber,
+        SmoothLOne
+    }
+
+    public enum HuberScheduleType
+    {
+        SNR,
+        Exponential,
+        Constant
     }
 }

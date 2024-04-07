@@ -179,6 +179,12 @@ namespace Kohya_lora_trainer
             cbxRescaledOFT = new CheckBox();
             cbxTrainNorm = new CheckBox();
             label23 = new Label();
+            label48 = new Label();
+            cbxLossType = new ComboBox();
+            label49 = new Label();
+            cbxHuberSchedule = new ComboBox();
+            label50 = new Label();
+            nudHuberC = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -204,6 +210,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudNetworkDropout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudModuleDropout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudRankDropout).BeginInit();
+            page3.SuspendLayout();
             tabPage7.SuspendLayout();
             tabPage5.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -211,6 +218,7 @@ namespace Kohya_lora_trainer
             tabPage6.SuspendLayout();
             pageXL.SuspendLayout();
             tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudHuberC).BeginInit();
             SuspendLayout();
             // 
             // tbxUnetLR
@@ -1266,9 +1274,15 @@ namespace Kohya_lora_trainer
             // 
             // page3
             // 
-            page3.Location = new Point(4, 26);
+            page3.Controls.Add(nudHuberC);
+            page3.Controls.Add(label50);
+            page3.Controls.Add(cbxHuberSchedule);
+            page3.Controls.Add(label49);
+            page3.Controls.Add(cbxLossType);
+            page3.Controls.Add(label48);
+            page3.Location = new Point(4, 24);
             page3.Name = "page3";
-            page3.Size = new Size(612, 303);
+            page3.Size = new Size(612, 305);
             page3.TabIndex = 10;
             page3.Text = "ページ3";
             page3.UseVisualStyleBackColor = true;
@@ -1617,9 +1631,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(label11);
             pageMisc.Controls.Add(label6);
             pageMisc.Controls.Add(nudClipSkip);
-            pageMisc.Location = new Point(4, 24);
+            pageMisc.Location = new Point(4, 26);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(612, 305);
+            pageMisc.Size = new Size(612, 303);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -1671,9 +1685,9 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(nudAdaptiveNoiseScale);
             tabPage6.Controls.Add(label19);
             tabPage6.Controls.Add(label14);
-            tabPage6.Location = new Point(4, 24);
+            tabPage6.Location = new Point(4, 26);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(612, 305);
+            tabPage6.Size = new Size(612, 303);
             tabPage6.TabIndex = 7;
             tabPage6.Text = "ノイズ関連";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1787,6 +1801,64 @@ namespace Kohya_lora_trainer
             label23.TabIndex = 17;
             label23.Text = "LyCORISのアルゴリズム";
             // 
+            // label48
+            // 
+            label48.AutoSize = true;
+            label48.Location = new Point(25, 17);
+            label48.Name = "label48";
+            label48.Size = new Size(89, 15);
+            label48.TabIndex = 0;
+            label48.Text = "損失関数の種類";
+            // 
+            // cbxLossType
+            // 
+            cbxLossType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxLossType.FormattingEnabled = true;
+            cbxLossType.Items.AddRange(new object[] { "l2(デフォルト)", "huber", "smooth_l1" });
+            cbxLossType.Location = new Point(120, 14);
+            cbxLossType.Name = "cbxLossType";
+            cbxLossType.Size = new Size(121, 23);
+            cbxLossType.TabIndex = 1;
+            // 
+            // label49
+            // 
+            label49.AutoSize = true;
+            label49.Location = new Point(12, 53);
+            label49.Name = "label49";
+            label49.Size = new Size(102, 15);
+            label49.TabIndex = 2;
+            label49.Text = "huberのスケジュール";
+            // 
+            // cbxHuberSchedule
+            // 
+            cbxHuberSchedule.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxHuberSchedule.FormattingEnabled = true;
+            cbxHuberSchedule.Items.AddRange(new object[] { "snr", "exponential", "constant" });
+            cbxHuberSchedule.Location = new Point(120, 50);
+            cbxHuberSchedule.Name = "cbxHuberSchedule";
+            cbxHuberSchedule.Size = new Size(121, 23);
+            cbxHuberSchedule.TabIndex = 3;
+            // 
+            // label50
+            // 
+            label50.AutoSize = true;
+            label50.Location = new Point(65, 89);
+            label50.Name = "label50";
+            label50.Size = new Size(49, 15);
+            label50.TabIndex = 4;
+            label50.Text = "huber_c";
+            // 
+            // nudHuberC
+            // 
+            nudHuberC.DecimalPlaces = 2;
+            nudHuberC.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            nudHuberC.Location = new Point(121, 87);
+            nudHuberC.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
+            nudHuberC.Name = "nudHuberC";
+            nudHuberC.Size = new Size(120, 23);
+            nudHuberC.TabIndex = 5;
+            nudHuberC.Value = new decimal(new int[] { 1, 0, 0, 65536 });
+            // 
             // FormAdvanced
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -1831,6 +1903,8 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudNetworkDropout).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudModuleDropout).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudRankDropout).EndInit();
+            page3.ResumeLayout(false);
+            page3.PerformLayout();
             tabPage7.ResumeLayout(false);
             tabPage7.PerformLayout();
             tabPage5.ResumeLayout(false);
@@ -1845,6 +1919,7 @@ namespace Kohya_lora_trainer
             pageXL.PerformLayout();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudHuberC).EndInit();
             ResumeLayout(false);
         }
 
@@ -1999,5 +2074,11 @@ namespace Kohya_lora_trainer
         private CheckBox cbxConstrainedOFT;
         private Label label47;
         private CheckBox cbxHighVRAM;
+        private Label label48;
+        private Label label49;
+        private ComboBox cbxLossType;
+        private NumericUpDown nudHuberC;
+        private Label label50;
+        private ComboBox cbxHuberSchedule;
     }
 }
