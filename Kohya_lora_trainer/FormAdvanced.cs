@@ -362,6 +362,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.LossType = (LossType)Enum.ToObject(typeof(LossType), cbxLossType.SelectedIndex);
             TrainParams.Current.HuberScheduleType = (HuberScheduleType)Enum.ToObject(typeof(HuberScheduleType), cbxHuberSchedule.SelectedIndex);
             TrainParams.Current.HuberC = nudHuberC.Value;
+            TrainParams.Current.SaveState = cbxSaveState.Checked;
 
             Close();
         }
@@ -476,6 +477,8 @@ namespace Kohya_lora_trainer
             cbxLossType.SelectedIndex = (int)TrainParams.Current.LossType;
             cbxHuberSchedule.SelectedIndex = (int)TrainParams.Current.HuberScheduleType;
             nudHuberC.Value = TrainParams.Current.HuberC;
+
+            cbxSaveState.Checked = TrainParams.Current.SaveState;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)

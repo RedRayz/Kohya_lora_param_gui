@@ -571,7 +571,10 @@ namespace Kohya_lora_trainer
 
             sb.Append(" --huber_schedule \"").Append(TrainParams.Current.HuberScheduleType.ToString().ToLower()).Append('"');
 
-
+            if (TrainParams.Current.SaveState)
+            {
+                sb.Append(" --save_state_on_train_end");
+            }
 
             return sb.ToString();
         }
