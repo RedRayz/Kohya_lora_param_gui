@@ -310,8 +310,10 @@ namespace Kohya_lora_trainer
 
             TrainParams.Current.UseColorAug = cbxUseColorAug.Checked;
             TrainParams.Current.UseFastLoading = cbxUseFastLoading.Checked;
-            TrainParams.Current.UseSDV2 = cbxUseV2.Checked;
-            TrainParams.Current.UseParameterization = cbxUseParametarization.Checked;
+            //Obsoleted: SD2なんぞ廃止や
+            //TrainParams.Current.UseSDV2 = cbxUseV2.Checked;
+            //TrainParams.Current.UseParameterization = cbxUseParametarization.Checked;
+            //TrainParams.Current.ScaleVPredLoss = cbxScaleVPredLoss.Checked;
             TrainParams.Current.UseFlipAug = cbxFlipAug.Checked;
             TrainParams.Current.CropRandomly = cbxCropRandomly.Checked;
             TrainParams.Current.DontSaveMetadata = cbxDontSaveMetadata.Checked;
@@ -330,7 +332,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.NetworkDropout = nudNetworkDropout.Value;
             TrainParams.Current.RankDropout = nudRankDropout.Value;
             TrainParams.Current.ModuleDropout = nudModuleDropout.Value;
-            TrainParams.Current.ScaleVPredLoss = cbxScaleVPredLoss.Checked;
+            
             TrainParams.Current.MaxNormReg = nudMaxNormReg.Value;
 
             TrainParams.Current.Decouple = cbxDecouple.Checked;
@@ -408,8 +410,9 @@ namespace Kohya_lora_trainer
 
             cbxUseColorAug.Checked = TrainParams.Current.UseColorAug;
             cbxUseFastLoading.Checked = TrainParams.Current.UseFastLoading;
-            cbxUseV2.Checked = TrainParams.Current.UseSDV2;
-            cbxUseParametarization.Checked = TrainParams.Current.UseParameterization;
+            //cbxUseV2.Checked = TrainParams.Current.UseSDV2;
+            //cbxUseParametarization.Checked = TrainParams.Current.UseParameterization;
+            //cbxScaleVPredLoss.Checked = TrainParams.Current.ScaleVPredLoss;
             cbxFlipAug.Checked = TrainParams.Current.UseFlipAug;
             cbxCropRandomly.Checked = TrainParams.Current.CropRandomly;
             cbxDontSaveMetadata.Checked = TrainParams.Current.DontSaveMetadata;
@@ -436,7 +439,7 @@ namespace Kohya_lora_trainer
             nudRankDropout.Value = TrainParams.Current.RankDropout;
             nudModuleDropout.Value = TrainParams.Current.ModuleDropout;
             nudNetworkDropout.Value = TrainParams.Current.NetworkDropout;
-            cbxScaleVPredLoss.Checked = TrainParams.Current.ScaleVPredLoss;
+            
             nudMaxNormReg.Value = TrainParams.Current.MaxNormReg;
 
             cbxDecouple.Checked = TrainParams.Current.Decouple;

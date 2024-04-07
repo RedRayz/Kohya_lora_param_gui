@@ -187,18 +187,19 @@ namespace Kohya_lora_trainer
                 sb.Append(" --no_metadata");
             }
 
-            if (TrainParams.Current.UseSDV2)
-            {
-                sb.Append(" --v2");
-            }
+            //SD2を使う人なんていないだろうから廃止
+            //if (TrainParams.Current.UseSDV2)
+            //{
+            //    sb.Append(" --v2");
+            //}
 
             if (TrainParams.Current.UseFullFP16)
             {
                 sb.Append(" --full_fp16");
             }
 
-            if (TrainParams.Current.UseParameterization)
-                sb.Append(" --v_parameterization");
+            //if (TrainParams.Current.UseParameterization)
+            //    sb.Append(" --v_parameterization");
 
             if (TrainParams.Current.CacheLatents)
             {
@@ -490,10 +491,10 @@ namespace Kohya_lora_trainer
                 sb.Append(" --dataset_config \"").Append(TrainParams.Current.DatasetConfigPath).Append('"');
             }
 
-            if (TrainParams.Current.ScaleVPredLoss)
-            {
-                sb.Append(" --scale_v_pred_loss_like_noise_pred");
-            }
+            //if (TrainParams.Current.ScaleVPredLoss)
+            //{
+            //    sb.Append(" --scale_v_pred_loss_like_noise_pred");
+            //}
 
             if (TrainParams.Current.MaxNormReg > 0)
             {
