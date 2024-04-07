@@ -266,10 +266,10 @@ namespace Kohya_lora_trainer
                     .Append(Constants.TORCH_VERSION).Append(" torchvision==")
                     .Append(Constants.TORCHVISION_VERSION).Append(" --index-url ")
                     .Append(Constants.INDEX_URL)
-                    .Append(" && pip install bitsandbytes==0.41.1 --prefer-binary --extra-index-url=https://jllllll.github.io/bitsandbytes-windows-webui && pip install --upgrade -r requirements.txt && pip install xformers==")
+                    .Append(" && pip install --upgrade -r requirements.txt && pip install xformers==")
                     .Append(Constants.XFORMERS_VERSION).Append(" && ");
 
-                sb.Append("pip install prodigyopt dadaptation lion-pytorch lycoris_lora");
+                sb.Append("pip install dadaptation lycoris_lora");
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
                 ps.Arguments = sb.ToString();
