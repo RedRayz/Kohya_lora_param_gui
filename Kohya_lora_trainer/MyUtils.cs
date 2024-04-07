@@ -42,7 +42,7 @@ namespace Kohya_lora_trainer
                 case ModuleType.LoRA:
                 case ModuleType.LoRAFA:
                     {
-                        sb.Append(" --network_module \"").Append(TrainParams.Current.ModuleType == ModuleType.LoRA ? "networks.lora": "networks.lora_fa").Append('"');
+                        sb.Append(" --network_module \"").Append(TrainParams.Current.ModuleType == ModuleType.LoRA ? "networks.lora" : "networks.lora_fa").Append('"');
                         if (TrainParams.Current.UseConv2dExtend)
                         {
                             bool di = TrainParams.Current.ConvDim > 0;
@@ -63,7 +63,8 @@ namespace Kohya_lora_trainer
                         {
                             sb.Append(" --network_args").Append(' ').Append(lbw);
                             sb.Append(GenerateDropoutCommands());
-                        }else if(TrainParams.Current.RankDropout > 0 || TrainParams.Current.ModuleDropout > 0)
+                        }
+                        else if (TrainParams.Current.RankDropout > 0 || TrainParams.Current.ModuleDropout > 0)
                         {
                             sb.Append(" --network_args").Append(' ').Append(GenerateDropoutCommands());
                         }
@@ -187,18 +188,19 @@ namespace Kohya_lora_trainer
                 sb.Append(" --no_metadata");
             }
 
-            if (TrainParams.Current.UseSDV2)
-            {
-                sb.Append(" --v2");
-            }
+            //SD2を使う人なんていないだろうから廃止
+            //if (TrainParams.Current.UseSDV2)
+            //{
+            //    sb.Append(" --v2");
+            //}
 
             if (TrainParams.Current.UseFullFP16)
             {
                 sb.Append(" --full_fp16");
             }
 
-            if (TrainParams.Current.UseParameterization)
-                sb.Append(" --v_parameterization");
+            //if (TrainParams.Current.UseParameterization)
+            //    sb.Append(" --v_parameterization");
 
             if (TrainParams.Current.CacheLatents)
             {
@@ -222,7 +224,18 @@ namespace Kohya_lora_trainer
             sb.Append(" --max_data_loader_n_workers ").Append(TrainParams.Current.DataLoaderThreads);
 
             //Automatic
-            sb.Append(" --enable_bucket --save_model_as \"safetensors\" --lr_scheduler_num_cycles ").Append(TrainParams.Current.LRSchedulerCycle);
+            sb.Append(" --enable_bucket --save_model_as \"safetensors\"");
+
+            switch (TrainParams.Current.SchedulerType)
+            {
+                case SchedulerType.polynomial:
+                    sb.Append(" --lr_scheduler_power ").Append(TrainParams.Current.LRSchedulerCycle);
+                    break;
+                default:
+                    sb.Append(" --lr_scheduler_num_cycles ").Append(TrainParams.Current.LRSchedulerCycle);
+                    break;
+            }
+
 
             if (TrainParams.Current.mixedPrecisionType != MixedPrecisionType.None)
                 sb.Append(" --mixed_precision \"").Append(TrainParams.Current.mixedPrecisionType.ToString()).Append('"');
@@ -240,7 +253,7 @@ namespace Kohya_lora_trainer
             {
                 sb.Append(" --max_train_steps ").Append(TrainParams.Current.Epochs);
             }
-                
+
 
             sb.Append(" --network_dim ").Append(TrainParams.Current.NetworkDim)
             .Append(" --network_alpha ").Append(TrainParams.Current.NetworkAlpha);
@@ -403,19 +416,19 @@ namespace Kohya_lora_trainer
                 sb.Append(" --bucket_no_upscale");
             }
 
-            
-            if(TrainParams.Current.StableDiffusionType != SDType.XL)
+
+            if (TrainParams.Current.StableDiffusionType != SDType.XL)
             {
                 sb.Append(" --clip_skip ").Append(TrainParams.Current.ClipSkip);
             }
 
-                sb.Append(" --save_precision \"").Append(TrainParams.Current.SavePrecision.ToString()).Append('"')
-                .Append(" --lr_scheduler \"").Append(TrainParams.Current.SchedulerType.ToString()).Append('"')
-                .Append(" --min_bucket_reso ").Append(TrainParams.Current.MinBucketResolution)
-                .Append(" --max_bucket_reso ").Append(TrainParams.Current.MaxBucketResolution)
-                .Append(" --caption_extension \"").Append(TrainParams.Current.CaptionFileExtension).Append('"');
+            sb.Append(" --save_precision \"").Append(TrainParams.Current.SavePrecision.ToString()).Append('"')
+            .Append(" --lr_scheduler \"").Append(TrainParams.Current.SchedulerType.ToString()).Append('"')
+            .Append(" --min_bucket_reso ").Append(TrainParams.Current.MinBucketResolution)
+            .Append(" --max_bucket_reso ").Append(TrainParams.Current.MaxBucketResolution)
+            .Append(" --caption_extension \"").Append(TrainParams.Current.CaptionFileExtension).Append('"');
 
-            if(TrainParams.Current.Seed >= 0)
+            if (TrainParams.Current.Seed >= 0)
             {
                 sb.Append(" --seed ").Append(TrainParams.Current.Seed);
             }
@@ -479,10 +492,10 @@ namespace Kohya_lora_trainer
                 sb.Append(" --dataset_config \"").Append(TrainParams.Current.DatasetConfigPath).Append('"');
             }
 
-            if (TrainParams.Current.ScaleVPredLoss)
-            {
-                sb.Append(" --scale_v_pred_loss_like_noise_pred");
-            }
+            //if (TrainParams.Current.ScaleVPredLoss)
+            //{
+            //    sb.Append(" --scale_v_pred_loss_like_noise_pred");
+            //}
 
             if (TrainParams.Current.MaxNormReg > 0)
             {
@@ -513,7 +526,7 @@ namespace Kohya_lora_trainer
                 }
             }
 
-            if(TrainParams.Current.UseFP8Base)
+            if (TrainParams.Current.UseFP8Base)
             {
                 sb.Append(" --fp8_base");
             }
@@ -532,6 +545,37 @@ namespace Kohya_lora_trainer
             {
                 sb.Append(" --highvram");
             }
+
+            sb.Append(" --loss_type \"");
+
+            switch (TrainParams.Current.LossType)
+            {
+                case LossType.LTwo:
+                    {
+                        sb.Append("l2\"");
+                    }
+                    break;
+                    case LossType.Huber:
+                    {
+                        sb.Append("huber\"");
+
+                        sb.Append(" --huber_c ").Append(TrainParams.Current.HuberC.ToString());
+                    }
+                    break;
+                    case LossType.SmoothLOne:
+                    {
+                        sb.Append("smooth_l1\"");
+                    }
+                    break;
+            }
+
+            sb.Append(" --huber_schedule \"").Append(TrainParams.Current.HuberScheduleType.ToString().ToLower()).Append('"');
+
+            if (TrainParams.Current.SaveState)
+            {
+                sb.Append(" --save_state_on_train_end");
+            }
+
             return sb.ToString();
         }
 
@@ -539,7 +583,7 @@ namespace Kohya_lora_trainer
         {
             StringBuilder sb = new StringBuilder();
 
-            if(TrainParams.Current.RankDropout > 0)
+            if (TrainParams.Current.RankDropout > 0)
             {
                 sb.Append(" \"rank_dropout=").Append(TrainParams.Current.RankDropout.ToString()).Append('"');
             }

@@ -310,8 +310,10 @@ namespace Kohya_lora_trainer
 
             TrainParams.Current.UseColorAug = cbxUseColorAug.Checked;
             TrainParams.Current.UseFastLoading = cbxUseFastLoading.Checked;
-            TrainParams.Current.UseSDV2 = cbxUseV2.Checked;
-            TrainParams.Current.UseParameterization = cbxUseParametarization.Checked;
+            //Obsoleted: SD2なんぞ廃止や
+            //TrainParams.Current.UseSDV2 = cbxUseV2.Checked;
+            //TrainParams.Current.UseParameterization = cbxUseParametarization.Checked;
+            //TrainParams.Current.ScaleVPredLoss = cbxScaleVPredLoss.Checked;
             TrainParams.Current.UseFlipAug = cbxFlipAug.Checked;
             TrainParams.Current.CropRandomly = cbxCropRandomly.Checked;
             TrainParams.Current.DontSaveMetadata = cbxDontSaveMetadata.Checked;
@@ -330,7 +332,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.NetworkDropout = nudNetworkDropout.Value;
             TrainParams.Current.RankDropout = nudRankDropout.Value;
             TrainParams.Current.ModuleDropout = nudModuleDropout.Value;
-            TrainParams.Current.ScaleVPredLoss = cbxScaleVPredLoss.Checked;
+            
             TrainParams.Current.MaxNormReg = nudMaxNormReg.Value;
 
             TrainParams.Current.Decouple = cbxDecouple.Checked;
@@ -356,6 +358,11 @@ namespace Kohya_lora_trainer
             TrainParams.Current.UseScalar = cbxUseScalar.Checked;
 
             TrainParams.Current.HighVRAM = cbxHighVRAM.Checked;
+
+            TrainParams.Current.LossType = (LossType)Enum.ToObject(typeof(LossType), cbxLossType.SelectedIndex);
+            TrainParams.Current.HuberScheduleType = (HuberScheduleType)Enum.ToObject(typeof(HuberScheduleType), cbxHuberSchedule.SelectedIndex);
+            TrainParams.Current.HuberC = nudHuberC.Value;
+            TrainParams.Current.SaveState = cbxSaveState.Checked;
 
             Close();
         }
@@ -408,8 +415,9 @@ namespace Kohya_lora_trainer
 
             cbxUseColorAug.Checked = TrainParams.Current.UseColorAug;
             cbxUseFastLoading.Checked = TrainParams.Current.UseFastLoading;
-            cbxUseV2.Checked = TrainParams.Current.UseSDV2;
-            cbxUseParametarization.Checked = TrainParams.Current.UseParameterization;
+            //cbxUseV2.Checked = TrainParams.Current.UseSDV2;
+            //cbxUseParametarization.Checked = TrainParams.Current.UseParameterization;
+            //cbxScaleVPredLoss.Checked = TrainParams.Current.ScaleVPredLoss;
             cbxFlipAug.Checked = TrainParams.Current.UseFlipAug;
             cbxCropRandomly.Checked = TrainParams.Current.CropRandomly;
             cbxDontSaveMetadata.Checked = TrainParams.Current.DontSaveMetadata;
@@ -436,7 +444,7 @@ namespace Kohya_lora_trainer
             nudRankDropout.Value = TrainParams.Current.RankDropout;
             nudModuleDropout.Value = TrainParams.Current.ModuleDropout;
             nudNetworkDropout.Value = TrainParams.Current.NetworkDropout;
-            cbxScaleVPredLoss.Checked = TrainParams.Current.ScaleVPredLoss;
+            
             nudMaxNormReg.Value = TrainParams.Current.MaxNormReg;
 
             cbxDecouple.Checked = TrainParams.Current.Decouple;
@@ -466,6 +474,11 @@ namespace Kohya_lora_trainer
             cbxUseScalar.Checked = TrainParams.Current.UseScalar;
             cbxHighVRAM.Checked = TrainParams.Current.HighVRAM;
 
+            cbxLossType.SelectedIndex = (int)TrainParams.Current.LossType;
+            cbxHuberSchedule.SelectedIndex = (int)TrainParams.Current.HuberScheduleType;
+            nudHuberC.Value = TrainParams.Current.HuberC;
+
+            cbxSaveState.Checked = TrainParams.Current.SaveState;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)

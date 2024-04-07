@@ -33,7 +33,7 @@ namespace Kohya_lora_trainer {
         public  float UnetLR = -1, TextEncoderLR = -1, NoiseOffset = 0, Momentum = 0.9f;
         public AdvancedTrainType advancedTrainType = AdvancedTrainType.None;
         public CrossAttenType CrossAttenType = CrossAttenType.xformers;
-        public bool UseGradient = false, UseWeightedCaptions = false, ScaleVPredLoss = false;
+        public bool UseGradient = false, UseWeightedCaptions = false;
         public decimal AdaptiveNoiseScale = 0, MinSNRGamma = 0, MultiresNoiseIterations = 0, MultiresNoiseDiscount = 0, NetworkDropout = 0, RankDropout = 0, ModuleDropout = 0, MaxNormReg = 0, CaptionDropout = 0;
 
         //Addtional(KohakuBlueleaf氏作成拡張スクリプト用)
@@ -73,7 +73,7 @@ namespace Kohya_lora_trainer {
         public decimal[] BlockAlphaOutM = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
 
         //Advanced1
-        public bool UseColorAug = false, UseFastLoading = true, UseSDV2 = false, DontSaveMetadata = false, UseFlipAug = false, CropRandomly = false, UseParameterization = false, CacheLatents = false, CacheLatentsToDisk = false, HighVRAM = false;
+        public bool UseColorAug = false, UseFastLoading = true, DontSaveMetadata = false, UseFlipAug = false, CropRandomly = false, CacheLatents = false, CacheLatentsToDisk = false, HighVRAM = false;
         //public string ModelConfigPath = string.Empty;
         public decimal LRSchedulerCycle = 4m;
         public int DataLoaderThreads = 1, MaxTokens = 75;
@@ -85,8 +85,13 @@ namespace Kohya_lora_trainer {
 
         public SDType StableDiffusionType = SDType.Legacy;
 
-        public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true, UseFullFP16 = false, UseFP8Base = false, RelativeStep = true, ScaleParameter = true;
+        public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true, UseFullFP16 = false, UseFP8Base = false, RelativeStep = true, ScaleParameter = true, SaveState = false;
         public string TokensSeparator;
+
+        //Huber関連
+        public LossType LossType;
+        public HuberScheduleType HuberScheduleType;
+        public decimal HuberC = 0.1m;
 
 
         [NonSerialized]
@@ -312,5 +317,19 @@ namespace Kohya_lora_trainer {
         ShowTimetaken,
         Shutdown,
         Suspend
+    }
+
+    public enum  LossType
+    {
+        LTwo,
+        Huber,
+        SmoothLOne
+    }
+
+    public enum HuberScheduleType
+    {
+        SNR,
+        Exponential,
+        Constant
     }
 }
