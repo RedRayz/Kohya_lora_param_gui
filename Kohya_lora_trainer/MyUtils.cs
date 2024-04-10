@@ -110,6 +110,13 @@ namespace Kohya_lora_trainer
                                     sb.Append(' ').Append(lbw);
                             }
                         }
+                        else
+                        {
+                            sb.Append(" \"conv_dim=0\"");
+                            sb.Append(" \"conv_alpha=0\"");
+                            if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
+                                sb.Append(' ').Append(lbw);
+                        }
 
 
 
