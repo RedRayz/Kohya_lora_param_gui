@@ -565,6 +565,7 @@ namespace Kohya_lora_trainer
                     case LossType.SmoothLOne:
                     {
                         sb.Append("smooth_l1\"");
+                        sb.Append(" --huber_c ").Append(TrainParams.Current.HuberC.ToString());
                     }
                     break;
             }
