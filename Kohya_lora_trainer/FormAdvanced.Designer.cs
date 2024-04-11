@@ -132,6 +132,7 @@ namespace Kohya_lora_trainer
             nudRankDropout = new NumericUpDown();
             label26 = new Label();
             page3 = new TabPage();
+            cbxSaveState = new CheckBox();
             nudHuberC = new NumericUpDown();
             label50 = new Label();
             cbxHuberSchedule = new ComboBox();
@@ -185,7 +186,7 @@ namespace Kohya_lora_trainer
             cbxRescaledOFT = new CheckBox();
             cbxTrainNorm = new CheckBox();
             label23 = new Label();
-            cbxSaveState = new CheckBox();
+            cbxMaskLoss = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -1275,6 +1276,7 @@ namespace Kohya_lora_trainer
             // 
             // page3
             // 
+            page3.Controls.Add(cbxMaskLoss);
             page3.Controls.Add(cbxSaveState);
             page3.Controls.Add(nudHuberC);
             page3.Controls.Add(label50);
@@ -1288,6 +1290,16 @@ namespace Kohya_lora_trainer
             page3.TabIndex = 10;
             page3.Text = "ページ3";
             page3.UseVisualStyleBackColor = true;
+            // 
+            // cbxSaveState
+            // 
+            cbxSaveState.AutoSize = true;
+            cbxSaveState.Location = new Point(25, 131);
+            cbxSaveState.Name = "cbxSaveState";
+            cbxSaveState.Size = new Size(153, 19);
+            cbxSaveState.TabIndex = 6;
+            cbxSaveState.Text = "学習終了時にstateを保存";
+            cbxSaveState.UseVisualStyleBackColor = true;
             // 
             // nudHuberC
             // 
@@ -1365,9 +1377,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 26);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(612, 303);
+            tabPage7.Size = new Size(612, 305);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -1861,15 +1873,15 @@ namespace Kohya_lora_trainer
             label23.TabIndex = 17;
             label23.Text = "LyCORISのアルゴリズム";
             // 
-            // cbxSaveState
+            // cbxMaskLoss
             // 
-            cbxSaveState.AutoSize = true;
-            cbxSaveState.Location = new Point(88, 126);
-            cbxSaveState.Name = "cbxSaveState";
-            cbxSaveState.Size = new Size(153, 19);
-            cbxSaveState.TabIndex = 6;
-            cbxSaveState.Text = "学習終了時にstateを保存";
-            cbxSaveState.UseVisualStyleBackColor = true;
+            cbxMaskLoss.AutoSize = true;
+            cbxMaskLoss.Location = new Point(25, 156);
+            cbxMaskLoss.Name = "cbxMaskLoss";
+            cbxMaskLoss.Size = new Size(113, 19);
+            cbxMaskLoss.TabIndex = 7;
+            cbxMaskLoss.Text = "Mask Lossを使用";
+            cbxMaskLoss.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
@@ -2093,5 +2105,6 @@ namespace Kohya_lora_trainer
         private Label label50;
         private ComboBox cbxHuberSchedule;
         private CheckBox cbxSaveState;
+        private CheckBox cbxMaskLoss;
     }
 }
