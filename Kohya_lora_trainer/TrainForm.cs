@@ -119,7 +119,7 @@ namespace Kohya_lora_trainer
                     if (process != null && !process.HasExited)
                     {
                         //Killしても閉じない・・・が.NET6.0にして解決
-                        Console.WriteLine("Try kill terminal: " + process.ProcessName);
+                        Debug.WriteLine("Try kill terminal: " + process.ProcessName);
                         process.Kill(true);
                         process.Dispose();
                     }

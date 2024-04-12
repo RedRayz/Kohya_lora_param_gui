@@ -43,15 +43,15 @@ namespace Kohya_lora_trainer
             cof.Title = "ログディレクトリの選択";
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
-            if (Directory.Exists(Properties.Settings.Default.DefaultTensorboardDir))
+            if (Directory.Exists(MyUtils.GetDefaultDir("TensorboardDir")))
             {
-                cof.InitialDirectory = Properties.Settings.Default.DefaultTensorboardDir;
+                cof.InitialDirectory = MyUtils.GetDefaultDir("TensorboardDir");
             }
 
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 StringBuilder sb = new StringBuilder();
-                sb.Append("/c cd ");
+                sb.Append("/k cd ");
                 if (!string.IsNullOrEmpty(Form1.ScriptPath))
                 {
                     sb.Append("/d ").Append(Form1.ScriptPath);
@@ -141,7 +141,7 @@ namespace Kohya_lora_trainer
                 }
 
                 StringBuilder sb = new StringBuilder();
-                sb.Append("/c cd ");
+                sb.Append("/k cd ");
                 if (!string.IsNullOrEmpty(Form1.ScriptPath))
                 {
                     sb.Append("/d ").Append(Form1.ScriptPath);

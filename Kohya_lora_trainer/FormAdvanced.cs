@@ -363,6 +363,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.HuberScheduleType = (HuberScheduleType)Enum.ToObject(typeof(HuberScheduleType), cbxHuberSchedule.SelectedIndex);
             TrainParams.Current.HuberC = nudHuberC.Value;
             TrainParams.Current.SaveState = cbxSaveState.Checked;
+            TrainParams.Current.MaskLoss = cbxMaskLoss.Checked;
 
             Close();
         }
@@ -479,6 +480,7 @@ namespace Kohya_lora_trainer
             nudHuberC.Value = TrainParams.Current.HuberC;
 
             cbxSaveState.Checked = TrainParams.Current.SaveState;
+            cbxMaskLoss.Checked = TrainParams.Current.MaskLoss;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)
@@ -502,9 +504,9 @@ namespace Kohya_lora_trainer
             {
                 cof.InitialDirectory = TrainParams.Current.TensorBoardLogPath;
             }
-            else if (Directory.Exists(Properties.Settings.Default.DefaultTensorboardDir))
+            else if (Directory.Exists(MyUtils.GetDefaultDir("TensorboardDir")))
             {
-                cof.InitialDirectory = Properties.Settings.Default.DefaultTensorboardDir;
+                cof.InitialDirectory = MyUtils.GetDefaultDir("TensorboardDir");
             }
 
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
@@ -543,9 +545,9 @@ namespace Kohya_lora_trainer
             {
                 ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.LoraModelPath);
             }
-            else if (Directory.Exists(Properties.Settings.Default.DefaultLoRADir))
+            else if (Directory.Exists(MyUtils.GetDefaultDir("LoRADir")))
             {
-                ofd.InitialDirectory = Properties.Settings.Default.DefaultLoRADir;
+                ofd.InitialDirectory = MyUtils.GetDefaultDir("LoRAtDir");
             }
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -570,9 +572,9 @@ namespace Kohya_lora_trainer
             {
                 ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.VAEPath);
             }
-            else if (Directory.Exists(Properties.Settings.Default.DefaultVAEDir))
+            else if (Directory.Exists(MyUtils.GetDefaultDir("VAEDir")))
             {
-                ofd.InitialDirectory = Properties.Settings.Default.DefaultVAEDir;
+                ofd.InitialDirectory = MyUtils.GetDefaultDir("VAEDir");
             }
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -602,9 +604,9 @@ namespace Kohya_lora_trainer
             {
                 ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.DatasetConfigPath);
             }
-            else if (Directory.Exists(Properties.Settings.Default.DefaultConfigDir))
+            else if (Directory.Exists(MyUtils.GetDefaultDir("ConfigDir")))
             {
-                ofd.InitialDirectory = Properties.Settings.Default.DefaultConfigDir;
+                ofd.InitialDirectory = MyUtils.GetDefaultDir("ConfigDir");
             }
 
             if (ofd.ShowDialog() == DialogResult.OK)

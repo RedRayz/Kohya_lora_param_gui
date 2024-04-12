@@ -115,6 +115,8 @@ namespace Kohya_lora_trainer
             TrainParams.Current.ConvertBlockAlpha();
             TrainParams.Current.CheckBrokenBlockDim();
 
+            MyUtils.LoadDefaultDirSettings();
+
             UpdateAllContents();
         }
 
@@ -137,9 +139,9 @@ namespace Kohya_lora_trainer
             {
                 ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.ModelPath);
             }
-            else if(Directory.Exists(Properties.Settings.Default.DefaultModelDir))
+            else if(Directory.Exists(MyUtils.GetDefaultDir("ModelDir")))
             {
-                ofd.InitialDirectory = Properties.Settings.Default.DefaultModelDir;
+                ofd.InitialDirectory = MyUtils.GetDefaultDir("ModelDir");
             }
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -169,9 +171,9 @@ namespace Kohya_lora_trainer
             {
                 cof.InitialDirectory = TrainParams.Current.TrainImagePath;
             }
-            else if (Directory.Exists(Properties.Settings.Default.DefaultImageDir))
+            else if (Directory.Exists(MyUtils.GetDefaultDir("ImageDir")))
             {
-                cof.InitialDirectory = Properties.Settings.Default.DefaultImageDir;
+                cof.InitialDirectory = MyUtils.GetDefaultDir("ImageDir");
             }
 
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
@@ -206,9 +208,9 @@ namespace Kohya_lora_trainer
             {
                 cof.InitialDirectory = TrainParams.Current.RegImagePath;
             }
-            else if (Directory.Exists(Properties.Settings.Default.DefaultRegImageDir))
+            else if (Directory.Exists(MyUtils.GetDefaultDir("RegImageDir")))
             {
-                cof.InitialDirectory = Properties.Settings.Default.DefaultRegImageDir;
+                cof.InitialDirectory = MyUtils.GetDefaultDir("RegImageDir");
             }
 
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
@@ -245,9 +247,9 @@ namespace Kohya_lora_trainer
             {
                 cof.InitialDirectory = TrainParams.Current.OutputPath;
             }
-            else if (Directory.Exists(Properties.Settings.Default.DefaultOutputDir))
+            else if (Directory.Exists(MyUtils.GetDefaultDir("OutputDir")))
             {
-                cof.InitialDirectory = Properties.Settings.Default.DefaultOutputDir;
+                cof.InitialDirectory = MyUtils.GetDefaultDir("OutputDir");
             }
 
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
@@ -367,9 +369,9 @@ namespace Kohya_lora_trainer
             sfd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
             sfd.Title = "Save a preset";
             sfd.RestoreDirectory = true;
-            if (Directory.Exists(Properties.Settings.Default.DefaultSavePresetDir))
+            if (Directory.Exists(MyUtils.GetDefaultDir("SavePresetDir")))
             {
-                sfd.InitialDirectory = Properties.Settings.Default.DefaultSavePresetDir;
+                sfd.InitialDirectory = MyUtils.GetDefaultDir("SavePresetDir");
             }
 
 
@@ -643,9 +645,9 @@ namespace Kohya_lora_trainer
             ofd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
             ofd.Title = "Select a preset";
             ofd.RestoreDirectory = true;
-            if(Directory.Exists(Properties.Settings.Default.DefaultLoadPresetDir))
+            if(Directory.Exists(MyUtils.GetDefaultDir("LoadPresetDir")))
             {
-                ofd.InitialDirectory = Properties.Settings.Default.DefaultLoadPresetDir;
+                ofd.InitialDirectory = MyUtils.GetDefaultDir("LoadPresetDir");
             }
 
 
@@ -1109,7 +1111,7 @@ namespace Kohya_lora_trainer
                 case OptimizerType.AdamW8bit:
                 case OptimizerType.Lion:
                     {
-                        if (TrainParams.Current.LearningRate > 0.00035f)
+                        if (TrainParams.Current.LearningRate > 0.001f)
                             return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.0001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
