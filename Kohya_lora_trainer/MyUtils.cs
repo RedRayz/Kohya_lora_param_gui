@@ -584,6 +584,11 @@ namespace Kohya_lora_trainer
                 sb.Append(" --save_state_on_train_end");
             }
 
+            if (TrainParams.Current.MaskLoss)
+            {
+                sb.Append(" --masked_loss");
+            }
+
             return sb.ToString();
         }
 
