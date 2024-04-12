@@ -51,7 +51,7 @@ namespace Kohya_lora_trainer
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 StringBuilder sb = new StringBuilder();
-                sb.Append("/c cd ");
+                sb.Append("/k cd ");
                 if (!string.IsNullOrEmpty(Form1.ScriptPath))
                 {
                     sb.Append("/d ").Append(Form1.ScriptPath);
@@ -141,7 +141,7 @@ namespace Kohya_lora_trainer
                 }
 
                 StringBuilder sb = new StringBuilder();
-                sb.Append("/c cd ");
+                sb.Append("/k cd ");
                 if (!string.IsNullOrEmpty(Form1.ScriptPath))
                 {
                     sb.Append("/d ").Append(Form1.ScriptPath);
