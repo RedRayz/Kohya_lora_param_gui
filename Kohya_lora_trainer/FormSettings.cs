@@ -162,16 +162,18 @@ namespace Kohya_lora_trainer
 
         private void btnApplyAndClose_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.DefaultModelDir = tbxModel.Text;
-            Properties.Settings.Default.DefaultImageDir = tbxImage.Text;
-            Properties.Settings.Default.DefaultRegImageDir = tbxRegImage.Text;
-            Properties.Settings.Default.DefaultOutputDir = tbxOutput.Text;
-            Properties.Settings.Default.DefaultLoadPresetDir = tbxLoadPreset.Text;
-            Properties.Settings.Default.DefaultSavePresetDir = tbxSavePreset.Text;
-            Properties.Settings.Default.DefaultVAEDir = tbxVAE.Text;
-            Properties.Settings.Default.DefaultTensorboardDir = tbxTensorboard.Text;
-            Properties.Settings.Default.DefaultConfigDir = tbxConfig.Text;
-            Properties.Settings.Default.DefaultLoRADir = tbxLoRA.Text;
+            MyUtils.SetDefaultDir("ModelDir", tbxModel.Text);
+            MyUtils.SetDefaultDir("ImageDir", tbxImage.Text);
+            MyUtils.SetDefaultDir("RegImageDir", tbxRegImage.Text);
+            MyUtils.SetDefaultDir("OutputDir", tbxOutput.Text);
+            MyUtils.SetDefaultDir("LoadPresetDir", tbxLoadPreset.Text);
+            MyUtils.SetDefaultDir("SavePresetDir", tbxSavePreset.Text);
+            MyUtils.SetDefaultDir("VAEDir", tbxVAE.Text);
+            MyUtils.SetDefaultDir("TensorboardDir", tbxTensorboard.Text);
+            MyUtils.SetDefaultDir("ConfigDir", tbxConfig.Text);
+            MyUtils.SetDefaultDir("LoRADir", tbxLoRA.Text);
+
+            MyUtils.SaveDefaultDirSettings();
 
             Properties.Settings.Default.Save();
             Close();
@@ -179,16 +181,16 @@ namespace Kohya_lora_trainer
 
         private void FormSettings_Load(object sender, EventArgs e)
         {
-            tbxModel.Text = Properties.Settings.Default.DefaultModelDir;
-            tbxImage.Text = Properties.Settings.Default.DefaultImageDir;
-            tbxRegImage.Text = Properties.Settings.Default.DefaultRegImageDir;
-            tbxOutput.Text = Properties.Settings.Default.DefaultOutputDir;
-            tbxLoadPreset.Text = Properties.Settings.Default.DefaultLoadPresetDir;
-            tbxSavePreset.Text = Properties.Settings.Default.DefaultSavePresetDir;
-            tbxVAE.Text = Properties.Settings.Default.DefaultVAEDir;
-            tbxTensorboard.Text = Properties.Settings.Default.DefaultTensorboardDir;
-            tbxConfig.Text = Properties.Settings.Default.DefaultConfigDir;
-            tbxLoRA.Text = Properties.Settings.Default.DefaultLoRADir;
+            tbxModel.Text = MyUtils.GetDefaultDir("ModelDir");
+            tbxImage.Text = MyUtils.GetDefaultDir("ImageDir");
+            tbxRegImage.Text = MyUtils.GetDefaultDir("RegImageDir");
+            tbxOutput.Text = MyUtils.GetDefaultDir("OutputDir");
+            tbxLoadPreset.Text = MyUtils.GetDefaultDir("LoadPresetDir");
+            tbxSavePreset.Text = MyUtils.GetDefaultDir("SavePresetDir");
+            tbxVAE.Text = MyUtils.GetDefaultDir("VAEDir");
+            tbxTensorboard.Text = MyUtils.GetDefaultDir("TensorboardDir");
+            tbxConfig.Text = MyUtils.GetDefaultDir("ConfigDir");
+            tbxLoRA.Text = MyUtils.GetDefaultDir("LoRADir");
         }
 
         private void btnLoRA_Click(object sender, EventArgs e)

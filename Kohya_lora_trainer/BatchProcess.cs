@@ -15,7 +15,7 @@ namespace Kohya_lora_trainer
         public static int SkippedCount = 0;
         public static int CompletedCount = 0;
         public static int FailCount = 0;
-        public static string LogText;
+        public static string LogText = string.Empty;
 
         public static void LoadBatchPresetText(string text)
         {

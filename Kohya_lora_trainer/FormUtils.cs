@@ -43,9 +43,9 @@ namespace Kohya_lora_trainer
             cof.Title = "ログディレクトリの選択";
             cof.IsFolderPicker = true;
             cof.RestoreDirectory = true;
-            if (Directory.Exists(Properties.Settings.Default.DefaultTensorboardDir))
+            if (Directory.Exists(MyUtils.GetDefaultDir("TensorboardDir")))
             {
-                cof.InitialDirectory = Properties.Settings.Default.DefaultTensorboardDir;
+                cof.InitialDirectory = MyUtils.GetDefaultDir("TensorboardDir");
             }
 
             if (cof.ShowDialog() == CommonFileDialogResult.Ok)

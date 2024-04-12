@@ -455,7 +455,7 @@ namespace Kohya_lora_trainer
             // lblFileName
             // 
             lblFileName.AutoSize = true;
-            lblFileName.Location = new Point(28, 302);
+            lblFileName.Location = new Point(24, 302);
             lblFileName.Name = "lblFileName";
             lblFileName.Size = new Size(77, 15);
             lblFileName.TabIndex = 39;
@@ -792,28 +792,28 @@ namespace Kohya_lora_trainer
             // 設定ToolStripMenuItem
             // 
             設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
-            設定ToolStripMenuItem.Size = new Size(180, 22);
+            設定ToolStripMenuItem.Size = new Size(159, 22);
             設定ToolStripMenuItem.Text = "設定";
             設定ToolStripMenuItem.Click += 設定ToolStripMenuItem_Click;
             // 
             // プリセットを開くToolStripMenuItem
             // 
             プリセットを開くToolStripMenuItem.Name = "プリセットを開くToolStripMenuItem";
-            プリセットを開くToolStripMenuItem.Size = new Size(180, 22);
+            プリセットを開くToolStripMenuItem.Size = new Size(159, 22);
             プリセットを開くToolStripMenuItem.Text = "プリセットを開く";
             プリセットを開くToolStripMenuItem.Click += プリセットを開くToolStripMenuItem_Click;
             // 
             // プリセットを保存ToolStripMenuItem
             // 
             プリセットを保存ToolStripMenuItem.Name = "プリセットを保存ToolStripMenuItem";
-            プリセットを保存ToolStripMenuItem.Size = new Size(180, 22);
+            プリセットを保存ToolStripMenuItem.Size = new Size(159, 22);
             プリセットを保存ToolStripMenuItem.Text = "プリセットを保存";
             プリセットを保存ToolStripMenuItem.Click += プリセットを保存ToolStripMenuItem_Click;
             // 
             // 終了ToolStripMenuItem
             // 
             終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            終了ToolStripMenuItem.Size = new Size(180, 22);
+            終了ToolStripMenuItem.Size = new Size(159, 22);
             終了ToolStripMenuItem.Text = "終了";
             終了ToolStripMenuItem.Click += 終了ToolStripMenuItem_Click_1;
             // 

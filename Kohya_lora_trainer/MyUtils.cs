@@ -4,12 +4,83 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Unicode;
 
 namespace Kohya_lora_trainer
 {
     public static class MyUtils
     {
         private static Dictionary<string, string> DefaultDirs = new Dictionary<string, string>();
+
+        public static void SaveDefaultDirSettings()
+        {
+            try
+            {
+                string json = JsonSerializer.Serialize(DefaultDirs, GetOption());
+                if (!string.IsNullOrEmpty(json))
+                {
+                    string saveto = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\lora-gui-default-dir.json";
+                    File.WriteAllText(saveto, json);
+                }
+            }catch(Exception ex)
+            {
+                Debug.WriteLine("Error: " + ex.Message);
+            }
+        }
+
+        public static void LoadDefaultDirSettings()
+        {
+            try
+            {
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\lora-gui-default-dir.json";
+                if (File.Exists(path))
+                {
+                    string json = File.ReadAllText(path);
+                    DefaultDirs = JsonSerializer.Deserialize<Dictionary<string, string>>(json, GetOption());
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("Error: " + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// デフォルトディレクトリの設定を取得する。キーがない場合はstring.Emptyとなる。
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static string GetDefaultDir(string key)
+        {
+            if (DefaultDirs.ContainsKey(key))
+            {
+                return DefaultDirs[key];
+            }
+            else
+            {
+                Debug.WriteLine("Warning: Missing key " + key);
+
+                return string.Empty;
+            }
+        }
+
+        public static void SetDefaultDir(string key, string value)
+        {
+            DefaultDirs[key] = value;
+        }
+
+        private static JsonSerializerOptions GetOption()
+        {
+            // ユニコードのレンジ指定で日本語も正しく表示、インデントされるように指定
+            var options = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                WriteIndented = true,
+            };
+            return options;
+        }
 
         /// <summary>
         /// accelerateのコマンド生成。
