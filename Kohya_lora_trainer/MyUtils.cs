@@ -9,6 +9,8 @@ namespace Kohya_lora_trainer
 {
     public static class MyUtils
     {
+        private static Dictionary<string, string> DefaultDirs = new Dictionary<string, string>();
+
         /// <summary>
         /// accelerateのコマンド生成。
         /// </summary>
