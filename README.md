@@ -36,7 +36,7 @@ NVIDIA製グラフィックボードを搭載したパソコンでの動作を�
 ### A.GUIの簡易インストーラーを使用する
 v1.6以降でご利用いただけます。
 
-0.あらかじめgitとPython3.10をインストールしておく。
+0.あらかじめgitとPython3.10(3.11でもOK)をインストールしておく。
 
 1.[releases](https://github.com/RedRayz/Kohya_lora_param_gui/releases)からkohya_lora_gui-x.x.x.zipをDLする
 
