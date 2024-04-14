@@ -68,5 +68,6 @@ Windows 10/11 21H2以降
 
 ## ガイドなど
 
+* [LoRA作成チュートリアル](https://note.com/redrayz/n/n05e93566e562)
 * [学習のヒントなど](./docs/tips.md)
 * サンプルプリセット: https://mega.nz/folder/ILdnzaxT#gTGQmcPUgdxKlLpIl9x__g
