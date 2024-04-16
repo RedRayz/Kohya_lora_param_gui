@@ -132,6 +132,7 @@ namespace Kohya_lora_trainer
             nudRankDropout = new NumericUpDown();
             label26 = new Label();
             page3 = new TabPage();
+            cbxMaskLoss = new CheckBox();
             cbxSaveState = new CheckBox();
             nudHuberC = new NumericUpDown();
             label50 = new Label();
@@ -186,7 +187,8 @@ namespace Kohya_lora_trainer
             cbxRescaledOFT = new CheckBox();
             cbxTrainNorm = new CheckBox();
             label23 = new Label();
-            cbxMaskLoss = new CheckBox();
+            nudGradAccSteps = new NumericUpDown();
+            label51 = new Label();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -221,6 +223,7 @@ namespace Kohya_lora_trainer
             tabPage6.SuspendLayout();
             pageXL.SuspendLayout();
             tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudGradAccSteps).BeginInit();
             SuspendLayout();
             // 
             // tbxUnetLR
@@ -1137,9 +1140,9 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(label28);
             tabPage4.Controls.Add(nudMaxTokens);
             tabPage4.Controls.Add(nudLRSchedulerCycle);
-            tabPage4.Location = new Point(4, 26);
+            tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(612, 303);
+            tabPage4.Size = new Size(612, 305);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "ページ2";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1276,6 +1279,8 @@ namespace Kohya_lora_trainer
             // 
             // page3
             // 
+            page3.Controls.Add(label51);
+            page3.Controls.Add(nudGradAccSteps);
             page3.Controls.Add(cbxMaskLoss);
             page3.Controls.Add(cbxSaveState);
             page3.Controls.Add(nudHuberC);
@@ -1291,10 +1296,20 @@ namespace Kohya_lora_trainer
             page3.Text = "ページ3";
             page3.UseVisualStyleBackColor = true;
             // 
+            // cbxMaskLoss
+            // 
+            cbxMaskLoss.AutoSize = true;
+            cbxMaskLoss.Location = new Point(25, 243);
+            cbxMaskLoss.Name = "cbxMaskLoss";
+            cbxMaskLoss.Size = new Size(113, 19);
+            cbxMaskLoss.TabIndex = 7;
+            cbxMaskLoss.Text = "Mask Lossを使用";
+            cbxMaskLoss.UseVisualStyleBackColor = true;
+            // 
             // cbxSaveState
             // 
             cbxSaveState.AutoSize = true;
-            cbxSaveState.Location = new Point(25, 131);
+            cbxSaveState.Location = new Point(25, 218);
             cbxSaveState.Name = "cbxSaveState";
             cbxSaveState.Size = new Size(153, 19);
             cbxSaveState.TabIndex = 6;
@@ -1873,15 +1888,24 @@ namespace Kohya_lora_trainer
             label23.TabIndex = 17;
             label23.Text = "LyCORISのアルゴリズム";
             // 
-            // cbxMaskLoss
+            // nudGradAccSteps
             // 
-            cbxMaskLoss.AutoSize = true;
-            cbxMaskLoss.Location = new Point(25, 156);
-            cbxMaskLoss.Name = "cbxMaskLoss";
-            cbxMaskLoss.Size = new Size(113, 19);
-            cbxMaskLoss.TabIndex = 7;
-            cbxMaskLoss.Text = "Mask Lossを使用";
-            cbxMaskLoss.UseVisualStyleBackColor = true;
+            nudGradAccSteps.Location = new Point(121, 125);
+            nudGradAccSteps.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+            nudGradAccSteps.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudGradAccSteps.Name = "nudGradAccSteps";
+            nudGradAccSteps.Size = new Size(120, 23);
+            nudGradAccSteps.TabIndex = 8;
+            nudGradAccSteps.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // label51
+            // 
+            label51.AutoSize = true;
+            label51.Location = new Point(35, 125);
+            label51.Name = "label51";
+            label51.Size = new Size(79, 45);
+            label51.TabIndex = 9;
+            label51.Text = "gradinet\r\naccumulation\r\nsteps";
             // 
             // FormAdvanced
             // 
@@ -1944,6 +1968,7 @@ namespace Kohya_lora_trainer
             pageXL.PerformLayout();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudGradAccSteps).EndInit();
             ResumeLayout(false);
         }
 
@@ -2106,5 +2131,7 @@ namespace Kohya_lora_trainer
         private ComboBox cbxHuberSchedule;
         private CheckBox cbxSaveState;
         private CheckBox cbxMaskLoss;
+        private Label label51;
+        private NumericUpDown nudGradAccSteps;
     }
 }
