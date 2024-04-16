@@ -662,6 +662,11 @@ namespace Kohya_lora_trainer
                 sb.Append(" --masked_loss");
             }
 
+            if (TrainParams.Current.GradAccSteps > 1m)
+            {
+                sb.Append(" --gradient_accumulation_steps ").Append(TrainParams.Current.GradAccSteps.ToString());
+            }
+
             return sb.ToString();
         }
 

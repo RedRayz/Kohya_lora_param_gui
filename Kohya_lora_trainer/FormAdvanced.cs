@@ -364,6 +364,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.HuberC = nudHuberC.Value;
             TrainParams.Current.SaveState = cbxSaveState.Checked;
             TrainParams.Current.MaskLoss = cbxMaskLoss.Checked;
+            TrainParams.Current.GradAccSteps = nudGradAccSteps.Value;
 
             Close();
         }
@@ -481,6 +482,8 @@ namespace Kohya_lora_trainer
 
             cbxSaveState.Checked = TrainParams.Current.SaveState;
             cbxMaskLoss.Checked = TrainParams.Current.MaskLoss;
+
+            nudGradAccSteps.Value = TrainParams.Current.GradAccSteps;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)
