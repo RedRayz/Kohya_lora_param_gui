@@ -365,6 +365,9 @@ namespace Kohya_lora_trainer
             TrainParams.Current.SaveState = cbxSaveState.Checked;
             TrainParams.Current.MaskLoss = cbxMaskLoss.Checked;
             TrainParams.Current.GradAccSteps = nudGradAccSteps.Value;
+            TrainParams.Current.LoRAPlusLRRatio = nudLoRAPlusLRRatio.Value;
+            TrainParams.Current.LoRAPlusUnetLRRatio = nudLoRAPlusUnetLRRatio.Value;
+            TrainParams.Current.LoRAPlusTELRRatio = nudLoRAPlusTELRRatio.Value;
 
             Close();
         }
@@ -484,6 +487,10 @@ namespace Kohya_lora_trainer
             cbxMaskLoss.Checked = TrainParams.Current.MaskLoss;
 
             nudGradAccSteps.Value = TrainParams.Current.GradAccSteps;
+
+            nudLoRAPlusLRRatio.Value = TrainParams.Current.LoRAPlusLRRatio;
+            nudLoRAPlusUnetLRRatio.Value = TrainParams.Current.LoRAPlusUnetLRRatio;
+            nudLoRAPlusTELRRatio.Value = TrainParams.Current.LoRAPlusTELRRatio;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)

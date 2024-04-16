@@ -93,6 +93,9 @@ namespace Kohya_lora_trainer {
         public HuberScheduleType HuberScheduleType;
         public decimal HuberC = 0.1m;
 
+        //LoRA+
+        public decimal LoRAPlusLRRatio = 0, LoRAPlusUnetLRRatio = 0, LoRAPlusTELRRatio = 0;
+
 
         [NonSerialized]
         public static TrainParams? Current;

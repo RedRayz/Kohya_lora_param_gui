@@ -667,6 +667,21 @@ namespace Kohya_lora_trainer
                 sb.Append(" --gradient_accumulation_steps ").Append(TrainParams.Current.GradAccSteps.ToString());
             }
 
+            if (TrainParams.Current.LoRAPlusLRRatio > 0) 
+            {
+                sb.Append(" --loraplus_lr_ratio ").Append(TrainParams.Current.LoRAPlusLRRatio.ToString());
+            }
+
+            if (TrainParams.Current.LoRAPlusUnetLRRatio > 0)
+            {
+                sb.Append(" --loraplus_unet_lr_ratio ").Append(TrainParams.Current.LoRAPlusUnetLRRatio.ToString());
+            }
+
+            if (TrainParams.Current.LoRAPlusTELRRatio > 0)
+            {
+                sb.Append(" --loraplus_text_encoder_lr_ratio ").Append(TrainParams.Current.LoRAPlusTELRRatio.ToString());
+            }
+
             return sb.ToString();
         }
 
