@@ -30,7 +30,7 @@ dimの半分以下。高いほど生成時に崩壊しやすくなる。低す�
 
 Lionが無難。そこそこ高速で癖がなく失敗が少ない。
 
-ProdigyはLionより収束が早い。
+ProdigyはLionより収束が早いが癖がある。
 
 AdaFactorはLoRA学習ではAdamWより遅く、メリットはない。
 
