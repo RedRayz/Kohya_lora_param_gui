@@ -281,7 +281,7 @@ namespace Kohya_lora_trainer
             // 
             nudNetworkAlpha.DecimalPlaces = 2;
             nudNetworkAlpha.Location = new Point(672, 174);
-            nudNetworkAlpha.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
+            nudNetworkAlpha.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
             nudNetworkAlpha.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudNetworkAlpha.Name = "nudNetworkAlpha";
             nudNetworkAlpha.Size = new Size(80, 23);
@@ -293,7 +293,7 @@ namespace Kohya_lora_trainer
             // nudNetworkDim
             // 
             nudNetworkDim.Location = new Point(404, 178);
-            nudNetworkDim.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
+            nudNetworkDim.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
             nudNetworkDim.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudNetworkDim.Name = "nudNetworkDim";
             nudNetworkDim.Size = new Size(72, 23);
