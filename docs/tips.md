@@ -125,3 +125,8 @@ Bucketingが有効だと複数のBucketを1バッチにまとめられない影�
 
 ## LoRAのファイルサイズに影響する設定
 ネットワーク次元数(DimまたはRank)、Conv2d拡張の使用(使用時はconv dimも)、LyCORIS使用時はLyCORISのアルゴリズムの種類、Unet/Tencの有無
+
+## PIL.UnidentifiedImageError: cannot identify image fileってなんだよ！？
+画像の拡張子が間違っているか破損しているかPILの仕様かバグ？で読み込めていない。
+
+エラーが出たファイルの拡張子を修正する。破損しているなら修正する。それでもエラーになるならXnConvertなどの変換ソフトで上書きする。
