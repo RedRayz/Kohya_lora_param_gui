@@ -127,6 +127,10 @@ Bucketingが有効だと複数のBucketを1バッチにまとめられない影�
 ネットワーク次元数(DimまたはRank)、Conv2d拡張の使用(使用時はconv dimも)、LyCORIS使用時はLyCORISのアルゴリズムの種類、Unet/Tencの有無
 
 ## PIL.UnidentifiedImageError: cannot identify image fileってなんだよ！？
-画像の拡張子が間違っているか破損しているかPILの仕様かバグ？で読み込めていない。
+画像の拡張子が間違っているか破損しているかPILの仕様かバグで読み込めていない。
 
 エラーが出たファイルの拡張子を修正する。破損しているなら修正する。それでもエラーになるならXnConvertなどの変換ソフトで上書きする。
+
+特定のPNGファイルがビューワーで開けるにも関わらずエラーになるのはPILの仕様の可能性あり。
+
+詳細: https://github.com/python-pillow/Pillow/issues/7993
