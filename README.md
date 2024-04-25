@@ -1,4 +1,4 @@
-# Kohya_LoRA_GUI
+# Kohya_LoRA_param_GUI
 
 ![GUI Image](https://github.com/RedRayz/Kohya_lora_param_gui/assets/71994877/621d1c16-d77e-4520-9f58-c374ca0b5cc3)
 
@@ -20,8 +20,8 @@ gradioを使用するものと比べ以下のメリットがあります。
 * LECOの学習およびconfig,promptsの生成
 
 ## 注意事項
-[sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法でセットアップしている環境を前提としています。
-補助スクリプトなどで構築した環境で動作するかは不明です。
+簡易インストーラか手動で[sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法でセットアップしている環境を前提としています。
+外部の補助スクリプトなどで構築した環境で動作するかは不明です。
 
 NVIDIA製グラフィックボードを搭載したパソコンでの動作を想定しています。
 
