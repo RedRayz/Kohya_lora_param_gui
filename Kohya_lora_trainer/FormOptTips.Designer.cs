@@ -36,17 +36,17 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(12, 8);
             label1.Name = "label1";
-            label1.Size = new Size(329, 136);
+            label1.Size = new Size(300, 120);
             label1.TabIndex = 0;
             label1.Text = resources.GetString("label1.Text");
             // 
             // btnOK
             // 
-            btnOK.Location = new Point(186, 196);
+            btnOK.Location = new Point(186, 173);
             btnOK.Name = "btnOK";
-            btnOK.Size = new Size(75, 29);
+            btnOK.Size = new Size(75, 26);
             btnOK.TabIndex = 1;
             btnOK.Text = "OK";
             btnOK.UseVisualStyleBackColor = true;
@@ -54,11 +54,12 @@
             // 
             // FormOptTips
             // 
-            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(451, 237);
+            ClientSize = new Size(451, 209);
             Controls.Add(btnOK);
             Controls.Add(label1);
+            Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
