@@ -296,7 +296,18 @@ namespace Kohya_lora_trainer
                 Update();
                 int removedCnt = 0;
                 int errorCount = 0;
-                string[] files = Directory.GetFiles(cof.FileName);
+                string? path = cof.FileName;
+
+                if (string.IsNullOrEmpty(path))
+                    return;
+
+                if (path.Contains(@"C:\Windows"))
+                {
+                    MessageBox.Show("OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string[] files = Directory.GetFiles(path);
                 //直下にあるnpzの消去
                 foreach (string file in files)
                 {
@@ -316,7 +327,7 @@ namespace Kohya_lora_trainer
                 }
 
                 //サブディレクトリ内のnpzの消去
-                string[] subDirs = Directory.GetDirectories(cof.FileName);
+                string[] subDirs = Directory.GetDirectories(path);
                 foreach (string dir in subDirs)
                 {
                     files = Directory.GetFiles(dir);

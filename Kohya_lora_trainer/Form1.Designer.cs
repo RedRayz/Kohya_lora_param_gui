@@ -189,11 +189,11 @@ namespace Kohya_lora_trainer
             // 
             lblLR.AutoSize = true;
             lblLR.ForeColor = SystemColors.ControlText;
-            lblLR.Location = new Point(28, 148);
+            lblLR.Location = new Point(37, 148);
             lblLR.Name = "lblLR";
-            lblLR.Size = new Size(69, 15);
+            lblLR.Size = new Size(64, 15);
             lblLR.TabIndex = 5;
-            lblLR.Text = "学習率(LR)*";
+            lblLR.Text = "学習率(LR)";
             // 
             // cbxOptimizer
             // 
@@ -211,20 +211,20 @@ namespace Kohya_lora_trainer
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(28, 237);
+            label10.Location = new Point(34, 237);
             label10.Name = "label10";
-            label10.Size = new Size(73, 15);
+            label10.Size = new Size(68, 15);
             label10.TabIndex = 14;
-            label10.Text = "オプティマイザ*";
+            label10.Text = "オプティマイザ";
             // 
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(15, 178);
+            label17.Location = new Point(24, 180);
             label17.Name = "label17";
-            label17.Size = new Size(82, 15);
+            label17.Size = new Size(77, 15);
             label17.TabIndex = 23;
-            label17.Text = "epochs/steps*";
+            label17.Text = "epochs/steps";
             // 
             // btnAdvanced
             // 
@@ -252,9 +252,9 @@ namespace Kohya_lora_trainer
             label7.AutoSize = true;
             label7.Location = new Point(15, 39);
             label7.Name = "label7";
-            label7.Size = new Size(224, 15);
+            label7.Size = new Size(177, 15);
             label7.TabIndex = 29;
-            label7.Text = "*は必須。#がつく項目は0を指定すると無効化";
+            label7.Text = "#がつく項目は0を指定すると無効化";
             // 
             // cbxShuffle
             // 
@@ -281,7 +281,7 @@ namespace Kohya_lora_trainer
             // 
             nudNetworkAlpha.DecimalPlaces = 2;
             nudNetworkAlpha.Location = new Point(672, 174);
-            nudNetworkAlpha.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
+            nudNetworkAlpha.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
             nudNetworkAlpha.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudNetworkAlpha.Name = "nudNetworkAlpha";
             nudNetworkAlpha.Size = new Size(80, 23);
@@ -293,7 +293,7 @@ namespace Kohya_lora_trainer
             // nudNetworkDim
             // 
             nudNetworkDim.Location = new Point(404, 178);
-            nudNetworkDim.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
+            nudNetworkDim.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
             nudNetworkDim.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudNetworkDim.Name = "nudNetworkDim";
             nudNetworkDim.Size = new Size(72, 23);
@@ -352,12 +352,12 @@ namespace Kohya_lora_trainer
             // 
             cbxSDType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxSDType.FormattingEnabled = true;
-            cbxSDType.Items.AddRange(new object[] { "1.x/2.x", "XL" });
+            cbxSDType.Items.AddRange(new object[] { "1.X", "XL" });
             cbxSDType.Location = new Point(104, 267);
             cbxSDType.Name = "cbxSDType";
             cbxSDType.Size = new Size(139, 23);
             cbxSDType.TabIndex = 85;
-            toolTip1.SetToolTip(cbxSDType, "SDXLは要求スペックもXLサイズ\r\nVRAM12GB以上、メインメモリ32GB以上必要\r\nVRAM8GBでもかろうじて動く");
+            toolTip1.SetToolTip(cbxSDType, "SDXLは要求スペックもXLサイズ");
             cbxSDType.SelectedIndexChanged += cbxSDType_SelectedIndexChanged;
             // 
             // tbxFileName
@@ -378,7 +378,7 @@ namespace Kohya_lora_trainer
             cbxModuleType.Name = "cbxModuleType";
             cbxModuleType.Size = new Size(80, 23);
             cbxModuleType.TabIndex = 6;
-            toolTip1.SetToolTip(cbxModuleType, "LyCORISは品質面でのメリットなし\r\nLoRA-FAはメモリ消費が減少するが減少量は雀の涙");
+            toolTip1.SetToolTip(cbxModuleType, "LoRA-FAはメモリ消費が減少するが減少量は雀の涙");
             cbxModuleType.SelectedIndexChanged += cbxModuleType_SelectedIndexChanged;
             // 
             // nudSaveEpoch
@@ -446,11 +446,11 @@ namespace Kohya_lora_trainer
             // lblResolution
             // 
             lblResolution.AutoSize = true;
-            lblResolution.Location = new Point(350, 148);
+            lblResolution.Location = new Point(356, 148);
             lblResolution.Name = "lblResolution";
-            lblResolution.Size = new Size(48, 15);
+            lblResolution.Size = new Size(43, 15);
             lblResolution.TabIndex = 36;
-            lblResolution.Text = "解像度*";
+            lblResolution.Text = "解像度";
             // 
             // lblFileName
             // 
@@ -473,29 +473,29 @@ namespace Kohya_lora_trainer
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(599, 147);
+            label18.Location = new Point(604, 147);
             label18.Name = "label18";
-            label18.Size = new Size(67, 15);
+            label18.Size = new Size(62, 15);
             label18.TabIndex = 44;
-            label18.Text = "バッチサイズ*";
+            label18.Text = "バッチサイズ";
             // 
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(298, 179);
+            label20.Location = new Point(303, 180);
             label20.Name = "label20";
-            label20.Size = new Size(100, 15);
+            label20.Size = new Size(95, 15);
             label20.TabIndex = 48;
-            label20.Text = "ネットワーク次元数*";
+            label20.Text = "ネットワーク次元数";
             // 
             // label21
             // 
             label21.AutoSize = true;
-            label21.Location = new Point(568, 176);
+            label21.Location = new Point(573, 176);
             label21.Name = "label21";
-            label21.Size = new Size(98, 15);
+            label21.Size = new Size(93, 15);
             label21.TabIndex = 50;
-            label21.Text = "ネットワークアルファ*";
+            label21.Text = "ネットワークアルファ";
             // 
             // nudEpochs
             // 
@@ -651,11 +651,11 @@ namespace Kohya_lora_trainer
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(575, 237);
+            label6.Location = new Point(580, 237);
             label6.Name = "label6";
-            label6.Size = new Size(91, 15);
+            label6.Size = new Size(86, 15);
             label6.TabIndex = 72;
-            label6.Text = "モジュールの種類*";
+            label6.Text = "モジュールの種類";
             // 
             // groupBox1
             // 
@@ -755,7 +755,7 @@ namespace Kohya_lora_trainer
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(22, 270);
+            label13.Location = new Point(27, 270);
             label13.Name = "label13";
             label13.Size = new Size(75, 15);
             label13.TabIndex = 14;
@@ -892,7 +892,7 @@ namespace Kohya_lora_trainer
             MaximizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "LoRA Training GUI";
+            Text = "Kohya_lora_param_gui";
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).EndInit();
