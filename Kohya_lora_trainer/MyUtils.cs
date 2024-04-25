@@ -467,6 +467,26 @@ namespace Kohya_lora_trainer
                         }
                     }
                     break;
+                case OptimizerType.AdamW:
+                case OptimizerType.AdamW8bit:
+                    {
+                        if (TrainParams.Current.UseAdditionalOptArgs)
+                        {
+                            sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
+    .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append('"');
+                        }
+                    }
+                    break;
+                case OptimizerType.Lion:
+                case OptimizerType.Lion8bit:
+                    {
+                        if (TrainParams.Current.UseAdditionalOptArgs)
+                        {
+                            sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).
+                                Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append('"');
+                        }
+                    }
+                    break;
             }
 
             if (TrainParams.Current.WarmupSteps > 0)

@@ -332,7 +332,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.NetworkDropout = nudNetworkDropout.Value;
             TrainParams.Current.RankDropout = nudRankDropout.Value;
             TrainParams.Current.ModuleDropout = nudModuleDropout.Value;
-            
+
             TrainParams.Current.MaxNormReg = nudMaxNormReg.Value;
 
             TrainParams.Current.Decouple = cbxDecouple.Checked;
@@ -368,6 +368,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.LoRAPlusLRRatio = nudLoRAPlusLRRatio.Value;
             TrainParams.Current.LoRAPlusUnetLRRatio = nudLoRAPlusUnetLRRatio.Value;
             TrainParams.Current.LoRAPlusTELRRatio = nudLoRAPlusTELRRatio.Value;
+            TrainParams.Current.UseAdditionalOptArgs = cbxUseAdditionalOptArgs.Checked;
 
             Close();
         }
@@ -449,7 +450,7 @@ namespace Kohya_lora_trainer
             nudRankDropout.Value = TrainParams.Current.RankDropout;
             nudModuleDropout.Value = TrainParams.Current.ModuleDropout;
             nudNetworkDropout.Value = TrainParams.Current.NetworkDropout;
-            
+
             nudMaxNormReg.Value = TrainParams.Current.MaxNormReg;
 
             cbxDecouple.Checked = TrainParams.Current.Decouple;
@@ -491,6 +492,8 @@ namespace Kohya_lora_trainer
             nudLoRAPlusLRRatio.Value = TrainParams.Current.LoRAPlusLRRatio;
             nudLoRAPlusUnetLRRatio.Value = TrainParams.Current.LoRAPlusUnetLRRatio;
             nudLoRAPlusTELRRatio.Value = TrainParams.Current.LoRAPlusTELRRatio;
+
+            cbxUseAdditionalOptArgs.Checked = TrainParams.Current.UseAdditionalOptArgs;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)
@@ -628,6 +631,13 @@ namespace Kohya_lora_trainer
         private void btnClearConfigPath_Click(object sender, EventArgs e)
         {
             lblConfigPath.Text = string.Empty;
+        }
+
+        private void btnShowTipsAboutOpts_Click(object sender, EventArgs e)
+        {
+            Form tips = new FormOptTips();
+            tips.ShowDialog();
+            tips.Dispose();
         }
     }
 }
