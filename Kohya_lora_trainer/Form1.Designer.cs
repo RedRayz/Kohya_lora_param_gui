@@ -892,7 +892,7 @@ namespace Kohya_lora_trainer
             MaximizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "LoRA Training GUI";
+            Text = "Kohya_lora_param_gui";
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).EndInit();
