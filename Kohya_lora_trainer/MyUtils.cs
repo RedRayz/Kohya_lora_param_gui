@@ -673,6 +673,8 @@ namespace Kohya_lora_trainer
 
         private static string GetNetworkArgsCommands()
         {
+            if (NetworkArgs.Count == 0)
+                return string.Empty;
             StringBuilder sb = new StringBuilder();
             sb.Append(" --network_args ");
             for(int i = 0; i < NetworkArgs.Count; i++)
