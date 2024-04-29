@@ -262,19 +262,10 @@ namespace Kohya_lora_trainer
                 sb.Append(" --no_metadata");
             }
 
-            //SD2を使う人なんていないだろうから廃止
-            //if (TrainParams.Current.UseSDV2)
-            //{
-            //    sb.Append(" --v2");
-            //}
-
             if (TrainParams.Current.UseFullFP16)
             {
                 sb.Append(" --full_fp16");
             }
-
-            //if (TrainParams.Current.UseParameterization)
-            //    sb.Append(" --v_parameterization");
 
             if (TrainParams.Current.CacheLatents)
             {
@@ -586,11 +577,6 @@ namespace Kohya_lora_trainer
                 sb.Append(" --dataset_config \"").Append(TrainParams.Current.DatasetConfigPath).Append('"');
             }
 
-            //if (TrainParams.Current.ScaleVPredLoss)
-            //{
-            //    sb.Append(" --scale_v_pred_loss_like_noise_pred");
-            //}
-
             if (TrainParams.Current.MaxNormReg > 0)
             {
                 sb.Append(" --scale_weight_norms ").Append(TrainParams.Current.MaxNormReg.ToString());
@@ -697,24 +683,6 @@ namespace Kohya_lora_trainer
                     sb.Append(' ');
                 }
             }
-            return sb.ToString();
-        }
-
-        [Obsolete("This function will be removed.")]
-        private static string GetDropoutCommands()
-        {
-            StringBuilder sb = new StringBuilder();
-
-            if (TrainParams.Current.RankDropout > 0)
-            {
-                sb.Append(" \"rank_dropout=").Append(TrainParams.Current.RankDropout.ToString()).Append('"');
-            }
-
-            if (TrainParams.Current.ModuleDropout > 0)
-            {
-                sb.Append(" \"module_dropout=").Append(TrainParams.Current.ModuleDropout.ToString()).Append('"');
-            }
-
             return sb.ToString();
         }
 
@@ -827,116 +795,7 @@ namespace Kohya_lora_trainer
             }
         }
 
-        /// <summary>
-        /// 層別ウェイトの引数生成。
-        /// </summary>
-        /// <returns>層別ウェイトのコマンド</returns>
-        [Obsolete("This function will be removed. Use GenerateBlockWeightCmmands() instead.")]
-        public static string GetBlockWeightCmd()
-        {
-            StringBuilder sb = new StringBuilder();
-            if (TrainParams.Current.UseBlockWeight)
-            {
-                switch (TrainParams.Current.BlockWeightPresetTypeIn)
-                {
-                    case BlockWeightPresetType.none:
-                        {
-                            sb.Append(" down_lr_weight=");
-                            for (int i = 0; i < 12; i++)
-                            {
-                                sb.Append((0.05f * TrainParams.Current.BlockWeightIn[i]).ToString());
-                                if (i < 11)
-                                    sb.Append(',');
-                            }
-                        }
-                        break;
-                    default:
-                        {
-                            sb.Append(" down_lr_weight=").Append(TrainParams.Current.BlockWeightPresetTypeIn.ToString());
-                            if (TrainParams.Current.BlockWeightOffsetIn >= 0.25m)
-                            {
-                                sb.Append('+').Append(TrainParams.Current.BlockWeightOffsetIn.ToString());
-                            }
 
-                        }
-                        break;
-                }
-
-                sb.Append(" mid_lr_weight=").Append((0.05f * TrainParams.Current.BlockWeightMid).ToString()).Append('"');
-
-                switch (TrainParams.Current.BlockWeightPresetTypeOut)
-                {
-                    case BlockWeightPresetType.none:
-                        {
-                            sb.Append(" up_lr_weight=");
-                            for (int i = 0; i < 12; i++)
-                            {
-                                sb.Append((0.05f * TrainParams.Current.BlockWeightOut[i]).ToString());
-                                if (i < 11)
-                                    sb.Append(',');
-                            }
-                        }
-                        break;
-                    default:
-                        {
-                            sb.Append(" up_lr_weight=").Append(TrainParams.Current.BlockWeightPresetTypeOut.ToString());
-                            if (TrainParams.Current.BlockWeightOffsetOut >= 0.25m)
-                            {
-                                sb.Append('+').Append(TrainParams.Current.BlockWeightOffsetOut.ToString());
-                            }
-                        }
-                        break;
-                }
-
-                if (TrainParams.Current.BlockWeightZeroThreshold > 0)
-                {
-                    sb.Append(" block_lr_zero_threshold=").Append((0.05f * TrainParams.Current.BlockWeightZeroThreshold).ToString());
-                }
-            }
-
-            if (TrainParams.Current.UseBlockDim)
-            {
-                sb.Append(TrainParams.Current.UseConv2dExtend ? " \"conv_block_dims=" : " \"block_dims=");
-                //DIM IN
-                for (int i = 0; i < 12; i++)
-                {
-                    sb.Append(TrainParams.Current.BlockDimIn[i]);
-                    sb.Append(',');
-                }
-                //DIM MID
-                sb.Append(TrainParams.Current.BlockDimMid).Append(',');
-
-                //DIM OUT
-                for (int i = 0; i < 12; i++)
-                {
-                    sb.Append(TrainParams.Current.BlockDimOut[i]);
-                    if (i < 11)
-                        sb.Append(',');
-                }
-                sb.Append('"');
-
-                sb.Append(TrainParams.Current.UseConv2dExtend ? " \"conv_block_alphas=" : " \"block_alphas=");
-                //ALPHA IN
-                for (int i = 0; i < 12; i++)
-                {
-                    sb.Append(TrainParams.Current.BlockAlphaInM[i]);
-                    sb.Append(',');
-                }
-                //ALPHA MID
-                sb.Append(TrainParams.Current.BlockAlphaMidM).Append(',');
-
-                //ALPHA OUT
-                for (int i = 0; i < 12; i++)
-                {
-                    sb.Append(TrainParams.Current.BlockAlphaOutM[i]);
-                    if (i < 11)
-                        sb.Append(',');
-                }
-                sb.Append('"');
-            }
-
-            return sb.ToString();
-        }
 
 
         /// <summary>
@@ -983,29 +842,5 @@ namespace Kohya_lora_trainer
             process.Start();
         }
 
-        /// <summary>
-        /// パスからファイル名を除去する。実際には最後のスラッシュより後ろを消す
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        [Obsolete("This function will be removed. Use Path.GetDirectoryName instead")]
-        public static string RemoveFileName(string str)
-        {
-            if (string.IsNullOrEmpty(str))
-                return string.Empty;
-
-            int last = str.LastIndexOf("\\");
-            if (last == -1)
-            {
-                last = str.LastIndexOf("/");
-            }
-
-            if (last == -1)
-            {
-                return string.Empty;
-            }
-
-            return str.Remove(last + 1);
-        }
     }
 }
