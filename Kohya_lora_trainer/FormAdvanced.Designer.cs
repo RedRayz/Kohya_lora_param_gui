@@ -152,6 +152,7 @@ namespace Kohya_lora_trainer
             label29 = new Label();
             label27 = new Label();
             tabPage5 = new TabPage();
+            btnShowTipsAboutOpts = new Button();
             cbxUseAdditionalOptArgs = new CheckBox();
             label43 = new Label();
             label42 = new Label();
@@ -198,7 +199,6 @@ namespace Kohya_lora_trainer
             cbxTrainNorm = new CheckBox();
             label23 = new Label();
             label56 = new Label();
-            btnShowTipsAboutOpts = new Button();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -314,7 +314,7 @@ namespace Kohya_lora_trainer
             tbrCpuThreads.Name = "tbrCpuThreads";
             tbrCpuThreads.Size = new Size(343, 45);
             tbrCpuThreads.TabIndex = 9;
-            toolTip1.SetToolTip(tbrCpuThreads, "ほとんどの処理がシングルスレッドで動くため基本的に上げても速くならない\r\nページング使用量増加");
+            toolTip1.SetToolTip(tbrCpuThreads, "ほとんどの処理がシングルスレッドで動くため上げても速くならない\r\nメインメモリ使用量増加");
             tbrCpuThreads.Value = 12;
             tbrCpuThreads.Scroll += tbrCpuThreads_Scroll;
             // 
@@ -365,7 +365,7 @@ namespace Kohya_lora_trainer
             cbxCrossAttenType.Name = "cbxCrossAttenType";
             cbxCrossAttenType.Size = new Size(135, 23);
             cbxCrossAttenType.TabIndex = 38;
-            toolTip1.SetToolTip(cbxCrossAttenType, "最適化アルゴリズムの種類\r\nmef_eff_attenは省メモリだが遅い\r\nxformersはNVIDIAのみ対応\r\nsdpaは他のメーカーのGPUでも動作");
+            toolTip1.SetToolTip(cbxCrossAttenType, "最適化アルゴリズムの種類\r\nmef_eff_attenは省メモリだが遅い\r\nxformersは高速だがNVIDIAのみ対応\r\nsdpaは高速だがtorchのエラーで動かないかも(原因不明)");
             // 
             // cbxUseColorAug
             // 
@@ -485,7 +485,7 @@ namespace Kohya_lora_trainer
             nudDataLoaderThreads.Name = "nudDataLoaderThreads";
             nudDataLoaderThreads.Size = new Size(135, 23);
             nudDataLoaderThreads.TabIndex = 18;
-            toolTip1.SetToolTip(nudDataLoaderThreads, "ほとんどの処理がシングルスレッドで動くため基本的に上げても速くならない\r\nページング使用量増加");
+            toolTip1.SetToolTip(nudDataLoaderThreads, "ほとんどの処理がシングルスレッドで動くため上げても速くならない\r\nメインメモリの使用量増加");
             nudDataLoaderThreads.Value = new decimal(new int[] { 4, 0, 0, 0 });
             // 
             // tbxExtension
@@ -636,7 +636,7 @@ namespace Kohya_lora_trainer
             cbxUseFP8.Size = new Size(135, 19);
             cbxUseFP8.TabIndex = 42;
             cbxUseFP8.Text = "モデルをfp8で読み込む";
-            toolTip1.SetToolTip(cbxUseFP8, "若干の速度低下と引き換えにモデルによるVRAM消費が半減する");
+            toolTip1.SetToolTip(cbxUseFP8, "若干の速度低下と引き換えにモデルによるVRAM消費が半減する\r\nVRAM10GB以下では使用を推奨");
             cbxUseFP8.UseVisualStyleBackColor = true;
             // 
             // cbxUseFastLoading
@@ -679,7 +679,7 @@ namespace Kohya_lora_trainer
             cbxWeightDecomposition.Size = new Size(185, 19);
             cbxWeightDecomposition.TabIndex = 18;
             cbxWeightDecomposition.Text = "Weight Decomposition(DoRA)";
-            toolTip1.SetToolTip(cbxWeightDecomposition, "directionをファインチューンすることでLoRAの精度問題を改善する");
+            toolTip1.SetToolTip(cbxWeightDecomposition, "directionをファインチューンすることでLoRAの安定性と精度問題を改善する\r\n実際には安定性が改善し、より低いランク(dim)で性能を維持しやすい");
             cbxWeightDecomposition.UseVisualStyleBackColor = true;
             // 
             // cbxHighVRAM
@@ -711,7 +711,7 @@ namespace Kohya_lora_trainer
             nudGradAccSteps.Name = "nudGradAccSteps";
             nudGradAccSteps.Size = new Size(96, 23);
             nudGradAccSteps.TabIndex = 8;
-            toolTip1.SetToolTip(nudGradAccSteps, "勾配を合計するステップ数");
+            toolTip1.SetToolTip(nudGradAccSteps, "勾配を合計するステップ数\r\nバッチサイズに似た効果がある");
             nudGradAccSteps.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // nudLoRAPlusLRRatio
@@ -1191,9 +1191,9 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(label28);
             tabPage4.Controls.Add(nudMaxTokens);
             tabPage4.Controls.Add(nudLRSchedulerCycle);
-            tabPage4.Location = new Point(4, 26);
+            tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(612, 341);
+            tabPage4.Size = new Size(612, 343);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "ページ2";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1353,9 +1353,9 @@ namespace Kohya_lora_trainer
             page3.Controls.Add(label49);
             page3.Controls.Add(cbxLossType);
             page3.Controls.Add(label48);
-            page3.Location = new Point(4, 26);
+            page3.Location = new Point(4, 24);
             page3.Name = "page3";
-            page3.Size = new Size(612, 341);
+            page3.Size = new Size(612, 343);
             page3.TabIndex = 10;
             page3.Text = "ページ3";
             page3.UseVisualStyleBackColor = true;
@@ -1474,9 +1474,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 26);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(612, 341);
+            tabPage7.Size = new Size(612, 343);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -1540,6 +1540,16 @@ namespace Kohya_lora_trainer
             tabPage5.TabIndex = 5;
             tabPage5.Text = "DAdapt/AdamW/Lion";
             tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // btnShowTipsAboutOpts
+            // 
+            btnShowTipsAboutOpts.Location = new Point(285, 166);
+            btnShowTipsAboutOpts.Name = "btnShowTipsAboutOpts";
+            btnShowTipsAboutOpts.Size = new Size(195, 26);
+            btnShowTipsAboutOpts.TabIndex = 27;
+            btnShowTipsAboutOpts.Text = "AdamWとLionに関するヒントを表示";
+            btnShowTipsAboutOpts.UseVisualStyleBackColor = true;
+            btnShowTipsAboutOpts.Click += btnShowTipsAboutOpts_Click;
             // 
             // cbxUseAdditionalOptArgs
             // 
@@ -1633,6 +1643,7 @@ namespace Kohya_lora_trainer
             tbxWeightDecay.Size = new Size(64, 23);
             tbxWeightDecay.TabIndex = 11;
             tbxWeightDecay.Text = "0";
+            toolTip1.SetToolTip(tbxWeightDecay, "過学習を抑える設定。高くすると学習が遅くなる");
             // 
             // label31
             // 
@@ -1761,10 +1772,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(612, 341);
+            tabPage2.Size = new Size(612, 343);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -1823,9 +1834,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(label11);
             pageMisc.Controls.Add(label6);
             pageMisc.Controls.Add(nudClipSkip);
-            pageMisc.Location = new Point(4, 26);
+            pageMisc.Location = new Point(4, 24);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(612, 341);
+            pageMisc.Size = new Size(612, 343);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -1887,9 +1898,9 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(nudAdaptiveNoiseScale);
             tabPage6.Controls.Add(label19);
             tabPage6.Controls.Add(label14);
-            tabPage6.Location = new Point(4, 26);
+            tabPage6.Location = new Point(4, 24);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(612, 341);
+            tabPage6.Size = new Size(612, 343);
             tabPage6.TabIndex = 7;
             tabPage6.Text = "ノイズ関連";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1899,9 +1910,9 @@ namespace Kohya_lora_trainer
             pageXL.Controls.Add(cbxCacheTextencoderToDisk);
             pageXL.Controls.Add(cbxCacheTextEncoder);
             pageXL.Controls.Add(cbxNoHalfVae);
-            pageXL.Location = new Point(4, 26);
+            pageXL.Location = new Point(4, 24);
             pageXL.Name = "pageXL";
-            pageXL.Size = new Size(612, 341);
+            pageXL.Size = new Size(612, 343);
             pageXL.TabIndex = 9;
             pageXL.Text = "SDXL";
             pageXL.UseVisualStyleBackColor = true;
@@ -1927,9 +1938,9 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(cbxTrainNorm);
             tabPage3.Controls.Add(cbxAlgoType);
             tabPage3.Controls.Add(label23);
-            tabPage3.Location = new Point(4, 26);
+            tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(612, 341);
+            tabPage3.Size = new Size(612, 343);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;
@@ -2011,16 +2022,6 @@ namespace Kohya_lora_trainer
             label56.Size = new Size(177, 15);
             label56.TabIndex = 58;
             label56.Text = "#がつく項目は0を指定すると無効化";
-            // 
-            // btnShowTipsAboutOpts
-            // 
-            btnShowTipsAboutOpts.Location = new Point(285, 166);
-            btnShowTipsAboutOpts.Name = "btnShowTipsAboutOpts";
-            btnShowTipsAboutOpts.Size = new Size(195, 26);
-            btnShowTipsAboutOpts.TabIndex = 27;
-            btnShowTipsAboutOpts.Text = "AdamWとLionに関するヒントを表示";
-            btnShowTipsAboutOpts.UseVisualStyleBackColor = true;
-            btnShowTipsAboutOpts.Click += btnShowTipsAboutOpts_Click;
             // 
             // FormAdvanced
             // 

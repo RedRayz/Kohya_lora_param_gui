@@ -13,6 +13,7 @@ namespace Kohya_lora_trainer
     public static class MyUtils
     {
         private static Dictionary<string, string> DefaultDirs = new Dictionary<string, string>();
+        private static List<string> NetworkArgs = new List<string>();
 
         public static void SaveDefaultDirSettings()
         {
@@ -89,6 +90,7 @@ namespace Kohya_lora_trainer
         public static string GenerateCommands()
         {
             StringBuilder sb = new StringBuilder();
+            NetworkArgs.Clear();
 
             sb.Append("accelerate launch --num_cpu_threads_per_process ").Append(TrainParams.Current.CpuThreads);
             switch (TrainParams.Current.StableDiffusionType)
@@ -108,40 +110,25 @@ namespace Kohya_lora_trainer
                 sb.Append(" --reg_data_dir \"").Append(TrainParams.Current.RegImagePath).Append('"');
             }
 
-            string lbw = GetBlockWeightCmd();
-
             switch (TrainParams.Current.ModuleType)
             {
                 case ModuleType.LoRA:
                 case ModuleType.LoRAFA:
                     {
                         sb.Append(" --network_module \"").Append(TrainParams.Current.ModuleType == ModuleType.LoRA ? "networks.lora" : "networks.lora_fa").Append('"');
+                        
                         if (TrainParams.Current.UseConv2dExtend)
                         {
                             bool di = TrainParams.Current.ConvDim > 0;
                             bool al = TrainParams.Current.ConvAlpha > 0;
                             if (di || al)
                             {
-                                sb.Append(" --network_args");
                                 if (di)
-                                    sb.Append(" \"conv_dim=").Append(TrainParams.Current.ConvDim.ToString()).Append('"');
+                                    NetworkArgs.Add("conv_dim=" + TrainParams.Current.ConvDim.ToString());
                                 if (al)
-                                    sb.Append(" \"conv_alpha=").Append(TrainParams.Current.ConvAlpha.ToString()).Append('"');
-                                if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
-                                    sb.Append(' ').Append(lbw);
-                                sb.Append(GenerateDropoutCommands());
+                                    NetworkArgs.Add("conv_alpha=" + TrainParams.Current.ConvAlpha.ToString());
                             }
                         }
-                        else if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
-                        {
-                            sb.Append(" --network_args").Append(' ').Append(lbw);
-                            sb.Append(GenerateDropoutCommands());
-                        }
-                        else if (TrainParams.Current.RankDropout > 0 || TrainParams.Current.ModuleDropout > 0)
-                        {
-                            sb.Append(" --network_args").Append(' ').Append(GenerateDropoutCommands());
-                        }
-
                     }
                     break;
                 case ModuleType.LyCORIS:
@@ -149,25 +136,25 @@ namespace Kohya_lora_trainer
                         string algo = TrainParams.Current.AlgoType == AlgoType.diag_oft ? "diag-oft" : TrainParams.Current.AlgoType.ToString();
 
                         sb.Append(" --network_module \"").Append("lycoris.kohya\"");
-                        sb.Append(" --network_args \"algo=").Append(algo).Append('"');
+                        NetworkArgs.Add("algo=" + algo);
 
                         if (TrainParams.Current.WeightDocomposition)
-                            sb.Append(" \"dora_wd=True\"");
+                            NetworkArgs.Add("dora_wd=True");
 
                         if (TrainParams.Current.TrainNorm)
-                            sb.Append(" \"train_norm=True\"");
+                            NetworkArgs.Add("train_norm=True");
 
                         if (TrainParams.Current.RescaledOFT)
-                            sb.Append(" \"rescaled=True\"");
+                            NetworkArgs.Add("rescaled=True");
 
                         if (TrainParams.Current.ConstrainedOFT)
-                            sb.Append(" \"constrain=FLOAT\"");
+                            NetworkArgs.Add("constrain=FLOAT");
 
                         if (TrainParams.Current.UseTucker)
-                            sb.Append(" \"use_tucker=True\"");
+                            NetworkArgs.Add("use_tucker=True");
 
                         if (TrainParams.Current.UseScalar)
-                            sb.Append(" \"use_scalar=True\"");
+                            NetworkArgs.Add("use_scalar=True");
 
                         if (TrainParams.Current.UseConv2dExtend)
                         {
@@ -176,33 +163,22 @@ namespace Kohya_lora_trainer
                             if (di || al)
                             {
                                 if (di)
-                                    sb.Append(" \"conv_dim=").Append(TrainParams.Current.ConvDim.ToString()).Append('"');
+                                    NetworkArgs.Add("conv_dim=" + TrainParams.Current.ConvDim.ToString());
                                 if (al)
-                                    sb.Append(" \"conv_alpha=").Append(TrainParams.Current.ConvAlpha.ToString()).Append('"');
-                                if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
-                                    sb.Append(' ').Append(lbw);
+                                    NetworkArgs.Add("conv_alpha=" + TrainParams.Current.ConvAlpha.ToString());
                             }
                         }
                         else
                         {
-                            sb.Append(" \"conv_dim=0\"");
-                            sb.Append(" \"conv_alpha=0\"");
-                            if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
-                                sb.Append(' ').Append(lbw);
+                            NetworkArgs.Add("conv_dim=0");
+                            NetworkArgs.Add("conv_alpha=0");
                         }
-
-
-
-                        sb.Append(GenerateDropoutCommands());
                     }
                     break;
                 case ModuleType.DyLoRA:
                     {
                         sb.Append(" --network_module \"").Append("networks.dylora").Append('"');
-                        //sd-scriptsの仕様上network_argsの引数名と値の区切りに=以外はエラーになるので注意
-                        sb.Append(" --network_args");
-                        sb.Append(" \"unit=").Append(TrainParams.Current.DyLoRAUnit.ToString()).Append('"');
-                        sb.Append(GenerateDropoutCommands());
+                        NetworkArgs.Add("unit=" + TrainParams.Current.DyLoRAUnit.ToString());
                         if (TrainParams.Current.UseConv2dExtend)
                         {
                             bool di = TrainParams.Current.ConvDim > 0;
@@ -210,20 +186,38 @@ namespace Kohya_lora_trainer
                             if (di || al)
                             {
                                 if (di)
-                                    sb.Append(" \"conv_dim=").Append(TrainParams.Current.ConvDim.ToString()).Append('"');
+                                    NetworkArgs.Add("conv_dim=" + TrainParams.Current.ConvDim.ToString());
                                 if (al)
-                                    sb.Append(" \"conv_alpha=").Append(TrainParams.Current.ConvAlpha.ToString()).Append('"');
-                                if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
-                                    sb.Append(' ').Append(lbw);
+                                    NetworkArgs.Add("conv_alpha=" + TrainParams.Current.ConvAlpha.ToString());
                             }
-                        }
-                        else if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
-                        {
-                            sb.Append(' ').Append(lbw);
                         }
                     }
                     break;
             }
+
+            GenerateBlockWeightCmmands();
+
+            if (TrainParams.Current.RankDropout > 0)
+                NetworkArgs.Add("rank_dropout=" + TrainParams.Current.RankDropout.ToString());
+            if (TrainParams.Current.ModuleDropout > 0)
+                NetworkArgs.Add("module_dropout=" + TrainParams.Current.ModuleDropout.ToString());
+
+            if (TrainParams.Current.LoRAPlusLRRatio > 0)
+            {
+                NetworkArgs.Add("loraplus_lr_ratio=" + TrainParams.Current.LoRAPlusLRRatio.ToString());
+            }
+
+            if (TrainParams.Current.LoRAPlusUnetLRRatio > 0)
+            {
+                NetworkArgs.Add("loraplus_unet_lr_ratio=" + TrainParams.Current.LoRAPlusUnetLRRatio.ToString());
+            }
+
+            if (TrainParams.Current.LoRAPlusTELRRatio > 0)
+            {
+                NetworkArgs.Add("loraplus_text_encoder_lr_ratio=" + TrainParams.Current.LoRAPlusTELRRatio.ToString());
+            }
+
+            sb.Append(GetNetworkArgsCommands());
 
             switch (TrainParams.Current.CrossAttenType)
             {
@@ -268,19 +262,10 @@ namespace Kohya_lora_trainer
                 sb.Append(" --no_metadata");
             }
 
-            //SD2を使う人なんていないだろうから廃止
-            //if (TrainParams.Current.UseSDV2)
-            //{
-            //    sb.Append(" --v2");
-            //}
-
             if (TrainParams.Current.UseFullFP16)
             {
                 sb.Append(" --full_fp16");
             }
-
-            //if (TrainParams.Current.UseParameterization)
-            //    sb.Append(" --v_parameterization");
 
             if (TrainParams.Current.CacheLatents)
             {
@@ -592,11 +577,6 @@ namespace Kohya_lora_trainer
                 sb.Append(" --dataset_config \"").Append(TrainParams.Current.DatasetConfigPath).Append('"');
             }
 
-            //if (TrainParams.Current.ScaleVPredLoss)
-            //{
-            //    sb.Append(" --scale_v_pred_loss_like_noise_pred");
-            //}
-
             if (TrainParams.Current.MaxNormReg > 0)
             {
                 sb.Append(" --scale_weight_norms ").Append(TrainParams.Current.MaxNormReg.ToString());
@@ -687,115 +667,99 @@ namespace Kohya_lora_trainer
                 sb.Append(" --gradient_accumulation_steps ").Append(TrainParams.Current.GradAccSteps.ToString());
             }
 
-            if (TrainParams.Current.LoRAPlusLRRatio > 0) 
-            {
-                sb.Append(" --loraplus_lr_ratio ").Append(TrainParams.Current.LoRAPlusLRRatio.ToString());
-            }
-
-            if (TrainParams.Current.LoRAPlusUnetLRRatio > 0)
-            {
-                sb.Append(" --loraplus_unet_lr_ratio ").Append(TrainParams.Current.LoRAPlusUnetLRRatio.ToString());
-            }
-
-            if (TrainParams.Current.LoRAPlusTELRRatio > 0)
-            {
-                sb.Append(" --loraplus_text_encoder_lr_ratio ").Append(TrainParams.Current.LoRAPlusTELRRatio.ToString());
-            }
 
             return sb.ToString();
         }
 
-        private static string GenerateDropoutCommands()
+        private static string GetNetworkArgsCommands()
         {
+            if (NetworkArgs.Count == 0)
+                return string.Empty;
             StringBuilder sb = new StringBuilder();
-
-            if (TrainParams.Current.RankDropout > 0)
+            sb.Append(" --network_args ");
+            for(int i = 0; i < NetworkArgs.Count; i++)
             {
-                sb.Append(" \"rank_dropout=").Append(TrainParams.Current.RankDropout.ToString()).Append('"');
+                sb.Append('"').Append(NetworkArgs[i]).Append('"');
+                if(i < NetworkArgs.Count - 1)
+                {
+                    sb.Append(' ');
+                }
             }
-
-            if (TrainParams.Current.ModuleDropout > 0)
-            {
-                sb.Append(" \"module_dropout=").Append(TrainParams.Current.ModuleDropout.ToString()).Append('"');
-            }
-
             return sb.ToString();
         }
 
-        /// <summary>
-        /// 層別ウェイトの引数生成。
-        /// </summary>
-        /// <returns>層別ウェイトのコマンド</returns>
-        public static string GetBlockWeightCmd()
+        private static void GenerateBlockWeightCmmands()
         {
-            StringBuilder sb = new StringBuilder();
             if (TrainParams.Current.UseBlockWeight)
             {
                 switch (TrainParams.Current.BlockWeightPresetTypeIn)
                 {
                     case BlockWeightPresetType.none:
                         {
-                            sb.Append(" \"down_lr_weight=");
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append("down_lr_weight=");
                             for (int i = 0; i < 12; i++)
                             {
                                 sb.Append((0.05f * TrainParams.Current.BlockWeightIn[i]).ToString());
                                 if (i < 11)
                                     sb.Append(',');
                             }
-                            sb.Append('"');
+                            NetworkArgs.Add(sb.ToString());
                         }
                         break;
                     default:
                         {
-                            sb.Append(" \"down_lr_weight=").Append(TrainParams.Current.BlockWeightPresetTypeIn.ToString());
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append(" down_lr_weight=").Append(TrainParams.Current.BlockWeightPresetTypeIn.ToString());
                             if (TrainParams.Current.BlockWeightOffsetIn >= 0.25m)
                             {
-                                sb.Append("+").Append(TrainParams.Current.BlockWeightOffsetIn.ToString());
+                                sb.Append('+').Append(TrainParams.Current.BlockWeightOffsetIn.ToString());
                             }
-
-                            sb.Append('"');
+                            NetworkArgs.Add(sb.ToString());
                         }
                         break;
                 }
 
-                sb.Append(" \"mid_lr_weight=").Append((0.05f * TrainParams.Current.BlockWeightMid).ToString()).Append('"');
+                NetworkArgs.Add("mid_lr_weight=" + (0.05f * TrainParams.Current.BlockWeightMid).ToString());
 
                 switch (TrainParams.Current.BlockWeightPresetTypeOut)
                 {
                     case BlockWeightPresetType.none:
                         {
-                            sb.Append(" \"up_lr_weight=");
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append("up_lr_weight=");
                             for (int i = 0; i < 12; i++)
                             {
                                 sb.Append((0.05f * TrainParams.Current.BlockWeightOut[i]).ToString());
                                 if (i < 11)
                                     sb.Append(',');
                             }
-                            sb.Append('"');
+                            NetworkArgs.Add(sb.ToString());
                         }
                         break;
                     default:
                         {
-                            sb.Append(" \"up_lr_weight=").Append(TrainParams.Current.BlockWeightPresetTypeOut.ToString());
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append("up_lr_weight=").Append(TrainParams.Current.BlockWeightPresetTypeOut.ToString());
                             if (TrainParams.Current.BlockWeightOffsetOut >= 0.25m)
                             {
                                 sb.Append('+').Append(TrainParams.Current.BlockWeightOffsetOut.ToString());
                             }
-
-                            sb.Append('"');
+                            NetworkArgs.Add(sb.ToString());
                         }
                         break;
                 }
 
                 if (TrainParams.Current.BlockWeightZeroThreshold > 0)
                 {
-                    sb.Append(" \"block_lr_zero_threshold=").Append((0.05f * TrainParams.Current.BlockWeightZeroThreshold).ToString()).Append('"');
+                    NetworkArgs.Add("block_lr_zero_threshold=" + (0.05f * TrainParams.Current.BlockWeightZeroThreshold).ToString());
                 }
             }
 
             if (TrainParams.Current.UseBlockDim)
             {
-                sb.Append(TrainParams.Current.UseConv2dExtend ? " \"conv_block_dims=" : " \"block_dims=");
+                StringBuilder sb = new StringBuilder();
+                sb.Append(TrainParams.Current.UseConv2dExtend ? "conv_block_dims=" : "block_dims=");
                 //DIM IN
                 for (int i = 0; i < 12; i++)
                 {
@@ -812,9 +776,8 @@ namespace Kohya_lora_trainer
                     if (i < 11)
                         sb.Append(',');
                 }
-                sb.Append('"');
 
-                sb.Append(TrainParams.Current.UseConv2dExtend ? " \"conv_block_alphas=" : " \"block_alphas=");
+                sb.Append(TrainParams.Current.UseConv2dExtend ? "conv_block_alphas=" : "block_alphas=");
                 //ALPHA IN
                 for (int i = 0; i < 12; i++)
                 {
@@ -831,11 +794,10 @@ namespace Kohya_lora_trainer
                     if (i < 11)
                         sb.Append(',');
                 }
-                sb.Append('"');
             }
-
-            return sb.ToString();
         }
+
+
 
 
         /// <summary>
@@ -882,29 +844,5 @@ namespace Kohya_lora_trainer
             process.Start();
         }
 
-        /// <summary>
-        /// パスからファイル名を除去する。実際には最後のスラッシュより後ろを消す
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        [Obsolete("This function will be removed. Use Path.GetDirectoryName instead")]
-        public static string RemoveFileName(string str)
-        {
-            if (string.IsNullOrEmpty(str))
-                return string.Empty;
-
-            int last = str.LastIndexOf("\\");
-            if (last == -1)
-            {
-                last = str.LastIndexOf("/");
-            }
-
-            if (last == -1)
-            {
-                return string.Empty;
-            }
-
-            return str.Remove(last + 1);
-        }
     }
 }
