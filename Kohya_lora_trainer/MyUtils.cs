@@ -109,13 +109,14 @@ namespace Kohya_lora_trainer
             }
 
             string lbw = GetBlockWeightCmd();
-
+            bool haveNetworkArgs = false;
             switch (TrainParams.Current.ModuleType)
             {
                 case ModuleType.LoRA:
                 case ModuleType.LoRAFA:
                     {
                         sb.Append(" --network_module \"").Append(TrainParams.Current.ModuleType == ModuleType.LoRA ? "networks.lora" : "networks.lora_fa").Append('"');
+                        
                         if (TrainParams.Current.UseConv2dExtend)
                         {
                             bool di = TrainParams.Current.ConvDim > 0;
@@ -130,16 +131,20 @@ namespace Kohya_lora_trainer
                                 if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
                                     sb.Append(' ').Append(lbw);
                                 sb.Append(GenerateDropoutCommands());
+
+                                haveNetworkArgs = true;
                             }
                         }
                         else if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
                         {
                             sb.Append(" --network_args").Append(' ').Append(lbw);
                             sb.Append(GenerateDropoutCommands());
+                            haveNetworkArgs = true;
                         }
                         else if (TrainParams.Current.RankDropout > 0 || TrainParams.Current.ModuleDropout > 0)
                         {
                             sb.Append(" --network_args").Append(' ').Append(GenerateDropoutCommands());
+                            haveNetworkArgs = true;
                         }
 
                     }
@@ -191,9 +196,8 @@ namespace Kohya_lora_trainer
                                 sb.Append(' ').Append(lbw);
                         }
 
-
-
                         sb.Append(GenerateDropoutCommands());
+                        haveNetworkArgs = true;
                     }
                     break;
                 case ModuleType.DyLoRA:
@@ -221,8 +225,39 @@ namespace Kohya_lora_trainer
                         {
                             sb.Append(' ').Append(lbw);
                         }
+                        haveNetworkArgs = true;
                     }
                     break;
+            }
+
+            if (TrainParams.Current.LoRAPlusLRRatio > 0)
+            {
+                if(!haveNetworkArgs)
+                {
+                    sb.Append(" --network_args");
+                    haveNetworkArgs = true;
+                }
+
+                sb.Append(" \"loraplus_lr_ratio=").Append(TrainParams.Current.LoRAPlusLRRatio.ToString()).Append('"');
+            }
+
+            if (TrainParams.Current.LoRAPlusUnetLRRatio > 0)
+            {
+                if (!haveNetworkArgs)
+                {
+                    sb.Append(" --network_args");
+                    haveNetworkArgs = true;
+                }
+                sb.Append(" \"loraplus_unet_lr_ratio=").Append(TrainParams.Current.LoRAPlusUnetLRRatio.ToString()).Append('"');
+            }
+
+            if (TrainParams.Current.LoRAPlusTELRRatio > 0)
+            {
+                if (!haveNetworkArgs)
+                {
+                    sb.Append(" --network_args");
+                }
+                sb.Append(" \"loraplus_text_encoder_lr_ratio=").Append(TrainParams.Current.LoRAPlusTELRRatio.ToString()).Append('"');
             }
 
             switch (TrainParams.Current.CrossAttenType)
@@ -687,20 +722,6 @@ namespace Kohya_lora_trainer
                 sb.Append(" --gradient_accumulation_steps ").Append(TrainParams.Current.GradAccSteps.ToString());
             }
 
-            if (TrainParams.Current.LoRAPlusLRRatio > 0) 
-            {
-                sb.Append(" --loraplus_lr_ratio ").Append(TrainParams.Current.LoRAPlusLRRatio.ToString());
-            }
-
-            if (TrainParams.Current.LoRAPlusUnetLRRatio > 0)
-            {
-                sb.Append(" --loraplus_unet_lr_ratio ").Append(TrainParams.Current.LoRAPlusUnetLRRatio.ToString());
-            }
-
-            if (TrainParams.Current.LoRAPlusTELRRatio > 0)
-            {
-                sb.Append(" --loraplus_text_encoder_lr_ratio ").Append(TrainParams.Current.LoRAPlusTELRRatio.ToString());
-            }
 
             return sb.ToString();
         }
