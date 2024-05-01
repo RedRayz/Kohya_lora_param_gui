@@ -630,11 +630,14 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.StableDiffusionType == SDType.XL && (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim))
             {
                 if (showMsg)
-                    MessageBox.Show("SDXLでは層別学習および層別Dimは非対応です。\r\n有効にするとエラーで落ちます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                {
+                    if(TrainParams.Current.UseBlockWeight)
+                        MessageBox.Show("SDXLでは層別学習は非対応と思われます。\r\n現時点で正しく動作しません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    if(TrainParams.Current.UseBlockDim)
+                        MessageBox.Show("SDXLでは層別Dimは使用できません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
                 return false;
             }
-
-
 
             return true;
         }
