@@ -795,6 +795,7 @@ namespace Kohya_lora_trainer
                     if (i < 11)
                         sb.Append(',');
                 }
+                NetworkArgs.Add(sb.ToString());
             }
         }
 

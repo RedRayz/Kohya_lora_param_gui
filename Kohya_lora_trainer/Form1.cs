@@ -634,7 +634,7 @@ namespace Kohya_lora_trainer
                     if(TrainParams.Current.UseBlockWeight)
                         MessageBox.Show("SDXLでは層別学習は非対応と思われます。\r\n現時点で正しく動作しません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     if(TrainParams.Current.UseBlockDim)
-                        MessageBox.Show("SDXLでは層別Dimは使用できません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("SDXLでは層別学習は非対応と思われます。\r\n現時点で正しく動作しません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 return false;
             }
