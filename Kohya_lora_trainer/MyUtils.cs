@@ -544,6 +544,19 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.NoiseOffset > 0f)
             {
                 sb.Append(" --noise_offset ").Append(TrainParams.Current.NoiseOffset.ToString());
+                if (TrainParams.Current.RandomNoiseOffset)
+                {
+                    sb.Append(" --noise_offset_random_strength");
+                }
+            }
+
+            if (TrainParams.Current.IpNoiseGamma > 0)
+            {
+                sb.Append(" --ip_noise_gamma ").Append(TrainParams.Current.IpNoiseGamma.ToString());
+                if (TrainParams.Current.RandomIpNoiseGamma)
+                {
+                    sb.Append(" --ip_noise_gamma_random_strength");
+                }
             }
 
             if (TrainParams.Current.MultiresNoiseIterations > 0)

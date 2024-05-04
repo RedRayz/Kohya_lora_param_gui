@@ -369,7 +369,9 @@ namespace Kohya_lora_trainer
             TrainParams.Current.LoRAPlusUnetLRRatio = nudLoRAPlusUnetLRRatio.Value;
             TrainParams.Current.LoRAPlusTELRRatio = nudLoRAPlusTELRRatio.Value;
             TrainParams.Current.UseAdditionalOptArgs = cbxUseAdditionalOptArgs.Checked;
-
+            TrainParams.Current.IpNoiseGamma = nudIpNoiseGamma.Value;
+            TrainParams.Current.RandomNoiseOffset = cbxRandomNoiseOffset.Checked;
+            TrainParams.Current.RandomIpNoiseGamma = cbxRandomIpNoiseGamma.Checked;
             Close();
         }
 
@@ -494,6 +496,11 @@ namespace Kohya_lora_trainer
             nudLoRAPlusTELRRatio.Value = TrainParams.Current.LoRAPlusTELRRatio;
 
             cbxUseAdditionalOptArgs.Checked = TrainParams.Current.UseAdditionalOptArgs;
+
+            nudIpNoiseGamma.Value = TrainParams.Current.IpNoiseGamma;
+
+            cbxRandomNoiseOffset.Checked = TrainParams.Current.RandomNoiseOffset;
+            cbxRandomIpNoiseGamma.Checked = TrainParams.Current.RandomIpNoiseGamma;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)
