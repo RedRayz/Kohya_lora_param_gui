@@ -28,16 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInstaller));
             btnInstall = new Button();
             label1 = new Label();
             label2 = new Label();
+            cbxUsePy = new CheckBox();
+            toolTip1 = new ToolTip(components);
             SuspendLayout();
             // 
             // btnInstall
             // 
             btnInstall.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnInstall.Location = new Point(171, 39);
+            btnInstall.Location = new Point(171, 29);
             btnInstall.Name = "btnInstall";
             btnInstall.Size = new Size(134, 42);
             btnInstall.TabIndex = 0;
@@ -64,11 +67,23 @@
             label2.TabIndex = 2;
             label2.Text = resources.GetString("label2.Text");
             // 
+            // cbxUsePy
+            // 
+            cbxUsePy.AutoSize = true;
+            cbxUsePy.Location = new Point(145, 77);
+            cbxUsePy.Name = "cbxUsePy";
+            cbxUsePy.Size = new Size(202, 19);
+            cbxUsePy.TabIndex = 3;
+            cbxUsePy.Text = "「python」の代わりに「py」を使用する";
+            toolTip1.SetToolTip(cbxUsePy, "ターミナルpythonとだけ表示されて何も起きない場合にチェックをつけてください");
+            cbxUsePy.UseVisualStyleBackColor = true;
+            // 
             // FormInstaller
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(485, 452);
+            Controls.Add(cbxUsePy);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btnInstall);
@@ -88,5 +103,7 @@
         private System.Windows.Forms.Button btnInstall;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private CheckBox cbxUsePy;
+        private ToolTip toolTip1;
     }
 }

@@ -38,7 +38,8 @@ namespace Kohya_lora_trainer
             StringBuilder sb = new StringBuilder();
             sb.Append(@"/k cd /d ").Append(path);
 
-            sb.Append(@" && git clone https://github.com/kohya-ss/sd-scripts.git && cd sd-scripts && python -m venv venv && .\venv\Scripts\activate && pip install torch==")
+            sb.Append(@" && git clone https://github.com/kohya-ss/sd-scripts.git && cd sd-scripts && ")
+                .Append(cbxUsePy.Checked ? "py" : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && pip install torch==")
                 .Append(Constants.TORCH_VERSION).Append(" torchvision==")
                 .Append(Constants.TORCHVISION_VERSION).Append(" --index-url ")
                 .Append(Constants.INDEX_URL)
