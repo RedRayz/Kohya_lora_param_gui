@@ -41,6 +41,7 @@
             btnSelectOutputPath = new Button();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            cbxUsePy = new CheckBox();
             lblProcessingNpz = new Label();
             label12 = new Label();
             btnDeleteNpz = new Button();
@@ -68,7 +69,6 @@
             nudTaggerBatchSize = new NumericUpDown();
             label6 = new Label();
             tbxTaggerExclude = new TextBox();
-            cbxUsePy = new CheckBox();
             toolTip1 = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
@@ -207,6 +207,18 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "ユーティリティ";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // cbxUsePy
+            // 
+            cbxUsePy.AutoSize = true;
+            cbxUsePy.Location = new Point(161, 134);
+            cbxUsePy.Name = "cbxUsePy";
+            cbxUsePy.Size = new Size(202, 19);
+            cbxUsePy.TabIndex = 6;
+            cbxUsePy.Text = "「python」の代わりに「py」を使用する";
+            toolTip1.SetToolTip(cbxUsePy, "ターミナルにpythonとだけ表示されて何も起きない場合はチェックをつけてください");
+            cbxUsePy.UseVisualStyleBackColor = true;
+            cbxUsePy.CheckedChanged += cbxUsePy_CheckedChanged;
             // 
             // lblProcessingNpz
             // 
@@ -489,17 +501,6 @@
             tbxTaggerExclude.Name = "tbxTaggerExclude";
             tbxTaggerExclude.Size = new Size(432, 23);
             tbxTaggerExclude.TabIndex = 1;
-            // 
-            // cbxUsePy
-            // 
-            cbxUsePy.AutoSize = true;
-            cbxUsePy.Location = new Point(161, 134);
-            cbxUsePy.Name = "cbxUsePy";
-            cbxUsePy.Size = new Size(202, 19);
-            cbxUsePy.TabIndex = 6;
-            cbxUsePy.Text = "「python」の代わりに「py」を使用する";
-            cbxUsePy.UseVisualStyleBackColor = true;
-            cbxUsePy.CheckedChanged += cbxUsePy_CheckedChanged;
             // 
             // FormUtils
             // 
