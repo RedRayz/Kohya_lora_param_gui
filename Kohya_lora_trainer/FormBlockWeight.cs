@@ -118,6 +118,16 @@ namespace Kohya_lora_trainer {
 
             cbxPresetIn.SelectedIndex = (int)TrainParams.Current.BlockWeightPresetTypeIn;
             cbxPresetOut.SelectedIndex = (int)TrainParams.Current.BlockWeightPresetTypeOut;
+            if(TrainParams.Current.StableDiffusionType == SDType.XL)
+            {
+                tbrIn09.Enabled = false;
+                tbrIn10.Enabled = false;
+                tbrIn11.Enabled = false;
+
+                tbrOut09.Enabled = false;
+                tbrOut10.Enabled = false;
+                tbrOut11.Enabled = false;
+            }
         }
 
         private void tbrIn00_Scroll(object sender, EventArgs e)

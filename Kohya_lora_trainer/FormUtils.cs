@@ -262,7 +262,8 @@ namespace Kohya_lora_trainer
                 StringBuilder sb = new StringBuilder();
                 sb.Append(@"/k cd ").Append(Constants.CurrentSdScriptsPath);
 
-                sb.Append(@" && python -m venv venv && .\venv\Scripts\activate && pip install torch==")
+                sb.Append(@" && ")
+                    .Append(cbxUsePy.Checked ? "py" : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && pip install torch==")
                     .Append(Constants.TORCH_VERSION).Append(" torchvision==")
                     .Append(Constants.TORCHVISION_VERSION).Append(" --index-url ")
                     .Append(Constants.INDEX_URL)
@@ -367,6 +368,11 @@ namespace Kohya_lora_trainer
                 else
                     MessageBox.Show("対象のファイルはありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void cbxUsePy_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

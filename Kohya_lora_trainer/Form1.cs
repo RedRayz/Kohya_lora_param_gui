@@ -545,6 +545,11 @@ namespace Kohya_lora_trainer
             return true;
         }
 
+        /// <summary>
+        /// 学習を開始できる設定ですか？
+        /// </summary>
+        /// <param name="showMsg">適切でない設定についてメッセージボックスを表示する。</param>
+        /// <returns></returns>
         private bool IsTrainingAvailable(bool showMsg)
         {
             if (IsInvalidImageFolder || IsInvalidRegFolder || IsInvalidOutputName || IsInvalidLR || IsInvalidResolution)
@@ -627,14 +632,17 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
-            if (TrainParams.Current.StableDiffusionType == SDType.XL && (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim))
-            {
-                if (showMsg)
-                    MessageBox.Show("SDXLでは層別学習および層別Dimは非対応です。\r\n有効にするとエラーで落ちます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-
+            //if (TrainParams.Current.StableDiffusionType == SDType.XL && (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim))
+            //{
+            //    if (showMsg)
+            //    {
+            //        if(TrainParams.Current.UseBlockWeight)
+            //            MessageBox.Show("SDXLでは層別学習は非対応と思われます。\r\n現時点で正しく動作しません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //        if(TrainParams.Current.UseBlockDim)
+            //            MessageBox.Show("SDXLでは層別学習は非対応と思われます。\r\n現時点で正しく動作しません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    }
+            //    return false;
+            //}
 
             return true;
         }

@@ -544,6 +544,19 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.NoiseOffset > 0f)
             {
                 sb.Append(" --noise_offset ").Append(TrainParams.Current.NoiseOffset.ToString());
+                if (TrainParams.Current.RandomNoiseOffset)
+                {
+                    sb.Append(" --noise_offset_random_strength");
+                }
+            }
+
+            if (TrainParams.Current.IpNoiseGamma > 0)
+            {
+                sb.Append(" --ip_noise_gamma ").Append(TrainParams.Current.IpNoiseGamma.ToString());
+                if (TrainParams.Current.RandomIpNoiseGamma)
+                {
+                    sb.Append(" --ip_noise_gamma_random_strength");
+                }
             }
 
             if (TrainParams.Current.MultiresNoiseIterations > 0)
@@ -692,16 +705,17 @@ namespace Kohya_lora_trainer
         {
             if (TrainParams.Current.UseBlockWeight)
             {
+                int loopNum = TrainParams.Current.StableDiffusionType == SDType.Legacy ? 12 : 9;
                 switch (TrainParams.Current.BlockWeightPresetTypeIn)
                 {
                     case BlockWeightPresetType.none:
                         {
                             StringBuilder sb = new StringBuilder();
                             sb.Append("down_lr_weight=");
-                            for (int i = 0; i < 12; i++)
+                            for (int i = 0; i < loopNum; i++)
                             {
                                 sb.Append((0.05f * TrainParams.Current.BlockWeightIn[i]).ToString());
-                                if (i < 11)
+                                if (i < loopNum - 1)
                                     sb.Append(',');
                             }
                             NetworkArgs.Add(sb.ToString());
@@ -728,10 +742,10 @@ namespace Kohya_lora_trainer
                         {
                             StringBuilder sb = new StringBuilder();
                             sb.Append("up_lr_weight=");
-                            for (int i = 0; i < 12; i++)
+                            for (int i = 0; i < loopNum; i++)
                             {
                                 sb.Append((0.05f * TrainParams.Current.BlockWeightOut[i]).ToString());
-                                if (i < 11)
+                                if (i < loopNum - 1)
                                     sb.Append(',');
                             }
                             NetworkArgs.Add(sb.ToString());
@@ -794,6 +808,7 @@ namespace Kohya_lora_trainer
                     if (i < 11)
                         sb.Append(',');
                 }
+                NetworkArgs.Add(sb.ToString());
             }
         }
 

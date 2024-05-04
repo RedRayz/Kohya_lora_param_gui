@@ -103,6 +103,18 @@ namespace Kohya_lora_trainer {
             nudAlphaMid.Value = TrainParams.Current.BlockAlphaMidM;
 
             cbxEnableBlockDim.Checked = TrainParams.Current.UseBlockDim;
+
+            if(TrainParams.Current.StableDiffusionType == SDType.XL)
+            {
+                for (int i = 9; i < 12; i++)
+                {
+                    NudDimIn[i].Enabled = false;
+                    NudAlphaIn[i].Enabled = false;
+                    NudDimOut[i].Enabled = false;
+                    NudAlphaOut[i].Enabled = false;
+                }
+
+            }
         }
 
         private void btnSaveChanges_Click(object sender, EventArgs e)

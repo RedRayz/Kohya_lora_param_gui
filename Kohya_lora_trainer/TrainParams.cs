@@ -34,7 +34,7 @@ namespace Kohya_lora_trainer {
         public AdvancedTrainType advancedTrainType = AdvancedTrainType.None;
         public CrossAttenType CrossAttenType = CrossAttenType.xformers;
         public bool UseGradient = false, UseWeightedCaptions = false;
-        public decimal AdaptiveNoiseScale = 0, MinSNRGamma = 0, MultiresNoiseIterations = 0, MultiresNoiseDiscount = 0, NetworkDropout = 0, RankDropout = 0, ModuleDropout = 0, MaxNormReg = 0, CaptionDropout = 0;
+        public decimal AdaptiveNoiseScale = 0, MinSNRGamma = 0, MultiresNoiseIterations = 0, MultiresNoiseDiscount = 0, NetworkDropout = 0, RankDropout = 0, ModuleDropout = 0, MaxNormReg = 0, CaptionDropout = 0, IpNoiseGamma = 0;
 
         //Addtional(KohakuBlueleaf氏作成拡張スクリプト用)
         public ModuleType ModuleType = ModuleType.LoRA;
@@ -86,6 +86,7 @@ namespace Kohya_lora_trainer {
         public SDType StableDiffusionType = SDType.Legacy;
 
         public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true, UseFullFP16 = false, UseFP8Base = false, RelativeStep = true, ScaleParameter = true, SaveState = false, MaskLoss = false;
+        public bool RandomNoiseOffset = false, RandomIpNoiseGamma = false;
         public string TokensSeparator;
 
         //Huber関連

@@ -41,6 +41,8 @@
             btnSelectOutputPath = new Button();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            cbxUsePy = new CheckBox();
+            lblProcessingNpz = new Label();
             label12 = new Label();
             btnDeleteNpz = new Button();
             btnRegenVenv = new Button();
@@ -68,7 +70,6 @@
             label6 = new Label();
             tbxTaggerExclude = new TextBox();
             toolTip1 = new ToolTip(components);
-            lblProcessingNpz = new Label();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -82,7 +83,7 @@
             // 
             // btnRunTensorboard
             // 
-            btnRunTensorboard.Location = new Point(183, 29);
+            btnRunTensorboard.Location = new Point(183, 7);
             btnRunTensorboard.Margin = new Padding(3, 4, 3, 4);
             btnRunTensorboard.Name = "btnRunTensorboard";
             btnRunTensorboard.Size = new Size(150, 35);
@@ -94,7 +95,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(183, 68);
+            label3.Location = new Point(183, 46);
             label3.Name = "label3";
             label3.Size = new Size(158, 15);
             label3.TabIndex = 1;
@@ -191,6 +192,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(cbxUsePy);
             tabPage1.Controls.Add(lblProcessingNpz);
             tabPage1.Controls.Add(label12);
             tabPage1.Controls.Add(btnDeleteNpz);
@@ -205,6 +207,29 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "ユーティリティ";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // cbxUsePy
+            // 
+            cbxUsePy.AutoSize = true;
+            cbxUsePy.Location = new Point(161, 134);
+            cbxUsePy.Name = "cbxUsePy";
+            cbxUsePy.Size = new Size(202, 19);
+            cbxUsePy.TabIndex = 6;
+            cbxUsePy.Text = "「python」の代わりに「py」を使用する";
+            toolTip1.SetToolTip(cbxUsePy, "ターミナルにpythonとだけ表示されて何も起きない場合はチェックをつけてください");
+            cbxUsePy.UseVisualStyleBackColor = true;
+            cbxUsePy.CheckedChanged += cbxUsePy_CheckedChanged;
+            // 
+            // lblProcessingNpz
+            // 
+            lblProcessingNpz.AutoSize = true;
+            lblProcessingNpz.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblProcessingNpz.Location = new Point(339, 207);
+            lblProcessingNpz.Name = "lblProcessingNpz";
+            lblProcessingNpz.Size = new Size(61, 19);
+            lblProcessingNpz.TabIndex = 5;
+            lblProcessingNpz.Text = "処理中…";
+            lblProcessingNpz.Visible = false;
             // 
             // label12
             // 
@@ -227,7 +252,7 @@
             // 
             // btnRegenVenv
             // 
-            btnRegenVenv.Location = new Point(183, 112);
+            btnRegenVenv.Location = new Point(183, 93);
             btnRegenVenv.Name = "btnRegenVenv";
             btnRegenVenv.Size = new Size(150, 35);
             btnRegenVenv.TabIndex = 2;
@@ -238,7 +263,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(103, 150);
+            label8.Location = new Point(103, 156);
             label8.Name = "label8";
             label8.Size = new Size(315, 30);
             label8.TabIndex = 1;
@@ -477,23 +502,12 @@
             tbxTaggerExclude.Size = new Size(432, 23);
             tbxTaggerExclude.TabIndex = 1;
             // 
-            // lblProcessingNpz
-            // 
-            lblProcessingNpz.AutoSize = true;
-            lblProcessingNpz.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblProcessingNpz.Location = new Point(339, 207);
-            lblProcessingNpz.Name = "lblProcessingNpz";
-            lblProcessingNpz.Size = new Size(61, 19);
-            lblProcessingNpz.TabIndex = 5;
-            lblProcessingNpz.Text = "処理中…";
-            lblProcessingNpz.Visible = false;
-            // 
             // FormUtils
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoScroll = true;
-            ClientSize = new Size(557, 382);
+            ClientSize = new Size(562, 373);
             Controls.Add(tabControl1);
             Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -561,5 +575,6 @@
         private Label label13;
         private NumericUpDown numericUpDown1;
         private Label lblProcessingNpz;
+        private CheckBox cbxUsePy;
     }
 }
