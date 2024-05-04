@@ -1227,9 +1227,9 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(label28);
             tabPage4.Controls.Add(nudMaxTokens);
             tabPage4.Controls.Add(nudLRSchedulerCycle);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 26);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(612, 343);
+            tabPage4.Size = new Size(612, 341);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "ページ2";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1861,9 +1861,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(label11);
             pageMisc.Controls.Add(label6);
             pageMisc.Controls.Add(nudClipSkip);
-            pageMisc.Location = new Point(4, 24);
+            pageMisc.Location = new Point(4, 26);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(612, 343);
+            pageMisc.Size = new Size(612, 341);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -1947,7 +1947,7 @@ namespace Kohya_lora_trainer
             // 
             // nudIpNoiseGamma
             // 
-            nudIpNoiseGamma.DecimalPlaces = 1;
+            nudIpNoiseGamma.DecimalPlaces = 4;
             nudIpNoiseGamma.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
             nudIpNoiseGamma.Location = new Point(170, 48);
             nudIpNoiseGamma.Minimum = new decimal(new int[] { 100, 0, 0, int.MinValue });
@@ -1960,9 +1960,9 @@ namespace Kohya_lora_trainer
             pageXL.Controls.Add(cbxCacheTextencoderToDisk);
             pageXL.Controls.Add(cbxCacheTextEncoder);
             pageXL.Controls.Add(cbxNoHalfVae);
-            pageXL.Location = new Point(4, 26);
+            pageXL.Location = new Point(4, 24);
             pageXL.Name = "pageXL";
-            pageXL.Size = new Size(612, 341);
+            pageXL.Size = new Size(612, 343);
             pageXL.TabIndex = 9;
             pageXL.Text = "SDXL";
             pageXL.UseVisualStyleBackColor = true;
