@@ -116,6 +116,12 @@
             tbrThreshold = new TrackBar();
             label12 = new Label();
             lblThreshold = new Label();
+            tbrMid01 = new TrackBar();
+            tbrMid02 = new TrackBar();
+            label14 = new Label();
+            label16 = new Label();
+            lblMid01 = new Label();
+            lblMid02 = new Label();
             ((System.ComponentModel.ISupportInitialize)tbrIn00).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbrIn01).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbrIn02).BeginInit();
@@ -144,6 +150,8 @@
             ((System.ComponentModel.ISupportInitialize)nudOffsetIn).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudOffsetOut).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbrThreshold).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrMid01).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tbrMid02).BeginInit();
             SuspendLayout();
             // 
             // tbrIn00
@@ -495,7 +503,7 @@
             // 
             // btnDiscardChanges
             // 
-            btnDiscardChanges.Location = new Point(581, 511);
+            btnDiscardChanges.Location = new Point(581, 597);
             btnDiscardChanges.Name = "btnDiscardChanges";
             btnDiscardChanges.Size = new Size(148, 32);
             btnDiscardChanges.TabIndex = 4;
@@ -505,7 +513,7 @@
             // 
             // btnApplyChanges
             // 
-            btnApplyChanges.Location = new Point(735, 511);
+            btnApplyChanges.Location = new Point(735, 597);
             btnApplyChanges.Name = "btnApplyChanges";
             btnApplyChanges.Size = new Size(148, 32);
             btnApplyChanges.TabIndex = 4;
@@ -862,11 +870,11 @@
             // label49
             // 
             label49.AutoSize = true;
-            label49.Location = new Point(238, 504);
+            label49.Location = new Point(226, 504);
             label49.Name = "label49";
-            label49.Size = new Size(29, 15);
+            label49.Size = new Size(41, 15);
             label49.TabIndex = 1;
-            label49.Text = "MID";
+            label49.Text = "MID00";
             // 
             // lblMId
             // 
@@ -1009,11 +1017,69 @@
             lblThreshold.TabIndex = 2;
             lblThreshold.Text = "0.0";
             // 
+            // tbrMid01
+            // 
+            tbrMid01.Location = new Point(273, 545);
+            tbrMid01.Maximum = 20;
+            tbrMid01.Name = "tbrMid01";
+            tbrMid01.Size = new Size(195, 45);
+            tbrMid01.TabIndex = 11;
+            tbrMid01.Value = 20;
+            tbrMid01.Scroll += tbrMid01_Scroll;
+            // 
+            // tbrMid02
+            // 
+            tbrMid02.Location = new Point(273, 584);
+            tbrMid02.Maximum = 20;
+            tbrMid02.Name = "tbrMid02";
+            tbrMid02.Size = new Size(195, 45);
+            tbrMid02.TabIndex = 11;
+            tbrMid02.Value = 20;
+            tbrMid02.Scroll += tbrMid02_Scroll;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(226, 545);
+            label14.Name = "label14";
+            label14.Size = new Size(41, 15);
+            label14.TabIndex = 1;
+            label14.Text = "MID01";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(226, 584);
+            label16.Name = "label16";
+            label16.Size = new Size(41, 15);
+            label16.TabIndex = 1;
+            label16.Text = "MID02";
+            // 
+            // lblMid01
+            // 
+            lblMid01.AutoSize = true;
+            lblMid01.Location = new Point(474, 545);
+            lblMid01.Name = "lblMid01";
+            lblMid01.Size = new Size(22, 15);
+            lblMid01.TabIndex = 2;
+            lblMid01.Text = "0.0";
+            // 
+            // lblMid02
+            // 
+            lblMid02.AutoSize = true;
+            lblMid02.Location = new Point(474, 584);
+            lblMid02.Name = "lblMid02";
+            lblMid02.Size = new Size(22, 15);
+            lblMid02.TabIndex = 2;
+            lblMid02.Text = "0.0";
+            // 
             // FormBlockWeight
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(907, 555);
+            ClientSize = new Size(907, 652);
+            Controls.Add(tbrMid02);
+            Controls.Add(tbrMid01);
             Controls.Add(label10);
             Controls.Add(label6);
             Controls.Add(label4);
@@ -1029,10 +1095,14 @@
             Controls.Add(btnDiscardChanges);
             Controls.Add(cbxEnableBlockWeight);
             Controls.Add(lblThreshold);
+            Controls.Add(lblMid02);
+            Controls.Add(lblMid01);
             Controls.Add(lblMId);
             Controls.Add(lblOut00);
             Controls.Add(lblIn11);
             Controls.Add(label12);
+            Controls.Add(label16);
+            Controls.Add(label14);
             Controls.Add(label49);
             Controls.Add(label47);
             Controls.Add(label23);
@@ -1142,6 +1212,8 @@
             ((System.ComponentModel.ISupportInitialize)nudOffsetIn).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudOffsetOut).EndInit();
             ((System.ComponentModel.ISupportInitialize)tbrThreshold).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrMid01).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tbrMid02).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1240,5 +1312,11 @@
         private System.Windows.Forms.TrackBar tbrThreshold;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblThreshold;
+        private TrackBar tbrMid01;
+        private TrackBar tbrMid02;
+        private Label label14;
+        private Label label16;
+        private Label lblMid01;
+        private Label lblMid02;
     }
 }

@@ -102,6 +102,17 @@ namespace Kohya_lora_trainer {
             nudDimMid.Value = TrainParams.Current.BlockDimMid;
             nudAlphaMid.Value = TrainParams.Current.BlockAlphaMidM;
 
+            nudDimMid01.Value = TrainParams.Current.BlockDimMid01;
+            nudAlphaMid01.Value = TrainParams.Current.BlockAlphaMid01;
+            nudDimMid02.Value = TrainParams.Current.BlockDimMid02;
+            nudAlphaMid02.Value = TrainParams.Current.BlockAlphaMid02;
+
+            nudDimBase.Value = TrainParams.Current.BlockDimBase;
+            nudAlphaBase.Value = TrainParams.Current.BlockAlphaBase;
+
+            nudDimOut.Value = TrainParams.Current.BlockDimOutSDXL;
+            nudAlphaOut.Value = TrainParams.Current.BlockAlphaOutSDXL;
+
             cbxEnableBlockDim.Checked = TrainParams.Current.UseBlockDim;
 
             if(TrainParams.Current.StableDiffusionType == SDType.XL)
@@ -114,6 +125,17 @@ namespace Kohya_lora_trainer {
                     NudAlphaOut[i].Enabled = false;
                 }
 
+            }
+            else
+            {
+                nudDimMid01.Enabled = false;
+                nudAlphaMid01.Enabled = false;
+                nudDimMid02.Enabled = false;
+                nudAlphaMid02.Enabled = false;
+                nudDimOut.Enabled = false;
+                nudAlphaOut.Enabled = false;
+                nudDimBase.Enabled = false;
+                nudAlphaBase.Enabled = false;
             }
         }
 
@@ -142,6 +164,17 @@ namespace Kohya_lora_trainer {
 
             TrainParams.Current.BlockDimMid = (int)nudDimMid.Value;
             TrainParams.Current.BlockAlphaMidM = nudAlphaMid.Value;
+            TrainParams.Current.BlockDimMid01 = (int)nudDimMid01.Value;
+            TrainParams.Current.BlockDimMid02 = (int)nudDimMid02.Value;
+            TrainParams.Current.BlockAlphaMid01 = nudAlphaMid01.Value;
+            TrainParams.Current.BlockAlphaMid02 = nudAlphaMid02.Value;
+
+            TrainParams.Current.BlockDimBase = (int)nudDimBase.Value;
+            TrainParams.Current.BlockAlphaBase = nudAlphaBase.Value;
+
+            TrainParams.Current.BlockDimOutSDXL = (int)nudDimOut.Value;
+            TrainParams.Current.BlockAlphaOutSDXL = nudAlphaOut.Value;
+
             TrainParams.Current.UseBlockDim = cbxEnableBlockDim.Checked;
 
             Close();

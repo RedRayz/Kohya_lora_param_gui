@@ -50,7 +50,7 @@ namespace Kohya_lora_trainer {
         //Block Weight
         public bool UseBlockWeight = false;
         public int[] BlockWeightIn = { 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 };
-        public int BlockWeightMid = 20;
+        public int BlockWeightMid = 20, BlockWeightMid01 = 20, BlockWeightMid02 = 20;
         public int[] BlockWeightOut = { 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 };
         public decimal BlockWeightOffsetIn = 0, BlockWeightOffsetOut = 0;
         public BlockWeightPresetType BlockWeightPresetTypeIn = BlockWeightPresetType.none;
@@ -60,7 +60,7 @@ namespace Kohya_lora_trainer {
         //Block Dim,Alpha
         public bool UseBlockDim = false;
         public int[] BlockDimIn = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
-        public int BlockDimMid = 32;
+        public int BlockDimMid = 64, BlockDimMid01 = 4, BlockDimMid02 = 4, BlockDimBase = 4, BlockDimOutSDXL = 4;
         public int[] BlockDimOut = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
 
         //現在未使用。互換性維持のため残してある
@@ -69,7 +69,7 @@ namespace Kohya_lora_trainer {
         public int[] BlockAlphaOut = Array.Empty<int>();
 
         public decimal[] BlockAlphaInM = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
-        public decimal BlockAlphaMidM = 16;
+        public decimal BlockAlphaMidM = 16, BlockAlphaMid01 = 4, BlockAlphaMid02 = 4, BlockAlphaBase = 4, BlockAlphaOutSDXL = 4;
         public decimal[] BlockAlphaOutM = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
 
         //Advanced1

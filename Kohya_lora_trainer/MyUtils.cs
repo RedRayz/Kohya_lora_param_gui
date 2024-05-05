@@ -703,9 +703,9 @@ namespace Kohya_lora_trainer
 
         private static void GenerateBlockWeightCmmands()
         {
+            int loopNum = TrainParams.Current.StableDiffusionType == SDType.Legacy ? 12 : 9;
             if (TrainParams.Current.UseBlockWeight)
             {
-                int loopNum = TrainParams.Current.StableDiffusionType == SDType.Legacy ? 12 : 9;
                 switch (TrainParams.Current.BlockWeightPresetTypeIn)
                 {
                     case BlockWeightPresetType.none:
@@ -714,7 +714,7 @@ namespace Kohya_lora_trainer
                             sb.Append("down_lr_weight=");
                             for (int i = 0; i < loopNum; i++)
                             {
-                                sb.Append((0.05f * TrainParams.Current.BlockWeightIn[i]).ToString());
+                                sb.Append((0.05m * TrainParams.Current.BlockWeightIn[i]).ToString());
                                 if (i < loopNum - 1)
                                     sb.Append(',');
                             }
@@ -733,8 +733,15 @@ namespace Kohya_lora_trainer
                         }
                         break;
                 }
-
-                NetworkArgs.Add("mid_lr_weight=" + (0.05f * TrainParams.Current.BlockWeightMid).ToString());
+                if (TrainParams.Current.StableDiffusionType == SDType.XL)
+                {
+                    NetworkArgs.Add("mid_lr_weight=" + (0.05m * TrainParams.Current.BlockWeightMid).ToString() + ',' + (0.05m * TrainParams.Current.BlockWeightMid01).ToString() + ',' + (0.05m * TrainParams.Current.BlockWeightMid02).ToString());
+                }
+                else
+                {
+                    NetworkArgs.Add("mid_lr_weight=" + (0.05m * TrainParams.Current.BlockWeightMid).ToString());
+                }
+                
 
                 switch (TrainParams.Current.BlockWeightPresetTypeOut)
                 {
@@ -744,7 +751,7 @@ namespace Kohya_lora_trainer
                             sb.Append("up_lr_weight=");
                             for (int i = 0; i < loopNum; i++)
                             {
-                                sb.Append((0.05f * TrainParams.Current.BlockWeightOut[i]).ToString());
+                                sb.Append((0.05m * TrainParams.Current.BlockWeightOut[i]).ToString());
                                 if (i < loopNum - 1)
                                     sb.Append(',');
                             }
@@ -766,7 +773,7 @@ namespace Kohya_lora_trainer
 
                 if (TrainParams.Current.BlockWeightZeroThreshold > 0)
                 {
-                    NetworkArgs.Add("block_lr_zero_threshold=" + (0.05f * TrainParams.Current.BlockWeightZeroThreshold).ToString());
+                    NetworkArgs.Add("block_lr_zero_threshold=" + (0.05m * TrainParams.Current.BlockWeightZeroThreshold).ToString());
                 }
             }
 
@@ -774,41 +781,77 @@ namespace Kohya_lora_trainer
             {
                 StringBuilder sb = new StringBuilder();
                 sb.Append(TrainParams.Current.UseConv2dExtend ? "conv_block_dims=" : "block_dims=");
+                if (TrainParams.Current.StableDiffusionType == SDType.XL)
+                {
+                    sb.Append(TrainParams.Current.BlockDimBase).Append(',');
+                }
                 //DIM IN
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < loopNum; i++)
                 {
                     sb.Append(TrainParams.Current.BlockDimIn[i]);
                     sb.Append(',');
                 }
                 //DIM MID
-                sb.Append(TrainParams.Current.BlockDimMid).Append(',');
+                
+                if(TrainParams.Current.StableDiffusionType == SDType.XL)
+                {
+                    sb.Append(TrainParams.Current.BlockDimMid).Append(',').Append(TrainParams.Current.BlockDimMid01).Append(',').Append(TrainParams.Current.BlockDimMid02).Append(',');
+                }
+                else
+                {
+                    sb.Append(TrainParams.Current.BlockDimMid).Append(',');
+                }
 
                 //DIM OUT
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < loopNum; i++)
                 {
                     sb.Append(TrainParams.Current.BlockDimOut[i]);
-                    if (i < 11)
+                    if (i < loopNum - 1)
                         sb.Append(',');
                 }
 
-                sb.Append(TrainParams.Current.UseConv2dExtend ? "conv_block_alphas=" : "block_alphas=");
-                //ALPHA IN
-                for (int i = 0; i < 12; i++)
+                if (TrainParams.Current.StableDiffusionType == SDType.XL)
                 {
-                    sb.Append(TrainParams.Current.BlockAlphaInM[i]);
-                    sb.Append(',');
+                    sb.Append(',').Append(TrainParams.Current.BlockDimOutSDXL);
+                }
+
+                StringBuilder sbalpha = new StringBuilder();
+                sbalpha.Append(TrainParams.Current.UseConv2dExtend ? "conv_block_alphas=" : "block_alphas=");
+                if (TrainParams.Current.StableDiffusionType == SDType.XL)
+                {
+                    sbalpha.Append(TrainParams.Current.BlockAlphaBase).Append(',');
+                }
+                //ALPHA IN
+                for (int i = 0; i < loopNum; i++)
+                {
+                    sbalpha.Append(TrainParams.Current.BlockAlphaInM[i]);
+                    sbalpha.Append(',');
                 }
                 //ALPHA MID
-                sb.Append(TrainParams.Current.BlockAlphaMidM).Append(',');
+                if (TrainParams.Current.StableDiffusionType == SDType.XL)
+                {
+                    sbalpha.Append(TrainParams.Current.BlockAlphaMidM).Append(',').Append(TrainParams.Current.BlockAlphaMid01).Append(',').Append(TrainParams.Current.BlockAlphaMid02).Append(',');
+                }
+                else
+                {
+                    sbalpha.Append(TrainParams.Current.BlockAlphaMidM).Append(',');
+                }
+
 
                 //ALPHA OUT
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < loopNum; i++)
                 {
-                    sb.Append(TrainParams.Current.BlockAlphaOutM[i]);
-                    if (i < 11)
-                        sb.Append(',');
+                    sbalpha.Append(TrainParams.Current.BlockAlphaOutM[i]);
+                    if (i < loopNum - 1)
+                        sbalpha.Append(',');
+                }
+
+                if (TrainParams.Current.StableDiffusionType == SDType.XL)
+                {
+                    sbalpha.Append(',').Append(TrainParams.Current.BlockAlphaOutSDXL);
                 }
                 NetworkArgs.Add(sb.ToString());
+                NetworkArgs.Add(sbalpha.ToString());
             }
         }
 
