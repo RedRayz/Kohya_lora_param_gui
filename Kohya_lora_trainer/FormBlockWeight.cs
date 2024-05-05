@@ -7,31 +7,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+#pragma warning disable CS8602
 
 namespace Kohya_lora_trainer {
-    public partial class FormBlockWeight : Form {
+    public partial class FormBlockWeight : Form
+    {
         private TrackBar[] tbrIn = new TrackBar[12];
         private TrackBar[] tbrOut = new TrackBar[12];
         private Label[] lblIn = new Label[12];
         private Label[] lblOut = new Label[12];
 
-        public FormBlockWeight() {
+        public FormBlockWeight()
+        {
             InitializeComponent();
         }
 
-        private void btnDiscardChanges_Click(object sender, EventArgs e) {
+        private void btnDiscardChanges_Click(object sender, EventArgs e)
+        {
             Close();
         }
 
         private void btnApplyChanges_Click(object sender, EventArgs e)
         {
-            for(int i = 0; i < 12; i++)
+            for (int i = 0; i < 12; i++)
             {
                 TrainParams.Current.BlockWeightIn[i] = tbrIn[i].Value;
                 TrainParams.Current.BlockWeightOut[i] = tbrOut[i].Value;
             }
 
             TrainParams.Current.BlockWeightMid = tbrMid.Value;
+            TrainParams.Current.BlockWeightMid01 = tbrMid01.Value;
+            TrainParams.Current.BlockWeightMid02 = tbrMid02.Value;
             TrainParams.Current.BlockWeightOffsetIn = nudOffsetIn.Value;
             TrainParams.Current.BlockWeightOffsetOut = nudOffsetOut.Value;
             TrainParams.Current.UseBlockWeight = cbxEnableBlockWeight.Checked;
@@ -97,19 +103,24 @@ namespace Kohya_lora_trainer {
             lblOut[10] = lblOut10;
             lblOut[11] = lblOut11;
 
-            for(int i = 0; i < 12; i++)
+            for (int i = 0; i < 12; i++)
             {
                 tbrIn[i].Value = TrainParams.Current.BlockWeightIn[i];
-                lblIn[i].Text = (0.05f * TrainParams.Current.BlockWeightIn[i]).ToString();
+                lblIn[i].Text = (0.05m * TrainParams.Current.BlockWeightIn[i]).ToString();
 
                 tbrOut[i].Value = TrainParams.Current.BlockWeightOut[i];
-                lblOut[i].Text = (0.05f * TrainParams.Current.BlockWeightOut[i]).ToString();
+                lblOut[i].Text = (0.05m * TrainParams.Current.BlockWeightOut[i]).ToString();
             }
 
+            tbrMid01.Value = TrainParams.Current.BlockWeightMid01;
+            lblMid01.Text = (0.05m * TrainParams.Current.BlockWeightMid01).ToString();
+            tbrMid02.Value = TrainParams.Current.BlockWeightMid02;
+            lblMid02.Text = (0.05m * TrainParams.Current.BlockWeightMid02).ToString();
+
             tbrMid.Value = TrainParams.Current.BlockWeightMid;
-            lblMId.Text = (0.05f * TrainParams.Current.BlockWeightMid).ToString();
+            lblMId.Text = (0.05m * TrainParams.Current.BlockWeightMid).ToString();
             tbrThreshold.Value = TrainParams.Current.BlockWeightZeroThreshold;
-            lblThreshold.Text = (0.05f * TrainParams.Current.BlockWeightZeroThreshold).ToString();
+            lblThreshold.Text = (0.05m * TrainParams.Current.BlockWeightZeroThreshold).ToString();
 
             nudOffsetIn.Value = TrainParams.Current.BlockWeightOffsetIn;
             nudOffsetOut.Value = TrainParams.Current.BlockWeightOffsetOut;
@@ -118,7 +129,7 @@ namespace Kohya_lora_trainer {
 
             cbxPresetIn.SelectedIndex = (int)TrainParams.Current.BlockWeightPresetTypeIn;
             cbxPresetOut.SelectedIndex = (int)TrainParams.Current.BlockWeightPresetTypeOut;
-            if(TrainParams.Current.StableDiffusionType == SDType.XL)
+            if (TrainParams.Current.StableDiffusionType == SDType.XL)
             {
                 tbrIn09.Enabled = false;
                 tbrIn10.Enabled = false;
@@ -128,136 +139,151 @@ namespace Kohya_lora_trainer {
                 tbrOut10.Enabled = false;
                 tbrOut11.Enabled = false;
             }
+            else
+            {
+                tbrMid01.Enabled = false;
+                tbrMid02.Enabled = false;
+            }
         }
 
         private void tbrIn00_Scroll(object sender, EventArgs e)
         {
-            lblIn00.Text = (0.05f * tbrIn[0].Value).ToString();
+            lblIn00.Text = (0.05m * tbrIn[0].Value).ToString();
         }
 
         private void tbrIn01_Scroll(object sender, EventArgs e)
         {
-            lblIn01.Text = (0.05f * tbrIn[1].Value).ToString();
+            lblIn01.Text = (0.05m * tbrIn[1].Value).ToString();
         }
 
         private void tbrIn02_Scroll(object sender, EventArgs e)
         {
-            lblIn02.Text = (0.05f * tbrIn[2].Value).ToString();
+            lblIn02.Text = (0.05m * tbrIn[2].Value).ToString();
         }
 
         private void tbrIn03_Scroll(object sender, EventArgs e)
         {
-            lblIn03.Text = (0.05f * tbrIn[3].Value).ToString();
+            lblIn03.Text = (0.05m * tbrIn[3].Value).ToString();
         }
 
         private void tbrIn04_Scroll(object sender, EventArgs e)
         {
-            lblIn04.Text = (0.05f * tbrIn[4].Value).ToString();
+            lblIn04.Text = (0.05m * tbrIn[4].Value).ToString();
         }
 
         private void tbrIn05_Scroll(object sender, EventArgs e)
         {
-            lblIn05.Text = (0.05f * tbrIn[5].Value).ToString();
+            lblIn05.Text = (0.05m * tbrIn[5].Value).ToString();
         }
 
         private void tbrIn06_Scroll(object sender, EventArgs e)
         {
-            lblIn06.Text = (0.05f * tbrIn[6].Value).ToString();
+            lblIn06.Text = (0.05m * tbrIn[6].Value).ToString();
         }
 
         private void tbrIn07_Scroll(object sender, EventArgs e)
         {
-            lblIn07.Text = (0.05f * tbrIn[7].Value).ToString();
+            lblIn07.Text = (0.05m * tbrIn[7].Value).ToString();
         }
 
         private void tbrIn08_Scroll(object sender, EventArgs e)
         {
-            lblIn08.Text = (0.05f * tbrIn[8].Value).ToString();
+            lblIn08.Text = (0.05m * tbrIn[8].Value).ToString();
         }
 
         private void tbrIn09_Scroll(object sender, EventArgs e)
         {
-            lblIn09.Text = (0.05f * tbrIn[9].Value).ToString();
+            lblIn09.Text = (0.05m * tbrIn[9].Value).ToString();
         }
 
         private void tbrIn10_Scroll(object sender, EventArgs e)
         {
-            lblIn10.Text = (0.05f * tbrIn[10].Value).ToString();
+            lblIn10.Text = (0.05m * tbrIn[10].Value).ToString();
         }
 
         private void tbrIn11_Scroll(object sender, EventArgs e)
         {
-            lblIn11.Text = (0.05f * tbrIn[11].Value).ToString();
+            lblIn11.Text = (0.05m * tbrIn[11].Value).ToString();
         }
 
         private void tbrMid_Scroll(object sender, EventArgs e)
         {
-            lblMId.Text = (0.05f * tbrMid.Value).ToString();
+            lblMId.Text = (0.05m * tbrMid.Value).ToString();
         }
 
         private void tbrOut00_Scroll(object sender, EventArgs e)
         {
-            lblOut00.Text = (0.05f * tbrOut[0].Value).ToString();
+            lblOut00.Text = (0.05m * tbrOut[0].Value).ToString();
         }
 
         private void tbrOut01_Scroll(object sender, EventArgs e)
         {
-            lblOut01.Text = (0.05f * tbrOut[1].Value).ToString();
+            lblOut01.Text = (0.05m * tbrOut[1].Value).ToString();
         }
 
         private void tbrOut02_Scroll(object sender, EventArgs e)
         {
-            lblOut02.Text = (0.05f * tbrOut[2].Value).ToString();
+            lblOut02.Text = (0.05m * tbrOut[2].Value).ToString();
         }
 
         private void tbrOut03_Scroll(object sender, EventArgs e)
         {
-            lblOut03.Text = (0.05f * tbrOut[3].Value).ToString();
+            lblOut03.Text = (0.05m * tbrOut[3].Value).ToString();
         }
 
         private void tbrOut04_Scroll(object sender, EventArgs e)
         {
-            lblOut04.Text = (0.05f * tbrOut[4].Value).ToString();
+            lblOut04.Text = (0.05m * tbrOut[4].Value).ToString();
         }
 
         private void tbrOut05_Scroll(object sender, EventArgs e)
         {
-            lblOut05.Text = (0.05f * tbrOut[5].Value).ToString();
+            lblOut05.Text = (0.05m * tbrOut[5].Value).ToString();
         }
 
         private void tbrOut06_Scroll(object sender, EventArgs e)
         {
-            lblOut06.Text = (0.05f * tbrOut[6].Value).ToString();
+            lblOut06.Text = (0.05m * tbrOut[6].Value).ToString();
         }
 
         private void tbrOut07_Scroll(object sender, EventArgs e)
         {
-            lblOut07.Text = (0.05f * tbrOut[7].Value).ToString();
+            lblOut07.Text = (0.05m * tbrOut[7].Value).ToString();
         }
 
         private void tbrOut08_Scroll(object sender, EventArgs e)
         {
-            lblOut08.Text = (0.05f * tbrOut[8].Value).ToString();
+            lblOut08.Text = (0.05m * tbrOut[8].Value).ToString();
         }
 
         private void tbrOut09_Scroll(object sender, EventArgs e)
         {
-            lblOut09.Text = (0.05f * tbrOut[9].Value).ToString();
+            lblOut09.Text = (0.05m * tbrOut[9].Value).ToString();
         }
 
         private void tbrOut10_Scroll(object sender, EventArgs e)
         {
-            lblOut10.Text = (0.05f * tbrOut[10].Value).ToString();
+            lblOut10.Text = (0.05m * tbrOut[10].Value).ToString();
         }
 
         private void tbrOut11_Scroll(object sender, EventArgs e)
         {
-            lblOut11.Text = (0.05f * tbrOut[11].Value).ToString();
+            lblOut11.Text = (0.05m * tbrOut[11].Value).ToString();
         }
 
         private void tbrThreshold_Scroll(object sender, EventArgs e)
         {
-            lblThreshold.Text = (0.05f * tbrThreshold.Value).ToString();
+            lblThreshold.Text = (0.05m * tbrThreshold.Value).ToString();
+        }
+
+        private void tbrMid01_Scroll(object sender, EventArgs e)
+        {
+            lblMid01.Text = (0.05m * tbrMid01.Value).ToString();
+        }
+
+        private void tbrMid02_Scroll(object sender, EventArgs e)
+        {
+            lblMid02.Text = (0.05m * tbrMid02.Value).ToString();
         }
     }
 }
