@@ -17,7 +17,7 @@ gradioを使用するものと比べ以下のメリットがあります。
 * 複数LoRAの一括学習
 * Dimのリサイズ
 * sd-scriptsのインストール・更新
-* LECOの学習およびconfig,promptsの生成
+* LECOの学習およびconfig,promptsの生成(SD1.5のみ)
 
 ## 注意事項
 簡易インストーラか手動で[sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法でセットアップしている環境を前提としています。
@@ -29,8 +29,11 @@ NVIDIA製グラフィックボードを搭載したパソコンでの動作を�
 
 このソフトウェアは「現状のまま」提供され、一切の保証はありません。また、このソフトウェアを使用したことによる損害などについて開発者は一切の責任を負いません。自己責任でご利用ください。
 
+このGUIはコマンドを生成し、sd-scriptsに渡しているだけであり直接の関係はありません。sd-scriptsリポジトリや開発者へGUIについて問い合わせる行為はご遠慮ください。
+
 
 ## インストール方法
+
 2つあります。好きなほうをご利用ください。
 
 ### A.GUIの簡易インストーラーを使用する
@@ -41,6 +44,8 @@ v1.6以降でご利用いただけます。
 1.[releases](https://github.com/RedRayz/Kohya_lora_param_gui/releases)からkohya_lora_gui-x.x.x.zipをDLする
 
 2.zipを解凍し、中にあるexeファイルをダブルクリックしてGUIを起動する。
+
+このとき英語で.NET Runtimeのインストーラーをダウンロードするか聞かれたらはいを押してダウンロードしてインストールしてください。
 
 3.GUIの上部にある「簡易インストーラー」をクリックして表示されるウィンドウに書いてある説明を読んでから、インストールボタンを押す。
 
@@ -63,8 +68,10 @@ LECOも同じようにします。
 ## 起動方法
 Kohya_lora_trainer.exeをダブルクリックする。ショートカット作ると便利かも?
 
-## 推奨動作環境
-Windows 10/11 21H2以降
+## 動作環境
+* Windows 10/11 21H2以降
+
+* [.NET Desktop Runtime 6.0](https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/runtime-desktop-6.0.29-windows-x64-installer)
 
 ## ガイドなど
 
