@@ -105,6 +105,7 @@ namespace Kohya_lora_trainer
             終了ToolStripMenuItem = new ToolStripMenuItem();
             ヘルプToolStripMenuItem = new ToolStripMenuItem();
             ヒントToolStripMenuItem = new ToolStripMenuItem();
+            配布ページToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDim).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudResolution).BeginInit();
@@ -821,7 +822,7 @@ namespace Kohya_lora_trainer
             // 
             // ヘルプToolStripMenuItem
             // 
-            ヘルプToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ヒントToolStripMenuItem });
+            ヘルプToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ヒントToolStripMenuItem, 配布ページToolStripMenuItem });
             ヘルプToolStripMenuItem.Name = "ヘルプToolStripMenuItem";
             ヘルプToolStripMenuItem.Size = new Size(55, 21);
             ヘルプToolStripMenuItem.Text = "ヘルプ";
@@ -832,6 +833,13 @@ namespace Kohya_lora_trainer
             ヒントToolStripMenuItem.Size = new Size(180, 22);
             ヒントToolStripMenuItem.Text = "ヒント";
             ヒントToolStripMenuItem.Click += ヒントToolStripMenuItem_Click;
+            // 
+            // 配布ページToolStripMenuItem
+            // 
+            配布ページToolStripMenuItem.Name = "配布ページToolStripMenuItem";
+            配布ページToolStripMenuItem.Size = new Size(180, 22);
+            配布ページToolStripMenuItem.Text = "配布ページ";
+            配布ページToolStripMenuItem.Click += 配布ページToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -1002,6 +1010,7 @@ namespace Kohya_lora_trainer
         private ToolStripMenuItem 終了ToolStripMenuItem;
         private ToolStripMenuItem ヘルプToolStripMenuItem;
         private ToolStripMenuItem ヒントToolStripMenuItem;
+        private ToolStripMenuItem 配布ページToolStripMenuItem;
     }
 }
 

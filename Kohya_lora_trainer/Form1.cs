@@ -1184,5 +1184,22 @@ namespace Kohya_lora_trainer
                 MessageBox.Show("ブラウザを開けません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void 配布ページToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //.NET CoreではUseShellExecute=trueにしないとファイルがないと怒る
+                Process.Start(new ProcessStartInfo
+                {
+                    UseShellExecute = true,
+                    FileName = "https://github.com/RedRayz/Kohya_lora_param_gui/releases",
+                });
+            }
+            catch
+            {
+                MessageBox.Show("ブラウザを開けません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
