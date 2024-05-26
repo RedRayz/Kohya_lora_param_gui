@@ -1,3 +1,47 @@
+# トラブルシューティング
+
+## NaN detected in...って出た！！
+
+詳細設定->パスでVAEに https://huggingface.co/madebyollin/sdxl-vae-fp16-fix で配布されているsdxl.vae.safetensorsを選択すると直るかも。
+
+ダメなら詳細設定->SDXLにあるVAEを32ビットで使用にチェックつける
+
+## CUDA error: Out Of Memoryって出た！なにこれ？
+
+グラフィックボードのメモリが不足している。
+
+まずは以下のことをやってみる。
+
+バッチサイズを下げる、cache_latentsを有効にする、不要なアプリは終了する。
+
+それでもダメなら、gradient_checkpointing使用する。
+
+## 速度が極端に遅い！
+
+グラフィックボードのメモリが不足している可能性がある。
+
+タスクマネージャーのパフォーマンスタブのGPUが以下のようになってるならVRAM不足。
+
+※タスクマネージャーのGPU使用率は2D/3Dレンダリングの負荷なのであてにならない
+![ss184846](https://github.com/RedRayz/Kohya_lora_param_gui/assets/71994877/885dd37a-943a-443e-b0d5-dd98b6b6d9e7)
+
+GPU-ZやMSI Afterburnerのグラフを見るのもあり。それのグラフでVRAM使用量が上限に近い状態で、GPU使用率100%張り付きで、消費電力が定格より大幅に低くなってるならVRAM不足。
+
+## 「Setting different lr values in different parameter groups」なんとかっていうエラーは何？
+
+日本語にすると、「異なるパラメータグループ内で指定できる異なるLRの値は0のみとなります」とのこと。
+
+一部のDAdaptation系のオプティマイザでは、UNetとTextEncoderの個別のLR設定や層別学習で0と1以外の設定はできない。
+
+## PIL.UnidentifiedImageError: cannot identify image fileってなんだよ！？
+画像の拡張子が間違っているか破損しているかPILの仕様かバグで読み込めていない。
+
+エラーが出たファイルの拡張子を修正する。破損しているなら修正する。それでもエラーになるならXnConvertなどの変換ソフトで上書きする。
+
+特定のPNGファイルがビューワーで開けるにも関わらずエラーになるのはPILの仕様の可能性あり。
+
+詳細: https://github.com/python-pillow/Pillow/issues/7993
+
 #  ヒントとか
 
 ※経験に基づく主観的な内容が含まれます。参考程度にとどめてください。
@@ -41,33 +85,6 @@ AdaFactorはLoRA学習ではAdamWより遅く、メリットはない。
 キャラが3000-7000、画風が5000-10000、構図,シチュエーション,ポーズは9000以上。
 
 SDXLでProdigyなら2000-3000ステップでよい。
-
-## CUDA error: Out Of Memoryって出た！なにこれ？
-
-グラフィックボードのメモリが不足している。
-
-まずは以下のことをやってみる。
-
-バッチサイズを下げる、cache_latentsを有効にする、不要なアプリは終了する。
-
-それでもダメなら、解像度を下げるか、gradient_checkpointing使用する。
-
-## 速度が極端に遅い！
-
-グラフィックボードのメモリが不足している可能性がある。
-
-タスクマネージャーのパフォーマンスタブのGPUが以下のようになってるならVRAM不足。
-
-※タスクマネージャーのGPU使用率は2D/3Dレンダリングの負荷なのであてにならない
-![ss184846](https://github.com/RedRayz/Kohya_lora_param_gui/assets/71994877/885dd37a-943a-443e-b0d5-dd98b6b6d9e7)
-
-GPU-ZやMSI Afterburnerのグラフを見るのもあり。それのグラフでVRAM使用量が上限に近い状態で、GPU使用率100%張り付きで、消費電力が定格より大幅に低くなってるならVRAM不足。
-
-## 「Setting different lr values in different parameter groups」なんとかっていうエラーは何？
-
-日本語にすると、「異なるパラメータグループ内で指定できる異なるLRの値は0のみとなります」とのこと。
-
-一部のDAdaptation系のオプティマイザでは、UNetとTextEncoderの個別のLR設定や層別学習で0と1以外の設定はできない。
 
 ## SD1.Xおよび2.Xが苦手な物
 
@@ -125,12 +142,3 @@ Bucketingが有効だと複数のBucketを1バッチにまとめられない影�
 
 ## LoRAのファイルサイズに影響する設定
 ネットワーク次元数(DimまたはRank)、Conv2d拡張の使用(使用時はconv dimも)、LyCORIS使用時はLyCORISのアルゴリズムの種類、Unet/Tencの有無
-
-## PIL.UnidentifiedImageError: cannot identify image fileってなんだよ！？
-画像の拡張子が間違っているか破損しているかPILの仕様かバグで読み込めていない。
-
-エラーが出たファイルの拡張子を修正する。破損しているなら修正する。それでもエラーになるならXnConvertなどの変換ソフトで上書きする。
-
-特定のPNGファイルがビューワーで開けるにも関わらずエラーになるのはPILの仕様の可能性あり。
-
-詳細: https://github.com/python-pillow/Pillow/issues/7993
