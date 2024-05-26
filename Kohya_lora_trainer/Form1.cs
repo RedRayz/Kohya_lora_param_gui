@@ -139,7 +139,7 @@ namespace Kohya_lora_trainer
             {
                 ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.ModelPath);
             }
-            else if(Directory.Exists(MyUtils.GetDefaultDir("ModelDir")))
+            else if (Directory.Exists(MyUtils.GetDefaultDir("ModelDir")))
             {
                 ofd.InitialDirectory = MyUtils.GetDefaultDir("ModelDir");
             }
@@ -653,7 +653,7 @@ namespace Kohya_lora_trainer
             ofd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
             ofd.Title = "Select a preset";
             ofd.RestoreDirectory = true;
-            if(Directory.Exists(MyUtils.GetDefaultDir("LoadPresetDir")))
+            if (Directory.Exists(MyUtils.GetDefaultDir("LoadPresetDir")))
             {
                 ofd.InitialDirectory = MyUtils.GetDefaultDir("LoadPresetDir");
             }
@@ -1166,6 +1166,23 @@ namespace Kohya_lora_trainer
         private void プリセットを保存ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowSavePresetDialog();
+        }
+
+        private void ヒントToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //.NET CoreではUseShellExecute=trueにしないとファイルがないと怒る
+                Process.Start(new ProcessStartInfo
+                {
+                    UseShellExecute = true,
+                    FileName = "https://github.com/RedRayz/Kohya_lora_param_gui/blob/master/docs/tips.md",
+                });
+            }
+            catch
+            {
+                MessageBox.Show("ブラウザを開けません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
