@@ -27,7 +27,7 @@ namespace Kohya_lora_trainer
         private bool HaveNonAscillInOutputName, HaveNonAscillInImageFolder, HaveNonAscillInRegFolder, HaveNonAscillInModelPath, HaveNonAscillInOutputPath;
         private int StepsPerEpoch;
         private decimal TotalSteps, TotalStepsBatch1;
-        public static string ScriptPath = string.Empty;
+        public static string? ScriptPath = string.Empty;
 
         public Form1()
         {
@@ -71,7 +71,7 @@ namespace Kohya_lora_trainer
 #if DEBUG
                 btnCustomScriptPath.Visible = true;
                 lblScriptPathDesc.Visible = true;
-                ScriptPath = (string)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "ScriptPath", string.Empty);
+                ScriptPath = (string?)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "ScriptPath", string.Empty);
                 if (string.IsNullOrEmpty(ScriptPath) || !File.Exists(ScriptPath + "\\train_network.py"))
                 {
                     lblScriptPathDesc.ForeColor = Color.Red;

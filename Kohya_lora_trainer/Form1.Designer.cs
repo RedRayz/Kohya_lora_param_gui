@@ -282,7 +282,7 @@ namespace Kohya_lora_trainer
             // 
             // nudNetworkAlpha
             // 
-            nudNetworkAlpha.DecimalPlaces = 2;
+            nudNetworkAlpha.DecimalPlaces = 4;
             nudNetworkAlpha.Location = new Point(672, 174);
             nudNetworkAlpha.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
             nudNetworkAlpha.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
@@ -830,14 +830,14 @@ namespace Kohya_lora_trainer
             // ヒントToolStripMenuItem
             // 
             ヒントToolStripMenuItem.Name = "ヒントToolStripMenuItem";
-            ヒントToolStripMenuItem.Size = new Size(180, 22);
+            ヒントToolStripMenuItem.Size = new Size(135, 22);
             ヒントToolStripMenuItem.Text = "ヒント";
             ヒントToolStripMenuItem.Click += ヒントToolStripMenuItem_Click;
             // 
             // 配布ページToolStripMenuItem
             // 
             配布ページToolStripMenuItem.Name = "配布ページToolStripMenuItem";
-            配布ページToolStripMenuItem.Size = new Size(180, 22);
+            配布ページToolStripMenuItem.Size = new Size(135, 22);
             配布ページToolStripMenuItem.Text = "配布ページ";
             配布ページToolStripMenuItem.Click += 配布ページToolStripMenuItem_Click;
             // 

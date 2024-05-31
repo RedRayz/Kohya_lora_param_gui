@@ -372,6 +372,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.IpNoiseGamma = nudIpNoiseGamma.Value;
             TrainParams.Current.RandomNoiseOffset = cbxRandomNoiseOffset.Checked;
             TrainParams.Current.RandomIpNoiseGamma = cbxRandomIpNoiseGamma.Checked;
+            TrainParams.Current.AlphaMask = cbxAlphaMask.Checked;
             Close();
         }
 
@@ -501,6 +502,7 @@ namespace Kohya_lora_trainer
 
             cbxRandomNoiseOffset.Checked = TrainParams.Current.RandomNoiseOffset;
             cbxRandomIpNoiseGamma.Checked = TrainParams.Current.RandomIpNoiseGamma;
+            cbxAlphaMask.Checked = TrainParams.Current.AlphaMask;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)
