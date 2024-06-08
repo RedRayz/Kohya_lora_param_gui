@@ -795,28 +795,28 @@ namespace Kohya_lora_trainer
             // 設定ToolStripMenuItem
             // 
             設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
-            設定ToolStripMenuItem.Size = new Size(159, 22);
+            設定ToolStripMenuItem.Size = new Size(160, 22);
             設定ToolStripMenuItem.Text = "設定";
             設定ToolStripMenuItem.Click += 設定ToolStripMenuItem_Click;
             // 
             // プリセットを開くToolStripMenuItem
             // 
             プリセットを開くToolStripMenuItem.Name = "プリセットを開くToolStripMenuItem";
-            プリセットを開くToolStripMenuItem.Size = new Size(159, 22);
+            プリセットを開くToolStripMenuItem.Size = new Size(160, 22);
             プリセットを開くToolStripMenuItem.Text = "プリセットを開く";
             プリセットを開くToolStripMenuItem.Click += プリセットを開くToolStripMenuItem_Click;
             // 
             // プリセットを保存ToolStripMenuItem
             // 
             プリセットを保存ToolStripMenuItem.Name = "プリセットを保存ToolStripMenuItem";
-            プリセットを保存ToolStripMenuItem.Size = new Size(159, 22);
+            プリセットを保存ToolStripMenuItem.Size = new Size(160, 22);
             プリセットを保存ToolStripMenuItem.Text = "プリセットを保存";
             プリセットを保存ToolStripMenuItem.Click += プリセットを保存ToolStripMenuItem_Click;
             // 
             // 終了ToolStripMenuItem
             // 
             終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            終了ToolStripMenuItem.Size = new Size(159, 22);
+            終了ToolStripMenuItem.Size = new Size(160, 22);
             終了ToolStripMenuItem.Text = "終了";
             終了ToolStripMenuItem.Click += 終了ToolStripMenuItem_Click_1;
             // 
@@ -830,15 +830,15 @@ namespace Kohya_lora_trainer
             // ヒントToolStripMenuItem
             // 
             ヒントToolStripMenuItem.Name = "ヒントToolStripMenuItem";
-            ヒントToolStripMenuItem.Size = new Size(135, 22);
-            ヒントToolStripMenuItem.Text = "ヒント";
+            ヒントToolStripMenuItem.Size = new Size(180, 22);
+            ヒントToolStripMenuItem.Text = "LoRA学習のヒント";
             ヒントToolStripMenuItem.Click += ヒントToolStripMenuItem_Click;
             // 
             // 配布ページToolStripMenuItem
             // 
             配布ページToolStripMenuItem.Name = "配布ページToolStripMenuItem";
-            配布ページToolStripMenuItem.Size = new Size(135, 22);
-            配布ページToolStripMenuItem.Text = "配布ページ";
+            配布ページToolStripMenuItem.Size = new Size(180, 22);
+            配布ページToolStripMenuItem.Text = "GUI配布ページ";
             配布ページToolStripMenuItem.Click += 配布ページToolStripMenuItem_Click;
             // 
             // Form1
