@@ -103,6 +103,9 @@ namespace Kohya_lora_trainer
             プリセットを開くToolStripMenuItem = new ToolStripMenuItem();
             プリセットを保存ToolStripMenuItem = new ToolStripMenuItem();
             終了ToolStripMenuItem = new ToolStripMenuItem();
+            ヘルプToolStripMenuItem = new ToolStripMenuItem();
+            ヒントToolStripMenuItem = new ToolStripMenuItem();
+            配布ページToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDim).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudResolution).BeginInit();
@@ -279,7 +282,7 @@ namespace Kohya_lora_trainer
             // 
             // nudNetworkAlpha
             // 
-            nudNetworkAlpha.DecimalPlaces = 2;
+            nudNetworkAlpha.DecimalPlaces = 4;
             nudNetworkAlpha.Location = new Point(672, 174);
             nudNetworkAlpha.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
             nudNetworkAlpha.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
@@ -775,7 +778,7 @@ namespace Kohya_lora_trainer
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.White;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { ファイルToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { ファイルToolStripMenuItem, ヘルプToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(772, 25);
@@ -792,30 +795,51 @@ namespace Kohya_lora_trainer
             // 設定ToolStripMenuItem
             // 
             設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
-            設定ToolStripMenuItem.Size = new Size(159, 22);
+            設定ToolStripMenuItem.Size = new Size(160, 22);
             設定ToolStripMenuItem.Text = "設定";
             設定ToolStripMenuItem.Click += 設定ToolStripMenuItem_Click;
             // 
             // プリセットを開くToolStripMenuItem
             // 
             プリセットを開くToolStripMenuItem.Name = "プリセットを開くToolStripMenuItem";
-            プリセットを開くToolStripMenuItem.Size = new Size(159, 22);
+            プリセットを開くToolStripMenuItem.Size = new Size(160, 22);
             プリセットを開くToolStripMenuItem.Text = "プリセットを開く";
             プリセットを開くToolStripMenuItem.Click += プリセットを開くToolStripMenuItem_Click;
             // 
             // プリセットを保存ToolStripMenuItem
             // 
             プリセットを保存ToolStripMenuItem.Name = "プリセットを保存ToolStripMenuItem";
-            プリセットを保存ToolStripMenuItem.Size = new Size(159, 22);
+            プリセットを保存ToolStripMenuItem.Size = new Size(160, 22);
             プリセットを保存ToolStripMenuItem.Text = "プリセットを保存";
             プリセットを保存ToolStripMenuItem.Click += プリセットを保存ToolStripMenuItem_Click;
             // 
             // 終了ToolStripMenuItem
             // 
             終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            終了ToolStripMenuItem.Size = new Size(159, 22);
+            終了ToolStripMenuItem.Size = new Size(160, 22);
             終了ToolStripMenuItem.Text = "終了";
             終了ToolStripMenuItem.Click += 終了ToolStripMenuItem_Click_1;
+            // 
+            // ヘルプToolStripMenuItem
+            // 
+            ヘルプToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ヒントToolStripMenuItem, 配布ページToolStripMenuItem });
+            ヘルプToolStripMenuItem.Name = "ヘルプToolStripMenuItem";
+            ヘルプToolStripMenuItem.Size = new Size(55, 21);
+            ヘルプToolStripMenuItem.Text = "ヘルプ";
+            // 
+            // ヒントToolStripMenuItem
+            // 
+            ヒントToolStripMenuItem.Name = "ヒントToolStripMenuItem";
+            ヒントToolStripMenuItem.Size = new Size(180, 22);
+            ヒントToolStripMenuItem.Text = "LoRA学習のヒント";
+            ヒントToolStripMenuItem.Click += ヒントToolStripMenuItem_Click;
+            // 
+            // 配布ページToolStripMenuItem
+            // 
+            配布ページToolStripMenuItem.Name = "配布ページToolStripMenuItem";
+            配布ページToolStripMenuItem.Size = new Size(180, 22);
+            配布ページToolStripMenuItem.Text = "GUI配布ページ";
+            配布ページToolStripMenuItem.Click += 配布ページToolStripMenuItem_Click;
             // 
             // Form1
             // 
@@ -984,6 +1008,9 @@ namespace Kohya_lora_trainer
         private ToolStripMenuItem プリセットを開くToolStripMenuItem;
         private ToolStripMenuItem プリセットを保存ToolStripMenuItem;
         private ToolStripMenuItem 終了ToolStripMenuItem;
+        private ToolStripMenuItem ヘルプToolStripMenuItem;
+        private ToolStripMenuItem ヒントToolStripMenuItem;
+        private ToolStripMenuItem 配布ページToolStripMenuItem;
     }
 }
 

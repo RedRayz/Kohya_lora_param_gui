@@ -27,7 +27,7 @@ namespace Kohya_lora_trainer
         private bool HaveNonAscillInOutputName, HaveNonAscillInImageFolder, HaveNonAscillInRegFolder, HaveNonAscillInModelPath, HaveNonAscillInOutputPath;
         private int StepsPerEpoch;
         private decimal TotalSteps, TotalStepsBatch1;
-        public static string ScriptPath = string.Empty;
+        public static string? ScriptPath = string.Empty;
 
         public Form1()
         {
@@ -71,7 +71,7 @@ namespace Kohya_lora_trainer
 #if DEBUG
                 btnCustomScriptPath.Visible = true;
                 lblScriptPathDesc.Visible = true;
-                ScriptPath = (string)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "ScriptPath", string.Empty);
+                ScriptPath = (string?)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "ScriptPath", string.Empty);
                 if (string.IsNullOrEmpty(ScriptPath) || !File.Exists(ScriptPath + "\\train_network.py"))
                 {
                     lblScriptPathDesc.ForeColor = Color.Red;
@@ -139,7 +139,7 @@ namespace Kohya_lora_trainer
             {
                 ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.ModelPath);
             }
-            else if(Directory.Exists(MyUtils.GetDefaultDir("ModelDir")))
+            else if (Directory.Exists(MyUtils.GetDefaultDir("ModelDir")))
             {
                 ofd.InitialDirectory = MyUtils.GetDefaultDir("ModelDir");
             }
@@ -653,7 +653,7 @@ namespace Kohya_lora_trainer
             ofd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
             ofd.Title = "Select a preset";
             ofd.RestoreDirectory = true;
-            if(Directory.Exists(MyUtils.GetDefaultDir("LoadPresetDir")))
+            if (Directory.Exists(MyUtils.GetDefaultDir("LoadPresetDir")))
             {
                 ofd.InitialDirectory = MyUtils.GetDefaultDir("LoadPresetDir");
             }
@@ -1166,6 +1166,40 @@ namespace Kohya_lora_trainer
         private void プリセットを保存ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowSavePresetDialog();
+        }
+
+        private void ヒントToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //.NET CoreではUseShellExecute=trueにしないとファイルがないと怒る
+                Process.Start(new ProcessStartInfo
+                {
+                    UseShellExecute = true,
+                    FileName = "https://github.com/RedRayz/Kohya_lora_param_gui/blob/master/docs/tips.md",
+                });
+            }
+            catch
+            {
+                MessageBox.Show("ブラウザを開けません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void 配布ページToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //.NET CoreではUseShellExecute=trueにしないとファイルがないと怒る
+                Process.Start(new ProcessStartInfo
+                {
+                    UseShellExecute = true,
+                    FileName = "https://github.com/RedRayz/Kohya_lora_param_gui/releases",
+                });
+            }
+            catch
+            {
+                MessageBox.Show("ブラウザを開けません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

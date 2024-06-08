@@ -639,6 +639,11 @@ namespace Kohya_lora_trainer
                 sb.Append(" --highvram");
             }
 
+            if (TrainParams.Current.AlphaMask)
+            {
+                sb.Append(" --alpha_mask");
+            }
+
             sb.Append(" --loss_type \"");
 
             switch (TrainParams.Current.LossType)
