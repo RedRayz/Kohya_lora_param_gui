@@ -126,6 +126,8 @@ namespace Kohya_lora_trainer
             adv.ShowDialog();
 
             adv.Dispose();
+
+            UpdateAllContents();
         }
 
         private void btnModel_Click(object sender, EventArgs e)
@@ -975,11 +977,11 @@ namespace Kohya_lora_trainer
                 else
                 {
                     //sd-scriptsに近い計算式でもずれるときはずれる。Bucketingの影響らしい
-                    decimal eps = (decimal)StepsPerEpoch / TrainParams.Current.BatchSize;
+                    decimal eps = (decimal)StepsPerEpoch / TrainParams.Current.BatchSize / TrainParams.Current.GradAccSteps;
 
                     TotalSteps = TrainParams.Current.Epochs * Math.Ceiling(eps);
 
-                    TotalStepsBatch1 = TotalSteps * TrainParams.Current.BatchSize;
+                    TotalStepsBatch1 = StepsPerEpoch * TrainParams.Current.Epochs;
                     if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
                     {
                         TotalSteps *= 2;
@@ -994,7 +996,7 @@ namespace Kohya_lora_trainer
             else
             {
                 lblNumSteps.Text = TrainParams.Current.Epochs.ToString("#,0");
-                lblNumStepsBatch1.Text = (TrainParams.Current.Epochs * TrainParams.Current.BatchSize).ToString("#,0");
+                lblNumStepsBatch1.Text = (TrainParams.Current.Epochs * TrainParams.Current.BatchSize * TrainParams.Current.GradAccSteps).ToString("#,0");
             }
 
         }
@@ -1136,6 +1138,8 @@ namespace Kohya_lora_trainer
                             return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:1)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         else if (TrainParams.Current.LearningRate < 0.1f)
                             return MessageBox.Show("現在のOptimizerに対するLRが低すぎます(推奨値:1)。\n何も学習しない可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (TrainParams.Current.LoRAPlusLRRatio > 0 || TrainParams.Current.LoRAPlusTELRRatio > 0 || TrainParams.Current.LoRAPlusUnetLRRatio > 0)
+                            return MessageBox.Show("現在のOptimizerでLoRA+は使用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
             }
