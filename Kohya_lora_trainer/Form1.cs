@@ -1205,5 +1205,61 @@ namespace Kohya_lora_trainer
                 MessageBox.Show("ブラウザを開けません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void tbxModelPath_DragDrop(object sender, DragEventArgs e)
+        {
+            string dropped = MyUtils.GetDroppedFileName(e, ".safetensors");
+            if (!string.IsNullOrEmpty(dropped))
+            {
+                tbxModelPath.Text = dropped;
+            }
+        }
+
+        private void tbxModelPath_DragEnter(object sender, DragEventArgs e)
+        {
+            MyUtils.CommonFileDragEnterEvent(e, ".safetensors");
+        }
+
+        private void tbxImagePath_DragDrop(object sender, DragEventArgs e)
+        {
+            string dropped = MyUtils.GetDroppedDirectoryName(e);
+            if (!string.IsNullOrEmpty(dropped))
+            {
+                tbxImagePath.Text = dropped;
+            }
+        }
+
+        private void tbxImagePath_DragEnter(object sender, DragEventArgs e)
+        {
+            MyUtils.CommonDirectoryDragEvent(e);
+        }
+
+        private void tbxRegImgPath_DragDrop(object sender, DragEventArgs e)
+        {
+            string dropped = MyUtils.GetDroppedDirectoryName(e);
+            if (!string.IsNullOrEmpty(dropped))
+            {
+                tbxRegImgPath.Text = dropped;
+            }
+        }
+
+        private void tbxRegImgPath_DragEnter(object sender, DragEventArgs e)
+        {
+            MyUtils.CommonDirectoryDragEvent(e);
+        }
+
+        private void tbxOutputPath_DragDrop(object sender, DragEventArgs e)
+        {
+            string dropped = MyUtils.GetDroppedDirectoryName(e);
+            if (!string.IsNullOrEmpty(dropped))
+            {
+                tbxOutputPath.Text = dropped;
+            }
+        }
+
+        private void tbxOutputPath_DragEnter(object sender, DragEventArgs e)
+        {
+            MyUtils.CommonDirectoryDragEvent(e);
+        }
     }
 }
