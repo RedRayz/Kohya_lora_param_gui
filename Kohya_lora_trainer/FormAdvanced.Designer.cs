@@ -83,6 +83,8 @@ namespace Kohya_lora_trainer
             cbxRandomNoiseOffset = new CheckBox();
             cbxRandomIpNoiseGamma = new CheckBox();
             cbxLossType = new ComboBox();
+            cbxAlphaMask = new CheckBox();
+            nudHuberC = new NumericUpDown();
             cbxAdvancedTrain = new ComboBox();
             label6 = new Label();
             label9 = new Label();
@@ -125,7 +127,6 @@ namespace Kohya_lora_trainer
             label25 = new Label();
             label24 = new Label();
             tabPage4 = new TabPage();
-            cbxAlphaMask = new CheckBox();
             cbxMaskLoss = new CheckBox();
             tbxTokensSeparator = new TextBox();
             label46 = new Label();
@@ -145,7 +146,6 @@ namespace Kohya_lora_trainer
             label54 = new Label();
             label53 = new Label();
             label52 = new Label();
-            nudHuberC = new NumericUpDown();
             label50 = new Label();
             cbxHuberSchedule = new ComboBox();
             label49 = new Label();
@@ -217,6 +217,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudLoRAPlusLRRatio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLoRAPlusUnetLRRatio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLoRAPlusTELRRatio).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudHuberC).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMomentum).BeginInit();
@@ -233,7 +234,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudModuleDropout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudRankDropout).BeginInit();
             page3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudHuberC).BeginInit();
             tabPage7.SuspendLayout();
             tabPage5.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -266,20 +266,20 @@ namespace Kohya_lora_trainer
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(73, 48);
+            label1.Location = new Point(64, 48);
             label1.Name = "label1";
-            label1.Size = new Size(50, 15);
+            label1.Size = new Size(64, 15);
             label1.TabIndex = 2;
-            label1.Text = "UNet LR";
+            label1.Text = "UNet LR##";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(273, 48);
+            label2.Location = new Point(261, 48);
             label2.Name = "label2";
-            label2.Size = new Size(90, 15);
+            label2.Size = new Size(104, 15);
             label2.TabIndex = 3;
-            label2.Text = "Text encoder LR";
+            label2.Text = "Text encoder LR##";
             // 
             // lblMinBucketReso
             // 
@@ -474,7 +474,7 @@ namespace Kohya_lora_trainer
             // cbxDontSaveMetadata
             // 
             cbxDontSaveMetadata.AutoSize = true;
-            cbxDontSaveMetadata.Location = new Point(85, 70);
+            cbxDontSaveMetadata.Location = new Point(85, 69);
             cbxDontSaveMetadata.Name = "cbxDontSaveMetadata";
             cbxDontSaveMetadata.Size = new Size(130, 19);
             cbxDontSaveMetadata.TabIndex = 11;
@@ -787,6 +787,29 @@ namespace Kohya_lora_trainer
             cbxLossType.Size = new Size(121, 23);
             cbxLossType.TabIndex = 1;
             toolTip1.SetToolTip(cbxLossType, "smooth_l1がScheduled Huber Loss");
+            // 
+            // cbxAlphaMask
+            // 
+            cbxAlphaMask.AutoSize = true;
+            cbxAlphaMask.Location = new Point(24, 108);
+            cbxAlphaMask.Name = "cbxAlphaMask";
+            cbxAlphaMask.Size = new Size(120, 19);
+            cbxAlphaMask.TabIndex = 7;
+            cbxAlphaMask.Text = "アルファマスクを使用";
+            toolTip1.SetToolTip(cbxAlphaMask, "画像の透過部分を学習させない");
+            cbxAlphaMask.UseVisualStyleBackColor = true;
+            // 
+            // nudHuberC
+            // 
+            nudHuberC.DecimalPlaces = 4;
+            nudHuberC.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            nudHuberC.Location = new Point(138, 89);
+            nudHuberC.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
+            nudHuberC.Name = "nudHuberC";
+            nudHuberC.Size = new Size(120, 23);
+            nudHuberC.TabIndex = 5;
+            toolTip1.SetToolTip(nudHuberC, "Smooth L1でHuber損失を使用する期間(0～1)");
+            nudHuberC.Value = new decimal(new int[] { 1, 0, 0, 65536 });
             // 
             // cbxAdvancedTrain
             // 
@@ -1246,17 +1269,6 @@ namespace Kohya_lora_trainer
             tabPage4.Text = "ページ2";
             tabPage4.UseVisualStyleBackColor = true;
             // 
-            // cbxAlphaMask
-            // 
-            cbxAlphaMask.AutoSize = true;
-            cbxAlphaMask.Location = new Point(24, 108);
-            cbxAlphaMask.Name = "cbxAlphaMask";
-            cbxAlphaMask.Size = new Size(120, 19);
-            cbxAlphaMask.TabIndex = 7;
-            cbxAlphaMask.Text = "アルファマスクを使用";
-            toolTip1.SetToolTip(cbxAlphaMask, "画像の透過部分を学習させない");
-            cbxAlphaMask.UseVisualStyleBackColor = true;
-            // 
             // cbxMaskLoss
             // 
             cbxMaskLoss.AutoSize = true;
@@ -1279,9 +1291,9 @@ namespace Kohya_lora_trainer
             label46.AutoSize = true;
             label46.Location = new Point(24, 146);
             label46.Name = "label46";
-            label46.Size = new Size(97, 15);
+            label46.Size = new Size(111, 15);
             label46.TabIndex = 46;
-            label46.Text = "トークンのセパレータ";
+            label46.Text = "トークンのセパレータ##";
             // 
             // label39
             // 
@@ -1445,18 +1457,6 @@ namespace Kohya_lora_trainer
             label52.TabIndex = 6;
             label52.Text = "LoRA+ UNet LR比率#";
             // 
-            // nudHuberC
-            // 
-            nudHuberC.DecimalPlaces = 4;
-            nudHuberC.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nudHuberC.Location = new Point(138, 89);
-            nudHuberC.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
-            nudHuberC.Name = "nudHuberC";
-            nudHuberC.Size = new Size(120, 23);
-            nudHuberC.TabIndex = 5;
-            toolTip1.SetToolTip(nudHuberC, "Smooth L1でHuber損失を使用する期間(0～1)");
-            nudHuberC.Value = new decimal(new int[] { 1, 0, 0, 65536 });
-            // 
             // label50
             // 
             label50.AutoSize = true;
@@ -1528,7 +1528,7 @@ namespace Kohya_lora_trainer
             label51.Name = "label51";
             label51.Size = new Size(79, 45);
             label51.TabIndex = 9;
-            label51.Text = "gradinet\r\naccumulation\r\nsteps";
+            label51.Text = "gradient\r\naccumulation\r\nsteps";
             // 
             // label29
             // 
@@ -1763,7 +1763,7 @@ namespace Kohya_lora_trainer
             // label35
             // 
             label35.AutoSize = true;
-            label35.Location = new Point(10, 16);
+            label35.Location = new Point(8, 16);
             label35.Name = "label35";
             label35.Size = new Size(79, 15);
             label35.TabIndex = 23;
@@ -1894,11 +1894,11 @@ namespace Kohya_lora_trainer
             // label40
             // 
             label40.AutoSize = true;
-            label40.Location = new Point(15, 18);
+            label40.Location = new Point(6, 18);
             label40.Name = "label40";
-            label40.Size = new Size(64, 15);
+            label40.Size = new Size(78, 15);
             label40.TabIndex = 33;
-            label40.Text = "学習コメント";
+            label40.Text = "学習コメント##";
             // 
             // tbxComment
             // 
@@ -1992,9 +1992,9 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(cbxTrainNorm);
             tabPage3.Controls.Add(cbxAlgoType);
             tabPage3.Controls.Add(label23);
-            tabPage3.Location = new Point(4, 26);
+            tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(612, 341);
+            tabPage3.Size = new Size(612, 343);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;
@@ -2071,11 +2071,11 @@ namespace Kohya_lora_trainer
             // label56
             // 
             label56.AutoSize = true;
-            label56.Location = new Point(16, 398);
+            label56.Location = new Point(16, 389);
             label56.Name = "label56";
-            label56.Size = new Size(177, 15);
+            label56.Size = new Size(249, 30);
             label56.TabIndex = 58;
-            label56.Text = "#がつく項目は0を指定すると無効化";
+            label56.Text = "#がつく項目は0を指定すると無効化(未指定にする)\r\n##がつく項目は空欄で未指定にする";
             // 
             // FormAdvanced
             // 
@@ -2109,6 +2109,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudLoRAPlusLRRatio).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudLoRAPlusUnetLRRatio).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudLoRAPlusTELRRatio).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudHuberC).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMomentum).EndInit();
@@ -2128,7 +2129,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudRankDropout).EndInit();
             page3.ResumeLayout(false);
             page3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudHuberC).EndInit();
             tabPage7.ResumeLayout(false);
             tabPage7.PerformLayout();
             tabPage5.ResumeLayout(false);
