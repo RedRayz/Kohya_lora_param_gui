@@ -907,5 +907,127 @@ namespace Kohya_lora_trainer
             process.Start();
         }
 
+        /// <summary>
+        /// Formにドロップされたアイテムのファイル名を取得する。ファイル以外なら空文字を返す。
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="fileExtension">受け付けるファイルの拡張子(任意)。指定時に一致しないなら空文字を返す</param>
+        /// <returns></returns>
+        public static string GetDroppedFileName(DragEventArgs e, string fileExtension = "")
+        {
+            if(e == null || e.Data == null)
+            {
+                return string.Empty;
+            }
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (files.Length > 0)
+            {
+                string fileName = files[0];
+                if(!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
+                {
+                    if (!string.IsNullOrEmpty(fileExtension) && Path.GetExtension(fileName) != fileExtension)
+                    {
+                        return string.Empty;
+                    }
+
+                    return fileName;
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// ファイルがドラッグされた時の汎用メソッド。ファイル以外ならカーソルをバツにする
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="fileExtension">受け付けるファイルの拡張子(任意)。指定時に一致しないならカーソルをバツにする</param>
+        public static void CommonFileDragEnterEvent(DragEventArgs e, string fileExtension = "")
+        {
+            if (e == null || e.Data == null)
+            {
+                return;
+            }
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (files.Length > 0)
+            {
+                string fileName = files[0];
+                if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
+                {
+                    if (!string.IsNullOrEmpty(fileExtension) && Path.GetExtension(fileName) != fileExtension)
+                    {
+                        e.Effect = DragDropEffects.None;
+                        return;
+                    }
+
+                    e.Effect = DragDropEffects.Copy;
+                    return;
+                }
+            }
+
+            e.Effect = DragDropEffects.None;
+        }
+
+        /// <summary>
+        /// Formにドロップされたアイテムのディレクトリ名を取得する。ディレクトリ以外なら空文字を返す。
+        /// </summary>
+        /// <param name="e"></param>
+        /// <returns>ディレクトリ名(フルパス)</returns>
+        public static string GetDroppedDirectoryName(DragEventArgs e)
+        {
+            if (e == null || e.Data == null)
+            {
+                return string.Empty;
+            }
+
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (files.Length > 0)
+            {
+                string fileName = files[0];
+                if (!string.IsNullOrEmpty(fileName) && Directory.Exists(fileName))
+                {
+                    Debug.WriteLine(fileName);
+                    return fileName;
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// ディレクトリがドラッグされた時の汎用メソッド。ディレクトリ以外ならカーソルをバツにする
+        /// </summary>
+        /// <param name="e"></param>
+        public static void CommonDirectoryDragEvent(DragEventArgs e)
+        {
+            if (e == null || e.Data == null)
+            {
+                return;
+            }
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (files.Length > 0)
+            {
+                string fileName = files[0];
+                if (!string.IsNullOrEmpty(fileName) && Directory.Exists(fileName))
+                {
+                    e.Effect = DragDropEffects.Copy;
+                    return;
+                }
+                else
+                {
+                    e.Effect = DragDropEffects.None;
+                    return;
+                }
+            }
+            e.Effect = DragDropEffects.None;
+        }
     }
 }

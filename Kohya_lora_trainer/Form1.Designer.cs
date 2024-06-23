@@ -396,6 +396,7 @@ namespace Kohya_lora_trainer
             // 
             // tbxRegImgPath
             // 
+            tbxRegImgPath.AllowDrop = true;
             tbxRegImgPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             tbxRegImgPath.Location = new Point(538, 109);
             tbxRegImgPath.Name = "tbxRegImgPath";
@@ -403,6 +404,8 @@ namespace Kohya_lora_trainer
             tbxRegImgPath.TabIndex = 71;
             toolTip1.SetToolTip(tbxRegImgPath, "特定のものだけ\r\n出てくればいいなら不要");
             tbxRegImgPath.TextChanged += tbxRegImgPath_TextChanged;
+            tbxRegImgPath.DragDrop += tbxRegImgPath_DragDrop;
+            tbxRegImgPath.DragEnter += tbxRegImgPath_DragEnter;
             // 
             // btnBlockWeight
             // 
@@ -626,30 +629,39 @@ namespace Kohya_lora_trainer
             // 
             // tbxModelPath
             // 
+            tbxModelPath.AllowDrop = true;
             tbxModelPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             tbxModelPath.Location = new Point(16, 112);
             tbxModelPath.Name = "tbxModelPath";
             tbxModelPath.Size = new Size(208, 22);
             tbxModelPath.TabIndex = 71;
             tbxModelPath.TextChanged += tbxModelPath_TextChanged;
+            tbxModelPath.DragDrop += tbxModelPath_DragDrop;
+            tbxModelPath.DragEnter += tbxModelPath_DragEnter;
             // 
             // tbxImagePath
             // 
+            tbxImagePath.AllowDrop = true;
             tbxImagePath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             tbxImagePath.Location = new Point(274, 109);
             tbxImagePath.Name = "tbxImagePath";
             tbxImagePath.Size = new Size(202, 22);
             tbxImagePath.TabIndex = 71;
             tbxImagePath.TextChanged += tbxImagePath_TextChanged;
+            tbxImagePath.DragDrop += tbxImagePath_DragDrop;
+            tbxImagePath.DragEnter += tbxImagePath_DragEnter;
             // 
             // tbxOutputPath
             // 
+            tbxOutputPath.AllowDrop = true;
             tbxOutputPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             tbxOutputPath.Location = new Point(547, 328);
             tbxOutputPath.Name = "tbxOutputPath";
             tbxOutputPath.Size = new Size(205, 22);
             tbxOutputPath.TabIndex = 71;
             tbxOutputPath.TextChanged += tbxOutputPath_TextChanged;
+            tbxOutputPath.DragDrop += tbxOutputPath_DragDrop;
+            tbxOutputPath.DragEnter += tbxOutputPath_DragEnter;
             // 
             // label6
             // 
@@ -830,14 +842,14 @@ namespace Kohya_lora_trainer
             // ヒントToolStripMenuItem
             // 
             ヒントToolStripMenuItem.Name = "ヒントToolStripMenuItem";
-            ヒントToolStripMenuItem.Size = new Size(180, 22);
+            ヒントToolStripMenuItem.Size = new Size(167, 22);
             ヒントToolStripMenuItem.Text = "LoRA学習のヒント";
             ヒントToolStripMenuItem.Click += ヒントToolStripMenuItem_Click;
             // 
             // 配布ページToolStripMenuItem
             // 
             配布ページToolStripMenuItem.Name = "配布ページToolStripMenuItem";
-            配布ページToolStripMenuItem.Size = new Size(180, 22);
+            配布ページToolStripMenuItem.Size = new Size(167, 22);
             配布ページToolStripMenuItem.Text = "GUI配布ページ";
             配布ページToolStripMenuItem.Click += 配布ページToolStripMenuItem_Click;
             // 
