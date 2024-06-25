@@ -441,6 +441,7 @@ namespace Kohya_lora_trainer
             // 
             // btnLoadPreset
             // 
+            btnLoadPreset.AllowDrop = true;
             btnLoadPreset.Location = new Point(422, 446);
             btnLoadPreset.Name = "btnLoadPreset";
             btnLoadPreset.Size = new Size(100, 27);
@@ -448,6 +449,8 @@ namespace Kohya_lora_trainer
             btnLoadPreset.Text = "プリセットの読込";
             btnLoadPreset.UseVisualStyleBackColor = true;
             btnLoadPreset.Click += btnLoadPreset_Click;
+            btnLoadPreset.DragDrop += btnLoadPreset_DragDrop;
+            btnLoadPreset.DragEnter += btnLoadPreset_DragEnter;
             // 
             // lblResolution
             // 

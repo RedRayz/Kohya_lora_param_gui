@@ -1261,5 +1261,19 @@ namespace Kohya_lora_trainer
         {
             MyUtils.CommonDirectoryDragEvent(e);
         }
+
+        private void btnLoadPreset_DragDrop(object sender, DragEventArgs e)
+        {
+            string dropped = MyUtils.GetDroppedFileName(e, ".xmlora");
+            if (!string.IsNullOrEmpty(dropped))
+            {
+                LoadPreset(dropped, true);
+            }
+        }
+
+        private void btnLoadPreset_DragEnter(object sender, DragEventArgs e)
+        {
+            MyUtils.CommonFileDragEnterEvent(e, ".xmlora");
+        }
     }
 }

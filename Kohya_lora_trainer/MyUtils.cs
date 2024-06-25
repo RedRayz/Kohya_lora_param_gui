@@ -908,7 +908,7 @@ namespace Kohya_lora_trainer
         }
 
         /// <summary>
-        /// Formにドロップされたアイテムのファイル名を取得する。ファイル以外なら空文字を返す。
+        /// Formにドロップされたアイテムのファイル名を取得する。ファイル以外/複数ドロップなら空文字を返す。
         /// </summary>
         /// <param name="e"></param>
         /// <param name="fileExtension">受け付けるファイルの拡張子(任意)。指定時に一致しないなら空文字を返す</param>
@@ -920,7 +920,7 @@ namespace Kohya_lora_trainer
                 return string.Empty;
             }
             var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (files.Length > 0)
+            if (files.Length == 1)
             {
                 string fileName = files[0];
                 if(!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
@@ -942,7 +942,7 @@ namespace Kohya_lora_trainer
         }
 
         /// <summary>
-        /// ファイルがドラッグされた時の汎用メソッド。ファイル以外ならカーソルをバツにする
+        /// ファイルがドラッグされた時の汎用メソッド。ファイル以外/複数ドロップならカーソルをバツにする
         /// </summary>
         /// <param name="e"></param>
         /// <param name="fileExtension">受け付けるファイルの拡張子(任意)。指定時に一致しないならカーソルをバツにする</param>
@@ -953,7 +953,7 @@ namespace Kohya_lora_trainer
                 return;
             }
             var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (files.Length > 0)
+            if (files.Length == 1)
             {
                 string fileName = files[0];
                 if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
@@ -973,7 +973,7 @@ namespace Kohya_lora_trainer
         }
 
         /// <summary>
-        /// Formにドロップされたアイテムのディレクトリ名を取得する。ディレクトリ以外なら空文字を返す。
+        /// Formにドロップされたアイテムのディレクトリ名を取得する。ディレクトリ以外/複数ドロップなら空文字を返す。
         /// </summary>
         /// <param name="e"></param>
         /// <returns>ディレクトリ名(フルパス)</returns>
@@ -985,7 +985,7 @@ namespace Kohya_lora_trainer
             }
 
             var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (files.Length > 0)
+            if (files.Length == 1)
             {
                 string fileName = files[0];
                 if (!string.IsNullOrEmpty(fileName) && Directory.Exists(fileName))
@@ -1003,7 +1003,7 @@ namespace Kohya_lora_trainer
         }
 
         /// <summary>
-        /// ディレクトリがドラッグされた時の汎用メソッド。ディレクトリ以外ならカーソルをバツにする
+        /// ディレクトリがドラッグされた時の汎用メソッド。ディレクトリ以外/複数ドロップならカーソルをバツにする
         /// </summary>
         /// <param name="e"></param>
         public static void CommonDirectoryDragEvent(DragEventArgs e)
@@ -1013,7 +1013,7 @@ namespace Kohya_lora_trainer
                 return;
             }
             var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (files.Length > 0)
+            if (files.Length == 1)
             {
                 string fileName = files[0];
                 if (!string.IsNullOrEmpty(fileName) && Directory.Exists(fileName))

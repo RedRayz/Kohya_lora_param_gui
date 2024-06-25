@@ -41,6 +41,8 @@
             btnSelectOutputPath = new Button();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            cbxPythonVersion = new ComboBox();
+            label14 = new Label();
             cbxUsePy = new CheckBox();
             lblProcessingNpz = new Label();
             label12 = new Label();
@@ -187,11 +189,13 @@
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(533, 347);
+            tabControl1.Size = new Size(533, 373);
             tabControl1.TabIndex = 11;
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(cbxPythonVersion);
+            tabPage1.Controls.Add(label14);
             tabPage1.Controls.Add(cbxUsePy);
             tabPage1.Controls.Add(lblProcessingNpz);
             tabPage1.Controls.Add(label12);
@@ -203,10 +207,29 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(525, 319);
+            tabPage1.Size = new Size(525, 345);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "ユーティリティ";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // cbxPythonVersion
+            // 
+            cbxPythonVersion.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxPythonVersion.FormattingEnabled = true;
+            cbxPythonVersion.Items.AddRange(new object[] { "3.10", "3.11" });
+            cbxPythonVersion.Location = new Point(230, 155);
+            cbxPythonVersion.Name = "cbxPythonVersion";
+            cbxPythonVersion.Size = new Size(103, 23);
+            cbxPythonVersion.TabIndex = 8;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(38, 158);
+            label14.Name = "label14";
+            label14.Size = new Size(186, 15);
+            label14.TabIndex = 7;
+            label14.Text = "Pythonバージョン(pyを使用する場合)";
             // 
             // cbxUsePy
             // 
@@ -224,7 +247,7 @@
             // 
             lblProcessingNpz.AutoSize = true;
             lblProcessingNpz.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblProcessingNpz.Location = new Point(339, 207);
+            lblProcessingNpz.Location = new Point(339, 235);
             lblProcessingNpz.Name = "lblProcessingNpz";
             lblProcessingNpz.Size = new Size(61, 19);
             lblProcessingNpz.TabIndex = 5;
@@ -234,7 +257,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(103, 237);
+            label12.Location = new Point(103, 265);
             label12.Name = "label12";
             label12.Size = new Size(343, 60);
             label12.TabIndex = 4;
@@ -242,7 +265,7 @@
             // 
             // btnDeleteNpz
             // 
-            btnDeleteNpz.Location = new Point(183, 199);
+            btnDeleteNpz.Location = new Point(183, 227);
             btnDeleteNpz.Name = "btnDeleteNpz";
             btnDeleteNpz.Size = new Size(150, 35);
             btnDeleteNpz.TabIndex = 3;
@@ -263,7 +286,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(103, 156);
+            label8.Location = new Point(103, 181);
             label8.Name = "label8";
             label8.Size = new Size(315, 30);
             label8.TabIndex = 1;
@@ -287,7 +310,7 @@
             tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(525, 317);
+            tabPage2.Size = new Size(525, 343);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Dimリサイズ";
             tabPage2.UseVisualStyleBackColor = true;
@@ -336,7 +359,7 @@
             tabPage3.Controls.Add(btnUpdateRepo);
             tabPage3.Location = new Point(4, 26);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(525, 317);
+            tabPage3.Size = new Size(525, 343);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "更新";
             tabPage3.UseVisualStyleBackColor = true;
@@ -394,7 +417,7 @@
             tabPage4.Controls.Add(tbxTaggerExclude);
             tabPage4.Location = new Point(4, 26);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(525, 317);
+            tabPage4.Size = new Size(525, 343);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Tagger";
             tabPage4.UseVisualStyleBackColor = true;
@@ -507,7 +530,7 @@
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoScroll = true;
-            ClientSize = new Size(562, 373);
+            ClientSize = new Size(562, 415);
             Controls.Add(tabControl1);
             Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -576,5 +599,7 @@
         private NumericUpDown numericUpDown1;
         private Label lblProcessingNpz;
         private CheckBox cbxUsePy;
+        private ComboBox cbxPythonVersion;
+        private Label label14;
     }
 }

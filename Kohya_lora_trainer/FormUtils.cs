@@ -126,6 +126,8 @@ namespace Kohya_lora_trainer
         {
             lblOutputPath.Text = string.Empty;
             lblLoraPath.Text = string.Empty;
+            cbxPythonVersion.SelectedIndex = 0;
+            cbxPythonVersion.Update();
         }
 
         private void btnUpdateRepo_Click(object sender, EventArgs e)
@@ -262,8 +264,10 @@ namespace Kohya_lora_trainer
                 StringBuilder sb = new StringBuilder();
                 sb.Append(@"/k cd ").Append(Constants.CurrentSdScriptsPath);
 
+                string py = cbxPythonVersion.SelectedIndex == 0 ? "py -3.10" : "py -3.11";
+
                 sb.Append(@" && ")
-                    .Append(cbxUsePy.Checked ? "py" : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && pip install torch==")
+                    .Append(cbxUsePy.Checked ? py : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && pip install torch==")
                     .Append(Constants.TORCH_VERSION).Append(" torchvision==")
                     .Append(Constants.TORCHVISION_VERSION).Append(" --index-url ")
                     .Append(Constants.INDEX_URL)
