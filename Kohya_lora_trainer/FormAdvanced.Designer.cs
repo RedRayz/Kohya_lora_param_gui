@@ -722,7 +722,7 @@ namespace Kohya_lora_trainer
             // nudLoRAPlusLRRatio
             // 
             nudLoRAPlusLRRatio.Location = new Point(139, 143);
-            nudLoRAPlusLRRatio.Maximum = new decimal(new int[] { 16384, 0, 0, 0 });
+            nudLoRAPlusLRRatio.Maximum = new decimal(new int[] { 256, 0, 0, 0 });
             nudLoRAPlusLRRatio.Name = "nudLoRAPlusLRRatio";
             nudLoRAPlusLRRatio.Size = new Size(120, 23);
             nudLoRAPlusLRRatio.TabIndex = 8;
@@ -731,7 +731,7 @@ namespace Kohya_lora_trainer
             // nudLoRAPlusUnetLRRatio
             // 
             nudLoRAPlusUnetLRRatio.Location = new Point(139, 172);
-            nudLoRAPlusUnetLRRatio.Maximum = new decimal(new int[] { 16384, 0, 0, 0 });
+            nudLoRAPlusUnetLRRatio.Maximum = new decimal(new int[] { 256, 0, 0, 0 });
             nudLoRAPlusUnetLRRatio.Name = "nudLoRAPlusUnetLRRatio";
             nudLoRAPlusUnetLRRatio.Size = new Size(120, 23);
             nudLoRAPlusUnetLRRatio.TabIndex = 8;
@@ -740,7 +740,7 @@ namespace Kohya_lora_trainer
             // nudLoRAPlusTELRRatio
             // 
             nudLoRAPlusTELRRatio.Location = new Point(139, 201);
-            nudLoRAPlusTELRRatio.Maximum = new decimal(new int[] { 16384, 0, 0, 0 });
+            nudLoRAPlusTELRRatio.Maximum = new decimal(new int[] { 256, 0, 0, 0 });
             nudLoRAPlusTELRRatio.Name = "nudLoRAPlusTELRRatio";
             nudLoRAPlusTELRRatio.Size = new Size(120, 23);
             nudLoRAPlusTELRRatio.TabIndex = 8;
@@ -804,7 +804,7 @@ namespace Kohya_lora_trainer
             nudHuberC.DecimalPlaces = 4;
             nudHuberC.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
             nudHuberC.Location = new Point(138, 89);
-            nudHuberC.Maximum = new decimal(new int[] { 2, 0, 0, 0 });
+            nudHuberC.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             nudHuberC.Name = "nudHuberC";
             nudHuberC.Size = new Size(120, 23);
             nudHuberC.TabIndex = 5;
@@ -1262,9 +1262,9 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(label28);
             tabPage4.Controls.Add(nudMaxTokens);
             tabPage4.Controls.Add(nudLRSchedulerCycle);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 26);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(612, 343);
+            tabPage4.Size = new Size(612, 341);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "ページ2";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1574,9 +1574,9 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(label35);
             tabPage5.Controls.Add(tbxD0);
             tabPage5.Controls.Add(tbxGrowthRate);
-            tabPage5.Location = new Point(4, 24);
+            tabPage5.Location = new Point(4, 26);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(612, 343);
+            tabPage5.Size = new Size(612, 341);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "DAdapt/AdamW/Lion";
             tabPage5.UseVisualStyleBackColor = true;
@@ -1803,10 +1803,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(612, 343);
+            tabPage2.Size = new Size(612, 341);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -1865,9 +1865,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(label11);
             pageMisc.Controls.Add(label6);
             pageMisc.Controls.Add(nudClipSkip);
-            pageMisc.Location = new Point(4, 24);
+            pageMisc.Location = new Point(4, 26);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(612, 343);
+            pageMisc.Size = new Size(612, 341);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -1933,9 +1933,9 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(nudAdaptiveNoiseScale);
             tabPage6.Controls.Add(label19);
             tabPage6.Controls.Add(label14);
-            tabPage6.Location = new Point(4, 24);
+            tabPage6.Location = new Point(4, 26);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(612, 343);
+            tabPage6.Size = new Size(612, 341);
             tabPage6.TabIndex = 7;
             tabPage6.Text = "ノイズ関連";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1964,9 +1964,9 @@ namespace Kohya_lora_trainer
             pageXL.Controls.Add(cbxCacheTextencoderToDisk);
             pageXL.Controls.Add(cbxCacheTextEncoder);
             pageXL.Controls.Add(cbxNoHalfVae);
-            pageXL.Location = new Point(4, 24);
+            pageXL.Location = new Point(4, 26);
             pageXL.Name = "pageXL";
-            pageXL.Size = new Size(612, 343);
+            pageXL.Size = new Size(612, 341);
             pageXL.TabIndex = 9;
             pageXL.Text = "SDXL";
             pageXL.UseVisualStyleBackColor = true;
@@ -1992,9 +1992,9 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(cbxTrainNorm);
             tabPage3.Controls.Add(cbxAlgoType);
             tabPage3.Controls.Add(label23);
-            tabPage3.Location = new Point(4, 24);
+            tabPage3.Location = new Point(4, 26);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(612, 343);
+            tabPage3.Size = new Size(612, 341);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;
