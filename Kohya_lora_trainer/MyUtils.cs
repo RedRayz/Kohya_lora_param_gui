@@ -14,6 +14,43 @@ namespace Kohya_lora_trainer
     {
         private static Dictionary<string, string> DefaultDirs = new Dictionary<string, string>();
         private static List<string> NetworkArgs = new List<string>();
+        private static Dictionary<string, string> DictSettings = new Dictionary<string, string>();
+
+        public static void SaveSettings()
+        {
+            try
+            {
+                string json = JsonSerializer.Serialize(DefaultDirs, GetOption());
+                if (!string.IsNullOrEmpty(json))
+                {
+                    string saveto = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\lora-gui\settings.json";
+                    File.WriteAllText(saveto, json);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error: " + ex.Message);
+            }
+        }
+
+        public static void LoadSettings()
+        {
+            try
+            {
+                CheckAndCreateWorkDir();
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\lora-gui\settings.json";
+
+                if (File.Exists(path))
+                {
+                    string json = File.ReadAllText(path);
+                    DictSettings = JsonSerializer.Deserialize<Dictionary<string, string>>(json, GetOption());
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error: " + ex.Message);
+            }
+        }
 
         public static void SaveDefaultDirSettings()
         {
@@ -22,7 +59,7 @@ namespace Kohya_lora_trainer
                 string json = JsonSerializer.Serialize(DefaultDirs, GetOption());
                 if (!string.IsNullOrEmpty(json))
                 {
-                    string saveto = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\lora-gui-default-dir.json";
+                    string saveto = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\lora-gui\lora-gui-default-dir.json";
                     File.WriteAllText(saveto, json);
                 }
             }catch(Exception ex)
@@ -35,10 +72,20 @@ namespace Kohya_lora_trainer
         {
             try
             {
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\lora-gui-default-dir.json";
-                if (File.Exists(path))
+                string document = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                //新しい場所に引っ越し
+                CheckAndCreateWorkDir();
+                string oldFile = document + @"\lora-gui-default-dir.json";
+                string newFile = document + @"\lora-gui\lora-gui-default-dir.json";
+                if (File.Exists(oldFile) && !File.Exists(newFile))
                 {
-                    string json = File.ReadAllText(path);
+                    File.Move(oldFile, newFile);
+                }
+
+                if (File.Exists(newFile))
+                {
+                    string json = File.ReadAllText(newFile);
                     DefaultDirs = JsonSerializer.Deserialize<Dictionary<string, string>>(json, GetOption());
                 }
             }
@@ -1028,6 +1075,16 @@ namespace Kohya_lora_trainer
                 }
             }
             e.Effect = DragDropEffects.None;
+        }
+
+        public static void CheckAndCreateWorkDir()
+        {
+            string document = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            if (!Directory.Exists(document + @"\lora-gui"))
+            {
+                Directory.CreateDirectory(document + @"\lora-gui");
+            }
         }
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
             label2 = new Label();
             tbxModel = new TextBox();
             btnSelectModel = new Button();
@@ -72,22 +71,25 @@
             btnClearSavePreset = new Button();
             tbxSavePreset = new TextBox();
             label12 = new Label();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            tabPage2 = new TabPage();
+            label1 = new Label();
+            cbxAutoUpdatecheck = new CheckBox();
+            nudCheckIntervalDay = new NumericUpDown();
+            label13 = new Label();
+            label14 = new Label();
+            btnCheckNow = new Button();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudCheckIntervalDay).BeginInit();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(25, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(175, 21);
-            label1.TabIndex = 0;
-            label1.Text = "デフォルトで開くディレクトリ";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(25, 95);
+            label2.Location = new Point(45, 81);
             label2.Name = "label2";
             label2.Size = new Size(71, 15);
             label2.TabIndex = 1;
@@ -95,14 +97,14 @@
             // 
             // tbxModel
             // 
-            tbxModel.Location = new Point(292, 92);
+            tbxModel.Location = new Point(312, 78);
             tbxModel.Name = "tbxModel";
             tbxModel.Size = new Size(402, 23);
             tbxModel.TabIndex = 2;
             // 
             // btnSelectModel
             // 
-            btnSelectModel.Location = new Point(130, 88);
+            btnSelectModel.Location = new Point(150, 74);
             btnSelectModel.Name = "btnSelectModel";
             btnSelectModel.Size = new Size(75, 29);
             btnSelectModel.TabIndex = 3;
@@ -112,7 +114,7 @@
             // 
             // brnClearModel
             // 
-            brnClearModel.Location = new Point(211, 88);
+            brnClearModel.Location = new Point(231, 74);
             brnClearModel.Name = "brnClearModel";
             brnClearModel.Size = new Size(75, 29);
             brnClearModel.TabIndex = 3;
@@ -123,7 +125,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(25, 130);
+            label3.Location = new Point(45, 116);
             label3.Name = "label3";
             label3.Size = new Size(90, 15);
             label3.TabIndex = 1;
@@ -131,14 +133,14 @@
             // 
             // tbxImage
             // 
-            tbxImage.Location = new Point(292, 127);
+            tbxImage.Location = new Point(312, 113);
             tbxImage.Name = "tbxImage";
             tbxImage.Size = new Size(402, 23);
             tbxImage.TabIndex = 2;
             // 
             // btnSelectImage
             // 
-            btnSelectImage.Location = new Point(130, 123);
+            btnSelectImage.Location = new Point(150, 109);
             btnSelectImage.Name = "btnSelectImage";
             btnSelectImage.Size = new Size(75, 29);
             btnSelectImage.TabIndex = 3;
@@ -148,7 +150,7 @@
             // 
             // btnClearImage
             // 
-            btnClearImage.Location = new Point(211, 123);
+            btnClearImage.Location = new Point(231, 109);
             btnClearImage.Name = "btnClearImage";
             btnClearImage.Size = new Size(75, 29);
             btnClearImage.TabIndex = 3;
@@ -159,7 +161,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(25, 165);
+            label4.Location = new Point(45, 151);
             label4.Name = "label4";
             label4.Size = new Size(102, 15);
             label4.TabIndex = 1;
@@ -167,14 +169,14 @@
             // 
             // tbxRegImage
             // 
-            tbxRegImage.Location = new Point(292, 162);
+            tbxRegImage.Location = new Point(312, 148);
             tbxRegImage.Name = "tbxRegImage";
             tbxRegImage.Size = new Size(402, 23);
             tbxRegImage.TabIndex = 2;
             // 
             // btnSelectRegImage
             // 
-            btnSelectRegImage.Location = new Point(130, 158);
+            btnSelectRegImage.Location = new Point(150, 144);
             btnSelectRegImage.Name = "btnSelectRegImage";
             btnSelectRegImage.Size = new Size(75, 29);
             btnSelectRegImage.TabIndex = 3;
@@ -184,7 +186,7 @@
             // 
             // btnClearRegImage
             // 
-            btnClearRegImage.Location = new Point(211, 158);
+            btnClearRegImage.Location = new Point(231, 144);
             btnClearRegImage.Name = "btnClearRegImage";
             btnClearRegImage.Size = new Size(75, 29);
             btnClearRegImage.TabIndex = 3;
@@ -195,7 +197,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(25, 200);
+            label5.Location = new Point(45, 186);
             label5.Name = "label5";
             label5.Size = new Size(43, 15);
             label5.TabIndex = 1;
@@ -203,14 +205,14 @@
             // 
             // tbxOutput
             // 
-            tbxOutput.Location = new Point(292, 197);
+            tbxOutput.Location = new Point(312, 183);
             tbxOutput.Name = "tbxOutput";
             tbxOutput.Size = new Size(402, 23);
             tbxOutput.TabIndex = 2;
             // 
             // btnSelectOutput
             // 
-            btnSelectOutput.Location = new Point(130, 193);
+            btnSelectOutput.Location = new Point(150, 179);
             btnSelectOutput.Name = "btnSelectOutput";
             btnSelectOutput.Size = new Size(75, 29);
             btnSelectOutput.TabIndex = 3;
@@ -220,7 +222,7 @@
             // 
             // btnClearOutput
             // 
-            btnClearOutput.Location = new Point(211, 193);
+            btnClearOutput.Location = new Point(231, 179);
             btnClearOutput.Name = "btnClearOutput";
             btnClearOutput.Size = new Size(75, 29);
             btnClearOutput.TabIndex = 3;
@@ -231,7 +233,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(25, 235);
+            label6.Location = new Point(45, 221);
             label6.Name = "label6";
             label6.Size = new Size(82, 15);
             label6.TabIndex = 1;
@@ -239,14 +241,14 @@
             // 
             // tbxLoadPreset
             // 
-            tbxLoadPreset.Location = new Point(292, 232);
+            tbxLoadPreset.Location = new Point(312, 218);
             tbxLoadPreset.Name = "tbxLoadPreset";
             tbxLoadPreset.Size = new Size(402, 23);
             tbxLoadPreset.TabIndex = 2;
             // 
             // btnSelectLoadPreset
             // 
-            btnSelectLoadPreset.Location = new Point(130, 228);
+            btnSelectLoadPreset.Location = new Point(150, 214);
             btnSelectLoadPreset.Name = "btnSelectLoadPreset";
             btnSelectLoadPreset.Size = new Size(75, 29);
             btnSelectLoadPreset.TabIndex = 3;
@@ -256,7 +258,7 @@
             // 
             // btnClearLoadPreset
             // 
-            btnClearLoadPreset.Location = new Point(211, 228);
+            btnClearLoadPreset.Location = new Point(231, 214);
             btnClearLoadPreset.Name = "btnClearLoadPreset";
             btnClearLoadPreset.Size = new Size(75, 29);
             btnClearLoadPreset.TabIndex = 3;
@@ -266,7 +268,7 @@
             // 
             // btnDiscardAndClose
             // 
-            btnDiscardAndClose.Location = new Point(400, 459);
+            btnDiscardAndClose.Location = new Point(520, 493);
             btnDiscardAndClose.Name = "btnDiscardAndClose";
             btnDiscardAndClose.Size = new Size(144, 28);
             btnDiscardAndClose.TabIndex = 4;
@@ -277,7 +279,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(25, 305);
+            label7.Location = new Point(45, 291);
             label7.Name = "label7";
             label7.Size = new Size(28, 15);
             label7.TabIndex = 1;
@@ -285,14 +287,14 @@
             // 
             // tbxVAE
             // 
-            tbxVAE.Location = new Point(292, 302);
+            tbxVAE.Location = new Point(312, 288);
             tbxVAE.Name = "tbxVAE";
             tbxVAE.Size = new Size(402, 23);
             tbxVAE.TabIndex = 2;
             // 
             // btnSelectVAE
             // 
-            btnSelectVAE.Location = new Point(130, 298);
+            btnSelectVAE.Location = new Point(150, 284);
             btnSelectVAE.Name = "btnSelectVAE";
             btnSelectVAE.Size = new Size(75, 29);
             btnSelectVAE.TabIndex = 3;
@@ -302,7 +304,7 @@
             // 
             // btnClearVAE
             // 
-            btnClearVAE.Location = new Point(211, 298);
+            btnClearVAE.Location = new Point(231, 284);
             btnClearVAE.Name = "btnClearVAE";
             btnClearVAE.Size = new Size(75, 29);
             btnClearVAE.TabIndex = 3;
@@ -313,7 +315,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(25, 340);
+            label8.Location = new Point(45, 326);
             label8.Name = "label8";
             label8.Size = new Size(72, 15);
             label8.TabIndex = 1;
@@ -321,14 +323,14 @@
             // 
             // tbxTensorboard
             // 
-            tbxTensorboard.Location = new Point(292, 337);
+            tbxTensorboard.Location = new Point(312, 323);
             tbxTensorboard.Name = "tbxTensorboard";
             tbxTensorboard.Size = new Size(402, 23);
             tbxTensorboard.TabIndex = 2;
             // 
             // btnSelectTensorboard
             // 
-            btnSelectTensorboard.Location = new Point(130, 333);
+            btnSelectTensorboard.Location = new Point(150, 319);
             btnSelectTensorboard.Name = "btnSelectTensorboard";
             btnSelectTensorboard.Size = new Size(75, 29);
             btnSelectTensorboard.TabIndex = 3;
@@ -338,7 +340,7 @@
             // 
             // btnClearTensorboard
             // 
-            btnClearTensorboard.Location = new Point(211, 333);
+            btnClearTensorboard.Location = new Point(231, 319);
             btnClearTensorboard.Name = "btnClearTensorboard";
             btnClearTensorboard.Size = new Size(75, 29);
             btnClearTensorboard.TabIndex = 3;
@@ -349,7 +351,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(25, 375);
+            label9.Location = new Point(45, 361);
             label9.Name = "label9";
             label9.Size = new Size(82, 15);
             label9.TabIndex = 1;
@@ -357,14 +359,14 @@
             // 
             // tbxConfig
             // 
-            tbxConfig.Location = new Point(292, 372);
+            tbxConfig.Location = new Point(312, 358);
             tbxConfig.Name = "tbxConfig";
             tbxConfig.Size = new Size(402, 23);
             tbxConfig.TabIndex = 2;
             // 
             // btnSelectConfig
             // 
-            btnSelectConfig.Location = new Point(130, 368);
+            btnSelectConfig.Location = new Point(150, 354);
             btnSelectConfig.Name = "btnSelectConfig";
             btnSelectConfig.Size = new Size(75, 29);
             btnSelectConfig.TabIndex = 3;
@@ -374,7 +376,7 @@
             // 
             // btnClearConfig
             // 
-            btnClearConfig.Location = new Point(211, 368);
+            btnClearConfig.Location = new Point(231, 354);
             btnClearConfig.Name = "btnClearConfig";
             btnClearConfig.Size = new Size(75, 29);
             btnClearConfig.TabIndex = 3;
@@ -384,7 +386,7 @@
             // 
             // btnApplyAndClose
             // 
-            btnApplyAndClose.Location = new Point(563, 459);
+            btnApplyAndClose.Location = new Point(670, 493);
             btnApplyAndClose.Name = "btnApplyAndClose";
             btnApplyAndClose.Size = new Size(133, 28);
             btnApplyAndClose.TabIndex = 4;
@@ -395,15 +397,15 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(25, 42);
+            label10.Location = new Point(48, 24);
             label10.Name = "label10";
             label10.Size = new Size(614, 30);
             label10.TabIndex = 5;
-            label10.Text = "ファイルやディレクトリを指定する項目で、未指定や存在しないパスの場合に選択画面でデフォルトで開くディレクトリを選択できます。\r\nここの設定が空欄か存在しないパスの場合は無視されます。";
+            label10.Text = "ファイルやディレクトリを指定する項目で、未指定や存在しないパスの場合に選択画面でデフォルトで開くディレクトリを選択できます。\r\nここの設定が空欄か存在しないパスの場合はWindows標準の動作になります。";
             // 
             // btnLoRA
             // 
-            btnLoRA.Location = new Point(130, 403);
+            btnLoRA.Location = new Point(150, 389);
             btnLoRA.Name = "btnLoRA";
             btnLoRA.Size = new Size(75, 29);
             btnLoRA.TabIndex = 6;
@@ -413,7 +415,7 @@
             // 
             // btnClearLoRA
             // 
-            btnClearLoRA.Location = new Point(211, 403);
+            btnClearLoRA.Location = new Point(231, 389);
             btnClearLoRA.Name = "btnClearLoRA";
             btnClearLoRA.Size = new Size(75, 29);
             btnClearLoRA.TabIndex = 6;
@@ -424,7 +426,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(25, 410);
+            label11.Location = new Point(45, 396);
             label11.Name = "label11";
             label11.Size = new Size(102, 15);
             label11.TabIndex = 1;
@@ -432,14 +434,14 @@
             // 
             // tbxLoRA
             // 
-            tbxLoRA.Location = new Point(292, 407);
+            tbxLoRA.Location = new Point(312, 393);
             tbxLoRA.Name = "tbxLoRA";
             tbxLoRA.Size = new Size(402, 23);
             tbxLoRA.TabIndex = 2;
             // 
             // btnSelectSavePreset
             // 
-            btnSelectSavePreset.Location = new Point(130, 263);
+            btnSelectSavePreset.Location = new Point(150, 249);
             btnSelectSavePreset.Name = "btnSelectSavePreset";
             btnSelectSavePreset.Size = new Size(75, 29);
             btnSelectSavePreset.TabIndex = 7;
@@ -449,7 +451,7 @@
             // 
             // btnClearSavePreset
             // 
-            btnClearSavePreset.Location = new Point(211, 263);
+            btnClearSavePreset.Location = new Point(231, 249);
             btnClearSavePreset.Name = "btnClearSavePreset";
             btnClearSavePreset.Size = new Size(75, 29);
             btnClearSavePreset.TabIndex = 7;
@@ -459,7 +461,7 @@
             // 
             // tbxSavePreset
             // 
-            tbxSavePreset.Location = new Point(292, 267);
+            tbxSavePreset.Location = new Point(312, 253);
             tbxSavePreset.Name = "tbxSavePreset";
             tbxSavePreset.Size = new Size(402, 23);
             tbxSavePreset.TabIndex = 2;
@@ -467,61 +469,154 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(25, 270);
+            label12.Location = new Point(45, 256);
             label12.Name = "label12";
             label12.Size = new Size(82, 15);
             label12.TabIndex = 1;
             label12.Text = "プリセット(保存)";
             // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Location = new Point(25, 12);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(778, 479);
+            tabControl1.TabIndex = 8;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(tbxLoadPreset);
+            tabPage1.Controls.Add(label10);
+            tabPage1.Controls.Add(btnClearSavePreset);
+            tabPage1.Controls.Add(label6);
+            tabPage1.Controls.Add(btnSelectSavePreset);
+            tabPage1.Controls.Add(btnClearLoRA);
+            tabPage1.Controls.Add(btnSelectImage);
+            tabPage1.Controls.Add(btnLoRA);
+            tabPage1.Controls.Add(brnClearModel);
+            tabPage1.Controls.Add(tbxRegImage);
+            tabPage1.Controls.Add(label5);
+            tabPage1.Controls.Add(btnClearConfig);
+            tabPage1.Controls.Add(btnSelectLoadPreset);
+            tabPage1.Controls.Add(label2);
+            tabPage1.Controls.Add(btnClearImage);
+            tabPage1.Controls.Add(btnClearTensorboard);
+            tabPage1.Controls.Add(tbxImage);
+            tabPage1.Controls.Add(btnClearVAE);
+            tabPage1.Controls.Add(btnClearRegImage);
+            tabPage1.Controls.Add(tbxSavePreset);
+            tabPage1.Controls.Add(label4);
+            tabPage1.Controls.Add(label8);
+            tabPage1.Controls.Add(btnSelectRegImage);
+            tabPage1.Controls.Add(tbxVAE);
+            tabPage1.Controls.Add(btnSelectOutput);
+            tabPage1.Controls.Add(label11);
+            tabPage1.Controls.Add(btnClearOutput);
+            tabPage1.Controls.Add(label9);
+            tabPage1.Controls.Add(tbxModel);
+            tabPage1.Controls.Add(tbxTensorboard);
+            tabPage1.Controls.Add(btnSelectModel);
+            tabPage1.Controls.Add(label7);
+            tabPage1.Controls.Add(tbxOutput);
+            tabPage1.Controls.Add(tbxLoRA);
+            tabPage1.Controls.Add(btnClearLoadPreset);
+            tabPage1.Controls.Add(tbxConfig);
+            tabPage1.Controls.Add(label3);
+            tabPage1.Controls.Add(btnSelectVAE);
+            tabPage1.Controls.Add(btnSelectTensorboard);
+            tabPage1.Controls.Add(label12);
+            tabPage1.Controls.Add(btnSelectConfig);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(770, 451);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "デフォルトディレクトリ";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(btnCheckNow);
+            tabPage2.Controls.Add(label14);
+            tabPage2.Controls.Add(label13);
+            tabPage2.Controls.Add(nudCheckIntervalDay);
+            tabPage2.Controls.Add(cbxAutoUpdatecheck);
+            tabPage2.Controls.Add(label1);
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(770, 451);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "その他";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(31, 20);
+            label1.Name = "label1";
+            label1.Size = new Size(168, 21);
+            label1.TabIndex = 0;
+            label1.Text = "GUIの新バージョンの通知";
+            // 
+            // cbxAutoUpdatecheck
+            // 
+            cbxAutoUpdatecheck.AutoSize = true;
+            cbxAutoUpdatecheck.Location = new Point(40, 58);
+            cbxAutoUpdatecheck.Name = "cbxAutoUpdatecheck";
+            cbxAutoUpdatecheck.Size = new Size(181, 19);
+            cbxAutoUpdatecheck.TabIndex = 1;
+            cbxAutoUpdatecheck.Text = "定期的に自動で更新を確認する";
+            cbxAutoUpdatecheck.UseVisualStyleBackColor = true;
+            // 
+            // nudCheckIntervalDay
+            // 
+            nudCheckIntervalDay.Location = new Point(137, 83);
+            nudCheckIntervalDay.Maximum = new decimal(new int[] { 30, 0, 0, 0 });
+            nudCheckIntervalDay.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudCheckIntervalDay.Name = "nudCheckIntervalDay";
+            nudCheckIntervalDay.Size = new Size(80, 23);
+            nudCheckIntervalDay.TabIndex = 2;
+            nudCheckIntervalDay.Value = new decimal(new int[] { 7, 0, 0, 0 });
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(42, 85);
+            label13.Name = "label13";
+            label13.Size = new Size(89, 15);
+            label13.TabIndex = 3;
+            label13.Text = "定期確認の周期";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(223, 90);
+            label14.Name = "label14";
+            label14.Size = new Size(19, 15);
+            label14.TabIndex = 4;
+            label14.Text = "日";
+            // 
+            // btnCheckNow
+            // 
+            btnCheckNow.Location = new Point(42, 124);
+            btnCheckNow.Name = "btnCheckNow";
+            btnCheckNow.Size = new Size(101, 27);
+            btnCheckNow.TabIndex = 5;
+            btnCheckNow.Text = "今すぐ確認";
+            btnCheckNow.UseVisualStyleBackColor = true;
+            // 
             // FormSettings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(726, 499);
-            Controls.Add(btnClearSavePreset);
-            Controls.Add(btnSelectSavePreset);
-            Controls.Add(btnClearLoRA);
-            Controls.Add(btnLoRA);
-            Controls.Add(label10);
-            Controls.Add(label1);
-            Controls.Add(label2);
-            Controls.Add(btnClearConfig);
+            ClientSize = new Size(846, 543);
+            Controls.Add(tabControl1);
             Controls.Add(btnApplyAndClose);
             Controls.Add(btnDiscardAndClose);
-            Controls.Add(btnClearTensorboard);
-            Controls.Add(btnSelectOutput);
-            Controls.Add(tbxModel);
-            Controls.Add(tbxOutput);
-            Controls.Add(btnClearVAE);
-            Controls.Add(tbxSavePreset);
-            Controls.Add(tbxLoadPreset);
-            Controls.Add(label3);
-            Controls.Add(label8);
-            Controls.Add(btnClearLoadPreset);
-            Controls.Add(tbxVAE);
-            Controls.Add(btnSelectModel);
-            Controls.Add(label11);
-            Controls.Add(label9);
-            Controls.Add(btnClearOutput);
-            Controls.Add(btnSelectRegImage);
-            Controls.Add(label4);
-            Controls.Add(tbxTensorboard);
-            Controls.Add(btnClearRegImage);
-            Controls.Add(label7);
-            Controls.Add(tbxImage);
-            Controls.Add(tbxLoRA);
-            Controls.Add(tbxConfig);
-            Controls.Add(btnClearImage);
-            Controls.Add(btnSelectLoadPreset);
-            Controls.Add(label5);
-            Controls.Add(tbxRegImage);
-            Controls.Add(brnClearModel);
-            Controls.Add(btnSelectVAE);
-            Controls.Add(btnSelectImage);
-            Controls.Add(label12);
-            Controls.Add(label6);
-            Controls.Add(btnSelectConfig);
-            Controls.Add(btnSelectTensorboard);
             Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
@@ -530,13 +625,16 @@
             StartPosition = FormStartPosition.CenterParent;
             Text = "設定";
             Load += FormSettings_Load;
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudCheckIntervalDay).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
         private Label label2;
         private TextBox tbxModel;
         private Button btnSelectModel;
@@ -580,5 +678,14 @@
         private Button btnClearSavePreset;
         private TextBox tbxSavePreset;
         private Label label12;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private Label label1;
+        private Button btnCheckNow;
+        private Label label14;
+        private Label label13;
+        private NumericUpDown nudCheckIntervalDay;
+        private CheckBox cbxAutoUpdatecheck;
     }
 }

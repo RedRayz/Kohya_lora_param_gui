@@ -95,13 +95,24 @@ namespace Kohya_lora_trainer
                 btnInstaller.Visible = false;
             }
 
-            string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\autosave.xmlora";
-            if (File.Exists(str))
+            MyUtils.CheckAndCreateWorkDir();
+
+            string document = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            string oldPath = document + @"\autosave.xmlora";
+            string newPath = document + @"\lora-gui\autosave.xmlora";
+
+            if(File.Exists(oldPath) && !File.Exists(newPath))
+            {
+                File.Move(oldPath, newPath);
+            }
+
+            if (File.Exists(newPath))
             {
                 try
                 {
                     XmlSerializer se = new XmlSerializer(typeof(TrainParams));
-                    using (StreamReader sr = new StreamReader(str, new System.Text.UTF8Encoding(false)))
+                    using (StreamReader sr = new StreamReader(newPath, new UTF8Encoding(false)))
                     {
                         TrainParams.Current = (TrainParams)se.Deserialize(sr);
                     }
@@ -792,8 +803,11 @@ namespace Kohya_lora_trainer
         {
             if (IsInvalidOutputName)
                 return;
+            string document = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-            string str = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\autosave.xmlora";
+            MyUtils.CheckAndCreateWorkDir();
+
+            string str = document + @"\lora-gui\autosave.xmlora";
             try
             {
                 XmlSerializer se = new XmlSerializer(typeof(TrainParams));
