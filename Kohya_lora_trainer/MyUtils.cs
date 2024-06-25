@@ -10,13 +10,13 @@ using System.Text.Unicode;
 
 namespace Kohya_lora_trainer
 {
-    public static class MyUtils
+    internal static class MyUtils
     {
         private static Dictionary<string, string> DefaultDirs = new Dictionary<string, string>();
         private static List<string> NetworkArgs = new List<string>();
         private static Dictionary<string, string> DictSettings = new Dictionary<string, string>();
 
-        public static void SaveSettings()
+        internal static void SaveSettings()
         {
             try
             {
@@ -33,7 +33,7 @@ namespace Kohya_lora_trainer
             }
         }
 
-        public static void LoadSettings()
+        internal static void LoadSettings()
         {
             try
             {
@@ -52,7 +52,7 @@ namespace Kohya_lora_trainer
             }
         }
 
-        public static void SaveDefaultDirSettings()
+        internal static void SaveDefaultDirSettings()
         {
             try
             {
@@ -68,7 +68,7 @@ namespace Kohya_lora_trainer
             }
         }
 
-        public static void LoadDefaultDirSettings()
+        internal static void LoadDefaultDirSettings()
         {
             try
             {
@@ -100,7 +100,7 @@ namespace Kohya_lora_trainer
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static string GetDefaultDir(string key)
+        internal static string GetDefaultDir(string key)
         {
             if (DefaultDirs.ContainsKey(key))
             {
@@ -114,7 +114,7 @@ namespace Kohya_lora_trainer
             }
         }
 
-        public static void SetDefaultDir(string key, string value)
+        internal static void SetDefaultDir(string key, string value)
         {
             DefaultDirs[key] = value;
         }
@@ -134,7 +134,7 @@ namespace Kohya_lora_trainer
         /// accelerateのコマンド生成。
         /// </summary>
         /// <returns>accelerateのコマンド</returns>
-        public static string GenerateCommands()
+        internal static string GenerateCommands()
         {
             StringBuilder sb = new StringBuilder();
             NetworkArgs.Clear();
@@ -917,7 +917,7 @@ namespace Kohya_lora_trainer
         /// <param name="outputPath">変換後の保存先</param>
         /// <param name="dim">このDimする</param>
         /// <param name="cudaConversion">CUDAで変換</param>
-        public static void ResizeLora(string inputPath, string outputPath, decimal dim, decimal convDim, bool cudaConversion)
+        internal static void ResizeLora(string inputPath, string outputPath, decimal dim, decimal convDim, bool cudaConversion)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(@"/c cd ");
@@ -960,7 +960,7 @@ namespace Kohya_lora_trainer
         /// <param name="e"></param>
         /// <param name="fileExtension">受け付けるファイルの拡張子(任意)。指定時に一致しないなら空文字を返す</param>
         /// <returns></returns>
-        public static string GetDroppedFileName(DragEventArgs e, string fileExtension = "")
+        internal static string GetDroppedFileName(DragEventArgs e, string fileExtension = "")
         {
             if(e == null || e.Data == null)
             {
@@ -993,7 +993,7 @@ namespace Kohya_lora_trainer
         /// </summary>
         /// <param name="e"></param>
         /// <param name="fileExtension">受け付けるファイルの拡張子(任意)。指定時に一致しないならカーソルをバツにする</param>
-        public static void CommonFileDragEnterEvent(DragEventArgs e, string fileExtension = "")
+        internal static void CommonFileDragEnterEvent(DragEventArgs e, string fileExtension = "")
         {
             if (e == null || e.Data == null)
             {
@@ -1024,7 +1024,7 @@ namespace Kohya_lora_trainer
         /// </summary>
         /// <param name="e"></param>
         /// <returns>ディレクトリ名(フルパス)</returns>
-        public static string GetDroppedDirectoryName(DragEventArgs e)
+        internal static string GetDroppedDirectoryName(DragEventArgs e)
         {
             if (e == null || e.Data == null)
             {
@@ -1053,7 +1053,7 @@ namespace Kohya_lora_trainer
         /// ディレクトリがドラッグされた時の汎用メソッド。ディレクトリ以外/複数ドロップならカーソルをバツにする
         /// </summary>
         /// <param name="e"></param>
-        public static void CommonDirectoryDragEvent(DragEventArgs e)
+        internal static void CommonDirectoryDragEvent(DragEventArgs e)
         {
             if (e == null || e.Data == null)
             {
@@ -1077,7 +1077,7 @@ namespace Kohya_lora_trainer
             e.Effect = DragDropEffects.None;
         }
 
-        public static void CheckAndCreateWorkDir()
+        internal static void CheckAndCreateWorkDir()
         {
             string document = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
