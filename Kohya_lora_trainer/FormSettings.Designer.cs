@@ -74,16 +74,8 @@
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
-            label1 = new Label();
-            cbxAutoUpdatecheck = new CheckBox();
-            nudCheckIntervalDay = new NumericUpDown();
-            label13 = new Label();
-            label14 = new Label();
-            btnCheckNow = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudCheckIntervalDay).BeginInit();
             SuspendLayout();
             // 
             // label2
@@ -538,12 +530,6 @@
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(btnCheckNow);
-            tabPage2.Controls.Add(label14);
-            tabPage2.Controls.Add(label13);
-            tabPage2.Controls.Add(nudCheckIntervalDay);
-            tabPage2.Controls.Add(cbxAutoUpdatecheck);
-            tabPage2.Controls.Add(label1);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -551,63 +537,6 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "その他";
             tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(31, 20);
-            label1.Name = "label1";
-            label1.Size = new Size(168, 21);
-            label1.TabIndex = 0;
-            label1.Text = "GUIの新バージョンの通知";
-            // 
-            // cbxAutoUpdatecheck
-            // 
-            cbxAutoUpdatecheck.AutoSize = true;
-            cbxAutoUpdatecheck.Location = new Point(40, 58);
-            cbxAutoUpdatecheck.Name = "cbxAutoUpdatecheck";
-            cbxAutoUpdatecheck.Size = new Size(181, 19);
-            cbxAutoUpdatecheck.TabIndex = 1;
-            cbxAutoUpdatecheck.Text = "定期的に自動で更新を確認する";
-            cbxAutoUpdatecheck.UseVisualStyleBackColor = true;
-            // 
-            // nudCheckIntervalDay
-            // 
-            nudCheckIntervalDay.Location = new Point(137, 83);
-            nudCheckIntervalDay.Maximum = new decimal(new int[] { 30, 0, 0, 0 });
-            nudCheckIntervalDay.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            nudCheckIntervalDay.Name = "nudCheckIntervalDay";
-            nudCheckIntervalDay.Size = new Size(80, 23);
-            nudCheckIntervalDay.TabIndex = 2;
-            nudCheckIntervalDay.Value = new decimal(new int[] { 7, 0, 0, 0 });
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(42, 85);
-            label13.Name = "label13";
-            label13.Size = new Size(89, 15);
-            label13.TabIndex = 3;
-            label13.Text = "定期確認の周期";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Location = new Point(223, 90);
-            label14.Name = "label14";
-            label14.Size = new Size(19, 15);
-            label14.TabIndex = 4;
-            label14.Text = "日";
-            // 
-            // btnCheckNow
-            // 
-            btnCheckNow.Location = new Point(42, 124);
-            btnCheckNow.Name = "btnCheckNow";
-            btnCheckNow.Size = new Size(101, 27);
-            btnCheckNow.TabIndex = 5;
-            btnCheckNow.Text = "今すぐ確認";
-            btnCheckNow.UseVisualStyleBackColor = true;
             // 
             // FormSettings
             // 
@@ -628,9 +557,6 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
-            tabPage2.ResumeLayout(false);
-            tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudCheckIntervalDay).EndInit();
             ResumeLayout(false);
         }
 
@@ -681,11 +607,5 @@
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
-        private Label label1;
-        private Button btnCheckNow;
-        private Label label14;
-        private Label label13;
-        private NumericUpDown nudCheckIntervalDay;
-        private CheckBox cbxAutoUpdatecheck;
     }
 }

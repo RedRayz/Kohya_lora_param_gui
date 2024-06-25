@@ -14,7 +14,7 @@ namespace Kohya_lora_trainer
     {
         private static Dictionary<string, string> DefaultDirs = new Dictionary<string, string>();
         private static List<string> NetworkArgs = new List<string>();
-        private static Dictionary<string, string> DictSettings = new Dictionary<string, string>();
+        //private static Dictionary<string, string> DictSettings = new Dictionary<string, string>();
 
         internal static void SaveSettings()
         {
@@ -33,24 +33,24 @@ namespace Kohya_lora_trainer
             }
         }
 
-        internal static void LoadSettings()
-        {
-            try
-            {
-                CheckAndCreateWorkDir();
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\lora-gui\settings.json";
+        //internal static void LoadSettings()
+        //{
+        //    try
+        //    {
+        //        CheckAndCreateWorkDir();
+        //        string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\lora-gui\settings.json";
 
-                if (File.Exists(path))
-                {
-                    string json = File.ReadAllText(path);
-                    DictSettings = JsonSerializer.Deserialize<Dictionary<string, string>>(json, GetOption());
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Error: " + ex.Message);
-            }
-        }
+        //        if (File.Exists(path))
+        //        {
+        //            string json = File.ReadAllText(path);
+        //            DictSettings = JsonSerializer.Deserialize<Dictionary<string, string>>(json, GetOption());
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine("Error: " + ex.Message);
+        //    }
+        //}
 
         internal static void SaveDefaultDirSettings()
         {
