@@ -702,6 +702,7 @@ namespace Kohya_lora_trainer
             }
             TrainParams.Current.ConvertBlockAlpha();
             TrainParams.Current.CheckBrokenBlockDim();
+            TrainParams.Current.ResetObsoleteOptions();
             UpdateAllContents();
         }
 

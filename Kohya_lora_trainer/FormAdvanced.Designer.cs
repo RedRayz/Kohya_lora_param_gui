@@ -420,7 +420,7 @@ namespace Kohya_lora_trainer
             // 
             cbxAlgoType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxAlgoType.FormattingEnabled = true;
-            cbxAlgoType.Items.AddRange(new object[] { "lora", "loha", "ia3", "lokr", "full", "glora", "diag-oft", "boft" });
+            cbxAlgoType.Items.AddRange(new object[] { "lora", "loha", "lokr", "full", "glora", "diag-oft", "boft" });
             cbxAlgoType.Location = new Point(146, 46);
             cbxAlgoType.Name = "cbxAlgoType";
             cbxAlgoType.Size = new Size(121, 23);
@@ -1423,9 +1423,9 @@ namespace Kohya_lora_trainer
             page3.Controls.Add(label49);
             page3.Controls.Add(cbxLossType);
             page3.Controls.Add(label48);
-            page3.Location = new Point(4, 24);
+            page3.Location = new Point(4, 26);
             page3.Name = "page3";
-            page3.Size = new Size(612, 343);
+            page3.Size = new Size(612, 341);
             page3.TabIndex = 10;
             page3.Text = "ページ3";
             page3.UseVisualStyleBackColor = true;
@@ -1514,9 +1514,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 24);
+            tabPage7.Location = new Point(4, 26);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(612, 343);
+            tabPage7.Size = new Size(612, 341);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -1992,9 +1992,9 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(cbxTrainNorm);
             tabPage3.Controls.Add(cbxAlgoType);
             tabPage3.Controls.Add(label23);
-            tabPage3.Location = new Point(4, 26);
+            tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(612, 341);
+            tabPage3.Size = new Size(612, 343);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;

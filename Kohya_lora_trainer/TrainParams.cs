@@ -225,6 +225,15 @@ namespace Kohya_lora_trainer {
                 MessageBox.Show("層別Dim/Alphaの設定が破損しています。破損箇所はリセットされました。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        public void ResetObsoleteOptions()
+        {
+            //IA3 will be removed in 3.0.0
+            if(AlgoType == AlgoType.ia3)
+            {
+                AlgoType = AlgoType.lora;
+            }
+        }
     }
 
     public enum OptimizerType {
