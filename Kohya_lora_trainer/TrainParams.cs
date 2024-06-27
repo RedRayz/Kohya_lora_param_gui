@@ -228,11 +228,11 @@ namespace Kohya_lora_trainer {
 
         public void ResetObsoleteOptions()
         {
-            //IA3 will be removed in 3.0.0
-            if(AlgoType == AlgoType.ia3)
-            {
-                AlgoType = AlgoType.lora;
-            }
+            //IA3Network will be removed but ia3 still available
+            //if(AlgoType == AlgoType.ia3)
+            //{
+            //    AlgoType = AlgoType.lora;
+            //}
         }
     }
 
