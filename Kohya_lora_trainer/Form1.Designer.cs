@@ -208,7 +208,7 @@ namespace Kohya_lora_trainer
             cbxOptimizer.Name = "cbxOptimizer";
             cbxOptimizer.Size = new Size(139, 23);
             cbxOptimizer.TabIndex = 6;
-            toolTip1.SetToolTip(cbxOptimizer, "AdamWとDAdaptLionがおすすめ\r\nDAdaptation系はCPUボトルネックが大きい傾向\r\nPonyDiffusionでDAdaptを使うならLRを下げるべき");
+            toolTip1.SetToolTip(cbxOptimizer, "LionとProdigyがおすすめ\r\nDAdaptation系(Prodigy含む)はCPUボトルネックが大きい\r\nPonyDiffusionでDAdapt系を使うならLRを下げるべき");
             cbxOptimizer.SelectedIndexChanged += cbxOptimizer_SelectedIndexChanged;
             // 
             // label10
@@ -381,7 +381,7 @@ namespace Kohya_lora_trainer
             cbxModuleType.Name = "cbxModuleType";
             cbxModuleType.Size = new Size(80, 23);
             cbxModuleType.TabIndex = 6;
-            toolTip1.SetToolTip(cbxModuleType, "LoRA-FAはメモリ消費が減少するが減少量は雀の涙");
+            toolTip1.SetToolTip(cbxModuleType, "LoRA-FAはメモリ消費が減少するが、LoRAの仕様上、減少量は雀の涙");
             cbxModuleType.SelectedIndexChanged += cbxModuleType_SelectedIndexChanged;
             // 
             // nudSaveEpoch
@@ -441,6 +441,7 @@ namespace Kohya_lora_trainer
             // 
             // btnLoadPreset
             // 
+            btnLoadPreset.AllowDrop = true;
             btnLoadPreset.Location = new Point(422, 446);
             btnLoadPreset.Name = "btnLoadPreset";
             btnLoadPreset.Size = new Size(100, 27);
@@ -448,6 +449,8 @@ namespace Kohya_lora_trainer
             btnLoadPreset.Text = "プリセットの読込";
             btnLoadPreset.UseVisualStyleBackColor = true;
             btnLoadPreset.Click += btnLoadPreset_Click;
+            btnLoadPreset.DragDrop += btnLoadPreset_DragDrop;
+            btnLoadPreset.DragEnter += btnLoadPreset_DragEnter;
             // 
             // lblResolution
             // 

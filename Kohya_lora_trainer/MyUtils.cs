@@ -10,19 +10,57 @@ using System.Text.Unicode;
 
 namespace Kohya_lora_trainer
 {
-    public static class MyUtils
+    internal static class MyUtils
     {
         private static Dictionary<string, string> DefaultDirs = new Dictionary<string, string>();
         private static List<string> NetworkArgs = new List<string>();
+        //private static Dictionary<string, string> DictSettings = new Dictionary<string, string>();
 
-        public static void SaveDefaultDirSettings()
+        internal static void SaveSettings()
         {
             try
             {
                 string json = JsonSerializer.Serialize(DefaultDirs, GetOption());
                 if (!string.IsNullOrEmpty(json))
                 {
-                    string saveto = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\lora-gui-default-dir.json";
+                    string saveto = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\lora-gui\settings.json";
+                    File.WriteAllText(saveto, json);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Error: " + ex.Message);
+            }
+        }
+
+        //internal static void LoadSettings()
+        //{
+        //    try
+        //    {
+        //        CheckAndCreateWorkDir();
+        //        string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\lora-gui\settings.json";
+
+        //        if (File.Exists(path))
+        //        {
+        //            string json = File.ReadAllText(path);
+        //            DictSettings = JsonSerializer.Deserialize<Dictionary<string, string>>(json, GetOption());
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Debug.WriteLine("Error: " + ex.Message);
+        //    }
+        //}
+
+        internal static void SaveDefaultDirSettings()
+        {
+            try
+            {
+                CheckAndCreateWorkDir();
+                string json = JsonSerializer.Serialize(DefaultDirs, GetOption());
+                if (!string.IsNullOrEmpty(json))
+                {
+                    string saveto = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\lora-gui\lora-gui-default-dir.json";
                     File.WriteAllText(saveto, json);
                 }
             }catch(Exception ex)
@@ -31,14 +69,24 @@ namespace Kohya_lora_trainer
             }
         }
 
-        public static void LoadDefaultDirSettings()
+        internal static void LoadDefaultDirSettings()
         {
             try
             {
-                string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\lora-gui-default-dir.json";
-                if (File.Exists(path))
+                string document = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                //新しい場所に引っ越し
+                CheckAndCreateWorkDir();
+                string oldFile = document + @"\lora-gui-default-dir.json";
+                string newFile = document + @"\lora-gui\lora-gui-default-dir.json";
+                if (File.Exists(oldFile) && !File.Exists(newFile))
                 {
-                    string json = File.ReadAllText(path);
+                    File.Move(oldFile, newFile);
+                }
+
+                if (File.Exists(newFile))
+                {
+                    string json = File.ReadAllText(newFile);
                     DefaultDirs = JsonSerializer.Deserialize<Dictionary<string, string>>(json, GetOption());
                 }
             }
@@ -53,7 +101,7 @@ namespace Kohya_lora_trainer
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static string GetDefaultDir(string key)
+        internal static string GetDefaultDir(string key)
         {
             if (DefaultDirs.ContainsKey(key))
             {
@@ -67,7 +115,7 @@ namespace Kohya_lora_trainer
             }
         }
 
-        public static void SetDefaultDir(string key, string value)
+        internal static void SetDefaultDir(string key, string value)
         {
             DefaultDirs[key] = value;
         }
@@ -87,7 +135,7 @@ namespace Kohya_lora_trainer
         /// accelerateのコマンド生成。
         /// </summary>
         /// <returns>accelerateのコマンド</returns>
-        public static string GenerateCommands()
+        internal static string GenerateCommands()
         {
             StringBuilder sb = new StringBuilder();
             NetworkArgs.Clear();
@@ -685,6 +733,10 @@ namespace Kohya_lora_trainer
                 sb.Append(" --gradient_accumulation_steps ").Append(TrainParams.Current.GradAccSteps.ToString());
             }
 
+            if (TrainParams.Current.ImmiscibleNoise > 0)
+            {
+                sb.Append(" --immiscible_noise ").Append(TrainParams.Current.ImmiscibleNoise.ToString());
+            }
 
             return sb.ToString();
         }
@@ -870,7 +922,7 @@ namespace Kohya_lora_trainer
         /// <param name="outputPath">変換後の保存先</param>
         /// <param name="dim">このDimする</param>
         /// <param name="cudaConversion">CUDAで変換</param>
-        public static void ResizeLora(string inputPath, string outputPath, decimal dim, decimal convDim, bool cudaConversion)
+        internal static void ResizeLora(string inputPath, string outputPath, decimal dim, decimal convDim, bool cudaConversion)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(@"/c cd ");
@@ -908,19 +960,19 @@ namespace Kohya_lora_trainer
         }
 
         /// <summary>
-        /// Formにドロップされたアイテムのファイル名を取得する。ファイル以外なら空文字を返す。
+        /// Formにドロップされたアイテムのファイル名を取得する。ファイル以外/複数ドロップなら空文字を返す。
         /// </summary>
         /// <param name="e"></param>
         /// <param name="fileExtension">受け付けるファイルの拡張子(任意)。指定時に一致しないなら空文字を返す</param>
         /// <returns></returns>
-        public static string GetDroppedFileName(DragEventArgs e, string fileExtension = "")
+        internal static string GetDroppedFileName(DragEventArgs e, string fileExtension = "")
         {
             if(e == null || e.Data == null)
             {
                 return string.Empty;
             }
             var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (files.Length > 0)
+            if (files.Length == 1)
             {
                 string fileName = files[0];
                 if(!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
@@ -942,18 +994,18 @@ namespace Kohya_lora_trainer
         }
 
         /// <summary>
-        /// ファイルがドラッグされた時の汎用メソッド。ファイル以外ならカーソルをバツにする
+        /// ファイルがドラッグされた時の汎用メソッド。ファイル以外/複数ドロップならカーソルをバツにする
         /// </summary>
         /// <param name="e"></param>
         /// <param name="fileExtension">受け付けるファイルの拡張子(任意)。指定時に一致しないならカーソルをバツにする</param>
-        public static void CommonFileDragEnterEvent(DragEventArgs e, string fileExtension = "")
+        internal static void CommonFileDragEnterEvent(DragEventArgs e, string fileExtension = "")
         {
             if (e == null || e.Data == null)
             {
                 return;
             }
             var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (files.Length > 0)
+            if (files.Length == 1)
             {
                 string fileName = files[0];
                 if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
@@ -973,11 +1025,11 @@ namespace Kohya_lora_trainer
         }
 
         /// <summary>
-        /// Formにドロップされたアイテムのディレクトリ名を取得する。ディレクトリ以外なら空文字を返す。
+        /// Formにドロップされたアイテムのディレクトリ名を取得する。ディレクトリ以外/複数ドロップなら空文字を返す。
         /// </summary>
         /// <param name="e"></param>
         /// <returns>ディレクトリ名(フルパス)</returns>
-        public static string GetDroppedDirectoryName(DragEventArgs e)
+        internal static string GetDroppedDirectoryName(DragEventArgs e)
         {
             if (e == null || e.Data == null)
             {
@@ -985,7 +1037,7 @@ namespace Kohya_lora_trainer
             }
 
             var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (files.Length > 0)
+            if (files.Length == 1)
             {
                 string fileName = files[0];
                 if (!string.IsNullOrEmpty(fileName) && Directory.Exists(fileName))
@@ -1003,17 +1055,17 @@ namespace Kohya_lora_trainer
         }
 
         /// <summary>
-        /// ディレクトリがドラッグされた時の汎用メソッド。ディレクトリ以外ならカーソルをバツにする
+        /// ディレクトリがドラッグされた時の汎用メソッド。ディレクトリ以外/複数ドロップならカーソルをバツにする
         /// </summary>
         /// <param name="e"></param>
-        public static void CommonDirectoryDragEvent(DragEventArgs e)
+        internal static void CommonDirectoryDragEvent(DragEventArgs e)
         {
             if (e == null || e.Data == null)
             {
                 return;
             }
             var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (files.Length > 0)
+            if (files.Length == 1)
             {
                 string fileName = files[0];
                 if (!string.IsNullOrEmpty(fileName) && Directory.Exists(fileName))
@@ -1028,6 +1080,16 @@ namespace Kohya_lora_trainer
                 }
             }
             e.Effect = DragDropEffects.None;
+        }
+
+        internal static void CheckAndCreateWorkDir()
+        {
+            string document = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            if (!Directory.Exists(document + @"\lora-gui"))
+            {
+                Directory.CreateDirectory(document + @"\lora-gui");
+            }
         }
     }
 }
