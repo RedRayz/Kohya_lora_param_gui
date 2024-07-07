@@ -72,6 +72,7 @@
             label6 = new Label();
             tbxTaggerExclude = new TextBox();
             toolTip1 = new ToolTip(components);
+            cbxUpdateOnlyPackage = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -353,13 +354,14 @@
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(cbxUpdateOnlyPackage);
             tabPage3.Controls.Add(label4);
             tabPage3.Controls.Add(label1);
             tabPage3.Controls.Add(btnInstallExtension);
             tabPage3.Controls.Add(btnUpdateRepo);
-            tabPage3.Location = new Point(4, 26);
+            tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(525, 343);
+            tabPage3.Size = new Size(525, 345);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "更新";
             tabPage3.UseVisualStyleBackColor = true;
@@ -525,6 +527,16 @@
             tbxTaggerExclude.Size = new Size(432, 23);
             tbxTaggerExclude.TabIndex = 1;
             // 
+            // cbxUpdateOnlyPackage
+            // 
+            cbxUpdateOnlyPackage.AutoSize = true;
+            cbxUpdateOnlyPackage.Location = new Point(188, 117);
+            cbxUpdateOnlyPackage.Name = "cbxUpdateOnlyPackage";
+            cbxUpdateOnlyPackage.Size = new Size(154, 19);
+            cbxUpdateOnlyPackage.TabIndex = 4;
+            cbxUpdateOnlyPackage.Text = "Pythonパッケージのみ更新";
+            cbxUpdateOnlyPackage.UseVisualStyleBackColor = true;
+            // 
             // FormUtils
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -601,5 +613,6 @@
         private CheckBox cbxUsePy;
         private ComboBox cbxPythonVersion;
         private Label label14;
+        private CheckBox cbxUpdateOnlyPackage;
     }
 }

@@ -153,7 +153,13 @@ namespace Kohya_lora_trainer
                     sb.Append(Constants.CurrentSdScriptsPath);
                 }
 
-                sb.Append(" && git pull && .\\venv\\Scripts\\activate && pip install --use-pep517 --upgrade -r requirements.txt");
+                if(!cbxUpdateOnlyPackage.Checked)
+                {
+                    sb.Append(" && git pull");
+                }
+
+
+                sb.Append(" && .\\venv\\Scripts\\activate && pip install --use-pep517 --upgrade -r requirements.txt");
 
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
