@@ -56,6 +56,7 @@ namespace Kohya_lora_trainer
         {
             try
             {
+                CheckAndCreateWorkDir();
                 string json = JsonSerializer.Serialize(DefaultDirs, GetOption());
                 if (!string.IsNullOrEmpty(json))
                 {
@@ -732,6 +733,10 @@ namespace Kohya_lora_trainer
                 sb.Append(" --gradient_accumulation_steps ").Append(TrainParams.Current.GradAccSteps.ToString());
             }
 
+            if (TrainParams.Current.ImmiscibleNoise > 0)
+            {
+                sb.Append(" --immiscible_noise ").Append(TrainParams.Current.ImmiscibleNoise.ToString());
+            }
 
             return sb.ToString();
         }

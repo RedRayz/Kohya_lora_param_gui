@@ -190,7 +190,9 @@ namespace Kohya_lora_trainer
             tbxComment = new TextBox();
             label8 = new Label();
             tabPage6 = new TabPage();
+            label55 = new Label();
             label57 = new Label();
+            nudImmiscibleNoise = new NumericUpDown();
             nudIpNoiseGamma = new NumericUpDown();
             pageXL = new TabPage();
             cbxCacheTextencoderToDisk = new CheckBox();
@@ -203,8 +205,6 @@ namespace Kohya_lora_trainer
             cbxTrainNorm = new CheckBox();
             label23 = new Label();
             label56 = new Label();
-            nudImmiscibleNoise = new NumericUpDown();
-            label55 = new Label();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -241,10 +241,10 @@ namespace Kohya_lora_trainer
             tabPage2.SuspendLayout();
             pageMisc.SuspendLayout();
             tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudImmiscibleNoise).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudIpNoiseGamma).BeginInit();
             pageXL.SuspendLayout();
             tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudImmiscibleNoise).BeginInit();
             SuspendLayout();
             // 
             // tbxUnetLR
@@ -1265,9 +1265,9 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(label28);
             tabPage4.Controls.Add(nudMaxTokens);
             tabPage4.Controls.Add(nudLRSchedulerCycle);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 26);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(612, 343);
+            tabPage4.Size = new Size(612, 341);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "ページ2";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1945,6 +1945,15 @@ namespace Kohya_lora_trainer
             tabPage6.Text = "ノイズ関連";
             tabPage6.UseVisualStyleBackColor = true;
             // 
+            // label55
+            // 
+            label55.AutoSize = true;
+            label55.Location = new Point(22, 192);
+            label55.Name = "label55";
+            label55.Size = new Size(158, 15);
+            label55.TabIndex = 56;
+            label55.Text = "Immiscible Noise batch size#";
+            // 
             // label57
             // 
             label57.AutoSize = true;
@@ -1953,6 +1962,15 @@ namespace Kohya_lora_trainer
             label57.Size = new Size(100, 15);
             label57.TabIndex = 50;
             label57.Text = "Ip Noise Gamma#";
+            // 
+            // nudImmiscibleNoise
+            // 
+            nudImmiscibleNoise.Location = new Point(186, 190);
+            nudImmiscibleNoise.Maximum = new decimal(new int[] { 16384, 0, 0, 0 });
+            nudImmiscibleNoise.Name = "nudImmiscibleNoise";
+            nudImmiscibleNoise.Size = new Size(94, 23);
+            nudImmiscibleNoise.TabIndex = 53;
+            toolTip1.SetToolTip(nudImmiscibleNoise, "学習が速くなる\r\n推奨値は1024");
             // 
             // nudIpNoiseGamma
             // 
@@ -2082,23 +2100,6 @@ namespace Kohya_lora_trainer
             label56.TabIndex = 58;
             label56.Text = "#がつく項目は0を指定すると無効化(未指定にする)\r\n##がつく項目は空欄で未指定にする";
             // 
-            // nudImmiscibleNoise
-            // 
-            nudImmiscibleNoise.Location = new Point(186, 190);
-            nudImmiscibleNoise.Maximum = new decimal(new int[] { 16384, 0, 0, 0 });
-            nudImmiscibleNoise.Name = "nudImmiscibleNoise";
-            nudImmiscibleNoise.Size = new Size(94, 23);
-            nudImmiscibleNoise.TabIndex = 53;
-            // 
-            // label55
-            // 
-            label55.AutoSize = true;
-            label55.Location = new Point(22, 192);
-            label55.Name = "label55";
-            label55.Size = new Size(158, 15);
-            label55.TabIndex = 56;
-            label55.Text = "Immiscible Noise batch size#";
-            // 
             // FormAdvanced
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -2161,12 +2162,12 @@ namespace Kohya_lora_trainer
             pageMisc.PerformLayout();
             tabPage6.ResumeLayout(false);
             tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudImmiscibleNoise).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudIpNoiseGamma).EndInit();
             pageXL.ResumeLayout(false);
             pageXL.PerformLayout();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudImmiscibleNoise).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

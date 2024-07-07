@@ -97,6 +97,8 @@ namespace Kohya_lora_trainer {
         //LoRA+
         public decimal LoRAPlusLRRatio = 0, LoRAPlusUnetLRRatio = 0, LoRAPlusTELRRatio = 0;
 
+        public decimal ImmiscibleNoise = 0;
+
 
         [NonSerialized]
         public static TrainParams? Current;
