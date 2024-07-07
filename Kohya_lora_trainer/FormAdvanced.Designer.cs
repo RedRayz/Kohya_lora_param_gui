@@ -85,6 +85,7 @@ namespace Kohya_lora_trainer
             cbxLossType = new ComboBox();
             cbxAlphaMask = new CheckBox();
             nudHuberC = new NumericUpDown();
+            nudImmiscibleNoise = new NumericUpDown();
             cbxAdvancedTrain = new ComboBox();
             label6 = new Label();
             label9 = new Label();
@@ -192,7 +193,6 @@ namespace Kohya_lora_trainer
             tabPage6 = new TabPage();
             label55 = new Label();
             label57 = new Label();
-            nudImmiscibleNoise = new NumericUpDown();
             nudIpNoiseGamma = new NumericUpDown();
             pageXL = new TabPage();
             cbxCacheTextencoderToDisk = new CheckBox();
@@ -220,6 +220,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudLoRAPlusUnetLRRatio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLoRAPlusTELRRatio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudHuberC).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudImmiscibleNoise).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMomentum).BeginInit();
@@ -241,7 +242,6 @@ namespace Kohya_lora_trainer
             tabPage2.SuspendLayout();
             pageMisc.SuspendLayout();
             tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudImmiscibleNoise).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudIpNoiseGamma).BeginInit();
             pageXL.SuspendLayout();
             tabPage3.SuspendLayout();
@@ -461,7 +461,7 @@ namespace Kohya_lora_trainer
             nudNoiseOffset.Name = "nudNoiseOffset";
             nudNoiseOffset.Size = new Size(94, 23);
             nudNoiseOffset.TabIndex = 44;
-            toolTip1.SetToolTip(nudNoiseOffset, "暗い部分の改善効果があるかも");
+            toolTip1.SetToolTip(nudNoiseOffset, "全体的に明るい/暗い環境でグレー寄りになるのを軽減する\r\n画風の学習時に有効にするとよい\r\nちなみにAnimagine XL,Kivotos XLで使用された値は0.0357");
             // 
             // nudCaptionDropout
             // 
@@ -729,7 +729,7 @@ namespace Kohya_lora_trainer
             nudLoRAPlusLRRatio.Name = "nudLoRAPlusLRRatio";
             nudLoRAPlusLRRatio.Size = new Size(120, 23);
             nudLoRAPlusLRRatio.TabIndex = 8;
-            toolTip1.SetToolTip(nudLoRAPlusLRRatio, "適切に設定すると2倍ほど収束が早くなる\r\nこの項目はUnetとTEの両方のratio\r\n論文では16が推奨されているが実際には8がいい感じ\r\n");
+            toolTip1.SetToolTip(nudLoRAPlusLRRatio, "適切に設定すると2倍ほど収束が早くなる\r\nこの項目はUnetとTEの両方のratio\r\n論文では16が推奨されているが実際には4がいい感じ\r\n");
             // 
             // nudLoRAPlusUnetLRRatio
             // 
@@ -813,6 +813,15 @@ namespace Kohya_lora_trainer
             nudHuberC.TabIndex = 5;
             toolTip1.SetToolTip(nudHuberC, "Smooth L1でHuber損失を使用する期間(0～1)");
             nudHuberC.Value = new decimal(new int[] { 1, 0, 0, 65536 });
+            // 
+            // nudImmiscibleNoise
+            // 
+            nudImmiscibleNoise.Location = new Point(186, 190);
+            nudImmiscibleNoise.Maximum = new decimal(new int[] { 16384, 0, 0, 0 });
+            nudImmiscibleNoise.Name = "nudImmiscibleNoise";
+            nudImmiscibleNoise.Size = new Size(94, 23);
+            nudImmiscibleNoise.TabIndex = 53;
+            toolTip1.SetToolTip(nudImmiscibleNoise, "学習が速くなる\r\n推奨値は1024");
             // 
             // cbxAdvancedTrain
             // 
@@ -1426,9 +1435,9 @@ namespace Kohya_lora_trainer
             page3.Controls.Add(label49);
             page3.Controls.Add(cbxLossType);
             page3.Controls.Add(label48);
-            page3.Location = new Point(4, 26);
+            page3.Location = new Point(4, 24);
             page3.Name = "page3";
-            page3.Size = new Size(612, 341);
+            page3.Size = new Size(612, 343);
             page3.TabIndex = 10;
             page3.Text = "ページ3";
             page3.UseVisualStyleBackColor = true;
@@ -1517,9 +1526,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 26);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(612, 341);
+            tabPage7.Size = new Size(612, 343);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -1577,9 +1586,9 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(label35);
             tabPage5.Controls.Add(tbxD0);
             tabPage5.Controls.Add(tbxGrowthRate);
-            tabPage5.Location = new Point(4, 26);
+            tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(612, 341);
+            tabPage5.Size = new Size(612, 343);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "DAdapt/AdamW/Lion";
             tabPage5.UseVisualStyleBackColor = true;
@@ -1963,15 +1972,6 @@ namespace Kohya_lora_trainer
             label57.TabIndex = 50;
             label57.Text = "Ip Noise Gamma#";
             // 
-            // nudImmiscibleNoise
-            // 
-            nudImmiscibleNoise.Location = new Point(186, 190);
-            nudImmiscibleNoise.Maximum = new decimal(new int[] { 16384, 0, 0, 0 });
-            nudImmiscibleNoise.Name = "nudImmiscibleNoise";
-            nudImmiscibleNoise.Size = new Size(94, 23);
-            nudImmiscibleNoise.TabIndex = 53;
-            toolTip1.SetToolTip(nudImmiscibleNoise, "学習が速くなる\r\n推奨値は1024");
-            // 
             // nudIpNoiseGamma
             // 
             nudIpNoiseGamma.DecimalPlaces = 4;
@@ -1981,15 +1981,16 @@ namespace Kohya_lora_trainer
             nudIpNoiseGamma.Name = "nudIpNoiseGamma";
             nudIpNoiseGamma.Size = new Size(94, 23);
             nudIpNoiseGamma.TabIndex = 49;
+            toolTip1.SetToolTip(nudIpNoiseGamma, "Noise offsetと同様の効果");
             // 
             // pageXL
             // 
             pageXL.Controls.Add(cbxCacheTextencoderToDisk);
             pageXL.Controls.Add(cbxCacheTextEncoder);
             pageXL.Controls.Add(cbxNoHalfVae);
-            pageXL.Location = new Point(4, 26);
+            pageXL.Location = new Point(4, 24);
             pageXL.Name = "pageXL";
-            pageXL.Size = new Size(612, 341);
+            pageXL.Size = new Size(612, 343);
             pageXL.TabIndex = 9;
             pageXL.Text = "SDXL";
             pageXL.UseVisualStyleBackColor = true;
@@ -2015,9 +2016,9 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(cbxTrainNorm);
             tabPage3.Controls.Add(cbxAlgoType);
             tabPage3.Controls.Add(label23);
-            tabPage3.Location = new Point(4, 26);
+            tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(612, 341);
+            tabPage3.Size = new Size(612, 343);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;
@@ -2133,6 +2134,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudLoRAPlusUnetLRRatio).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudLoRAPlusTELRRatio).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudHuberC).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudImmiscibleNoise).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMomentum).EndInit();
@@ -2162,7 +2164,6 @@ namespace Kohya_lora_trainer
             pageMisc.PerformLayout();
             tabPage6.ResumeLayout(false);
             tabPage6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudImmiscibleNoise).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudIpNoiseGamma).EndInit();
             pageXL.ResumeLayout(false);
             pageXL.PerformLayout();
