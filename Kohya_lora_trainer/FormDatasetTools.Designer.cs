@@ -157,6 +157,7 @@
             btnRemoveImgWithTag.TabIndex = 6;
             btnRemoveImgWithTag.Text = "指定タグがある画像を削除";
             btnRemoveImgWithTag.UseVisualStyleBackColor = true;
+            btnRemoveImgWithTag.Click += btnRemoveImgWithTag_Click;
             // 
             // btnAddTag
             // 
