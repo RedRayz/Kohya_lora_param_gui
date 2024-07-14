@@ -193,6 +193,7 @@
             btnTagToHead.TabIndex = 6;
             btnTagToHead.Text = "指定タグを先頭へ";
             btnTagToHead.UseVisualStyleBackColor = true;
+            btnTagToHead.Click += btnTagToHead_Click;
             // 
             // btnConvertToWD
             // 
@@ -241,10 +242,13 @@
             // 
             // tbxTargetDir
             // 
+            tbxTargetDir.AllowDrop = true;
             tbxTargetDir.Location = new Point(27, 36);
             tbxTargetDir.Name = "tbxTargetDir";
             tbxTargetDir.Size = new Size(507, 23);
             tbxTargetDir.TabIndex = 2;
+            tbxTargetDir.DragDrop += tbxTargetDir_DragDrop;
+            tbxTargetDir.DragEnter += tbxTargetDir_DragEnter;
             // 
             // label1
             // 
@@ -286,10 +290,10 @@
             tabPage2.Controls.Add(btnRemoveDupNameImg);
             tabPage2.Controls.Add(tbxSourceDir);
             tabPage2.Controls.Add(label6);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(662, 432);
+            tabPage2.Size = new Size(662, 434);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "ファイル処理";
             tabPage2.UseVisualStyleBackColor = true;
@@ -436,10 +440,13 @@
             // 
             // tbxSourceDir
             // 
+            tbxSourceDir.AllowDrop = true;
             tbxSourceDir.Location = new Point(32, 39);
             tbxSourceDir.Name = "tbxSourceDir";
             tbxSourceDir.Size = new Size(457, 23);
             tbxSourceDir.TabIndex = 1;
+            tbxSourceDir.DragDrop += tbxSourceDir_DragDrop;
+            tbxSourceDir.DragEnter += tbxSourceDir_DragEnter;
             // 
             // label6
             // 
