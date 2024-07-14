@@ -1344,5 +1344,12 @@ namespace Kohya_lora_trainer
             frm.ShowDialog();
             frm.Dispose();
         }
+
+        private void データセット編集選別ツールToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = new FormDatasetTools();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
     }
 }

@@ -866,6 +866,7 @@ namespace Kohya_lora_trainer
             データセット編集選別ツールToolStripMenuItem.Name = "データセット編集選別ツールToolStripMenuItem";
             データセット編集選別ツールToolStripMenuItem.Size = new Size(227, 22);
             データセット編集選別ツールToolStripMenuItem.Text = "データセット編集/選別ツール";
+            データセット編集選別ツールToolStripMenuItem.Click += データセット編集選別ツールToolStripMenuItem_Click;
             // 
             // lECOToolStripMenuItem
             // 

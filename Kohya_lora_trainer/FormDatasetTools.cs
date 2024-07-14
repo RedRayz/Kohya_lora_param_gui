@@ -16,5 +16,10 @@ namespace Kohya_lora_trainer
         {
             InitializeComponent();
         }
+
+        private void cbxUseRegEx_CheckedChanged(object sender, EventArgs e)
+        {
+            btnAddTag.Enabled = !cbxUseRegEx.Checked;
+        }
     }
 }
