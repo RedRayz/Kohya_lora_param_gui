@@ -81,7 +81,6 @@ namespace Kohya_lora_trainer
             btnOutputPath = new Button();
             btnCustomScriptPath = new Button();
             lblScriptPathDesc = new Label();
-            btnUtilities = new Button();
             tbxModelPath = new TextBox();
             tbxImagePath = new TextBox();
             tbxOutputPath = new TextBox();
@@ -94,7 +93,6 @@ namespace Kohya_lora_trainer
             btnBatchProcess = new Button();
             btnInstaller = new Button();
             btnGenerateCommands = new Button();
-            btnLeco = new Button();
             label13 = new Label();
             cbxEpochOrStep = new ComboBox();
             menuStrip1 = new MenuStrip();
@@ -106,6 +104,10 @@ namespace Kohya_lora_trainer
             ヘルプToolStripMenuItem = new ToolStripMenuItem();
             ヒントToolStripMenuItem = new ToolStripMenuItem();
             配布ページToolStripMenuItem = new ToolStripMenuItem();
+            ツールToolStripMenuItem = new ToolStripMenuItem();
+            ユーティリティToolStripMenuItem = new ToolStripMenuItem();
+            データセット編集選別ツールToolStripMenuItem = new ToolStripMenuItem();
+            lECOToolStripMenuItem = new ToolStripMenuItem();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
@@ -629,16 +631,6 @@ namespace Kohya_lora_trainer
             lblScriptPathDesc.TabIndex = 68;
             lblScriptPathDesc.Text = "sd-scripts場所選択";
             // 
-            // btnUtilities
-            // 
-            btnUtilities.Location = new Point(314, 470);
-            btnUtilities.Name = "btnUtilities";
-            btnUtilities.Size = new Size(85, 27);
-            btnUtilities.TabIndex = 69;
-            btnUtilities.Text = "ユーティリティ";
-            btnUtilities.UseVisualStyleBackColor = true;
-            btnUtilities.Click += btnUtilities_Click;
-            // 
             // tbxModelPath
             // 
             tbxModelPath.AllowDrop = true;
@@ -769,16 +761,6 @@ namespace Kohya_lora_trainer
             btnGenerateCommands.UseVisualStyleBackColor = true;
             btnGenerateCommands.Click += btnGenerateCommands_Click;
             // 
-            // btnLeco
-            // 
-            btnLeco.Location = new Point(222, 470);
-            btnLeco.Name = "btnLeco";
-            btnLeco.Size = new Size(85, 27);
-            btnLeco.TabIndex = 84;
-            btnLeco.Text = "LECO";
-            btnLeco.UseVisualStyleBackColor = true;
-            btnLeco.Click += btnLeco_Click;
-            // 
             // label13
             // 
             label13.AutoSize = true;
@@ -802,7 +784,7 @@ namespace Kohya_lora_trainer
             // menuStrip1
             // 
             menuStrip1.BackColor = Color.White;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { ファイルToolStripMenuItem, ヘルプToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { ファイルToolStripMenuItem, ヘルプToolStripMenuItem, ツールToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(804, 25);
@@ -864,6 +846,33 @@ namespace Kohya_lora_trainer
             配布ページToolStripMenuItem.Size = new Size(167, 22);
             配布ページToolStripMenuItem.Text = "GUI配布ページ";
             配布ページToolStripMenuItem.Click += 配布ページToolStripMenuItem_Click;
+            // 
+            // ツールToolStripMenuItem
+            // 
+            ツールToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ユーティリティToolStripMenuItem, データセット編集選別ツールToolStripMenuItem, lECOToolStripMenuItem });
+            ツールToolStripMenuItem.Name = "ツールToolStripMenuItem";
+            ツールToolStripMenuItem.Size = new Size(54, 21);
+            ツールToolStripMenuItem.Text = "ツール";
+            // 
+            // ユーティリティToolStripMenuItem
+            // 
+            ユーティリティToolStripMenuItem.Name = "ユーティリティToolStripMenuItem";
+            ユーティリティToolStripMenuItem.Size = new Size(227, 22);
+            ユーティリティToolStripMenuItem.Text = "ユーティリティ";
+            ユーティリティToolStripMenuItem.Click += ユーティリティToolStripMenuItem_Click;
+            // 
+            // データセット編集選別ツールToolStripMenuItem
+            // 
+            データセット編集選別ツールToolStripMenuItem.Name = "データセット編集選別ツールToolStripMenuItem";
+            データセット編集選別ツールToolStripMenuItem.Size = new Size(227, 22);
+            データセット編集選別ツールToolStripMenuItem.Text = "データセット編集/選別ツール";
+            // 
+            // lECOToolStripMenuItem
+            // 
+            lECOToolStripMenuItem.Name = "lECOToolStripMenuItem";
+            lECOToolStripMenuItem.Size = new Size(227, 22);
+            lECOToolStripMenuItem.Text = "LECO";
+            lECOToolStripMenuItem.Click += lECOToolStripMenuItem_Click;
             // 
             // tabControl1
             // 
@@ -932,10 +941,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(label14);
             tabPage2.Controls.Add(label15);
             tabPage2.Controls.Add(tbxCommand);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(763, 288);
+            tabPage2.Size = new Size(763, 286);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "カスタムコマンド";
             tabPage2.UseVisualStyleBackColor = true;
@@ -978,14 +987,12 @@ namespace Kohya_lora_trainer
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(804, 521);
             Controls.Add(tabControl1);
-            Controls.Add(btnLeco);
             Controls.Add(btnGenerateCommands);
             Controls.Add(btnInstaller);
             Controls.Add(btnBatchProcess);
             Controls.Add(groupBox1);
             Controls.Add(btnBlockDim);
             Controls.Add(btnBlockWeight);
-            Controls.Add(btnUtilities);
             Controls.Add(lblScriptPathDesc);
             Controls.Add(btnCustomScriptPath);
             Controls.Add(lblNumStepsBatch1);
@@ -1076,7 +1083,6 @@ namespace Kohya_lora_trainer
         private Button btnOutputPath;
         private Button btnCustomScriptPath;
         private Label lblScriptPathDesc;
-        private Button btnUtilities;
         private TextBox tbxModelPath;
         private TextBox tbxImagePath;
         private TextBox tbxRegImgPath;
@@ -1092,7 +1098,6 @@ namespace Kohya_lora_trainer
         private Button btnBatchProcess;
         private Button btnInstaller;
         private Button btnGenerateCommands;
-        private Button btnLeco;
         private ComboBox cbxSDType;
         private Label label13;
         private ComboBox cbxEpochOrStep;
@@ -1112,6 +1117,10 @@ namespace Kohya_lora_trainer
         private TextBox tbxCommand;
         private Label label15;
         private Label label14;
+        private ToolStripMenuItem ツールToolStripMenuItem;
+        private ToolStripMenuItem ユーティリティToolStripMenuItem;
+        private ToolStripMenuItem データセット編集選別ツールToolStripMenuItem;
+        private ToolStripMenuItem lECOToolStripMenuItem;
     }
 }
 

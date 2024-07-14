@@ -455,7 +455,7 @@ namespace Kohya_lora_trainer
                         continue;
                     }
 
-                    if(string.IsNullOrWhiteSpace(pth))
+                    if (string.IsNullOrWhiteSpace(pth))
                     {
                         continue;
                     }
@@ -485,7 +485,7 @@ namespace Kohya_lora_trainer
                         BatchProcess.SkippedCount++;
                         continue;
                     }
-                    
+
                     if (!IsTrainingAvailable(false))
                     {
                         Debug.WriteLine("Skipping training. Invalid params in: " + pth);
@@ -749,14 +749,6 @@ namespace Kohya_lora_trainer
             UpdateAllContents();
         }
 
-
-        private void btnUtilities_Click(object sender, EventArgs e)
-        {
-            Form frm = new FormUtils();
-            frm.ShowDialog();
-            frm.Dispose();
-        }
-
         private void tbxOutputPath_TextChanged(object sender, EventArgs e)
         {
             string str = tbxOutputPath.Text.Trim();
@@ -864,13 +856,6 @@ namespace Kohya_lora_trainer
             {
                 Debug.WriteLine("自動保存書き込みできない");
             }
-        }
-
-        private void btnLeco_Click(object sender, EventArgs e)
-        {
-            Form frm = new FormLECO();
-            frm.ShowDialog();
-            frm.Dispose();
         }
 
         private void cbxSDType_SelectedIndexChanged(object sender, EventArgs e)
@@ -1339,6 +1324,25 @@ namespace Kohya_lora_trainer
         private void tbxCommand_TextChanged(object sender, EventArgs e)
         {
             TrainParams.Current.CustomCommands = tbxCommand.Text.Replace("\r\n", string.Empty);
+        }
+
+        private void データセット編集ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ユーティリティToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = new FormUtils();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+
+        private void lECOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = new FormLECO();
+            frm.ShowDialog();
+            frm.Dispose();
         }
     }
 }
