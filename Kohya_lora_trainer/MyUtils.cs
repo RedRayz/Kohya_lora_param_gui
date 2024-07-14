@@ -147,6 +147,7 @@ namespace Kohya_lora_trainer
 
             string command = TrainParams.Current.CustomCommands.Trim();
             command = command.Replace("\r\n", string.Empty);
+            command = command.Trim();
             if (!string.IsNullOrWhiteSpace(command))
             {
                 return command;

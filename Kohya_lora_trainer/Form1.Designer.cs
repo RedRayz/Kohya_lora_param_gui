@@ -955,9 +955,9 @@ namespace Kohya_lora_trainer
             label15.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             label15.Location = new Point(20, 214);
             label15.Name = "label15";
-            label15.Size = new Size(363, 60);
+            label15.Size = new Size(393, 60);
             label15.TabIndex = 2;
-            label15.Text = "注意:\r\npythonまたはaccelerateコマンドのみ使用できます。&&は使用できません。\r\n安全のため信頼できるpythonコード/コマンドのみ実行してください！\r\n改行は自動的に削除されます。";
+            label15.Text = "注意:\r\npythonまたはaccelerateコマンドのみ使用できます。&&は使用できません。\r\n安全のため信頼できるpythonコード/コマンドのみ実行してください！\r\n改行は自動的に削除されます。コマンド実行前に自動的にvenvを有効化します。";
             label15.UseMnemonic = false;
             // 
             // tbxCommand

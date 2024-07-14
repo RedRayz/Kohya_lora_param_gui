@@ -580,10 +580,16 @@ namespace Kohya_lora_trainer
             return true;
         }
 
+        /// <summary>
+        /// カスタムコマンドは適切または未指定ですか？
+        /// </summary>
+        /// <param name="showMsg">適切でない場合にメッセージボックスを表示する。</param>
+        /// <returns></returns>
         private bool IsCommandAvailable(bool showMsg)
         {
             string command = TrainParams.Current.CustomCommands.Trim();
             command = command.Replace("\r\n", string.Empty);
+            command = command.Trim();
             if (string.IsNullOrWhiteSpace(command))
             {
                 return true;
