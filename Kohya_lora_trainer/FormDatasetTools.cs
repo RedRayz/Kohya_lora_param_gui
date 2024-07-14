@@ -21,5 +21,22 @@ namespace Kohya_lora_trainer
         {
             btnAddTag.Enabled = !cbxUseRegEx.Checked;
         }
+
+        private void btnShuffleCaptions_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("シャッフルしますか。\r\nこの操作はもとに戻せません。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                lblProcessing.Visible = true;
+                Update();
+                MyUtils.ShuffleCaptions(tbxTargetDir.Text, (int)nudKeepTokens.Value, true);
+                lblProcessing.Visible = false;
+                ShowDoneMsg();
+            }
+        }
+
+        private void ShowDoneMsg()
+        {
+            MessageBox.Show("完了しました。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

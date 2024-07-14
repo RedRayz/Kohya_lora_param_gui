@@ -65,6 +65,7 @@
             btnRemoveDupNameImg = new Button();
             tbxSourceDir = new TextBox();
             label6 = new Label();
+            lblProcessing = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudKeepTokens).BeginInit();
@@ -210,6 +211,7 @@
             btnShuffleCaptions.TabIndex = 6;
             btnShuffleCaptions.Text = "キャプションのシャッフル";
             btnShuffleCaptions.UseVisualStyleBackColor = true;
+            btnShuffleCaptions.Click += btnShuffleCaptions_Click;
             // 
             // label3
             // 
@@ -225,9 +227,9 @@
             label2.AutoSize = true;
             label2.Location = new Point(27, 18);
             label2.Name = "label2";
-            label2.Size = new Size(83, 15);
+            label2.Size = new Size(261, 15);
             label2.TabIndex = 4;
-            label2.Text = "ソースディレクトリ";
+            label2.Text = "ソースディレクトリ(画像とキャプション/タグが入った場所)";
             // 
             // tbxBooruTag
             // 
@@ -443,15 +445,26 @@
             label6.AutoSize = true;
             label6.Location = new Point(32, 21);
             label6.Name = "label6";
-            label6.Size = new Size(83, 15);
+            label6.Size = new Size(261, 15);
             label6.TabIndex = 0;
-            label6.Text = "ソースディレクトリ";
+            label6.Text = "ソースディレクトリ(画像とキャプション/タグが入った場所)";
+            // 
+            // lblProcessing
+            // 
+            lblProcessing.AutoSize = true;
+            lblProcessing.Font = new Font("Yu Gothic UI Semibold", 14F, FontStyle.Bold, GraphicsUnit.Point);
+            lblProcessing.Location = new Point(202, 477);
+            lblProcessing.Name = "lblProcessing";
+            lblProcessing.Size = new Size(290, 25);
+            lblProcessing.TabIndex = 1;
+            lblProcessing.Text = "処理中です。しばらくお待ちください。";
             // 
             // FormDatasetTools
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(697, 493);
+            ClientSize = new Size(697, 515);
+            Controls.Add(lblProcessing);
             Controls.Add(tabControl1);
             Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -471,6 +484,7 @@
             ((System.ComponentModel.ISupportInitialize)nudPixels).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudFileSize).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -512,5 +526,6 @@
         private NumericUpDown nudFileSize;
         private Label label8;
         private Label label7;
+        private Label lblProcessing;
     }
 }
