@@ -1173,7 +1173,7 @@ namespace Kohya_lora_trainer
             return true;
         }
 
-        private static bool IsSystemDirectory(string path)
+        public static bool IsSystemDirectory(string path)
         {
             string pth = path.ToLower();
 
