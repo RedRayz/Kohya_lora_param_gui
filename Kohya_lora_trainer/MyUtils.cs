@@ -1109,26 +1109,26 @@ namespace Kohya_lora_trainer
             }
         }
 
-        internal static void ShuffleCaptions(string targetDir, int keepTokenCount, bool showMsg)
+        internal static bool ShuffleCaptions(string targetDir, int keepTokenCount, bool showMsg)
         {
             if (!Directory.Exists(targetDir))
             {
                 if(showMsg)
                     MessageBox.Show("ディレクトリが見つかりません", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                return false;
             }
             if (IsSystemDirectory(targetDir))
             {
                 if (showMsg)
                     MessageBox.Show("データ破損防止のため、OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                return false;
             }
 
             if(keepTokenCount < 0)
             {
                 if (showMsg)
                     MessageBox.Show("トークン保持数に0以下は指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                return false;
             }
 
             string[] files = Directory.GetFiles(targetDir);
@@ -1142,7 +1142,7 @@ namespace Kohya_lora_trainer
                 List<string> tags = new List<string>(txt.Split(", "));
                 if(tags.Count <= keepTokenCount)
                 {
-                    return;
+                    return false;
                 }
 
 
@@ -1169,6 +1169,8 @@ namespace Kohya_lora_trainer
                 }
 
             }
+
+            return true;
         }
 
         private static bool IsSystemDirectory(string path)

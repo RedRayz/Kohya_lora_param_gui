@@ -473,6 +473,7 @@
             Name = "FormDatasetTools";
             StartPosition = FormStartPosition.CenterParent;
             Text = "データセット編集/選別ツール";
+            Load += FormDatasetTools_Load;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();

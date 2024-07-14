@@ -28,15 +28,21 @@ namespace Kohya_lora_trainer
             {
                 lblProcessing.Visible = true;
                 Update();
-                MyUtils.ShuffleCaptions(tbxTargetDir.Text, (int)nudKeepTokens.Value, true);
+                bool success = MyUtils.ShuffleCaptions(tbxTargetDir.Text, (int)nudKeepTokens.Value, true);
                 lblProcessing.Visible = false;
-                ShowDoneMsg();
+                if (success)
+                    ShowDoneMsg();
             }
         }
 
         private void ShowDoneMsg()
         {
-            MessageBox.Show("完了しました。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("完了しました。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void FormDatasetTools_Load(object sender, EventArgs e)
+        {
+            lblProcessing.Visible = false;
         }
     }
 }
