@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
+using System.Data.Common;
 
 namespace Kohya_lora_trainer
 {
@@ -132,11 +133,25 @@ namespace Kohya_lora_trainer
         }
 
         /// <summary>
-        /// accelerateのコマンド生成。
+        /// コマンド生成。
         /// </summary>
-        /// <returns>accelerateのコマンド</returns>
+        /// <returns>コマンド</returns>
         internal static string GenerateCommands()
         {
+            if(TrainParams.Current == null)
+            {
+                Debug.WriteLine("TrainParams is NULL");
+
+                return string.Empty;
+            }
+
+            string command = TrainParams.Current.CustomCommands.Trim();
+            command = command.Replace("\r\n", string.Empty);
+            if (!string.IsNullOrWhiteSpace(command))
+            {
+                return command;
+            }
+
             StringBuilder sb = new StringBuilder();
             NetworkArgs.Clear();
 

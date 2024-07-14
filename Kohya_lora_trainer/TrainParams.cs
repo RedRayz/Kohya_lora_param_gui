@@ -87,7 +87,7 @@ namespace Kohya_lora_trainer {
 
         public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true, UseFullFP16 = false, UseFP8Base = false, RelativeStep = true, ScaleParameter = true, SaveState = false, MaskLoss = false, AlphaMask = false;
         public bool RandomNoiseOffset = false, RandomIpNoiseGamma = false;
-        public string TokensSeparator;
+        public string TokensSeparator = string.Empty;
 
         //Huber関連
         public LossType LossType;
@@ -98,6 +98,9 @@ namespace Kohya_lora_trainer {
         public decimal LoRAPlusLRRatio = 0, LoRAPlusUnetLRRatio = 0, LoRAPlusTELRRatio = 0;
 
         public decimal ImmiscibleNoise = 0;
+
+        //なんでstringの初期値nullなん？？参照型なのはわかっとる
+        public string CustomCommands = string.Empty;
 
 
         [NonSerialized]
