@@ -415,6 +415,7 @@
             btnRemoveImgLessSize.TabIndex = 2;
             btnRemoveImgLessSize.Text = "指定未満のファイルサイズの画像を削除";
             btnRemoveImgLessSize.UseVisualStyleBackColor = true;
+            btnRemoveImgLessSize.Click += btnRemoveImgLessSize_Click;
             // 
             // btnDeleteTrash
             // 

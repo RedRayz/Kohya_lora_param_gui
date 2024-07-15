@@ -916,5 +916,77 @@ namespace Kohya_lora_trainer
                 lblProcessing.Visible = false;
             }
         }
+
+        private void btnRemoveImgLessSize_Click(object sender, EventArgs e)
+        {
+            string sourceDir = tbxSourceDir.Text;
+            int removedCnt = 0;
+            int errorCount = 0;
+
+            if (!Directory.Exists(sourceDir))
+            {
+                MessageBox.Show("ディレクトリが見つかりません", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (MyUtils.IsSystemDirectory(sourceDir))
+            {
+                MessageBox.Show("データ破損防止のため、OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (MessageBox.Show("ファイルサイズが指定未満の画像を同階層のtrashフォルダに移動します。よろしいですか。", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                lblProcessing.Visible = true;
+                Update();
+                //キャプションが入った場所
+                string[] files = Directory.GetFiles(sourceDir);
+                foreach (string file in files)
+                {
+                    try
+                    {
+                        string ext = Path.GetExtension(file).ToLower();
+                        if (ext == ".png" || ext == ".jpg" || ext == ".jpeg")
+                        {
+                            FileInfo info = new FileInfo(file);
+                            if (info.Length / 1000 < nudFileSize.Value)
+                            {
+                                string path = sourceDir + "\\";
+                                string imageFile = Path.GetFileNameWithoutExtension(file);
+                                if (!File.Exists(sourceDir + "\\trash\\" + imageFile + ext))
+                                {
+                                    if (!Directory.Exists(sourceDir + "\\trash"))
+                                    {
+                                        Directory.CreateDirectory(sourceDir + "\\trash");
+                                    }
+                                    File.Move(file, sourceDir + "\\trash\\" + imageFile + ext);
+
+
+                                    if (File.Exists(sourceDir + '\\' + imageFile + ".txt") && !File.Exists(sourceDir + "\\trash\\" + imageFile + ".txt"))
+                                    {
+                                        File.Move(sourceDir + '\\' + imageFile + ".txt", sourceDir + "\\trash\\" + imageFile + ".txt");
+                                    }
+                                    removedCnt++;
+                                }
+                            }
+
+                        }
+                    }
+                    catch
+                    {
+                        errorCount++;
+                    }
+                }
+
+                if (removedCnt > 0)
+                    MessageBox.Show($"{removedCnt}件の画像をtrashフォルダに移動しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("対象のファイルはありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (errorCount > 0)
+                {
+                    MessageBox.Show($"{errorCount}件がエラーで失敗しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                lblProcessing.Visible = false;
+            }
+        }
     }
 }
