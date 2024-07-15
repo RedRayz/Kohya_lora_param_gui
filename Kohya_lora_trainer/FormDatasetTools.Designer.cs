@@ -423,6 +423,7 @@
             btnDeleteTrash.TabIndex = 2;
             btnDeleteTrash.Text = "trashを消去";
             btnDeleteTrash.UseVisualStyleBackColor = true;
+            btnDeleteTrash.Click += btnDeleteTrash_Click;
             // 
             // btnRemoveImgNoCap
             // 
@@ -432,6 +433,7 @@
             btnRemoveImgNoCap.TabIndex = 2;
             btnRemoveImgNoCap.Text = "画像がないキャプションを削除";
             btnRemoveImgNoCap.UseVisualStyleBackColor = true;
+            btnRemoveImgNoCap.Click += btnRemoveImgNoCap_Click;
             // 
             // btnRemoveDupNameImg
             // 

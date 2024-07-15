@@ -724,5 +724,93 @@ namespace Kohya_lora_trainer
 
             GC.Collect();
         }
+
+        private void btnRemoveImgNoCap_Click(object sender, EventArgs e)
+        {
+            string sourceDir = tbxSourceDir.Text;
+            int removedCnt = 0;
+            int errorCount = 0;
+            bool deleteImmediately = cbxDeleteImmediately.Checked;
+
+            if (!Directory.Exists(sourceDir) || !Directory.Exists(sourceDir))
+            {
+                MessageBox.Show("ディレクトリが見つかりません", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (MyUtils.IsSystemDirectory(sourceDir))
+            {
+                MessageBox.Show("データ破損防止のため、OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (MessageBox.Show("キャプションファイルだけで画像がないものを同階層のtrashフォルダに移動または完全に消去します。よろしいですか。", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (deleteImmediately && MessageBox.Show("完全に消去します。よろしいですか。", "確認", MessageBoxButtons.YesNo) != DialogResult.Yes)
+                {
+                    return;
+                }
+
+
+                lblProcessing.Visible = true;
+                Update();
+                //キャプションが入った場所
+                string[] files = Directory.GetFiles(sourceDir);
+                foreach (string file in files)
+                {
+                    try
+                    {
+                        string ext = Path.GetExtension(file).ToLower();
+                        if (ext == ".txt")
+                        {
+                            string path = sourceDir + "\\";
+                            string captionFile = Path.GetFileNameWithoutExtension(file);
+                            //同名の画像がない
+                            if (!File.Exists(sourceDir + "\\" + captionFile + ".png") && !File.Exists(sourceDir + "\\" + captionFile + ".jpg") && !File.Exists(sourceDir + "\\" + captionFile + ".jpeg"))
+                            {
+                                if (deleteImmediately)
+                                {
+                                    File.Delete(file);
+                                    removedCnt++;
+                                }
+                                else
+                                if (!File.Exists(sourceDir + "\\trash\\" + captionFile + ".txt"))
+                                {
+                                    if (!Directory.Exists(sourceDir + "\\trash"))
+                                    {
+                                        Directory.CreateDirectory(sourceDir + "\\trash");
+                                    }
+                                    //FileSystem.DeleteFileは重いので使わない
+                                    File.Move(file, sourceDir + "\\trash\\" + captionFile + ".txt");
+                                    removedCnt++;
+                                }
+
+                            }
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        errorCount++;
+                    }
+                }
+
+                lblProcessing.Visible = false;
+
+                if (removedCnt > 0)
+                    MessageBox.Show($"{removedCnt}件の画像をtrashフォルダに移動または消去しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("対象のファイルはありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (errorCount > 0)
+                {
+                    MessageBox.Show($"{errorCount}件がエラーで失敗しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void btnDeleteTrash_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
