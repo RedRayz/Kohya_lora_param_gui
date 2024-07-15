@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
+using System.Data.Common;
 
 namespace Kohya_lora_trainer
 {
@@ -132,11 +134,26 @@ namespace Kohya_lora_trainer
         }
 
         /// <summary>
-        /// accelerateのコマンド生成。
+        /// コマンド生成。
         /// </summary>
-        /// <returns>accelerateのコマンド</returns>
+        /// <returns>コマンド</returns>
         internal static string GenerateCommands()
         {
+            if(TrainParams.Current == null)
+            {
+                Debug.WriteLine("TrainParams is NULL");
+
+                return string.Empty;
+            }
+
+            string command = TrainParams.Current.CustomCommands.Trim();
+            command = command.Replace("\r\n", string.Empty);
+            command = command.Trim();
+            if (!string.IsNullOrWhiteSpace(command))
+            {
+                return command;
+            }
+
             StringBuilder sb = new StringBuilder();
             NetworkArgs.Clear();
 
@@ -1090,6 +1107,123 @@ namespace Kohya_lora_trainer
             {
                 Directory.CreateDirectory(document + @"\lora-gui");
             }
+        }
+
+        internal static bool ShuffleCaptions(string targetDir, int keepTokenCount, bool showMsg)
+        {
+            if (!Directory.Exists(targetDir))
+            {
+                if(showMsg)
+                    MessageBox.Show("ディレクトリが見つかりません", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            if (IsSystemDirectory(targetDir))
+            {
+                if (showMsg)
+                    MessageBox.Show("データ破損防止のため、OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+
+            if(keepTokenCount < 0)
+            {
+                if (showMsg)
+                    MessageBox.Show("トークン保持数に0以下は指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+
+            string[] files = Directory.GetFiles(targetDir);
+            foreach (string file in files)
+            {
+                string extension = Path.GetExtension(file);
+                if (string.IsNullOrEmpty(extension) || extension != ".txt")
+                    continue;
+                string txt = File.ReadAllText(file);
+
+                List<string> tags = new List<string>(txt.Split(", "));
+                if(tags.Count <= keepTokenCount)
+                {
+                    return false;
+                }
+
+
+                if (tags.Count > 0)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    for(int i = 0; i<keepTokenCount; i++)
+                    {
+                        sb.Append(tags[0]).Append(", ");
+                        tags.RemoveAt(0);
+                    }
+
+                    tags = tags.OrderBy(a => Guid.NewGuid()).ToList();
+
+                    for (int i = 0; i < tags.Count; i++)
+                    {
+                        sb.Append(tags[i]);
+                        if (i < tags.Count - 1)
+                        {
+                            sb.Append(", ");
+                        }
+                    }
+                    File.WriteAllText(file, sb.ToString());
+                }
+
+            }
+
+            return true;
+        }
+
+        public static bool IsSystemDirectory(string path)
+        {
+            string pth = path.ToLower();
+
+            if (pth.Contains(@"c:\windows") || pth.Contains("system"))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// PNGまたはJPEGのサイズを取得する。ファイルがないか破損している場合はSize.Emptyとなる。
+        /// </summary>
+        /// <param name="filePath">画像のパス。pngまたはjpg(jpeg)のみ</param>
+        /// <returns></returns>
+        public static Size GetImageSize(string filePath)
+        {
+            if (!File.Exists(filePath))
+                return Size.Empty;
+
+            string extension = Path.GetExtension(filePath).ToLower();
+
+            if (extension == ".jpg" || extension == ".jpeg" || extension == ".png")
+            {
+                try
+                {
+                    int height = 0;
+                    int width = 0;
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    {
+                        using (var image = Image.FromStream(fileStream, false, false))
+                        {
+                            height = image.Height;
+                            width = image.Width;
+                        }
+                    }
+
+                    return new Size(height, width);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    return Size.Empty;
+                }
+            }
+
+            return Size.Empty;
+
         }
     }
 }

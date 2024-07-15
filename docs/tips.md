@@ -141,4 +141,4 @@ LRは常に一定。非推奨。
 Bucketingが有効だと複数のBucketを1バッチにまとめられない影響でずれる場合あり。
 
 ## LoRAのファイルサイズに影響する設定
-ネットワーク次元数(DimまたはRank)、Conv2d拡張の使用(使用時はconv dimも)、LyCORIS使用時はLyCORISのアルゴリズムの種類、Unet/Tencの有無
+ネットワーク次元数(DimまたはRank)、Conv2d拡張の使用(使用時はconv dimも)、LyCORIS使用時はLyCORISのアルゴリズムの種類、Unet/Tencの有無、保存時の精度(--save_precision)

@@ -34,6 +34,7 @@
             btnCopyCmd = new Button();
             lblCountdown = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
+            lblProcessingCaptions = new Label();
             SuspendLayout();
             // 
             // btnStop
@@ -86,12 +87,23 @@
             // 
             timer1.Tick += timer1_Tick;
             // 
+            // lblProcessingCaptions
+            // 
+            lblProcessingCaptions.AutoSize = true;
+            lblProcessingCaptions.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblProcessingCaptions.Location = new Point(61, 93);
+            lblProcessingCaptions.Name = "lblProcessingCaptions";
+            lblProcessingCaptions.Size = new Size(167, 21);
+            lblProcessingCaptions.TabIndex = 7;
+            lblProcessingCaptions.Text = "キャプションのシャッフル中";
+            // 
             // TrainForm
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(280, 202);
             ControlBox = false;
+            Controls.Add(lblProcessingCaptions);
             Controls.Add(lblCountdown);
             Controls.Add(btnCopyCmd);
             Controls.Add(btnClose);
@@ -116,5 +128,6 @@
         private Button btnCopyCmd;
         private Label lblCountdown;
         private System.Windows.Forms.Timer timer1;
+        private Label lblProcessingCaptions;
     }
 }

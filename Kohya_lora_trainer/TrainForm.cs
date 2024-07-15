@@ -41,7 +41,7 @@ namespace Kohya_lora_trainer
                 UpdateCountdownText();
                 return;
             }
-
+            lblProcessingCaptions.Visible = false;
             if (BatchProcess.LogResultText && BatchProcess.IsRunning)
             {
                 StringBuilder ssb = new StringBuilder();
@@ -49,7 +49,14 @@ namespace Kohya_lora_trainer
 
                 BatchProcess.LogText += ssb.ToString();
             }
+            if(BatchProcess.ShuffleCaptionsBeforeTraining && BatchProcess.IsRunning)
+            {
+                lblProcessingCaptions.Visible = true;
+                Update();
+            }
 
+            BatchProcess.ShuffleCaptions();
+            lblProcessingCaptions.Visible = false;
             btnStop.Enabled = true;
             btnClose.Enabled = false;
             if (BatchProcess.IsRunning)
@@ -159,7 +166,11 @@ namespace Kohya_lora_trainer
                 hour = Math.Floor(hour);
                 min -= hour * 60;
                 BatchProcess.LogText += ", 終了時刻:" + DateTime.Now.ToString() + ", 経過時間: " + $"{hour}時間{min}分" + sec.ToString("0.000秒");
-                if (failed)
+                if (!string.IsNullOrWhiteSpace(TrainParams.Current.CustomCommands))
+                {
+                    BatchProcess.LogText += "\r\nコマンド実行のみ。";
+                }
+                else if (failed)
                 {
                     BatchProcess.LogText += "\r\n出力物がないためエラー落ちの可能性あり。";
                 }
@@ -174,7 +185,7 @@ namespace Kohya_lora_trainer
 
             if (BatchProcess.IsRunning)
             {
-                if (failed)
+                if (failed && string.IsNullOrWhiteSpace(TrainParams.Current.CustomCommands))
                 {
                     BatchProcess.FailCount++;
                 }

@@ -102,7 +102,7 @@ namespace Kohya_lora_trainer
             string oldPath = document + @"\autosave.xmlora";
             string newPath = document + @"\lora-gui\autosave.xmlora";
 
-            if(File.Exists(oldPath) && !File.Exists(newPath))
+            if (File.Exists(oldPath) && !File.Exists(newPath))
             {
                 File.Move(oldPath, newPath);
             }
@@ -129,6 +129,8 @@ namespace Kohya_lora_trainer
             MyUtils.LoadDefaultDirSettings();
 
             UpdateAllContents();
+
+            UpdateChecker.AutomaticCheckUpdate();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -410,7 +412,7 @@ namespace Kohya_lora_trainer
         {
             string str = string.IsNullOrEmpty(ScriptPath) ? Constants.CurrentSdScriptsPath : ScriptPath + "\\";
 
-            if (!HasScriptFile(str, true))
+            if (!HasScriptFile(str, true) || !IsCommandAvailable(true))
                 return;
 
             if (NotifyBadParams() != DialogResult.Yes)
@@ -445,20 +447,25 @@ namespace Kohya_lora_trainer
                 BatchProcess.FailCount = 0;
                 while (BatchProcess.BatchStack.Count > 0)
                 {
+                    string pth = BatchProcess.BatchStack.Pop();
                     if (!HasScriptFile(str, false))
                     {
-                        Debug.WriteLine("Skipping training. train_network.py not found");
+                        Debug.WriteLine("Skip training. train_network.py not found");
                         BatchProcess.LogText += TrainParams.Current.OutputPath + "\\" + TrainParams.Current.OutputName + ".safetensors\r\ntrain_network.pyがないためスキップ\r\n\r\n";
 
                         BatchProcess.SkippedCount++;
                         continue;
                     }
 
-                    string pth = BatchProcess.BatchStack.Pop();
+                    if (string.IsNullOrWhiteSpace(pth))
+                    {
+                        continue;
+                    }
+
                     if (!File.Exists(pth))
                     {
                         Debug.WriteLine("Skipping training. Invalid path: " + pth);
-                        if (!string.IsNullOrEmpty(pth))
+                        if (!string.IsNullOrWhiteSpace(pth))
                         {
                             BatchProcess.LogText += pth + "\r\nプリセットがないためスキップ\r\n\r\n";
                         }
@@ -468,6 +475,19 @@ namespace Kohya_lora_trainer
                     }
 
                     LoadPreset(pth, false);
+
+                    if (!IsCommandAvailable(false))
+                    {
+                        Debug.WriteLine("Skipped. Invalid commands");
+                        if (!string.IsNullOrWhiteSpace(pth))
+                        {
+                            BatchProcess.LogText += pth + "\r\nコマンドが不適切なためスキップ\r\n\r\n";
+                        }
+
+                        BatchProcess.SkippedCount++;
+                        continue;
+                    }
+
                     if (!IsTrainingAvailable(false))
                     {
                         Debug.WriteLine("Skipping training. Invalid params in: " + pth);
@@ -541,6 +561,10 @@ namespace Kohya_lora_trainer
 
         private bool HasScriptFile(string str, bool showMsg)
         {
+#if DEBUG
+            return true;
+#endif
+
             if (!File.Exists(str + "train_network.py"))
             {
                 if (showMsg)
@@ -559,12 +583,45 @@ namespace Kohya_lora_trainer
         }
 
         /// <summary>
+        /// カスタムコマンドは適切または未指定ですか？
+        /// </summary>
+        /// <param name="showMsg">適切でない場合にメッセージボックスを表示する。</param>
+        /// <returns></returns>
+        private bool IsCommandAvailable(bool showMsg)
+        {
+            string command = TrainParams.Current.CustomCommands.Trim();
+            command = command.Replace("\r\n", string.Empty);
+            command = command.Trim();
+            if (string.IsNullOrWhiteSpace(command))
+            {
+                return true;
+            }
+            else
+            {
+                if ((!command.StartsWith("python") && !command.StartsWith("accelerate")) || command.Contains("&&"))
+                {
+                    if (showMsg)
+                        MessageBox.Show("そのコマンドは使用できません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                return true;
+            }
+        }
+
+
+        /// <summary>
         /// 学習を開始できる設定ですか？
         /// </summary>
         /// <param name="showMsg">適切でない設定についてメッセージボックスを表示する。</param>
         /// <returns></returns>
         private bool IsTrainingAvailable(bool showMsg)
         {
+            string command = TrainParams.Current.CustomCommands.Trim();
+            command = command.Replace("\r\n", string.Empty);
+            if (!string.IsNullOrWhiteSpace(command))
+            {
+                return true;
+            }
             if (IsInvalidImageFolder || IsInvalidRegFolder || IsInvalidOutputName || IsInvalidLR || IsInvalidResolution)
             {
                 if (showMsg)
@@ -572,13 +629,6 @@ namespace Kohya_lora_trainer
                     MessageBox.Show("設定が間違っています。設定を見直してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-                return false;
-            }
-
-            if (!Directory.Exists(Constants.CurrentSdScriptsPath + @"venv"))
-            {
-                if (showMsg)
-                    MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。\r\nユーティリティからvenvの再生成ができます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -645,17 +695,12 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
-            //if (TrainParams.Current.StableDiffusionType == SDType.XL && (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim))
-            //{
-            //    if (showMsg)
-            //    {
-            //        if(TrainParams.Current.UseBlockWeight)
-            //            MessageBox.Show("SDXLでは層別学習は非対応と思われます。\r\n現時点で正しく動作しません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //        if(TrainParams.Current.UseBlockDim)
-            //            MessageBox.Show("SDXLでは層別学習は非対応と思われます。\r\n現時点で正しく動作しません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    }
-            //    return false;
-            //}
+            if (!Directory.Exists(Constants.CurrentSdScriptsPath + @"venv"))
+            {
+                if (showMsg)
+                    MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。\r\nユーティリティからvenvの再生成ができます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
             return true;
         }
@@ -704,14 +749,6 @@ namespace Kohya_lora_trainer
             TrainParams.Current.CheckBrokenBlockDim();
             TrainParams.Current.ResetObsoleteOptions();
             UpdateAllContents();
-        }
-
-
-        private void btnUtilities_Click(object sender, EventArgs e)
-        {
-            Form frm = new FormUtils();
-            frm.ShowDialog();
-            frm.Dispose();
         }
 
         private void tbxOutputPath_TextChanged(object sender, EventArgs e)
@@ -821,13 +858,6 @@ namespace Kohya_lora_trainer
             {
                 Debug.WriteLine("自動保存書き込みできない");
             }
-        }
-
-        private void btnLeco_Click(object sender, EventArgs e)
-        {
-            Form frm = new FormLECO();
-            frm.ShowDialog();
-            frm.Dispose();
         }
 
         private void cbxSDType_SelectedIndexChanged(object sender, EventArgs e)
@@ -1119,6 +1149,8 @@ namespace Kohya_lora_trainer
 
             cbxEpochOrStep.SelectedIndex = TrainParams.Current.IsEpoch ? 0 : 1;
 
+            tbxCommand.Text = TrainParams.Current.CustomCommands;
+
             UpdateTotalStepCount();
         }
 
@@ -1289,6 +1321,37 @@ namespace Kohya_lora_trainer
         private void btnLoadPreset_DragEnter(object sender, DragEventArgs e)
         {
             MyUtils.CommonFileDragEnterEvent(e, ".xmlora");
+        }
+
+        private void tbxCommand_TextChanged(object sender, EventArgs e)
+        {
+            TrainParams.Current.CustomCommands = tbxCommand.Text.Replace("\r\n", string.Empty);
+        }
+
+        private void データセット編集ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ユーティリティToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = new FormUtils();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+
+        private void lECOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = new FormLECO();
+            frm.ShowDialog();
+            frm.Dispose();
+        }
+
+        private void データセット編集選別ツールToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = new FormDatasetTools();
+            frm.ShowDialog();
+            frm.Dispose();
         }
     }
 }

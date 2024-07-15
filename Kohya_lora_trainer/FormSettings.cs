@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
 #pragma warning disable CA1416
@@ -98,7 +100,7 @@ namespace Kohya_lora_trainer
 
         private void btnClearPreset_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnSelectVAE_Click(object sender, EventArgs e)
@@ -176,6 +178,8 @@ namespace Kohya_lora_trainer
             MyUtils.SaveDefaultDirSettings();
 
             Properties.Settings.Default.Save();
+
+            Registry.SetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "UpdateCheckInterval", (int)nudUpdateCheckInterval.Value);
             Close();
         }
 
@@ -191,6 +195,9 @@ namespace Kohya_lora_trainer
             tbxTensorboard.Text = MyUtils.GetDefaultDir("TensorboardDir");
             tbxConfig.Text = MyUtils.GetDefaultDir("ConfigDir");
             tbxLoRA.Text = MyUtils.GetDefaultDir("LoRADir");
+            int checkInterval = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "UpdateCheckInterval", 7);
+            nudUpdateCheckInterval.Value = checkInterval;
+            lblCheckingUpdate.Visible = false;
         }
 
         private void btnLoRA_Click(object sender, EventArgs e)
@@ -245,6 +252,39 @@ namespace Kohya_lora_trainer
         private void btnClearLoadPreset_Click(object sender, EventArgs e)
         {
             tbxLoadPreset.Text = string.Empty;
+        }
+
+        private void btnCheckUpdateNow_Click(object sender, EventArgs e)
+        {
+            lblCheckingUpdate.Visible = true;
+            Update();
+            bool hasNewUpdate = UpdateChecker.CheckUpdate();
+            lblCheckingUpdate.Visible = false;
+            if (hasNewUpdate) 
+            {
+                if(MessageBox.Show("新しいバージョンのGUIが利用可能です。\r\nGUIの配布ページを開きますか?", "Info", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        //.NET CoreではUseShellExecute=trueにしないとファイルがないと怒る
+                        Process.Start(new ProcessStartInfo
+                        {
+                            UseShellExecute = true,
+                            FileName = "https://github.com/RedRayz/Kohya_lora_param_gui/releases",
+                        });
+                    }
+                    catch
+                    {
+                        MessageBox.Show("ブラウザを開けません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("更新はありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }
