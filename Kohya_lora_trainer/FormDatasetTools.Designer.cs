@@ -240,9 +240,10 @@
             // 
             // tbxBooruTag
             // 
+            tbxBooruTag.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             tbxBooruTag.Location = new Point(27, 125);
             tbxBooruTag.Name = "tbxBooruTag";
-            tbxBooruTag.Size = new Size(449, 23);
+            tbxBooruTag.Size = new Size(449, 22);
             tbxBooruTag.TabIndex = 3;
             // 
             // tbxTargetDir
@@ -266,6 +267,7 @@
             // 
             // textBox1
             // 
+            textBox1.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
             textBox1.ImeMode = ImeMode.NoControl;
             textBox1.Location = new Point(22, 286);
             textBox1.Multiline = true;
@@ -505,7 +507,7 @@
             MinimizeBox = false;
             Name = "FormDatasetTools";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "データセット編集/選別ツール";
+            Text = "データセット一括編集/選別ツール";
             Load += FormDatasetTools_Load;
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
