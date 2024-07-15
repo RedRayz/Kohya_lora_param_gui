@@ -475,7 +475,7 @@ namespace Kohya_lora_trainer
                 }
                 lblProcessing.Visible = false;
                 if (movedCnt > 0)
-                    MessageBox.Show($"{movedCnt}件のタグを処理しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"{movedCnt}件のファイルを処理しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
                     MessageBox.Show("対象のファイルはありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -583,6 +583,75 @@ namespace Kohya_lora_trainer
                 }
 
                 GC.Collect();
+            }
+        }
+
+        private void btnAddTag_Click(object sender, EventArgs e)
+        {
+            if (!Directory.Exists(tbxTargetDir.Text) || string.IsNullOrEmpty(tbxBooruTag.Text))
+            {
+                MessageBox.Show("ディレクトリが見つからないかタグが未入力です。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (MyUtils.IsSystemDirectory(tbxTargetDir.Text))
+            {
+                MessageBox.Show("データ破損防止のため、OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (MessageBox.Show("指定したタグを最後尾に追加します。\r\nこの操作はもとに戻せません。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (!Directory.Exists(tbxTargetDir.Text) || string.IsNullOrEmpty(tbxBooruTag.Text))
+                {
+                    return;
+                }
+                lblProcessing.Visible = true;
+                Update();
+                int movedCnt = 0;
+                string booru = tbxBooruTag.Text;
+                string[] files = Directory.GetFiles(tbxTargetDir.Text);
+
+                if (cbxUseRegEx.Checked)
+                {
+                    MessageBox.Show("正規表現のチェックを外してください。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    lblProcessing.Visible = false;
+                    return;
+                }
+
+
+                foreach (string file in files)
+                {
+                    string extension = Path.GetExtension(file);
+                    if (string.IsNullOrEmpty(extension) || extension != ".txt")
+                        continue;
+                    string txt = File.ReadAllText(file);
+                    if (txt.Contains(booru))
+                        continue;
+
+
+                    List<string> tags = new List<string>(txt.Split(", "));
+
+                    if (tags.Count > 0)
+                    {
+                        tags.Add(booru);
+                        StringBuilder sb = new StringBuilder();
+                        for (int i = 0; i < tags.Count; i++)
+                        {
+                            sb.Append(tags[i]);
+                            if (i < tags.Count - 1)
+                            {
+                                sb.Append(", ");
+                            }
+                        }
+                        File.WriteAllText(file, sb.ToString());
+                        movedCnt++;
+                    }
+
+                }
+                lblProcessing.Visible = false;
+                if (movedCnt > 0)
+                    MessageBox.Show($"{movedCnt}件のファイルに追加しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("対象のファイルはありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

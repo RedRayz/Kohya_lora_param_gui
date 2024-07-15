@@ -167,6 +167,7 @@
             btnAddTag.TabIndex = 6;
             btnAddTag.Text = "指定タグを追加";
             btnAddTag.UseVisualStyleBackColor = true;
+            btnAddTag.Click += btnAddTag_Click;
             // 
             // btnShowTagCnt
             // 
