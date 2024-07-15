@@ -598,6 +598,7 @@ namespace Kohya_lora_trainer
                 MessageBox.Show("データ破損防止のため、OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+
             if (MessageBox.Show("指定したタグを最後尾に追加します。\r\nこの操作はもとに戻せません。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (!Directory.Exists(tbxTargetDir.Text) || string.IsNullOrEmpty(tbxBooruTag.Text))
@@ -624,25 +625,28 @@ namespace Kohya_lora_trainer
                     if (string.IsNullOrEmpty(extension) || extension != ".txt")
                         continue;
                     string txt = File.ReadAllText(file);
-                    if (txt.Contains(booru))
-                        continue;
-
+                    bool skip = false;
 
                     List<string> tags = new List<string>(txt.Split(", "));
 
                     if (tags.Count > 0)
                     {
-                        tags.Add(booru);
-                        StringBuilder sb = new StringBuilder();
                         for (int i = 0; i < tags.Count; i++)
                         {
-                            sb.Append(tags[i]);
-                            if (i < tags.Count - 1)
+                            if(tags[i] == booru)
                             {
-                                sb.Append(", ");
+                                skip = true;
+                                Debug.WriteLine("Skipped(L642)");
+                                break;
                             }
                         }
-                        File.WriteAllText(file, sb.ToString());
+
+                        if (skip)
+                        {
+                            continue;
+                        }
+                        //tags.Add(booru);
+                        File.WriteAllText(file, txt + ", " + booru);
                         movedCnt++;
                     }
 
