@@ -118,11 +118,11 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(477, 147);
+            label5.Location = new Point(481, 149);
             label5.Name = "label5";
-            label5.Size = new Size(125, 45);
+            label5.Size = new Size(175, 45);
             label5.TabIndex = 10;
-            label5.Text = "注意:正規表現の検索に\r\n15ms以上かかると\r\nスキップします。";
+            label5.Text = "注意:処理が遅くなります。\r\nまた、正規表現の検索に20ms以上\r\nかかるとスキップします。";
             // 
             // nudKeepTokens
             // 
@@ -298,10 +298,10 @@
             tabPage2.Controls.Add(btnRemoveDupNameImg);
             tabPage2.Controls.Add(tbxSourceDir);
             tabPage2.Controls.Add(label6);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(662, 434);
+            tabPage2.Size = new Size(662, 432);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "ファイル処理";
             tabPage2.UseVisualStyleBackColor = true;

@@ -135,7 +135,7 @@ namespace Kohya_lora_trainer
                 {
                     try
                     {
-                        reg = new Regex(booru, RegexOptions.Compiled, TimeSpan.FromMilliseconds(16));
+                        reg = new Regex(booru, RegexOptions.Compiled, TimeSpan.FromMilliseconds(20));
                     }
                     catch
                     {
@@ -274,7 +274,7 @@ namespace Kohya_lora_trainer
                 {
                     try
                     {
-                        reg = new Regex(boorutag, RegexOptions.Compiled, TimeSpan.FromMilliseconds(16));
+                        reg = new Regex(boorutag, RegexOptions.Compiled, TimeSpan.FromMilliseconds(20));
                     }
                     catch
                     {
@@ -405,7 +405,7 @@ namespace Kohya_lora_trainer
                 {
                     try
                     {
-                        reg = new Regex(booru, RegexOptions.Compiled, TimeSpan.FromMilliseconds(16));
+                        reg = new Regex(booru, RegexOptions.Compiled, TimeSpan.FromMilliseconds(20));
                     }
                     catch
                     {
@@ -509,7 +509,7 @@ namespace Kohya_lora_trainer
                 {
                     try
                     {
-                        reg = new Regex(booru, RegexOptions.Compiled, TimeSpan.FromMilliseconds(16));
+                        reg = new Regex(booru, RegexOptions.Compiled, TimeSpan.FromMilliseconds(20));
                     }
                     catch
                     {
