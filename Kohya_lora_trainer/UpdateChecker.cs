@@ -93,7 +93,13 @@ namespace Kohya_lora_trainer
 
         internal static void AutomaticCheckUpdate()
         {
-            int checkInterval = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "UpdateCheckInterval", 7);
+            int? checkInterval = (int?)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "UpdateCheckInterval", 7);
+            if(checkInterval == null)
+            {
+                Debug.WriteLine("Auto update check failed: checkInterval is null.");
+                return;
+            }
+
             if (checkInterval == 0)
                 return;
 

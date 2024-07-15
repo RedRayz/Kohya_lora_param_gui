@@ -51,7 +51,7 @@ namespace Kohya_lora_trainer
             btnCustomScriptPath.Visible = false;
             lblScriptPathDesc.Visible = false;
             btnInstaller.Visible = false;
-
+            MyUtils.InitRegistry();
             //一応LoRAEasyTrainingのフォルダ名にも対応させる
             if (Directory.Exists(@"..\sd-scripts\"))
             {
@@ -86,6 +86,7 @@ namespace Kohya_lora_trainer
                 lblScriptPathDesc.Visible = true;
                 lblScriptPathDesc.ForeColor = Color.Red;
                 lblScriptPathDesc.Text = "train_network.pyがみつかりません";
+                ScriptPath = string.Empty;
 #endif
             }
             else
@@ -114,7 +115,7 @@ namespace Kohya_lora_trainer
                     XmlSerializer se = new XmlSerializer(typeof(TrainParams));
                     using (StreamReader sr = new StreamReader(newPath, new UTF8Encoding(false)))
                     {
-                        TrainParams.Current = (TrainParams)se.Deserialize(sr);
+                        TrainParams.Current = (TrainParams?)se.Deserialize(sr);
                     }
                 }
                 catch
@@ -735,7 +736,7 @@ namespace Kohya_lora_trainer
                 XmlSerializer se = new XmlSerializer(typeof(TrainParams));
                 using (StreamReader sr = new StreamReader(path, new System.Text.UTF8Encoding(false)))
                 {
-                    TrainParams.Current = (TrainParams)se.Deserialize(sr);
+                    TrainParams.Current = (TrainParams?)se.Deserialize(sr);
                 }
 
             }
