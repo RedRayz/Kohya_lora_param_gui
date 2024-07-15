@@ -234,9 +234,9 @@
             label2.AutoSize = true;
             label2.Location = new Point(27, 18);
             label2.Name = "label2";
-            label2.Size = new Size(261, 15);
+            label2.Size = new Size(446, 15);
             label2.TabIndex = 4;
-            label2.Text = "ソースディレクトリ(画像とキャプション/タグが入った場所)";
+            label2.Text = "ソースディレクトリ(画像とキャプション/タグが入った場所)、直接入力かフォルダをドロップして指定";
             // 
             // tbxBooruTag
             // 
@@ -468,9 +468,9 @@
             label6.AutoSize = true;
             label6.Location = new Point(32, 21);
             label6.Name = "label6";
-            label6.Size = new Size(261, 15);
+            label6.Size = new Size(446, 15);
             label6.TabIndex = 0;
-            label6.Text = "ソースディレクトリ(画像とキャプション/タグが入った場所)";
+            label6.Text = "ソースディレクトリ(画像とキャプション/タグが入った場所)、直接入力かフォルダをドロップして指定";
             // 
             // lblProcessing
             // 
