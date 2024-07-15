@@ -625,24 +625,10 @@ namespace Kohya_lora_trainer
                     if (string.IsNullOrEmpty(extension) || extension != ".txt")
                         continue;
                     string txt = File.ReadAllText(file);
-                    bool skip = false;
 
                     List<string> tags = new List<string>(txt.Split(", "));
-
-                    if (tags.Count > 0)
+                    if(tags.IndexOf(booru) == -1)
                     {
-                        for (int i = 0; i < tags.Count; i++)
-                        {
-                            if (tags[i] == booru)
-                            {
-                                skip = true;
-                                break;
-                            }
-                        }
-
-                        if (skip)
-                            continue;
-
                         File.WriteAllText(file, txt + ", " + booru);
                         movedCnt++;
                     }
