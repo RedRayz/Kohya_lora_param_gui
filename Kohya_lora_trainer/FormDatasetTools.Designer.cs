@@ -406,6 +406,7 @@
             btnRemoveImgLessPixels.TabIndex = 2;
             btnRemoveImgLessPixels.Text = "指定未満の画素数の画像を削除";
             btnRemoveImgLessPixels.UseVisualStyleBackColor = true;
+            btnRemoveImgLessPixels.Click += btnRemoveImgLessPixels_Click;
             // 
             // btnRemoveImgLessSize
             // 

@@ -1184,5 +1184,46 @@ namespace Kohya_lora_trainer
 
             return false;
         }
+
+        /// <summary>
+        /// PNGまたはJPEGのサイズを取得する。ファイルがないか破損している場合はSize.Emptyとなる。
+        /// </summary>
+        /// <param name="filePath">画像のパス。pngまたはjpg(jpeg)のみ</param>
+        /// <returns></returns>
+        public static Size GetImageSize(string filePath)
+        {
+            if (!File.Exists(filePath))
+                return Size.Empty;
+
+            string extension = Path.GetExtension(filePath).ToLower();
+
+            if (extension == ".jpg" || extension == ".jpeg" || extension == ".png")
+            {
+                try
+                {
+                    int height = 0;
+                    int width = 0;
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    {
+                        using (var image = Image.FromStream(fileStream, false, false))
+                        {
+                            height = image.Height;
+                            width = image.Width;
+                        }
+                    }
+
+                    return new Size(height, width);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    return Size.Empty;
+                }
+            }
+
+            return Size.Empty;
+
+        }
     }
 }
