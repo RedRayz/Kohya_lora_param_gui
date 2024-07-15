@@ -28,6 +28,9 @@ namespace Kohya_lora_trainer
         private void btnApplyChanges_Click(object sender, EventArgs e)
         {
             BatchProcess.LogResultText = cbxGenerateLogText.Checked;
+            BatchProcess.ShuffleCaptionsBeforeTraining = cbxShuffleCaptionsBefore.Checked;
+            BatchProcess.KeepTokensCount = (int)nudKeepTokens.Value;
+
             if (string.IsNullOrEmpty(tbxPrestList.Text))
             {
                 BatchProcess.BatchStack.Clear();
@@ -63,6 +66,8 @@ namespace Kohya_lora_trainer
         {
             tbxPrestList.Text = PresetListText;
             cbxGenerateLogText.Checked = BatchProcess.LogResultText;
+            cbxShuffleCaptionsBefore.Checked = BatchProcess.ShuffleCaptionsBeforeTraining;
+            nudKeepTokens.Value = BatchProcess.KeepTokensCount;
         }
     }
 }

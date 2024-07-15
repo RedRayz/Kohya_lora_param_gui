@@ -41,7 +41,7 @@ namespace Kohya_lora_trainer
                 UpdateCountdownText();
                 return;
             }
-
+            lblProcessingCaptions.Visible = false;
             if (BatchProcess.LogResultText && BatchProcess.IsRunning)
             {
                 StringBuilder ssb = new StringBuilder();
@@ -49,7 +49,14 @@ namespace Kohya_lora_trainer
 
                 BatchProcess.LogText += ssb.ToString();
             }
+            if(BatchProcess.ShuffleCaptionsBeforeTraining && BatchProcess.IsRunning)
+            {
+                lblProcessingCaptions.Visible = true;
+                Update();
+            }
 
+            BatchProcess.ShuffleCaptions();
+            lblProcessingCaptions.Visible = false;
             btnStop.Enabled = true;
             btnClose.Enabled = false;
             if (BatchProcess.IsRunning)

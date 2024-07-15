@@ -312,7 +312,7 @@ namespace Kohya_lora_trainer
                 if (string.IsNullOrEmpty(path))
                     return;
 
-                if (path.Contains(@"C:\Windows"))
+                if (MyUtils.IsSystemDirectory(path))
                 {
                     MessageBox.Show("OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;

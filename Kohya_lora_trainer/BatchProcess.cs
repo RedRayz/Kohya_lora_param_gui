@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +18,8 @@ namespace Kohya_lora_trainer
         public static int CompletedCount = 0;
         public static int FailCount = 0;
         public static string LogText = string.Empty;
+        public static bool ShuffleCaptionsBeforeTraining = false;
+        public static int KeepTokensCount = 0;
 
         public static void LoadBatchPresetText(string text)
         {
@@ -37,6 +41,17 @@ namespace Kohya_lora_trainer
             for (int i = lines.Count - 1; i >= 0; i--)
             {
                 BatchStack.Push(lines[i]);
+            }
+        }
+
+        public static void ShuffleCaptions()
+        {
+            if (!ShuffleCaptionsBeforeTraining || TrainParams.Current == null || !IsRunning)
+                return;
+            string[] subDirs = Directory.GetDirectories(TrainParams.Current.TrainImagePath);
+            foreach (string dir in subDirs)
+            {
+                MyUtils.ShuffleCaptions(dir, KeepTokensCount, false);
             }
         }
     }

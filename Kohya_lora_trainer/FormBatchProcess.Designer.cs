@@ -35,6 +35,17 @@
             btnAddPreset = new Button();
             cbxGenerateLogText = new CheckBox();
             label2 = new Label();
+            tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            tabPage2 = new TabPage();
+            label4 = new Label();
+            nudKeepTokens = new NumericUpDown();
+            label3 = new Label();
+            cbxShuffleCaptionsBefore = new CheckBox();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudKeepTokens).BeginInit();
             SuspendLayout();
             // 
             // tbxPrestList
@@ -48,7 +59,7 @@
             // 
             // label1
             // 
-            label1.Location = new Point(368, 12);
+            label1.Location = new Point(5, 3);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(277, 182);
@@ -91,7 +102,7 @@
             // cbxGenerateLogText
             // 
             cbxGenerateLogText.AutoSize = true;
-            cbxGenerateLogText.Location = new Point(368, 196);
+            cbxGenerateLogText.Location = new Point(17, 16);
             cbxGenerateLogText.Margin = new Padding(2);
             cbxGenerateLogText.Name = "cbxGenerateLogText";
             cbxGenerateLogText.Size = new Size(158, 19);
@@ -102,24 +113,97 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(368, 217);
+            label2.Location = new Point(17, 37);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
             label2.Size = new Size(202, 45);
             label2.TabIndex = 5;
             label2.Text = "学習時間などを\r\nドキュメントフォルダーにbatchlog-日付.txt\r\nとして書き出します。";
             // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Location = new Point(369, 12);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(285, 303);
+            tabControl1.TabIndex = 6;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(label1);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(277, 275);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "説明";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Controls.Add(label4);
+            tabPage2.Controls.Add(nudKeepTokens);
+            tabPage2.Controls.Add(label3);
+            tabPage2.Controls.Add(cbxShuffleCaptionsBefore);
+            tabPage2.Controls.Add(label2);
+            tabPage2.Controls.Add(cbxGenerateLogText);
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(277, 275);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "オプション";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(11, 218);
+            label4.Name = "label4";
+            label4.Size = new Size(77, 15);
+            label4.TabIndex = 7;
+            label4.Text = "トークン保持数";
+            // 
+            // nudKeepTokens
+            // 
+            nudKeepTokens.Location = new Point(94, 216);
+            nudKeepTokens.Maximum = new decimal(new int[] { 200, 0, 0, 0 });
+            nudKeepTokens.Name = "nudKeepTokens";
+            nudKeepTokens.Size = new Size(97, 23);
+            nudKeepTokens.TabIndex = 6;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(17, 129);
+            label3.Margin = new Padding(2, 0, 2, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(197, 75);
+            label3.TabIndex = 5;
+            label3.Text = "各プリセットの学習を開始する前に\r\nキャプションファイル内のタグを\r\nシャッフルします。\r\ncache_text_encoder_output使用時に\r\n有用な機能となります。";
+            // 
+            // cbxShuffleCaptionsBefore
+            // 
+            cbxShuffleCaptionsBefore.AutoSize = true;
+            cbxShuffleCaptionsBefore.Location = new Point(17, 108);
+            cbxShuffleCaptionsBefore.Margin = new Padding(2);
+            cbxShuffleCaptionsBefore.Name = "cbxShuffleCaptionsBefore";
+            cbxShuffleCaptionsBefore.Size = new Size(212, 19);
+            cbxShuffleCaptionsBefore.TabIndex = 4;
+            cbxShuffleCaptionsBefore.Text = "学習開始直前にキャプションのシャッフル";
+            cbxShuffleCaptionsBefore.UseVisualStyleBackColor = true;
+            // 
             // FormBatchProcess
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(658, 387);
-            Controls.Add(label2);
-            Controls.Add(cbxGenerateLogText);
+            ClientSize = new Size(668, 387);
+            Controls.Add(tabControl1);
             Controls.Add(btnAddPreset);
             Controls.Add(btnApplyChanges);
             Controls.Add(btnDiscardChanges);
-            Controls.Add(label1);
             Controls.Add(tbxPrestList);
             Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -129,6 +213,11 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Batch Process";
             Load += FormBatchProcess_Load;
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudKeepTokens).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -142,5 +231,12 @@
         private Button btnAddPreset;
         private CheckBox cbxGenerateLogText;
         private Label label2;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private Label label4;
+        private NumericUpDown nudKeepTokens;
+        private Label label3;
+        private CheckBox cbxShuffleCaptionsBefore;
     }
 }
