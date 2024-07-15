@@ -176,6 +176,7 @@
             btnShowTagCnt.TabIndex = 6;
             btnShowTagCnt.Text = "指定タグの出現回数を表示";
             btnShowTagCnt.UseVisualStyleBackColor = true;
+            btnShowTagCnt.Click += btnShowTagCnt_Click;
             // 
             // btnRemoveTag
             // 
