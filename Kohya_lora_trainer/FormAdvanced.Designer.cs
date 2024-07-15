@@ -832,7 +832,7 @@ namespace Kohya_lora_trainer
             nudIpNoiseGamma.Name = "nudIpNoiseGamma";
             nudIpNoiseGamma.Size = new Size(94, 23);
             nudIpNoiseGamma.TabIndex = 49;
-            toolTip1.SetToolTip(nudIpNoiseGamma, "Noise offsetと同様の効果");
+            toolTip1.SetToolTip(nudIpNoiseGamma, "正則化にinput perturbation noiseを使用する");
             // 
             // cbxAdvancedTrain
             // 
@@ -1888,9 +1888,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(label11);
             pageMisc.Controls.Add(label6);
             pageMisc.Controls.Add(nudClipSkip);
-            pageMisc.Location = new Point(4, 24);
+            pageMisc.Location = new Point(4, 26);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(612, 343);
+            pageMisc.Size = new Size(612, 341);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
