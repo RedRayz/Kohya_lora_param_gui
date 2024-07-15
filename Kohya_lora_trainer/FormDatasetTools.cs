@@ -633,19 +633,16 @@ namespace Kohya_lora_trainer
                     {
                         for (int i = 0; i < tags.Count; i++)
                         {
-                            if(tags[i] == booru)
+                            if (tags[i] == booru)
                             {
                                 skip = true;
-                                Debug.WriteLine("Skipped(L642)");
                                 break;
                             }
                         }
 
                         if (skip)
-                        {
                             continue;
-                        }
-                        //tags.Add(booru);
+
                         File.WriteAllText(file, txt + ", " + booru);
                         movedCnt++;
                     }

@@ -67,6 +67,7 @@
             label6 = new Label();
             lblProcessing = new Label();
             btnCloseWindow = new Button();
+            label9 = new Label();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudKeepTokens).BeginInit();
@@ -119,9 +120,9 @@
             label5.AutoSize = true;
             label5.Location = new Point(477, 147);
             label5.Name = "label5";
-            label5.Size = new Size(175, 30);
+            label5.Size = new Size(125, 45);
             label5.TabIndex = 10;
-            label5.Text = "注意:正規表現の検索に\r\n15ms以上かかるとエラーになります。";
+            label5.Text = "注意:正規表現の検索に\r\n15ms以上かかると\r\nスキップします。";
             // 
             // nudKeepTokens
             // 
@@ -308,7 +309,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(378, 261);
+            label8.Location = new Point(376, 282);
             label8.Name = "label8";
             label8.Size = new Size(19, 15);
             label8.TabIndex = 5;
@@ -317,7 +318,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(376, 193);
+            label7.Location = new Point(374, 214);
             label7.Name = "label7";
             label7.Size = new Size(21, 15);
             label7.TabIndex = 5;
@@ -325,7 +326,7 @@
             // 
             // nudTagsCount
             // 
-            nudTagsCount.Location = new Point(250, 293);
+            nudTagsCount.Location = new Point(248, 314);
             nudTagsCount.Maximum = new decimal(new int[] { 200, 0, 0, 0 });
             nudTagsCount.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudTagsCount.Name = "nudTagsCount";
@@ -335,7 +336,7 @@
             // 
             // nudNumRemoveRandomly
             // 
-            nudNumRemoveRandomly.Location = new Point(250, 259);
+            nudNumRemoveRandomly.Location = new Point(248, 280);
             nudNumRemoveRandomly.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             nudNumRemoveRandomly.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudNumRemoveRandomly.Name = "nudNumRemoveRandomly";
@@ -345,7 +346,7 @@
             // 
             // nudPixels
             // 
-            nudPixels.Location = new Point(250, 225);
+            nudPixels.Location = new Point(248, 246);
             nudPixels.Maximum = new decimal(new int[] { 100000000, 0, 0, 0 });
             nudPixels.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudPixels.Name = "nudPixels";
@@ -355,7 +356,7 @@
             // 
             // nudFileSize
             // 
-            nudFileSize.Location = new Point(250, 191);
+            nudFileSize.Location = new Point(248, 212);
             nudFileSize.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             nudFileSize.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudFileSize.Name = "nudFileSize";
@@ -366,7 +367,7 @@
             // cbxDeleteImmediately
             // 
             cbxDeleteImmediately.AutoSize = true;
-            cbxDeleteImmediately.Location = new Point(376, 74);
+            cbxDeleteImmediately.Location = new Point(374, 95);
             cbxDeleteImmediately.Name = "cbxDeleteImmediately";
             cbxDeleteImmediately.Size = new Size(74, 19);
             cbxDeleteImmediately.TabIndex = 3;
@@ -375,7 +376,7 @@
             // 
             // btnRemoveCapNoImg
             // 
-            btnRemoveCapNoImg.Location = new Point(190, 102);
+            btnRemoveCapNoImg.Location = new Point(188, 123);
             btnRemoveCapNoImg.Name = "btnRemoveCapNoImg";
             btnRemoveCapNoImg.Size = new Size(180, 28);
             btnRemoveCapNoImg.TabIndex = 2;
@@ -385,7 +386,7 @@
             // 
             // btnRemoveLessTags
             // 
-            btnRemoveLessTags.Location = new Point(32, 293);
+            btnRemoveLessTags.Location = new Point(30, 314);
             btnRemoveLessTags.Name = "btnRemoveLessTags";
             btnRemoveLessTags.Size = new Size(212, 28);
             btnRemoveLessTags.TabIndex = 2;
@@ -395,7 +396,7 @@
             // 
             // btnRemoveRandomly
             // 
-            btnRemoveRandomly.Location = new Point(32, 259);
+            btnRemoveRandomly.Location = new Point(30, 280);
             btnRemoveRandomly.Name = "btnRemoveRandomly";
             btnRemoveRandomly.Size = new Size(212, 28);
             btnRemoveRandomly.TabIndex = 2;
@@ -405,7 +406,7 @@
             // 
             // btnRemoveImgLessPixels
             // 
-            btnRemoveImgLessPixels.Location = new Point(32, 225);
+            btnRemoveImgLessPixels.Location = new Point(30, 246);
             btnRemoveImgLessPixels.Name = "btnRemoveImgLessPixels";
             btnRemoveImgLessPixels.Size = new Size(212, 28);
             btnRemoveImgLessPixels.TabIndex = 2;
@@ -415,7 +416,7 @@
             // 
             // btnRemoveImgLessSize
             // 
-            btnRemoveImgLessSize.Location = new Point(32, 191);
+            btnRemoveImgLessSize.Location = new Point(30, 212);
             btnRemoveImgLessSize.Name = "btnRemoveImgLessSize";
             btnRemoveImgLessSize.Size = new Size(212, 28);
             btnRemoveImgLessSize.TabIndex = 2;
@@ -425,7 +426,7 @@
             // 
             // btnDeleteTrash
             // 
-            btnDeleteTrash.Location = new Point(32, 102);
+            btnDeleteTrash.Location = new Point(30, 123);
             btnDeleteTrash.Name = "btnDeleteTrash";
             btnDeleteTrash.Size = new Size(152, 28);
             btnDeleteTrash.TabIndex = 2;
@@ -435,7 +436,7 @@
             // 
             // btnRemoveImgNoCap
             // 
-            btnRemoveImgNoCap.Location = new Point(190, 68);
+            btnRemoveImgNoCap.Location = new Point(188, 89);
             btnRemoveImgNoCap.Name = "btnRemoveImgNoCap";
             btnRemoveImgNoCap.Size = new Size(180, 28);
             btnRemoveImgNoCap.TabIndex = 2;
@@ -445,7 +446,7 @@
             // 
             // btnRemoveDupNameImg
             // 
-            btnRemoveDupNameImg.Location = new Point(32, 68);
+            btnRemoveDupNameImg.Location = new Point(30, 89);
             btnRemoveDupNameImg.Name = "btnRemoveDupNameImg";
             btnRemoveDupNameImg.Size = new Size(152, 28);
             btnRemoveDupNameImg.TabIndex = 2;
@@ -456,7 +457,7 @@
             // tbxSourceDir
             // 
             tbxSourceDir.AllowDrop = true;
-            tbxSourceDir.Location = new Point(32, 39);
+            tbxSourceDir.Location = new Point(30, 60);
             tbxSourceDir.Name = "tbxSourceDir";
             tbxSourceDir.Size = new Size(457, 23);
             tbxSourceDir.TabIndex = 1;
@@ -466,7 +467,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(32, 21);
+            label6.Location = new Point(30, 42);
             label6.Name = "label6";
             label6.Size = new Size(446, 15);
             label6.TabIndex = 0;
@@ -493,11 +494,21 @@
             btnCloseWindow.UseVisualStyleBackColor = true;
             btnCloseWindow.Click += btnCloseWindow_Click;
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(16, 476);
+            label9.Name = "label9";
+            label9.Size = new Size(161, 30);
+            label9.TabIndex = 6;
+            label9.Text = "対応画像拡張子:png,jpg,jpeg\r\n対応キャプション拡張子:txt";
+            // 
             // FormDatasetTools
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(697, 515);
+            Controls.Add(label9);
             Controls.Add(btnCloseWindow);
             Controls.Add(lblProcessing);
             Controls.Add(tabControl1);
@@ -564,5 +575,6 @@
         private Label label7;
         private Label lblProcessing;
         private Button btnCloseWindow;
+        private Label label9;
     }
 }
