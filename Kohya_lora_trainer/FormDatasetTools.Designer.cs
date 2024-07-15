@@ -378,6 +378,7 @@
             btnRemoveCapNoImg.TabIndex = 2;
             btnRemoveCapNoImg.Text = "キャプションがない画像を削除";
             btnRemoveCapNoImg.UseVisualStyleBackColor = true;
+            btnRemoveCapNoImg.Click += btnRemoveCapNoImg_Click;
             // 
             // button15
             // 
