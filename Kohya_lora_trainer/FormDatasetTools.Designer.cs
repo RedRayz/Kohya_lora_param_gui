@@ -185,6 +185,7 @@
             btnRemoveTag.TabIndex = 6;
             btnRemoveTag.Text = "指定タグを削除";
             btnRemoveTag.UseVisualStyleBackColor = true;
+            btnRemoveTag.Click += btnRemoveTag_Click;
             // 
             // btnTagToHead
             // 
@@ -291,10 +292,10 @@
             tabPage2.Controls.Add(btnRemoveDupNameImg);
             tabPage2.Controls.Add(tbxSourceDir);
             tabPage2.Controls.Add(label6);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(662, 434);
+            tabPage2.Size = new Size(662, 432);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "ファイル処理";
             tabPage2.UseVisualStyleBackColor = true;
