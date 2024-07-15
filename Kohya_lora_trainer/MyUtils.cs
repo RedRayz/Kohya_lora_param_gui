@@ -9,7 +9,9 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
 using System.Data.Common;
+using Microsoft.Win32;
 
+#pragma warning disable CA1416
 namespace Kohya_lora_trainer
 {
     internal static class MyUtils
@@ -1224,6 +1226,29 @@ namespace Kohya_lora_trainer
 
             return Size.Empty;
 
+        }
+
+        /// <summary>
+        /// レジストリの初期化。アプリケーションの起動時に呼び出してください。
+        /// </summary>
+        public static void InitRegistry()
+        {
+            int? num = (int?)Registry.GetValue("HKEY_CURRENT_USER\\Software\\kohya_lora_gui", "UpdateCheckInterval", 7);
+            if (num == null)
+            {
+                Registry.SetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "UpdateCheckInterval", 7);
+            }
+            string? text = (string?)Registry.GetValue("HKEY_CURRENT_USER\\Software\\kohya_lora_gui", "LastUpdateCheckDate", string.Empty);
+            if (string.IsNullOrEmpty(text))
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\kohya_lora_gui", "LastUpdateCheckDate", "2023-01-01T12:00:00.0000000+09:00");
+            }
+
+            string? scriptPath = (string?)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "ScriptPath", string.Empty);
+            if (scriptPath == null) 
+            {
+                Registry.SetValue("HKEY_CURRENT_USER\\Software\\kohya_lora_gui", "ScriptPath", string.Empty);
+            }
         }
     }
 }
