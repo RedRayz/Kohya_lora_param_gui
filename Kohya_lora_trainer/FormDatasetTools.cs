@@ -1251,5 +1251,10 @@ namespace Kohya_lora_trainer
                 }
             }
         }
+
+        private void btnCloseWindow_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

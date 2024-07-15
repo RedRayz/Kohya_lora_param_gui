@@ -66,6 +66,7 @@
             tbxSourceDir = new TextBox();
             label6 = new Label();
             lblProcessing = new Label();
+            btnCloseWindow = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudKeepTokens).BeginInit();
@@ -479,11 +480,23 @@
             lblProcessing.TabIndex = 1;
             lblProcessing.Text = "処理中です。しばらくお待ちください。";
             // 
+            // btnCloseWindow
+            // 
+            btnCloseWindow.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCloseWindow.Location = new Point(589, 476);
+            btnCloseWindow.Name = "btnCloseWindow";
+            btnCloseWindow.Size = new Size(89, 31);
+            btnCloseWindow.TabIndex = 2;
+            btnCloseWindow.Text = "閉じる";
+            btnCloseWindow.UseVisualStyleBackColor = true;
+            btnCloseWindow.Click += btnCloseWindow_Click;
+            // 
             // FormDatasetTools
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(697, 515);
+            Controls.Add(btnCloseWindow);
             Controls.Add(lblProcessing);
             Controls.Add(tabControl1);
             Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -548,5 +561,6 @@
         private Label label8;
         private Label label7;
         private Label lblProcessing;
+        private Button btnCloseWindow;
     }
 }
