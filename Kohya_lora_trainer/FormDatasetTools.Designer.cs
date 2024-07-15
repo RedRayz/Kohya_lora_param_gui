@@ -56,7 +56,7 @@
             nudFileSize = new NumericUpDown();
             cbxDeleteImmediately = new CheckBox();
             btnRemoveCapNoImg = new Button();
-            button15 = new Button();
+            btnRemoveLessTags = new Button();
             btnRemoveRandomly = new Button();
             btnRemoveImgLessPixels = new Button();
             btnRemoveImgLessSize = new Button();
@@ -285,7 +285,7 @@
             tabPage2.Controls.Add(nudFileSize);
             tabPage2.Controls.Add(cbxDeleteImmediately);
             tabPage2.Controls.Add(btnRemoveCapNoImg);
-            tabPage2.Controls.Add(button15);
+            tabPage2.Controls.Add(btnRemoveLessTags);
             tabPage2.Controls.Add(btnRemoveRandomly);
             tabPage2.Controls.Add(btnRemoveImgLessPixels);
             tabPage2.Controls.Add(btnRemoveImgLessSize);
@@ -380,14 +380,15 @@
             btnRemoveCapNoImg.UseVisualStyleBackColor = true;
             btnRemoveCapNoImg.Click += btnRemoveCapNoImg_Click;
             // 
-            // button15
+            // btnRemoveLessTags
             // 
-            button15.Location = new Point(32, 293);
-            button15.Name = "button15";
-            button15.Size = new Size(212, 28);
-            button15.TabIndex = 2;
-            button15.Text = "タグ数が閾値以下の画像を削除";
-            button15.UseVisualStyleBackColor = true;
+            btnRemoveLessTags.Location = new Point(32, 293);
+            btnRemoveLessTags.Name = "btnRemoveLessTags";
+            btnRemoveLessTags.Size = new Size(212, 28);
+            btnRemoveLessTags.TabIndex = 2;
+            btnRemoveLessTags.Text = "タグ数が閾値以下の画像を削除";
+            btnRemoveLessTags.UseVisualStyleBackColor = true;
+            btnRemoveLessTags.Click += btnRemoveLessTags_Click;
             // 
             // btnRemoveRandomly
             // 
@@ -530,7 +531,7 @@
         private Label label4;
         private Label label5;
         private Button btnRemoveCapNoImg;
-        private Button button15;
+        private Button btnRemoveLessTags;
         private Button btnRemoveRandomly;
         private Button btnRemoveImgLessPixels;
         private Button btnRemoveImgLessSize;

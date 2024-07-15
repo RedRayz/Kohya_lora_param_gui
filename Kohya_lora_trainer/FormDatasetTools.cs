@@ -1150,5 +1150,106 @@ namespace Kohya_lora_trainer
                 lblProcessing.Visible = false;
             }
         }
+
+        private void btnRemoveLessTags_Click(object sender, EventArgs e)
+        {
+            string sourceDir = tbxSourceDir.Text;
+            //string boorutag = tbxBooruTag.Text;
+
+            int removedCnt = 0;
+            int errorCount = 0;
+            int removedimgCnt = 0;
+
+            if (!Directory.Exists(sourceDir))
+            {
+                MessageBox.Show("ディレクトリが見つかりません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (MyUtils.IsSystemDirectory(sourceDir))
+            {
+                MessageBox.Show("データ破損防止のため、OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (MessageBox.Show("txtファイル内のタグの数が閾値以下の場合に画像とtxtを同階層のtrashフォルダに移動させます。\r\nよろしいですか。", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                lblProcessing.Visible = true;
+                Update();
+                //キャプションが入った場所
+                string[] files = Directory.GetFiles(sourceDir);
+                foreach (string file in files)
+                {
+                    try
+                    {
+                        string ext = Path.GetExtension(file).ToLower();
+                        if (ext == ".txt")
+                        {
+                            string path = sourceDir + "\\";
+                            string captionFile = Path.GetFileNameWithoutExtension(file);
+                            string txt = File.ReadAllText(file);
+
+                            List<string> tags = new List<string>(txt.Split(", "));
+                            if (tags.Count <= nudTagsCount.Value)
+                            {
+                                if (!File.Exists(sourceDir + "\\trash\\" + captionFile + ".txt"))
+                                {
+                                    //FileSystem.DeleteFileは重いので使わない
+                                    if (!Directory.Exists(sourceDir + "\\trash"))
+                                    {
+                                        Directory.CreateDirectory(sourceDir + "\\trash");
+                                    }
+                                    File.Move(file, sourceDir + "\\trash\\" + captionFile + ".txt");
+                                    removedCnt++;
+                                }
+
+                                string imgPath = string.Empty;
+                                string imgName = string.Empty;
+                                if (File.Exists(path + captionFile + ".png"))
+                                {
+                                    imgPath = path + captionFile + ".png";
+                                    imgName = captionFile + ".png";
+                                }
+                                else if (File.Exists(path + captionFile + ".jpg"))
+                                {
+                                    imgPath = path + captionFile + ".jpg";
+                                    imgName = captionFile + ".jpg";
+                                }
+                                else if (File.Exists(path + captionFile + ".jpeg"))
+                                {
+                                    imgPath = path + captionFile + ".jpeg";
+                                    imgName = captionFile + ".jpeg";
+                                }
+                                if (File.Exists(imgPath) && !File.Exists(path + "\\trash\\" + imgName))
+                                {
+                                    if (!Directory.Exists(path + "\\trash"))
+                                    {
+                                        Directory.CreateDirectory(path + "\\trash");
+                                    }
+                                    File.Move(imgPath, path + "\\trash\\" + imgName);
+                                    removedimgCnt++;
+                                }
+                            }
+
+
+                        }
+                    }
+                    catch
+                    {
+                        errorCount++;
+                    }
+                }
+
+                lblProcessing.Visible = false;
+
+                if (removedCnt > 0)
+                    MessageBox.Show($"{removedCnt}件のテキストと\r\n {removedimgCnt}件の画像をtrashフォルダに移動しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("対象のファイルはありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (errorCount > 0)
+                {
+                    MessageBox.Show($"{errorCount}件がエラーで失敗しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
     }
 }
