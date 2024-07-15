@@ -93,10 +93,14 @@ namespace Kohya_lora_trainer
 
         internal static void AutomaticCheckUpdate()
         {
+            int checkInterval = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "UpdateCheckInterval", 7);
+            if (checkInterval == 0)
+                return;
+
             DateTime current = DateTime.Today;
             
             string lastCheckedDateText = (string?)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "LastUpdateCheckDate", string.Empty);
-            int checkInterval = (int)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "UpdateCheckInterval", 7);
+            
             if (string.IsNullOrEmpty(lastCheckedDateText))
             {
                 lastCheckedDateText = "2023-01-01T12:00:00.0000000+09:00";
