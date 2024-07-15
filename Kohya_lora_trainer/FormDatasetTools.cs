@@ -810,7 +810,49 @@ namespace Kohya_lora_trainer
 
         private void btnDeleteTrash_Click(object sender, EventArgs e)
         {
+            string sourceDir = tbxSourceDir.Text;
 
+            if (!Directory.Exists(sourceDir))
+            {
+                MessageBox.Show("ディレクトリが見つかりません", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (MyUtils.IsSystemDirectory(sourceDir))
+            {
+                MessageBox.Show("データ破損防止のため、OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (MessageBox.Show("trashフォルダを消去します。よろしいですか。\nサブディレクトリがある場合はtrash直下のファイル消去のみとなります。", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string trashDir = sourceDir + @"\trash";
+
+                if (!Directory.Exists(trashDir))
+                {
+                    MessageBox.Show("trashフォルダがありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                try
+                {
+                    string[] files = Directory.GetFiles(trashDir);
+                    foreach (string file in files)
+                    {
+                        File.Delete(file);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("エラーで失敗しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (Directory.GetFiles(trashDir).Length == 0 && Directory.GetDirectories(trashDir).Length == 0)
+                {
+                    Directory.Delete(trashDir);
+                    MessageBox.Show("完了しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }
