@@ -129,6 +129,8 @@ namespace Kohya_lora_trainer
             MyUtils.LoadDefaultDirSettings();
 
             UpdateAllContents();
+
+            UpdateChecker.AutomaticCheckUpdate();
         }
 
         private void button4_Click(object sender, EventArgs e)

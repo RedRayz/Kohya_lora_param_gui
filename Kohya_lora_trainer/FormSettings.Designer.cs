@@ -74,8 +74,16 @@
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
+            lblCheckingUpdate = new Label();
+            btnCheckUpdateNow = new Button();
+            label14 = new Label();
+            label13 = new Label();
+            label1 = new Label();
+            nudUpdateCheckInterval = new NumericUpDown();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudUpdateCheckInterval).BeginInit();
             SuspendLayout();
             // 
             // label2
@@ -530,6 +538,12 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(lblCheckingUpdate);
+            tabPage2.Controls.Add(btnCheckUpdateNow);
+            tabPage2.Controls.Add(label14);
+            tabPage2.Controls.Add(label13);
+            tabPage2.Controls.Add(label1);
+            tabPage2.Controls.Add(nudUpdateCheckInterval);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -537,6 +551,62 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "その他";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // lblCheckingUpdate
+            // 
+            lblCheckingUpdate.AutoSize = true;
+            lblCheckingUpdate.Location = new Point(178, 133);
+            lblCheckingUpdate.Name = "lblCheckingUpdate";
+            lblCheckingUpdate.Size = new Size(52, 15);
+            lblCheckingUpdate.TabIndex = 5;
+            lblCheckingUpdate.Text = "確認中...";
+            // 
+            // btnCheckUpdateNow
+            // 
+            btnCheckUpdateNow.Location = new Point(20, 127);
+            btnCheckUpdateNow.Name = "btnCheckUpdateNow";
+            btnCheckUpdateNow.Size = new Size(152, 26);
+            btnCheckUpdateNow.TabIndex = 4;
+            btnCheckUpdateNow.Text = "アップデートの確認";
+            btnCheckUpdateNow.UseVisualStyleBackColor = true;
+            btnCheckUpdateNow.Click += btnCheckUpdateNow_Click;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(20, 62);
+            label14.Name = "label14";
+            label14.Size = new Size(296, 45);
+            label14.TabIndex = 3;
+            label14.Text = "このGUIの新しいバージョンがあるか自動で確認する頻度です。\r\n0を指定するとことでこの機能を無効にします。\r\n注意:確認に5秒以上かかると確認を中止します。";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(245, 38);
+            label13.Name = "label13";
+            label13.Size = new Size(19, 15);
+            label13.TabIndex = 2;
+            label13.Text = "日";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(20, 38);
+            label1.Name = "label1";
+            label1.Size = new Size(115, 15);
+            label1.TabIndex = 1;
+            label1.Text = "アップデートの確認頻度";
+            // 
+            // nudUpdateCheckInterval
+            // 
+            nudUpdateCheckInterval.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            nudUpdateCheckInterval.Location = new Point(141, 34);
+            nudUpdateCheckInterval.Maximum = new decimal(new int[] { 120, 0, 0, 0 });
+            nudUpdateCheckInterval.Name = "nudUpdateCheckInterval";
+            nudUpdateCheckInterval.Size = new Size(98, 25);
+            nudUpdateCheckInterval.TabIndex = 0;
+            nudUpdateCheckInterval.Value = new decimal(new int[] { 7, 0, 0, 0 });
             // 
             // FormSettings
             // 
@@ -557,6 +627,9 @@
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudUpdateCheckInterval).EndInit();
             ResumeLayout(false);
         }
 
@@ -607,5 +680,11 @@
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
+        private Button btnCheckUpdateNow;
+        private Label label14;
+        private Label label13;
+        private Label label1;
+        private NumericUpDown nudUpdateCheckInterval;
+        private Label lblCheckingUpdate;
     }
 }
