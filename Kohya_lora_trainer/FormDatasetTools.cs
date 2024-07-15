@@ -608,6 +608,7 @@ namespace Kohya_lora_trainer
                 lblProcessing.Visible = true;
                 Update();
                 int movedCnt = 0;
+                int errorCount = 0;
                 string booru = tbxBooruTag.Text;
                 string[] files = Directory.GetFiles(tbxTargetDir.Text);
 
@@ -621,16 +622,23 @@ namespace Kohya_lora_trainer
 
                 foreach (string file in files)
                 {
-                    string extension = Path.GetExtension(file);
-                    if (string.IsNullOrEmpty(extension) || extension != ".txt")
-                        continue;
-                    string txt = File.ReadAllText(file);
-
-                    List<string> tags = new List<string>(txt.Split(", "));
-                    if(tags.IndexOf(booru) == -1)
+                    try
                     {
-                        File.WriteAllText(file, txt + ", " + booru);
-                        movedCnt++;
+                        string extension = Path.GetExtension(file);
+                        if (string.IsNullOrEmpty(extension) || extension != ".txt")
+                            continue;
+                        string txt = File.ReadAllText(file);
+
+                        List<string> tags = new List<string>(txt.Split(", "));
+                        if (tags.IndexOf(booru) == -1)
+                        {
+                            File.WriteAllText(file, txt + ", " + booru);
+                            movedCnt++;
+                        }
+                    }
+                    catch
+                    {
+                        errorCount++;
                     }
 
                 }
@@ -639,6 +647,11 @@ namespace Kohya_lora_trainer
                     MessageBox.Show($"{movedCnt}件のファイルに追加しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
                     MessageBox.Show("対象のファイルはありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (errorCount > 0)
+                {
+                    MessageBox.Show($"{errorCount}件がエラーで失敗しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
