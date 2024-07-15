@@ -397,6 +397,7 @@
             btnRemoveRandomly.TabIndex = 2;
             btnRemoveRandomly.Text = "ランダムに削除";
             btnRemoveRandomly.UseVisualStyleBackColor = true;
+            btnRemoveRandomly.Click += btnRemoveRandomly_Click;
             // 
             // btnRemoveImgLessPixels
             // 
