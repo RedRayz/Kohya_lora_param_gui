@@ -294,10 +294,10 @@
             tabPage2.Controls.Add(btnRemoveDupNameImg);
             tabPage2.Controls.Add(tbxSourceDir);
             tabPage2.Controls.Add(label6);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(662, 432);
+            tabPage2.Size = new Size(662, 434);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "ファイル処理";
             tabPage2.UseVisualStyleBackColor = true;
@@ -441,6 +441,7 @@
             btnRemoveDupNameImg.TabIndex = 2;
             btnRemoveDupNameImg.Text = "名前が重複した画像を削除";
             btnRemoveDupNameImg.UseVisualStyleBackColor = true;
+            btnRemoveDupNameImg.Click += btnRemoveDupNameImg_Click;
             // 
             // tbxSourceDir
             // 
