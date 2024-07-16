@@ -30,6 +30,7 @@ namespace Kohya_lora_trainer
 
         private void TrainForm_Load(object sender, EventArgs e)
         {
+            lblProcessingCaptions.Visible = false;
             if (ShutdownOnly && (TrainCompletedAction == TrainCompleteAction.Shutdown || TrainCompletedAction == TrainCompleteAction.Suspend))
             {
                 btnCopyCmd.Enabled = false;
@@ -41,7 +42,7 @@ namespace Kohya_lora_trainer
                 UpdateCountdownText();
                 return;
             }
-            lblProcessingCaptions.Visible = false;
+            
             if (BatchProcess.LogResultText && BatchProcess.IsRunning)
             {
                 StringBuilder ssb = new StringBuilder();
