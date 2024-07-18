@@ -118,6 +118,7 @@
             Text = "学習";
             FormClosing += TrainForm_FormClosing;
             Load += TrainForm_Load;
+            Shown += TrainForm_Shown;
             ResumeLayout(false);
             PerformLayout();
         }
