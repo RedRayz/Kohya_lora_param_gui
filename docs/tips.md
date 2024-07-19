@@ -4,7 +4,7 @@
 
 SDXLなら、詳細設定->パスでVAEに https://huggingface.co/madebyollin/sdxl-vae-fp16-fix で配布されているsdxl.vae.safetensorsを選択すると直るかも。
 
-それがダメなら詳細設定->SDXLにあるVAEを32ビットで使用にチェックつける
+それがダメなら詳細設定->SDXLにあるVAEを32ビットで使用にチェックをつける。
 
 ## CUDA error: Out Of Memoryって出た！なにこれ？
 
@@ -146,6 +146,6 @@ Bucketingが有効だと複数のBucketを1バッチにまとめられない影�
 ## 作ったLoRAを使うと出力が暗くなったり赤みがかった色合いになる
 詳細設定->ノイズ関連->ノイズオフセットに学習元モデルで使用されたnoise_offsetの値を設定すると改善するかも。
 
-Animagine-XL、Kiotos-XL、Holodayo-XLで使用された値は`0.0357`。
+Animagine-XL、Kivotos-XL、Holodayo-XLで使用された値は`0.0357`。
 
 Ponyで使用された値は不明だが、明暗に弱いあたり未使用と思われる。
