@@ -461,7 +461,7 @@ namespace Kohya_lora_trainer
             nudNoiseOffset.Name = "nudNoiseOffset";
             nudNoiseOffset.Size = new Size(94, 23);
             nudNoiseOffset.TabIndex = 44;
-            toolTip1.SetToolTip(nudNoiseOffset, "全体的に明るい/暗い環境でグレー寄りになるのを軽減する\r\n画風の学習時に有効にするとよい\r\nちなみにAnimagine XL,Kivotos XLで使用された値は0.0357");
+            toolTip1.SetToolTip(nudNoiseOffset, "全体的に明るい/暗い環境でグレー寄りになるのを軽減する\r\n変色と明度の変化を減らすため学習元モデルで使用された値を設定すべき\r\nちなみにAnimagine XL,Kivotos XLで使用された値は0.0357");
             // 
             // nudCaptionDropout
             // 
@@ -1988,9 +1988,9 @@ namespace Kohya_lora_trainer
             pageXL.Controls.Add(cbxCacheTextencoderToDisk);
             pageXL.Controls.Add(cbxCacheTextEncoder);
             pageXL.Controls.Add(cbxNoHalfVae);
-            pageXL.Location = new Point(4, 26);
+            pageXL.Location = new Point(4, 24);
             pageXL.Name = "pageXL";
-            pageXL.Size = new Size(612, 341);
+            pageXL.Size = new Size(612, 343);
             pageXL.TabIndex = 9;
             pageXL.Text = "SDXL";
             pageXL.UseVisualStyleBackColor = true;
