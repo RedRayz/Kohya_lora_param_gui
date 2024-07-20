@@ -122,6 +122,17 @@
             label16 = new Label();
             lblMid01 = new Label();
             lblMid02 = new Label();
+            panel1 = new Panel();
+            panel2 = new Panel();
+            panel3 = new Panel();
+            panel4 = new Panel();
+            panel5 = new Panel();
+            label18 = new Label();
+            label20 = new Label();
+            label22 = new Label();
+            label24 = new Label();
+            groupBox1 = new GroupBox();
+            label26 = new Label();
             ((System.ComponentModel.ISupportInitialize)tbrIn00).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbrIn01).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbrIn02).BeginInit();
@@ -152,6 +163,12 @@
             ((System.ComponentModel.ISupportInitialize)tbrThreshold).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbrMid01).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbrMid02).BeginInit();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
+            panel3.SuspendLayout();
+            panel4.SuspendLayout();
+            panel5.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // tbrIn00
@@ -186,7 +203,7 @@
             // 
             cbxEnableBlockWeight.AutoSize = true;
             cbxEnableBlockWeight.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            cbxEnableBlockWeight.Location = new Point(693, 447);
+            cbxEnableBlockWeight.Location = new Point(693, 545);
             cbxEnableBlockWeight.Name = "cbxEnableBlockWeight";
             cbxEnableBlockWeight.Size = new Size(170, 25);
             cbxEnableBlockWeight.TabIndex = 3;
@@ -290,7 +307,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(24, 195);
+            label9.Location = new Point(4, 14);
             label9.Name = "label9";
             label9.Size = new Size(31, 15);
             label9.TabIndex = 1;
@@ -318,7 +335,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(24, 237);
+            label11.Location = new Point(3, 56);
             label11.Name = "label11";
             label11.Size = new Size(31, 15);
             label11.TabIndex = 1;
@@ -374,7 +391,7 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(24, 310);
+            label15.Location = new Point(3, 7);
             label15.Name = "label15";
             label15.Size = new Size(31, 15);
             label15.TabIndex = 1;
@@ -402,7 +419,7 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(24, 348);
+            label17.Location = new Point(3, 45);
             label17.Name = "label17";
             label17.Size = new Size(31, 15);
             label17.TabIndex = 1;
@@ -486,7 +503,7 @@
             // label23
             // 
             label23.AutoSize = true;
-            label23.Location = new Point(24, 453);
+            label23.Location = new Point(26, 453);
             label23.Name = "label23";
             label23.Size = new Size(31, 15);
             label23.TabIndex = 1;
@@ -752,7 +769,7 @@
             // label37
             // 
             label37.AutoSize = true;
-            label37.Location = new Point(353, 276);
+            label37.Location = new Point(3, 15);
             label37.Name = "label37";
             label37.Size = new Size(42, 15);
             label37.TabIndex = 1;
@@ -770,7 +787,7 @@
             // label39
             // 
             label39.AutoSize = true;
-            label39.Location = new Point(353, 310);
+            label39.Location = new Point(3, 48);
             label39.Name = "label39";
             label39.Size = new Size(42, 15);
             label39.TabIndex = 1;
@@ -788,7 +805,7 @@
             // label41
             // 
             label41.AutoSize = true;
-            label41.Location = new Point(353, 348);
+            label41.Location = new Point(3, 86);
             label41.Name = "label41";
             label41.Size = new Size(42, 15);
             label41.TabIndex = 1;
@@ -806,7 +823,7 @@
             // label43
             // 
             label43.AutoSize = true;
-            label43.Location = new Point(353, 390);
+            label43.Location = new Point(3, 14);
             label43.Name = "label43";
             label43.Size = new Size(42, 15);
             label43.TabIndex = 1;
@@ -824,7 +841,7 @@
             // label45
             // 
             label45.AutoSize = true;
-            label45.Location = new Point(353, 421);
+            label45.Location = new Point(3, 45);
             label45.Name = "label45";
             label45.Size = new Size(42, 15);
             label45.TabIndex = 1;
@@ -842,7 +859,7 @@
             // label47
             // 
             label47.AutoSize = true;
-            label47.Location = new Point(353, 453);
+            label47.Location = new Point(3, 77);
             label47.Name = "label47";
             label47.Size = new Size(42, 15);
             label47.TabIndex = 1;
@@ -870,7 +887,7 @@
             // label49
             // 
             label49.AutoSize = true;
-            label49.Location = new Point(226, 504);
+            label49.Location = new Point(3, 6);
             label49.Name = "label49";
             label49.Size = new Size(41, 15);
             label49.TabIndex = 1;
@@ -890,7 +907,7 @@
             cbxPresetIn.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxPresetIn.FormattingEnabled = true;
             cbxPresetIn.Items.AddRange(new object[] { "無し", "sine", "cosine", "linear", "reverse_linear", "zeros" });
-            cbxPresetIn.Location = new Point(686, 120);
+            cbxPresetIn.Location = new Point(686, 97);
             cbxPresetIn.Name = "cbxPresetIn";
             cbxPresetIn.Size = new Size(124, 23);
             cbxPresetIn.TabIndex = 5;
@@ -898,7 +915,7 @@
             // label51
             // 
             label51.AutoSize = true;
-            label51.Location = new Point(686, 102);
+            label51.Location = new Point(686, 79);
             label51.Name = "label51";
             label51.Size = new Size(72, 15);
             label51.TabIndex = 6;
@@ -908,7 +925,7 @@
             // 
             nudOffsetIn.DecimalPlaces = 2;
             nudOffsetIn.Increment = new decimal(new int[] { 5, 0, 0, 131072 });
-            nudOffsetIn.Location = new Point(686, 179);
+            nudOffsetIn.Location = new Point(686, 156);
             nudOffsetIn.Maximum = new decimal(new int[] { 125, 0, 0, 131072 });
             nudOffsetIn.Name = "nudOffsetIn";
             nudOffsetIn.Size = new Size(86, 23);
@@ -917,7 +934,7 @@
             // label52
             // 
             label52.AutoSize = true;
-            label52.Location = new Point(686, 146);
+            label52.Location = new Point(686, 123);
             label52.Name = "label52";
             label52.Size = new Size(86, 30);
             label52.TabIndex = 8;
@@ -928,7 +945,7 @@
             cbxPresetOut.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxPresetOut.FormattingEnabled = true;
             cbxPresetOut.Items.AddRange(new object[] { "無し", "sine", "cosine", "linear", "reverse_linear", "zeros" });
-            cbxPresetOut.Location = new Point(686, 236);
+            cbxPresetOut.Location = new Point(686, 213);
             cbxPresetOut.Name = "cbxPresetOut";
             cbxPresetOut.Size = new Size(131, 23);
             cbxPresetOut.TabIndex = 5;
@@ -936,7 +953,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(686, 218);
+            label2.Location = new Point(686, 195);
             label2.Name = "label2";
             label2.Size = new Size(83, 15);
             label2.TabIndex = 6;
@@ -956,7 +973,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(686, 32);
+            label6.Location = new Point(686, 9);
             label6.Name = "label6";
             label6.Size = new Size(124, 21);
             label6.TabIndex = 9;
@@ -966,7 +983,7 @@
             // 
             nudOffsetOut.DecimalPlaces = 2;
             nudOffsetOut.Increment = new decimal(new int[] { 5, 0, 0, 131072 });
-            nudOffsetOut.Location = new Point(686, 295);
+            nudOffsetOut.Location = new Point(686, 272);
             nudOffsetOut.Maximum = new decimal(new int[] { 125, 0, 0, 131072 });
             nudOffsetOut.Name = "nudOffsetOut";
             nudOffsetOut.Size = new Size(86, 23);
@@ -975,7 +992,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(686, 262);
+            label8.Location = new Point(686, 239);
             label8.Name = "label8";
             label8.Size = new Size(86, 30);
             label8.TabIndex = 8;
@@ -984,7 +1001,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(686, 67);
+            label10.Location = new Point(686, 44);
             label10.Name = "label10";
             label10.Size = new Size(158, 30);
             label10.TabIndex = 10;
@@ -992,7 +1009,7 @@
             // 
             // tbrThreshold
             // 
-            tbrThreshold.Location = new Point(686, 366);
+            tbrThreshold.Location = new Point(686, 343);
             tbrThreshold.Maximum = 20;
             tbrThreshold.Name = "tbrThreshold";
             tbrThreshold.Size = new Size(177, 45);
@@ -1002,7 +1019,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(686, 333);
+            label12.Location = new Point(686, 310);
             label12.Name = "label12";
             label12.Size = new Size(197, 30);
             label12.TabIndex = 1;
@@ -1011,7 +1028,7 @@
             // lblThreshold
             // 
             lblThreshold.AutoSize = true;
-            lblThreshold.Location = new Point(869, 366);
+            lblThreshold.Location = new Point(869, 343);
             lblThreshold.Name = "lblThreshold";
             lblThreshold.Size = new Size(22, 15);
             lblThreshold.TabIndex = 2;
@@ -1040,7 +1057,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(226, 545);
+            label14.Location = new Point(3, 47);
             label14.Name = "label14";
             label14.Size = new Size(41, 15);
             label14.TabIndex = 1;
@@ -1049,7 +1066,7 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(226, 584);
+            label16.Location = new Point(3, 86);
             label16.Name = "label16";
             label16.Size = new Size(41, 15);
             label16.TabIndex = 1;
@@ -1073,11 +1090,134 @@
             lblMid02.TabIndex = 2;
             lblMid02.Text = "0.0";
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(192, 255, 255);
+            panel1.Controls.Add(label9);
+            panel1.Controls.Add(label11);
+            panel1.Location = new Point(20, 179);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(37, 80);
+            panel1.TabIndex = 12;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(255, 192, 255);
+            panel2.Controls.Add(label15);
+            panel2.Controls.Add(label17);
+            panel2.Location = new Point(20, 303);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(37, 78);
+            panel2.TabIndex = 13;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.FromArgb(255, 192, 255);
+            panel3.Controls.Add(label49);
+            panel3.Controls.Add(label14);
+            panel3.Controls.Add(label16);
+            panel3.Location = new Point(222, 504);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(45, 113);
+            panel3.TabIndex = 14;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(255, 192, 255);
+            panel4.Controls.Add(label43);
+            panel4.Controls.Add(label45);
+            panel4.Controls.Add(label47);
+            panel4.Location = new Point(350, 376);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(46, 108);
+            panel4.TabIndex = 14;
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.FromArgb(192, 255, 255);
+            panel5.Controls.Add(label37);
+            panel5.Controls.Add(label39);
+            panel5.Controls.Add(label41);
+            panel5.Location = new Point(350, 262);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(46, 108);
+            panel5.TabIndex = 14;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.BackColor = Color.FromArgb(192, 255, 255);
+            label18.ForeColor = Color.Navy;
+            label18.Location = new Point(11, 34);
+            label18.Name = "label18";
+            label18.Size = new Size(31, 15);
+            label18.TabIndex = 15;
+            label18.Text = "水色";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(42, 34);
+            label20.Name = "label20";
+            label20.Size = new Size(148, 30);
+            label20.TabIndex = 16;
+            label20.Text = "の層はTransformerが2個ある\r\n影響力は小さい";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.BackColor = Color.FromArgb(255, 192, 255);
+            label22.ForeColor = Color.Purple;
+            label22.Location = new Point(10, 68);
+            label22.Name = "label22";
+            label22.Size = new Size(31, 15);
+            label22.TabIndex = 15;
+            label22.Text = "紫色";
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Location = new Point(42, 68);
+            label24.Name = "label24";
+            label24.Size = new Size(154, 30);
+            label24.TabIndex = 16;
+            label24.Text = "の層はTransformerが10個ある\r\n多くの情報を持つ重要な層";
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(label26);
+            groupBox1.Controls.Add(label20);
+            groupBox1.Controls.Add(label24);
+            groupBox1.Controls.Add(label18);
+            groupBox1.Controls.Add(label22);
+            groupBox1.Location = new Point(680, 390);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(211, 108);
+            groupBox1.TabIndex = 17;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "SDXLのヒント";
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Location = new Point(10, 19);
+            label26.Name = "label26";
+            label26.Size = new Size(196, 15);
+            label26.TabIndex = 17;
+            label26.Text = "着色された部分はTransformerがある層";
+            // 
             // FormBlockWeight
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(907, 652);
+            ClientSize = new Size(907, 647);
+            Controls.Add(groupBox1);
+            Controls.Add(panel5);
+            Controls.Add(panel4);
+            Controls.Add(panel3);
+            Controls.Add(panel2);
+            Controls.Add(label23);
+            Controls.Add(panel1);
             Controls.Add(tbrMid02);
             Controls.Add(tbrMid01);
             Controls.Add(label10);
@@ -1101,30 +1241,18 @@
             Controls.Add(lblOut00);
             Controls.Add(lblIn11);
             Controls.Add(label12);
-            Controls.Add(label16);
-            Controls.Add(label14);
-            Controls.Add(label49);
-            Controls.Add(label47);
-            Controls.Add(label23);
             Controls.Add(lblOut01);
             Controls.Add(lblIn10);
-            Controls.Add(label45);
             Controls.Add(label21);
             Controls.Add(lblOut02);
             Controls.Add(lblIn09);
-            Controls.Add(label43);
             Controls.Add(label19);
             Controls.Add(lblOut03);
             Controls.Add(lblIn08);
-            Controls.Add(label41);
-            Controls.Add(label17);
             Controls.Add(lblOut04);
             Controls.Add(lblIn07);
-            Controls.Add(label39);
-            Controls.Add(label15);
             Controls.Add(lblOut05);
             Controls.Add(lblIn06);
-            Controls.Add(label37);
             Controls.Add(label13);
             Controls.Add(lblOut06);
             Controls.Add(lblIn05);
@@ -1133,7 +1261,6 @@
             Controls.Add(tbrOut00);
             Controls.Add(tbrIn11);
             Controls.Add(label35);
-            Controls.Add(label11);
             Controls.Add(tbrOut01);
             Controls.Add(tbrIn10);
             Controls.Add(lblOut07);
@@ -1141,7 +1268,6 @@
             Controls.Add(tbrOut02);
             Controls.Add(tbrIn09);
             Controls.Add(label33);
-            Controls.Add(label9);
             Controls.Add(tbrOut03);
             Controls.Add(tbrIn08);
             Controls.Add(lblOut08);
@@ -1214,6 +1340,18 @@
             ((System.ComponentModel.ISupportInitialize)tbrThreshold).EndInit();
             ((System.ComponentModel.ISupportInitialize)tbrMid01).EndInit();
             ((System.ComponentModel.ISupportInitialize)tbrMid02).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1318,5 +1456,16 @@
         private Label label16;
         private Label lblMid01;
         private Label lblMid02;
+        private Panel panel1;
+        private Panel panel2;
+        private Panel panel3;
+        private Panel panel4;
+        private Panel panel5;
+        private Label label18;
+        private Label label20;
+        private Label label22;
+        private Label label24;
+        private GroupBox groupBox1;
+        private Label label26;
     }
 }

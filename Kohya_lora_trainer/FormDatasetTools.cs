@@ -135,7 +135,7 @@ namespace Kohya_lora_trainer
                 {
                     try
                     {
-                        reg = new Regex(booru, RegexOptions.Compiled, TimeSpan.FromMilliseconds(16));
+                        reg = new Regex(booru, RegexOptions.Compiled, TimeSpan.FromMilliseconds(20));
                     }
                     catch
                     {
@@ -274,7 +274,7 @@ namespace Kohya_lora_trainer
                 {
                     try
                     {
-                        reg = new Regex(boorutag, RegexOptions.Compiled, TimeSpan.FromMilliseconds(16));
+                        reg = new Regex(boorutag, RegexOptions.Compiled, TimeSpan.FromMilliseconds(20));
                     }
                     catch
                     {
@@ -405,7 +405,7 @@ namespace Kohya_lora_trainer
                 {
                     try
                     {
-                        reg = new Regex(booru, RegexOptions.Compiled, TimeSpan.FromMilliseconds(16));
+                        reg = new Regex(booru, RegexOptions.Compiled, TimeSpan.FromMilliseconds(20));
                     }
                     catch
                     {
@@ -509,7 +509,7 @@ namespace Kohya_lora_trainer
                 {
                     try
                     {
-                        reg = new Regex(booru, RegexOptions.Compiled, TimeSpan.FromMilliseconds(16));
+                        reg = new Regex(booru, RegexOptions.Compiled, TimeSpan.FromMilliseconds(20));
                     }
                     catch
                     {
@@ -598,6 +598,7 @@ namespace Kohya_lora_trainer
                 MessageBox.Show("データ破損防止のため、OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+
             if (MessageBox.Show("指定したタグを最後尾に追加します。\r\nこの操作はもとに戻せません。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 if (!Directory.Exists(tbxTargetDir.Text) || string.IsNullOrEmpty(tbxBooruTag.Text))
@@ -607,6 +608,7 @@ namespace Kohya_lora_trainer
                 lblProcessing.Visible = true;
                 Update();
                 int movedCnt = 0;
+                int errorCount = 0;
                 string booru = tbxBooruTag.Text;
                 string[] files = Directory.GetFiles(tbxTargetDir.Text);
 
@@ -620,30 +622,23 @@ namespace Kohya_lora_trainer
 
                 foreach (string file in files)
                 {
-                    string extension = Path.GetExtension(file);
-                    if (string.IsNullOrEmpty(extension) || extension != ".txt")
-                        continue;
-                    string txt = File.ReadAllText(file);
-                    if (txt.Contains(booru))
-                        continue;
-
-
-                    List<string> tags = new List<string>(txt.Split(", "));
-
-                    if (tags.Count > 0)
+                    try
                     {
-                        tags.Add(booru);
-                        StringBuilder sb = new StringBuilder();
-                        for (int i = 0; i < tags.Count; i++)
+                        string extension = Path.GetExtension(file);
+                        if (string.IsNullOrEmpty(extension) || extension != ".txt")
+                            continue;
+                        string txt = File.ReadAllText(file);
+
+                        List<string> tags = new List<string>(txt.Split(", "));
+                        if (tags.IndexOf(booru) == -1)
                         {
-                            sb.Append(tags[i]);
-                            if (i < tags.Count - 1)
-                            {
-                                sb.Append(", ");
-                            }
+                            File.WriteAllText(file, txt + ", " + booru);
+                            movedCnt++;
                         }
-                        File.WriteAllText(file, sb.ToString());
-                        movedCnt++;
+                    }
+                    catch
+                    {
+                        errorCount++;
                     }
 
                 }
@@ -652,6 +647,11 @@ namespace Kohya_lora_trainer
                     MessageBox.Show($"{movedCnt}件のファイルに追加しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
                     MessageBox.Show("対象のファイルはありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (errorCount > 0)
+                {
+                    MessageBox.Show($"{errorCount}件がエラーで失敗しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 

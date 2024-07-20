@@ -1111,6 +1111,13 @@ namespace Kohya_lora_trainer
             }
         }
 
+        /// <summary>
+        /// キャプションのシャッフル
+        /// </summary>
+        /// <param name="targetDir">シャッフルするキャプションが入ったディレクトリ</param>
+        /// <param name="keepTokenCount">トークン保持数。コンマスペース区切り</param>
+        /// <param name="showMsg">メッセージボックスを表示</param>
+        /// <returns></returns>
         internal static bool ShuffleCaptions(string targetDir, int keepTokenCount, bool showMsg)
         {
             if (!Directory.Exists(targetDir))
@@ -1136,38 +1143,45 @@ namespace Kohya_lora_trainer
             string[] files = Directory.GetFiles(targetDir);
             foreach (string file in files)
             {
-                string extension = Path.GetExtension(file);
-                if (string.IsNullOrEmpty(extension) || extension != ".txt")
-                    continue;
-                string txt = File.ReadAllText(file);
-
-                List<string> tags = new List<string>(txt.Split(", "));
-                if(tags.Count <= keepTokenCount)
+                try
                 {
-                    return false;
-                }
+                    string extension = Path.GetExtension(file);
+                    if (string.IsNullOrEmpty(extension) || extension != ".txt")
+                        continue;
+                    string txt = File.ReadAllText(file);
 
-
-                if (tags.Count > 0)
-                {
-                    StringBuilder sb = new StringBuilder();
-                    for(int i = 0; i<keepTokenCount; i++)
+                    List<string> tags = new List<string>(txt.Split(", "));
+                    if (tags.Count <= keepTokenCount)
                     {
-                        sb.Append(tags[0]).Append(", ");
-                        tags.RemoveAt(0);
+                        return false;
                     }
 
-                    tags = tags.OrderBy(a => Guid.NewGuid()).ToList();
 
-                    for (int i = 0; i < tags.Count; i++)
+                    if (tags.Count > 0)
                     {
-                        sb.Append(tags[i]);
-                        if (i < tags.Count - 1)
+                        StringBuilder sb = new StringBuilder();
+                        for (int i = 0; i < keepTokenCount; i++)
                         {
-                            sb.Append(", ");
+                            sb.Append(tags[0]).Append(", ");
+                            tags.RemoveAt(0);
                         }
+
+                        tags = tags.OrderBy(a => Guid.NewGuid()).ToList();
+
+                        for (int i = 0; i < tags.Count; i++)
+                        {
+                            sb.Append(tags[i]);
+                            if (i < tags.Count - 1)
+                            {
+                                sb.Append(", ");
+                            }
+                        }
+                        File.WriteAllText(file, sb.ToString());
                     }
-                    File.WriteAllText(file, sb.ToString());
+                }
+                catch
+                {
+                    Debug.WriteLine("Shuffle errored!");
                 }
 
             }

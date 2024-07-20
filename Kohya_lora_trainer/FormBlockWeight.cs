@@ -143,6 +143,13 @@ namespace Kohya_lora_trainer {
             {
                 tbrMid01.Enabled = false;
                 tbrMid02.Enabled = false;
+
+                panel1.BackColor = Color.Transparent;
+                panel2.BackColor = Color.Transparent;
+                panel3.BackColor = Color.Transparent;
+                panel4.BackColor = Color.Transparent;
+                panel5.BackColor = Color.Transparent;
+                groupBox1.Visible = false;
             }
         }
 

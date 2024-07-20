@@ -30,79 +30,7 @@ namespace Kohya_lora_trainer
 
         private void TrainForm_Load(object sender, EventArgs e)
         {
-            if (ShutdownOnly && (TrainCompletedAction == TrainCompleteAction.Shutdown || TrainCompletedAction == TrainCompleteAction.Suspend))
-            {
-                btnCopyCmd.Enabled = false;
-                btnStop.Enabled = false;
-                btnClose.Enabled = true;
-                lblCountdown.Visible = true;
-                timer1.Interval = 1000;
-                timer1.Start();
-                UpdateCountdownText();
-                return;
-            }
-            lblProcessingCaptions.Visible = false;
-            if (BatchProcess.LogResultText && BatchProcess.IsRunning)
-            {
-                StringBuilder ssb = new StringBuilder();
-                ssb.Append(TrainParams.Current.OutputPath).Append("\\").Append(TrainParams.Current.OutputName).Append(".safetensors\r\n").Append("開始時刻: ").Append(DateTime.Now.ToString());
 
-                BatchProcess.LogText += ssb.ToString();
-            }
-            if(BatchProcess.ShuffleCaptionsBeforeTraining && BatchProcess.IsRunning)
-            {
-                lblProcessingCaptions.Visible = true;
-                Update();
-            }
-
-            BatchProcess.ShuffleCaptions();
-            lblProcessingCaptions.Visible = false;
-            btnStop.Enabled = true;
-            btnClose.Enabled = false;
-            if (BatchProcess.IsRunning)
-                btnStop.Text = "バッチ処理の中止";
-
-
-            StringBuilder sbCmd = new StringBuilder();
-
-            if (TrainCompletedAction != TrainCompleteAction.None || BatchProcess.IsRunning)
-            {
-                sbCmd.Append(@"/c ");
-            }
-            else
-            {
-                sbCmd.Append(@"/k ");
-            }
-
-            sbCmd.Append("cd ");
-            if (!string.IsNullOrEmpty(Form1.ScriptPath))
-            {
-                sbCmd.Append("/d ").Append(Form1.ScriptPath);
-            }
-            else
-            {
-                sbCmd.Append(Constants.CurrentSdScriptsPath);
-            }
-
-            sbCmd.Append(" && .\\venv\\Scripts\\activate && ");
-
-            lblCountdown.Text = string.Empty;
-            sbCmd.Append(MyUtils.GenerateCommands());
-
-            if (TrainCompletedAction == TrainCompleteAction.ShowTimetaken || (BatchProcess.IsRunning && BatchProcess.LogResultText))
-            {
-                stopwatch = Stopwatch.StartNew();
-            }
-
-            ProcessStartInfo ps = new ProcessStartInfo();
-            ps.FileName = "cmd";
-            ps.Arguments = sbCmd.ToString();
-            process = new Process();
-            process.SynchronizingObject = this;
-            process.StartInfo = ps;
-            process.Exited += new EventHandler(TrainExited);
-            process.EnableRaisingEvents = true;
-            process.Start();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -286,6 +214,84 @@ namespace Kohya_lora_trainer
                     Application.SetSuspendState(PowerState.Suspend, false, false);
                     break;
             }
+        }
+
+        private void TrainForm_Shown(object sender, EventArgs e)
+        {
+            lblProcessingCaptions.Visible = false;
+            if (ShutdownOnly && (TrainCompletedAction == TrainCompleteAction.Shutdown || TrainCompletedAction == TrainCompleteAction.Suspend))
+            {
+                btnCopyCmd.Enabled = false;
+                btnStop.Enabled = false;
+                btnClose.Enabled = true;
+                lblCountdown.Visible = true;
+                timer1.Interval = 1000;
+                timer1.Start();
+                UpdateCountdownText();
+                return;
+            }
+
+            if (BatchProcess.LogResultText && BatchProcess.IsRunning)
+            {
+                StringBuilder ssb = new StringBuilder();
+                ssb.Append(TrainParams.Current.OutputPath).Append("\\").Append(TrainParams.Current.OutputName).Append(".safetensors\r\n").Append("開始時刻: ").Append(DateTime.Now.ToString());
+
+                BatchProcess.LogText += ssb.ToString();
+            }
+            if (BatchProcess.ShuffleCaptionsBeforeTraining && BatchProcess.IsRunning)
+            {
+                lblProcessingCaptions.Visible = true;
+                Update();
+            }
+
+            BatchProcess.ShuffleCaptions();
+            lblProcessingCaptions.Visible = false;
+            btnStop.Enabled = true;
+            btnClose.Enabled = false;
+            if (BatchProcess.IsRunning)
+                btnStop.Text = "バッチ処理の中止";
+
+
+            StringBuilder sbCmd = new StringBuilder();
+
+            if (TrainCompletedAction != TrainCompleteAction.None || BatchProcess.IsRunning)
+            {
+                sbCmd.Append(@"/c ");
+            }
+            else
+            {
+                sbCmd.Append(@"/k ");
+            }
+
+            sbCmd.Append("cd ");
+            if (!string.IsNullOrEmpty(Form1.ScriptPath))
+            {
+                sbCmd.Append("/d ").Append(Form1.ScriptPath);
+            }
+            else
+            {
+                sbCmd.Append(Constants.CurrentSdScriptsPath);
+            }
+
+            sbCmd.Append(" && .\\venv\\Scripts\\activate && ");
+
+            lblCountdown.Text = string.Empty;
+            sbCmd.Append(MyUtils.GenerateCommands());
+
+            if (TrainCompletedAction == TrainCompleteAction.ShowTimetaken || (BatchProcess.IsRunning && BatchProcess.LogResultText))
+            {
+                stopwatch = Stopwatch.StartNew();
+            }
+
+            ProcessStartInfo ps = new ProcessStartInfo();
+            ps.FileName = "cmd";
+            ps.Arguments = sbCmd.ToString();
+            process = new Process();
+            process.SynchronizingObject = this;
+            process.StartInfo = ps;
+            process.Exited += new EventHandler(TrainExited);
+            process.EnableRaisingEvents = true;
+            process.Start();
         }
     }
 }

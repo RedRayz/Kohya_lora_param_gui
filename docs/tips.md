@@ -2,9 +2,9 @@
 
 ## NaN detected in...って出た！！
 
-詳細設定->パスでVAEに https://huggingface.co/madebyollin/sdxl-vae-fp16-fix で配布されているsdxl.vae.safetensorsを選択すると直るかも。
+SDXLなら、詳細設定->パスでVAEに https://huggingface.co/madebyollin/sdxl-vae-fp16-fix で配布されているsdxl.vae.safetensorsを選択すると直るかも。
 
-ダメなら詳細設定->SDXLにあるVAEを32ビットで使用にチェックつける
+それがダメなら詳細設定->SDXLにあるVAEを32ビットで使用にチェックをつける。
 
 ## CUDA error: Out Of Memoryって出た！なにこれ？
 
@@ -74,9 +74,9 @@ dimの半分以下。高いほど生成時に崩壊しやすくなる。低す�
 
 Lionが無難。そこそこ高速で癖がなく失敗が少ない。
 
-ProdigyはLionより収束が早いが癖がある。
+ProdigyはLionより収束が早いが計算が遅い。
 
-AdaFactorはLoRA学習ではAdamWより遅く、メリットはない。
+AdaFactorはLoRA学習ではAdamWより遅く、メリットはない。あれは大規模学習向け。
 
 画風は癖のないAdamWかLionがいい感じだった。
 
@@ -141,4 +141,11 @@ LRは常に一定。非推奨。
 Bucketingが有効だと複数のBucketを1バッチにまとめられない影響でずれる場合あり。
 
 ## LoRAのファイルサイズに影響する設定
-ネットワーク次元数(DimまたはRank)、Conv2d拡張の使用(使用時はconv dimも)、LyCORIS使用時はLyCORISのアルゴリズムの種類、Unet/Tencの有無、保存時の精度(--save_precision)
+ネットワーク次元数(DimまたはRank)、Conv2d拡張の使用(使用時はconv dimも)、LyCORIS使用時はLyCORISのアルゴリズムの種類、Unet/Tencの有無、保存時の精度(--save_precision)、Stable Diffusionのバージョン
+
+## 作ったLoRAを使うと出力が暗くなったり赤みがかった色合いになる
+詳細設定->ノイズ関連->ノイズオフセットに学習元モデルで使用されたnoise_offsetの値を設定すると改善するかも。
+
+Animagine-XL、Kivotos-XL、Holodayo-XLで使用された値は`0.0357`。
+
+Ponyで使用された値は不明だが、明暗に弱いあたり未使用と思われる。
