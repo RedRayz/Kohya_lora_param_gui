@@ -449,6 +449,7 @@ namespace Kohya_lora_trainer
                 while (BatchProcess.BatchStack.Count > 0)
                 {
                     string pth = BatchProcess.BatchStack.Pop();
+                    //train_networkがない
                     if (!HasScriptFile(str, false))
                     {
                         Debug.WriteLine("Skip training. train_network.py not found");
@@ -458,11 +459,13 @@ namespace Kohya_lora_trainer
                         continue;
                     }
 
+                    //空文字はスルー
                     if (string.IsNullOrWhiteSpace(pth))
                     {
                         continue;
                     }
 
+                    //プリセットなし
                     if (!File.Exists(pth))
                     {
                         Debug.WriteLine("Skipping training. Invalid path: " + pth);
@@ -477,6 +480,7 @@ namespace Kohya_lora_trainer
 
                     LoadPreset(pth, false);
 
+                    //コマンドがおかしい
                     if (!IsCommandAvailable(false))
                     {
                         Debug.WriteLine("Skipped. Invalid commands");
@@ -489,7 +493,8 @@ namespace Kohya_lora_trainer
                         continue;
                     }
 
-                    if (!IsTrainingAvailable(false))
+                    //コマンド未指定かつLoRAパラメータがおかしい
+                    if (!IsTrainingAvailable(false) && IsCommandEmpty())
                     {
                         Debug.WriteLine("Skipping training. Invalid params in: " + pth);
                         BatchProcess.LogText += pth + "\r\nプリセットの設定が不適切なためスキップ\r\n\r\n";
@@ -607,6 +612,14 @@ namespace Kohya_lora_trainer
                 }
                 return true;
             }
+        }
+
+        private bool IsCommandEmpty()
+        {
+            string command = TrainParams.Current.CustomCommands.Trim();
+            command = command.Replace("\r\n", string.Empty);
+            command = command.Trim();
+            return string.IsNullOrWhiteSpace(command);
         }
 
 
