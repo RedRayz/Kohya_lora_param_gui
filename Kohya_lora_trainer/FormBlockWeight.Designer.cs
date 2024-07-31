@@ -133,6 +133,7 @@
             label24 = new Label();
             groupBox1 = new GroupBox();
             label26 = new Label();
+            label28 = new Label();
             ((System.ComponentModel.ISupportInitialize)tbrIn00).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbrIn01).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbrIn02).BeginInit();
@@ -1206,11 +1207,21 @@
             label26.TabIndex = 17;
             label26.Text = "着色された部分はTransformerがある層";
             // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Location = new Point(163, 14);
+            label28.Name = "label28";
+            label28.Size = new Size(210, 15);
+            label28.TabIndex = 18;
+            label28.Text = "注意:LyCORISは非対応(LyCORISの仕様)\r\n";
+            // 
             // FormBlockWeight
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(907, 647);
+            Controls.Add(label28);
             Controls.Add(groupBox1);
             Controls.Add(panel5);
             Controls.Add(panel4);
@@ -1467,5 +1478,6 @@
         private Label label24;
         private GroupBox groupBox1;
         private Label label26;
+        private Label label28;
     }
 }
