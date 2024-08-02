@@ -133,6 +133,7 @@
             label24 = new Label();
             groupBox1 = new GroupBox();
             label26 = new Label();
+            label28 = new Label();
             ((System.ComponentModel.ISupportInitialize)tbrIn00).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbrIn01).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tbrIn02).BeginInit();
@@ -887,7 +888,7 @@
             // label49
             // 
             label49.AutoSize = true;
-            label49.Location = new Point(3, 6);
+            label49.Location = new Point(226, 504);
             label49.Name = "label49";
             label49.Size = new Size(41, 15);
             label49.TabIndex = 1;
@@ -1057,7 +1058,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(3, 47);
+            label14.Location = new Point(3, 6);
             label14.Name = "label14";
             label14.Size = new Size(41, 15);
             label14.TabIndex = 1;
@@ -1066,7 +1067,7 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(3, 86);
+            label16.Location = new Point(222, 584);
             label16.Name = "label16";
             label16.Size = new Size(41, 15);
             label16.TabIndex = 1;
@@ -1113,12 +1114,10 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(255, 192, 255);
-            panel3.Controls.Add(label49);
             panel3.Controls.Add(label14);
-            panel3.Controls.Add(label16);
-            panel3.Location = new Point(222, 504);
+            panel3.Location = new Point(222, 545);
             panel3.Name = "panel3";
-            panel3.Size = new Size(45, 113);
+            panel3.Size = new Size(45, 25);
             panel3.TabIndex = 14;
             // 
             // panel4
@@ -1206,11 +1205,24 @@
             label26.TabIndex = 17;
             label26.Text = "着色された部分はTransformerがある層";
             // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label28.Location = new Point(163, 14);
+            label28.Name = "label28";
+            label28.Size = new Size(179, 13);
+            label28.TabIndex = 18;
+            label28.Text = "※LyCORISは非対応(LyCORISの仕様)\r\n";
+            // 
             // FormBlockWeight
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(907, 647);
+            Controls.Add(label49);
+            Controls.Add(label16);
+            Controls.Add(label28);
             Controls.Add(groupBox1);
             Controls.Add(panel5);
             Controls.Add(panel4);
@@ -1467,5 +1479,6 @@
         private Label label24;
         private GroupBox groupBox1;
         private Label label26;
+        private Label label28;
     }
 }
