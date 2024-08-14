@@ -1208,6 +1208,19 @@ namespace Kohya_lora_trainer
             {
                 return MessageBox.Show("非推奨のオプション「full fp16を使用」が有効になっています。\r\n学習能力の低下がありますが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
+
+            switch (TrainParams.Current.StableDiffusionType)
+            {
+                case ModelArchitecture.Flux1:
+                    if (TrainParams.Current.SplitMode && TrainParams.Current.TrainBlockType != TrainBlock.Single)
+                    {
+                        return MessageBox.Show("分割モードは学習するブロックをsingleにしないと使用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
+                    break;
+                default:
+                    break;
+            }
+
             return DialogResult.Yes;
         }
 

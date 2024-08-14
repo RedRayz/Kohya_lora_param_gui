@@ -392,7 +392,7 @@ namespace Kohya_lora_trainer
             cbxModuleType.Name = "cbxModuleType";
             cbxModuleType.Size = new Size(80, 23);
             cbxModuleType.TabIndex = 6;
-            toolTip1.SetToolTip(cbxModuleType, "LoRA-FAはメモリ消費が減少するが、LoRAの仕様上、減少量は雀の涙");
+            toolTip1.SetToolTip(cbxModuleType, "LoRA-FAはメモリ消費が減少するが、LoRAの仕様上、減少量は雀の涙\r\nFLUX.1ではLoRAのみ使用可能(LoRA-FAにしてもLoRAになる)");
             cbxModuleType.SelectedIndexChanged += cbxModuleType_SelectedIndexChanged;
             // 
             // nudSaveEpoch

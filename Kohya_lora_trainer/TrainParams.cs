@@ -104,7 +104,10 @@ namespace Kohya_lora_trainer {
 
         //Diffusion Transformer関連
         public decimal Sigmoidscale = 0, DiscreteFlowShift = 0, GuidanceScale = 0;
-
+        public ModelPrediction ModelPredictionType;
+        public TimestepSampling TimestepSamplingType;
+        public TrainBlock TrainBlockType;
+        public bool SplitMode = false;
 
         [NonSerialized]
         public static TrainParams? Current;
@@ -367,5 +370,12 @@ namespace Kohya_lora_trainer {
         Sigma,
         Uniform,
         Sigmoid
+    }
+
+    public enum TrainBlock
+    {
+        All,
+        Double,
+        Single
     }
 }

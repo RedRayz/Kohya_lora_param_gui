@@ -168,6 +168,9 @@ namespace Kohya_lora_trainer
                 case ModelArchitecture.XL:
                     sb.Append(" sdxl_train_network.py");
                     break;
+                case ModelArchitecture.Flux1:
+                    sb.Append(" flux_train_network.py");
+                    break;
             }
             sb.Append(" --pretrained_model_name_or_path \"").Append(TrainParams.Current.ModelPath).Append('"').Append(" --train_data_dir \"")
                 .Append(TrainParams.Current.TrainImagePath).Append("\" --output_dir \"").Append(TrainParams.Current.OutputPath).Append('"');
@@ -182,7 +185,16 @@ namespace Kohya_lora_trainer
                 case NetworkModule.LoRA:
                 case NetworkModule.LoRAFA:
                     {
-                        sb.Append(" --network_module \"").Append(TrainParams.Current.ModuleType == NetworkModule.LoRA ? "networks.lora" : "networks.lora_fa").Append('"');
+                        switch (TrainParams.Current.StableDiffusionType)
+                        {
+                            case ModelArchitecture.Flux1:
+                                sb.Append(" --network_module \"").Append("networks.lora_flux").Append('"');
+                                break;
+                            default:
+                                sb.Append(" --network_module \"").Append(TrainParams.Current.ModuleType == NetworkModule.LoRA ? "networks.lora" : "networks.lora_fa").Append('"');
+                                break;
+                        }
+                        
                         
                         if (TrainParams.Current.UseConv2dExtend)
                         {
@@ -284,7 +296,7 @@ namespace Kohya_lora_trainer
                 NetworkArgs.Add("loraplus_text_encoder_lr_ratio=" + TrainParams.Current.LoRAPlusTELRRatio.ToString());
             }
 
-            sb.Append(GetNetworkArgsCommands());
+            
 
             switch (TrainParams.Current.CrossAttenType)
             {
@@ -757,6 +769,23 @@ namespace Kohya_lora_trainer
                 sb.Append(" --immiscible_noise ").Append(TrainParams.Current.ImmiscibleNoise.ToString());
             }
 
+            switch (TrainParams.Current.StableDiffusionType)
+            {
+                case ModelArchitecture.Flux1:
+                    if (TrainParams.Current.SplitMode)
+                        sb.Append(" --split_mode");
+                    if(TrainParams.Current.GuidanceScale > 0m)
+                        sb.Append(" --guidance_scale ").Append(TrainParams.Current.GuidanceScale.ToString());
+                    sb.Append(" --discrete_flow_shift ").Append(TrainParams.Current.DiscreteFlowShift.ToString());
+                    NetworkArgs.Add("train_blocks=" + TrainParams.Current.TrainBlockType.ToString().ToLower());
+                    sb.Append(" --timestep_sampling \"").Append(TrainParams.Current.TimestepSamplingType.ToString().ToLower()).Append('"');
+                    sb.Append(" --model_prediction_type \"").Append(TrainParams.Current.ModelPredictionType.ToString().ToLower()).Append('"');
+                    break;
+                default:
+                    break;
+            }
+
+            sb.Append(GetNetworkArgsCommands());
             return sb.ToString();
         }
 

@@ -2167,15 +2167,16 @@ namespace Kohya_lora_trainer
             nudDiscreteFlowShift.Name = "nudDiscreteFlowShift";
             nudDiscreteFlowShift.Size = new Size(120, 23);
             nudDiscreteFlowShift.TabIndex = 3;
+            nudDiscreteFlowShift.Value = new decimal(new int[] { 3, 0, 0, 0 });
             // 
             // label61
             // 
             label61.AutoSize = true;
-            label61.Location = new Point(31, 137);
+            label61.Location = new Point(41, 137);
             label61.Name = "label61";
-            label61.Size = new Size(111, 15);
+            label61.Size = new Size(104, 15);
             label61.TabIndex = 2;
-            label61.Text = "Discrete Flow Shift#";
+            label61.Text = "Discrete Flow Shift";
             // 
             // nudSigmoidScale
             // 
@@ -2188,7 +2189,7 @@ namespace Kohya_lora_trainer
             // label59
             // 
             label59.AutoSize = true;
-            label59.Location = new Point(41, 80);
+            label59.Location = new Point(35, 80);
             label59.Name = "label59";
             label59.Size = new Size(104, 15);
             label59.TabIndex = 2;
