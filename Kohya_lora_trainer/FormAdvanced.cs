@@ -391,7 +391,6 @@ namespace Kohya_lora_trainer
 
             TrainParams.Current.ClipLPath = lblClipLPath.Text;
             TrainParams.Current.T5XXLPath = lblT5XXLPath.Text;
-            TrainParams.Current.AEPath = lblAEPath.Text;
             TrainParams.Current.ApplyT5AttnMask = cbxApplyT5AttnMask.Checked;
 
             Close();
@@ -537,7 +536,6 @@ namespace Kohya_lora_trainer
 
             lblClipLPath.Text = TrainParams.Current.ClipLPath;
             lblT5XXLPath.Text = TrainParams.Current.T5XXLPath;
-            lblAEPath.Text = TrainParams.Current.AEPath;
             cbxApplyT5AttnMask.Checked = TrainParams.Current.ApplyT5AttnMask;
         }
 
@@ -622,7 +620,7 @@ namespace Kohya_lora_trainer
         private void btnSelectVAE_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "SD VAE(*.safetensors;*.pt)|*.safetensors;*.pt";
+            ofd.Filter = "Autoencoder(*.safetensors;*.pt)|*.safetensors;*.pt";
             ofd.Title = "Select a VAE";
             ofd.RestoreDirectory = true;
 
@@ -731,27 +729,5 @@ namespace Kohya_lora_trainer
             lblT5XXLPath.Text = string.Empty;
         }
 
-        private void btnAEPath_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Safetensors(*.safetensors)|*.safetensors";
-            ofd.Title = "Select an AE";
-            ofd.RestoreDirectory = true;
-
-            if (File.Exists(TrainParams.Current.AEPath))
-            {
-                ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.AEPath);
-            }
-
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                lblAEPath.Text = ofd.FileName;
-            }
-        }
-
-        private void btnClearAEPath_Click(object sender, EventArgs e)
-        {
-            lblAEPath.Text = string.Empty;
-        }
     }
 }

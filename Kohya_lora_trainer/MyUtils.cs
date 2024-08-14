@@ -565,7 +565,16 @@ namespace Kohya_lora_trainer
 
             if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath))
             {
-                sb.Append(" --vae \"").Append(TrainParams.Current.VAEPath).Append('"');
+                
+                switch (TrainParams.Current.StableDiffusionType)
+                {
+                    case ModelArchitecture.Flux1:
+                        sb.Append(" --ae \"").Append(TrainParams.Current.VAEPath).Append('"');
+                        break;
+                    default:
+                        sb.Append(" --vae \"").Append(TrainParams.Current.VAEPath).Append('"');
+                        break;
+                }
             }
 
             //Advanced
