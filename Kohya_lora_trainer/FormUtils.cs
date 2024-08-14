@@ -272,13 +272,18 @@ namespace Kohya_lora_trainer
 
                 string py = cbxPythonVersion.SelectedIndex == 0 ? "py -3.10" : "py -3.11";
 
+                string torch = cbxUseLatestTorch.Checked ? "2.4.0+cu124" : Constants.TORCH_VERSION;
+                string vision = cbxUseLatestTorch.Checked ? "0.19.0+cu124" : Constants.TORCHVISION_VERSION;
+                string index = cbxUseLatestTorch.Checked ? "https://download.pytorch.org/whl/cu124" : Constants.INDEX_URL;
+                string xformers = cbxUseLatestTorch.Checked ? "0.0.27.post2" : Constants.XFORMERS_VERSION;
+
                 sb.Append(@" && ")
                     .Append(cbxUsePy.Checked ? py : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && pip install torch==")
-                    .Append(Constants.TORCH_VERSION).Append(" torchvision==")
-                    .Append(Constants.TORCHVISION_VERSION).Append(" --index-url ")
-                    .Append(Constants.INDEX_URL)
+                    .Append(torch).Append(" torchvision==")
+                    .Append(vision).Append(" --index-url ")
+                    .Append(index)
                     .Append(" && pip install --upgrade -r requirements.txt && pip install xformers==")
-                    .Append(Constants.XFORMERS_VERSION).Append(" && ");
+                    .Append(xformers).Append(" && ");
 
                 sb.Append("pip install dadaptation lycoris_lora");
                 ProcessStartInfo ps = new ProcessStartInfo();
