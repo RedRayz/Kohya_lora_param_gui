@@ -366,12 +366,12 @@ namespace Kohya_lora_trainer
             // 
             cbxSDType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxSDType.FormattingEnabled = true;
-            cbxSDType.Items.AddRange(new object[] { "1.X", "XL" });
+            cbxSDType.Items.AddRange(new object[] { "SD1.X", "SDXL", "FLUX" });
             cbxSDType.Location = new Point(100, 197);
             cbxSDType.Name = "cbxSDType";
             cbxSDType.Size = new Size(139, 23);
             cbxSDType.TabIndex = 85;
-            toolTip1.SetToolTip(cbxSDType, "SDXLは要求スペックもXLサイズ");
+            toolTip1.SetToolTip(cbxSDType, "SDXLは要求スペックもXLサイズ\r\nFLUXはそれの倍");
             cbxSDType.SelectedIndexChanged += cbxSDType_SelectedIndexChanged;
             // 
             // tbxFileName
@@ -766,9 +766,9 @@ namespace Kohya_lora_trainer
             label13.AutoSize = true;
             label13.Location = new Point(23, 200);
             label13.Name = "label13";
-            label13.Size = new Size(75, 15);
+            label13.Size = new Size(69, 15);
             label13.TabIndex = 14;
-            label13.Text = "SDのバージョン";
+            label13.Text = "モデルの種類";
             // 
             // cbxEpochOrStep
             // 

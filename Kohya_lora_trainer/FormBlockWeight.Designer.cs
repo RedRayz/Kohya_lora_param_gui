@@ -1211,9 +1211,9 @@
             label28.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             label28.Location = new Point(163, 14);
             label28.Name = "label28";
-            label28.Size = new Size(179, 13);
+            label28.Size = new Size(397, 13);
             label28.TabIndex = 18;
-            label28.Text = "※LyCORISは非対応(LyCORISの仕様)\r\n";
+            label28.Text = "※SD1とXLのnetworks.loraのみ対応、LyCORISでは無視され、FLUXでは多分エラーになる\r\n";
             // 
             // FormBlockWeight
             // 
