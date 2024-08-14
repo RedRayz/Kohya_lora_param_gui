@@ -2185,15 +2185,16 @@ namespace Kohya_lora_trainer
             nudSigmoidScale.Name = "nudSigmoidScale";
             nudSigmoidScale.Size = new Size(120, 23);
             nudSigmoidScale.TabIndex = 3;
+            nudSigmoidScale.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label59
             // 
             label59.AutoSize = true;
-            label59.Location = new Point(35, 80);
+            label59.Location = new Point(49, 80);
             label59.Name = "label59";
-            label59.Size = new Size(104, 15);
+            label59.Size = new Size(97, 15);
             label59.TabIndex = 2;
-            label59.Text = "シグモイドのスケール#";
+            label59.Text = "シグモイドのスケール";
             // 
             // cbxTrainBlock
             // 
@@ -2246,7 +2247,7 @@ namespace Kohya_lora_trainer
             // label58
             // 
             label58.AutoSize = true;
-            label58.Location = new Point(21, 52);
+            label58.Location = new Point(24, 52);
             label58.Name = "label58";
             label58.Size = new Size(122, 15);
             label58.TabIndex = 0;

@@ -772,14 +772,16 @@ namespace Kohya_lora_trainer
             switch (TrainParams.Current.StableDiffusionType)
             {
                 case ModelArchitecture.Flux1:
-                    if (TrainParams.Current.SplitMode)
-                        sb.Append(" --split_mode");
-                    if(TrainParams.Current.GuidanceScale > 0m)
-                        sb.Append(" --guidance_scale ").Append(TrainParams.Current.GuidanceScale.ToString());
+                    sb.Append(" --model_prediction_type \"").Append(TrainParams.Current.ModelPredictionType.ToString().ToLower()).Append('"');
                     sb.Append(" --discrete_flow_shift ").Append(TrainParams.Current.DiscreteFlowShift.ToString());
                     NetworkArgs.Add("train_blocks=" + TrainParams.Current.TrainBlockType.ToString().ToLower());
                     sb.Append(" --timestep_sampling \"").Append(TrainParams.Current.TimestepSamplingType.ToString().ToLower()).Append('"');
-                    sb.Append(" --model_prediction_type \"").Append(TrainParams.Current.ModelPredictionType.ToString().ToLower()).Append('"');
+                    if (TrainParams.Current.TimestepSamplingType == TimestepSampling.Sigmoid)
+                        sb.Append(" --sigmoid_scale ").Append(TrainParams.Current.Sigmoidscale.ToString());
+                    if (TrainParams.Current.SplitMode)
+                        sb.Append(" --split_mode");
+                    if (TrainParams.Current.GuidanceScale > 0m)
+                        sb.Append(" --guidance_scale ").Append(TrainParams.Current.GuidanceScale.ToString());
                     break;
                 default:
                     break;
