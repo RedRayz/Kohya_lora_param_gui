@@ -362,7 +362,7 @@ namespace Kohya_lora_trainer {
     {
         Raw,
         Additive,
-        SigmaScaled
+        Sigma_Scaled
     }
 
     public enum TimestepSampling
