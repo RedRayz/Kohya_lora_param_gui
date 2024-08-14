@@ -2238,9 +2238,9 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(label60);
             tabPage8.Controls.Add(cbxTimestepSampling);
             tabPage8.Controls.Add(label58);
-            tabPage8.Location = new Point(4, 26);
+            tabPage8.Location = new Point(4, 24);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 341);
+            tabPage8.Size = new Size(660, 343);
             tabPage8.TabIndex = 12;
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;
@@ -2248,7 +2248,7 @@ namespace Kohya_lora_trainer
             // cbxApplyT5AttnMask
             // 
             cbxApplyT5AttnMask.AutoSize = true;
-            cbxApplyT5AttnMask.Location = new Point(61, 193);
+            cbxApplyT5AttnMask.Location = new Point(51, 164);
             cbxApplyT5AttnMask.Name = "cbxApplyT5AttnMask";
             cbxApplyT5AttnMask.Size = new Size(133, 19);
             cbxApplyT5AttnMask.TabIndex = 7;
@@ -2268,7 +2268,7 @@ namespace Kohya_lora_trainer
             // 
             label64.AutoSize = true;
             label64.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label64.Location = new Point(32, 228);
+            label64.Location = new Point(39, 186);
             label64.Name = "label64";
             label64.Size = new Size(107, 21);
             label64.TabIndex = 5;
@@ -2277,7 +2277,7 @@ namespace Kohya_lora_trainer
             // cbxSplitMode
             // 
             cbxSplitMode.AutoSize = true;
-            cbxSplitMode.Location = new Point(61, 261);
+            cbxSplitMode.Location = new Point(68, 219);
             cbxSplitMode.Name = "cbxSplitMode";
             cbxSplitMode.Size = new Size(75, 19);
             cbxSplitMode.TabIndex = 4;
@@ -2287,7 +2287,7 @@ namespace Kohya_lora_trainer
             // nudGuidanceScale
             // 
             nudGuidanceScale.DecimalPlaces = 4;
-            nudGuidanceScale.Location = new Point(148, 164);
+            nudGuidanceScale.Location = new Point(152, 274);
             nudGuidanceScale.Name = "nudGuidanceScale";
             nudGuidanceScale.Size = new Size(120, 23);
             nudGuidanceScale.TabIndex = 3;
@@ -2295,7 +2295,7 @@ namespace Kohya_lora_trainer
             // label62
             // 
             label62.AutoSize = true;
-            label62.Location = new Point(21, 166);
+            label62.Location = new Point(22, 276);
             label62.Name = "label62";
             label62.Size = new Size(124, 15);
             label62.TabIndex = 2;
@@ -2342,7 +2342,7 @@ namespace Kohya_lora_trainer
             cbxTrainBlock.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxTrainBlock.FormattingEnabled = true;
             cbxTrainBlock.Items.AddRange(new object[] { "すべて", "doubleのみ", "singleのみ" });
-            cbxTrainBlock.Location = new Point(145, 285);
+            cbxTrainBlock.Location = new Point(152, 243);
             cbxTrainBlock.Name = "cbxTrainBlock";
             cbxTrainBlock.Size = new Size(121, 23);
             cbxTrainBlock.TabIndex = 1;
@@ -2350,7 +2350,7 @@ namespace Kohya_lora_trainer
             // label63
             // 
             label63.AutoSize = true;
-            label63.Location = new Point(51, 288);
+            label63.Location = new Point(58, 246);
             label63.Name = "label63";
             label63.Size = new Size(85, 15);
             label63.TabIndex = 0;
