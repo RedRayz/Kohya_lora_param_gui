@@ -8,18 +8,18 @@ using System.Windows.Forms;
 namespace Kohya_lora_trainer {
     public  class TrainParams {
         //Required
-        public  string ModelPath, TrainImagePath, OutputPath, TensorBoardLogPath, LoraModelPath;
+        public  string ModelPath = string.Empty, TrainImagePath = string.Empty, OutputPath = string.Empty, TensorBoardLogPath = string.Empty, LoraModelPath = string.Empty;
         public  float LearningRate = 0.0001f;
         public  int Resolution = 512, BatchSize = 2, Epochs = 5, NetworkDim = 64;
         public decimal NetworkAlpha = 16;
 
         //Optional
-        public  string RegImagePath;
+        public  string RegImagePath = string.Empty;
         public  bool ShuffleCaptions = true;
         public  int KeepTokenCount = 1, SaveEveryNEpochs = 0;
         public  Optimizer OptimizerType = Optimizer.AdamW;
         public  int WarmupSteps = 250;
-        public  string OutputName, Comment;
+        public  string OutputName = string.Empty, Comment = string.Empty;
 
         //Advanced
         public  int CpuThreads = 4;
@@ -329,7 +329,8 @@ namespace Kohya_lora_trainer {
     public enum ModelArchitecture
     {
         Legacy,
-        XL
+        XL,
+        Flux1
     }
 
     public enum TrainCompleteAction
