@@ -17,7 +17,7 @@ namespace Kohya_lora_trainer {
         public  string RegImagePath;
         public  bool ShuffleCaptions = true;
         public  int KeepTokenCount = 1, SaveEveryNEpochs = 0;
-        public  OptimizerType OptimizerType = OptimizerType.AdamW;
+        public  Optimizer OptimizerType = Optimizer.AdamW;
         public  int WarmupSteps = 250;
         public  string OutputName, Comment;
 
@@ -27,18 +27,18 @@ namespace Kohya_lora_trainer {
         public  int ClipSkip = 2;
         public long Seed = 42;
         public  SavePrecision SavePrecision = SavePrecision.fp16;
-        public  SchedulerType SchedulerType = SchedulerType.cosine_with_restarts;
+        public  Scheduler SchedulerType = Scheduler.cosine_with_restarts;
         public  int MinBucketResolution = 320, MaxBucketResolution = 1024;
         public  string CaptionFileExtension = ".txt", VAEPath = string.Empty;
         public  float UnetLR = -1, TextEncoderLR = -1, NoiseOffset = 0, Momentum = 0.9f;
-        public AdvancedTrainType advancedTrainType = AdvancedTrainType.None;
-        public CrossAttenType CrossAttenType = CrossAttenType.xformers;
+        public AdvancedTrain advancedTrainType = AdvancedTrain.None;
+        public CrossAtten CrossAttenType = CrossAtten.xformers;
         public bool UseGradient = false, UseWeightedCaptions = false;
         public decimal AdaptiveNoiseScale = 0, MinSNRGamma = 0, MultiresNoiseIterations = 0, MultiresNoiseDiscount = 0, NetworkDropout = 0, RankDropout = 0, ModuleDropout = 0, MaxNormReg = 0, CaptionDropout = 0, IpNoiseGamma = 0;
 
         //Addtional(KohakuBlueleaf氏作成拡張スクリプト用)
-        public ModuleType ModuleType = ModuleType.LoRA;
-        public AlgoType AlgoType = AlgoType.lora;
+        public NetworkModule ModuleType = NetworkModule.LoRA;
+        public LycoAlgo AlgoType = LycoAlgo.lora;
         public int ConvDim = 64;
         public decimal ConvAlpha = 16;
         //Additional(LoRA)
@@ -53,8 +53,8 @@ namespace Kohya_lora_trainer {
         public int BlockWeightMid = 20, BlockWeightMid01 = 20, BlockWeightMid02 = 20;
         public int[] BlockWeightOut = { 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 };
         public decimal BlockWeightOffsetIn = 0, BlockWeightOffsetOut = 0;
-        public BlockWeightPresetType BlockWeightPresetTypeIn = BlockWeightPresetType.none;
-        public BlockWeightPresetType BlockWeightPresetTypeOut = BlockWeightPresetType.none;
+        public BlockWeightPreset BlockWeightPresetTypeIn = BlockWeightPreset.none;
+        public BlockWeightPreset BlockWeightPresetTypeOut = BlockWeightPreset.none;
         public int BlockWeightZeroThreshold = 0;
 
         //Block Dim,Alpha
@@ -77,13 +77,13 @@ namespace Kohya_lora_trainer {
         //public string ModelConfigPath = string.Empty;
         public decimal LRSchedulerCycle = 4m, GradAccSteps = 1m;
         public int DataLoaderThreads = 1, MaxTokens = 75;
-        public MixedPrecisionType mixedPrecisionType = MixedPrecisionType.fp16;
+        public MixedPrecision mixedPrecisionType = MixedPrecision.fp16;
 
         //DAdaptation関連
         public float WeightDecay = 0, Eps = 1e-06f, D0 = 1e-06f, GrowthRate = 0, Betas0 = 0.9f, Betas1 = 0.999f, Betas2 = 0.999f, DAdaptMomentum = 0.9f, ProdigyBeta3 = 0, DCoef = 1;
         public bool Decouple = false, NoProx = false, SafeguardWarmup = false, UseBiasCorrection = false;
 
-        public SDType StableDiffusionType = SDType.Legacy;
+        public ModelArchitecture StableDiffusionType = ModelArchitecture.Legacy;
 
         public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true, UseFullFP16 = false, UseFP8Base = false, RelativeStep = true, ScaleParameter = true, SaveState = false, MaskLoss = false, AlphaMask = false;
         public bool RandomNoiseOffset = false, RandomIpNoiseGamma = false;
@@ -91,7 +91,7 @@ namespace Kohya_lora_trainer {
 
         //Huber関連
         public LossType LossType;
-        public HuberScheduleType HuberScheduleType;
+        public HuberSchedule HuberScheduleType;
         public decimal HuberC = 0.1m;
 
         //LoRA+
@@ -101,6 +101,9 @@ namespace Kohya_lora_trainer {
 
         //なんでstringの初期値nullなん？？参照型なのはわかっとる
         public string CustomCommands = string.Empty;
+
+        //Diffusion Transformer関連
+        public decimal Sigmoidscale = 0, DiscreteFlowShift = 0, GuidanceScale = 0;
 
 
         [NonSerialized]
@@ -241,7 +244,7 @@ namespace Kohya_lora_trainer {
         }
     }
 
-    public enum OptimizerType {
+    public enum Optimizer {
         AdamW8bit,
         AdamW,
         AdaFactor,
@@ -267,7 +270,7 @@ namespace Kohya_lora_trainer {
         fp32
     }
 
-    public enum SchedulerType {
+    public enum Scheduler {
         cosine_with_restarts,
         cosine,
         linear,
@@ -276,20 +279,20 @@ namespace Kohya_lora_trainer {
         constant_with_warmup
     }
 
-    public enum AdvancedTrainType {
+    public enum AdvancedTrain {
         None,
         TextEncoderOnly,
         UNetOnly,
     }
 
-    public enum ModuleType {
+    public enum NetworkModule {
         LoRA,
         LyCORIS,
         DyLoRA,
         LoRAFA
     }
 
-    public enum AlgoType {
+    public enum LycoAlgo {
         lora,
         loha,
         ia3,
@@ -300,13 +303,13 @@ namespace Kohya_lora_trainer {
         boft
     }
 
-    public enum CrossAttenType {
+    public enum CrossAtten {
         xformers,
         mem_eff_attn,
         sdpa
     }
 
-    public enum BlockWeightPresetType
+    public enum BlockWeightPreset
     {
         none,
         sine,
@@ -316,14 +319,14 @@ namespace Kohya_lora_trainer {
         zeros
     }
 
-    public enum MixedPrecisionType
+    public enum MixedPrecision
     {
         None,
         fp16,
         bf16
     }
 
-    public enum SDType
+    public enum ModelArchitecture
     {
         Legacy,
         XL
@@ -337,17 +340,31 @@ namespace Kohya_lora_trainer {
         Suspend
     }
 
-    public enum  LossType
+    public enum LossType
     {
         LTwo,
         Huber,
         SmoothLOne
     }
 
-    public enum HuberScheduleType
+    public enum HuberSchedule
     {
         SNR,
         Exponential,
         Constant
+    }
+
+    public enum ModelPrediction
+    {
+        Raw,
+        Additive,
+        SigmaScaled
+    }
+
+    public enum TimestepSampling
+    {
+        Sigma,
+        Uniform,
+        Sigmoid
     }
 }

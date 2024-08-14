@@ -42,8 +42,8 @@ namespace Kohya_lora_trainer {
             TrainParams.Current.BlockWeightOffsetOut = nudOffsetOut.Value;
             TrainParams.Current.UseBlockWeight = cbxEnableBlockWeight.Checked;
             TrainParams.Current.BlockWeightZeroThreshold = tbrThreshold.Value;
-            TrainParams.Current.BlockWeightPresetTypeIn = (BlockWeightPresetType)Enum.ToObject(typeof(BlockWeightPresetType), cbxPresetIn.SelectedIndex);
-            TrainParams.Current.BlockWeightPresetTypeOut = (BlockWeightPresetType)Enum.ToObject(typeof(BlockWeightPresetType), cbxPresetOut.SelectedIndex);
+            TrainParams.Current.BlockWeightPresetTypeIn = (BlockWeightPreset)Enum.ToObject(typeof(BlockWeightPreset), cbxPresetIn.SelectedIndex);
+            TrainParams.Current.BlockWeightPresetTypeOut = (BlockWeightPreset)Enum.ToObject(typeof(BlockWeightPreset), cbxPresetOut.SelectedIndex);
             Close();
         }
 
@@ -129,7 +129,7 @@ namespace Kohya_lora_trainer {
 
             cbxPresetIn.SelectedIndex = (int)TrainParams.Current.BlockWeightPresetTypeIn;
             cbxPresetOut.SelectedIndex = (int)TrainParams.Current.BlockWeightPresetTypeOut;
-            if (TrainParams.Current.StableDiffusionType == SDType.XL)
+            if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
             {
                 tbrIn09.Enabled = false;
                 tbrIn10.Enabled = false;

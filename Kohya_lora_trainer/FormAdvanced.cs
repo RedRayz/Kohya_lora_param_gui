@@ -278,10 +278,10 @@ namespace Kohya_lora_trainer
             TrainParams.Current.DCoef = dcoef;
 
             TrainParams.Current.CpuThreads = tbrCpuThreads.Value;
-            TrainParams.Current.SchedulerType = (SchedulerType)Enum.ToObject(typeof(SchedulerType), cbxScheduler.SelectedIndex);
+            TrainParams.Current.SchedulerType = (Scheduler)Enum.ToObject(typeof(Scheduler), cbxScheduler.SelectedIndex);
             TrainParams.Current.SavePrecision = (SavePrecision)Enum.ToObject(typeof(SavePrecision), cbxPrecision.SelectedIndex);
-            TrainParams.Current.advancedTrainType = (AdvancedTrainType)Enum.ToObject(typeof(AdvancedTrainType), cbxAdvancedTrain.SelectedIndex);
-            TrainParams.Current.CrossAttenType = (CrossAttenType)Enum.ToObject(typeof(CrossAttenType), cbxCrossAttenType.SelectedIndex);
+            TrainParams.Current.advancedTrainType = (AdvancedTrain)Enum.ToObject(typeof(AdvancedTrain), cbxAdvancedTrain.SelectedIndex);
+            TrainParams.Current.CrossAttenType = (CrossAtten)Enum.ToObject(typeof(CrossAtten), cbxCrossAttenType.SelectedIndex);
             TrainParams.Current.MinBucketResolution = (int)nudMinBucketReso.Value;
             TrainParams.Current.MaxBucketResolution = (int)nudMaxBucketReso.Value;
             TrainParams.Current.NoBucketUpscaling = cbxNoUpscale.Checked;
@@ -306,7 +306,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.DyLoRAUnit = nudDyLoRAUnit.Value;
             TrainParams.Current.DatasetConfigPath = lblConfigPath.Text;
 
-            TrainParams.Current.AlgoType = (AlgoType)Enum.ToObject(typeof(AlgoType), cbxAlgoType.SelectedIndex);
+            TrainParams.Current.AlgoType = (LycoAlgo)Enum.ToObject(typeof(LycoAlgo), cbxAlgoType.SelectedIndex);
 
             TrainParams.Current.UseColorAug = cbxUseColorAug.Checked;
             TrainParams.Current.UseFastLoading = cbxUseFastLoading.Checked;
@@ -322,7 +322,7 @@ namespace Kohya_lora_trainer
 
             //TrainParams.Current.ModelConfigPath = tbxModelConfigPath.Text;
 
-            TrainParams.Current.mixedPrecisionType = (MixedPrecisionType)Enum.ToObject(typeof(MixedPrecisionType), cbxMixedPrecision.SelectedIndex);
+            TrainParams.Current.mixedPrecisionType = (MixedPrecision)Enum.ToObject(typeof(MixedPrecision), cbxMixedPrecision.SelectedIndex);
 
             TrainParams.Current.LRSchedulerCycle = nudLRSchedulerCycle.Value;
             TrainParams.Current.DataLoaderThreads = (int)nudDataLoaderThreads.Value;
@@ -360,7 +360,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.HighVRAM = cbxHighVRAM.Checked;
 
             TrainParams.Current.LossType = (LossType)Enum.ToObject(typeof(LossType), cbxLossType.SelectedIndex);
-            TrainParams.Current.HuberScheduleType = (HuberScheduleType)Enum.ToObject(typeof(HuberScheduleType), cbxHuberSchedule.SelectedIndex);
+            TrainParams.Current.HuberScheduleType = (HuberSchedule)Enum.ToObject(typeof(HuberSchedule), cbxHuberSchedule.SelectedIndex);
             TrainParams.Current.HuberC = nudHuberC.Value;
             TrainParams.Current.SaveState = cbxSaveState.Checked;
             TrainParams.Current.MaskLoss = cbxMaskLoss.Checked;

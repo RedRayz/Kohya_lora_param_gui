@@ -702,7 +702,7 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
-            if (TrainParams.Current.StableDiffusionType == SDType.XL && !File.Exists(Constants.CurrentSdScriptsPath + @"sdxl_train_network.py"))
+            if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL && !File.Exists(Constants.CurrentSdScriptsPath + @"sdxl_train_network.py"))
             {
                 if (showMsg)
                     MessageBox.Show("sdxl_train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -843,7 +843,7 @@ namespace Kohya_lora_trainer
 
         private void cbxModuleType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.ModuleType = (ModuleType)Enum.ToObject(typeof(ModuleType), cbxModuleType.SelectedIndex);
+            TrainParams.Current.ModuleType = (NetworkModule)Enum.ToObject(typeof(NetworkModule), cbxModuleType.SelectedIndex);
         }
 
         private void btnGenerateCommands_Click(object sender, EventArgs e)
@@ -876,7 +876,7 @@ namespace Kohya_lora_trainer
 
         private void cbxSDType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.StableDiffusionType = (SDType)Enum.ToObject(typeof(SDType), cbxSDType.SelectedIndex);
+            TrainParams.Current.StableDiffusionType = (ModelArchitecture)Enum.ToObject(typeof(ModelArchitecture), cbxSDType.SelectedIndex);
         }
 
         private void cbxEpochOrStep_SelectedIndexChanged(object sender, EventArgs e)
@@ -901,7 +901,7 @@ namespace Kohya_lora_trainer
 
         private void cbxOptimizer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.OptimizerType = (OptimizerType)Enum.ToObject(typeof(OptimizerType), cbxOptimizer.SelectedIndex);
+            TrainParams.Current.OptimizerType = (Optimizer)Enum.ToObject(typeof(Optimizer), cbxOptimizer.SelectedIndex);
         }
 
         private void tbxModelPath_TextChanged(object sender, EventArgs e)
@@ -1172,28 +1172,28 @@ namespace Kohya_lora_trainer
         {
             switch (TrainParams.Current.OptimizerType)
             {
-                case OptimizerType.AdaFactor:
+                case Optimizer.AdaFactor:
                     {
                         if (TrainParams.Current.LearningRate > 0.01f)
                             return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
-                case OptimizerType.AdamW:
-                case OptimizerType.AdamW8bit:
-                case OptimizerType.Lion:
+                case Optimizer.AdamW:
+                case Optimizer.AdamW8bit:
+                case Optimizer.Lion:
                     {
                         if (TrainParams.Current.LearningRate > 0.001f)
                             return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.0001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
-                case OptimizerType.DAdaptation:
-                case OptimizerType.DAdaptAdaGrad:
-                case OptimizerType.DAdaptAdam:
-                case OptimizerType.DAdaptAdan:
-                case OptimizerType.DAdaptSGD:
-                case OptimizerType.DAdaptAdanIP:
-                case OptimizerType.DAdaptLion:
-                case OptimizerType.prodigy:
+                case Optimizer.DAdaptation:
+                case Optimizer.DAdaptAdaGrad:
+                case Optimizer.DAdaptAdam:
+                case Optimizer.DAdaptAdan:
+                case Optimizer.DAdaptSGD:
+                case Optimizer.DAdaptAdanIP:
+                case Optimizer.DAdaptLion:
+                case Optimizer.prodigy:
                     {
                         if (TrainParams.Current.LearningRate > 3)
                             return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:1)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
