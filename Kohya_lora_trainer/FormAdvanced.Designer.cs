@@ -87,6 +87,7 @@ namespace Kohya_lora_trainer
             nudHuberC = new NumericUpDown();
             nudImmiscibleNoise = new NumericUpDown();
             nudIpNoiseGamma = new NumericUpDown();
+            lblAEPath = new Label();
             cbxAdvancedTrain = new ComboBox();
             label6 = new Label();
             label9 = new Label();
@@ -184,10 +185,20 @@ namespace Kohya_lora_trainer
             tbxD0 = new TextBox();
             tbxGrowthRate = new TextBox();
             tabPage2 = new TabPage();
+            btnClearAEPath = new Button();
+            btnAEPath = new Button();
+            btnClearT5XXLPath = new Button();
+            btnClearClipLPath = new Button();
+            btnT5XXLPath = new Button();
+            btnClipLPath = new Button();
             lblConfigPath = new Label();
             label21 = new Label();
             btnClearConfigPath = new Button();
+            lblT5XXLPath = new Label();
             btnSelectConfigPath = new Button();
+            lblClipLPath = new Label();
+            label68 = new Label();
+            label66 = new Label();
             pageMisc = new TabPage();
             label41 = new Label();
             cbxSaveState = new CheckBox();
@@ -850,6 +861,15 @@ namespace Kohya_lora_trainer
             nudIpNoiseGamma.TabIndex = 49;
             toolTip1.SetToolTip(nudIpNoiseGamma, "正則化にinput perturbation noiseを使用する");
             // 
+            // lblAEPath
+            // 
+            lblAEPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblAEPath.Location = new Point(27, 281);
+            lblAEPath.Name = "lblAEPath";
+            lblAEPath.Size = new Size(240, 34);
+            lblAEPath.TabIndex = 34;
+            lblAEPath.Text = "D:\\Sample\\Please stop using Super Long Naming\\clip\\glip_l.safetensors";
+            // 
             // cbxAdvancedTrain
             // 
             cbxAdvancedTrain.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -945,7 +965,7 @@ namespace Kohya_lora_trainer
             // 
             // btnTensorBoardPath
             // 
-            btnTensorBoardPath.Location = new Point(112, 120);
+            btnTensorBoardPath.Location = new Point(112, 97);
             btnTensorBoardPath.Name = "btnTensorBoardPath";
             btnTensorBoardPath.Size = new Size(64, 30);
             btnTensorBoardPath.TabIndex = 32;
@@ -956,7 +976,7 @@ namespace Kohya_lora_trainer
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(27, 120);
+            label12.Location = new Point(27, 97);
             label12.Name = "label12";
             label12.Size = new Size(84, 30);
             label12.TabIndex = 33;
@@ -965,15 +985,15 @@ namespace Kohya_lora_trainer
             // lblTBoardPath
             // 
             lblTBoardPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTBoardPath.Location = new Point(27, 166);
+            lblTBoardPath.Location = new Point(27, 143);
             lblTBoardPath.Name = "lblTBoardPath";
-            lblTBoardPath.Size = new Size(240, 48);
+            lblTBoardPath.Size = new Size(240, 32);
             lblTBoardPath.TabIndex = 34;
             lblTBoardPath.Text = "D:\\Sample\\Please stop using Super Long Naming\\RegImage\\1_1girl";
             // 
             // btnClearTBoardPath
             // 
-            btnClearTBoardPath.Location = new Point(182, 120);
+            btnClearTBoardPath.Location = new Point(182, 97);
             btnClearTBoardPath.Name = "btnClearTBoardPath";
             btnClearTBoardPath.Size = new Size(64, 30);
             btnClearTBoardPath.TabIndex = 35;
@@ -1033,7 +1053,7 @@ namespace Kohya_lora_trainer
             lblLoRAmodelPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             lblLoRAmodelPath.Location = new Point(27, 58);
             lblLoRAmodelPath.Name = "lblLoRAmodelPath";
-            lblLoRAmodelPath.Size = new Size(240, 48);
+            lblLoRAmodelPath.Size = new Size(240, 36);
             lblLoRAmodelPath.TabIndex = 43;
             lblLoRAmodelPath.Text = "C:\\Sample\\SuperLong\\Multibyte\\and\\spaces\\日本語.safetensors";
             // 
@@ -1100,7 +1120,7 @@ namespace Kohya_lora_trainer
             lblVAEPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             lblVAEPath.Location = new Point(310, 59);
             lblVAEPath.Name = "lblVAEPath";
-            lblVAEPath.Size = new Size(240, 48);
+            lblVAEPath.Size = new Size(240, 35);
             lblVAEPath.TabIndex = 43;
             lblVAEPath.Text = "C:\\Sample\\SuperLong\\Multibyte\\and\\spaces\\日本語.safetensors";
             // 
@@ -1872,15 +1892,26 @@ namespace Kohya_lora_trainer
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(btnClearAEPath);
+            tabPage2.Controls.Add(btnAEPath);
+            tabPage2.Controls.Add(btnClearT5XXLPath);
+            tabPage2.Controls.Add(btnClearClipLPath);
+            tabPage2.Controls.Add(btnT5XXLPath);
+            tabPage2.Controls.Add(btnClipLPath);
             tabPage2.Controls.Add(lblConfigPath);
             tabPage2.Controls.Add(lblVAEPath);
             tabPage2.Controls.Add(label21);
             tabPage2.Controls.Add(btnClearTBoardPath);
             tabPage2.Controls.Add(btnClearConfigPath);
             tabPage2.Controls.Add(btnSelectLoRAmodel);
+            tabPage2.Controls.Add(lblT5XXLPath);
             tabPage2.Controls.Add(btnSelectConfigPath);
+            tabPage2.Controls.Add(lblAEPath);
+            tabPage2.Controls.Add(lblClipLPath);
             tabPage2.Controls.Add(lblTBoardPath);
+            tabPage2.Controls.Add(label68);
             tabPage2.Controls.Add(label3);
+            tabPage2.Controls.Add(label66);
             tabPage2.Controls.Add(label12);
             tabPage2.Controls.Add(btnClearLoRAmodel);
             tabPage2.Controls.Add(btnTensorBoardPath);
@@ -1888,27 +1919,87 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 341);
+            tabPage2.Size = new Size(660, 343);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // btnClearAEPath
+            // 
+            btnClearAEPath.Location = new Point(182, 248);
+            btnClearAEPath.Name = "btnClearAEPath";
+            btnClearAEPath.Size = new Size(64, 30);
+            btnClearAEPath.TabIndex = 49;
+            btnClearAEPath.Text = "クリア";
+            btnClearAEPath.UseVisualStyleBackColor = true;
+            btnClearAEPath.Click += btnClearAEPath_Click;
+            // 
+            // btnAEPath
+            // 
+            btnAEPath.Location = new Point(112, 248);
+            btnAEPath.Name = "btnAEPath";
+            btnAEPath.Size = new Size(64, 30);
+            btnAEPath.TabIndex = 49;
+            btnAEPath.Text = "選択";
+            btnAEPath.UseVisualStyleBackColor = true;
+            btnAEPath.Click += btnAEPath_Click;
+            // 
+            // btnClearT5XXLPath
+            // 
+            btnClearT5XXLPath.Location = new Point(454, 178);
+            btnClearT5XXLPath.Name = "btnClearT5XXLPath";
+            btnClearT5XXLPath.Size = new Size(64, 30);
+            btnClearT5XXLPath.TabIndex = 48;
+            btnClearT5XXLPath.Text = "クリア";
+            btnClearT5XXLPath.UseVisualStyleBackColor = true;
+            btnClearT5XXLPath.Click += btnClearT5XXLPath_Click;
+            // 
+            // btnClearClipLPath
+            // 
+            btnClearClipLPath.Location = new Point(182, 178);
+            btnClearClipLPath.Name = "btnClearClipLPath";
+            btnClearClipLPath.Size = new Size(64, 30);
+            btnClearClipLPath.TabIndex = 48;
+            btnClearClipLPath.Text = "クリア";
+            btnClearClipLPath.UseVisualStyleBackColor = true;
+            btnClearClipLPath.Click += btnClearClipLPath_Click;
+            // 
+            // btnT5XXLPath
+            // 
+            btnT5XXLPath.Location = new Point(384, 178);
+            btnT5XXLPath.Name = "btnT5XXLPath";
+            btnT5XXLPath.Size = new Size(64, 30);
+            btnT5XXLPath.TabIndex = 48;
+            btnT5XXLPath.Text = "選択";
+            btnT5XXLPath.UseVisualStyleBackColor = true;
+            btnT5XXLPath.Click += btnT5XXLPath_Click;
+            // 
+            // btnClipLPath
+            // 
+            btnClipLPath.Location = new Point(112, 178);
+            btnClipLPath.Name = "btnClipLPath";
+            btnClipLPath.Size = new Size(64, 30);
+            btnClipLPath.TabIndex = 48;
+            btnClipLPath.Text = "選択";
+            btnClipLPath.UseVisualStyleBackColor = true;
+            btnClipLPath.Click += btnClipLPath_Click;
+            // 
             // lblConfigPath
             // 
             lblConfigPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblConfigPath.Location = new Point(309, 162);
+            lblConfigPath.Location = new Point(309, 139);
             lblConfigPath.Name = "lblConfigPath";
-            lblConfigPath.Size = new Size(240, 48);
+            lblConfigPath.Size = new Size(240, 36);
             lblConfigPath.TabIndex = 25;
             lblConfigPath.Text = "C:\\Users\\Test\\Desktop\\long name\\aaaaa.toml";
             // 
             // label21
             // 
             label21.AutoSize = true;
-            label21.Location = new Point(309, 120);
+            label21.Location = new Point(309, 97);
             label21.Name = "label21";
             label21.Size = new Size(69, 30);
             label21.TabIndex = 26;
@@ -1916,7 +2007,7 @@ namespace Kohya_lora_trainer
             // 
             // btnClearConfigPath
             // 
-            btnClearConfigPath.Location = new Point(454, 120);
+            btnClearConfigPath.Location = new Point(454, 97);
             btnClearConfigPath.Name = "btnClearConfigPath";
             btnClearConfigPath.Size = new Size(64, 30);
             btnClearConfigPath.TabIndex = 23;
@@ -1924,15 +2015,51 @@ namespace Kohya_lora_trainer
             btnClearConfigPath.UseVisualStyleBackColor = true;
             btnClearConfigPath.Click += btnClearConfigPath_Click;
             // 
+            // lblT5XXLPath
+            // 
+            lblT5XXLPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblT5XXLPath.Location = new Point(299, 211);
+            lblT5XXLPath.Name = "lblT5XXLPath";
+            lblT5XXLPath.Size = new Size(240, 34);
+            lblT5XXLPath.TabIndex = 34;
+            lblT5XXLPath.Text = "D:\\Sample\\Please stop using Super Long Naming\\clip\\glip_l.safetensors";
+            // 
             // btnSelectConfigPath
             // 
-            btnSelectConfigPath.Location = new Point(384, 120);
+            btnSelectConfigPath.Location = new Point(384, 97);
             btnSelectConfigPath.Name = "btnSelectConfigPath";
             btnSelectConfigPath.Size = new Size(64, 30);
             btnSelectConfigPath.TabIndex = 24;
             btnSelectConfigPath.Text = "選択";
             btnSelectConfigPath.UseVisualStyleBackColor = true;
             btnSelectConfigPath.Click += btnSelectConfigPath_Click;
+            // 
+            // lblClipLPath
+            // 
+            lblClipLPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblClipLPath.Location = new Point(27, 211);
+            lblClipLPath.Name = "lblClipLPath";
+            lblClipLPath.Size = new Size(240, 34);
+            lblClipLPath.TabIndex = 34;
+            lblClipLPath.Text = "D:\\Sample\\Please stop using Super Long Naming\\clip\\glip_l.safetensors";
+            // 
+            // label68
+            // 
+            label68.AutoSize = true;
+            label68.Location = new Point(339, 186);
+            label68.Name = "label68";
+            label68.Size = new Size(39, 15);
+            label68.TabIndex = 33;
+            label68.Text = "T5XXL";
+            // 
+            // label66
+            // 
+            label66.AutoSize = true;
+            label66.Location = new Point(85, 256);
+            label66.Name = "label66";
+            label66.Size = new Size(21, 15);
+            label66.TabIndex = 33;
+            label66.Text = "AE";
             // 
             // pageMisc
             // 
@@ -2107,9 +2234,9 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(label60);
             tabPage8.Controls.Add(cbxTimestepSampling);
             tabPage8.Controls.Add(label58);
-            tabPage8.Location = new Point(4, 24);
+            tabPage8.Location = new Point(4, 26);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 343);
+            tabPage8.Size = new Size(660, 341);
             tabPage8.TabIndex = 12;
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;
@@ -2172,11 +2299,11 @@ namespace Kohya_lora_trainer
             // label61
             // 
             label61.AutoSize = true;
-            label61.Location = new Point(41, 137);
+            label61.Location = new Point(57, 137);
             label61.Name = "label61";
-            label61.Size = new Size(104, 15);
+            label61.Size = new Size(82, 15);
             label61.TabIndex = 2;
-            label61.Text = "Discrete Flow Shift";
+            label61.Text = "離散フローシフト";
             // 
             // nudSigmoidScale
             // 
@@ -2232,7 +2359,7 @@ namespace Kohya_lora_trainer
             label60.Name = "label60";
             label60.Size = new Size(93, 15);
             label60.TabIndex = 0;
-            label60.Text = "モデル予想の種類";
+            label60.Text = "モデル予測の種類";
             // 
             // cbxTimestepSampling
             // 
@@ -2526,5 +2653,16 @@ namespace Kohya_lora_trainer
         private CheckBox cbxSplitMode;
         private ComboBox cbxTrainBlock;
         private Label label63;
+        private Button btnClearT5XXLPath;
+        private Button btnClearClipLPath;
+        private Button btnT5XXLPath;
+        private Button btnClipLPath;
+        private Label lblT5XXLPath;
+        private Label lblClipLPath;
+        private Label label68;
+        private Label label66;
+        private Button btnClearAEPath;
+        private Button btnAEPath;
+        private Label lblAEPath;
     }
 }

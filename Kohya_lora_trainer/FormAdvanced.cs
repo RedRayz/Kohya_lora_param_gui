@@ -252,7 +252,7 @@ namespace Kohya_lora_trainer
                 IsValid = false;
             }
 
-            if(nudGuidanceScale.Value > 0m && nudGuidanceScale.Value < 1m)
+            if (nudGuidanceScale.Value > 0m && nudGuidanceScale.Value < 1m)
             {
                 MessageBox.Show("ガイダンススケールを使用する場合に1未満は使用できません。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 IsValid = false;
@@ -388,6 +388,11 @@ namespace Kohya_lora_trainer
             TrainParams.Current.TimestepSamplingType = (TimestepSampling)Enum.ToObject(typeof(TimestepSampling), cbxTimestepSampling.SelectedIndex);
             TrainParams.Current.TrainBlockType = (TrainBlock)Enum.ToObject(typeof(TrainBlock), cbxTrainBlock.SelectedIndex);
             TrainParams.Current.SplitMode = cbxSplitMode.Checked;
+
+            TrainParams.Current.ClipLPath = lblClipLPath.Text;
+            TrainParams.Current.T5XXLPath = lblT5XXLPath.Text;
+            TrainParams.Current.AEPath = lblAEPath.Text;
+
             Close();
         }
 
@@ -528,6 +533,10 @@ namespace Kohya_lora_trainer
             cbxModelPredictionType.SelectedIndex = (int)TrainParams.Current.ModelPredictionType;
             cbxTrainBlock.SelectedIndex = (int)TrainParams.Current.TrainBlockType;
             cbxSplitMode.Checked = TrainParams.Current.SplitMode;
+
+            lblClipLPath.Text = TrainParams.Current.ClipLPath;
+            lblT5XXLPath.Text = TrainParams.Current.T5XXLPath;
+            lblAEPath.Text = TrainParams.Current.AEPath;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)
@@ -672,6 +681,75 @@ namespace Kohya_lora_trainer
             Form tips = new FormOptTips();
             tips.ShowDialog();
             tips.Dispose();
+        }
+
+        private void btnClipLPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Safetensors(*.safetensors)|*.safetensors";
+            ofd.Title = "Select a CLIP L";
+            ofd.RestoreDirectory = true;
+
+            if (File.Exists(TrainParams.Current.ClipLPath))
+            {
+                ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.ClipLPath);
+            }
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                lblClipLPath.Text = ofd.FileName;
+            }
+        }
+
+        private void btnClearClipLPath_Click(object sender, EventArgs e)
+        {
+            lblClipLPath.Text = string.Empty;
+        }
+
+        private void btnT5XXLPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Safetensors(*.safetensors)|*.safetensors";
+            ofd.Title = "Select a T5XXL";
+            ofd.RestoreDirectory = true;
+
+            if (File.Exists(TrainParams.Current.T5XXLPath))
+            {
+                ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.T5XXLPath);
+            }
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                lblT5XXLPath.Text = ofd.FileName;
+            }
+        }
+
+        private void btnClearT5XXLPath_Click(object sender, EventArgs e)
+        {
+            lblT5XXLPath.Text = string.Empty;
+        }
+
+        private void btnAEPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Safetensors(*.safetensors)|*.safetensors";
+            ofd.Title = "Select an AE";
+            ofd.RestoreDirectory = true;
+
+            if (File.Exists(TrainParams.Current.AEPath))
+            {
+                ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.AEPath);
+            }
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                lblAEPath.Text = ofd.FileName;
+            }
+        }
+
+        private void btnClearAEPath_Click(object sender, EventArgs e)
+        {
+            lblAEPath.Text = string.Empty;
         }
     }
 }

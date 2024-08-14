@@ -99,7 +99,6 @@ namespace Kohya_lora_trainer {
 
         public decimal ImmiscibleNoise = 0;
 
-        //なんでstringの初期値nullなん？？参照型なのはわかっとる
         public string CustomCommands = string.Empty;
 
         //Diffusion Transformer関連
@@ -108,6 +107,7 @@ namespace Kohya_lora_trainer {
         public TimestepSampling TimestepSamplingType;
         public TrainBlock TrainBlockType;
         public bool SplitMode = false;
+        public string ClipLPath = string.Empty, T5XXLPath = string.Empty, AEPath = string.Empty;
 
         [NonSerialized]
         public static TrainParams? Current;
