@@ -214,6 +214,7 @@ namespace Kohya_lora_trainer
             cbxTrainNorm = new CheckBox();
             label23 = new Label();
             tabPage8 = new TabPage();
+            cbxApplyT5AttnMask = new CheckBox();
             label65 = new Label();
             label64 = new Label();
             cbxSplitMode = new CheckBox();
@@ -230,7 +231,7 @@ namespace Kohya_lora_trainer
             cbxTimestepSampling = new ComboBox();
             label58 = new Label();
             label56 = new Label();
-            cbxApplyT5AttnMask = new CheckBox();
+            label67 = new Label();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -1893,6 +1894,7 @@ namespace Kohya_lora_trainer
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(label67);
             tabPage2.Controls.Add(btnClearAEPath);
             tabPage2.Controls.Add(btnAEPath);
             tabPage2.Controls.Add(btnClearT5XXLPath);
@@ -2078,9 +2080,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(label11);
             pageMisc.Controls.Add(label6);
             pageMisc.Controls.Add(nudClipSkip);
-            pageMisc.Location = new Point(4, 26);
+            pageMisc.Location = new Point(4, 24);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(660, 341);
+            pageMisc.Size = new Size(660, 343);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -2142,9 +2144,9 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(cbxTrainNorm);
             tabPage3.Controls.Add(cbxAlgoType);
             tabPage3.Controls.Add(label23);
-            tabPage3.Location = new Point(4, 26);
+            tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(660, 341);
+            tabPage3.Size = new Size(660, 343);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;
@@ -2236,12 +2238,22 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(label60);
             tabPage8.Controls.Add(cbxTimestepSampling);
             tabPage8.Controls.Add(label58);
-            tabPage8.Location = new Point(4, 24);
+            tabPage8.Location = new Point(4, 26);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 343);
+            tabPage8.Size = new Size(660, 341);
             tabPage8.TabIndex = 12;
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // cbxApplyT5AttnMask
+            // 
+            cbxApplyT5AttnMask.AutoSize = true;
+            cbxApplyT5AttnMask.Location = new Point(61, 193);
+            cbxApplyT5AttnMask.Name = "cbxApplyT5AttnMask";
+            cbxApplyT5AttnMask.Size = new Size(133, 19);
+            cbxApplyT5AttnMask.TabIndex = 7;
+            cbxApplyT5AttnMask.Text = "T5にattn_maskを適用";
+            cbxApplyT5AttnMask.UseVisualStyleBackColor = true;
             // 
             // label65
             // 
@@ -2391,15 +2403,14 @@ namespace Kohya_lora_trainer
             label56.TabIndex = 58;
             label56.Text = "#がつく項目は0を指定すると未指定にする\r\n##がつく項目は空欄で未指定にする";
             // 
-            // cbxApplyT5AttnMask
+            // label67
             // 
-            cbxApplyT5AttnMask.AutoSize = true;
-            cbxApplyT5AttnMask.Location = new Point(61, 193);
-            cbxApplyT5AttnMask.Name = "cbxApplyT5AttnMask";
-            cbxApplyT5AttnMask.Size = new Size(133, 19);
-            cbxApplyT5AttnMask.TabIndex = 7;
-            cbxApplyT5AttnMask.Text = "T5にattn_maskを適用";
-            cbxApplyT5AttnMask.UseVisualStyleBackColor = true;
+            label67.AutoSize = true;
+            label67.Location = new Point(67, 186);
+            label67.Name = "label67";
+            label67.Size = new Size(39, 15);
+            label67.TabIndex = 50;
+            label67.Text = "CLIP L";
             // 
             // FormAdvanced
             // 
@@ -2677,5 +2688,6 @@ namespace Kohya_lora_trainer
         private Button btnAEPath;
         private Label lblAEPath;
         private CheckBox cbxApplyT5AttnMask;
+        private Label label67;
     }
 }
