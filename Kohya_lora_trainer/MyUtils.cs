@@ -787,6 +787,21 @@ namespace Kohya_lora_trainer
                     break;
             }
 
+            if (!string.IsNullOrEmpty(TrainParams.Current.ClipLPath))
+            {
+                sb.Append(" --clip_l \"").Append(TrainParams.Current.ClipLPath).Append('"');
+            }
+
+            if (!string.IsNullOrEmpty(TrainParams.Current.T5XXLPath))
+            {
+                sb.Append(" --t5xxl \"").Append(TrainParams.Current.T5XXLPath).Append('"');
+            }
+
+            if (!string.IsNullOrEmpty(TrainParams.Current.AEPath))
+            {
+                sb.Append(" --ae \"").Append(TrainParams.Current.AEPath).Append('"');
+            }
+
             sb.Append(GetNetworkArgsCommands());
             return sb.ToString();
         }
