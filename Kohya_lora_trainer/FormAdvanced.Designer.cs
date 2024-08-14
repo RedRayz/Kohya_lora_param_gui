@@ -87,6 +87,7 @@ namespace Kohya_lora_trainer
             nudHuberC = new NumericUpDown();
             nudImmiscibleNoise = new NumericUpDown();
             nudIpNoiseGamma = new NumericUpDown();
+            btnSelectVAE = new Button();
             cbxAdvancedTrain = new ComboBox();
             label6 = new Label();
             label9 = new Label();
@@ -109,7 +110,6 @@ namespace Kohya_lora_trainer
             label14 = new Label();
             nudMomentum = new NumericUpDown();
             label15 = new Label();
-            btnSelectVAE = new Button();
             btnClearVAE = new Button();
             label16 = new Label();
             lblVAEPath = new Label();
@@ -859,6 +859,17 @@ namespace Kohya_lora_trainer
             nudIpNoiseGamma.TabIndex = 49;
             toolTip1.SetToolTip(nudIpNoiseGamma, "正則化にinput perturbation noiseを使用する");
             // 
+            // btnSelectVAE
+            // 
+            btnSelectVAE.Location = new Point(384, 22);
+            btnSelectVAE.Name = "btnSelectVAE";
+            btnSelectVAE.Size = new Size(64, 30);
+            btnSelectVAE.TabIndex = 46;
+            btnSelectVAE.Text = "選択";
+            toolTip1.SetToolTip(btnSelectVAE, "Autoencoder");
+            btnSelectVAE.UseVisualStyleBackColor = true;
+            btnSelectVAE.Click += btnSelectVAE_Click;
+            // 
             // cbxAdvancedTrain
             // 
             cbxAdvancedTrain.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -1075,20 +1086,9 @@ namespace Kohya_lora_trainer
             label15.TabIndex = 45;
             label15.Text = "Nesterovの\r\nmomentum#";
             // 
-            // btnSelectVAE
-            // 
-            btnSelectVAE.Location = new Point(344, 22);
-            btnSelectVAE.Name = "btnSelectVAE";
-            btnSelectVAE.Size = new Size(64, 30);
-            btnSelectVAE.TabIndex = 46;
-            btnSelectVAE.Text = "選択";
-            toolTip1.SetToolTip(btnSelectVAE, "Autoencoder");
-            btnSelectVAE.UseVisualStyleBackColor = true;
-            btnSelectVAE.Click += btnSelectVAE_Click;
-            // 
             // btnClearVAE
             // 
-            btnClearVAE.Location = new Point(414, 22);
+            btnClearVAE.Location = new Point(454, 22);
             btnClearVAE.Name = "btnClearVAE";
             btnClearVAE.Size = new Size(64, 30);
             btnClearVAE.TabIndex = 46;
@@ -1099,7 +1099,7 @@ namespace Kohya_lora_trainer
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(291, 30);
+            label16.Location = new Point(331, 30);
             label16.Name = "label16";
             label16.Size = new Size(47, 15);
             label16.TabIndex = 47;
@@ -2044,9 +2044,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(label11);
             pageMisc.Controls.Add(label6);
             pageMisc.Controls.Add(nudClipSkip);
-            pageMisc.Location = new Point(4, 26);
+            pageMisc.Location = new Point(4, 24);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(660, 322);
+            pageMisc.Size = new Size(660, 324);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -2108,9 +2108,9 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(cbxTrainNorm);
             tabPage3.Controls.Add(cbxAlgoType);
             tabPage3.Controls.Add(label23);
-            tabPage3.Location = new Point(4, 26);
+            tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(660, 322);
+            tabPage3.Size = new Size(660, 324);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;
@@ -2202,9 +2202,9 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(label60);
             tabPage8.Controls.Add(cbxTimestepSampling);
             tabPage8.Controls.Add(label58);
-            tabPage8.Location = new Point(4, 26);
+            tabPage8.Location = new Point(4, 24);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 322);
+            tabPage8.Size = new Size(660, 324);
             tabPage8.TabIndex = 12;
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;
@@ -2212,7 +2212,7 @@ namespace Kohya_lora_trainer
             // cbxApplyT5AttnMask
             // 
             cbxApplyT5AttnMask.AutoSize = true;
-            cbxApplyT5AttnMask.Location = new Point(51, 164);
+            cbxApplyT5AttnMask.Location = new Point(68, 164);
             cbxApplyT5AttnMask.Name = "cbxApplyT5AttnMask";
             cbxApplyT5AttnMask.Size = new Size(133, 19);
             cbxApplyT5AttnMask.TabIndex = 7;
@@ -2246,6 +2246,7 @@ namespace Kohya_lora_trainer
             cbxSplitMode.Size = new Size(75, 19);
             cbxSplitMode.TabIndex = 4;
             cbxSplitMode.Text = "分割モード";
+            toolTip1.SetToolTip(cbxSplitMode, "VRAM消費を減らす代わりに2-3倍遅くなる");
             cbxSplitMode.UseVisualStyleBackColor = true;
             // 
             // nudGuidanceScale
