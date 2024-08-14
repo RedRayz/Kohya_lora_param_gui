@@ -230,6 +230,7 @@ namespace Kohya_lora_trainer
             cbxTimestepSampling = new ComboBox();
             label58 = new Label();
             label56 = new Label();
+            cbxApplyT5AttnMask = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -2219,6 +2220,7 @@ namespace Kohya_lora_trainer
             // 
             // tabPage8
             // 
+            tabPage8.Controls.Add(cbxApplyT5AttnMask);
             tabPage8.Controls.Add(label65);
             tabPage8.Controls.Add(label64);
             tabPage8.Controls.Add(cbxSplitMode);
@@ -2234,9 +2236,9 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(label60);
             tabPage8.Controls.Add(cbxTimestepSampling);
             tabPage8.Controls.Add(label58);
-            tabPage8.Location = new Point(4, 26);
+            tabPage8.Location = new Point(4, 24);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 341);
+            tabPage8.Size = new Size(660, 343);
             tabPage8.TabIndex = 12;
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;
@@ -2254,7 +2256,7 @@ namespace Kohya_lora_trainer
             // 
             label64.AutoSize = true;
             label64.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label64.Location = new Point(35, 200);
+            label64.Location = new Point(32, 228);
             label64.Name = "label64";
             label64.Size = new Size(107, 21);
             label64.TabIndex = 5;
@@ -2263,7 +2265,7 @@ namespace Kohya_lora_trainer
             // cbxSplitMode
             // 
             cbxSplitMode.AutoSize = true;
-            cbxSplitMode.Location = new Point(64, 233);
+            cbxSplitMode.Location = new Point(61, 261);
             cbxSplitMode.Name = "cbxSplitMode";
             cbxSplitMode.Size = new Size(75, 19);
             cbxSplitMode.TabIndex = 4;
@@ -2328,7 +2330,7 @@ namespace Kohya_lora_trainer
             cbxTrainBlock.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxTrainBlock.FormattingEnabled = true;
             cbxTrainBlock.Items.AddRange(new object[] { "すべて", "doubleのみ", "singleのみ" });
-            cbxTrainBlock.Location = new Point(148, 257);
+            cbxTrainBlock.Location = new Point(145, 285);
             cbxTrainBlock.Name = "cbxTrainBlock";
             cbxTrainBlock.Size = new Size(121, 23);
             cbxTrainBlock.TabIndex = 1;
@@ -2336,7 +2338,7 @@ namespace Kohya_lora_trainer
             // label63
             // 
             label63.AutoSize = true;
-            label63.Location = new Point(54, 260);
+            label63.Location = new Point(51, 288);
             label63.Name = "label63";
             label63.Size = new Size(85, 15);
             label63.TabIndex = 0;
@@ -2388,6 +2390,16 @@ namespace Kohya_lora_trainer
             label56.Size = new Size(205, 30);
             label56.TabIndex = 58;
             label56.Text = "#がつく項目は0を指定すると未指定にする\r\n##がつく項目は空欄で未指定にする";
+            // 
+            // cbxApplyT5AttnMask
+            // 
+            cbxApplyT5AttnMask.AutoSize = true;
+            cbxApplyT5AttnMask.Location = new Point(61, 193);
+            cbxApplyT5AttnMask.Name = "cbxApplyT5AttnMask";
+            cbxApplyT5AttnMask.Size = new Size(133, 19);
+            cbxApplyT5AttnMask.TabIndex = 7;
+            cbxApplyT5AttnMask.Text = "T5にattn_maskを適用";
+            cbxApplyT5AttnMask.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
@@ -2664,5 +2676,6 @@ namespace Kohya_lora_trainer
         private Button btnClearAEPath;
         private Button btnAEPath;
         private Label lblAEPath;
+        private CheckBox cbxApplyT5AttnMask;
     }
 }

@@ -106,7 +106,7 @@ namespace Kohya_lora_trainer {
         public ModelPrediction ModelPredictionType;
         public TimestepSampling TimestepSamplingType;
         public TrainBlock TrainBlockType;
-        public bool SplitMode = false;
+        public bool SplitMode = false, ApplyT5AttnMask = false;
         public string ClipLPath = string.Empty, T5XXLPath = string.Empty, AEPath = string.Empty;
 
         [NonSerialized]

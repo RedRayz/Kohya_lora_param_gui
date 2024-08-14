@@ -780,6 +780,8 @@ namespace Kohya_lora_trainer
                         sb.Append(" --sigmoid_scale ").Append(TrainParams.Current.Sigmoidscale.ToString());
                     if (TrainParams.Current.SplitMode)
                         sb.Append(" --split_mode");
+                    if (TrainParams.Current.ApplyT5AttnMask)
+                        sb.Append(" --apply_t5_attn_mask");
                     if (TrainParams.Current.GuidanceScale > 0m)
                         sb.Append(" --guidance_scale ").Append(TrainParams.Current.GuidanceScale.ToString());
                     break;
