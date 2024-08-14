@@ -252,6 +252,12 @@ namespace Kohya_lora_trainer
                 IsValid = false;
             }
 
+            if (nudGuidanceScale.Value > 0m && nudGuidanceScale.Value < 1m)
+            {
+                MessageBox.Show("ガイダンススケールを使用する場合に1未満は使用できません。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                IsValid = false;
+            }
+
 
             Regex regex = new Regex("[&:/\\\\\\?\\*<>\\|\"'`]");
             if (regex.IsMatch(tbxComment.Text))
@@ -278,10 +284,10 @@ namespace Kohya_lora_trainer
             TrainParams.Current.DCoef = dcoef;
 
             TrainParams.Current.CpuThreads = tbrCpuThreads.Value;
-            TrainParams.Current.SchedulerType = (SchedulerType)Enum.ToObject(typeof(SchedulerType), cbxScheduler.SelectedIndex);
+            TrainParams.Current.SchedulerType = (Scheduler)Enum.ToObject(typeof(Scheduler), cbxScheduler.SelectedIndex);
             TrainParams.Current.SavePrecision = (SavePrecision)Enum.ToObject(typeof(SavePrecision), cbxPrecision.SelectedIndex);
-            TrainParams.Current.advancedTrainType = (AdvancedTrainType)Enum.ToObject(typeof(AdvancedTrainType), cbxAdvancedTrain.SelectedIndex);
-            TrainParams.Current.CrossAttenType = (CrossAttenType)Enum.ToObject(typeof(CrossAttenType), cbxCrossAttenType.SelectedIndex);
+            TrainParams.Current.advancedTrainType = (AdvancedTrain)Enum.ToObject(typeof(AdvancedTrain), cbxAdvancedTrain.SelectedIndex);
+            TrainParams.Current.CrossAttenType = (CrossAtten)Enum.ToObject(typeof(CrossAtten), cbxCrossAttenType.SelectedIndex);
             TrainParams.Current.MinBucketResolution = (int)nudMinBucketReso.Value;
             TrainParams.Current.MaxBucketResolution = (int)nudMaxBucketReso.Value;
             TrainParams.Current.NoBucketUpscaling = cbxNoUpscale.Checked;
@@ -306,7 +312,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.DyLoRAUnit = nudDyLoRAUnit.Value;
             TrainParams.Current.DatasetConfigPath = lblConfigPath.Text;
 
-            TrainParams.Current.AlgoType = (AlgoType)Enum.ToObject(typeof(AlgoType), cbxAlgoType.SelectedIndex);
+            TrainParams.Current.AlgoType = (LycoAlgo)Enum.ToObject(typeof(LycoAlgo), cbxAlgoType.SelectedIndex);
 
             TrainParams.Current.UseColorAug = cbxUseColorAug.Checked;
             TrainParams.Current.UseFastLoading = cbxUseFastLoading.Checked;
@@ -322,7 +328,7 @@ namespace Kohya_lora_trainer
 
             //TrainParams.Current.ModelConfigPath = tbxModelConfigPath.Text;
 
-            TrainParams.Current.mixedPrecisionType = (MixedPrecisionType)Enum.ToObject(typeof(MixedPrecisionType), cbxMixedPrecision.SelectedIndex);
+            TrainParams.Current.mixedPrecisionType = (MixedPrecision)Enum.ToObject(typeof(MixedPrecision), cbxMixedPrecision.SelectedIndex);
 
             TrainParams.Current.LRSchedulerCycle = nudLRSchedulerCycle.Value;
             TrainParams.Current.DataLoaderThreads = (int)nudDataLoaderThreads.Value;
@@ -360,7 +366,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.HighVRAM = cbxHighVRAM.Checked;
 
             TrainParams.Current.LossType = (LossType)Enum.ToObject(typeof(LossType), cbxLossType.SelectedIndex);
-            TrainParams.Current.HuberScheduleType = (HuberScheduleType)Enum.ToObject(typeof(HuberScheduleType), cbxHuberSchedule.SelectedIndex);
+            TrainParams.Current.HuberScheduleType = (HuberSchedule)Enum.ToObject(typeof(HuberSchedule), cbxHuberSchedule.SelectedIndex);
             TrainParams.Current.HuberC = nudHuberC.Value;
             TrainParams.Current.SaveState = cbxSaveState.Checked;
             TrainParams.Current.MaskLoss = cbxMaskLoss.Checked;
@@ -374,6 +380,19 @@ namespace Kohya_lora_trainer
             TrainParams.Current.RandomIpNoiseGamma = cbxRandomIpNoiseGamma.Checked;
             TrainParams.Current.AlphaMask = cbxAlphaMask.Checked;
             TrainParams.Current.ImmiscibleNoise = nudImmiscibleNoise.Value;
+
+            TrainParams.Current.Sigmoidscale = nudSigmoidScale.Value;
+            TrainParams.Current.DiscreteFlowShift = nudDiscreteFlowShift.Value;
+            TrainParams.Current.GuidanceScale = nudGuidanceScale.Value;
+            TrainParams.Current.ModelPredictionType = (ModelPrediction)Enum.ToObject(typeof(ModelPrediction), cbxModelPredictionType.SelectedIndex);
+            TrainParams.Current.TimestepSamplingType = (TimestepSampling)Enum.ToObject(typeof(TimestepSampling), cbxTimestepSampling.SelectedIndex);
+            TrainParams.Current.TrainBlockType = (TrainBlock)Enum.ToObject(typeof(TrainBlock), cbxTrainBlock.SelectedIndex);
+            TrainParams.Current.SplitMode = cbxSplitMode.Checked;
+
+            TrainParams.Current.ClipLPath = lblClipLPath.Text;
+            TrainParams.Current.T5XXLPath = lblT5XXLPath.Text;
+            TrainParams.Current.ApplyT5AttnMask = cbxApplyT5AttnMask.Checked;
+
             Close();
         }
 
@@ -506,6 +525,18 @@ namespace Kohya_lora_trainer
             cbxAlphaMask.Checked = TrainParams.Current.AlphaMask;
 
             nudImmiscibleNoise.Value = TrainParams.Current.ImmiscibleNoise;
+
+            nudSigmoidScale.Value = TrainParams.Current.Sigmoidscale;
+            nudDiscreteFlowShift.Value = TrainParams.Current.DiscreteFlowShift;
+            nudGuidanceScale.Value = TrainParams.Current.GuidanceScale;
+            cbxTimestepSampling.SelectedIndex = (int)TrainParams.Current.TimestepSamplingType;
+            cbxModelPredictionType.SelectedIndex = (int)TrainParams.Current.ModelPredictionType;
+            cbxTrainBlock.SelectedIndex = (int)TrainParams.Current.TrainBlockType;
+            cbxSplitMode.Checked = TrainParams.Current.SplitMode;
+
+            lblClipLPath.Text = TrainParams.Current.ClipLPath;
+            lblT5XXLPath.Text = TrainParams.Current.T5XXLPath;
+            cbxApplyT5AttnMask.Checked = TrainParams.Current.ApplyT5AttnMask;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)
@@ -589,7 +620,7 @@ namespace Kohya_lora_trainer
         private void btnSelectVAE_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "SD VAE(*.safetensors;*.pt)|*.safetensors;*.pt";
+            ofd.Filter = "Autoencoder(*.safetensors;*.pt)|*.safetensors;*.pt";
             ofd.Title = "Select a VAE";
             ofd.RestoreDirectory = true;
 
@@ -651,5 +682,52 @@ namespace Kohya_lora_trainer
             tips.ShowDialog();
             tips.Dispose();
         }
+
+        private void btnClipLPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Safetensors(*.safetensors)|*.safetensors";
+            ofd.Title = "Select a CLIP L";
+            ofd.RestoreDirectory = true;
+
+            if (File.Exists(TrainParams.Current.ClipLPath))
+            {
+                ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.ClipLPath);
+            }
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                lblClipLPath.Text = ofd.FileName;
+            }
+        }
+
+        private void btnClearClipLPath_Click(object sender, EventArgs e)
+        {
+            lblClipLPath.Text = string.Empty;
+        }
+
+        private void btnT5XXLPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Safetensors(*.safetensors)|*.safetensors";
+            ofd.Title = "Select a T5XXL";
+            ofd.RestoreDirectory = true;
+
+            if (File.Exists(TrainParams.Current.T5XXLPath))
+            {
+                ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.T5XXLPath);
+            }
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                lblT5XXLPath.Text = ofd.FileName;
+            }
+        }
+
+        private void btnClearT5XXLPath_Click(object sender, EventArgs e)
+        {
+            lblT5XXLPath.Text = string.Empty;
+        }
+
     }
 }

@@ -55,6 +55,7 @@
             label13 = new Label();
             numericUpDown1 = new NumericUpDown();
             tabPage3 = new TabPage();
+            cbxUpdateOnlyPackage = new CheckBox();
             label4 = new Label();
             label1 = new Label();
             btnInstallExtension = new Button();
@@ -72,7 +73,7 @@
             label6 = new Label();
             tbxTaggerExclude = new TextBox();
             toolTip1 = new ToolTip(components);
-            cbxUpdateOnlyPackage = new CheckBox();
+            cbxUseLatestTorch = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -190,11 +191,12 @@
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(533, 373);
+            tabControl1.Size = new Size(533, 429);
             tabControl1.TabIndex = 11;
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(cbxUseLatestTorch);
             tabPage1.Controls.Add(cbxPythonVersion);
             tabPage1.Controls.Add(label14);
             tabPage1.Controls.Add(cbxUsePy);
@@ -208,7 +210,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(525, 345);
+            tabPage1.Size = new Size(525, 401);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "ユーティリティ";
             tabPage1.UseVisualStyleBackColor = true;
@@ -218,7 +220,7 @@
             cbxPythonVersion.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxPythonVersion.FormattingEnabled = true;
             cbxPythonVersion.Items.AddRange(new object[] { "3.10", "3.11" });
-            cbxPythonVersion.Location = new Point(230, 155);
+            cbxPythonVersion.Location = new Point(230, 183);
             cbxPythonVersion.Name = "cbxPythonVersion";
             cbxPythonVersion.Size = new Size(103, 23);
             cbxPythonVersion.TabIndex = 8;
@@ -226,7 +228,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(38, 158);
+            label14.Location = new Point(38, 186);
             label14.Name = "label14";
             label14.Size = new Size(186, 15);
             label14.TabIndex = 7;
@@ -235,7 +237,7 @@
             // cbxUsePy
             // 
             cbxUsePy.AutoSize = true;
-            cbxUsePy.Location = new Point(161, 134);
+            cbxUsePy.Location = new Point(161, 162);
             cbxUsePy.Name = "cbxUsePy";
             cbxUsePy.Size = new Size(202, 19);
             cbxUsePy.TabIndex = 6;
@@ -248,7 +250,7 @@
             // 
             lblProcessingNpz.AutoSize = true;
             lblProcessingNpz.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblProcessingNpz.Location = new Point(339, 235);
+            lblProcessingNpz.Location = new Point(339, 263);
             lblProcessingNpz.Name = "lblProcessingNpz";
             lblProcessingNpz.Size = new Size(61, 19);
             lblProcessingNpz.TabIndex = 5;
@@ -258,7 +260,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(103, 265);
+            label12.Location = new Point(103, 293);
             label12.Name = "label12";
             label12.Size = new Size(343, 60);
             label12.TabIndex = 4;
@@ -266,7 +268,7 @@
             // 
             // btnDeleteNpz
             // 
-            btnDeleteNpz.Location = new Point(183, 227);
+            btnDeleteNpz.Location = new Point(183, 255);
             btnDeleteNpz.Name = "btnDeleteNpz";
             btnDeleteNpz.Size = new Size(150, 35);
             btnDeleteNpz.TabIndex = 3;
@@ -287,7 +289,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(103, 181);
+            label8.Location = new Point(103, 209);
             label8.Name = "label8";
             label8.Size = new Size(315, 30);
             label8.TabIndex = 1;
@@ -359,12 +361,22 @@
             tabPage3.Controls.Add(label1);
             tabPage3.Controls.Add(btnInstallExtension);
             tabPage3.Controls.Add(btnUpdateRepo);
-            tabPage3.Location = new Point(4, 24);
+            tabPage3.Location = new Point(4, 26);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(525, 345);
+            tabPage3.Size = new Size(525, 343);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "更新";
             tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // cbxUpdateOnlyPackage
+            // 
+            cbxUpdateOnlyPackage.AutoSize = true;
+            cbxUpdateOnlyPackage.Location = new Point(188, 117);
+            cbxUpdateOnlyPackage.Name = "cbxUpdateOnlyPackage";
+            cbxUpdateOnlyPackage.Size = new Size(154, 19);
+            cbxUpdateOnlyPackage.TabIndex = 4;
+            cbxUpdateOnlyPackage.Text = "Pythonパッケージのみ更新";
+            cbxUpdateOnlyPackage.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -417,9 +429,9 @@
             tabPage4.Controls.Add(nudTaggerBatchSize);
             tabPage4.Controls.Add(label6);
             tabPage4.Controls.Add(tbxTaggerExclude);
-            tabPage4.Location = new Point(4, 26);
+            tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(525, 343);
+            tabPage4.Size = new Size(525, 401);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Tagger";
             tabPage4.UseVisualStyleBackColor = true;
@@ -527,22 +539,23 @@
             tbxTaggerExclude.Size = new Size(432, 23);
             tbxTaggerExclude.TabIndex = 1;
             // 
-            // cbxUpdateOnlyPackage
+            // cbxUseLatestTorch
             // 
-            cbxUpdateOnlyPackage.AutoSize = true;
-            cbxUpdateOnlyPackage.Location = new Point(188, 117);
-            cbxUpdateOnlyPackage.Name = "cbxUpdateOnlyPackage";
-            cbxUpdateOnlyPackage.Size = new Size(154, 19);
-            cbxUpdateOnlyPackage.TabIndex = 4;
-            cbxUpdateOnlyPackage.Text = "Pythonパッケージのみ更新";
-            cbxUpdateOnlyPackage.UseVisualStyleBackColor = true;
+            cbxUseLatestTorch.AutoSize = true;
+            cbxUseLatestTorch.Location = new Point(161, 137);
+            cbxUseLatestTorch.Name = "cbxUseLatestTorch";
+            cbxUseLatestTorch.Size = new Size(132, 19);
+            cbxUseLatestTorch.TabIndex = 9;
+            cbxUseLatestTorch.Text = "Torch2.4をインストール";
+            toolTip1.SetToolTip(cbxUseLatestTorch, "主にFLUX用");
+            cbxUseLatestTorch.UseVisualStyleBackColor = true;
             // 
             // FormUtils
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             AutoScroll = true;
-            ClientSize = new Size(562, 415);
+            ClientSize = new Size(562, 481);
             Controls.Add(tabControl1);
             Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -614,5 +627,6 @@
         private ComboBox cbxPythonVersion;
         private Label label14;
         private CheckBox cbxUpdateOnlyPackage;
+        private CheckBox cbxUseLatestTorch;
     }
 }
