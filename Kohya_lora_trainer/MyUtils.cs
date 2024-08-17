@@ -406,7 +406,7 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.ShuffleCaptions)
             {
                 sb.Append(" --shuffle_caption");
-                if (TrainParams.Current.KeepTokenCount > 0)
+                if (TrainParams.Current.KeepTokenCount > 0 && TrainParams.Current.StableDiffusionType == ModelArchitecture.Legacy)
                 {
                     sb.Append(" --keep_tokens ").Append(TrainParams.Current.KeepTokenCount);
                 }
@@ -590,7 +590,7 @@ namespace Kohya_lora_trainer
             }
 
 
-            if (TrainParams.Current.StableDiffusionType != ModelArchitecture.XL)
+            if (TrainParams.Current.StableDiffusionType == ModelArchitecture.Legacy)
             {
                 sb.Append(" --clip_skip ").Append(TrainParams.Current.ClipSkip);
             }

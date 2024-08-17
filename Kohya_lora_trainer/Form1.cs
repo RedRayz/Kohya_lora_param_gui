@@ -1220,6 +1220,11 @@ namespace Kohya_lora_trainer
                 default:
                     break;
             }
+            if (TrainParams.Current.ShuffleCaptions && TrainParams.Current.CacheTextencoder)
+            {
+                return MessageBox.Show("TEのキャッシュとキャプションのシャッフルは併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+
 
             return DialogResult.Yes;
         }
