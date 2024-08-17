@@ -105,7 +105,7 @@ namespace Kohya_lora_trainer
 
             DateTime current = DateTime.Today;
             
-            string lastCheckedDateText = (string?)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "LastUpdateCheckDate", string.Empty);
+            string? lastCheckedDateText = (string?)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "LastUpdateCheckDate", string.Empty);
             
             if (string.IsNullOrEmpty(lastCheckedDateText))
             {
