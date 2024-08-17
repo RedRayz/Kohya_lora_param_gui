@@ -808,11 +808,6 @@ namespace Kohya_lora_trainer
                 sb.Append(" --t5xxl \"").Append(TrainParams.Current.T5XXLPath).Append('"');
             }
 
-            if (!string.IsNullOrEmpty(TrainParams.Current.AEPath))
-            {
-                sb.Append(" --ae \"").Append(TrainParams.Current.AEPath).Append('"');
-            }
-
             sb.Append(GetNetworkArgsCommands());
             return sb.ToString();
         }

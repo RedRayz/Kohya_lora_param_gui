@@ -107,7 +107,7 @@ namespace Kohya_lora_trainer {
         public TimestepSampling TimestepSamplingType;
         public TrainBlock TrainBlockType;
         public bool SplitMode = false, ApplyT5AttnMask = false;
-        public string ClipLPath = string.Empty, T5XXLPath = string.Empty, AEPath = string.Empty;
+        public string ClipLPath = string.Empty, T5XXLPath = string.Empty;
 
         [NonSerialized]
         public static TrainParams? Current;
