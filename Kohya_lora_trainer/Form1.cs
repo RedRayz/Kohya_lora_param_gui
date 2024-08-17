@@ -1224,7 +1224,10 @@ namespace Kohya_lora_trainer
                 return MessageBox.Show("TEのキャッシュとキャプションのシャッフルは併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
-
+            if ((TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim) && ((TrainParams.Current.StableDiffusionType != ModelArchitecture.Legacy && TrainParams.Current.StableDiffusionType != ModelArchitecture.XL) || TrainParams.Current.ModuleType == NetworkModule.LyCORIS))
+            {
+                return MessageBox.Show("SD1,SDXL以外およびLyCORISでは層別学習は非対応ですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
             return DialogResult.Yes;
         }
 
