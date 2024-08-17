@@ -13,8 +13,6 @@ using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.WindowsAPICodePack.Shell;
 
-
-#pragma warning disable CA1416
 namespace Kohya_lora_trainer
 {
     public partial class FormUtils : Form

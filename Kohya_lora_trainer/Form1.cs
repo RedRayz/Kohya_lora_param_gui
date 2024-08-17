@@ -17,7 +17,6 @@ using Microsoft.Win32;
 using System.Security.Cryptography;
 using System.Diagnostics;
 
-#pragma warning disable CA1418
 #pragma warning disable CS8602
 namespace Kohya_lora_trainer
 {
