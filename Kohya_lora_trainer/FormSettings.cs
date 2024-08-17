@@ -11,7 +11,6 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using Microsoft.WindowsAPICodePack.Dialogs;
 
-#pragma warning disable CA1416
 namespace Kohya_lora_trainer
 {
     public partial class FormSettings : Form
