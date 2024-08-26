@@ -369,7 +369,8 @@ namespace Kohya_lora_trainer {
     {
         Sigma,
         Uniform,
-        Sigmoid
+        Sigmoid,
+        Shift
     }
 
     public enum TrainBlock
