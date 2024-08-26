@@ -593,7 +593,7 @@ namespace Kohya_lora_trainer
         private void btnSelectLoRAmodel_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "SD Model(*.safetensors)|*.safetensors";
+            ofd.Filter = Constants.WEIGHT_EXTENSION_FILTER;
             ofd.Title = "Select a lora";
             ofd.RestoreDirectory = true;
 
@@ -620,7 +620,7 @@ namespace Kohya_lora_trainer
         private void btnSelectVAE_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Autoencoder(*.safetensors;*.pt)|*.safetensors;*.pt";
+            ofd.Filter = Constants.WEIGHT_EXTENSION_FILTER;
             ofd.Title = "Select a VAE";
             ofd.RestoreDirectory = true;
 
@@ -686,7 +686,7 @@ namespace Kohya_lora_trainer
         private void btnClipLPath_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Safetensors(*.safetensors)|*.safetensors";
+            ofd.Filter = Constants.WEIGHT_EXTENSION_FILTER;
             ofd.Title = "Select a CLIP L";
             ofd.RestoreDirectory = true;
 
@@ -709,7 +709,7 @@ namespace Kohya_lora_trainer
         private void btnT5XXLPath_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Safetensors(*.safetensors)|*.safetensors";
+            ofd.Filter = Constants.WEIGHT_EXTENSION_FILTER;
             ofd.Title = "Select a T5XXL";
             ofd.RestoreDirectory = true;
 

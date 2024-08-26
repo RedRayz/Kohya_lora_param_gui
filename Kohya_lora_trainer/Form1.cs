@@ -146,7 +146,7 @@ namespace Kohya_lora_trainer
         private void btnModel_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "SD Model(*.ckpt;*.safetensors)|*.ckpt;*.safetensors";
+            ofd.Filter = Constants.WEIGHT_EXTENSION_FILTER;
             ofd.Title = "Select a base model";
             ofd.RestoreDirectory = true;
 
@@ -1289,7 +1289,7 @@ namespace Kohya_lora_trainer
 
         private void tbxModelPath_DragDrop(object sender, DragEventArgs e)
         {
-            string dropped = MyUtils.GetDroppedFileName(e, ".safetensors");
+            string dropped = MyUtils.GetDroppedWeightName(e);
             if (!string.IsNullOrEmpty(dropped))
             {
                 tbxModelPath.Text = dropped;
@@ -1298,7 +1298,7 @@ namespace Kohya_lora_trainer
 
         private void tbxModelPath_DragEnter(object sender, DragEventArgs e)
         {
-            MyUtils.CommonFileDragEnterEvent(e, ".safetensors");
+            MyUtils.WeightFileDragEnterEvent(e);
         }
 
         private void tbxImagePath_DragDrop(object sender, DragEventArgs e)

@@ -384,7 +384,7 @@ namespace Kohya_lora_trainer
             cbxPrecision.Items.AddRange(new object[] { "fp16", "bf16", "float" });
             cbxPrecision.Location = new Point(371, 180);
             cbxPrecision.Name = "cbxPrecision";
-            cbxPrecision.Size = new Size(79, 23);
+            cbxPrecision.Size = new Size(94, 23);
             cbxPrecision.TabIndex = 29;
             toolTip1.SetToolTip(cbxPrecision, "fp16にするとファイルサイズ半減\r\nbf16は互換性の観点から非推奨");
             // 
@@ -524,7 +524,7 @@ namespace Kohya_lora_trainer
             // 
             tbxExtension.Location = new Point(123, 180);
             tbxExtension.Name = "tbxExtension";
-            tbxExtension.Size = new Size(126, 23);
+            tbxExtension.Size = new Size(92, 23);
             tbxExtension.TabIndex = 19;
             tbxExtension.Text = ".txt";
             toolTip1.SetToolTip(tbxExtension, "ピリオド込みで入力する");
@@ -535,7 +535,7 @@ namespace Kohya_lora_trainer
             nudClipSkip.Maximum = new decimal(new int[] { 8, 0, 0, 0 });
             nudClipSkip.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudClipSkip.Name = "nudClipSkip";
-            nudClipSkip.Size = new Size(78, 23);
+            nudClipSkip.Size = new Size(92, 23);
             nudClipSkip.TabIndex = 28;
             toolTip1.SetToolTip(nudClipSkip, "イラストは2、実写は1が良いとされる\r\nSD1専用");
             nudClipSkip.Value = new decimal(new int[] { 2, 0, 0, 0 });
@@ -568,7 +568,7 @@ namespace Kohya_lora_trainer
             nudSeed.Maximum = new decimal(new int[] { -1, 0, 0, 0 });
             nudSeed.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
             nudSeed.Name = "nudSeed";
-            nudSeed.Size = new Size(79, 23);
+            nudSeed.Size = new Size(94, 23);
             nudSeed.TabIndex = 23;
             toolTip1.SetToolTip(nudSeed, "Seedによって品質が向上することはない");
             nudSeed.Value = new decimal(new int[] { 42, 0, 0, 0 });
@@ -1916,10 +1916,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 322);
+            tabPage2.Size = new Size(660, 324);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -2054,9 +2054,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(label11);
             pageMisc.Controls.Add(label6);
             pageMisc.Controls.Add(nudClipSkip);
-            pageMisc.Location = new Point(4, 26);
+            pageMisc.Location = new Point(4, 24);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(660, 322);
+            pageMisc.Size = new Size(660, 324);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -2117,9 +2117,9 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(cbxTrainNorm);
             tabPage3.Controls.Add(cbxAlgoType);
             tabPage3.Controls.Add(label23);
-            tabPage3.Location = new Point(4, 26);
+            tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(660, 322);
+            tabPage3.Size = new Size(660, 324);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;
