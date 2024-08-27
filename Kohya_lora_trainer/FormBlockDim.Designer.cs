@@ -1141,9 +1141,9 @@
             label36.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             label36.Location = new Point(33, 42);
             label36.Name = "label36";
-            label36.Size = new Size(179, 13);
+            label36.Size = new Size(186, 13);
             label36.TabIndex = 6;
-            label36.Text = "※LyCORISは非対応(LyCORISの仕様)";
+            label36.Text = "※SD1とSDXLのnetworks.loraのみ対応";
             // 
             // FormBlockDim
             // 
