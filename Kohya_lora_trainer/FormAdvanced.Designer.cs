@@ -384,7 +384,7 @@ namespace Kohya_lora_trainer
             cbxPrecision.Items.AddRange(new object[] { "fp16", "bf16", "float" });
             cbxPrecision.Location = new Point(371, 180);
             cbxPrecision.Name = "cbxPrecision";
-            cbxPrecision.Size = new Size(79, 23);
+            cbxPrecision.Size = new Size(94, 23);
             cbxPrecision.TabIndex = 29;
             toolTip1.SetToolTip(cbxPrecision, "fp16にするとファイルサイズ半減\r\nbf16は互換性の観点から非推奨");
             // 
@@ -524,7 +524,7 @@ namespace Kohya_lora_trainer
             // 
             tbxExtension.Location = new Point(123, 180);
             tbxExtension.Name = "tbxExtension";
-            tbxExtension.Size = new Size(126, 23);
+            tbxExtension.Size = new Size(92, 23);
             tbxExtension.TabIndex = 19;
             tbxExtension.Text = ".txt";
             toolTip1.SetToolTip(tbxExtension, "ピリオド込みで入力する");
@@ -535,7 +535,7 @@ namespace Kohya_lora_trainer
             nudClipSkip.Maximum = new decimal(new int[] { 8, 0, 0, 0 });
             nudClipSkip.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudClipSkip.Name = "nudClipSkip";
-            nudClipSkip.Size = new Size(78, 23);
+            nudClipSkip.Size = new Size(92, 23);
             nudClipSkip.TabIndex = 28;
             toolTip1.SetToolTip(nudClipSkip, "イラストは2、実写は1が良いとされる\r\nSD1専用");
             nudClipSkip.Value = new decimal(new int[] { 2, 0, 0, 0 });
@@ -568,7 +568,7 @@ namespace Kohya_lora_trainer
             nudSeed.Maximum = new decimal(new int[] { -1, 0, 0, 0 });
             nudSeed.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
             nudSeed.Name = "nudSeed";
-            nudSeed.Size = new Size(79, 23);
+            nudSeed.Size = new Size(94, 23);
             nudSeed.TabIndex = 23;
             toolTip1.SetToolTip(nudSeed, "Seedによって品質が向上することはない");
             nudSeed.Value = new decimal(new int[] { 42, 0, 0, 0 });
@@ -1320,9 +1320,9 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(label28);
             tabPage4.Controls.Add(nudMaxTokens);
             tabPage4.Controls.Add(nudLRSchedulerCycle);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 26);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(660, 324);
+            tabPage4.Size = new Size(660, 322);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "ページ2";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1497,9 +1497,9 @@ namespace Kohya_lora_trainer
             page3.Controls.Add(label57);
             page3.Controls.Add(label17);
             page3.Controls.Add(nudIpNoiseGamma);
-            page3.Location = new Point(4, 24);
+            page3.Location = new Point(4, 26);
             page3.Name = "page3";
-            page3.Size = new Size(660, 324);
+            page3.Size = new Size(660, 322);
             page3.TabIndex = 10;
             page3.Text = "ページ3";
             page3.UseVisualStyleBackColor = true;
@@ -1609,9 +1609,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 24);
+            tabPage7.Location = new Point(4, 26);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(660, 324);
+            tabPage7.Size = new Size(660, 322);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -1679,9 +1679,9 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(label35);
             tabPage5.Controls.Add(tbxD0);
             tabPage5.Controls.Add(tbxGrowthRate);
-            tabPage5.Location = new Point(4, 24);
+            tabPage5.Location = new Point(4, 26);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(660, 324);
+            tabPage5.Size = new Size(660, 322);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "DAdapt/AdamW/Lion";
             tabPage5.UseVisualStyleBackColor = true;
@@ -2332,7 +2332,7 @@ namespace Kohya_lora_trainer
             // 
             cbxTimestepSampling.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxTimestepSampling.FormattingEnabled = true;
-            cbxTimestepSampling.Items.AddRange(new object[] { "Sigma", "Uniform", "Sigmoid" });
+            cbxTimestepSampling.Items.AddRange(new object[] { "Sigma", "Uniform", "Sigmoid", "Shift" });
             cbxTimestepSampling.Location = new Point(148, 49);
             cbxTimestepSampling.Name = "cbxTimestepSampling";
             cbxTimestepSampling.Size = new Size(121, 23);

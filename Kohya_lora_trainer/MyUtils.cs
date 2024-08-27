@@ -18,6 +18,7 @@ namespace Kohya_lora_trainer
     {
         private static Dictionary<string, string> DefaultDirs = new Dictionary<string, string>();
         private static List<string> NetworkArgs = new List<string>();
+        private static Regex WeightExtensionRegex = new Regex(@"\.pt|\.pth|\.ckpt|\.safetensors|\.sft", RegexOptions.Compiled, TimeSpan.FromMilliseconds(50));
         //private static Dictionary<string, string> DictSettings = new Dictionary<string, string>();
 
         internal static void SaveSettings()
@@ -1064,6 +1065,33 @@ namespace Kohya_lora_trainer
             return string.Empty;
         }
 
+        internal static string GetDroppedWeightName(DragEventArgs e)
+        {
+            if (e == null || e.Data == null)
+            {
+                return string.Empty;
+            }
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (files.Length == 1)
+            {
+                string fileName = files[0];
+                if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
+                {
+                    if (WeightExtensionRegex.IsMatch(Path.GetExtension(fileName)))
+                    {
+                        return fileName;
+                    }
+                    return string.Empty;
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+
+            return string.Empty;
+        }
+
         /// <summary>
         /// ファイルがドラッグされた時の汎用メソッド。ファイル以外/複数ドロップならカーソルをバツにする
         /// </summary>
@@ -1088,6 +1116,31 @@ namespace Kohya_lora_trainer
                     }
 
                     e.Effect = DragDropEffects.Copy;
+                    return;
+                }
+            }
+
+            e.Effect = DragDropEffects.None;
+        }
+
+        internal static void WeightFileDragEnterEvent(DragEventArgs e)
+        {
+            if (e == null || e.Data == null)
+            {
+                return;
+            }
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            if (files.Length == 1)
+            {
+                string fileName = files[0];
+                if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
+                {
+                    if (WeightExtensionRegex.IsMatch(Path.GetExtension(fileName)))
+                    {
+                        e.Effect = DragDropEffects.Copy;
+                        return;
+                    }
+                    e.Effect = DragDropEffects.None;
                     return;
                 }
             }
