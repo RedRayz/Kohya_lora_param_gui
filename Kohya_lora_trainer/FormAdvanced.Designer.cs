@@ -89,6 +89,8 @@ namespace Kohya_lora_trainer
             nudIpNoiseGamma = new NumericUpDown();
             btnSelectVAE = new Button();
             cbxSplitMode = new CheckBox();
+            cbxCpuOffloadCheckpointing = new CheckBox();
+            cbxTrainT5XXL = new CheckBox();
             cbxAdvancedTrain = new ComboBox();
             label6 = new Label();
             label9 = new Label();
@@ -227,8 +229,6 @@ namespace Kohya_lora_trainer
             cbxTimestepSampling = new ComboBox();
             label58 = new Label();
             label56 = new Label();
-            cbxCpuOffloadCheckpointing = new CheckBox();
-            cbxTrainT5XXL = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -881,6 +881,28 @@ namespace Kohya_lora_trainer
             cbxSplitMode.Text = "分割モード";
             toolTip1.SetToolTip(cbxSplitMode, "VRAM消費を減らす代わりに2-3倍遅くなる");
             cbxSplitMode.UseVisualStyleBackColor = true;
+            // 
+            // cbxCpuOffloadCheckpointing
+            // 
+            cbxCpuOffloadCheckpointing.AutoSize = true;
+            cbxCpuOffloadCheckpointing.Location = new Point(45, 282);
+            cbxCpuOffloadCheckpointing.Name = "cbxCpuOffloadCheckpointing";
+            cbxCpuOffloadCheckpointing.Size = new Size(165, 19);
+            cbxCpuOffloadCheckpointing.TabIndex = 43;
+            cbxCpuOffloadCheckpointing.Text = "cpu offload checkpointing";
+            toolTip1.SetToolTip(cbxCpuOffloadCheckpointing, "gradient checkpointingをCPUにオフロードする\r\nVRAM消費が最大1GB減少するが学習が約15%遅くなる\r\n分割モードの併用不可");
+            cbxCpuOffloadCheckpointing.UseVisualStyleBackColor = true;
+            // 
+            // cbxTrainT5XXL
+            // 
+            cbxTrainT5XXL.AutoSize = true;
+            cbxTrainT5XXL.Location = new Point(356, 51);
+            cbxTrainT5XXL.Name = "cbxTrainT5XXL";
+            cbxTrainT5XXL.Size = new Size(113, 19);
+            cbxTrainT5XXL.TabIndex = 8;
+            cbxTrainT5XXL.Text = "T5 XXLを学習する";
+            toolTip1.SetToolTip(cbxTrainT5XXL, "かなりのVRAMが必要？");
+            cbxTrainT5XXL.UseVisualStyleBackColor = true;
             // 
             // cbxAdvancedTrain
             // 
@@ -1919,10 +1941,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 324);
+            tabPage2.Size = new Size(660, 322);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -2336,7 +2358,7 @@ namespace Kohya_lora_trainer
             // 
             cbxTimestepSampling.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxTimestepSampling.FormattingEnabled = true;
-            cbxTimestepSampling.Items.AddRange(new object[] { "Sigma", "Uniform", "Sigmoid", "Shift" });
+            cbxTimestepSampling.Items.AddRange(new object[] { "Sigma", "Uniform", "Sigmoid", "Shift", "Flux Shift" });
             cbxTimestepSampling.Location = new Point(148, 49);
             cbxTimestepSampling.Name = "cbxTimestepSampling";
             cbxTimestepSampling.Size = new Size(121, 23);
@@ -2359,28 +2381,6 @@ namespace Kohya_lora_trainer
             label56.Size = new Size(205, 30);
             label56.TabIndex = 58;
             label56.Text = "#がつく項目は0を指定すると未指定にする\r\n##がつく項目は空欄で未指定にする";
-            // 
-            // cbxCpuOffloadCheckpointing
-            // 
-            cbxCpuOffloadCheckpointing.AutoSize = true;
-            cbxCpuOffloadCheckpointing.Location = new Point(45, 282);
-            cbxCpuOffloadCheckpointing.Name = "cbxCpuOffloadCheckpointing";
-            cbxCpuOffloadCheckpointing.Size = new Size(165, 19);
-            cbxCpuOffloadCheckpointing.TabIndex = 43;
-            cbxCpuOffloadCheckpointing.Text = "cpu offload checkpointing";
-            toolTip1.SetToolTip(cbxCpuOffloadCheckpointing, "学習勾配をCPUにオフロードする？");
-            cbxCpuOffloadCheckpointing.UseVisualStyleBackColor = true;
-            // 
-            // cbxTrainT5XXL
-            // 
-            cbxTrainT5XXL.AutoSize = true;
-            cbxTrainT5XXL.Location = new Point(356, 51);
-            cbxTrainT5XXL.Name = "cbxTrainT5XXL";
-            cbxTrainT5XXL.Size = new Size(113, 19);
-            cbxTrainT5XXL.TabIndex = 8;
-            cbxTrainT5XXL.Text = "T5 XXLを学習する";
-            toolTip1.SetToolTip(cbxTrainT5XXL, "かなりのVRAMが必要？");
-            cbxTrainT5XXL.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
