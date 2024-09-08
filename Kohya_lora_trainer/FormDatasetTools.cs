@@ -1256,5 +1256,75 @@ namespace Kohya_lora_trainer
         {
             Close();
         }
+
+        private void btnRemoveGifs_Click(object sender, EventArgs e)
+        {
+            string sourceDir = tbxSourceDir.Text;
+
+
+            int removedCnt = 0;
+            int errorCount = 0;
+
+            if (!Directory.Exists(sourceDir))
+            {
+                MessageBox.Show("ディレクトリが見つかりません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (MyUtils.IsSystemDirectory(sourceDir))
+            {
+                MessageBox.Show("データ破損防止のため、OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (MessageBox.Show("gifファイルとそれのキャプションを同階層のtrashフォルダに移動させます。\r\nよろしいですか。", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                lblProcessing.Visible = true;
+                Update();
+                //キャプションが入った場所
+                string[] files = Directory.GetFiles(sourceDir);
+                foreach (string file in files)
+                {
+                    try
+                    {
+                        string ext = Path.GetExtension(file).ToLower();
+                        if (ext == ".gif")
+                        {
+                            //FileSystem.DeleteFileは重いので使わない
+                            if (!Directory.Exists(sourceDir + "\\trash"))
+                            {
+                                Directory.CreateDirectory(sourceDir + "\\trash");
+                            }
+                            string path = sourceDir + "\\";
+                            string captionFile = Path.GetFileNameWithoutExtension(file);
+                            File.Move(file, sourceDir + "\\trash\\" + captionFile + ".gif");
+                            removedCnt++;
+                            if (File.Exists(path + captionFile + ".txt") && !File.Exists(sourceDir + "\\trash\\" + captionFile + ".txt"))
+                            {
+                                File.Move(path + captionFile + ".txt", sourceDir + "\\trash\\" + captionFile + ".txt");
+                            }
+
+
+                        }
+                    }
+                    catch
+                    {
+                        errorCount++;
+                    }
+                }
+
+                lblProcessing.Visible = false;
+
+                if (removedCnt > 0)
+                    MessageBox.Show($"{removedCnt}件の画像をtrashフォルダに移動しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("対象のファイルはありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (errorCount > 0)
+                {
+                    MessageBox.Show($"{errorCount}件がエラーで失敗しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+
+            GC.Collect();
+        }
     }
 }
