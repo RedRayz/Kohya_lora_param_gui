@@ -68,6 +68,7 @@
             lblProcessing = new Label();
             btnCloseWindow = new Button();
             label9 = new Label();
+            btnRemoveGifs = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudKeepTokens).BeginInit();
@@ -281,6 +282,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(btnRemoveGifs);
             tabPage2.Controls.Add(label8);
             tabPage2.Controls.Add(label7);
             tabPage2.Controls.Add(nudTagsCount);
@@ -298,10 +300,10 @@
             tabPage2.Controls.Add(btnRemoveDupNameImg);
             tabPage2.Controls.Add(tbxSourceDir);
             tabPage2.Controls.Add(label6);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(662, 432);
+            tabPage2.Size = new Size(662, 434);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "ファイル処理";
             tabPage2.UseVisualStyleBackColor = true;
@@ -503,6 +505,16 @@
             label9.TabIndex = 6;
             label9.Text = "対応画像拡張子:png,jpg,jpeg\r\n対応キャプション拡張子:txt";
             // 
+            // btnRemoveGifs
+            // 
+            btnRemoveGifs.Location = new Point(30, 157);
+            btnRemoveGifs.Name = "btnRemoveGifs";
+            btnRemoveGifs.Size = new Size(152, 28);
+            btnRemoveGifs.TabIndex = 6;
+            btnRemoveGifs.Text = "GIF画像を削除";
+            btnRemoveGifs.UseVisualStyleBackColor = true;
+            btnRemoveGifs.Click += btnRemoveGifs_Click;
+            // 
             // FormDatasetTools
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -576,5 +588,6 @@
         private Label lblProcessing;
         private Button btnCloseWindow;
         private Label label9;
+        private Button btnRemoveGifs;
     }
 }

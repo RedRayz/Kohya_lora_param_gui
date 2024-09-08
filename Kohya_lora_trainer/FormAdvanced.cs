@@ -392,6 +392,8 @@ namespace Kohya_lora_trainer
             TrainParams.Current.ClipLPath = lblClipLPath.Text;
             TrainParams.Current.T5XXLPath = lblT5XXLPath.Text;
             TrainParams.Current.ApplyT5AttnMask = cbxApplyT5AttnMask.Checked;
+            TrainParams.Current.TrainT5XXL = cbxTrainT5XXL.Checked;
+            TrainParams.Current.CpuOffloadCheckpointing = cbxCpuOffloadCheckpointing.Checked;
 
             Close();
         }
@@ -537,6 +539,9 @@ namespace Kohya_lora_trainer
             lblClipLPath.Text = TrainParams.Current.ClipLPath;
             lblT5XXLPath.Text = TrainParams.Current.T5XXLPath;
             cbxApplyT5AttnMask.Checked = TrainParams.Current.ApplyT5AttnMask;
+
+            cbxTrainT5XXL.Checked = TrainParams.Current.TrainT5XXL;
+            cbxCpuOffloadCheckpointing.Checked = TrainParams.Current.CpuOffloadCheckpointing;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)

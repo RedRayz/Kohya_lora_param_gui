@@ -106,7 +106,7 @@ namespace Kohya_lora_trainer {
         public ModelPrediction ModelPredictionType;
         public TimestepSampling TimestepSamplingType;
         public TrainBlock TrainBlockType;
-        public bool SplitMode = false, ApplyT5AttnMask = false;
+        public bool SplitMode = false, ApplyT5AttnMask = false, TrainT5XXL = false, CpuOffloadCheckpointing = false;
         public string ClipLPath = string.Empty, T5XXLPath = string.Empty;
 
         [NonSerialized]
@@ -370,7 +370,8 @@ namespace Kohya_lora_trainer {
         Sigma,
         Uniform,
         Sigmoid,
-        Shift
+        Shift,
+        Flux_Shift
     }
 
     public enum TrainBlock
