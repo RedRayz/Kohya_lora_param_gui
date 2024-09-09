@@ -106,6 +106,7 @@
             btnTensorboard.TabIndex = 8;
             btnTensorboard.Text = "tensorboard";
             btnTensorboard.UseVisualStyleBackColor = true;
+            btnTensorboard.Visible = false;
             btnTensorboard.Click += btnTensorboard_Click;
             // 
             // TrainForm
