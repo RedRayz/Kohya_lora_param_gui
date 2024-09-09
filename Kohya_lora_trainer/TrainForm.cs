@@ -219,6 +219,12 @@ namespace Kohya_lora_trainer
         private void TrainForm_Shown(object sender, EventArgs e)
         {
             lblProcessingCaptions.Visible = false;
+            string tboard = MyUtils.GetDefaultDir("TensorboardDir");
+            if (Directory.Exists(tboard))
+            {
+                btnTensorboard.Visible = true;
+            }
+
             if (ShutdownOnly && (TrainCompletedAction == TrainCompleteAction.Shutdown || TrainCompletedAction == TrainCompleteAction.Suspend))
             {
                 btnCopyCmd.Enabled = false;
@@ -292,6 +298,31 @@ namespace Kohya_lora_trainer
             process.Exited += new EventHandler(TrainExited);
             process.EnableRaisingEvents = true;
             process.Start();
+        }
+
+        private void btnTensorboard_Click(object sender, EventArgs e)
+        {
+            string tboard = MyUtils.GetDefaultDir("TensorboardDir");
+            if (!Directory.Exists(tboard))
+                return;
+            StringBuilder sb = new StringBuilder();
+            sb.Append("/k cd ");
+            if (!string.IsNullOrEmpty(Form1.ScriptPath))
+            {
+                sb.Append("/d ").Append(Form1.ScriptPath);
+            }
+            else
+            {
+                sb.Append(Constants.CurrentSdScriptsPath);
+            }
+
+            sb.Append(" && .\\venv\\Scripts\\activate && tensorboard --logdir=\"").Append(tboard).Append("\"");
+
+            ProcessStartInfo ps = new ProcessStartInfo();
+            ps.FileName = "cmd";
+            ps.Arguments = sb.ToString();
+
+            Process.Start(ps);
         }
     }
 }
