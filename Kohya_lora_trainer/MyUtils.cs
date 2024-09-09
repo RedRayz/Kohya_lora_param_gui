@@ -12,14 +12,13 @@ using System.Data.Common;
 using Microsoft.Win32;
 using Windows.Storage;
 
-#pragma warning disable CA1416
 namespace Kohya_lora_trainer
 {
     internal static class MyUtils
     {
         private static Dictionary<string, string> DefaultDirs = new Dictionary<string, string>();
-        private static List<string> NetworkArgs = new List<string>();
-        private static Regex WeightExtensionRegex = new Regex(@"\.pt|\.pth|\.ckpt|\.safetensors|\.sft", RegexOptions.Compiled, TimeSpan.FromMilliseconds(50));
+        private static readonly List<string> NetworkArgs = new List<string>();
+        private static readonly Regex WeightExtensionRegex = new Regex(@"\.pt|\.pth|\.ckpt|\.safetensors|\.sft", RegexOptions.Compiled, TimeSpan.FromMilliseconds(50));
         //private static Dictionary<string, string> DictSettings = new Dictionary<string, string>();
 
         internal static void SaveSettings()

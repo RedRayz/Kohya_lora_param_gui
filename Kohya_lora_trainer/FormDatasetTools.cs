@@ -1275,7 +1275,7 @@ namespace Kohya_lora_trainer
                 MessageBox.Show("データ破損防止のため、OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (MessageBox.Show("gifファイルとそれのキャプションを同階層のtrashフォルダに移動させます。\r\nよろしいですか。", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("gifとそれのキャプションを同階層のtrashフォルダに移動させます。\r\nよろしいですか。", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 lblProcessing.Visible = true;
                 Update();
