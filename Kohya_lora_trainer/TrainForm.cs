@@ -219,11 +219,6 @@ namespace Kohya_lora_trainer
         private void TrainForm_Shown(object sender, EventArgs e)
         {
             lblProcessingCaptions.Visible = false;
-            string tboard = MyUtils.GetDefaultDir("TensorboardDir");
-            if (Directory.Exists(tboard))
-            {
-                btnTensorboard.Visible = true;
-            }
 
             if (ShutdownOnly && (TrainCompletedAction == TrainCompleteAction.Shutdown || TrainCompletedAction == TrainCompleteAction.Suspend))
             {
@@ -235,6 +230,12 @@ namespace Kohya_lora_trainer
                 timer1.Start();
                 UpdateCountdownText();
                 return;
+            }
+
+            string tboard = MyUtils.GetDefaultDir("TensorboardDir");
+            if (Directory.Exists(tboard))
+            {
+                btnTensorboard.Visible = true;
             }
 
             if (BatchProcess.LogResultText && BatchProcess.IsRunning)
