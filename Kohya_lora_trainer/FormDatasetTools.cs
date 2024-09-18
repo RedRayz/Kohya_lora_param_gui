@@ -1343,7 +1343,7 @@ namespace Kohya_lora_trainer
                 MessageBox.Show("データ破損防止のため、OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (MessageBox.Show("trashフォルダを消去します。よろしいですか。\nサブディレクトリがある場合はtrash直下のファイル消去のみとなります。", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("trashフォルダの中身をもとにもどします。よろしいですか。\nサブディレクトリがある場合はtrash直下のファイルの移動のみとなります。", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 string trashDir = sourceDir + @"\trash";
 
