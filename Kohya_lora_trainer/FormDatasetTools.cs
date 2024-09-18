@@ -1360,7 +1360,7 @@ namespace Kohya_lora_trainer
                     {
                         string path = sourceDir + "\\";
                         string trashfile = Path.GetFileName(file);
-                        File.Move(file, sourceDir + trashfile);
+                        File.Move(file, path + trashfile);
                         movedCnt++;
                     }
                 }
