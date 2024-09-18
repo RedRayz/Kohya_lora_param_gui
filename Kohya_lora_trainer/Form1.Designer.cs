@@ -371,7 +371,7 @@ namespace Kohya_lora_trainer
             cbxSDType.Name = "cbxSDType";
             cbxSDType.Size = new Size(139, 23);
             cbxSDType.TabIndex = 85;
-            toolTip1.SetToolTip(cbxSDType, "SDXLは要求スペックもXLサイズ\r\nFLUXはそれの倍");
+            toolTip1.SetToolTip(cbxSDType, "SDXLは要求スペックもXLサイズ\r\nFLUXはそれの3倍以上");
             cbxSDType.SelectedIndexChanged += cbxSDType_SelectedIndexChanged;
             // 
             // tbxFileName
