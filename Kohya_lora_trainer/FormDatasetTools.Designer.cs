@@ -48,6 +48,7 @@
             label1 = new Label();
             textBox1 = new TextBox();
             tabPage2 = new TabPage();
+            btnRemoveGifs = new Button();
             label8 = new Label();
             label7 = new Label();
             nudTagsCount = new NumericUpDown();
@@ -68,7 +69,7 @@
             lblProcessing = new Label();
             btnCloseWindow = new Button();
             label9 = new Label();
-            btnRemoveGifs = new Button();
+            btnRestoreTrash = new Button();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudKeepTokens).BeginInit();
@@ -282,6 +283,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(btnRestoreTrash);
             tabPage2.Controls.Add(btnRemoveGifs);
             tabPage2.Controls.Add(label8);
             tabPage2.Controls.Add(label7);
@@ -307,6 +309,16 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "ファイル処理";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveGifs
+            // 
+            btnRemoveGifs.Location = new Point(30, 157);
+            btnRemoveGifs.Name = "btnRemoveGifs";
+            btnRemoveGifs.Size = new Size(152, 28);
+            btnRemoveGifs.TabIndex = 6;
+            btnRemoveGifs.Text = "GIF画像を削除";
+            btnRemoveGifs.UseVisualStyleBackColor = true;
+            btnRemoveGifs.Click += btnRemoveGifs_Click;
             // 
             // label8
             // 
@@ -505,15 +517,15 @@
             label9.TabIndex = 6;
             label9.Text = "対応画像拡張子:png,jpg,jpeg\r\n対応キャプション拡張子:txt";
             // 
-            // btnRemoveGifs
+            // btnRestoreTrash
             // 
-            btnRemoveGifs.Location = new Point(30, 157);
-            btnRemoveGifs.Name = "btnRemoveGifs";
-            btnRemoveGifs.Size = new Size(152, 28);
-            btnRemoveGifs.TabIndex = 6;
-            btnRemoveGifs.Text = "GIF画像を削除";
-            btnRemoveGifs.UseVisualStyleBackColor = true;
-            btnRemoveGifs.Click += btnRemoveGifs_Click;
+            btnRestoreTrash.Location = new Point(188, 157);
+            btnRestoreTrash.Name = "btnRestoreTrash";
+            btnRestoreTrash.Size = new Size(180, 26);
+            btnRestoreTrash.TabIndex = 7;
+            btnRestoreTrash.Text = "trashの中身を戻す";
+            btnRestoreTrash.UseVisualStyleBackColor = true;
+            btnRestoreTrash.Click += btnRestoreTrash_Click;
             // 
             // FormDatasetTools
             // 
@@ -589,5 +601,6 @@
         private Button btnCloseWindow;
         private Label label9;
         private Button btnRemoveGifs;
+        private Button btnRestoreTrash;
     }
 }
