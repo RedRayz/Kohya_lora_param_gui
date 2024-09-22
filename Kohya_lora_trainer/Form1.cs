@@ -1174,7 +1174,9 @@ namespace Kohya_lora_trainer
                 case Optimizer.AdaFactor:
                     {
                         if (TrainParams.Current.LearningRate > 0.01f)
-                            return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.001)。\r\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (TrainParams.Current.WarmupSteps > 0)
+                            return MessageBox.Show("Adafactorは完全自動のため、LRウォームアップは使用できません。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
                 case Optimizer.AdamW:
