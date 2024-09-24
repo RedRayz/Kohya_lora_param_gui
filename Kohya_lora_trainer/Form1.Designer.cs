@@ -278,7 +278,7 @@ namespace Kohya_lora_trainer
             cbxShuffle.Size = new Size(131, 19);
             cbxShuffle.TabIndex = 30;
             cbxShuffle.Text = "キャプションのシャッフル";
-            toolTip1.SetToolTip(cbxShuffle, "カンマ区切りでシャッフルする");
+            toolTip1.SetToolTip(cbxShuffle, "カンマ区切りでシャッフルする\r\nTEキャッシュの併用不可");
             cbxShuffle.UseVisualStyleBackColor = true;
             cbxShuffle.CheckedChanged += cbxShuffle_CheckedChanged;
             // 
@@ -347,7 +347,7 @@ namespace Kohya_lora_trainer
             nudBatchSize.Name = "nudBatchSize";
             nudBatchSize.Size = new Size(80, 23);
             nudBatchSize.TabIndex = 57;
-            toolTip1.SetToolTip(nudBatchSize, "高batchでは学習効率が低下するので、LRかエポック数を多めにする");
+            toolTip1.SetToolTip(nudBatchSize, "高batchでは学習効率が低下するので、LRかエポック数を多めにする\r\n高バッチではCPUボトルネックが大きい環境ほど速くなる\r\n(1080pと4Kゲーミングの違いみたいなもの)");
             nudBatchSize.Value = new decimal(new int[] { 1, 0, 0, 0 });
             nudBatchSize.ValueChanged += nudBatchSize_ValueChanged;
             // 
@@ -366,7 +366,7 @@ namespace Kohya_lora_trainer
             // 
             cbxSDType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxSDType.FormattingEnabled = true;
-            cbxSDType.Items.AddRange(new object[] { "SD1.X", "SDXL", "FLUX.1" });
+            cbxSDType.Items.AddRange(new object[] { "SD1", "SDXL", "FLUX.1" });
             cbxSDType.Location = new Point(100, 197);
             cbxSDType.Name = "cbxSDType";
             cbxSDType.Size = new Size(139, 23);
@@ -402,7 +402,7 @@ namespace Kohya_lora_trainer
             nudSaveEpoch.Name = "nudSaveEpoch";
             nudSaveEpoch.Size = new Size(80, 23);
             nudSaveEpoch.TabIndex = 56;
-            toolTip1.SetToolTip(nudSaveEpoch, "指定した間隔で成果物を書き出す\r\nエポックかステップのどちらを使用するかは\r\nepochs/stepsの設定に従う");
+            toolTip1.SetToolTip(nudSaveEpoch, "指定した間隔で成果物を出力\r\nエポックかステップのどちらを使用するかは\r\nepochs/stepsの設定に従う");
             nudSaveEpoch.ValueChanged += nudSaveEpoch_ValueChanged;
             // 
             // tbxRegImgPath
