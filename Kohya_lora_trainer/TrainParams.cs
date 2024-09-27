@@ -264,7 +264,9 @@ namespace Kohya_lora_trainer {
         DAdaptLion,
         prodigy,
         PagedAdamW8bit,
-        PagedLion8bit
+        PagedLion8bit,
+        AdamWScheduleFree,
+        SGDScheduleFree
     }
 
     public enum SavePrecision {
