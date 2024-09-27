@@ -832,7 +832,7 @@ namespace Kohya_lora_trainer
 
         private void nudWarmupSteps_ValueChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.WarmupSteps = (int)nudWarmupSteps.Value;
+            TrainParams.Current.WarmupSteps = nudWarmupSteps.Value;
         }
 
         private void btnBlockWeight_Click(object sender, EventArgs e)
@@ -1217,8 +1217,8 @@ namespace Kohya_lora_trainer
                     {
                         if (TrainParams.Current.LearningRate > 0.01f)
                             return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.001)。\r\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (TrainParams.Current.WarmupSteps > 0)
-                            return MessageBox.Show("Adafactorは完全自動のため、LRウォームアップは使用できません。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (TrainParams.Current.WarmupSteps > 0m || TrainParams.Current.LRDecaySteps > 0m)
+                            return MessageBox.Show("Adafactorは完全自動のため、LR上昇/減衰は使用できません。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
                 case Optimizer.AdamW:
@@ -1441,5 +1441,6 @@ namespace Kohya_lora_trainer
         {
             TrainParams.Current.AdditionalNetworkArgs = tbxAdditionalNetworkArgs.Text;
         }
+
     }
 }

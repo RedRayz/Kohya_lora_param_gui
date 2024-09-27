@@ -361,12 +361,13 @@ namespace Kohya_lora_trainer
             // 
             // nudWarmupSteps
             // 
+            nudWarmupSteps.DecimalPlaces = 2;
             nudWarmupSteps.Location = new Point(400, 164);
             nudWarmupSteps.Maximum = new decimal(new int[] { 50000, 0, 0, 0 });
             nudWarmupSteps.Name = "nudWarmupSteps";
             nudWarmupSteps.Size = new Size(72, 23);
             nudWarmupSteps.TabIndex = 62;
-            toolTip1.SetToolTip(nudWarmupSteps, "指定ステップ数まで徐々にLRを上げる");
+            toolTip1.SetToolTip(nudWarmupSteps, "0から指定したステップ/進捗の割合にかけて徐々にLRを上げる\r\n数値をn.00でステップ数、少数を.00以外にすると比率になる");
             nudWarmupSteps.Value = new decimal(new int[] { 500, 0, 0, 0 });
             nudWarmupSteps.ValueChanged += nudWarmupSteps_ValueChanged;
             // 
@@ -557,11 +558,12 @@ namespace Kohya_lora_trainer
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(273, 167);
+            label9.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Location = new Point(248, 169);
             label9.Name = "label9";
-            label9.Size = new Size(121, 15);
+            label9.Size = new Size(150, 13);
             label9.TabIndex = 63;
-            label9.Text = "ウォームアップステップ数#";
+            label9.Text = "LRウォームアップステップ数/比率#";
             // 
             // btnClearRegImagePath
             // 
@@ -954,9 +956,9 @@ namespace Kohya_lora_trainer
             tabPageAddArgs.Controls.Add(label19);
             tabPageAddArgs.Controls.Add(tbxAdditionalNetworkArgs);
             tabPageAddArgs.Controls.Add(tbxAdditionalArgs);
-            tabPageAddArgs.Location = new Point(4, 24);
+            tabPageAddArgs.Location = new Point(4, 26);
             tabPageAddArgs.Name = "tabPageAddArgs";
-            tabPageAddArgs.Size = new Size(763, 288);
+            tabPageAddArgs.Size = new Size(763, 286);
             tabPageAddArgs.TabIndex = 2;
             tabPageAddArgs.Text = "追加の引数";
             tabPageAddArgs.UseVisualStyleBackColor = true;

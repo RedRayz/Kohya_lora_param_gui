@@ -376,8 +376,10 @@ namespace Kohya_lora_trainer
                 case Scheduler.polynomial:
                     sb.Append(" --lr_scheduler_power ").Append(TrainParams.Current.LRSchedulerCycle);
                     break;
-                default:
+                case Scheduler.cosine_with_restarts:
                     sb.Append(" --lr_scheduler_num_cycles ").Append(TrainParams.Current.LRSchedulerCycle);
+                    break;
+                default:
                     break;
             }
 
@@ -555,9 +557,24 @@ namespace Kohya_lora_trainer
                     break;
             }
 
-            if (TrainParams.Current.WarmupSteps > 0)
+            if (TrainParams.Current.WarmupSteps > 0m)
             {
                 sb.Append(" --lr_warmup_steps ").Append(TrainParams.Current.WarmupSteps);
+            }
+
+            if (TrainParams.Current.LRDecaySteps > 0m && TrainParams.Current.SchedulerType == Scheduler.warmup_stable_decay)
+            {
+                sb.Append(" --lr_decay_steps ").Append(TrainParams.Current.LRDecaySteps);
+            }
+
+            if (TrainParams.Current.MinLRRatio > 0m && (TrainParams.Current.SchedulerType == Scheduler.warmup_stable_decay || TrainParams.Current.SchedulerType == Scheduler.cosine_with_min_lr))
+            {
+                sb.Append(" --lr_scheduler_min_lr_ratio ").Append(TrainParams.Current.MinLRRatio);
+            }
+
+            if (TrainParams.Current.SchedulerTimescale > 0m && TrainParams.Current.SchedulerType == Scheduler.inverse_sqrt)
+            {
+                sb.Append(" --lr_scheduler_timescale ").Append(TrainParams.Current.SchedulerTimescale);
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.OutputName))
