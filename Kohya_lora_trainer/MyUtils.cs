@@ -818,13 +818,22 @@ namespace Kohya_lora_trainer
                 sb.Append(" --cpu_offload_checkpointing");
             }
 
+            string str = TrainParams.Current.AdditionalArgs.Trim();
+            str = str.Replace("\r\n", string.Empty);
+            if (!string.IsNullOrEmpty(str))
+            {
+                sb.Append(' ').Append(str);
+            }
+
             sb.Append(GetNetworkArgsCommands());
             return sb.ToString();
         }
 
         private static string GetNetworkArgsCommands()
         {
-            if (NetworkArgs.Count == 0)
+            string str = TrainParams.Current.AdditionalNetworkArgs.Trim();
+            str = str.Replace("\r\n", string.Empty);
+            if (NetworkArgs.Count == 0 && string.IsNullOrEmpty(str))
                 return string.Empty;
             StringBuilder sb = new StringBuilder();
             sb.Append(" --network_args ");
@@ -836,6 +845,12 @@ namespace Kohya_lora_trainer
                     sb.Append(' ');
                 }
             }
+
+            if (!string.IsNullOrEmpty(str))
+            {
+                sb.Append(' ').Append(str);
+            }
+
             return sb.ToString();
         }
 
@@ -988,6 +1003,7 @@ namespace Kohya_lora_trainer
                 {
                     sbalpha.Append(',').Append(TrainParams.Current.BlockAlphaOutSDXL);
                 }
+
                 NetworkArgs.Add(sb.ToString());
                 NetworkArgs.Add(sbalpha.ToString());
             }

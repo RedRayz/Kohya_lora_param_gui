@@ -110,6 +110,13 @@ namespace Kohya_lora_trainer
             lECOToolStripMenuItem = new ToolStripMenuItem();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            tabPageAddArgs = new TabPage();
+            label23 = new Label();
+            lblPlaceholderNetworkArgs = new Label();
+            label22 = new Label();
+            label19 = new Label();
+            tbxAdditionalNetworkArgs = new TextBox();
+            tbxAdditionalArgs = new TextBox();
             tabPage2 = new TabPage();
             label14 = new Label();
             label15 = new Label();
@@ -126,6 +133,7 @@ namespace Kohya_lora_trainer
             menuStrip1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            tabPageAddArgs.SuspendLayout();
             tabPage2.SuspendLayout();
             SuspendLayout();
             // 
@@ -801,28 +809,28 @@ namespace Kohya_lora_trainer
             // 設定ToolStripMenuItem
             // 
             設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
-            設定ToolStripMenuItem.Size = new Size(160, 22);
+            設定ToolStripMenuItem.Size = new Size(159, 22);
             設定ToolStripMenuItem.Text = "設定";
             設定ToolStripMenuItem.Click += 設定ToolStripMenuItem_Click;
             // 
             // プリセットを開くToolStripMenuItem
             // 
             プリセットを開くToolStripMenuItem.Name = "プリセットを開くToolStripMenuItem";
-            プリセットを開くToolStripMenuItem.Size = new Size(160, 22);
+            プリセットを開くToolStripMenuItem.Size = new Size(159, 22);
             プリセットを開くToolStripMenuItem.Text = "プリセットを開く";
             プリセットを開くToolStripMenuItem.Click += プリセットを開くToolStripMenuItem_Click;
             // 
             // プリセットを保存ToolStripMenuItem
             // 
             プリセットを保存ToolStripMenuItem.Name = "プリセットを保存ToolStripMenuItem";
-            プリセットを保存ToolStripMenuItem.Size = new Size(160, 22);
+            プリセットを保存ToolStripMenuItem.Size = new Size(159, 22);
             プリセットを保存ToolStripMenuItem.Text = "プリセットを保存";
             プリセットを保存ToolStripMenuItem.Click += プリセットを保存ToolStripMenuItem_Click;
             // 
             // 終了ToolStripMenuItem
             // 
             終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            終了ToolStripMenuItem.Size = new Size(160, 22);
+            終了ToolStripMenuItem.Size = new Size(159, 22);
             終了ToolStripMenuItem.Text = "終了";
             終了ToolStripMenuItem.Click += 終了ToolStripMenuItem_Click_1;
             // 
@@ -836,14 +844,14 @@ namespace Kohya_lora_trainer
             // ヒントToolStripMenuItem
             // 
             ヒントToolStripMenuItem.Name = "ヒントToolStripMenuItem";
-            ヒントToolStripMenuItem.Size = new Size(167, 22);
+            ヒントToolStripMenuItem.Size = new Size(168, 22);
             ヒントToolStripMenuItem.Text = "LoRA学習のヒント";
             ヒントToolStripMenuItem.Click += ヒントToolStripMenuItem_Click;
             // 
             // 配布ページToolStripMenuItem
             // 
             配布ページToolStripMenuItem.Name = "配布ページToolStripMenuItem";
-            配布ページToolStripMenuItem.Size = new Size(167, 22);
+            配布ページToolStripMenuItem.Size = new Size(168, 22);
             配布ページToolStripMenuItem.Text = "GUI配布ページ";
             配布ページToolStripMenuItem.Click += 配布ページToolStripMenuItem_Click;
             // 
@@ -857,27 +865,28 @@ namespace Kohya_lora_trainer
             // ユーティリティToolStripMenuItem
             // 
             ユーティリティToolStripMenuItem.Name = "ユーティリティToolStripMenuItem";
-            ユーティリティToolStripMenuItem.Size = new Size(227, 22);
+            ユーティリティToolStripMenuItem.Size = new Size(226, 22);
             ユーティリティToolStripMenuItem.Text = "ユーティリティ";
             ユーティリティToolStripMenuItem.Click += ユーティリティToolStripMenuItem_Click;
             // 
             // データセット編集選別ツールToolStripMenuItem
             // 
             データセット編集選別ツールToolStripMenuItem.Name = "データセット編集選別ツールToolStripMenuItem";
-            データセット編集選別ツールToolStripMenuItem.Size = new Size(227, 22);
+            データセット編集選別ツールToolStripMenuItem.Size = new Size(226, 22);
             データセット編集選別ツールToolStripMenuItem.Text = "データセット編集/選別ツール";
             データセット編集選別ツールToolStripMenuItem.Click += データセット編集選別ツールToolStripMenuItem_Click;
             // 
             // lECOToolStripMenuItem
             // 
             lECOToolStripMenuItem.Name = "lECOToolStripMenuItem";
-            lECOToolStripMenuItem.Size = new Size(227, 22);
+            lECOToolStripMenuItem.Size = new Size(226, 22);
             lECOToolStripMenuItem.Text = "LECO";
             lECOToolStripMenuItem.Click += lECOToolStripMenuItem_Click;
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPageAddArgs);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Location = new Point(12, 63);
             tabControl1.Name = "tabControl1";
@@ -936,6 +945,89 @@ namespace Kohya_lora_trainer
             tabPage1.TabIndex = 0;
             tabPage1.Text = "学習";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPageAddArgs
+            // 
+            tabPageAddArgs.Controls.Add(label23);
+            tabPageAddArgs.Controls.Add(lblPlaceholderNetworkArgs);
+            tabPageAddArgs.Controls.Add(label22);
+            tabPageAddArgs.Controls.Add(label19);
+            tabPageAddArgs.Controls.Add(tbxAdditionalNetworkArgs);
+            tabPageAddArgs.Controls.Add(tbxAdditionalArgs);
+            tabPageAddArgs.Location = new Point(4, 24);
+            tabPageAddArgs.Name = "tabPageAddArgs";
+            tabPageAddArgs.Size = new Size(763, 288);
+            tabPageAddArgs.TabIndex = 2;
+            tabPageAddArgs.Text = "追加の引数";
+            tabPageAddArgs.UseVisualStyleBackColor = true;
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.BackColor = Color.Transparent;
+            label23.ForeColor = Color.DimGray;
+            label23.Location = new Point(136, 13);
+            label23.Name = "label23";
+            label23.Size = new Size(359, 15);
+            label23.TabIndex = 2;
+            label23.Text = "例: --str_arg \"aaaaa\" --float_arg 1.0 --bool_arg \"True\" --int_arg 1000";
+            label23.UseMnemonic = false;
+            // 
+            // lblPlaceholderNetworkArgs
+            // 
+            lblPlaceholderNetworkArgs.AutoSize = true;
+            lblPlaceholderNetworkArgs.BackColor = Color.Transparent;
+            lblPlaceholderNetworkArgs.ForeColor = Color.DimGray;
+            lblPlaceholderNetworkArgs.Location = new Point(136, 156);
+            lblPlaceholderNetworkArgs.Name = "lblPlaceholderNetworkArgs";
+            lblPlaceholderNetworkArgs.Size = new Size(452, 15);
+            lblPlaceholderNetworkArgs.TabIndex = 2;
+            lblPlaceholderNetworkArgs.Text = "例: \"key_bool=True\" \"key_int=10\" \"key_float=1.5\" \"key_array=1,2,3,4,5\" \"key_str=abc\"";
+            lblPlaceholderNetworkArgs.UseMnemonic = false;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(19, 156);
+            label22.Name = "label22";
+            label22.Size = new Size(111, 15);
+            label22.TabIndex = 1;
+            label22.Text = "追加のnetwork_args";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(19, 13);
+            label19.Name = "label19";
+            label19.Size = new Size(65, 15);
+            label19.TabIndex = 1;
+            label19.Text = "追加の引数";
+            // 
+            // tbxAdditionalNetworkArgs
+            // 
+            tbxAdditionalNetworkArgs.BackColor = Color.FromArgb(64, 64, 64);
+            tbxAdditionalNetworkArgs.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxAdditionalNetworkArgs.ForeColor = Color.White;
+            tbxAdditionalNetworkArgs.Location = new Point(16, 174);
+            tbxAdditionalNetworkArgs.Multiline = true;
+            tbxAdditionalNetworkArgs.Name = "tbxAdditionalNetworkArgs";
+            tbxAdditionalNetworkArgs.ScrollBars = ScrollBars.Vertical;
+            tbxAdditionalNetworkArgs.Size = new Size(736, 96);
+            tbxAdditionalNetworkArgs.TabIndex = 0;
+            tbxAdditionalNetworkArgs.TextChanged += tbxAdditionalNetworkArgs_TextChanged;
+            // 
+            // tbxAdditionalArgs
+            // 
+            tbxAdditionalArgs.BackColor = Color.FromArgb(64, 64, 64);
+            tbxAdditionalArgs.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxAdditionalArgs.ForeColor = Color.White;
+            tbxAdditionalArgs.Location = new Point(14, 31);
+            tbxAdditionalArgs.Multiline = true;
+            tbxAdditionalArgs.Name = "tbxAdditionalArgs";
+            tbxAdditionalArgs.ScrollBars = ScrollBars.Vertical;
+            tbxAdditionalArgs.Size = new Size(736, 96);
+            tbxAdditionalArgs.TabIndex = 0;
+            tbxAdditionalArgs.TextChanged += tbxAdditionalArgs_TextChanged;
             // 
             // tabPage2
             // 
@@ -1032,6 +1124,8 @@ namespace Kohya_lora_trainer
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage1.PerformLayout();
+            tabPageAddArgs.ResumeLayout(false);
+            tabPageAddArgs.PerformLayout();
             tabPage2.ResumeLayout(false);
             tabPage2.PerformLayout();
             ResumeLayout(false);
@@ -1122,6 +1216,13 @@ namespace Kohya_lora_trainer
         private ToolStripMenuItem ユーティリティToolStripMenuItem;
         private ToolStripMenuItem データセット編集選別ツールToolStripMenuItem;
         private ToolStripMenuItem lECOToolStripMenuItem;
+        private TabPage tabPageAddArgs;
+        private TextBox tbxAdditionalArgs;
+        private Label label22;
+        private Label label19;
+        private TextBox tbxAdditionalNetworkArgs;
+        private Label lblPlaceholderNetworkArgs;
+        private Label label23;
     }
 }
 

@@ -99,7 +99,7 @@ namespace Kohya_lora_trainer {
 
         public decimal ImmiscibleNoise = 0;
 
-        public string CustomCommands = string.Empty;
+        public string CustomCommands = string.Empty, AdditionalArgs = string.Empty, AdditionalNetworkArgs = string.Empty;
 
         //Diffusion Transformer関連
         public decimal Sigmoidscale = 1m, DiscreteFlowShift = 3m, GuidanceScale = 0;
