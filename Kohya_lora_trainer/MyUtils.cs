@@ -534,6 +534,7 @@ namespace Kohya_lora_trainer
                     break;
                 case Optimizer.AdamW:
                 case Optimizer.AdamW8bit:
+                case Optimizer.AdamWScheduleFree:
                     {
                         if (TrainParams.Current.UseAdditionalOptArgs)
                         {
