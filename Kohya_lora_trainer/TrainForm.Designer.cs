@@ -35,6 +35,7 @@
             lblCountdown = new Label();
             timer1 = new System.Windows.Forms.Timer(components);
             lblProcessingCaptions = new Label();
+            btnTensorboard = new Button();
             SuspendLayout();
             // 
             // btnStop
@@ -63,11 +64,11 @@
             // btnCopyCmd
             // 
             btnCopyCmd.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCopyCmd.Location = new Point(121, 166);
+            btnCopyCmd.Location = new Point(175, 166);
             btnCopyCmd.Name = "btnCopyCmd";
-            btnCopyCmd.Size = new Size(147, 24);
+            btnCopyCmd.Size = new Size(93, 24);
             btnCopyCmd.TabIndex = 4;
-            btnCopyCmd.Text = "コマンドをクリップボードにコピー";
+            btnCopyCmd.Text = "コマンドをコピー";
             btnCopyCmd.UseVisualStyleBackColor = true;
             btnCopyCmd.Click += btnCopyCmd_Click;
             // 
@@ -97,12 +98,24 @@
             lblProcessingCaptions.TabIndex = 7;
             lblProcessingCaptions.Text = "キャプションのシャッフル中";
             // 
+            // btnTensorboard
+            // 
+            btnTensorboard.Location = new Point(83, 166);
+            btnTensorboard.Name = "btnTensorboard";
+            btnTensorboard.Size = new Size(86, 24);
+            btnTensorboard.TabIndex = 8;
+            btnTensorboard.Text = "tensorboard";
+            btnTensorboard.UseVisualStyleBackColor = true;
+            btnTensorboard.Visible = false;
+            btnTensorboard.Click += btnTensorboard_Click;
+            // 
             // TrainForm
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(280, 202);
             ControlBox = false;
+            Controls.Add(btnTensorboard);
             Controls.Add(lblProcessingCaptions);
             Controls.Add(lblCountdown);
             Controls.Add(btnCopyCmd);
@@ -130,5 +143,6 @@
         private Label lblCountdown;
         private System.Windows.Forms.Timer timer1;
         private Label lblProcessingCaptions;
+        private Button btnTensorboard;
     }
 }

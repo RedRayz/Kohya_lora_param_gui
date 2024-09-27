@@ -18,7 +18,7 @@ namespace Kohya_lora_trainer {
         public  bool ShuffleCaptions = true;
         public  int KeepTokenCount = 1, SaveEveryNEpochs = 0;
         public  Optimizer OptimizerType = Optimizer.AdamW;
-        public  int WarmupSteps = 250;
+        public  decimal WarmupSteps = 0m, LRDecaySteps = 0m;
         public  string OutputName = string.Empty, Comment = string.Empty;
 
         //Advanced
@@ -99,7 +99,7 @@ namespace Kohya_lora_trainer {
 
         public decimal ImmiscibleNoise = 0;
 
-        public string CustomCommands = string.Empty;
+        public string CustomCommands = string.Empty, AdditionalArgs = string.Empty, AdditionalNetworkArgs = string.Empty;
 
         //Diffusion Transformer関連
         public decimal Sigmoidscale = 1m, DiscreteFlowShift = 3m, GuidanceScale = 0;
@@ -108,6 +108,9 @@ namespace Kohya_lora_trainer {
         public TrainBlock TrainBlockType;
         public bool SplitMode = false, ApplyT5AttnMask = false, TrainT5XXL = false, CpuOffloadCheckpointing = false;
         public string ClipLPath = string.Empty, T5XXLPath = string.Empty;
+
+        //Scheduler
+        public decimal SchedulerTimescale = 0m, MinLRRatio = 0m;
 
         [NonSerialized]
         public static TrainParams? Current;
@@ -264,7 +267,9 @@ namespace Kohya_lora_trainer {
         DAdaptLion,
         prodigy,
         PagedAdamW8bit,
-        PagedLion8bit
+        PagedLion8bit,
+        AdamWScheduleFree,
+        SGDScheduleFree
     }
 
     public enum SavePrecision {
@@ -279,7 +284,10 @@ namespace Kohya_lora_trainer {
         linear,
         polynomial,
         constant,
-        constant_with_warmup
+        constant_with_warmup,
+        inverse_sqrt,
+        cosine_with_min_lr,
+        warmup_stable_decay
     }
 
     public enum AdvancedTrain {

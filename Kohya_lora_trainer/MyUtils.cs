@@ -12,14 +12,13 @@ using System.Data.Common;
 using Microsoft.Win32;
 using Windows.Storage;
 
-#pragma warning disable CA1416
 namespace Kohya_lora_trainer
 {
     internal static class MyUtils
     {
         private static Dictionary<string, string> DefaultDirs = new Dictionary<string, string>();
-        private static List<string> NetworkArgs = new List<string>();
-        private static Regex WeightExtensionRegex = new Regex(@"\.pt|\.pth|\.ckpt|\.safetensors|\.sft", RegexOptions.Compiled, TimeSpan.FromMilliseconds(50));
+        private static readonly List<string> NetworkArgs = new List<string>();
+        private static readonly Regex WeightExtensionRegex = new Regex(@"\.pt|\.pth|\.ckpt|\.safetensors|\.sft", RegexOptions.Compiled, TimeSpan.FromMilliseconds(50));
         //private static Dictionary<string, string> DictSettings = new Dictionary<string, string>();
 
         internal static void SaveSettings()
@@ -377,8 +376,10 @@ namespace Kohya_lora_trainer
                 case Scheduler.polynomial:
                     sb.Append(" --lr_scheduler_power ").Append(TrainParams.Current.LRSchedulerCycle);
                     break;
-                default:
+                case Scheduler.cosine_with_restarts:
                     sb.Append(" --lr_scheduler_num_cycles ").Append(TrainParams.Current.LRSchedulerCycle);
+                    break;
+                default:
                     break;
             }
 
@@ -535,6 +536,7 @@ namespace Kohya_lora_trainer
                     break;
                 case Optimizer.AdamW:
                 case Optimizer.AdamW8bit:
+                case Optimizer.AdamWScheduleFree:
                     {
                         if (TrainParams.Current.UseAdditionalOptArgs)
                         {
@@ -555,9 +557,24 @@ namespace Kohya_lora_trainer
                     break;
             }
 
-            if (TrainParams.Current.WarmupSteps > 0)
+            if (TrainParams.Current.WarmupSteps > 0m)
             {
                 sb.Append(" --lr_warmup_steps ").Append(TrainParams.Current.WarmupSteps);
+            }
+
+            if (TrainParams.Current.LRDecaySteps > 0m && TrainParams.Current.SchedulerType == Scheduler.warmup_stable_decay)
+            {
+                sb.Append(" --lr_decay_steps ").Append(TrainParams.Current.LRDecaySteps);
+            }
+
+            if (TrainParams.Current.MinLRRatio > 0m && (TrainParams.Current.SchedulerType == Scheduler.warmup_stable_decay || TrainParams.Current.SchedulerType == Scheduler.cosine_with_min_lr))
+            {
+                sb.Append(" --lr_scheduler_min_lr_ratio ").Append(TrainParams.Current.MinLRRatio);
+            }
+
+            if (TrainParams.Current.SchedulerTimescale > 0m && TrainParams.Current.SchedulerType == Scheduler.inverse_sqrt)
+            {
+                sb.Append(" --lr_scheduler_timescale ").Append(TrainParams.Current.SchedulerTimescale);
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.OutputName))
@@ -819,13 +836,22 @@ namespace Kohya_lora_trainer
                 sb.Append(" --cpu_offload_checkpointing");
             }
 
+            string str = TrainParams.Current.AdditionalArgs.Trim();
+            str = str.Replace("\r\n", string.Empty);
+            if (!string.IsNullOrEmpty(str))
+            {
+                sb.Append(' ').Append(str);
+            }
+
             sb.Append(GetNetworkArgsCommands());
             return sb.ToString();
         }
 
         private static string GetNetworkArgsCommands()
         {
-            if (NetworkArgs.Count == 0)
+            string str = TrainParams.Current.AdditionalNetworkArgs.Trim();
+            str = str.Replace("\r\n", string.Empty);
+            if (NetworkArgs.Count == 0 && string.IsNullOrEmpty(str))
                 return string.Empty;
             StringBuilder sb = new StringBuilder();
             sb.Append(" --network_args ");
@@ -837,6 +863,12 @@ namespace Kohya_lora_trainer
                     sb.Append(' ');
                 }
             }
+
+            if (!string.IsNullOrEmpty(str))
+            {
+                sb.Append(' ').Append(str);
+            }
+
             return sb.ToString();
         }
 
@@ -989,6 +1021,7 @@ namespace Kohya_lora_trainer
                 {
                     sbalpha.Append(',').Append(TrainParams.Current.BlockAlphaOutSDXL);
                 }
+
                 NetworkArgs.Add(sb.ToString());
                 NetworkArgs.Add(sbalpha.ToString());
             }

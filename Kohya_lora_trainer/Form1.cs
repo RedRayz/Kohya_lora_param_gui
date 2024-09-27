@@ -412,7 +412,7 @@ namespace Kohya_lora_trainer
         {
             string str = string.IsNullOrEmpty(ScriptPath) ? Constants.CurrentSdScriptsPath : ScriptPath + "\\";
 
-            if (!HasScriptFile(str, true) || !IsCommandAvailable(true))
+            if (!HasScriptFile(str, true) || !IsCommandAvailable(true) || !IsAdditionalArgsAvailable(true))
                 return;
 
             if (NotifyBadParams() != DialogResult.Yes)
@@ -486,6 +486,19 @@ namespace Kohya_lora_trainer
                         if (!string.IsNullOrWhiteSpace(pth))
                         {
                             BatchProcess.LogText += pth + "\r\nコマンドが不適切なためスキップ\r\n\r\n";
+                        }
+
+                        BatchProcess.SkippedCount++;
+                        continue;
+                    }
+
+                    //コマンドがおかしい
+                    if (!IsAdditionalArgsAvailable(false))
+                    {
+                        Debug.WriteLine("Skipped. Invalid additional args");
+                        if (!string.IsNullOrWhiteSpace(pth))
+                        {
+                            BatchProcess.LogText += pth + "\r\n追加引数が不適切なためスキップ\r\n\r\n";
                         }
 
                         BatchProcess.SkippedCount++;
@@ -619,6 +632,32 @@ namespace Kohya_lora_trainer
             command = command.Replace("\r\n", string.Empty);
             command = command.Trim();
             return string.IsNullOrWhiteSpace(command);
+        }
+
+        private bool IsAdditionalArgsAvailable(bool showMsg)
+        {
+            if (!string.IsNullOrEmpty(TrainParams.Current.AdditionalArgs))
+            {
+                string str = TrainParams.Current.AdditionalArgs.Trim();
+                if (str.Contains("&&"))
+                {
+                    if (showMsg)
+                        MessageBox.Show("追加の引数に&&は使用できません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(TrainParams.Current.AdditionalNetworkArgs))
+            {
+                string str = TrainParams.Current.AdditionalNetworkArgs.Trim();
+                if (str.Contains("&&"))
+                {
+                    if (showMsg)
+                        MessageBox.Show("追加のnetwork_argsに&&は使用できません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+            return true;
         }
 
 
@@ -793,7 +832,7 @@ namespace Kohya_lora_trainer
 
         private void nudWarmupSteps_ValueChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.WarmupSteps = (int)nudWarmupSteps.Value;
+            TrainParams.Current.WarmupSteps = nudWarmupSteps.Value;
         }
 
         private void btnBlockWeight_Click(object sender, EventArgs e)
@@ -1164,6 +1203,9 @@ namespace Kohya_lora_trainer
 
             tbxCommand.Text = TrainParams.Current.CustomCommands;
 
+            tbxAdditionalArgs.Text = TrainParams.Current.AdditionalArgs;
+            tbxAdditionalNetworkArgs.Text = TrainParams.Current.AdditionalNetworkArgs;
+
             UpdateTotalStepCount();
         }
 
@@ -1174,7 +1216,9 @@ namespace Kohya_lora_trainer
                 case Optimizer.AdaFactor:
                     {
                         if (TrainParams.Current.LearningRate > 0.01f)
-                            return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.001)。\r\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (TrainParams.Current.WarmupSteps > 0m || TrainParams.Current.LRDecaySteps > 0m)
+                            return MessageBox.Show("Adafactorは完全自動のため、LR上昇/減衰は使用できません。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
                 case Optimizer.AdamW:
@@ -1387,5 +1431,16 @@ namespace Kohya_lora_trainer
             frm.ShowDialog();
             frm.Dispose();
         }
+
+        private void tbxAdditionalArgs_TextChanged(object sender, EventArgs e)
+        {
+            TrainParams.Current.AdditionalArgs = tbxAdditionalArgs.Text;
+        }
+
+        private void tbxAdditionalNetworkArgs_TextChanged(object sender, EventArgs e)
+        {
+            TrainParams.Current.AdditionalNetworkArgs = tbxAdditionalNetworkArgs.Text;
+        }
+
     }
 }

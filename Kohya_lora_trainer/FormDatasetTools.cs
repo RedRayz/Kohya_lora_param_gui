@@ -1275,7 +1275,7 @@ namespace Kohya_lora_trainer
                 MessageBox.Show("データ破損防止のため、OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (MessageBox.Show("gifファイルとそれのキャプションを同階層のtrashフォルダに移動させます。\r\nよろしいですか。", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("gifとそれのキャプションを同階層のtrashフォルダに移動させます。\r\nよろしいですか。", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 lblProcessing.Visible = true;
                 Update();
@@ -1325,6 +1325,65 @@ namespace Kohya_lora_trainer
             }
 
             GC.Collect();
+        }
+
+        private void btnRestoreTrash_Click(object sender, EventArgs e)
+        {
+            string sourceDir = tbxSourceDir.Text;
+            int movedCnt = 0;
+            int errorCount = 0;
+            if (!Directory.Exists(sourceDir))
+            {
+                MessageBox.Show("ディレクトリが見つかりません", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (MyUtils.IsSystemDirectory(sourceDir))
+            {
+                MessageBox.Show("データ破損防止のため、OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (MessageBox.Show("trashフォルダの中身をもとにもどします。よろしいですか。\nサブディレクトリがある場合はtrash直下のファイルの移動のみとなります。", "確認", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string trashDir = sourceDir + @"\trash";
+
+                if (!Directory.Exists(trashDir))
+                {
+                    MessageBox.Show("trashフォルダがありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                try
+                {
+                    string[] files = Directory.GetFiles(trashDir);
+                    foreach (string file in files)
+                    {
+                        string path = sourceDir + "\\";
+                        string trashfile = Path.GetFileName(file);
+                        File.Move(file, path + trashfile);
+                        movedCnt++;
+                    }
+                }
+                catch
+                {
+                    errorCount++;
+                }
+
+                if (Directory.GetFiles(trashDir).Length == 0 && Directory.GetDirectories(trashDir).Length == 0)
+                {
+                    Directory.Delete(trashDir);
+                }
+
+                if (movedCnt > 0)
+                    MessageBox.Show($"{movedCnt}件のファイルを移動しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("移動したファイルはありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (errorCount > 0)
+                {
+                    MessageBox.Show($"{errorCount}件がエラーで失敗しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }
