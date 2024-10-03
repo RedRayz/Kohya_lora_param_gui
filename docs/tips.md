@@ -27,6 +27,10 @@ SDXLなら、詳細設定->パスでVAEに https://huggingface.co/madebyollin/sd
 
 GPU-ZやMSI Afterburnerのグラフを見るのもあり。それのグラフでVRAM使用量が上限に近い状態で、GPU使用率100%張り付きで、消費電力が定格より大幅に低くなってるならVRAM不足。
 
+## VRAMが溢れても遅くならないこともある
+
+多少共有メモリを使用していても、GPUのバスインターフェースの使用率が0%前後で消費電力が十分に高いなら速度低下はほとんどない。
+
 ## 「Setting different lr values in different parameter groups」なんとかっていうエラーは何？
 
 日本語にすると、「異なるパラメータグループ内で指定できる異なるLRの値は0のみとなります」とのこと。
