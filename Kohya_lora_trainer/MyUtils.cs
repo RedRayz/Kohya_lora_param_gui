@@ -559,12 +559,12 @@ namespace Kohya_lora_trainer
 
             if (TrainParams.Current.WarmupSteps > 0m)
             {
-                sb.Append(" --lr_warmup_steps ").Append(TrainParams.Current.WarmupSteps);
+                sb.Append(" --lr_warmup_steps ").Append(TrainParams.Current.WarmupSteps.ToString("0.##"));
             }
 
             if (TrainParams.Current.LRDecaySteps > 0m && TrainParams.Current.SchedulerType == Scheduler.warmup_stable_decay)
             {
-                sb.Append(" --lr_decay_steps ").Append(TrainParams.Current.LRDecaySteps);
+                sb.Append(" --lr_decay_steps ").Append(TrainParams.Current.LRDecaySteps.ToString("0.##"));
             }
 
             if (TrainParams.Current.MinLRRatio > 0m && (TrainParams.Current.SchedulerType == Scheduler.warmup_stable_decay || TrainParams.Current.SchedulerType == Scheduler.cosine_with_min_lr))
