@@ -46,12 +46,19 @@ namespace Kohya_lora_trainer
 
         public static void ShuffleCaptions()
         {
-            if (!ShuffleCaptionsBeforeTraining || TrainParams.Current == null || !IsRunning)
+            if (!ShuffleCaptionsBeforeTraining || TrainParams.Current == null || !IsRunning || !Directory.Exists(TrainParams.Current.TrainImagePath))
                 return;
-            string[] subDirs = Directory.GetDirectories(TrainParams.Current.TrainImagePath);
-            foreach (string dir in subDirs)
+            try
             {
-                MyUtils.ShuffleCaptions(dir, KeepTokensCount, false);
+                string[] subDirs = Directory.GetDirectories(TrainParams.Current.TrainImagePath);
+                foreach (string dir in subDirs)
+                {
+                    MyUtils.ShuffleCaptions(dir, KeepTokensCount, false);
+                }
+            }
+            catch(Exception ex)
+            {
+                Debug.WriteLine("Shuffle Errored: " + ex.Message);
             }
         }
     }
