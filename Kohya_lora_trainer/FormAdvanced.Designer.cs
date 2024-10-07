@@ -236,6 +236,8 @@ namespace Kohya_lora_trainer
             cbxTimestepSampling = new ComboBox();
             label58 = new Label();
             label56 = new Label();
+            nudCaptionTagDropout = new NumericUpDown();
+            label70 = new Label();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -282,6 +284,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudGuidanceScale).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudDiscreteFlowShift).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudSigmoidScale).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudCaptionTagDropout).BeginInit();
             SuspendLayout();
             // 
             // tbxUnetLR
@@ -1145,7 +1148,7 @@ namespace Kohya_lora_trainer
             // 
             nudMomentum.DecimalPlaces = 4;
             nudMomentum.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nudMomentum.Location = new Point(508, 228);
+            nudMomentum.Location = new Point(508, 255);
             nudMomentum.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             nudMomentum.Name = "nudMomentum";
             nudMomentum.Size = new Size(78, 23);
@@ -1155,7 +1158,7 @@ namespace Kohya_lora_trainer
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(425, 228);
+            label15.Location = new Point(425, 255);
             label15.Name = "label15";
             label15.Size = new Size(75, 30);
             label15.TabIndex = 45;
@@ -1361,6 +1364,8 @@ namespace Kohya_lora_trainer
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(label70);
+            tabPage4.Controls.Add(nudCaptionTagDropout);
             tabPage4.Controls.Add(cbxAlphaMask);
             tabPage4.Controls.Add(cbxMaskLoss);
             tabPage4.Controls.Add(tbxTokensSeparator);
@@ -1384,9 +1389,9 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(label28);
             tabPage4.Controls.Add(nudMaxTokens);
             tabPage4.Controls.Add(nudLRSchedulerCycle);
-            tabPage4.Location = new Point(4, 26);
+            tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(660, 322);
+            tabPage4.Size = new Size(660, 324);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "ページ2";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1420,7 +1425,7 @@ namespace Kohya_lora_trainer
             // label39
             // 
             label39.AutoSize = true;
-            label39.Location = new Point(354, 201);
+            label39.Location = new Point(354, 228);
             label39.Name = "label39";
             label39.Size = new Size(148, 15);
             label39.TabIndex = 25;
@@ -1486,7 +1491,7 @@ namespace Kohya_lora_trainer
             // 
             nudMaxNormReg.DecimalPlaces = 4;
             nudMaxNormReg.Increment = new decimal(new int[] { 5, 0, 0, 131072 });
-            nudMaxNormReg.Location = new Point(508, 199);
+            nudMaxNormReg.Location = new Point(508, 226);
             nudMaxNormReg.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             nudMaxNormReg.Name = "nudMaxNormReg";
             nudMaxNormReg.Size = new Size(78, 23);
@@ -1561,9 +1566,9 @@ namespace Kohya_lora_trainer
             page3.Controls.Add(label57);
             page3.Controls.Add(label17);
             page3.Controls.Add(nudIpNoiseGamma);
-            page3.Location = new Point(4, 26);
+            page3.Location = new Point(4, 24);
             page3.Name = "page3";
-            page3.Size = new Size(660, 322);
+            page3.Size = new Size(660, 324);
             page3.TabIndex = 10;
             page3.Text = "ページ3";
             page3.UseVisualStyleBackColor = true;
@@ -1718,9 +1723,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 26);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(660, 322);
+            tabPage7.Size = new Size(660, 324);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -2466,6 +2471,25 @@ namespace Kohya_lora_trainer
             label56.TabIndex = 58;
             label56.Text = "#がつく項目は0を指定すると未指定にする\r\n##がつく項目は空欄で未指定にする";
             // 
+            // nudCaptionTagDropout
+            // 
+            nudCaptionTagDropout.DecimalPlaces = 4;
+            nudCaptionTagDropout.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            nudCaptionTagDropout.Location = new Point(508, 197);
+            nudCaptionTagDropout.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudCaptionTagDropout.Name = "nudCaptionTagDropout";
+            nudCaptionTagDropout.Size = new Size(78, 23);
+            nudCaptionTagDropout.TabIndex = 48;
+            // 
+            // label70
+            // 
+            label70.AutoSize = true;
+            label70.Location = new Point(346, 199);
+            label70.Name = "label70";
+            label70.Size = new Size(156, 15);
+            label70.TabIndex = 49;
+            label70.Text = "captionタグドロップアウト確率#";
+            // 
             // FormAdvanced
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -2540,6 +2564,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudGuidanceScale).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudDiscreteFlowShift).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudSigmoidScale).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudCaptionTagDropout).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -2752,5 +2777,7 @@ namespace Kohya_lora_trainer
         private TabPage tabPage6;
         private Label label69;
         private NumericUpDown nudLRDecaySteps;
+        private Label label70;
+        private NumericUpDown nudCaptionTagDropout;
     }
 }

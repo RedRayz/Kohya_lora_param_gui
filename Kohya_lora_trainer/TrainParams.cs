@@ -34,7 +34,7 @@ namespace Kohya_lora_trainer {
         public AdvancedTrain advancedTrainType = AdvancedTrain.None;
         public CrossAtten CrossAttenType = CrossAtten.xformers;
         public bool UseGradient = false, UseWeightedCaptions = false;
-        public decimal AdaptiveNoiseScale = 0, MinSNRGamma = 0, MultiresNoiseIterations = 0, MultiresNoiseDiscount = 0, NetworkDropout = 0, RankDropout = 0, ModuleDropout = 0, MaxNormReg = 0, CaptionDropout = 0, IpNoiseGamma = 0;
+        public decimal AdaptiveNoiseScale = 0, MinSNRGamma = 0, MultiresNoiseIterations = 0, MultiresNoiseDiscount = 0, NetworkDropout = 0, RankDropout = 0, ModuleDropout = 0, MaxNormReg = 0, CaptionDropout = 0, IpNoiseGamma = 0, CaptionTagDropout = 0m;
 
         //Addtional(KohakuBlueleaf氏作成拡張スクリプト用)
         public NetworkModule ModuleType = NetworkModule.LoRA;
