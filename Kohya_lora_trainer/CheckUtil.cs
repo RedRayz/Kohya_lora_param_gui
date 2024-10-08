@@ -6,22 +6,27 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Kohya_lora_trainer {
-    public static class CheckUtil {
+namespace Kohya_lora_trainer
+{
+    public static class CheckUtil
+    {
+        private static readonly Regex ExtensionReg = new Regex(@"png|jpg|jpeg|webp|bmp", RegexOptions.Compiled);
 
         /// <summary>
         /// ASCII文字またはスペースが入っているか確認
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-     public static bool HaveNonAsciiOrSpace(string text) {
+        public static bool HaveNonAsciiOrSpace(string text)
+        {
             if (string.IsNullOrEmpty(text))
                 return false;
-            if (text.Contains(" "))
+            if (text.Contains(' '))
                 return true;
 
             Regex regex = new Regex(@"^[\u0000-\u007f]*$");
-            if (regex.IsMatch(text)) {
+            if (regex.IsMatch(text))
+            {
                 return false;
             }
             return true;
@@ -33,41 +38,51 @@ namespace Kohya_lora_trainer {
         /// <param name="path"></param>
         /// <param name="ccnt">合計画像枚数</param>
         /// <returns></returns>
-        public static bool IsValidImageFolder(string path, out int ccnt) {
-            if (string.IsNullOrEmpty(path) || !Directory.Exists(path)) {
+        public static bool IsValidImageFolder(string path, out int ccnt)
+        {
+            if (string.IsNullOrEmpty(path) || !Directory.Exists(path))
+            {
                 ccnt = 0;
                 return false;
             }
 
             string[] dc = Directory.GetDirectories(path);
             ccnt = 0;
-            if (dc.Length == 0) {
+            if (dc.Length == 0)
+            {
                 return false;
             }
-            else {
-                foreach (string dc2 in dc) {
-                    string str = dc2.Remove(0, dc2.LastIndexOf('\\') + 1);
+            else
+            {
+                foreach (string dc2 in dc)
+                {
+                    string str = Path.GetFileName(dc2);
                     int idx = str.IndexOf("_");
-                    if (idx > 0) {
+                    if (idx > 0)
+                    {
                         str = str.Remove(idx);
                         int num = 0;
-                        if (int.TryParse(str, out num) && num > 0) {
+                        if (int.TryParse(str, out num) && num > 0)
+                        {
                             string[] files = Directory.GetFiles(dc2);
                             int fileCnt = 0;
-                            Regex reg = new Regex(@"png|jpg|jpeg|webp|bmp|PNG|JPG|JPEG|WEBP|BMP");
-                            foreach (string file in files) {
-                                if (reg.IsMatch(Path.GetExtension(file))) {
+                            foreach (string file in files)
+                            {
+                                if (ExtensionReg.IsMatch(Path.GetExtension(file.ToLower())))
+                                {
                                     fileCnt++;
                                 }
                             }
                             ccnt += num * fileCnt;
 
                         }
-                        else {
+                        else
+                        {
                             return false;
                         }
                     }
-                    else {
+                    else
+                    {
                         return false;
                     }
                 }
@@ -80,8 +95,9 @@ namespace Kohya_lora_trainer {
         /// </summary>
         /// <param name="num"></param>
         /// <returns></returns>
-        public static bool IsValidNum(float num) {
-            if(num<= 0 || float.IsNaN(num) || float.IsInfinity(num)) 
+        public static bool IsValidNum(float num)
+        {
+            if (num <= 0 || float.IsNaN(num) || float.IsInfinity(num))
                 return false;
             return true;
         }
