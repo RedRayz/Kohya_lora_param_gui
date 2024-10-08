@@ -712,6 +712,11 @@ namespace Kohya_lora_trainer
                 sb.Append(" --caption_dropout_rate ").Append(TrainParams.Current.CaptionDropout.ToString());
             }
 
+            if (TrainParams.Current.CaptionTagDropout > 0)
+            {
+                sb.Append(" --caption_tag_dropout_rate ").Append(TrainParams.Current.CaptionTagDropout.ToString());
+            }
+
             if (TrainParams.Current.NoHalfVAE)
             {
                 sb.Append(" --no_half_vae");

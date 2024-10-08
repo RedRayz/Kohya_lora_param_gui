@@ -335,6 +335,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.MaxTokens = (int)nudMaxTokens.Value;
 
             TrainParams.Current.CaptionDropout = nudCaptionDropout.Value;
+            TrainParams.Current.CaptionTagDropout = nudCaptionTagDropout.Value;
             TrainParams.Current.NetworkDropout = nudNetworkDropout.Value;
             TrainParams.Current.RankDropout = nudRankDropout.Value;
             TrainParams.Current.ModuleDropout = nudModuleDropout.Value;
@@ -475,6 +476,7 @@ namespace Kohya_lora_trainer
             tbxMomentum.Text = TrainParams.Current.DAdaptMomentum.ToString("g");
 
             nudCaptionDropout.Value = TrainParams.Current.CaptionDropout;
+            nudCaptionTagDropout.Value = TrainParams.Current.CaptionTagDropout;
             nudRankDropout.Value = TrainParams.Current.RankDropout;
             nudModuleDropout.Value = TrainParams.Current.ModuleDropout;
             nudNetworkDropout.Value = TrainParams.Current.NetworkDropout;
