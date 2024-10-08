@@ -7,7 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>lora-gui-icon.ico</ApplicationIcon>
     <PlatformTarget>x64</PlatformTarget>
 	<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
 	<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
@@ -26,7 +26,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="icon.ico" />
+    <Content Include="lora-gui-icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
