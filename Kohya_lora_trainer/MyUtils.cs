@@ -409,7 +409,7 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.ShuffleCaptions)
             {
                 sb.Append(" --shuffle_caption");
-                if (TrainParams.Current.KeepTokenCount > 0 && TrainParams.Current.StableDiffusionType == ModelArchitecture.Legacy)
+                if (TrainParams.Current.KeepTokenCount > 0)
                 {
                     sb.Append(" --keep_tokens ").Append(TrainParams.Current.KeepTokenCount);
                 }

@@ -196,7 +196,7 @@ namespace Kohya_lora_trainer
                 HaveNonAscillInImageFolder = false;
                 TrainParams.Current.TrainImagePath = cof.FileName;
                 tbxImagePath.Text = TrainParams.Current.TrainImagePath;
-                IsInvalidImageFolder = !CheckUtil.IsValidImageFolder(cof.FileName, out StepsPerEpoch);
+                IsInvalidImageFolder = !CheckUtil.IsImageDirectoryValid(cof.FileName, out StepsPerEpoch);
                 if (IsInvalidImageFolder)
                 {
                     MessageBox.Show("教師画像フォルダの指定を間違えている可能性があります。\n「繰り返し数_プロンプト」の名前のフォルダが1つ以上入ったフォルダを指定する必要があります。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -235,7 +235,7 @@ namespace Kohya_lora_trainer
                 tbxRegImgPath.Text = TrainParams.Current.RegImagePath;
                 int num = 0;
                 HaveNonAscillInRegFolder = false;
-                IsInvalidRegFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.RegImagePath, out num);
+                IsInvalidRegFolder = !CheckUtil.IsImageDirectoryValid(TrainParams.Current.RegImagePath, out num);
                 if (IsInvalidRegFolder)
                 {
                     MessageBox.Show("正則化画像フォルダの指定を間違えている可能性があります。\n「繰り返し数_プロンプト」の名前のフォルダが1つ以上入ったフォルダを指定する必要があります。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -984,11 +984,11 @@ namespace Kohya_lora_trainer
             {
                 tbxImagePath.ForeColor = Color.Orange;
                 HaveNonAscillInImageFolder = true;
-                IsInvalidImageFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.TrainImagePath, out StepsPerEpoch);
+                IsInvalidImageFolder = !CheckUtil.IsImageDirectoryValid(TrainParams.Current.TrainImagePath, out StepsPerEpoch);
             }
             else
             {
-                IsInvalidImageFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.TrainImagePath, out StepsPerEpoch);
+                IsInvalidImageFolder = !CheckUtil.IsImageDirectoryValid(TrainParams.Current.TrainImagePath, out StepsPerEpoch);
                 tbxImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
                 HaveNonAscillInImageFolder = false;
             }
@@ -1024,12 +1024,12 @@ namespace Kohya_lora_trainer
                 tbxRegImgPath.ForeColor = Color.Orange;
                 HaveNonAscillInRegFolder = true;
                 int num = 0;
-                IsInvalidRegFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.RegImagePath, out num);
+                IsInvalidRegFolder = !CheckUtil.IsImageDirectoryValid(TrainParams.Current.RegImagePath, out num);
             }
             else
             {
                 int num = 0;
-                IsInvalidRegFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.RegImagePath, out num);
+                IsInvalidRegFolder = !CheckUtil.IsImageDirectoryValid(TrainParams.Current.RegImagePath, out num);
                 tbxRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
                 HaveNonAscillInRegFolder = false;
             }
@@ -1120,7 +1120,7 @@ namespace Kohya_lora_trainer
 
             //TrainImage
             tbxImagePath.Text = TrainParams.Current.TrainImagePath;
-            IsInvalidImageFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.TrainImagePath, out StepsPerEpoch);
+            IsInvalidImageFolder = !CheckUtil.IsImageDirectoryValid(TrainParams.Current.TrainImagePath, out StepsPerEpoch);
             tbxImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
             if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.TrainImagePath))
             {
@@ -1133,7 +1133,7 @@ namespace Kohya_lora_trainer
             if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
             {
                 int num = 0;
-                IsInvalidRegFolder = !CheckUtil.IsValidImageFolder(TrainParams.Current.RegImagePath, out num);
+                IsInvalidRegFolder = !CheckUtil.IsImageDirectoryValid(TrainParams.Current.RegImagePath, out num);
             }
             else
             {
