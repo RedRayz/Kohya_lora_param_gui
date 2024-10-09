@@ -38,16 +38,15 @@ namespace Kohya_lora_trainer
         /// <param name="path"></param>
         /// <param name="ccnt">合計画像枚数</param>
         /// <returns></returns>
-        public static bool IsValidImageFolder(string path, out int ccnt)
+        public static bool IsImageDirectoryValid(string path, out int ccnt)
         {
+            ccnt = 0;
             if (string.IsNullOrEmpty(path) || !Directory.Exists(path))
             {
-                ccnt = 0;
                 return false;
             }
 
             string[] dc = Directory.GetDirectories(path);
-            ccnt = 0;
             if (dc.Length == 0)
             {
                 return false;
@@ -74,18 +73,16 @@ namespace Kohya_lora_trainer
                                 }
                             }
                             ccnt += num * fileCnt;
-
                         }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        return false;
                     }
                 }
+
+                //数字_名前のディレクトリが一つもないか、あっても画像が無いなら無効とする
+                if(ccnt == 0)
+                {
+                    return false;
+                }
+
             }
             return true;
         }
