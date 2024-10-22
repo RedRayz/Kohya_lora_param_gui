@@ -477,7 +477,21 @@ namespace Kohya_lora_trainer
                         continue;
                     }
 
-                    LoadPreset(pth, false);
+                    try
+                    {
+                        LoadPreset(pth, false);
+                    }
+                    catch(Exception ex)
+                    {
+                        Debug.WriteLine("Skipped. Got an exception: " + ex.Message);
+                        if (!string.IsNullOrWhiteSpace(pth))
+                        {
+                            BatchProcess.LogText += pth + "\r\nプリセット読込失敗のためスキップ\r\n\r\n";
+                        }
+
+                        BatchProcess.SkippedCount++;
+                        continue;
+                    }
 
                     //コマンドがおかしい
                     if (!IsCommandAvailable(false))
@@ -795,7 +809,7 @@ namespace Kohya_lora_trainer
             {
                 Debug.WriteLine("Failed to load preset");
                 if (ShowMsg)
-                    MessageBox.Show("プリセットを読み込めません。破損しているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("プリセットを読み込めません。破損しているか、権限がありません。\r\nあるいは、より新しいバージョンのGUIで作成された可能性があります。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             TrainParams.Current.ConvertBlockAlpha();
             TrainParams.Current.CheckBrokenBlockDim();

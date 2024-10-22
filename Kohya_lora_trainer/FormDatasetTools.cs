@@ -425,6 +425,7 @@ namespace Kohya_lora_trainer
 
 
                     List<string> tags = new List<string>(txt.Split(", "));
+                    List<string> after = new List<string>();
                     int targetIdx = -1;
                     if (cbxUseRegEx.Checked && reg != null)
                     {
@@ -432,9 +433,10 @@ namespace Kohya_lora_trainer
                         {
                             try
                             {
-                                if (reg.IsMatch(tags[i]))
+                                if (!reg.IsMatch(tags[i]))
                                 {
-                                    targetIdx = i;
+                                    //targetIdx = i;
+                                    after.Add(tags[i]);
                                 }
                             }
                             catch
@@ -447,6 +449,10 @@ namespace Kohya_lora_trainer
                     else
                     {
                         targetIdx = tags.IndexOf(booru);
+                        for (int i = 0; i < tags.Count; i++)
+                        {
+
+                        }
                     }
 
                     if (targetIdx != -1)
