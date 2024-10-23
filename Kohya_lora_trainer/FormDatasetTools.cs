@@ -398,6 +398,7 @@ namespace Kohya_lora_trainer
                 lblProcessing.Visible = true;
                 Update();
                 int movedCnt = 0;
+                int errorCount = 0;
                 string booru = tbxBooruTag.Text;
                 string[] files = Directory.GetFiles(tbxTargetDir.Text);
                 Regex? reg = null;
@@ -419,22 +420,37 @@ namespace Kohya_lora_trainer
                     string extension = Path.GetExtension(file);
                     if (string.IsNullOrEmpty(extension) || extension != ".txt")
                         continue;
-                    string txt = File.ReadAllText(file);
+                    string txt = string.Empty;
+                    try
+                    {
+                        txt = File.ReadAllText(file);
+                    }
+                    catch(Exception ex)
+                    {
+                        Debug.WriteLine("Error: " + ex.Message);
+                        errorCount++;
+                        continue;
+                    }
+
                     if (reg == null && !txt.Contains(booru))
                         continue;
-
+                    bool changed = false;
 
                     List<string> tags = new List<string>(txt.Split(", "));
-                    int targetIdx = -1;
+                    List<string> after = new List<string>();
                     if (cbxUseRegEx.Checked && reg != null)
                     {
                         for (int i = 0; i < tags.Count; i++)
                         {
                             try
                             {
-                                if (reg.IsMatch(tags[i]))
+                                if (!reg.IsMatch(tags[i]))
                                 {
-                                    targetIdx = i;
+                                    after.Add(tags[i]);
+                                }
+                                else
+                                {
+                                    changed = true;
                                 }
                             }
                             catch
@@ -446,30 +462,42 @@ namespace Kohya_lora_trainer
                     }
                     else
                     {
-                        targetIdx = tags.IndexOf(booru);
-                    }
-
-                    if (targetIdx != -1)
-                    {
-                        tags.RemoveAt(targetIdx);
-                        movedCnt++;
-                    }
-                    else
-                        continue;
-
-
-                    if (tags.Count > 0)
-                    {
-                        StringBuilder sb = new StringBuilder();
                         for (int i = 0; i < tags.Count; i++)
                         {
-                            sb.Append(tags[i]);
-                            if (i < tags.Count - 1)
+                            if (!tags[i].Equals(booru))
+                            {
+                                after.Add(tags[i]);
+                            }
+                            else
+                            {
+                                changed = true;
+                            }
+                        }
+                    }
+
+
+                    if (changed && after.Count > 0)
+                    {
+                        StringBuilder sb = new StringBuilder();
+                        for (int i = 0; i < after.Count; i++)
+                        {
+                            sb.Append(after[i]);
+                            if (i < after.Count - 1)
                             {
                                 sb.Append(", ");
                             }
                         }
-                        File.WriteAllText(file, sb.ToString());
+                        try
+                        {
+                            File.WriteAllText(file, sb.ToString());
+                        }
+                        catch(Exception ex)
+                        {
+                            Debug.WriteLine("Error: " + ex.Message);
+                            errorCount++;
+                            continue;
+                        }
+                        movedCnt++;
                     }
 
                 }
@@ -477,7 +505,12 @@ namespace Kohya_lora_trainer
                 if (movedCnt > 0)
                     MessageBox.Show($"{movedCnt}件のファイルを処理しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
-                    MessageBox.Show("対象のファイルはありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("処理されたファイルはありません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (errorCount > 0)
+                {
+                    MessageBox.Show($"{errorCount}件がエラーで失敗しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 

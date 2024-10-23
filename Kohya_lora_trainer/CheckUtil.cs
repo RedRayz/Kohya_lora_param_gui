@@ -10,8 +10,6 @@ namespace Kohya_lora_trainer
 {
     public static class CheckUtil
     {
-        private static readonly Regex ExtensionReg = new Regex(@"png|jpg|jpeg|webp|bmp", RegexOptions.Compiled);
-
         /// <summary>
         /// ASCII文字またはスペースが入っているか確認
         /// </summary>
@@ -53,6 +51,7 @@ namespace Kohya_lora_trainer
             }
             else
             {
+                Regex ExtensionReg = new Regex(@"png|jpg|jpeg|webp|bmp", RegexOptions.Compiled);
                 foreach (string dc2 in dc)
                 {
                     string str = Path.GetFileName(dc2);

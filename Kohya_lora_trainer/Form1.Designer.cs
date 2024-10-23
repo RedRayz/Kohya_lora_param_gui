@@ -107,7 +107,6 @@ namespace Kohya_lora_trainer
             ツールToolStripMenuItem = new ToolStripMenuItem();
             ユーティリティToolStripMenuItem = new ToolStripMenuItem();
             データセット編集選別ツールToolStripMenuItem = new ToolStripMenuItem();
-            lECOToolStripMenuItem = new ToolStripMenuItem();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             tabPageAddArgs = new TabPage();
@@ -859,7 +858,7 @@ namespace Kohya_lora_trainer
             // 
             // ツールToolStripMenuItem
             // 
-            ツールToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ユーティリティToolStripMenuItem, データセット編集選別ツールToolStripMenuItem, lECOToolStripMenuItem });
+            ツールToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ユーティリティToolStripMenuItem, データセット編集選別ツールToolStripMenuItem });
             ツールToolStripMenuItem.Name = "ツールToolStripMenuItem";
             ツールToolStripMenuItem.Size = new Size(54, 21);
             ツールToolStripMenuItem.Text = "ツール";
@@ -877,13 +876,6 @@ namespace Kohya_lora_trainer
             データセット編集選別ツールToolStripMenuItem.Size = new Size(226, 22);
             データセット編集選別ツールToolStripMenuItem.Text = "データセット編集/選別ツール";
             データセット編集選別ツールToolStripMenuItem.Click += データセット編集選別ツールToolStripMenuItem_Click;
-            // 
-            // lECOToolStripMenuItem
-            // 
-            lECOToolStripMenuItem.Name = "lECOToolStripMenuItem";
-            lECOToolStripMenuItem.Size = new Size(226, 22);
-            lECOToolStripMenuItem.Text = "LECO";
-            lECOToolStripMenuItem.Click += lECOToolStripMenuItem_Click;
             // 
             // tabControl1
             // 
@@ -1217,7 +1209,6 @@ namespace Kohya_lora_trainer
         private ToolStripMenuItem ツールToolStripMenuItem;
         private ToolStripMenuItem ユーティリティToolStripMenuItem;
         private ToolStripMenuItem データセット編集選別ツールToolStripMenuItem;
-        private ToolStripMenuItem lECOToolStripMenuItem;
         private TabPage tabPageAddArgs;
         private TextBox tbxAdditionalArgs;
         private Label label22;

@@ -46,7 +46,7 @@
             btnStop.Name = "btnStop";
             btnStop.Size = new Size(170, 36);
             btnStop.TabIndex = 1;
-            btnStop.Text = "学習中止";
+            btnStop.Text = "停止";
             btnStop.UseVisualStyleBackColor = false;
             btnStop.Click += btnStop_Click;
             // 

@@ -115,7 +115,7 @@ namespace Kohya_lora_trainer
             if(DateTime.TryParse(lastCheckedDateText, out DateTime lastCheckedDate))
             {
                 TimeSpan span = current - lastCheckedDate;
-                Debug.WriteLine("最後のアプデ確認からの経過日: " + span.TotalDays.ToString());
+                //Debug.WriteLine("最後のアプデ確認からの経過日: " + span.TotalDays.ToString());
                 if(span.TotalDays >= checkInterval)
                 {
                     bool updateAvailable = CheckUpdate();
