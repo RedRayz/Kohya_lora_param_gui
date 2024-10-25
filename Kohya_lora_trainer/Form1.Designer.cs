@@ -241,11 +241,11 @@ namespace Kohya_lora_trainer
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(20, 110);
+            label17.Location = new Point(14, 109);
             label17.Name = "label17";
-            label17.Size = new Size(77, 15);
+            label17.Size = new Size(83, 15);
             label17.TabIndex = 23;
-            label17.Text = "epochs/steps";
+            label17.Text = "エポック/ステップ";
             // 
             // btnAdvanced
             // 
@@ -510,20 +510,20 @@ namespace Kohya_lora_trainer
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(299, 110);
+            label20.Location = new Point(321, 110);
             label20.Name = "label20";
-            label20.Size = new Size(95, 15);
+            label20.Size = new Size(77, 15);
             label20.TabIndex = 48;
-            label20.Text = "ネットワーク次元数";
+            label20.Text = "次元数(Rank)";
             // 
             // label21
             // 
             label21.AutoSize = true;
-            label21.Location = new Point(569, 106);
+            label21.Location = new Point(621, 106);
             label21.Name = "label21";
-            label21.Size = new Size(93, 15);
+            label21.Size = new Size(41, 15);
             label21.TabIndex = 50;
-            label21.Text = "ネットワークアルファ";
+            label21.Text = "アルファ";
             // 
             // nudEpochs
             // 
@@ -557,12 +557,12 @@ namespace Kohya_lora_trainer
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(248, 169);
+            label9.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Location = new Point(252, 167);
             label9.Name = "label9";
-            label9.Size = new Size(150, 13);
+            label9.Size = new Size(146, 15);
             label9.TabIndex = 63;
-            label9.Text = "LRウォームアップステップ数/比率#";
+            label9.Text = "LRｳｫｰﾑｱｯﾌﾟｽﾃｯﾌﾟ数/比率#";
             // 
             // btnClearRegImagePath
             // 
