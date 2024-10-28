@@ -94,6 +94,8 @@ namespace Kohya_lora_trainer
             nudSchedulerTimescale = new NumericUpDown();
             nudMinLRRatio = new NumericUpDown();
             nudLRDecaySteps = new NumericUpDown();
+            nudCaptionTagDropout = new NumericUpDown();
+            cbxDisableMmap = new CheckBox();
             cbxAdvancedTrain = new ComboBox();
             label6 = new Label();
             label9 = new Label();
@@ -131,32 +133,34 @@ namespace Kohya_lora_trainer
             label22 = new Label();
             label45 = new Label();
             nudDyLoRAUnit = new NumericUpDown();
+            label54 = new Label();
+            label52 = new Label();
+            label53 = new Label();
             nudConvAlpha = new NumericUpDown();
             label25 = new Label();
             label24 = new Label();
             tabPage4 = new TabPage();
+            label76 = new Label();
             label70 = new Label();
-            nudCaptionTagDropout = new NumericUpDown();
-            cbxMaskLoss = new CheckBox();
+            nudClipGDropoutRate = new NumericUpDown();
             tbxTokensSeparator = new TextBox();
             label46 = new Label();
             label39 = new Label();
-            cbxScaleParameter = new CheckBox();
-            cbxRelativeStep = new CheckBox();
             label44 = new Label();
             label38 = new Label();
+            label75 = new Label();
             label37 = new Label();
+            label74 = new Label();
             label36 = new Label();
             nudMaxNormReg = new NumericUpDown();
             nudNetworkDropout = new NumericUpDown();
             nudModuleDropout = new NumericUpDown();
+            numericUpDown2 = new NumericUpDown();
             nudRankDropout = new NumericUpDown();
-            label26 = new Label();
+            nudClipLDropoutRate = new NumericUpDown();
             page3 = new TabPage();
-            label54 = new Label();
             label55 = new Label();
-            label53 = new Label();
-            label52 = new Label();
+            cbxMaskLoss = new CheckBox();
             label50 = new Label();
             cbxHuberSchedule = new ComboBox();
             label49 = new Label();
@@ -176,7 +180,9 @@ namespace Kohya_lora_trainer
             cbxUseAdditionalOptArgs = new CheckBox();
             label43 = new Label();
             label42 = new Label();
+            cbxRelativeStep = new CheckBox();
             cbxUseSafeguard = new CheckBox();
+            cbxScaleParameter = new CheckBox();
             cbxUseBiasCorrection = new CheckBox();
             cbxNoProx = new CheckBox();
             cbxDecouple = new CheckBox();
@@ -196,6 +202,9 @@ namespace Kohya_lora_trainer
             tbxD0 = new TextBox();
             tbxGrowthRate = new TextBox();
             tabPage2 = new TabPage();
+            btnClearClipGPath = new Button();
+            btnClipGPath = new Button();
+            label72 = new Label();
             label67 = new Label();
             btnClearT5XXLPath = new Button();
             btnClearClipLPath = new Button();
@@ -206,12 +215,16 @@ namespace Kohya_lora_trainer
             btnClearConfigPath = new Button();
             lblT5XXLPath = new Label();
             btnSelectConfigPath = new Button();
+            label71 = new Label();
             lblClipLPath = new Label();
             label68 = new Label();
             pageMisc = new TabPage();
             label41 = new Label();
             cbxSaveState = new CheckBox();
             label40 = new Label();
+            nudMaxTokensT5 = new NumericUpDown();
+            label73 = new Label();
+            label26 = new Label();
             tbxComment = new TextBox();
             label8 = new Label();
             tabPage3 = new TabPage();
@@ -222,6 +235,8 @@ namespace Kohya_lora_trainer
             cbxTrainNorm = new CheckBox();
             label23 = new Label();
             tabPage8 = new TabPage();
+            cbxApplyAttnMaskToT5 = new CheckBox();
+            cbxApplyAttnMaskToClip = new CheckBox();
             cbxApplyT5AttnMask = new CheckBox();
             label65 = new Label();
             label64 = new Label();
@@ -258,6 +273,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudSchedulerTimescale).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMinLRRatio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRDecaySteps).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudCaptionTagDropout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMomentum).BeginInit();
@@ -269,17 +285,20 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudDyLoRAUnit).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudConvAlpha).BeginInit();
             tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudCaptionTagDropout).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudClipGDropoutRate).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxNormReg).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDropout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudModuleDropout).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudRankDropout).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudClipLDropoutRate).BeginInit();
             page3.SuspendLayout();
             tabPage6.SuspendLayout();
             tabPage7.SuspendLayout();
             tabPage5.SuspendLayout();
             tabPage2.SuspendLayout();
             pageMisc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudMaxTokensT5).BeginInit();
             tabPage3.SuspendLayout();
             tabPage8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudGuidanceScale).BeginInit();
@@ -289,27 +308,27 @@ namespace Kohya_lora_trainer
             // 
             // tbxUnetLR
             // 
-            tbxUnetLR.Location = new Point(125, 21);
+            tbxUnetLR.Location = new Point(113, 21);
             tbxUnetLR.Margin = new Padding(3, 4, 3, 4);
             tbxUnetLR.Name = "tbxUnetLR";
-            tbxUnetLR.Size = new Size(100, 23);
+            tbxUnetLR.Size = new Size(76, 23);
             tbxUnetLR.TabIndex = 0;
             toolTip1.SetToolTip(tbxUnetLR, "一部のDADaptation系では使用不可");
             tbxUnetLR.TextChanged += tbxUnetLR_TextChanged;
             // 
             // tbxTextEncoLR
             // 
-            tbxTextEncoLR.Location = new Point(126, 50);
+            tbxTextEncoLR.Location = new Point(114, 50);
             tbxTextEncoLR.Margin = new Padding(3, 4, 3, 4);
             tbxTextEncoLR.Name = "tbxTextEncoLR";
-            tbxTextEncoLR.Size = new Size(100, 23);
+            tbxTextEncoLR.Size = new Size(76, 23);
             tbxTextEncoLR.TabIndex = 1;
             toolTip1.SetToolTip(tbxTextEncoLR, "一部のDADaptation系では使用不可");
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(60, 24);
+            label1.Location = new Point(48, 24);
             label1.Name = "label1";
             label1.Size = new Size(64, 15);
             label1.TabIndex = 2;
@@ -318,7 +337,7 @@ namespace Kohya_lora_trainer
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(18, 53);
+            label2.Location = new Point(6, 53);
             label2.Name = "label2";
             label2.Size = new Size(104, 15);
             label2.TabIndex = 3;
@@ -327,7 +346,7 @@ namespace Kohya_lora_trainer
             // lblMinBucketReso
             // 
             lblMinBucketReso.AutoSize = true;
-            lblMinBucketReso.Location = new Point(297, 19);
+            lblMinBucketReso.Location = new Point(210, 24);
             lblMinBucketReso.Name = "lblMinBucketReso";
             lblMinBucketReso.Size = new Size(102, 15);
             lblMinBucketReso.TabIndex = 4;
@@ -336,7 +355,7 @@ namespace Kohya_lora_trainer
             // lblMaxBucketReso
             // 
             lblMaxBucketReso.AutoSize = true;
-            lblMaxBucketReso.Location = new Point(297, 50);
+            lblMaxBucketReso.Location = new Point(210, 55);
             lblMaxBucketReso.Name = "lblMaxBucketReso";
             lblMaxBucketReso.Size = new Size(102, 15);
             lblMaxBucketReso.TabIndex = 7;
@@ -345,7 +364,7 @@ namespace Kohya_lora_trainer
             // cbxNoUpscale
             // 
             cbxNoUpscale.AutoSize = true;
-            cbxNoUpscale.Location = new Point(56, 244);
+            cbxNoUpscale.Location = new Point(53, 234);
             cbxNoUpscale.Name = "cbxNoUpscale";
             cbxNoUpscale.Size = new Size(186, 19);
             cbxNoUpscale.TabIndex = 8;
@@ -387,7 +406,7 @@ namespace Kohya_lora_trainer
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(58, 160);
+            label7.Location = new Point(60, 186);
             label7.Name = "label7";
             label7.Size = new Size(80, 15);
             label7.TabIndex = 13;
@@ -398,7 +417,7 @@ namespace Kohya_lora_trainer
             cbxPrecision.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxPrecision.FormattingEnabled = true;
             cbxPrecision.Items.AddRange(new object[] { "fp16", "bf16", "float" });
-            cbxPrecision.Location = new Point(144, 216);
+            cbxPrecision.Location = new Point(144, 243);
             cbxPrecision.Name = "cbxPrecision";
             cbxPrecision.Size = new Size(92, 23);
             cbxPrecision.TabIndex = 29;
@@ -418,7 +437,7 @@ namespace Kohya_lora_trainer
             // cbxUseColorAug
             // 
             cbxUseColorAug.AutoSize = true;
-            cbxUseColorAug.Location = new Point(318, 244);
+            cbxUseColorAug.Location = new Point(315, 234);
             cbxUseColorAug.Name = "cbxUseColorAug";
             cbxUseColorAug.Size = new Size(147, 19);
             cbxUseColorAug.TabIndex = 7;
@@ -499,7 +518,7 @@ namespace Kohya_lora_trainer
             nudNoiseOffset.Location = new Point(445, 20);
             nudNoiseOffset.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             nudNoiseOffset.Name = "nudNoiseOffset";
-            nudNoiseOffset.Size = new Size(94, 23);
+            nudNoiseOffset.Size = new Size(80, 23);
             nudNoiseOffset.TabIndex = 44;
             toolTip1.SetToolTip(nudNoiseOffset, "全体的に明るい/暗い環境でグレー寄りになるのを軽減する\r\n変色と明度の変化を減らすため学習元モデルで使用された値を設定すべき\r\nちなみにAnimagine XL,Kivotos XLで使用された値は0.0357");
             // 
@@ -507,7 +526,7 @@ namespace Kohya_lora_trainer
             // 
             nudCaptionDropout.DecimalPlaces = 4;
             nudCaptionDropout.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nudCaptionDropout.Location = new Point(191, 17);
+            nudCaptionDropout.Location = new Point(222, 19);
             nudCaptionDropout.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             nudCaptionDropout.Name = "nudCaptionDropout";
             nudCaptionDropout.Size = new Size(78, 23);
@@ -538,7 +557,7 @@ namespace Kohya_lora_trainer
             // 
             // tbxExtension
             // 
-            tbxExtension.Location = new Point(144, 245);
+            tbxExtension.Location = new Point(144, 272);
             tbxExtension.Name = "tbxExtension";
             tbxExtension.Size = new Size(92, 23);
             tbxExtension.TabIndex = 19;
@@ -547,7 +566,7 @@ namespace Kohya_lora_trainer
             // 
             // nudClipSkip
             // 
-            nudClipSkip.Location = new Point(144, 158);
+            nudClipSkip.Location = new Point(146, 184);
             nudClipSkip.Maximum = new decimal(new int[] { 8, 0, 0, 0 });
             nudClipSkip.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudClipSkip.Name = "nudClipSkip";
@@ -559,7 +578,7 @@ namespace Kohya_lora_trainer
             // cbxUseWeightedCaption
             // 
             cbxUseWeightedCaption.AutoSize = true;
-            cbxUseWeightedCaption.Location = new Point(56, 269);
+            cbxUseWeightedCaption.Location = new Point(53, 259);
             cbxUseWeightedCaption.Name = "cbxUseWeightedCaption";
             cbxUseWeightedCaption.Size = new Size(161, 19);
             cbxUseWeightedCaption.TabIndex = 48;
@@ -580,7 +599,7 @@ namespace Kohya_lora_trainer
             // 
             // nudSeed
             // 
-            nudSeed.Location = new Point(144, 187);
+            nudSeed.Location = new Point(146, 213);
             nudSeed.Maximum = new decimal(new int[] { -1, 0, 0, 0 });
             nudSeed.Minimum = new decimal(new int[] { 1, 0, 0, int.MinValue });
             nudSeed.Name = "nudSeed";
@@ -604,7 +623,7 @@ namespace Kohya_lora_trainer
             // cbxUseConv2d
             // 
             cbxUseConv2d.AutoSize = true;
-            cbxUseConv2d.Location = new Point(56, 219);
+            cbxUseConv2d.Location = new Point(53, 209);
             cbxUseConv2d.Name = "cbxUseConv2d";
             cbxUseConv2d.Size = new Size(161, 19);
             cbxUseConv2d.TabIndex = 20;
@@ -614,10 +633,10 @@ namespace Kohya_lora_trainer
             // 
             // nudConvDim
             // 
-            nudConvDim.Location = new Point(124, 110);
+            nudConvDim.Location = new Point(112, 110);
             nudConvDim.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
             nudConvDim.Name = "nudConvDim";
-            nudConvDim.Size = new Size(101, 23);
+            nudConvDim.Size = new Size(72, 23);
             nudConvDim.TabIndex = 18;
             toolTip1.SetToolTip(nudConvDim, "畳み込み層(Attnが無い層)の次元数");
             // 
@@ -635,7 +654,7 @@ namespace Kohya_lora_trainer
             // cbxCropRandomly
             // 
             cbxCropRandomly.AutoSize = true;
-            cbxCropRandomly.Location = new Point(318, 269);
+            cbxCropRandomly.Location = new Point(315, 259);
             cbxCropRandomly.Name = "cbxCropRandomly";
             cbxCropRandomly.Size = new Size(136, 19);
             cbxCropRandomly.TabIndex = 9;
@@ -657,7 +676,7 @@ namespace Kohya_lora_trainer
             // cbxFlipAug
             // 
             cbxFlipAug.AutoSize = true;
-            cbxFlipAug.Location = new Point(318, 219);
+            cbxFlipAug.Location = new Point(315, 209);
             cbxFlipAug.Name = "cbxFlipAug";
             cbxFlipAug.Size = new Size(107, 19);
             cbxFlipAug.TabIndex = 8;
@@ -715,7 +734,7 @@ namespace Kohya_lora_trainer
             // 
             nudMinSNRGamma.Location = new Point(445, 107);
             nudMinSNRGamma.Name = "nudMinSNRGamma";
-            nudMinSNRGamma.Size = new Size(94, 23);
+            nudMinSNRGamma.Size = new Size(80, 23);
             nudMinSNRGamma.TabIndex = 51;
             toolTip1.SetToolTip(nudMinSNRGamma, "設定するとLoRA重ね掛けしたときに不安定になる？");
             // 
@@ -764,28 +783,28 @@ namespace Kohya_lora_trainer
             // 
             // nudLoRAPlusLRRatio
             // 
-            nudLoRAPlusLRRatio.Location = new Point(404, 105);
+            nudLoRAPlusLRRatio.Location = new Point(540, 22);
             nudLoRAPlusLRRatio.Maximum = new decimal(new int[] { 256, 0, 0, 0 });
             nudLoRAPlusLRRatio.Name = "nudLoRAPlusLRRatio";
-            nudLoRAPlusLRRatio.Size = new Size(101, 23);
+            nudLoRAPlusLRRatio.Size = new Size(72, 23);
             nudLoRAPlusLRRatio.TabIndex = 8;
             toolTip1.SetToolTip(nudLoRAPlusLRRatio, "適切に設定すると2倍ほど収束が早くなる\r\nこの項目はUnetとTEの両方のratio\r\n論文では16が推奨されているが実際には4がいい感じ\r\n");
             // 
             // nudLoRAPlusUnetLRRatio
             // 
-            nudLoRAPlusUnetLRRatio.Location = new Point(404, 134);
+            nudLoRAPlusUnetLRRatio.Location = new Point(540, 51);
             nudLoRAPlusUnetLRRatio.Maximum = new decimal(new int[] { 256, 0, 0, 0 });
             nudLoRAPlusUnetLRRatio.Name = "nudLoRAPlusUnetLRRatio";
-            nudLoRAPlusUnetLRRatio.Size = new Size(101, 23);
+            nudLoRAPlusUnetLRRatio.Size = new Size(72, 23);
             nudLoRAPlusUnetLRRatio.TabIndex = 8;
             toolTip1.SetToolTip(nudLoRAPlusUnetLRRatio, "個別指定時はLoRA+ LR比率を0にすること");
             // 
             // nudLoRAPlusTELRRatio
             // 
-            nudLoRAPlusTELRRatio.Location = new Point(404, 163);
+            nudLoRAPlusTELRRatio.Location = new Point(540, 80);
             nudLoRAPlusTELRRatio.Maximum = new decimal(new int[] { 256, 0, 0, 0 });
             nudLoRAPlusTELRRatio.Name = "nudLoRAPlusTELRRatio";
-            nudLoRAPlusTELRRatio.Size = new Size(101, 23);
+            nudLoRAPlusTELRRatio.Size = new Size(72, 23);
             nudLoRAPlusTELRRatio.TabIndex = 8;
             toolTip1.SetToolTip(nudLoRAPlusTELRRatio, "個別指定時はLoRA+ LR比率を0にすること");
             // 
@@ -801,7 +820,7 @@ namespace Kohya_lora_trainer
             // cbxRandomNoiseOffset
             // 
             cbxRandomNoiseOffset.AutoSize = true;
-            cbxRandomNoiseOffset.Location = new Point(545, 22);
+            cbxRandomNoiseOffset.Location = new Point(531, 21);
             cbxRandomNoiseOffset.Name = "cbxRandomNoiseOffset";
             cbxRandomNoiseOffset.Size = new Size(59, 19);
             cbxRandomNoiseOffset.TabIndex = 57;
@@ -812,7 +831,7 @@ namespace Kohya_lora_trainer
             // cbxRandomIpNoiseGamma
             // 
             cbxRandomIpNoiseGamma.AutoSize = true;
-            cbxRandomIpNoiseGamma.Location = new Point(545, 50);
+            cbxRandomIpNoiseGamma.Location = new Point(531, 53);
             cbxRandomIpNoiseGamma.Name = "cbxRandomIpNoiseGamma";
             cbxRandomIpNoiseGamma.Size = new Size(59, 19);
             cbxRandomIpNoiseGamma.TabIndex = 57;
@@ -859,7 +878,7 @@ namespace Kohya_lora_trainer
             nudImmiscibleNoise.Location = new Point(445, 194);
             nudImmiscibleNoise.Maximum = new decimal(new int[] { 16384, 0, 0, 0 });
             nudImmiscibleNoise.Name = "nudImmiscibleNoise";
-            nudImmiscibleNoise.Size = new Size(94, 23);
+            nudImmiscibleNoise.Size = new Size(80, 23);
             nudImmiscibleNoise.TabIndex = 53;
             toolTip1.SetToolTip(nudImmiscibleNoise, "品質改善の可能性がある\r\n推奨値は1024\r\nVRAM使用量が増加？");
             // 
@@ -870,7 +889,7 @@ namespace Kohya_lora_trainer
             nudIpNoiseGamma.Location = new Point(445, 49);
             nudIpNoiseGamma.Minimum = new decimal(new int[] { 100, 0, 0, int.MinValue });
             nudIpNoiseGamma.Name = "nudIpNoiseGamma";
-            nudIpNoiseGamma.Size = new Size(94, 23);
+            nudIpNoiseGamma.Size = new Size(80, 23);
             nudIpNoiseGamma.TabIndex = 49;
             toolTip1.SetToolTip(nudIpNoiseGamma, "正則化にinput perturbation noiseを使用する");
             // 
@@ -948,20 +967,42 @@ namespace Kohya_lora_trainer
             nudLRDecaySteps.TabIndex = 49;
             toolTip1.SetToolTip(nudLRDecaySteps, "warmup_stable_decayのみ\r\n数値をn.00でステップ数、少数を.00以外にすると比率になる\r\n");
             // 
+            // nudCaptionTagDropout
+            // 
+            nudCaptionTagDropout.DecimalPlaces = 4;
+            nudCaptionTagDropout.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            nudCaptionTagDropout.Location = new Point(222, 47);
+            nudCaptionTagDropout.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudCaptionTagDropout.Name = "nudCaptionTagDropout";
+            nudCaptionTagDropout.Size = new Size(78, 23);
+            nudCaptionTagDropout.TabIndex = 48;
+            toolTip1.SetToolTip(nudCaptionTagDropout, "キャプションドロップアウト時、\r\nタグ(コンマ区切り)の切り落としの発生率");
+            // 
+            // cbxDisableMmap
+            // 
+            cbxDisableMmap.AutoSize = true;
+            cbxDisableMmap.Location = new Point(336, 254);
+            cbxDisableMmap.Name = "cbxDisableMmap";
+            cbxDisableMmap.Size = new Size(234, 19);
+            cbxDisableMmap.TabIndex = 44;
+            cbxDisableMmap.Text = "safetensors読込のメモリマッピングの無効化";
+            toolTip1.SetToolTip(cbxDisableMmap, "safetensorsファイルの読込が早くなるかも");
+            cbxDisableMmap.UseVisualStyleBackColor = true;
+            // 
             // cbxAdvancedTrain
             // 
             cbxAdvancedTrain.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxAdvancedTrain.FormattingEnabled = true;
-            cbxAdvancedTrain.Items.AddRange(new object[] { "両方学習", "TextEncoderのみ学習", "UNetのみ学習" });
-            cbxAdvancedTrain.Location = new Point(125, 81);
+            cbxAdvancedTrain.Items.AddRange(new object[] { "両方学習", "TEのみ学習", "UNetのみ学習" });
+            cbxAdvancedTrain.Location = new Point(113, 81);
             cbxAdvancedTrain.Name = "cbxAdvancedTrain";
-            cbxAdvancedTrain.Size = new Size(140, 23);
+            cbxAdvancedTrain.Size = new Size(102, 23);
             cbxAdvancedTrain.TabIndex = 36;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(77, 187);
+            label6.Location = new Point(79, 213);
             label6.Name = "label6";
             label6.Size = new Size(61, 30);
             label6.TabIndex = 16;
@@ -971,7 +1012,7 @@ namespace Kohya_lora_trainer
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(41, 248);
+            label9.Location = new Point(41, 275);
             label9.Name = "label9";
             label9.Size = new Size(102, 30);
             label9.TabIndex = 20;
@@ -991,11 +1032,11 @@ namespace Kohya_lora_trainer
             // nudMinBucketReso
             // 
             nudMinBucketReso.Increment = new decimal(new int[] { 64, 0, 0, 0 });
-            nudMinBucketReso.Location = new Point(405, 16);
+            nudMinBucketReso.Location = new Point(318, 21);
             nudMinBucketReso.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
             nudMinBucketReso.Minimum = new decimal(new int[] { 64, 0, 0, 0 });
             nudMinBucketReso.Name = "nudMinBucketReso";
-            nudMinBucketReso.Size = new Size(100, 23);
+            nudMinBucketReso.Size = new Size(72, 23);
             nudMinBucketReso.TabIndex = 24;
             nudMinBucketReso.Value = new decimal(new int[] { 320, 0, 0, 0 });
             nudMinBucketReso.ValueChanged += nudMinBucketReso_ValueChanged;
@@ -1003,11 +1044,11 @@ namespace Kohya_lora_trainer
             // nudMaxBucketReso
             // 
             nudMaxBucketReso.Increment = new decimal(new int[] { 64, 0, 0, 0 });
-            nudMaxBucketReso.Location = new Point(405, 47);
+            nudMaxBucketReso.Location = new Point(318, 52);
             nudMaxBucketReso.Maximum = new decimal(new int[] { 4096, 0, 0, 0 });
             nudMaxBucketReso.Minimum = new decimal(new int[] { 128, 0, 0, 0 });
             nudMaxBucketReso.Name = "nudMaxBucketReso";
-            nudMaxBucketReso.Size = new Size(100, 23);
+            nudMaxBucketReso.Size = new Size(72, 23);
             nudMaxBucketReso.TabIndex = 25;
             nudMaxBucketReso.Value = new decimal(new int[] { 960, 0, 0, 0 });
             nudMaxBucketReso.ValueChanged += nudMaxBucketReso_ValueChanged;
@@ -1024,7 +1065,7 @@ namespace Kohya_lora_trainer
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(59, 219);
+            label11.Location = new Point(59, 246);
             label11.Name = "label11";
             label11.Size = new Size(77, 15);
             label11.TabIndex = 30;
@@ -1063,11 +1104,11 @@ namespace Kohya_lora_trainer
             // lblTBoardPath
             // 
             lblTBoardPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTBoardPath.Location = new Point(27, 143);
+            lblTBoardPath.Location = new Point(27, 139);
             lblTBoardPath.Name = "lblTBoardPath";
             lblTBoardPath.Size = new Size(240, 32);
             lblTBoardPath.TabIndex = 34;
-            lblTBoardPath.Text = "D:\\Sample\\Please stop using Super Long Naming\\RegImage\\1_1girl";
+            lblTBoardPath.Text = "very very long name";
             // 
             // btnClearTBoardPath
             // 
@@ -1082,7 +1123,7 @@ namespace Kohya_lora_trainer
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(34, 84);
+            label13.Location = new Point(22, 84);
             label13.Name = "label13";
             label13.Size = new Size(85, 15);
             label13.TabIndex = 37;
@@ -1133,7 +1174,7 @@ namespace Kohya_lora_trainer
             lblLoRAmodelPath.Name = "lblLoRAmodelPath";
             lblLoRAmodelPath.Size = new Size(240, 36);
             lblLoRAmodelPath.TabIndex = 43;
-            lblLoRAmodelPath.Text = "C:\\Sample\\SuperLong\\Multibyte\\and\\spaces\\日本語.safetensors";
+            lblLoRAmodelPath.Text = "very very long name";
             // 
             // label14
             // 
@@ -1190,7 +1231,7 @@ namespace Kohya_lora_trainer
             lblVAEPath.Name = "lblVAEPath";
             lblVAEPath.Size = new Size(240, 35);
             lblVAEPath.TabIndex = 43;
-            lblVAEPath.Text = "C:\\Sample\\SuperLong\\Multibyte\\and\\spaces\\日本語.safetensors";
+            lblVAEPath.Text = "very very long name";
             // 
             // nudAdaptiveNoiseScale
             // 
@@ -1199,7 +1240,7 @@ namespace Kohya_lora_trainer
             nudAdaptiveNoiseScale.Location = new Point(445, 78);
             nudAdaptiveNoiseScale.Minimum = new decimal(new int[] { 100, 0, 0, int.MinValue });
             nudAdaptiveNoiseScale.Name = "nudAdaptiveNoiseScale";
-            nudAdaptiveNoiseScale.Size = new Size(94, 23);
+            nudAdaptiveNoiseScale.Size = new Size(80, 23);
             nudAdaptiveNoiseScale.TabIndex = 49;
             // 
             // label17
@@ -1225,7 +1266,7 @@ namespace Kohya_lora_trainer
             nudMultiresNoiseIterations.Location = new Point(445, 136);
             nudMultiresNoiseIterations.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudMultiresNoiseIterations.Name = "nudMultiresNoiseIterations";
-            nudMultiresNoiseIterations.Size = new Size(94, 23);
+            nudMultiresNoiseIterations.Size = new Size(80, 23);
             nudMultiresNoiseIterations.TabIndex = 53;
             // 
             // label19
@@ -1243,7 +1284,7 @@ namespace Kohya_lora_trainer
             nudMultiresNoiseDiscount.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
             nudMultiresNoiseDiscount.Location = new Point(445, 165);
             nudMultiresNoiseDiscount.Name = "nudMultiresNoiseDiscount";
-            nudMultiresNoiseDiscount.Size = new Size(94, 23);
+            nudMultiresNoiseDiscount.Size = new Size(80, 23);
             nudMultiresNoiseDiscount.TabIndex = 55;
             // 
             // label20
@@ -1315,7 +1356,7 @@ namespace Kohya_lora_trainer
             // label22
             // 
             label22.AutoSize = true;
-            label22.Location = new Point(320, 79);
+            label22.Location = new Point(233, 84);
             label22.Name = "label22";
             label22.Size = new Size(80, 15);
             label22.TabIndex = 22;
@@ -1324,7 +1365,7 @@ namespace Kohya_lora_trainer
             // label45
             // 
             label45.AutoSize = true;
-            label45.Location = new Point(320, 201);
+            label45.Location = new Point(317, 191);
             label45.Name = "label45";
             label45.Size = new Size(105, 15);
             label45.TabIndex = 27;
@@ -1332,28 +1373,55 @@ namespace Kohya_lora_trainer
             // 
             // nudDyLoRAUnit
             // 
-            nudDyLoRAUnit.Location = new Point(404, 76);
+            nudDyLoRAUnit.Location = new Point(317, 81);
             nudDyLoRAUnit.Maximum = new decimal(new int[] { 256, 0, 0, 0 });
             nudDyLoRAUnit.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDyLoRAUnit.Name = "nudDyLoRAUnit";
-            nudDyLoRAUnit.Size = new Size(101, 23);
+            nudDyLoRAUnit.Size = new Size(72, 23);
             nudDyLoRAUnit.TabIndex = 21;
             nudDyLoRAUnit.Value = new decimal(new int[] { 4, 0, 0, 0 });
+            // 
+            // label54
+            // 
+            label54.AutoSize = true;
+            label54.Location = new Point(444, 24);
+            label54.Name = "label54";
+            label54.Size = new Size(90, 15);
+            label54.TabIndex = 7;
+            label54.Text = "LoRA+ LR比率#";
+            // 
+            // label52
+            // 
+            label52.AutoSize = true;
+            label52.Location = new Point(417, 53);
+            label52.Name = "label52";
+            label52.Size = new Size(120, 15);
+            label52.TabIndex = 6;
+            label52.Text = "LoRA+ UNet LR比率#";
+            // 
+            // label53
+            // 
+            label53.AutoSize = true;
+            label53.Location = new Point(431, 82);
+            label53.Name = "label53";
+            label53.Size = new Size(105, 15);
+            label53.TabIndex = 6;
+            label53.Text = "LoRA+ TE LR比率#";
             // 
             // nudConvAlpha
             // 
             nudConvAlpha.DecimalPlaces = 4;
-            nudConvAlpha.Location = new Point(124, 139);
+            nudConvAlpha.Location = new Point(112, 139);
             nudConvAlpha.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
             nudConvAlpha.Name = "nudConvAlpha";
-            nudConvAlpha.Size = new Size(101, 23);
+            nudConvAlpha.Size = new Size(72, 23);
             nudConvAlpha.TabIndex = 19;
             nudConvAlpha.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label25
             // 
             label25.AutoSize = true;
-            label25.Location = new Point(60, 115);
+            label25.Location = new Point(48, 115);
             label25.Name = "label25";
             label25.Size = new Size(58, 15);
             label25.TabIndex = 15;
@@ -1362,7 +1430,7 @@ namespace Kohya_lora_trainer
             // label24
             // 
             label24.AutoSize = true;
-            label24.Location = new Point(52, 141);
+            label24.Location = new Point(40, 141);
             label24.Name = "label24";
             label24.Size = new Size(68, 15);
             label24.TabIndex = 16;
@@ -1370,19 +1438,23 @@ namespace Kohya_lora_trainer
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(label76);
             tabPage4.Controls.Add(label70);
+            tabPage4.Controls.Add(nudClipGDropoutRate);
             tabPage4.Controls.Add(nudCaptionTagDropout);
-            tabPage4.Controls.Add(tbxTokensSeparator);
-            tabPage4.Controls.Add(label46);
             tabPage4.Controls.Add(label39);
             tabPage4.Controls.Add(label44);
             tabPage4.Controls.Add(label38);
+            tabPage4.Controls.Add(label75);
             tabPage4.Controls.Add(label37);
+            tabPage4.Controls.Add(label74);
             tabPage4.Controls.Add(label36);
             tabPage4.Controls.Add(nudMaxNormReg);
             tabPage4.Controls.Add(nudNetworkDropout);
             tabPage4.Controls.Add(nudModuleDropout);
+            tabPage4.Controls.Add(numericUpDown2);
             tabPage4.Controls.Add(nudRankDropout);
+            tabPage4.Controls.Add(nudClipLDropoutRate);
             tabPage4.Controls.Add(nudCaptionDropout);
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
@@ -1391,39 +1463,37 @@ namespace Kohya_lora_trainer
             tabPage4.Text = "ページ2";
             tabPage4.UseVisualStyleBackColor = true;
             // 
+            // label76
+            // 
+            label76.AutoSize = true;
+            label76.Location = new Point(334, 47);
+            label76.Name = "label76";
+            label76.Size = new Size(132, 15);
+            label76.TabIndex = 49;
+            label76.Text = "CLIP Gドロップアウト確率#";
+            // 
             // label70
             // 
             label70.AutoSize = true;
-            label70.Location = new Point(29, 45);
+            label70.Location = new Point(58, 49);
             label70.Name = "label70";
             label70.Size = new Size(158, 15);
             label70.TabIndex = 49;
             label70.Text = "caption tagドロップアウト確率#";
             // 
-            // nudCaptionTagDropout
+            // nudClipGDropoutRate
             // 
-            nudCaptionTagDropout.DecimalPlaces = 4;
-            nudCaptionTagDropout.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nudCaptionTagDropout.Location = new Point(191, 43);
-            nudCaptionTagDropout.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
-            nudCaptionTagDropout.Name = "nudCaptionTagDropout";
-            nudCaptionTagDropout.Size = new Size(78, 23);
-            nudCaptionTagDropout.TabIndex = 48;
-            toolTip1.SetToolTip(nudCaptionTagDropout, "キャプションドロップアウト時、\r\nタグ(コンマ区切り)の切り落としの発生率");
-            // 
-            // cbxMaskLoss
-            // 
-            cbxMaskLoss.AutoSize = true;
-            cbxMaskLoss.Location = new Point(138, 118);
-            cbxMaskLoss.Name = "cbxMaskLoss";
-            cbxMaskLoss.Size = new Size(113, 19);
-            cbxMaskLoss.TabIndex = 7;
-            cbxMaskLoss.Text = "Mask Lossを使用";
-            cbxMaskLoss.UseVisualStyleBackColor = true;
+            nudClipGDropoutRate.DecimalPlaces = 4;
+            nudClipGDropoutRate.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            nudClipGDropoutRate.Location = new Point(472, 45);
+            nudClipGDropoutRate.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudClipGDropoutRate.Name = "nudClipGDropoutRate";
+            nudClipGDropoutRate.Size = new Size(78, 23);
+            nudClipGDropoutRate.TabIndex = 48;
             // 
             // tbxTokensSeparator
             // 
-            tbxTokensSeparator.Location = new Point(64, 220);
+            tbxTokensSeparator.Location = new Point(313, 117);
             tbxTokensSeparator.Name = "tbxTokensSeparator";
             tbxTokensSeparator.Size = new Size(170, 23);
             tbxTokensSeparator.TabIndex = 47;
@@ -1431,7 +1501,7 @@ namespace Kohya_lora_trainer
             // label46
             // 
             label46.AutoSize = true;
-            label46.Location = new Point(64, 202);
+            label46.Location = new Point(313, 99);
             label46.Name = "label46";
             label46.Size = new Size(111, 15);
             label46.TabIndex = 46;
@@ -1440,36 +1510,16 @@ namespace Kohya_lora_trainer
             // label39
             // 
             label39.AutoSize = true;
-            label39.Location = new Point(37, 162);
+            label39.Location = new Point(68, 164);
             label39.Name = "label39";
             label39.Size = new Size(148, 15);
             label39.TabIndex = 25;
             label39.Text = "Max Norm Regularization#";
             // 
-            // cbxScaleParameter
-            // 
-            cbxScaleParameter.AutoSize = true;
-            cbxScaleParameter.Location = new Point(283, 188);
-            cbxScaleParameter.Name = "cbxScaleParameter";
-            cbxScaleParameter.Size = new Size(202, 19);
-            cbxScaleParameter.TabIndex = 18;
-            cbxScaleParameter.Text = "AdaFactor: scale_parameterを使用";
-            cbxScaleParameter.UseVisualStyleBackColor = true;
-            // 
-            // cbxRelativeStep
-            // 
-            cbxRelativeStep.AutoSize = true;
-            cbxRelativeStep.Location = new Point(283, 166);
-            cbxRelativeStep.Name = "cbxRelativeStep";
-            cbxRelativeStep.Size = new Size(183, 19);
-            cbxRelativeStep.TabIndex = 18;
-            cbxRelativeStep.Text = "AdaFactor: relative_stepを使用";
-            cbxRelativeStep.UseVisualStyleBackColor = true;
-            // 
             // label44
             // 
             label44.AutoSize = true;
-            label44.Location = new Point(42, 133);
+            label44.Location = new Point(73, 135);
             label44.Name = "label44";
             label44.Size = new Size(141, 15);
             label44.TabIndex = 25;
@@ -1478,25 +1528,43 @@ namespace Kohya_lora_trainer
             // label38
             // 
             label38.AutoSize = true;
-            label38.Location = new Point(47, 103);
+            label38.Location = new Point(78, 105);
             label38.Name = "label38";
             label38.Size = new Size(138, 15);
             label38.TabIndex = 25;
             label38.Text = "moduleドロップアウト確率#";
             // 
+            // label75
+            // 
+            label75.AutoSize = true;
+            label75.Location = new Point(95, 193);
+            label75.Name = "label75";
+            label75.Size = new Size(121, 15);
+            label75.TabIndex = 25;
+            label75.Text = "rankドロップアウト確率#";
+            // 
             // label37
             // 
             label37.AutoSize = true;
-            label37.Location = new Point(64, 74);
+            label37.Location = new Point(95, 76);
             label37.Name = "label37";
             label37.Size = new Size(121, 15);
             label37.TabIndex = 25;
             label37.Text = "rankドロップアウト確率#";
             // 
+            // label74
+            // 
+            label74.AutoSize = true;
+            label74.Location = new Point(336, 21);
+            label74.Name = "label74";
+            label74.Size = new Size(130, 15);
+            label74.TabIndex = 25;
+            label74.Text = "CLIP Lドロップアウト確率#";
+            // 
             // label36
             // 
             label36.AutoSize = true;
-            label36.Location = new Point(46, 19);
+            label36.Location = new Point(77, 21);
             label36.Name = "label36";
             label36.Size = new Size(138, 15);
             label36.TabIndex = 25;
@@ -1506,7 +1574,7 @@ namespace Kohya_lora_trainer
             // 
             nudMaxNormReg.DecimalPlaces = 4;
             nudMaxNormReg.Increment = new decimal(new int[] { 5, 0, 0, 131072 });
-            nudMaxNormReg.Location = new Point(191, 160);
+            nudMaxNormReg.Location = new Point(222, 162);
             nudMaxNormReg.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             nudMaxNormReg.Name = "nudMaxNormReg";
             nudMaxNormReg.Size = new Size(78, 23);
@@ -1516,7 +1584,7 @@ namespace Kohya_lora_trainer
             // 
             nudNetworkDropout.DecimalPlaces = 4;
             nudNetworkDropout.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nudNetworkDropout.Location = new Point(191, 131);
+            nudNetworkDropout.Location = new Point(222, 133);
             nudNetworkDropout.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             nudNetworkDropout.Name = "nudNetworkDropout";
             nudNetworkDropout.Size = new Size(78, 23);
@@ -1526,30 +1594,41 @@ namespace Kohya_lora_trainer
             // 
             nudModuleDropout.DecimalPlaces = 4;
             nudModuleDropout.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nudModuleDropout.Location = new Point(191, 101);
+            nudModuleDropout.Location = new Point(222, 103);
             nudModuleDropout.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             nudModuleDropout.Name = "nudModuleDropout";
             nudModuleDropout.Size = new Size(78, 23);
             nudModuleDropout.TabIndex = 24;
             // 
+            // numericUpDown2
+            // 
+            numericUpDown2.DecimalPlaces = 4;
+            numericUpDown2.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            numericUpDown2.Location = new Point(222, 191);
+            numericUpDown2.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(78, 23);
+            numericUpDown2.TabIndex = 24;
+            // 
             // nudRankDropout
             // 
             nudRankDropout.DecimalPlaces = 4;
             nudRankDropout.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nudRankDropout.Location = new Point(191, 72);
+            nudRankDropout.Location = new Point(222, 74);
             nudRankDropout.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             nudRankDropout.Name = "nudRankDropout";
             nudRankDropout.Size = new Size(78, 23);
             nudRankDropout.TabIndex = 24;
             // 
-            // label26
+            // nudClipLDropoutRate
             // 
-            label26.AutoSize = true;
-            label26.Location = new Point(38, 96);
-            label26.Name = "label26";
-            label26.Size = new Size(105, 15);
-            label26.TabIndex = 19;
-            label26.Text = "最大トークン数(SD1)";
+            nudClipLDropoutRate.DecimalPlaces = 4;
+            nudClipLDropoutRate.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            nudClipLDropoutRate.Location = new Point(472, 19);
+            nudClipLDropoutRate.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudClipLDropoutRate.Name = "nudClipLDropoutRate";
+            nudClipLDropoutRate.Size = new Size(78, 23);
+            nudClipLDropoutRate.TabIndex = 24;
             // 
             // page3
             // 
@@ -1584,15 +1663,6 @@ namespace Kohya_lora_trainer
             page3.Text = "損失とノイズ";
             page3.UseVisualStyleBackColor = true;
             // 
-            // label54
-            // 
-            label54.AutoSize = true;
-            label54.Location = new Point(308, 107);
-            label54.Name = "label54";
-            label54.Size = new Size(90, 15);
-            label54.TabIndex = 7;
-            label54.Text = "LoRA+ LR比率#";
-            // 
             // label55
             // 
             label55.AutoSize = true;
@@ -1602,23 +1672,15 @@ namespace Kohya_lora_trainer
             label55.TabIndex = 56;
             label55.Text = "Immiscible Noise batch size#";
             // 
-            // label53
+            // cbxMaskLoss
             // 
-            label53.AutoSize = true;
-            label53.Location = new Point(295, 165);
-            label53.Name = "label53";
-            label53.Size = new Size(105, 15);
-            label53.TabIndex = 6;
-            label53.Text = "LoRA+ TE LR比率#";
-            // 
-            // label52
-            // 
-            label52.AutoSize = true;
-            label52.Location = new Point(281, 136);
-            label52.Name = "label52";
-            label52.Size = new Size(120, 15);
-            label52.TabIndex = 6;
-            label52.Text = "LoRA+ UNet LR比率#";
+            cbxMaskLoss.AutoSize = true;
+            cbxMaskLoss.Location = new Point(138, 118);
+            cbxMaskLoss.Name = "cbxMaskLoss";
+            cbxMaskLoss.Size = new Size(113, 19);
+            cbxMaskLoss.TabIndex = 7;
+            cbxMaskLoss.Text = "Mask Lossを使用";
+            cbxMaskLoss.UseVisualStyleBackColor = true;
             // 
             // label50
             // 
@@ -1714,6 +1776,7 @@ namespace Kohya_lora_trainer
             // 
             // tabPage7
             // 
+            tabPage7.Controls.Add(cbxDisableMmap);
             tabPage7.Controls.Add(cbxCpuOffloadCheckpointing);
             tabPage7.Controls.Add(cbxCacheTextencoderToDisk);
             tabPage7.Controls.Add(label51);
@@ -1856,6 +1919,16 @@ namespace Kohya_lora_trainer
             label42.TabIndex = 25;
             label42.Text = "beta3#\r\n(prodigyのみ)";
             // 
+            // cbxRelativeStep
+            // 
+            cbxRelativeStep.AutoSize = true;
+            cbxRelativeStep.Location = new Point(283, 166);
+            cbxRelativeStep.Name = "cbxRelativeStep";
+            cbxRelativeStep.Size = new Size(183, 19);
+            cbxRelativeStep.TabIndex = 18;
+            cbxRelativeStep.Text = "AdaFactor: relative_stepを使用";
+            cbxRelativeStep.UseVisualStyleBackColor = true;
+            // 
             // cbxUseSafeguard
             // 
             cbxUseSafeguard.AutoSize = true;
@@ -1865,6 +1938,16 @@ namespace Kohya_lora_trainer
             cbxUseSafeguard.TabIndex = 24;
             cbxUseSafeguard.Text = "safeguard warmup(prodigyのみ)";
             cbxUseSafeguard.UseVisualStyleBackColor = true;
+            // 
+            // cbxScaleParameter
+            // 
+            cbxScaleParameter.AutoSize = true;
+            cbxScaleParameter.Location = new Point(283, 188);
+            cbxScaleParameter.Name = "cbxScaleParameter";
+            cbxScaleParameter.Size = new Size(202, 19);
+            cbxScaleParameter.TabIndex = 18;
+            cbxScaleParameter.Text = "AdaFactor: scale_parameterを使用";
+            cbxScaleParameter.UseVisualStyleBackColor = true;
             // 
             // cbxUseBiasCorrection
             // 
@@ -2024,6 +2107,9 @@ namespace Kohya_lora_trainer
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(btnClearClipGPath);
+            tabPage2.Controls.Add(btnClipGPath);
+            tabPage2.Controls.Add(label72);
             tabPage2.Controls.Add(label67);
             tabPage2.Controls.Add(btnClearT5XXLPath);
             tabPage2.Controls.Add(btnClearClipLPath);
@@ -2037,6 +2123,7 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnSelectLoRAmodel);
             tabPage2.Controls.Add(lblT5XXLPath);
             tabPage2.Controls.Add(btnSelectConfigPath);
+            tabPage2.Controls.Add(label71);
             tabPage2.Controls.Add(lblClipLPath);
             tabPage2.Controls.Add(lblTBoardPath);
             tabPage2.Controls.Add(label68);
@@ -2055,6 +2142,33 @@ namespace Kohya_lora_trainer
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnClearClipGPath
+            // 
+            btnClearClipGPath.Location = new Point(182, 248);
+            btnClearClipGPath.Name = "btnClearClipGPath";
+            btnClearClipGPath.Size = new Size(64, 30);
+            btnClearClipGPath.TabIndex = 51;
+            btnClearClipGPath.Text = "クリア";
+            btnClearClipGPath.UseVisualStyleBackColor = true;
+            // 
+            // btnClipGPath
+            // 
+            btnClipGPath.Location = new Point(112, 248);
+            btnClipGPath.Name = "btnClipGPath";
+            btnClipGPath.Size = new Size(64, 30);
+            btnClipGPath.TabIndex = 51;
+            btnClipGPath.Text = "選択";
+            btnClipGPath.UseVisualStyleBackColor = true;
+            // 
+            // label72
+            // 
+            label72.AutoSize = true;
+            label72.Location = new Point(67, 256);
+            label72.Name = "label72";
+            label72.Size = new Size(41, 15);
+            label72.TabIndex = 50;
+            label72.Text = "CLIP G";
             // 
             // label67
             // 
@@ -2112,7 +2226,7 @@ namespace Kohya_lora_trainer
             lblConfigPath.Name = "lblConfigPath";
             lblConfigPath.Size = new Size(240, 36);
             lblConfigPath.TabIndex = 25;
-            lblConfigPath.Text = "C:\\Users\\Test\\Desktop\\long name\\aaaaa.toml";
+            lblConfigPath.Text = "very very long name";
             // 
             // label21
             // 
@@ -2136,11 +2250,11 @@ namespace Kohya_lora_trainer
             // lblT5XXLPath
             // 
             lblT5XXLPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblT5XXLPath.Location = new Point(299, 211);
+            lblT5XXLPath.Location = new Point(310, 211);
             lblT5XXLPath.Name = "lblT5XXLPath";
             lblT5XXLPath.Size = new Size(240, 34);
             lblT5XXLPath.TabIndex = 34;
-            lblT5XXLPath.Text = "D:\\Sample\\Please stop using Super Long Naming\\clip\\glip_l.safetensors";
+            lblT5XXLPath.Text = "very very long name";
             // 
             // btnSelectConfigPath
             // 
@@ -2152,6 +2266,15 @@ namespace Kohya_lora_trainer
             btnSelectConfigPath.UseVisualStyleBackColor = true;
             btnSelectConfigPath.Click += btnSelectConfigPath_Click;
             // 
+            // label71
+            // 
+            label71.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label71.Location = new Point(27, 281);
+            label71.Name = "label71";
+            label71.Size = new Size(240, 34);
+            label71.TabIndex = 34;
+            label71.Text = "long namesafetensors";
+            // 
             // lblClipLPath
             // 
             lblClipLPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
@@ -2159,7 +2282,7 @@ namespace Kohya_lora_trainer
             lblClipLPath.Name = "lblClipLPath";
             lblClipLPath.Size = new Size(240, 34);
             lblClipLPath.TabIndex = 34;
-            lblClipLPath.Text = "D:\\Sample\\Please stop using Super Long Naming\\clip\\glip_l.safetensors";
+            lblClipLPath.Text = "very very long name";
             // 
             // label68
             // 
@@ -2176,6 +2299,10 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(cbxSaveState);
             pageMisc.Controls.Add(label40);
             pageMisc.Controls.Add(cbxDontSaveMetadata);
+            pageMisc.Controls.Add(tbxTokensSeparator);
+            pageMisc.Controls.Add(label46);
+            pageMisc.Controls.Add(nudMaxTokensT5);
+            pageMisc.Controls.Add(label73);
             pageMisc.Controls.Add(nudMaxTokens);
             pageMisc.Controls.Add(label26);
             pageMisc.Controls.Add(tbxComment);
@@ -2208,7 +2335,7 @@ namespace Kohya_lora_trainer
             // cbxSaveState
             // 
             cbxSaveState.AutoSize = true;
-            cbxSaveState.Location = new Point(106, 281);
+            cbxSaveState.Location = new Point(286, 274);
             cbxSaveState.Name = "cbxSaveState";
             cbxSaveState.Size = new Size(153, 19);
             cbxSaveState.TabIndex = 6;
@@ -2224,6 +2351,35 @@ namespace Kohya_lora_trainer
             label40.TabIndex = 33;
             label40.Text = "学習コメント##";
             // 
+            // nudMaxTokensT5
+            // 
+            nudMaxTokensT5.Increment = new decimal(new int[] { 64, 0, 0, 0 });
+            nudMaxTokensT5.Location = new Point(144, 123);
+            nudMaxTokensT5.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
+            nudMaxTokensT5.Minimum = new decimal(new int[] { 64, 0, 0, 0 });
+            nudMaxTokensT5.Name = "nudMaxTokensT5";
+            nudMaxTokensT5.Size = new Size(92, 23);
+            nudMaxTokensT5.TabIndex = 17;
+            nudMaxTokensT5.Value = new decimal(new int[] { 256, 0, 0, 0 });
+            // 
+            // label73
+            // 
+            label73.AutoSize = true;
+            label73.Location = new Point(21, 125);
+            label73.Name = "label73";
+            label73.Size = new Size(117, 15);
+            label73.TabIndex = 19;
+            label73.Text = "最大トークン数(T5XXL)";
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Location = new Point(38, 96);
+            label26.Name = "label26";
+            label26.Size = new Size(105, 15);
+            label26.TabIndex = 19;
+            label26.Text = "最大トークン数(SD1)";
+            // 
             // tbxComment
             // 
             tbxComment.Location = new Point(85, 15);
@@ -2235,7 +2391,7 @@ namespace Kohya_lora_trainer
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(36, 129);
+            label8.Location = new Point(38, 155);
             label8.Name = "label8";
             label8.Size = new Size(189, 20);
             label8.TabIndex = 31;
@@ -2319,6 +2475,8 @@ namespace Kohya_lora_trainer
             // 
             // tabPage8
             // 
+            tabPage8.Controls.Add(cbxApplyAttnMaskToT5);
+            tabPage8.Controls.Add(cbxApplyAttnMaskToClip);
             tabPage8.Controls.Add(cbxTrainT5XXL);
             tabPage8.Controls.Add(cbxApplyT5AttnMask);
             tabPage8.Controls.Add(label65);
@@ -2342,6 +2500,26 @@ namespace Kohya_lora_trainer
             tabPage8.TabIndex = 12;
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // cbxApplyAttnMaskToT5
+            // 
+            cbxApplyAttnMaskToT5.AutoSize = true;
+            cbxApplyAttnMaskToT5.Location = new Point(356, 101);
+            cbxApplyAttnMaskToT5.Name = "cbxApplyAttnMaskToT5";
+            cbxApplyAttnMaskToT5.Size = new Size(154, 19);
+            cbxApplyAttnMaskToT5.TabIndex = 9;
+            cbxApplyAttnMaskToT5.Text = "T5 XXLにattn maskを適用";
+            cbxApplyAttnMaskToT5.UseVisualStyleBackColor = true;
+            // 
+            // cbxApplyAttnMaskToClip
+            // 
+            cbxApplyAttnMaskToClip.AutoSize = true;
+            cbxApplyAttnMaskToClip.Location = new Point(356, 76);
+            cbxApplyAttnMaskToClip.Name = "cbxApplyAttnMaskToClip";
+            cbxApplyAttnMaskToClip.Size = new Size(164, 19);
+            cbxApplyAttnMaskToClip.TabIndex = 9;
+            cbxApplyAttnMaskToClip.Text = "CLIP L/Gにattn maskを適用";
+            cbxApplyAttnMaskToClip.UseVisualStyleBackColor = true;
             // 
             // cbxApplyT5AttnMask
             // 
@@ -2495,7 +2673,7 @@ namespace Kohya_lora_trainer
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(692, 419);
+            ClientSize = new Size(692, 422);
             Controls.Add(label56);
             Controls.Add(tabControl1);
             Controls.Add(btnDiscardAndClose);
@@ -2529,6 +2707,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudSchedulerTimescale).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMinLRRatio).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudLRDecaySteps).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudCaptionTagDropout).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMomentum).EndInit();
@@ -2542,11 +2721,13 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudConvAlpha).EndInit();
             tabPage4.ResumeLayout(false);
             tabPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudCaptionTagDropout).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudClipGDropoutRate).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxNormReg).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDropout).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudModuleDropout).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudRankDropout).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudClipLDropoutRate).EndInit();
             page3.ResumeLayout(false);
             page3.PerformLayout();
             tabPage6.ResumeLayout(false);
@@ -2559,6 +2740,7 @@ namespace Kohya_lora_trainer
             tabPage2.PerformLayout();
             pageMisc.ResumeLayout(false);
             pageMisc.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudMaxTokensT5).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             tabPage8.ResumeLayout(false);
@@ -2780,5 +2962,20 @@ namespace Kohya_lora_trainer
         private NumericUpDown nudLRDecaySteps;
         private Label label70;
         private NumericUpDown nudCaptionTagDropout;
+        private Button btnClearClipGPath;
+        private Button btnClipGPath;
+        private Label label72;
+        private Label label71;
+        private NumericUpDown nudMaxTokensT5;
+        private Label label73;
+        private CheckBox cbxApplyAttnMaskToT5;
+        private CheckBox cbxApplyAttnMaskToClip;
+        private CheckBox cbxDisableMmap;
+        private Label label76;
+        private NumericUpDown nudClipGDropoutRate;
+        private Label label75;
+        private Label label74;
+        private NumericUpDown numericUpDown2;
+        private NumericUpDown nudClipLDropoutRate;
     }
 }
