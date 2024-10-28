@@ -270,7 +270,10 @@ namespace Kohya_lora_trainer {
         PagedAdamW8bit,
         PagedLion8bit,
         AdamWScheduleFree,
-        SGDScheduleFree
+        SGDScheduleFree,
+        AdEMAMix8bit,
+        PagedAdEMAMix8bit,
+        Came
     }
 
     public enum SavePrecision {

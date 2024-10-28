@@ -428,7 +428,24 @@ namespace Kohya_lora_trainer
                 sb.Append(TrainParams.Current.IsEpoch ? " --save_every_n_epochs " : " --save_every_n_steps ").Append(TrainParams.Current.SaveEveryNEpochs);
             }
 
-            sb.Append(" --optimizer_type \"").Append(TrainParams.Current.OptimizerType.ToString()).Append('"');
+            string opt = string.Empty;
+            switch (TrainParams.Current.OptimizerType)
+            {
+                case Optimizer.AdEMAMix8bit:
+                    opt = "bitsandbytes.optim.AdEMAMix8bit";
+                    break;
+                case Optimizer.PagedAdEMAMix8bit:
+                    opt = "bitsandbytes.optim.PagedAdEMAMix8bit";
+                    break;
+                case Optimizer.Came:
+                    opt = "came_pytorch.CAME";
+                    break;
+                default:
+                    opt = TrainParams.Current.OptimizerType.ToString();
+                    break;
+            }
+
+            sb.Append(" --optimizer_type \"").Append(opt).Append('"');
 
             //Optimizerの引数
             switch (TrainParams.Current.OptimizerType)
