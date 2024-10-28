@@ -868,6 +868,9 @@ namespace Kohya_lora_trainer
                             sb.Append(" --clip_g_dropout_rate ").Append(TrainParams.Current.ClipGDropoutRate.ToString());
                         if (TrainParams.Current.ClipLDropoutRate > 0m)
                             sb.Append(" --t5_dropout_rate ").Append(TrainParams.Current.T5DropoutRate.ToString());
+
+                        if (TrainParams.Current.MaxTokensT5 != 256)
+                            sb.Append(" --t5xxl_max_token_length ").Append(TrainParams.Current.MaxTokensT5.ToString("0"));
                     }
                     break;
                 default:

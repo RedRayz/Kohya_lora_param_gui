@@ -405,6 +405,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.T5DropoutRate = nudT5DropoutRate.Value;
             TrainParams.Current.DisableMmapLoadSafetensors = cbxDisableMmapLoadSafetensors.Checked;
             TrainParams.Current.TEBatchSize = nudTEBatchSize.Value;
+            TrainParams.Current.MaxTokensT5 = nudMaxTokensT5.Value;
 
             Close();
         }
@@ -567,6 +568,7 @@ namespace Kohya_lora_trainer
             nudSchedulerTimescale.Value = TrainParams.Current.SchedulerTimescale;
             nudLRDecaySteps.Value = TrainParams.Current.LRDecaySteps;
             nudMinLRRatio.Value = TrainParams.Current.MinLRRatio;
+            nudMaxTokensT5.Value = TrainParams.Current.MaxTokensT5;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)
