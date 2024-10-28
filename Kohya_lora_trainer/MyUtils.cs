@@ -68,7 +68,8 @@ namespace Kohya_lora_trainer
                     string saveto = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\lora-gui\lora-gui-default-dir.json";
                     File.WriteAllText(saveto, json);
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Debug.WriteLine("Error: " + ex.Message);
             }
@@ -95,7 +96,7 @@ namespace Kohya_lora_trainer
                     DefaultDirs = JsonSerializer.Deserialize<Dictionary<string, string>>(json, GetOption());
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine("Error: " + ex.Message);
             }
@@ -142,7 +143,7 @@ namespace Kohya_lora_trainer
         /// <returns>コマンド</returns>
         internal static string GenerateCommands()
         {
-            if(TrainParams.Current == null)
+            if (TrainParams.Current == null)
             {
                 Debug.WriteLine("TrainParams is NULL");
 
@@ -172,6 +173,9 @@ namespace Kohya_lora_trainer
                 case ModelArchitecture.Flux1:
                     sb.Append(" flux_train_network.py");
                     break;
+                case ModelArchitecture.SD3:
+                    sb.Append(" sd3_train_network.py");
+                    break;
             }
             sb.Append(" --pretrained_model_name_or_path \"").Append(TrainParams.Current.ModelPath).Append('"').Append(" --train_data_dir \"")
                 .Append(TrainParams.Current.TrainImagePath).Append("\" --output_dir \"").Append(TrainParams.Current.OutputPath).Append('"');
@@ -191,12 +195,16 @@ namespace Kohya_lora_trainer
                             case ModelArchitecture.Flux1:
                                 sb.Append(" --network_module \"").Append("networks.lora_flux").Append('"');
                                 break;
-                            default:
+                            case ModelArchitecture.Legacy:
+                            case ModelArchitecture.XL:
                                 sb.Append(" --network_module \"").Append(TrainParams.Current.ModuleType == NetworkModule.LoRA ? "networks.lora" : "networks.lora_fa").Append('"');
                                 break;
+                            case ModelArchitecture.SD3:
+                                sb.Append(" --network_module \"").Append("networks.lora_sd3").Append('"');
+                                break;
                         }
-                        
-                        
+
+
                         if (TrainParams.Current.UseConv2dExtend)
                         {
                             bool di = TrainParams.Current.ConvDim > 0;
@@ -297,7 +305,7 @@ namespace Kohya_lora_trainer
                 NetworkArgs.Add("loraplus_text_encoder_lr_ratio=" + TrainParams.Current.LoRAPlusTELRRatio.ToString());
             }
 
-            
+
 
             switch (TrainParams.Current.CrossAttenType)
             {
@@ -584,7 +592,7 @@ namespace Kohya_lora_trainer
 
             if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath))
             {
-                
+
                 switch (TrainParams.Current.StableDiffusionType)
                 {
                     case ModelArchitecture.Flux1:
@@ -765,14 +773,14 @@ namespace Kohya_lora_trainer
                         sb.Append("l2\"");
                     }
                     break;
-                    case LossType.Huber:
+                case LossType.Huber:
                     {
                         sb.Append("huber\"");
 
                         sb.Append(" --huber_c ").Append(TrainParams.Current.HuberC.ToString());
                     }
                     break;
-                    case LossType.SmoothLOne:
+                case LossType.SmoothLOne:
                     {
                         sb.Append("smooth_l1\"");
                         sb.Append(" --huber_c ").Append(TrainParams.Current.HuberC.ToString());
@@ -792,6 +800,11 @@ namespace Kohya_lora_trainer
                 sb.Append(" --masked_loss");
             }
 
+            if (TrainParams.Current.DisableMmapLoadSafetensors)
+            {
+                sb.Append(" --disable_mmap_load_safetensors");
+            }
+
             if (TrainParams.Current.GradAccSteps > 1m)
             {
                 sb.Append(" --gradient_accumulation_steps ").Append(TrainParams.Current.GradAccSteps.ToString());
@@ -801,6 +814,9 @@ namespace Kohya_lora_trainer
             {
                 sb.Append(" --immiscible_noise ").Append(TrainParams.Current.ImmiscibleNoise.ToString());
             }
+
+            if (TrainParams.Current.TEBatchSize > 0)
+                sb.Append(" --text_encoder_batch_size ").Append(TrainParams.Current.TEBatchSize.ToString("0"));
 
             switch (TrainParams.Current.StableDiffusionType)
             {
@@ -822,6 +838,21 @@ namespace Kohya_lora_trainer
                             NetworkArgs.Add("train_t5xxl=True");
                     }
                     break;
+                case ModelArchitecture.SD3:
+                    {
+                        if (TrainParams.Current.ApplyT5AttnMask)
+                            sb.Append(" --apply_t5_attn_mask");
+                        if (TrainParams.Current.ApplyClipAttnMask)
+                            sb.Append(" --apply_lg_attn_mask");
+
+                        if (TrainParams.Current.ClipLDropoutRate > 0m)
+                            sb.Append(" --clip_l_dropout_rate ").Append(TrainParams.Current.ClipLDropoutRate.ToString());
+                        if (TrainParams.Current.ClipGDropoutRate > 0m)
+                            sb.Append(" --clip_g_dropout_rate ").Append(TrainParams.Current.ClipGDropoutRate.ToString());
+                        if (TrainParams.Current.ClipLDropoutRate > 0m)
+                            sb.Append(" --t5_dropout_rate ").Append(TrainParams.Current.T5DropoutRate.ToString());
+                    }
+                    break;
                 default:
                     break;
             }
@@ -829,6 +860,11 @@ namespace Kohya_lora_trainer
             if (!string.IsNullOrEmpty(TrainParams.Current.ClipLPath))
             {
                 sb.Append(" --clip_l \"").Append(TrainParams.Current.ClipLPath).Append('"');
+            }
+
+            if (!string.IsNullOrEmpty(TrainParams.Current.ClipGPath))
+            {
+                sb.Append(" --clip_g \"").Append(TrainParams.Current.ClipGPath).Append('"');
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.T5XXLPath))
@@ -860,10 +896,10 @@ namespace Kohya_lora_trainer
                 return string.Empty;
             StringBuilder sb = new StringBuilder();
             sb.Append(" --network_args ");
-            for(int i = 0; i < NetworkArgs.Count; i++)
+            for (int i = 0; i < NetworkArgs.Count; i++)
             {
                 sb.Append('"').Append(NetworkArgs[i]).Append('"');
-                if(i < NetworkArgs.Count - 1)
+                if (i < NetworkArgs.Count - 1)
                 {
                     sb.Append(' ');
                 }
@@ -917,7 +953,7 @@ namespace Kohya_lora_trainer
                 {
                     NetworkArgs.Add("mid_lr_weight=" + (0.05m * TrainParams.Current.BlockWeightMid).ToString());
                 }
-                
+
 
                 switch (TrainParams.Current.BlockWeightPresetTypeOut)
                 {
@@ -968,8 +1004,8 @@ namespace Kohya_lora_trainer
                     sb.Append(',');
                 }
                 //DIM MID
-                
-                if(TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+
+                if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
                 {
                     sb.Append(TrainParams.Current.BlockDimMid).Append(',').Append(TrainParams.Current.BlockDimMid01).Append(',').Append(TrainParams.Current.BlockDimMid02).Append(',');
                 }
@@ -1087,7 +1123,7 @@ namespace Kohya_lora_trainer
         /// <returns></returns>
         internal static string GetDroppedFileName(DragEventArgs e, string fileExtension = "")
         {
-            if(e == null || e.Data == null)
+            if (e == null || e.Data == null)
             {
                 return string.Empty;
             }
@@ -1095,7 +1131,7 @@ namespace Kohya_lora_trainer
             if (files.Length == 1)
             {
                 string fileName = files[0];
-                if(!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
+                if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
                 {
                     if (!string.IsNullOrEmpty(fileExtension) && Path.GetExtension(fileName) != fileExtension)
                     {
@@ -1275,7 +1311,7 @@ namespace Kohya_lora_trainer
         {
             if (!Directory.Exists(targetDir))
             {
-                if(showMsg)
+                if (showMsg)
                     MessageBox.Show("ディレクトリが見つかりません", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
             }
@@ -1286,7 +1322,7 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
-            if(keepTokenCount < 0)
+            if (keepTokenCount < 0)
             {
                 if (showMsg)
                     MessageBox.Show("トークン保持数に0以下は指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1412,7 +1448,7 @@ namespace Kohya_lora_trainer
             }
 
             string? scriptPath = (string?)Registry.GetValue(@"HKEY_CURRENT_USER\Software\kohya_lora_gui", "ScriptPath", string.Empty);
-            if (scriptPath == null) 
+            if (scriptPath == null)
             {
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\kohya_lora_gui", "ScriptPath", string.Empty);
             }

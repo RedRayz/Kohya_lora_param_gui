@@ -33,8 +33,9 @@ namespace Kohya_lora_trainer {
         public  float UnetLR = -1, TextEncoderLR = -1, NoiseOffset = 0, Momentum = 0.9f;
         public AdvancedTrain advancedTrainType = AdvancedTrain.None;
         public CrossAtten CrossAttenType = CrossAtten.xformers;
-        public bool UseGradient = false, UseWeightedCaptions = false;
+        public bool UseGradient = false, UseWeightedCaptions = false, DisableMmapLoadSafetensors = false;
         public decimal AdaptiveNoiseScale = 0, MinSNRGamma = 0, MultiresNoiseIterations = 0, MultiresNoiseDiscount = 0, NetworkDropout = 0, RankDropout = 0, ModuleDropout = 0, MaxNormReg = 0, CaptionDropout = 0, IpNoiseGamma = 0, CaptionTagDropout = 0m;
+        public decimal ClipLDropoutRate = 0, ClipGDropoutRate = 0, T5DropoutRate = 0, TEBatchSize = 0;
 
         //Addtional(KohakuBlueleaf氏作成拡張スクリプト用)
         public NetworkModule ModuleType = NetworkModule.LoRA;
@@ -106,8 +107,8 @@ namespace Kohya_lora_trainer {
         public ModelPrediction ModelPredictionType;
         public TimestepSampling TimestepSamplingType;
         public TrainBlock TrainBlockType;
-        public bool SplitMode = false, ApplyT5AttnMask = false, TrainT5XXL = false, CpuOffloadCheckpointing = false;
-        public string ClipLPath = string.Empty, T5XXLPath = string.Empty;
+        public bool SplitMode = false, ApplyT5AttnMask = false, TrainT5XXL = false, CpuOffloadCheckpointing = false, ApplyClipAttnMask = false;
+        public string ClipLPath = string.Empty, T5XXLPath = string.Empty, ClipGPath = string.Empty;
 
         //Scheduler
         public decimal SchedulerTimescale = 0m, MinLRRatio = 0m;
@@ -341,7 +342,8 @@ namespace Kohya_lora_trainer {
     {
         Legacy,
         XL,
-        Flux1
+        Flux1,
+        SD3,
     }
 
     public enum TrainCompleteAction
