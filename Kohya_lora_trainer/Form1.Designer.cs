@@ -221,7 +221,7 @@ namespace Kohya_lora_trainer
             cbxOptimizer.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxOptimizer.ForeColor = SystemColors.WindowText;
             cbxOptimizer.FormattingEnabled = true;
-            cbxOptimizer.Items.AddRange(new object[] { "AdamW8bit", "AdamW", "AdaFactor", "Lion", "SGDNesterov", "SGDNesterov8bit", "DAdaptAdamPreprint", "Lion8bit", "DAdaptAdaGrad", "DAdaptAdam", "DAdaptAdan", "DAdaptSGD", "DAdaptAdanIP", "DAdaptLion", "Prodigy", "PagedAdamW8bit", "PagedLion8bit", "AdamWScheduleFree", "SGDScheduleFree" });
+            cbxOptimizer.Items.AddRange(new object[] { "AdamW8bit", "AdamW", "AdaFactor", "Lion", "SGDNesterov", "SGDNesterov8bit", "DAdaptAdamPreprint", "Lion8bit", "DAdaptAdaGrad", "DAdaptAdam", "DAdaptAdan", "DAdaptSGD", "DAdaptAdanIP", "DAdaptLion", "Prodigy", "PagedAdamW8bit", "PagedLion8bit", "AdamWScheduleFree", "SGDScheduleFree", "AdEMAMix8bit", "PagedAdEMAMIX8bit", "CAME" });
             cbxOptimizer.Location = new Point(100, 164);
             cbxOptimizer.Name = "cbxOptimizer";
             cbxOptimizer.Size = new Size(139, 23);
@@ -241,11 +241,11 @@ namespace Kohya_lora_trainer
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(20, 110);
+            label17.Location = new Point(14, 109);
             label17.Name = "label17";
-            label17.Size = new Size(77, 15);
+            label17.Size = new Size(83, 15);
             label17.TabIndex = 23;
-            label17.Text = "epochs/steps";
+            label17.Text = "エポック/ステップ";
             // 
             // btnAdvanced
             // 
@@ -332,7 +332,7 @@ namespace Kohya_lora_trainer
             nudResolution.Name = "nudResolution";
             nudResolution.Size = new Size(72, 23);
             nudResolution.TabIndex = 54;
-            toolTip1.SetToolTip(nudResolution, "SD1.Xが512、2.Xが768、XLが1024推奨\r\n解像度を上げると細部が若干改善することがある\r\n上記の推奨未満の解像度にすると胴体分裂などの悪影響あり");
+            toolTip1.SetToolTip(nudResolution, "SD1が512、SDXL以降が1024推奨\r\n上記の推奨未満の解像度にすると胴体分裂などの悪影響あり");
             nudResolution.Value = new decimal(new int[] { 512, 0, 0, 0 });
             nudResolution.ValueChanged += nudResolution_ValueChanged;
             // 
@@ -374,12 +374,12 @@ namespace Kohya_lora_trainer
             // 
             cbxSDType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxSDType.FormattingEnabled = true;
-            cbxSDType.Items.AddRange(new object[] { "SD1", "SDXL", "FLUX.1" });
+            cbxSDType.Items.AddRange(new object[] { "SD1", "SDXL", "FLUX.1", "SD3" });
             cbxSDType.Location = new Point(100, 197);
             cbxSDType.Name = "cbxSDType";
             cbxSDType.Size = new Size(139, 23);
             cbxSDType.TabIndex = 85;
-            toolTip1.SetToolTip(cbxSDType, "SDXLは要求スペックもXLサイズ\r\nFLUXはそれの3倍以上");
+            toolTip1.SetToolTip(cbxSDType, "SDXLは要求スペックもXLサイズ\r\nFLUX.1とSD3.5 Largeはそれの3倍以上");
             cbxSDType.SelectedIndexChanged += cbxSDType_SelectedIndexChanged;
             // 
             // tbxFileName
@@ -510,20 +510,20 @@ namespace Kohya_lora_trainer
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(299, 110);
+            label20.Location = new Point(321, 110);
             label20.Name = "label20";
-            label20.Size = new Size(95, 15);
+            label20.Size = new Size(77, 15);
             label20.TabIndex = 48;
-            label20.Text = "ネットワーク次元数";
+            label20.Text = "次元数(Rank)";
             // 
             // label21
             // 
             label21.AutoSize = true;
-            label21.Location = new Point(569, 106);
+            label21.Location = new Point(621, 106);
             label21.Name = "label21";
-            label21.Size = new Size(93, 15);
+            label21.Size = new Size(41, 15);
             label21.TabIndex = 50;
-            label21.Text = "ネットワークアルファ";
+            label21.Text = "アルファ";
             // 
             // nudEpochs
             // 
@@ -557,12 +557,12 @@ namespace Kohya_lora_trainer
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(248, 169);
+            label9.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Location = new Point(252, 167);
             label9.Name = "label9";
-            label9.Size = new Size(150, 13);
+            label9.Size = new Size(146, 15);
             label9.TabIndex = 63;
-            label9.Text = "LRウォームアップステップ数/比率#";
+            label9.Text = "LRｳｫｰﾑｱｯﾌﾟｽﾃｯﾌﾟ数/比率#";
             // 
             // btnClearRegImagePath
             // 

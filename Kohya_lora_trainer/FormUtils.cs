@@ -190,67 +190,13 @@ namespace Kohya_lora_trainer
                     sb.Append(Constants.CurrentSdScriptsPath);
                 }
 
-                sb.Append(" && .\\venv\\Scripts\\activate && pip install -U dadaptation lycoris_lora");
+                sb.Append(" && .\\venv\\Scripts\\activate && pip install -U dadaptation lycoris_lora came-pytorch scipy");
 
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
                 ps.Arguments = sb.ToString();
 
                 Process.Start(ps);
-            }
-        }
-
-        private void btnRunTagger_Click(object sender, EventArgs e)
-        {
-            string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.CurrentSdScriptsPath : Form1.ScriptPath + "\\";
-            if (!Directory.Exists(path + "venv"))
-            {
-                MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            else if (!Directory.Exists(lblTaggerDir.Text))
-            {
-                MessageBox.Show("推論するディレクトリが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            StringBuilder sb = new StringBuilder();
-            sb.Append("/k cd ");
-            if (!string.IsNullOrEmpty(Form1.ScriptPath))
-            {
-                sb.Append("/d ").Append(Form1.ScriptPath);
-            }
-            else
-            {
-                sb.Append(Constants.CurrentSdScriptsPath);
-            }
-            //.Append(nudTaggerBatchSize.Value.ToString())
-            sb.Append(" && .\\venv\\Scripts\\activate && python .\\finetune\\tag_images_by_wd14_tagger.py --remove_underscore");
-
-            if (!string.IsNullOrEmpty(tbxTaggerExclude.Text))
-            {
-                sb.Append(" --undesired_tags \"").Append(tbxTaggerExclude.Text).Append("\"");
-            }
-
-            sb.Append(" --thresh ").Append(nudThresh.Value.ToString())
-                .Append(" --batch_size ").Append(nudTaggerBatchSize.Value.ToString()).Append(" ").Append(lblTaggerDir.Text);
-
-            ProcessStartInfo ps = new ProcessStartInfo();
-            ps.FileName = "cmd";
-            ps.Arguments = sb.ToString();
-
-            Process.Start(ps);
-        }
-
-        private void btnTaggetSelectDir_Click(object sender, EventArgs e)
-        {
-            CommonOpenFileDialog cof = new CommonOpenFileDialog();
-            cof.Title = "ログディレクトリの選択";
-            cof.IsFolderPicker = true;
-            cof.RestoreDirectory = true;
-            if (cof.ShowDialog() == CommonFileDialogResult.Ok)
-            {
-                lblTaggerDir.Text = cof.FileName;
             }
         }
 

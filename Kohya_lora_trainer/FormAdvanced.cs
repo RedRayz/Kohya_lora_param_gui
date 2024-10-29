@@ -391,13 +391,21 @@ namespace Kohya_lora_trainer
             TrainParams.Current.SplitMode = cbxSplitMode.Checked;
 
             TrainParams.Current.ClipLPath = lblClipLPath.Text;
+            TrainParams.Current.ClipGPath = lblClipGPath.Text;
             TrainParams.Current.T5XXLPath = lblT5XXLPath.Text;
             TrainParams.Current.ApplyT5AttnMask = cbxApplyT5AttnMask.Checked;
+            TrainParams.Current.ApplyClipAttnMask = cbxApplyClipAttnMask.Checked;
             TrainParams.Current.TrainT5XXL = cbxTrainT5XXL.Checked;
             TrainParams.Current.CpuOffloadCheckpointing = cbxCpuOffloadCheckpointing.Checked;
             TrainParams.Current.SchedulerTimescale = nudSchedulerTimescale.Value;
             TrainParams.Current.LRDecaySteps = nudLRDecaySteps.Value;
             TrainParams.Current.MinLRRatio = nudMinLRRatio.Value;
+            TrainParams.Current.ClipLDropoutRate = nudClipLDropoutRate.Value;
+            TrainParams.Current.ClipGDropoutRate = nudClipGDropoutRate.Value;
+            TrainParams.Current.T5DropoutRate = nudT5DropoutRate.Value;
+            TrainParams.Current.DisableMmapLoadSafetensors = cbxDisableMmapLoadSafetensors.Checked;
+            TrainParams.Current.TEBatchSize = nudTEBatchSize.Value;
+            TrainParams.Current.MaxTokensT5 = nudMaxTokensT5.Value;
 
             Close();
         }
@@ -542,8 +550,17 @@ namespace Kohya_lora_trainer
             cbxSplitMode.Checked = TrainParams.Current.SplitMode;
 
             lblClipLPath.Text = TrainParams.Current.ClipLPath;
+            lblClipGPath.Text = TrainParams.Current.ClipGPath;
             lblT5XXLPath.Text = TrainParams.Current.T5XXLPath;
             cbxApplyT5AttnMask.Checked = TrainParams.Current.ApplyT5AttnMask;
+            cbxApplyClipAttnMask.Checked = TrainParams.Current.ApplyClipAttnMask;
+            cbxDisableMmapLoadSafetensors.Checked = TrainParams.Current.DisableMmapLoadSafetensors;
+
+            nudClipLDropoutRate.Value = TrainParams.Current.ClipLDropoutRate;
+            nudClipGDropoutRate.Value = TrainParams.Current.ClipGDropoutRate;
+            nudT5DropoutRate.Value = TrainParams.Current.T5DropoutRate;
+            nudDiscreteFlowShift.Value = TrainParams.Current.DiscreteFlowShift;
+            nudTEBatchSize.Value = TrainParams.Current.TEBatchSize;
 
             cbxTrainT5XXL.Checked = TrainParams.Current.TrainT5XXL;
             cbxCpuOffloadCheckpointing.Checked = TrainParams.Current.CpuOffloadCheckpointing;
@@ -551,6 +568,7 @@ namespace Kohya_lora_trainer
             nudSchedulerTimescale.Value = TrainParams.Current.SchedulerTimescale;
             nudLRDecaySteps.Value = TrainParams.Current.LRDecaySteps;
             nudMinLRRatio.Value = TrainParams.Current.MinLRRatio;
+            nudMaxTokensT5.Value = TrainParams.Current.MaxTokensT5;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)
@@ -741,6 +759,29 @@ namespace Kohya_lora_trainer
         private void btnClearT5XXLPath_Click(object sender, EventArgs e)
         {
             lblT5XXLPath.Text = string.Empty;
+        }
+
+        private void btnClipGPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = Constants.WEIGHT_EXTENSION_FILTER;
+            ofd.Title = "Select a CLIP G";
+            ofd.RestoreDirectory = true;
+
+            if (File.Exists(TrainParams.Current.ClipGPath))
+            {
+                ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.ClipGPath);
+            }
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                lblClipGPath.Text = ofd.FileName;
+            }
+        }
+
+        private void btnClearClipGPath_Click(object sender, EventArgs e)
+        {
+            lblClipGPath.Text = string.Empty;
         }
     }
 }

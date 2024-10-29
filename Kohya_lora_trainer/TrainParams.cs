@@ -33,8 +33,9 @@ namespace Kohya_lora_trainer {
         public  float UnetLR = -1, TextEncoderLR = -1, NoiseOffset = 0, Momentum = 0.9f;
         public AdvancedTrain advancedTrainType = AdvancedTrain.None;
         public CrossAtten CrossAttenType = CrossAtten.xformers;
-        public bool UseGradient = false, UseWeightedCaptions = false;
+        public bool UseGradient = false, UseWeightedCaptions = false, DisableMmapLoadSafetensors = false;
         public decimal AdaptiveNoiseScale = 0, MinSNRGamma = 0, MultiresNoiseIterations = 0, MultiresNoiseDiscount = 0, NetworkDropout = 0, RankDropout = 0, ModuleDropout = 0, MaxNormReg = 0, CaptionDropout = 0, IpNoiseGamma = 0, CaptionTagDropout = 0m;
+        public decimal ClipLDropoutRate = 0, ClipGDropoutRate = 0, T5DropoutRate = 0, TEBatchSize = 0;
 
         //Addtional(KohakuBlueleaf氏作成拡張スクリプト用)
         public NetworkModule ModuleType = NetworkModule.LoRA;
@@ -62,11 +63,6 @@ namespace Kohya_lora_trainer {
         public int[] BlockDimIn = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
         public int BlockDimMid = 64, BlockDimMid01 = 4, BlockDimMid02 = 4, BlockDimBase = 4, BlockDimOutSDXL = 4;
         public int[] BlockDimOut = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
-
-        //現在未使用。互換性維持のため残してある
-        public int[] BlockAlphaIn = Array.Empty<int>();
-        public int BlockAlphaMid = -1;
-        public int[] BlockAlphaOut = Array.Empty<int>();
 
         public decimal[] BlockAlphaInM = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
         public decimal BlockAlphaMidM = 16, BlockAlphaMid01 = 4, BlockAlphaMid02 = 4, BlockAlphaBase = 4, BlockAlphaOutSDXL = 4;
@@ -102,12 +98,12 @@ namespace Kohya_lora_trainer {
         public string CustomCommands = string.Empty, AdditionalArgs = string.Empty, AdditionalNetworkArgs = string.Empty;
 
         //Diffusion Transformer関連
-        public decimal Sigmoidscale = 1m, DiscreteFlowShift = 3m, GuidanceScale = 0;
+        public decimal Sigmoidscale = 1m, DiscreteFlowShift = 3m, GuidanceScale = 0, MaxTokensT5 = 256;
         public ModelPrediction ModelPredictionType;
         public TimestepSampling TimestepSamplingType;
         public TrainBlock TrainBlockType;
-        public bool SplitMode = false, ApplyT5AttnMask = false, TrainT5XXL = false, CpuOffloadCheckpointing = false;
-        public string ClipLPath = string.Empty, T5XXLPath = string.Empty;
+        public bool SplitMode = false, ApplyT5AttnMask = false, TrainT5XXL = false, CpuOffloadCheckpointing = false, ApplyClipAttnMask = false;
+        public string ClipLPath = string.Empty, T5XXLPath = string.Empty, ClipGPath = string.Empty;
 
         //Scheduler
         public decimal SchedulerTimescale = 0m, MinLRRatio = 0m;
@@ -117,53 +113,6 @@ namespace Kohya_lora_trainer {
 
         public TrainParams() {
             Current = this;
-        }
-
-        public void ConvertBlockAlpha()
-        {
-            if(BlockAlphaIn.Length > 0)
-            {
-                Console.WriteLine("Converting BlockAlphaIn...");
-                for (int i =0; i < BlockAlphaIn.Length; i++)
-                {
-                    if (i < BlockAlphaInM.Length)
-                        BlockAlphaInM[i] = BlockAlphaIn[i];
-                    else
-                    {
-                        Console.WriteLine("Found Missing Array Element in BlockAlphaInM!");
-                        BlockAlphaInM = new decimal[] { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
-                        break;
-                    }
-                }
-
-                BlockAlphaIn = Array.Empty<int>();
-            }
-
-            if (BlockAlphaOut.Length > 0)
-            {
-                Console.WriteLine("Converting BlockAlphaOut...");
-                for (int i = 0; i < BlockAlphaOut.Length; i++)
-                {
-                    if (i < BlockAlphaOutM.Length)
-                        BlockAlphaOutM[i] = BlockAlphaOut[i];
-                    else
-                    {
-                        Console.WriteLine("Found Missing Array Element in BlockAlphaOutM!");
-                        BlockAlphaOutM = new decimal[] { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
-                        break;
-                    }
-
-                }
-
-                BlockAlphaOut = Array.Empty<int>();
-            }
-
-            if (BlockAlphaMid > 0)
-            {
-                Console.WriteLine("Converting BlockAlphaMid...");
-                BlockAlphaMidM = BlockAlphaMid;
-                BlockAlphaMid = -1;
-            }
         }
 
         public void CheckBrokenBlockDim()
@@ -269,7 +218,10 @@ namespace Kohya_lora_trainer {
         PagedAdamW8bit,
         PagedLion8bit,
         AdamWScheduleFree,
-        SGDScheduleFree
+        SGDScheduleFree,
+        AdEMAMix8bit,
+        PagedAdEMAMix8bit,
+        Came
     }
 
     public enum SavePrecision {
@@ -341,7 +293,8 @@ namespace Kohya_lora_trainer {
     {
         Legacy,
         XL,
-        Flux1
+        Flux1,
+        SD3,
     }
 
     public enum TrainCompleteAction

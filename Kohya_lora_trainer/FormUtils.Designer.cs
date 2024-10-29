@@ -41,6 +41,7 @@
             btnSelectOutputPath = new Button();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            cbxUseLatestTorch = new CheckBox();
             cbxPythonVersion = new ComboBox();
             label14 = new Label();
             cbxUsePy = new CheckBox();
@@ -60,29 +61,13 @@
             label1 = new Label();
             btnInstallExtension = new Button();
             btnUpdateRepo = new Button();
-            tabPage4 = new TabPage();
-            label5 = new Label();
-            btnRunTagger = new Button();
-            label9 = new Label();
-            lblTaggerDir = new Label();
-            btnTaggetSelectDir = new Button();
-            label11 = new Label();
-            label7 = new Label();
-            nudThresh = new NumericUpDown();
-            nudTaggerBatchSize = new NumericUpDown();
-            label6 = new Label();
-            tbxTaggerExclude = new TextBox();
             toolTip1 = new ToolTip(components);
-            cbxUseLatestTorch = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             tabPage3.SuspendLayout();
-            tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudThresh).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudTaggerBatchSize).BeginInit();
             SuspendLayout();
             // 
             // btnRunTensorboard
@@ -130,9 +115,9 @@
             cbxCudaConversion.AutoSize = true;
             cbxCudaConversion.Location = new Point(119, 278);
             cbxCudaConversion.Name = "cbxCudaConversion";
-            cbxCudaConversion.Size = new Size(172, 19);
+            cbxCudaConversion.Size = new Size(91, 19);
             cbxCudaConversion.TabIndex = 6;
-            cbxCudaConversion.Text = "CUDA(NVIDIA製GPU)で変換";
+            cbxCudaConversion.Text = "CUDAで変換";
             cbxCudaConversion.UseVisualStyleBackColor = true;
             // 
             // lblLoraPath
@@ -142,7 +127,7 @@
             lblLoraPath.Name = "lblLoraPath";
             lblLoraPath.Size = new Size(383, 37);
             lblLoraPath.TabIndex = 7;
-            lblLoraPath.Text = "G:\\SD\\model\\lora\\longlongname\\aaaaa.safetensors";
+            lblLoraPath.Text = "path";
             // 
             // lblOutputPath
             // 
@@ -151,7 +136,7 @@
             lblOutputPath.Name = "lblOutputPath";
             lblOutputPath.Size = new Size(383, 37);
             lblOutputPath.TabIndex = 7;
-            lblOutputPath.Text = "G:\\SD\\model\\lora\\longlongname\\aaaaa.safetensors";
+            lblOutputPath.Text = "path";
             // 
             // nudTargetDim
             // 
@@ -187,7 +172,6 @@
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
-            tabControl1.Controls.Add(tabPage4);
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -215,12 +199,23 @@
             tabPage1.Text = "ユーティリティ";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // cbxUseLatestTorch
+            // 
+            cbxUseLatestTorch.AutoSize = true;
+            cbxUseLatestTorch.Location = new Point(161, 123);
+            cbxUseLatestTorch.Name = "cbxUseLatestTorch";
+            cbxUseLatestTorch.Size = new Size(132, 19);
+            cbxUseLatestTorch.TabIndex = 9;
+            cbxUseLatestTorch.Text = "Torch2.4をインストール";
+            toolTip1.SetToolTip(cbxUseLatestTorch, "主にFLUX用");
+            cbxUseLatestTorch.UseVisualStyleBackColor = true;
+            // 
             // cbxPythonVersion
             // 
             cbxPythonVersion.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxPythonVersion.FormattingEnabled = true;
             cbxPythonVersion.Items.AddRange(new object[] { "3.10", "3.11" });
-            cbxPythonVersion.Location = new Point(230, 183);
+            cbxPythonVersion.Location = new Point(260, 178);
             cbxPythonVersion.Name = "cbxPythonVersion";
             cbxPythonVersion.Size = new Size(103, 23);
             cbxPythonVersion.TabIndex = 8;
@@ -228,7 +223,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(38, 186);
+            label14.Location = new Point(68, 181);
             label14.Name = "label14";
             label14.Size = new Size(186, 15);
             label14.TabIndex = 7;
@@ -237,12 +232,12 @@
             // cbxUsePy
             // 
             cbxUsePy.AutoSize = true;
-            cbxUsePy.Location = new Point(161, 162);
+            cbxUsePy.Location = new Point(161, 148);
             cbxUsePy.Name = "cbxUsePy";
             cbxUsePy.Size = new Size(202, 19);
             cbxUsePy.TabIndex = 6;
             cbxUsePy.Text = "「python」の代わりに「py」を使用する";
-            toolTip1.SetToolTip(cbxUsePy, "ターミナルにpythonとだけ表示されて何も起きない場合はチェックをつけてください");
+            toolTip1.SetToolTip(cbxUsePy, "ターミナルpythonとだけ表示されて何も起きないか\r\nPythonバージョンを指定する場合にチェックをつけてください\r\n");
             cbxUsePy.UseVisualStyleBackColor = true;
             cbxUsePy.CheckedChanged += cbxUsePy_CheckedChanged;
             // 
@@ -250,7 +245,7 @@
             // 
             lblProcessingNpz.AutoSize = true;
             lblProcessingNpz.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblProcessingNpz.Location = new Point(339, 263);
+            lblProcessingNpz.Location = new Point(339, 275);
             lblProcessingNpz.Name = "lblProcessingNpz";
             lblProcessingNpz.Size = new Size(61, 19);
             lblProcessingNpz.TabIndex = 5;
@@ -260,15 +255,15 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(103, 293);
+            label12.Location = new Point(131, 305);
             label12.Name = "label12";
-            label12.Size = new Size(343, 60);
+            label12.Size = new Size(253, 30);
             label12.TabIndex = 4;
-            label12.Text = "latentやte_outputのキャッシュファイルを消去します。\r\nサブディレクトリ内のキャッシュも消去します。\r\nつまり、「繰り返し数_名前のフォルダ」が複数入ったフォルダを\r\n指定すると同階層にあるすべてのフォルダ内のnpzをまとめて消去します。";
+            label12.Text = "latentやte_outputのキャッシュファイルを消去します。\r\nサブディレクトリ内のキャッシュも消去します。";
             // 
             // btnDeleteNpz
             // 
-            btnDeleteNpz.Location = new Point(183, 255);
+            btnDeleteNpz.Location = new Point(183, 267);
             btnDeleteNpz.Name = "btnDeleteNpz";
             btnDeleteNpz.Size = new Size(150, 35);
             btnDeleteNpz.TabIndex = 3;
@@ -278,7 +273,7 @@
             // 
             // btnRegenVenv
             // 
-            btnRegenVenv.Location = new Point(183, 93);
+            btnRegenVenv.Location = new Point(183, 79);
             btnRegenVenv.Name = "btnRegenVenv";
             btnRegenVenv.Size = new Size(150, 35);
             btnRegenVenv.TabIndex = 2;
@@ -289,11 +284,11 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(103, 209);
+            label8.Location = new Point(68, 204);
             label8.Name = "label8";
-            label8.Size = new Size(315, 30);
+            label8.Size = new Size(388, 45);
             label8.TabIndex = 1;
-            label8.Text = "ターミナルは手動で閉じてください\r\nvnevがない場合に再生成し、必要なパッケージをインストールします";
+            label8.Text = "ターミナルは手動で閉じてください\r\nvnevがない場合に再生成し、必要なパッケージのみをインストールします\r\nD-AdaptationやLyCORISなどはvenv生成後に更新タブでインストールしてください";
             label8.TextAlign = ContentAlignment.TopCenter;
             // 
             // tabPage2
@@ -310,10 +305,10 @@
             tabPage2.Controls.Add(nudTargetDim);
             tabPage2.Controls.Add(lblLoraPath);
             tabPage2.Controls.Add(lblOutputPath);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(525, 343);
+            tabPage2.Size = new Size(525, 401);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Dimリサイズ";
             tabPage2.UseVisualStyleBackColor = true;
@@ -361,9 +356,9 @@
             tabPage3.Controls.Add(label1);
             tabPage3.Controls.Add(btnInstallExtension);
             tabPage3.Controls.Add(btnUpdateRepo);
-            tabPage3.Location = new Point(4, 26);
+            tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(525, 343);
+            tabPage3.Size = new Size(525, 401);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "更新";
             tabPage3.UseVisualStyleBackColor = true;
@@ -416,140 +411,6 @@
             btnUpdateRepo.UseVisualStyleBackColor = true;
             btnUpdateRepo.Click += btnUpdateRepo_Click;
             // 
-            // tabPage4
-            // 
-            tabPage4.Controls.Add(label5);
-            tabPage4.Controls.Add(btnRunTagger);
-            tabPage4.Controls.Add(label9);
-            tabPage4.Controls.Add(lblTaggerDir);
-            tabPage4.Controls.Add(btnTaggetSelectDir);
-            tabPage4.Controls.Add(label11);
-            tabPage4.Controls.Add(label7);
-            tabPage4.Controls.Add(nudThresh);
-            tabPage4.Controls.Add(nudTaggerBatchSize);
-            tabPage4.Controls.Add(label6);
-            tabPage4.Controls.Add(tbxTaggerExclude);
-            tabPage4.Location = new Point(4, 24);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(525, 401);
-            tabPage4.TabIndex = 3;
-            tabPage4.Text = "Tagger";
-            tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(26, 14);
-            label5.Name = "label5";
-            label5.Size = new Size(378, 45);
-            label5.TabIndex = 8;
-            label5.Text = "AIを用いてDanbooruタグを推論します。\r\nsd-scriptsのTaggerは簡易的なものとなります。\r\n細かい設定をしたい方はAUTOMATIC1111 WebUIのTaggerをご利用ください。";
-            // 
-            // btnRunTagger
-            // 
-            btnRunTagger.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            btnRunTagger.Location = new Point(411, 269);
-            btnRunTagger.Name = "btnRunTagger";
-            btnRunTagger.Size = new Size(98, 32);
-            btnRunTagger.TabIndex = 7;
-            btnRunTagger.Text = "推論開始";
-            btnRunTagger.UseVisualStyleBackColor = true;
-            btnRunTagger.Click += btnRunTagger_Click;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(26, 85);
-            label9.Name = "label9";
-            label9.Size = new Size(57, 15);
-            label9.TabIndex = 6;
-            label9.Text = "ディレクトリ";
-            // 
-            // lblTaggerDir
-            // 
-            lblTaggerDir.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTaggerDir.Location = new Point(110, 113);
-            lblTaggerDir.Name = "lblTaggerDir";
-            lblTaggerDir.Size = new Size(399, 31);
-            lblTaggerDir.TabIndex = 6;
-            lblTaggerDir.Text = "選択してください";
-            // 
-            // btnTaggetSelectDir
-            // 
-            btnTaggetSelectDir.Location = new Point(26, 113);
-            btnTaggetSelectDir.Name = "btnTaggetSelectDir";
-            btnTaggetSelectDir.Size = new Size(78, 27);
-            btnTaggetSelectDir.TabIndex = 5;
-            btnTaggetSelectDir.Text = "選択";
-            btnTaggetSelectDir.UseVisualStyleBackColor = true;
-            btnTaggetSelectDir.Click += btnTaggetSelectDir_Click;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(129, 209);
-            label11.Name = "label11";
-            label11.Size = new Size(83, 15);
-            label11.TabIndex = 4;
-            label11.Text = "タグ検出の閾値";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(26, 209);
-            label7.Name = "label7";
-            label7.Size = new Size(59, 15);
-            label7.TabIndex = 4;
-            label7.Text = "Batch size";
-            // 
-            // nudThresh
-            // 
-            nudThresh.DecimalPlaces = 2;
-            nudThresh.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nudThresh.Location = new Point(134, 227);
-            nudThresh.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
-            nudThresh.Name = "nudThresh";
-            nudThresh.Size = new Size(78, 23);
-            nudThresh.TabIndex = 3;
-            nudThresh.Value = new decimal(new int[] { 35, 0, 0, 131072 });
-            // 
-            // nudTaggerBatchSize
-            // 
-            nudTaggerBatchSize.Location = new Point(26, 227);
-            nudTaggerBatchSize.Maximum = new decimal(new int[] { 64, 0, 0, 0 });
-            nudTaggerBatchSize.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            nudTaggerBatchSize.Name = "nudTaggerBatchSize";
-            nudTaggerBatchSize.Size = new Size(78, 23);
-            nudTaggerBatchSize.TabIndex = 3;
-            nudTaggerBatchSize.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(26, 153);
-            label6.Name = "label6";
-            label6.Size = new Size(221, 15);
-            label6.TabIndex = 2;
-            label6.Text = "除外タグ(アンダースコア込み)、複数指定不可";
-            // 
-            // tbxTaggerExclude
-            // 
-            tbxTaggerExclude.Location = new Point(26, 171);
-            tbxTaggerExclude.Name = "tbxTaggerExclude";
-            tbxTaggerExclude.Size = new Size(432, 23);
-            tbxTaggerExclude.TabIndex = 1;
-            // 
-            // cbxUseLatestTorch
-            // 
-            cbxUseLatestTorch.AutoSize = true;
-            cbxUseLatestTorch.Location = new Point(161, 137);
-            cbxUseLatestTorch.Name = "cbxUseLatestTorch";
-            cbxUseLatestTorch.Size = new Size(132, 19);
-            cbxUseLatestTorch.TabIndex = 9;
-            cbxUseLatestTorch.Text = "Torch2.4をインストール";
-            toolTip1.SetToolTip(cbxUseLatestTorch, "主にFLUX用");
-            cbxUseLatestTorch.UseVisualStyleBackColor = true;
-            // 
             // FormUtils
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -575,10 +436,6 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
-            tabPage4.ResumeLayout(false);
-            tabPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudThresh).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudTaggerBatchSize).EndInit();
             ResumeLayout(false);
         }
 
@@ -601,19 +458,7 @@
         private Label label1;
         private Button btnInstallExtension;
         private Label label4;
-        private TabPage tabPage4;
-        private Button btnRunTagger;
-        private Label label9;
-        private Label lblTaggerDir;
-        private Button btnTaggetSelectDir;
-        private Label label7;
-        private NumericUpDown nudTaggerBatchSize;
-        private Label label6;
-        private TextBox tbxTaggerExclude;
-        private Label label11;
-        private NumericUpDown nudThresh;
         private ToolTip toolTip1;
-        private Label label5;
         private Button btnRegenVenv;
         private Label label8;
         private Button btnClearResizeOutput;

@@ -123,7 +123,6 @@ namespace Kohya_lora_trainer
                 }
             }
 
-            TrainParams.Current.ConvertBlockAlpha();
             TrainParams.Current.CheckBrokenBlockDim();
 
             MyUtils.LoadDefaultDirSettings();
@@ -811,7 +810,7 @@ namespace Kohya_lora_trainer
                 if (ShowMsg)
                     MessageBox.Show("プリセットを読み込めません。破損しているか、権限がありません。\r\nあるいは、より新しいバージョンのGUIで作成された可能性があります。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            TrainParams.Current.ConvertBlockAlpha();
+
             TrainParams.Current.CheckBrokenBlockDim();
             TrainParams.Current.ResetObsoleteOptions();
             UpdateAllContents();
