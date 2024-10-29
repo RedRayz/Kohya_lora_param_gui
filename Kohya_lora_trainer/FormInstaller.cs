@@ -37,9 +37,9 @@ namespace Kohya_lora_trainer
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(@"/k cd /d ").Append(path);
-
+            string py = cbxPythonVersion.SelectedIndex == 0 ? "py -3.10" : "py -3.11";
             sb.Append(@" && git clone https://github.com/kohya-ss/sd-scripts.git && cd sd-scripts && ")
-                .Append(cbxUsePy.Checked ? "py" : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && pip install torch==")
+                .Append(cbxUsePy.Checked ? py : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && pip install torch==")
                 .Append(Constants.TORCH_VERSION).Append(" torchvision==")
                 .Append(Constants.TORCHVISION_VERSION).Append(" --index-url ")
                 .Append(Constants.INDEX_URL)
@@ -53,6 +53,12 @@ namespace Kohya_lora_trainer
             var process = new Process();
             process.StartInfo = ps;
             process.Start();
+        }
+
+        private void FormInstaller_Load(object sender, EventArgs e)
+        {
+            cbxPythonVersion.SelectedIndex = 0;
+            cbxPythonVersion.Update();
         }
     }
 }
