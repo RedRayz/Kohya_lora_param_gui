@@ -64,11 +64,6 @@ namespace Kohya_lora_trainer {
         public int BlockDimMid = 64, BlockDimMid01 = 4, BlockDimMid02 = 4, BlockDimBase = 4, BlockDimOutSDXL = 4;
         public int[] BlockDimOut = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
 
-        //現在未使用。互換性維持のため残してある
-        public int[] BlockAlphaIn = Array.Empty<int>();
-        public int BlockAlphaMid = -1;
-        public int[] BlockAlphaOut = Array.Empty<int>();
-
         public decimal[] BlockAlphaInM = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
         public decimal BlockAlphaMidM = 16, BlockAlphaMid01 = 4, BlockAlphaMid02 = 4, BlockAlphaBase = 4, BlockAlphaOutSDXL = 4;
         public decimal[] BlockAlphaOutM = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
@@ -118,53 +113,6 @@ namespace Kohya_lora_trainer {
 
         public TrainParams() {
             Current = this;
-        }
-
-        public void ConvertBlockAlpha()
-        {
-            if(BlockAlphaIn.Length > 0)
-            {
-                Console.WriteLine("Converting BlockAlphaIn...");
-                for (int i =0; i < BlockAlphaIn.Length; i++)
-                {
-                    if (i < BlockAlphaInM.Length)
-                        BlockAlphaInM[i] = BlockAlphaIn[i];
-                    else
-                    {
-                        Console.WriteLine("Found Missing Array Element in BlockAlphaInM!");
-                        BlockAlphaInM = new decimal[] { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
-                        break;
-                    }
-                }
-
-                BlockAlphaIn = Array.Empty<int>();
-            }
-
-            if (BlockAlphaOut.Length > 0)
-            {
-                Console.WriteLine("Converting BlockAlphaOut...");
-                for (int i = 0; i < BlockAlphaOut.Length; i++)
-                {
-                    if (i < BlockAlphaOutM.Length)
-                        BlockAlphaOutM[i] = BlockAlphaOut[i];
-                    else
-                    {
-                        Console.WriteLine("Found Missing Array Element in BlockAlphaOutM!");
-                        BlockAlphaOutM = new decimal[] { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
-                        break;
-                    }
-
-                }
-
-                BlockAlphaOut = Array.Empty<int>();
-            }
-
-            if (BlockAlphaMid > 0)
-            {
-                Console.WriteLine("Converting BlockAlphaMid...");
-                BlockAlphaMidM = BlockAlphaMid;
-                BlockAlphaMid = -1;
-            }
         }
 
         public void CheckBrokenBlockDim()
