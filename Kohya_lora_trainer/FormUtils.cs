@@ -364,8 +364,7 @@ namespace Kohya_lora_trainer
 
                 sb.Append(@" && git fetch && git branch ")
                     .Append(branch)
-                    .Append(" origin/").Append(branch)
-                    .Append(" && git switch ").Append(branch);
+                    .Append(" origin/").Append(branch);
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
                 ps.Arguments = sb.ToString();
