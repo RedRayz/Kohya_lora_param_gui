@@ -61,13 +61,21 @@
             label1 = new Label();
             btnInstallExtension = new Button();
             btnUpdateRepo = new Button();
+            tabPage4 = new TabPage();
+            label7 = new Label();
+            label6 = new Label();
+            btnSwitchBranch = new Button();
+            label5 = new Label();
+            tbxBranchName = new TextBox();
             toolTip1 = new ToolTip(components);
+            lblSwitching = new Label();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             tabPage3.SuspendLayout();
+            tabPage4.SuspendLayout();
             SuspendLayout();
             // 
             // btnRunTensorboard
@@ -172,6 +180,7 @@
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(tabPage4);
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -305,10 +314,10 @@
             tabPage2.Controls.Add(nudTargetDim);
             tabPage2.Controls.Add(lblLoraPath);
             tabPage2.Controls.Add(lblOutputPath);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(525, 401);
+            tabPage2.Size = new Size(525, 399);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Dimリサイズ";
             tabPage2.UseVisualStyleBackColor = true;
@@ -356,9 +365,9 @@
             tabPage3.Controls.Add(label1);
             tabPage3.Controls.Add(btnInstallExtension);
             tabPage3.Controls.Add(btnUpdateRepo);
-            tabPage3.Location = new Point(4, 24);
+            tabPage3.Location = new Point(4, 26);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(525, 401);
+            tabPage3.Size = new Size(525, 399);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "更新";
             tabPage3.UseVisualStyleBackColor = true;
@@ -411,6 +420,75 @@
             btnUpdateRepo.UseVisualStyleBackColor = true;
             btnUpdateRepo.Click += btnUpdateRepo_Click;
             // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(lblSwitching);
+            tabPage4.Controls.Add(label7);
+            tabPage4.Controls.Add(label6);
+            tabPage4.Controls.Add(btnSwitchBranch);
+            tabPage4.Controls.Add(label5);
+            tabPage4.Controls.Add(tbxBranchName);
+            tabPage4.Location = new Point(4, 24);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Size = new Size(525, 401);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "ブランチ";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(87, 74);
+            label7.Name = "label7";
+            label7.Size = new Size(281, 45);
+            label7.TabIndex = 4;
+            label7.Text = "初期ブランチは「main」です。\r\nSDXL学習は「dev」を推奨します。\r\nFLUX.1は「sd3」、SD3は「sd3_5_support」のみ対応です。";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(46, 20);
+            label6.Name = "label6";
+            label6.Size = new Size(188, 15);
+            label6.TabIndex = 3;
+            label6.Text = "sd-scriptsリポジトリのブランチ切り替え";
+            // 
+            // btnSwitchBranch
+            // 
+            btnSwitchBranch.Location = new Point(289, 48);
+            btnSwitchBranch.Name = "btnSwitchBranch";
+            btnSwitchBranch.Size = new Size(99, 23);
+            btnSwitchBranch.TabIndex = 2;
+            btnSwitchBranch.Text = "ブランチ切り替え";
+            btnSwitchBranch.UseVisualStyleBackColor = true;
+            btnSwitchBranch.Click += btnSwitchBranch_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(46, 51);
+            label5.Name = "label5";
+            label5.Size = new Size(76, 15);
+            label5.TabIndex = 1;
+            label5.Text = "ブランチの名称";
+            // 
+            // tbxBranchName
+            // 
+            tbxBranchName.Location = new Point(128, 48);
+            tbxBranchName.Name = "tbxBranchName";
+            tbxBranchName.Size = new Size(155, 23);
+            tbxBranchName.TabIndex = 0;
+            // 
+            // lblSwitching
+            // 
+            lblSwitching.AutoSize = true;
+            lblSwitching.Location = new Point(78, 131);
+            lblSwitching.Name = "lblSwitching";
+            lblSwitching.Size = new Size(310, 15);
+            lblSwitching.TabIndex = 5;
+            lblSwitching.Text = "切り替え中です。終了メッセージが表示されるまでお待ちください。";
+            lblSwitching.Visible = false;
+            // 
             // FormUtils
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -436,6 +514,8 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            tabPage4.ResumeLayout(false);
+            tabPage4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -473,5 +553,12 @@
         private Label label14;
         private CheckBox cbxUpdateOnlyPackage;
         private CheckBox cbxUseLatestTorch;
+        private TabPage tabPage4;
+        private Label label6;
+        private Button btnSwitchBranch;
+        private Label label5;
+        private TextBox tbxBranchName;
+        private Label label7;
+        private Label lblSwitching;
     }
 }
