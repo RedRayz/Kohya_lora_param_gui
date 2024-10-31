@@ -151,7 +151,7 @@ namespace Kohya_lora_trainer
                     sb.Append(Constants.CurrentSdScriptsPath);
                 }
 
-                if(!cbxUpdateOnlyPackage.Checked)
+                if (!cbxUpdateOnlyPackage.Checked)
                 {
                     sb.Append(" && git pull");
                 }
@@ -331,6 +331,61 @@ namespace Kohya_lora_trainer
 
         private void cbxUsePy_CheckedChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnSwitchBranch_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tbxBranchName.Text))
+            {
+                MessageBox.Show("ブランチ名を指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var res = MessageBox.Show("ブランチを変更します。よろしいですか。", "確認", MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes)
+            {
+                btnSwitchBranch.Enabled = false;
+                Update();
+                //GUI側でブランチは確認しないので常にリモートから引っ張ってくる
+                //エラーになるとその後ろのコマンドがスルーされるので、別プロセスでgit switchする
+                StringBuilder sb = new StringBuilder();
+                sb.Append(@"/c cd ").Append(Constants.CurrentSdScriptsPath);
+
+                sb.Append(@" && git fetch && git branch ")
+                    .Append(tbxBranchName.Text)
+                    .Append(" origin/").Append(tbxBranchName.Text)
+                    .Append(" && git switch ").Append(tbxBranchName.Text);
+                ProcessStartInfo ps = new ProcessStartInfo();
+                ps.FileName = "cmd";
+                ps.Arguments = sb.ToString();
+                var process = new Process();
+                process.StartInfo = ps;
+                process.SynchronizingObject = this;
+                process.EnableRaisingEvents = true;
+                process.Exited += GitBranchExited;
+                process.Start();
+            }
+        }
+
+        private void GitBranchExited(object? sender, EventArgs e)
+        {
+            Thread.Sleep(200);
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append(@"/c cd ").Append(Constants.CurrentSdScriptsPath);
+
+            sb.Append(@" && git switch ").Append(tbxBranchName.Text);
+            ProcessStartInfo ps = new ProcessStartInfo();
+            ps.FileName = "cmd";
+            ps.Arguments = sb.ToString();
+            var process = new Process();
+            process.StartInfo = ps;
+            process.Start();
+
+            btnSwitchBranch.Enabled = true;
+            Update();
+
+            MessageBox.Show("切り替えが終了しました。\n切り替わらない場合は手動で切り替えてください。");
 
         }
     }
