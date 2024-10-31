@@ -109,6 +109,7 @@ namespace Kohya_lora_trainer
             データセット編集選別ツールToolStripMenuItem = new ToolStripMenuItem();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            cbxSaveEveryEpoch = new ComboBox();
             tabPageAddArgs = new TabPage();
             label23 = new Label();
             lblPlaceholderNetworkArgs = new Label();
@@ -301,7 +302,7 @@ namespace Kohya_lora_trainer
             // nudNetworkAlpha
             // 
             nudNetworkAlpha.DecimalPlaces = 4;
-            nudNetworkAlpha.Location = new Point(668, 104);
+            nudNetworkAlpha.Location = new Point(586, 104);
             nudNetworkAlpha.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
             nudNetworkAlpha.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudNetworkAlpha.Name = "nudNetworkAlpha";
@@ -348,7 +349,7 @@ namespace Kohya_lora_trainer
             // 
             // nudBatchSize
             // 
-            nudBatchSize.Location = new Point(668, 75);
+            nudBatchSize.Location = new Point(586, 75);
             nudBatchSize.Maximum = new decimal(new int[] { 256, 0, 0, 0 });
             nudBatchSize.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudBatchSize.Name = "nudBatchSize";
@@ -396,7 +397,7 @@ namespace Kohya_lora_trainer
             cbxModuleType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxModuleType.FormattingEnabled = true;
             cbxModuleType.Items.AddRange(new object[] { "LoRA", "LyCORIS", "DyLoRA", "LoRA-FA" });
-            cbxModuleType.Location = new Point(668, 164);
+            cbxModuleType.Location = new Point(586, 164);
             cbxModuleType.Name = "cbxModuleType";
             cbxModuleType.Size = new Size(80, 23);
             cbxModuleType.TabIndex = 6;
@@ -405,12 +406,12 @@ namespace Kohya_lora_trainer
             // 
             // nudSaveEpoch
             // 
-            nudSaveEpoch.Location = new Point(668, 133);
+            nudSaveEpoch.Location = new Point(586, 133);
             nudSaveEpoch.Maximum = new decimal(new int[] { 200000, 0, 0, 0 });
             nudSaveEpoch.Name = "nudSaveEpoch";
             nudSaveEpoch.Size = new Size(80, 23);
             nudSaveEpoch.TabIndex = 56;
-            toolTip1.SetToolTip(nudSaveEpoch, "指定した間隔で成果物を出力\r\nエポックかステップのどちらを使用するかは\r\nepochs/stepsの設定に従う");
+            toolTip1.SetToolTip(nudSaveEpoch, "指定した間隔で成果物を出力");
             nudSaveEpoch.ValueChanged += nudSaveEpoch_ValueChanged;
             // 
             // tbxRegImgPath
@@ -492,16 +493,16 @@ namespace Kohya_lora_trainer
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(521, 135);
+            label16.Location = new Point(518, 137);
             label16.Name = "label16";
-            label16.Size = new Size(141, 15);
+            label16.Size = new Size(62, 15);
             label16.TabIndex = 42;
-            label16.Text = "保存頻度(Epochs/Steps)#";
+            label16.Text = "保存頻度#";
             // 
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(600, 77);
+            label18.Location = new Point(518, 77);
             label18.Name = "label18";
             label18.Size = new Size(62, 15);
             label18.TabIndex = 44;
@@ -519,7 +520,7 @@ namespace Kohya_lora_trainer
             // label21
             // 
             label21.AutoSize = true;
-            label21.Location = new Point(621, 106);
+            label21.Location = new Point(539, 106);
             label21.Name = "label21";
             label21.Size = new Size(41, 15);
             label21.TabIndex = 50;
@@ -679,7 +680,7 @@ namespace Kohya_lora_trainer
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(576, 167);
+            label6.Location = new Point(494, 167);
             label6.Name = "label6";
             label6.Size = new Size(86, 15);
             label6.TabIndex = 72;
@@ -891,6 +892,7 @@ namespace Kohya_lora_trainer
             // tabPage1
             // 
             tabPage1.Controls.Add(btnModel);
+            tabPage1.Controls.Add(cbxSaveEveryEpoch);
             tabPage1.Controls.Add(cbxEpochOrStep);
             tabPage1.Controls.Add(btnImage);
             tabPage1.Controls.Add(cbxSDType);
@@ -939,6 +941,17 @@ namespace Kohya_lora_trainer
             tabPage1.TabIndex = 0;
             tabPage1.Text = "学習";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // cbxSaveEveryEpoch
+            // 
+            cbxSaveEveryEpoch.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxSaveEveryEpoch.FormattingEnabled = true;
+            cbxSaveEveryEpoch.Items.AddRange(new object[] { "エポック", "ステップ" });
+            cbxSaveEveryEpoch.Location = new Point(672, 132);
+            cbxSaveEveryEpoch.Name = "cbxSaveEveryEpoch";
+            cbxSaveEveryEpoch.Size = new Size(76, 23);
+            cbxSaveEveryEpoch.TabIndex = 86;
+            cbxSaveEveryEpoch.SelectedIndexChanged += cbxSaveEveryEpoch_SelectedIndexChanged;
             // 
             // tabPageAddArgs
             // 
@@ -1216,6 +1229,7 @@ namespace Kohya_lora_trainer
         private TextBox tbxAdditionalNetworkArgs;
         private Label lblPlaceholderNetworkArgs;
         private Label label23;
+        private ComboBox cbxSaveEveryEpoch;
     }
 }
 

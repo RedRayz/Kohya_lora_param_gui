@@ -82,7 +82,7 @@ namespace Kohya_lora_trainer {
         public ModelArchitecture StableDiffusionType = ModelArchitecture.Legacy;
 
         public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true, UseFullFP16 = false, UseFP8Base = false, RelativeStep = true, ScaleParameter = true, SaveState = false, MaskLoss = false, AlphaMask = false;
-        public bool RandomNoiseOffset = false, RandomIpNoiseGamma = false;
+        public bool RandomNoiseOffset = false, RandomIpNoiseGamma = false, SaveWeightEveryEpoch = true;
         public string TokensSeparator = string.Empty;
 
         //Huber関連

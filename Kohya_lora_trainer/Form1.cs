@@ -480,7 +480,7 @@ namespace Kohya_lora_trainer
                     {
                         LoadPreset(pth, false);
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         Debug.WriteLine("Skipped. Got an exception: " + ex.Message);
                         if (!string.IsNullOrWhiteSpace(pth))
@@ -1213,6 +1213,7 @@ namespace Kohya_lora_trainer
             nudWarmupSteps.Value = TrainParams.Current.WarmupSteps;
 
             cbxEpochOrStep.SelectedIndex = TrainParams.Current.IsEpoch ? 0 : 1;
+            cbxSaveEveryEpoch.SelectedIndex = TrainParams.Current.SaveWeightEveryEpoch ? 0 : 1;
 
             tbxCommand.Text = TrainParams.Current.CustomCommands;
 
@@ -1448,5 +1449,9 @@ namespace Kohya_lora_trainer
             TrainParams.Current.AdditionalNetworkArgs = tbxAdditionalNetworkArgs.Text;
         }
 
+        private void cbxSaveEveryEpoch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TrainParams.Current.SaveWeightEveryEpoch = cbxSaveEveryEpoch.SelectedIndex == 0;
+        }
     }
 }

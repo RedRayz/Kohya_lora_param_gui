@@ -425,7 +425,7 @@ namespace Kohya_lora_trainer
 
             if (TrainParams.Current.SaveEveryNEpochs > 0)
             {
-                sb.Append(TrainParams.Current.IsEpoch ? " --save_every_n_epochs " : " --save_every_n_steps ").Append(TrainParams.Current.SaveEveryNEpochs);
+                sb.Append(TrainParams.Current.SaveWeightEveryEpoch ? " --save_every_n_epochs " : " --save_every_n_steps ").Append(TrainParams.Current.SaveEveryNEpochs);
             }
 
             string opt = string.Empty;
