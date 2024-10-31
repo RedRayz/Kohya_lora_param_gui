@@ -371,24 +371,27 @@ namespace Kohya_lora_trainer
         private void GitBranchExited(object? sender, EventArgs e)
         {
             Thread.Sleep(200);
-
             StringBuilder sb = new StringBuilder();
-            sb.Append(@"/c cd ").Append(Constants.CurrentSdScriptsPath);
-
-            sb.Append(@" && git switch ").Append(tbxBranchName.Text);
+            sb.Append(@"/c cd ").Append(Constants.CurrentSdScriptsPath)
+                .Append(@" && git switch ").Append(tbxBranchName.Text);
             ProcessStartInfo ps = new ProcessStartInfo();
             ps.FileName = "cmd";
             ps.Arguments = sb.ToString();
             var process = new Process();
             process.StartInfo = ps;
+            process.SynchronizingObject = this;
+            process.EnableRaisingEvents = true;
+            process.Exited += GitSwitchExited;
             process.Start();
+        }
 
+        private void GitSwitchExited(object? sender, EventArgs e)
+        {
             btnSwitchBranch.Enabled = true;
             lblSwitching.Visible = false;
             Update();
-
             MessageBox.Show("切り替えが終了しました。\n切り替わらない場合は手動で切り替えてください。");
-
         }
+
     }
 }
