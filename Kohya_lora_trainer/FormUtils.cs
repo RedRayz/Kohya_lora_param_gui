@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Dialogs;
@@ -336,11 +337,20 @@ namespace Kohya_lora_trainer
 
         private void btnSwitchBranch_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(tbxBranchName.Text))
+            string branch = tbxBranchName.Text.Trim();
+            Regex regex = new Regex(@"^[-A-Za-z0-9_]*$");
+            if (string.IsNullOrEmpty(branch))
             {
                 MessageBox.Show("ブランチ名を指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            if (branch.Contains(' ') || !regex.IsMatch(branch))
+            {
+                MessageBox.Show("英字、数字と-_以外は使用できません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var res = MessageBox.Show("ブランチを変更します。よろしいですか。", "確認", MessageBoxButtons.YesNo);
             if (res == DialogResult.Yes)
             {
@@ -353,9 +363,9 @@ namespace Kohya_lora_trainer
                 sb.Append(@"/c cd ").Append(Constants.CurrentSdScriptsPath);
 
                 sb.Append(@" && git fetch && git branch ")
-                    .Append(tbxBranchName.Text)
-                    .Append(" origin/").Append(tbxBranchName.Text)
-                    .Append(" && git switch ").Append(tbxBranchName.Text);
+                    .Append(branch)
+                    .Append(" origin/").Append(branch)
+                    .Append(" && git switch ").Append(branch);
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
                 ps.Arguments = sb.ToString();
