@@ -345,6 +345,7 @@ namespace Kohya_lora_trainer
             if (res == DialogResult.Yes)
             {
                 btnSwitchBranch.Enabled = false;
+                lblSwitching.Visible = true;
                 Update();
                 //GUI側でブランチは確認しないので常にリモートから引っ張ってくる
                 //エラーになるとその後ろのコマンドがスルーされるので、別プロセスでgit switchする
@@ -383,6 +384,7 @@ namespace Kohya_lora_trainer
             process.Start();
 
             btnSwitchBranch.Enabled = true;
+            lblSwitching.Visible = false;
             Update();
 
             MessageBox.Show("切り替えが終了しました。\n切り替わらない場合は手動で切り替えてください。");
