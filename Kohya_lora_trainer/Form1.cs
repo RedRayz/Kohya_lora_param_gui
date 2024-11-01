@@ -1284,7 +1284,7 @@ namespace Kohya_lora_trainer
 
             if (TrainParams.Current.ImmiscibleNoise > 0)
             {
-                return MessageBox.Show("Immiscible Noiseは現在Pull requestあり未実装です。\n使用するにはPRのチェックアウトが必要になりますが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                return MessageBox.Show("Immiscible Noiseは現在Pull requestの段階であり未実装です。\n使用するにはPRのチェックアウトが必要になりますが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
             if ((TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim) && ((TrainParams.Current.StableDiffusionType != ModelArchitecture.Legacy && TrainParams.Current.StableDiffusionType != ModelArchitecture.XL) || TrainParams.Current.ModuleType == NetworkModule.LyCORIS))
