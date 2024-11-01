@@ -256,6 +256,7 @@ namespace Kohya_lora_trainer
             cbxTimestepSampling = new ComboBox();
             label58 = new Label();
             label56 = new Label();
+            cbxVParameterization = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -1661,6 +1662,7 @@ namespace Kohya_lora_trainer
             // 
             // page3
             // 
+            page3.Controls.Add(cbxVParameterization);
             page3.Controls.Add(cbxRandomIpNoiseGamma);
             page3.Controls.Add(cbxRandomNoiseOffset);
             page3.Controls.Add(cbxAlphaMask);
@@ -1685,9 +1687,9 @@ namespace Kohya_lora_trainer
             page3.Controls.Add(label57);
             page3.Controls.Add(label17);
             page3.Controls.Add(nudIpNoiseGamma);
-            page3.Location = new Point(4, 26);
+            page3.Location = new Point(4, 24);
             page3.Name = "page3";
-            page3.Size = new Size(660, 322);
+            page3.Size = new Size(660, 324);
             page3.TabIndex = 10;
             page3.Text = "損失とノイズ";
             page3.UseVisualStyleBackColor = true;
@@ -2540,9 +2542,9 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(label60);
             tabPage8.Controls.Add(cbxTimestepSampling);
             tabPage8.Controls.Add(label58);
-            tabPage8.Location = new Point(4, 24);
+            tabPage8.Location = new Point(4, 26);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 324);
+            tabPage8.Size = new Size(660, 322);
             tabPage8.TabIndex = 12;
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;
@@ -2704,6 +2706,17 @@ namespace Kohya_lora_trainer
             label56.Size = new Size(205, 30);
             label56.TabIndex = 58;
             label56.Text = "#がつく項目は0を指定すると未指定にする\r\n##がつく項目は空欄で未指定にする";
+            // 
+            // cbxVParameterization
+            // 
+            cbxVParameterization.AutoSize = true;
+            cbxVParameterization.Location = new Point(138, 163);
+            cbxVParameterization.Name = "cbxVParameterization";
+            cbxVParameterization.Size = new Size(125, 19);
+            cbxVParameterization.TabIndex = 58;
+            cbxVParameterization.Text = "v-parameterization";
+            toolTip1.SetToolTip(cbxVParameterization, "v-predictionを使う");
+            cbxVParameterization.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
@@ -3019,5 +3032,6 @@ namespace Kohya_lora_trainer
         private NumericUpDown nudT5DropoutRate;
         private Label label77;
         private NumericUpDown nudTEBatchSize;
+        private CheckBox cbxVParameterization;
     }
 }

@@ -897,6 +897,11 @@ namespace Kohya_lora_trainer
                 sb.Append(" --cpu_offload_checkpointing");
             }
 
+            if (TrainParams.Current.VParameterization)
+            {
+                sb.Append(" --v_parameterization");
+            }
+
             string str = TrainParams.Current.AdditionalArgs.Trim();
             str = str.Replace("\r\n", string.Empty);
             if (!string.IsNullOrEmpty(str))
