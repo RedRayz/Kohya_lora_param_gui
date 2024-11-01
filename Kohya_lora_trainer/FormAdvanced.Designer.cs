@@ -96,6 +96,7 @@ namespace Kohya_lora_trainer
             nudLRDecaySteps = new NumericUpDown();
             nudCaptionTagDropout = new NumericUpDown();
             cbxDisableMmapLoadSafetensors = new CheckBox();
+            cbxVParameterization = new CheckBox();
             cbxAdvancedTrain = new ComboBox();
             label6 = new Label();
             label9 = new Label();
@@ -256,7 +257,7 @@ namespace Kohya_lora_trainer
             cbxTimestepSampling = new ComboBox();
             label58 = new Label();
             label56 = new Label();
-            cbxVParameterization = new CheckBox();
+            cbxZeroTerminalSNR = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -995,6 +996,17 @@ namespace Kohya_lora_trainer
             toolTip1.SetToolTip(cbxDisableMmapLoadSafetensors, "safetensorsファイルの読込が早くなるかも");
             cbxDisableMmapLoadSafetensors.UseVisualStyleBackColor = true;
             // 
+            // cbxVParameterization
+            // 
+            cbxVParameterization.AutoSize = true;
+            cbxVParameterization.Location = new Point(138, 163);
+            cbxVParameterization.Name = "cbxVParameterization";
+            cbxVParameterization.Size = new Size(125, 19);
+            cbxVParameterization.TabIndex = 58;
+            cbxVParameterization.Text = "v-parameterization";
+            toolTip1.SetToolTip(cbxVParameterization, "v-predictionを使う");
+            cbxVParameterization.UseVisualStyleBackColor = true;
+            // 
             // cbxAdvancedTrain
             // 
             cbxAdvancedTrain.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -1662,6 +1674,7 @@ namespace Kohya_lora_trainer
             // 
             // page3
             // 
+            page3.Controls.Add(cbxZeroTerminalSNR);
             page3.Controls.Add(cbxVParameterization);
             page3.Controls.Add(cbxRandomIpNoiseGamma);
             page3.Controls.Add(cbxRandomNoiseOffset);
@@ -2707,16 +2720,15 @@ namespace Kohya_lora_trainer
             label56.TabIndex = 58;
             label56.Text = "#がつく項目は0を指定すると未指定にする\r\n##がつく項目は空欄で未指定にする";
             // 
-            // cbxVParameterization
+            // cbxZeroTerminalSNR
             // 
-            cbxVParameterization.AutoSize = true;
-            cbxVParameterization.Location = new Point(138, 163);
-            cbxVParameterization.Name = "cbxVParameterization";
-            cbxVParameterization.Size = new Size(125, 19);
-            cbxVParameterization.TabIndex = 58;
-            cbxVParameterization.Text = "v-parameterization";
-            toolTip1.SetToolTip(cbxVParameterization, "v-predictionを使う");
-            cbxVParameterization.UseVisualStyleBackColor = true;
+            cbxZeroTerminalSNR.AutoSize = true;
+            cbxZeroTerminalSNR.Location = new Point(138, 188);
+            cbxZeroTerminalSNR.Name = "cbxZeroTerminalSNR";
+            cbxZeroTerminalSNR.Size = new Size(122, 19);
+            cbxZeroTerminalSNR.TabIndex = 58;
+            cbxZeroTerminalSNR.Text = "Zero Terminal SNR";
+            cbxZeroTerminalSNR.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
@@ -3033,5 +3045,6 @@ namespace Kohya_lora_trainer
         private Label label77;
         private NumericUpDown nudTEBatchSize;
         private CheckBox cbxVParameterization;
+        private CheckBox cbxZeroTerminalSNR;
     }
 }

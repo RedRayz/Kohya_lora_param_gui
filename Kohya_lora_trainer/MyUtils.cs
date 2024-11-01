@@ -902,6 +902,11 @@ namespace Kohya_lora_trainer
                 sb.Append(" --v_parameterization");
             }
 
+            if (TrainParams.Current.ZeroTerminalSNR)
+            {
+                sb.Append(" --zero_terminal_snr");
+            }
+
             string str = TrainParams.Current.AdditionalArgs.Trim();
             str = str.Replace("\r\n", string.Empty);
             if (!string.IsNullOrEmpty(str))
