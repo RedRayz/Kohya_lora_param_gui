@@ -33,7 +33,7 @@ namespace Kohya_lora_trainer {
         public  float UnetLR = -1, TextEncoderLR = -1, NoiseOffset = 0, Momentum = 0.9f;
         public AdvancedTrain advancedTrainType = AdvancedTrain.None;
         public CrossAtten CrossAttenType = CrossAtten.xformers;
-        public bool UseGradient = false, UseWeightedCaptions = false, DisableMmapLoadSafetensors = false;
+        public bool UseGradient = false, UseWeightedCaptions = false, DisableMmapLoadSafetensors = false, VParameterization = false, ZeroTerminalSNR = false;
         public decimal AdaptiveNoiseScale = 0, MinSNRGamma = 0, MultiresNoiseIterations = 0, MultiresNoiseDiscount = 0, NetworkDropout = 0, RankDropout = 0, ModuleDropout = 0, MaxNormReg = 0, CaptionDropout = 0, IpNoiseGamma = 0, CaptionTagDropout = 0m;
         public decimal ClipLDropoutRate = 0, ClipGDropoutRate = 0, T5DropoutRate = 0, TEBatchSize = 0;
 
@@ -82,7 +82,7 @@ namespace Kohya_lora_trainer {
         public ModelArchitecture StableDiffusionType = ModelArchitecture.Legacy;
 
         public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true, UseFullFP16 = false, UseFP8Base = false, RelativeStep = true, ScaleParameter = true, SaveState = false, MaskLoss = false, AlphaMask = false;
-        public bool RandomNoiseOffset = false, RandomIpNoiseGamma = false;
+        public bool RandomNoiseOffset = false, RandomIpNoiseGamma = false, SaveWeightEveryEpoch = true;
         public string TokensSeparator = string.Empty;
 
         //Huber関連

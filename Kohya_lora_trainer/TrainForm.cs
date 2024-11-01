@@ -47,7 +47,7 @@ namespace Kohya_lora_trainer
         {
             if (process != null && !process.HasExited)
             {
-                DialogResult result = MessageBox.Show("学習中のデータは失われます。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("実行中のデータは失われます。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     //メッセージボックスが出ている間に閉じたかもしれないので再度確認
@@ -173,7 +173,6 @@ namespace Kohya_lora_trainer
                     timer1.Stop();
                 ShutdownOrSuspendPC();
                 Close();
-                //MessageBox.Show("ここでシャットダウンする", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (Duration > 0)
             {

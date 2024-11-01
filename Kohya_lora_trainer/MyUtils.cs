@@ -425,7 +425,7 @@ namespace Kohya_lora_trainer
 
             if (TrainParams.Current.SaveEveryNEpochs > 0)
             {
-                sb.Append(TrainParams.Current.IsEpoch ? " --save_every_n_epochs " : " --save_every_n_steps ").Append(TrainParams.Current.SaveEveryNEpochs);
+                sb.Append(TrainParams.Current.SaveWeightEveryEpoch ? " --save_every_n_epochs " : " --save_every_n_steps ").Append(TrainParams.Current.SaveEveryNEpochs);
             }
 
             string opt = string.Empty;
@@ -895,6 +895,16 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.CpuOffloadCheckpointing)
             {
                 sb.Append(" --cpu_offload_checkpointing");
+            }
+
+            if (TrainParams.Current.VParameterization)
+            {
+                sb.Append(" --v_parameterization");
+            }
+
+            if (TrainParams.Current.ZeroTerminalSNR)
+            {
+                sb.Append(" --zero_terminal_snr");
             }
 
             string str = TrainParams.Current.AdditionalArgs.Trim();

@@ -17,7 +17,6 @@ gradioを使用するものと比べ以下のメリットがあります。
 * 複数LoRAの一括学習
 * Dimのリサイズ
 * sd-scriptsのインストール・更新
-* LECOの学習およびconfig,promptsの生成(SD1.5のみ)
 
 ## 注意事項
 簡易インストーラか手動で[sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法でセットアップしている環境を前提としています。
@@ -59,8 +58,7 @@ v1.6以降でご利用いただけます。
 
 注意:ディレクトリの階層は次のようにします。
 
-LECOも同じようにします。
-
+※LECOの学習機能は削除されました。
 ![image00004](https://github.com/RedRayz/Kohya_lora_param_gui/assets/71994877/9e078566-217e-4a45-b65a-b49014c2d680)
 
 
