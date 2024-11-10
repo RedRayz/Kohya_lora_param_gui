@@ -50,6 +50,7 @@
             // 
             // tbxPrestList
             // 
+            tbxPrestList.AllowDrop = true;
             tbxPrestList.Location = new Point(8, 9);
             tbxPrestList.Margin = new Padding(2, 3, 2, 3);
             tbxPrestList.Multiline = true;
