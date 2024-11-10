@@ -1291,6 +1291,11 @@ namespace Kohya_lora_trainer
             {
                 return MessageBox.Show("SD1,SDXL以外およびLyCORISでは層別学習は非対応ですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
+
+            if ((TrainParams.Current.NoiseOffset > 0 || TrainParams.Current.MultiresNoiseIterations > 0) && TrainParams.Current.ZeroTerminalSNR)
+            {
+                return MessageBox.Show("ノイズオフセットまたはMultires noiseとZero Terminal SNRの併用は望ましくありません。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
             return DialogResult.Yes;
         }
 
