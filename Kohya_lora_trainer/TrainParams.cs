@@ -10,8 +10,8 @@ namespace Kohya_lora_trainer {
         //Required
         public  string ModelPath = string.Empty, TrainImagePath = string.Empty, OutputPath = string.Empty, TensorBoardLogPath = string.Empty, LoraModelPath = string.Empty;
         public  float LearningRate = 0.0001f;
-        public  int Resolution = 512, BatchSize = 2, Epochs = 5, NetworkDim = 64;
-        public decimal NetworkAlpha = 16;
+        public  int Resolution = 512, BatchSize = 2, Epochs = 5, NetworkDim = 16;
+        public decimal NetworkAlpha = 4;
 
         //Optional
         public  string RegImagePath = string.Empty;
@@ -22,13 +22,13 @@ namespace Kohya_lora_trainer {
         public  string OutputName = string.Empty, Comment = string.Empty;
 
         //Advanced
-        public  int CpuThreads = 4;
+        public  int CpuThreads = 1;
         public  bool NoBucketUpscaling = false, UseWarmupInit = false;
         public  int ClipSkip = 2;
-        public long Seed = 42;
+        public long Seed = -1;
         public  SavePrecision SavePrecision = SavePrecision.fp16;
         public  Scheduler SchedulerType = Scheduler.cosine_with_restarts;
-        public  int MinBucketResolution = 320, MaxBucketResolution = 1024;
+        public  int MinBucketResolution = 256, MaxBucketResolution = 1024;
         public  string CaptionFileExtension = ".txt", VAEPath = string.Empty;
         public  float UnetLR = -1, TextEncoderLR = -1, NoiseOffset = 0, Momentum = 0.9f;
         public AdvancedTrain advancedTrainType = AdvancedTrain.None;
@@ -40,8 +40,8 @@ namespace Kohya_lora_trainer {
         //Addtional(KohakuBlueleaf氏作成拡張スクリプト用)
         public NetworkModule ModuleType = NetworkModule.LoRA;
         public LycoAlgo AlgoType = LycoAlgo.lora;
-        public int ConvDim = 64;
-        public decimal ConvAlpha = 16;
+        public int ConvDim = 16;
+        public decimal ConvAlpha = 4;
         //Additional(LoRA)
         public bool UseConv2dExtend = false;
         public decimal DyLoRAUnit = 4;
@@ -60,13 +60,13 @@ namespace Kohya_lora_trainer {
 
         //Block Dim,Alpha
         public bool UseBlockDim = false;
-        public int[] BlockDimIn = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
-        public int BlockDimMid = 64, BlockDimMid01 = 4, BlockDimMid02 = 4, BlockDimBase = 4, BlockDimOutSDXL = 4;
-        public int[] BlockDimOut = { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
+        public int[] BlockDimIn = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
+        public int BlockDimMid = 16, BlockDimMid01 = 4, BlockDimMid02 = 4, BlockDimBase = 4, BlockDimOutSDXL = 4;
+        public int[] BlockDimOut = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
 
-        public decimal[] BlockAlphaInM = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
-        public decimal BlockAlphaMidM = 16, BlockAlphaMid01 = 4, BlockAlphaMid02 = 4, BlockAlphaBase = 4, BlockAlphaOutSDXL = 4;
-        public decimal[] BlockAlphaOutM = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
+        public decimal[] BlockAlphaInM = { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
+        public decimal BlockAlphaMidM = 4, BlockAlphaMid01 = 4, BlockAlphaMid02 = 4, BlockAlphaBase = 4, BlockAlphaOutSDXL = 4;
+        public decimal[] BlockAlphaOutM = { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
         //Advanced1
         public bool UseColorAug = false, UseFastLoading = true, DontSaveMetadata = false, UseFlipAug = false, CropRandomly = false, CacheLatents = false, CacheLatentsToDisk = false, HighVRAM = false, UseAdditionalOptArgs = false;
