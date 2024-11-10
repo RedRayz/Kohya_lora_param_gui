@@ -121,6 +121,7 @@ namespace Kohya_lora_trainer
             label14 = new Label();
             label15 = new Label();
             tbxCommand = new TextBox();
+            cbxOverwrite = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDim).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudResolution).BeginInit();
@@ -451,7 +452,7 @@ namespace Kohya_lora_trainer
             // 
             // btnSavePreset
             // 
-            btnSavePreset.Location = new Point(525, 470);
+            btnSavePreset.Location = new Point(472, 476);
             btnSavePreset.Name = "btnSavePreset";
             btnSavePreset.Size = new Size(100, 27);
             btnSavePreset.TabIndex = 34;
@@ -462,7 +463,7 @@ namespace Kohya_lora_trainer
             // btnLoadPreset
             // 
             btnLoadPreset.AllowDrop = true;
-            btnLoadPreset.Location = new Point(422, 470);
+            btnLoadPreset.Location = new Point(369, 476);
             btnLoadPreset.Name = "btnLoadPreset";
             btnLoadPreset.Size = new Size(100, 27);
             btnLoadPreset.TabIndex = 35;
@@ -1081,11 +1082,23 @@ namespace Kohya_lora_trainer
             tbxCommand.TabIndex = 0;
             tbxCommand.TextChanged += tbxCommand_TextChanged;
             // 
+            // cbxOverwrite
+            // 
+            cbxOverwrite.AutoSize = true;
+            cbxOverwrite.Location = new Point(480, 455);
+            cbxOverwrite.Name = "cbxOverwrite";
+            cbxOverwrite.Size = new Size(83, 19);
+            cbxOverwrite.TabIndex = 89;
+            cbxOverwrite.Text = "即時上書き";
+            toolTip1.SetToolTip(cbxOverwrite, "最後に開いたプリセットを選択画面の表示や確認無しに上書きする");
+            cbxOverwrite.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(804, 521);
+            Controls.Add(cbxOverwrite);
             Controls.Add(tabControl1);
             Controls.Add(btnGenerateCommands);
             Controls.Add(btnInstaller);
@@ -1230,6 +1243,7 @@ namespace Kohya_lora_trainer
         private Label lblPlaceholderNetworkArgs;
         private Label label23;
         private ComboBox cbxSaveEveryEpoch;
+        private CheckBox cbxOverwrite;
     }
 }
 

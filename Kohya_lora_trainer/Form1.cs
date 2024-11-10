@@ -379,36 +379,55 @@ namespace Kohya_lora_trainer
                 return;
             }
 
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.FileName = "New Preset.xmlora";
-            sfd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
-            sfd.Title = "Save a preset";
-            sfd.RestoreDirectory = true;
-            if (File.Exists(LastOpenPresetPath))
-            {
-                sfd.InitialDirectory = Path.GetDirectoryName(LastOpenPresetPath);
-            }
-            else if (Directory.Exists(MyUtils.GetDefaultDir("SavePresetDir")))
-            {
-                sfd.InitialDirectory = MyUtils.GetDefaultDir("SavePresetDir");
-            }
-
-
-            if (sfd.ShowDialog() == DialogResult.OK)
+            if (cbxOverwrite.Checked && File.Exists(LastOpenPresetPath))
             {
                 try
                 {
                     XmlSerializer se = new XmlSerializer(typeof(TrainParams));
-                    using (StreamWriter sw = new StreamWriter(sfd.FileName, false, new System.Text.UTF8Encoding(false)))
+                    using (StreamWriter sw = new StreamWriter(LastOpenPresetPath, false, new System.Text.UTF8Encoding(false)))
                     {
                         se.Serialize(sw, TrainParams.Current);
                     }
+                    MessageBox.Show("保存しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch
                 {
                     MessageBox.Show("プリセットを保存できません。他のアプリが開いているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+            else
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.FileName = "New Preset.xmlora";
+                sfd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
+                sfd.Title = "Save a preset";
+                sfd.RestoreDirectory = true;
+                if (File.Exists(LastOpenPresetPath))
+                {
+                    sfd.InitialDirectory = Path.GetDirectoryName(LastOpenPresetPath);
+                }
+                else if (Directory.Exists(MyUtils.GetDefaultDir("SavePresetDir")))
+                {
+                    sfd.InitialDirectory = MyUtils.GetDefaultDir("SavePresetDir");
+                }
 
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        XmlSerializer se = new XmlSerializer(typeof(TrainParams));
+                        using (StreamWriter sw = new StreamWriter(sfd.FileName, false, new System.Text.UTF8Encoding(false)))
+                        {
+                            se.Serialize(sw, TrainParams.Current);
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("プリセットを保存できません。他のアプリが開いているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
             }
         }
 
