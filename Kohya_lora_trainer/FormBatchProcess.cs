@@ -80,11 +80,8 @@ namespace Kohya_lora_trainer
             string dropped = MyUtils.GetDroppedFileName(e, ".xmlora");
             if (!string.IsNullOrEmpty(dropped))
             {
-                if (!string.IsNullOrEmpty(tbxPrestList.Text))
-                {
-                    tbxPrestList.Text += "\r\n";
-                    tbxPrestList.Text += dropped;
-                }
+                tbxPrestList.Text += "\r\n";
+                tbxPrestList.Text += dropped;
             }
         }
     }
