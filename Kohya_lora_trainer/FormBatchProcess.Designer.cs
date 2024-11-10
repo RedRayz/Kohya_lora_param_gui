@@ -51,11 +51,13 @@
             // tbxPrestList
             // 
             tbxPrestList.AllowDrop = true;
+            tbxPrestList.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
             tbxPrestList.Location = new Point(8, 9);
             tbxPrestList.Margin = new Padding(2, 3, 2, 3);
             tbxPrestList.Multiline = true;
             tbxPrestList.Name = "tbxPrestList";
-            tbxPrestList.Size = new Size(356, 327);
+            tbxPrestList.ScrollBars = ScrollBars.Vertical;
+            tbxPrestList.Size = new Size(386, 327);
             tbxPrestList.TabIndex = 0;
             tbxPrestList.DragDrop += tbxPrestList_DragDrop;
             tbxPrestList.DragEnter += tbxPrestList_DragEnter;
@@ -127,7 +129,7 @@
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
-            tabControl1.Location = new Point(369, 12);
+            tabControl1.Location = new Point(399, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(285, 303);
@@ -163,7 +165,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(11, 218);
+            label4.Location = new Point(20, 234);
             label4.Name = "label4";
             label4.Size = new Size(77, 15);
             label4.TabIndex = 7;
@@ -171,7 +173,7 @@
             // 
             // nudKeepTokens
             // 
-            nudKeepTokens.Location = new Point(94, 216);
+            nudKeepTokens.Location = new Point(103, 232);
             nudKeepTokens.Maximum = new decimal(new int[] { 200, 0, 0, 0 });
             nudKeepTokens.Name = "nudKeepTokens";
             nudKeepTokens.Size = new Size(97, 23);
@@ -180,17 +182,17 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(17, 129);
+            label3.Location = new Point(17, 114);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(197, 75);
+            label3.Size = new Size(237, 105);
             label3.TabIndex = 5;
-            label3.Text = "各プリセットの学習を開始する前に\r\nキャプションファイル内のタグを\r\nシャッフルします。\r\ncache_text_encoder_output使用時に\r\n有用な機能となります。";
+            label3.Text = "各プリセットの学習を開始する前に\r\nキャプションファイル内のタグを\r\nシャッフルします。\r\ncache_text_encoder_output使用時に\r\n有用な機能となります。\r\n学習パラメータ側でキャプションシャッフル有効時は\r\n機能しません。";
             // 
             // cbxShuffleCaptionsBefore
             // 
             cbxShuffleCaptionsBefore.AutoSize = true;
-            cbxShuffleCaptionsBefore.Location = new Point(17, 108);
+            cbxShuffleCaptionsBefore.Location = new Point(17, 93);
             cbxShuffleCaptionsBefore.Margin = new Padding(2);
             cbxShuffleCaptionsBefore.Name = "cbxShuffleCaptionsBefore";
             cbxShuffleCaptionsBefore.Size = new Size(212, 19);
@@ -202,7 +204,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(668, 387);
+            ClientSize = new Size(696, 387);
             Controls.Add(tabControl1);
             Controls.Add(btnAddPreset);
             Controls.Add(btnApplyChanges);
