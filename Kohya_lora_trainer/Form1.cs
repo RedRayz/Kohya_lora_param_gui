@@ -26,7 +26,8 @@ namespace Kohya_lora_trainer
         private bool HaveNonAscillInOutputName, HaveNonAscillInImageFolder, HaveNonAscillInRegFolder, HaveNonAscillInModelPath, HaveNonAscillInOutputPath;
         private int StepsPerEpoch;
         private decimal TotalSteps, TotalStepsBatch1;
-        public static string? ScriptPath = string.Empty;
+        internal static string? ScriptPath = string.Empty;
+        private string? LastOpenPresetPath = string.Empty;
 
         public Form1()
         {
@@ -383,7 +384,11 @@ namespace Kohya_lora_trainer
             sfd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
             sfd.Title = "Save a preset";
             sfd.RestoreDirectory = true;
-            if (Directory.Exists(MyUtils.GetDefaultDir("SavePresetDir")))
+            if (File.Exists(LastOpenPresetPath))
+            {
+                sfd.InitialDirectory = Path.GetDirectoryName(LastOpenPresetPath);
+            }
+            else if (Directory.Exists(MyUtils.GetDefaultDir("SavePresetDir")))
             {
                 sfd.InitialDirectory = MyUtils.GetDefaultDir("SavePresetDir");
             }
@@ -795,6 +800,13 @@ namespace Kohya_lora_trainer
 
         private void LoadPreset(string path, bool ShowMsg)
         {
+            if (!File.Exists(path))
+            {
+                if (ShowMsg)
+                    MessageBox.Show("プリセットファイルが見つかりません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             try
             {
                 XmlSerializer se = new XmlSerializer(typeof(TrainParams));
@@ -810,6 +822,8 @@ namespace Kohya_lora_trainer
                 if (ShowMsg)
                     MessageBox.Show("プリセットを読み込めません。破損しているか、権限がありません。\r\nあるいは、より新しいバージョンのGUIで作成された可能性があります。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            LastOpenPresetPath = path;
 
             TrainParams.Current.CheckBrokenBlockDim();
             TrainParams.Current.ResetObsoleteOptions();
