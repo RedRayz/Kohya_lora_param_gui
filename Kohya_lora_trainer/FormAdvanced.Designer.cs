@@ -162,6 +162,7 @@ namespace Kohya_lora_trainer
             nudRankDropout = new NumericUpDown();
             nudClipLDropoutRate = new NumericUpDown();
             page3 = new TabPage();
+            cbxZeroTerminalSNR = new CheckBox();
             label55 = new Label();
             cbxMaskLoss = new CheckBox();
             label50 = new Label();
@@ -257,7 +258,6 @@ namespace Kohya_lora_trainer
             cbxTimestepSampling = new ComboBox();
             label58 = new Label();
             label56 = new Label();
-            cbxZeroTerminalSNR = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -527,7 +527,7 @@ namespace Kohya_lora_trainer
             nudNoiseOffset.Name = "nudNoiseOffset";
             nudNoiseOffset.Size = new Size(80, 23);
             nudNoiseOffset.TabIndex = 44;
-            toolTip1.SetToolTip(nudNoiseOffset, "全体的に明るい/暗い環境でグレー寄りになるのを軽減する\r\n変色と明度の変化を減らすため学習元モデルで使用された値を設定すべき\r\nちなみにAnimagine XL,Kivotos XLで使用された値は0.0357");
+            toolTip1.SetToolTip(nudNoiseOffset, "全体的に明るい/暗い環境でグレー寄りになるのを軽減する\r\n変色と明度の変化を減らすため学習元モデルで使用された値を設定すべき\r\nちなみにAnimagine XL,Kivotos XLで使用された値は0.0357\r\nZero Terminal SNRを使うなら0推奨");
             // 
             // nudCaptionDropout
             // 
@@ -925,12 +925,12 @@ namespace Kohya_lora_trainer
             // cbxCpuOffloadCheckpointing
             // 
             cbxCpuOffloadCheckpointing.AutoSize = true;
-            cbxCpuOffloadCheckpointing.Location = new Point(45, 282);
+            cbxCpuOffloadCheckpointing.Location = new Point(146, 291);
             cbxCpuOffloadCheckpointing.Name = "cbxCpuOffloadCheckpointing";
             cbxCpuOffloadCheckpointing.Size = new Size(165, 19);
             cbxCpuOffloadCheckpointing.TabIndex = 43;
             cbxCpuOffloadCheckpointing.Text = "cpu offload checkpointing";
-            toolTip1.SetToolTip(cbxCpuOffloadCheckpointing, "gradient checkpointingをCPUにオフロードする\r\nVRAM消費が最大1GB減少するが学習が約15%遅くなる\r\n分割モードの併用不可");
+            toolTip1.SetToolTip(cbxCpuOffloadCheckpointing, "gradient checkpointingをCPUにオフロードする\r\nVRAM消費が最大1GB減少するが学習が約15%遅くなる\r\nFLUX.1限定かつ分割モードの併用不可");
             cbxCpuOffloadCheckpointing.UseVisualStyleBackColor = true;
             // 
             // cbxTrainT5XXL
@@ -993,7 +993,7 @@ namespace Kohya_lora_trainer
             cbxDisableMmapLoadSafetensors.Size = new Size(234, 19);
             cbxDisableMmapLoadSafetensors.TabIndex = 44;
             cbxDisableMmapLoadSafetensors.Text = "safetensors読込のメモリマッピングの無効化";
-            toolTip1.SetToolTip(cbxDisableMmapLoadSafetensors, "safetensorsファイルの読込が早くなるかも");
+            toolTip1.SetToolTip(cbxDisableMmapLoadSafetensors, "safetensorsファイルの読込が少し早くなる");
             cbxDisableMmapLoadSafetensors.UseVisualStyleBackColor = true;
             // 
             // cbxVParameterization
@@ -1004,7 +1004,7 @@ namespace Kohya_lora_trainer
             cbxVParameterization.Size = new Size(125, 19);
             cbxVParameterization.TabIndex = 58;
             cbxVParameterization.Text = "v-parameterization";
-            toolTip1.SetToolTip(cbxVParameterization, "v-predictionを使う");
+            toolTip1.SetToolTip(cbxVParameterization, "v-predictionを使う\r\n学習元モデルが使用を明記している場合のみチェックをつけるべき");
             cbxVParameterization.UseVisualStyleBackColor = true;
             // 
             // cbxAdvancedTrain
@@ -1495,9 +1495,9 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(nudRankDropout);
             tabPage4.Controls.Add(nudClipLDropoutRate);
             tabPage4.Controls.Add(nudCaptionDropout);
-            tabPage4.Location = new Point(4, 26);
+            tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(660, 322);
+            tabPage4.Size = new Size(660, 324);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "dropout";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1707,6 +1707,17 @@ namespace Kohya_lora_trainer
             page3.Text = "損失とノイズ";
             page3.UseVisualStyleBackColor = true;
             // 
+            // cbxZeroTerminalSNR
+            // 
+            cbxZeroTerminalSNR.AutoSize = true;
+            cbxZeroTerminalSNR.Location = new Point(138, 188);
+            cbxZeroTerminalSNR.Name = "cbxZeroTerminalSNR";
+            cbxZeroTerminalSNR.Size = new Size(122, 19);
+            cbxZeroTerminalSNR.TabIndex = 58;
+            cbxZeroTerminalSNR.Text = "Zero Terminal SNR";
+            toolTip1.SetToolTip(cbxZeroTerminalSNR, "ノイズスケジューラーの問題を修正して\r\n全体が明るい/暗い状況でグレー寄りになるのを防ぐ");
+            cbxZeroTerminalSNR.UseVisualStyleBackColor = true;
+            // 
             // label55
             // 
             label55.AutoSize = true;
@@ -1784,9 +1795,9 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(nudMinLRRatio);
             tabPage6.Controls.Add(nudSchedulerTimescale);
             tabPage6.Controls.Add(label47);
-            tabPage6.Location = new Point(4, 26);
+            tabPage6.Location = new Point(4, 24);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(660, 322);
+            tabPage6.Size = new Size(660, 324);
             tabPage6.TabIndex = 13;
             tabPage6.Text = "スケジューラー";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1821,7 +1832,6 @@ namespace Kohya_lora_trainer
             // tabPage7
             // 
             tabPage7.Controls.Add(cbxDisableMmapLoadSafetensors);
-            tabPage7.Controls.Add(cbxCpuOffloadCheckpointing);
             tabPage7.Controls.Add(cbxCacheTextencoderToDisk);
             tabPage7.Controls.Add(label51);
             tabPage7.Controls.Add(cbxUseFP8);
@@ -1843,9 +1853,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 26);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(660, 322);
+            tabPage7.Size = new Size(660, 324);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -2538,6 +2548,7 @@ namespace Kohya_lora_trainer
             // tabPage8
             // 
             tabPage8.Controls.Add(cbxApplyClipAttnMask);
+            tabPage8.Controls.Add(cbxCpuOffloadCheckpointing);
             tabPage8.Controls.Add(cbxTrainT5XXL);
             tabPage8.Controls.Add(cbxApplyT5AttnMask);
             tabPage8.Controls.Add(label65);
@@ -2555,9 +2566,9 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(label60);
             tabPage8.Controls.Add(cbxTimestepSampling);
             tabPage8.Controls.Add(label58);
-            tabPage8.Location = new Point(4, 26);
+            tabPage8.Location = new Point(4, 24);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 322);
+            tabPage8.Size = new Size(660, 324);
             tabPage8.TabIndex = 12;
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;
@@ -2719,16 +2730,6 @@ namespace Kohya_lora_trainer
             label56.Size = new Size(205, 30);
             label56.TabIndex = 58;
             label56.Text = "#がつく項目は0を指定すると未指定にする\r\n##がつく項目は空欄で未指定にする";
-            // 
-            // cbxZeroTerminalSNR
-            // 
-            cbxZeroTerminalSNR.AutoSize = true;
-            cbxZeroTerminalSNR.Location = new Point(138, 188);
-            cbxZeroTerminalSNR.Name = "cbxZeroTerminalSNR";
-            cbxZeroTerminalSNR.Size = new Size(122, 19);
-            cbxZeroTerminalSNR.TabIndex = 58;
-            cbxZeroTerminalSNR.Text = "Zero Terminal SNR";
-            cbxZeroTerminalSNR.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
