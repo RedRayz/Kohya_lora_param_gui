@@ -56,6 +56,8 @@
             tbxPrestList.Name = "tbxPrestList";
             tbxPrestList.Size = new Size(356, 327);
             tbxPrestList.TabIndex = 0;
+            tbxPrestList.DragDrop += tbxPrestList_DragDrop;
+            tbxPrestList.DragEnter += tbxPrestList_DragEnter;
             // 
             // label1
             // 
@@ -149,10 +151,10 @@
             tabPage2.Controls.Add(cbxShuffleCaptionsBefore);
             tabPage2.Controls.Add(label2);
             tabPage2.Controls.Add(cbxGenerateLogText);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(277, 275);
+            tabPage2.Size = new Size(277, 273);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "オプション";
             tabPage2.UseVisualStyleBackColor = true;
