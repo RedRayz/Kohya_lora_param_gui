@@ -871,6 +871,9 @@ namespace Kohya_lora_trainer
 
                         if (TrainParams.Current.MaxTokensT5 != 256)
                             sb.Append(" --t5xxl_max_token_length ").Append(TrainParams.Current.MaxTokensT5.ToString("0"));
+
+                        if(TrainParams.Current.DiscreteFlowShift != 1m)
+                            sb.Append(" --training_shift ").Append(TrainParams.Current.DiscreteFlowShift.ToString());
                     }
                     break;
                 default:
