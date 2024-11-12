@@ -19,23 +19,22 @@ namespace Kohya_lora_trainer
         private bool ShutdownOnly;
         private Stopwatch? stopwatch;
         private int Duration = 60;
-        private TrainCompleteAction TrainCompletedAction;
 
-        public TrainForm(TrainCompleteAction act, bool shutdownOnly)
+        public TrainForm(bool shutdownOnly)
         {
             InitializeComponent();
             ShutdownOnly = shutdownOnly;
-            TrainCompletedAction = act;
         }
 
         private void TrainForm_Load(object sender, EventArgs e)
         {
-
+            cbxCompleteAction.SelectedIndex = (int)Form1.CompleteAction;
+            cbxCompleteAction.Visible = !ShutdownOnly;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if (TrainCompletedAction == TrainCompleteAction.Shutdown || TrainCompletedAction == TrainCompleteAction.Suspend)
+            if (Form1.CompleteAction == TrainCompleteAction.Shutdown || Form1.CompleteAction == TrainCompleteAction.Suspend)
             {
                 Duration = 60;
                 timer1.Stop();
@@ -121,7 +120,7 @@ namespace Kohya_lora_trainer
                 return;
             }
 
-            if (TrainCompletedAction == TrainCompleteAction.ShowTimetaken && stopwatch != null)
+            if (Form1.CompleteAction == TrainCompleteAction.ShowTimetaken && stopwatch != null)
             {
                 stopwatch.Stop();
                 double tos = stopwatch.Elapsed.TotalSeconds;
@@ -138,7 +137,7 @@ namespace Kohya_lora_trainer
 
 
 
-            if (TrainCompletedAction == TrainCompleteAction.Shutdown || TrainCompletedAction == TrainCompleteAction.Suspend)
+            if (Form1.CompleteAction == TrainCompleteAction.Shutdown || Form1.CompleteAction == TrainCompleteAction.Suspend)
             {
                 lblCountdown.Visible = true;
                 timer1.Interval = 1000;
@@ -183,7 +182,7 @@ namespace Kohya_lora_trainer
 
         private void UpdateCountdownText()
         {
-            switch (TrainCompletedAction)
+            switch (Form1.CompleteAction)
             {
                 case TrainCompleteAction.Shutdown:
                     lblCountdown.Text = Duration.ToString() + "秒後にシャットダウンします \n しない場合はこのウィンドウを閉じてください";
@@ -196,7 +195,7 @@ namespace Kohya_lora_trainer
 
         private void ShutdownOrSuspendPC()
         {
-            switch (TrainCompletedAction)
+            switch (Form1.CompleteAction)
             {
                 case TrainCompleteAction.Shutdown:
                     ProcessStartInfo ps = new ProcessStartInfo()
@@ -219,7 +218,7 @@ namespace Kohya_lora_trainer
         {
             lblProcessingCaptions.Visible = false;
 
-            if (ShutdownOnly && (TrainCompletedAction == TrainCompleteAction.Shutdown || TrainCompletedAction == TrainCompleteAction.Suspend))
+            if (ShutdownOnly && (Form1.CompleteAction == TrainCompleteAction.Shutdown || Form1.CompleteAction == TrainCompleteAction.Suspend))
             {
                 btnCopyCmd.Enabled = false;
                 btnStop.Enabled = false;
@@ -260,7 +259,7 @@ namespace Kohya_lora_trainer
 
             StringBuilder sbCmd = new StringBuilder();
 
-            if (TrainCompletedAction != TrainCompleteAction.None || BatchProcess.IsRunning)
+            if (Form1.CompleteAction != TrainCompleteAction.None || BatchProcess.IsRunning)
             {
                 sbCmd.Append(@"/c ");
             }
@@ -284,7 +283,7 @@ namespace Kohya_lora_trainer
             lblCountdown.Text = string.Empty;
             sbCmd.Append(MyUtils.GenerateCommands());
 
-            if (TrainCompletedAction == TrainCompleteAction.ShowTimetaken || (BatchProcess.IsRunning && BatchProcess.LogResultText))
+            if (Form1.CompleteAction == TrainCompleteAction.ShowTimetaken || (BatchProcess.IsRunning && BatchProcess.LogResultText))
             {
                 stopwatch = Stopwatch.StartNew();
             }
@@ -323,6 +322,11 @@ namespace Kohya_lora_trainer
             ps.Arguments = sb.ToString();
 
             Process.Start(ps);
+        }
+
+        private void cbxCompleteAction_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Form1.CompleteAction = (TrainCompleteAction)Enum.ToObject(typeof(TrainCompleteAction), cbxCompleteAction.SelectedIndex);
         }
     }
 }
