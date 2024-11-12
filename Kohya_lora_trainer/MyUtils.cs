@@ -853,6 +853,8 @@ namespace Kohya_lora_trainer
                             sb.Append(" --guidance_scale ").Append(TrainParams.Current.GuidanceScale.ToString());
                         if (TrainParams.Current.TrainT5XXL)
                             NetworkArgs.Add("train_t5xxl=True");
+                        if (TrainParams.Current.BlocksToSwap > 0m)
+                            sb.Append(" --blocks_to_swap ").Append(TrainParams.Current.BlocksToSwap.ToString("0"));
                     }
                     break;
                 case ModelArchitecture.SD3:
@@ -871,6 +873,12 @@ namespace Kohya_lora_trainer
 
                         if (TrainParams.Current.MaxTokensT5 != 256)
                             sb.Append(" --t5xxl_max_token_length ").Append(TrainParams.Current.MaxTokensT5.ToString("0"));
+
+                        if(TrainParams.Current.DiscreteFlowShift != 1m)
+                            sb.Append(" --training_shift ").Append(TrainParams.Current.DiscreteFlowShift.ToString());
+
+                        if (TrainParams.Current.BlocksToSwap > 0m)
+                            sb.Append(" --blocks_to_swap ").Append(TrainParams.Current.BlocksToSwap.ToString("0"));
                     }
                     break;
                 default:

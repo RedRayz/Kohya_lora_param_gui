@@ -121,6 +121,7 @@ namespace Kohya_lora_trainer
             label14 = new Label();
             label15 = new Label();
             tbxCommand = new TextBox();
+            cbxOverwrite = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDim).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudResolution).BeginInit();
@@ -204,7 +205,7 @@ namespace Kohya_lora_trainer
             tbxLR.Size = new Size(73, 23);
             tbxLR.TabIndex = 4;
             tbxLR.Text = "1e-4";
-            toolTip1.SetToolTip(tbxLR, "AdamW/Lionは0.0001、AdaFactorは0.001、DAdaptation系は1推奨");
+            toolTip1.SetToolTip(tbxLR, "AdamW/Lionは0.0001、AdaFactorは0.001、DAdaptation系は1推奨\r\nLRが高いと収束が速くなる代わりに品質が低下する傾向がある");
             tbxLR.TextChanged += tbxLR_TextChanged;
             // 
             // lblLR
@@ -308,7 +309,7 @@ namespace Kohya_lora_trainer
             nudNetworkAlpha.Name = "nudNetworkAlpha";
             nudNetworkAlpha.Size = new Size(80, 23);
             nudNetworkAlpha.TabIndex = 51;
-            toolTip1.SetToolTip(nudNetworkAlpha, "dimの半分以下の値が望ましい\r\ndimに近い値では生成時に崩壊しやすい");
+            toolTip1.SetToolTip(nudNetworkAlpha, "dimの半分以下の値が望ましい\r\n高い値は生成時に崩壊かクローン人間発生の原因\r\n画風は低いほう(1/8)がいいかも");
             nudNetworkAlpha.Value = new decimal(new int[] { 16, 0, 0, 0 });
             nudNetworkAlpha.ValueChanged += nudNetworkAlpha_ValueChanged;
             // 
@@ -320,7 +321,7 @@ namespace Kohya_lora_trainer
             nudNetworkDim.Name = "nudNetworkDim";
             nudNetworkDim.Size = new Size(72, 23);
             nudNetworkDim.TabIndex = 52;
-            toolTip1.SetToolTip(nudNetworkDim, "上げると学習能力が上昇するが、速度低下と生成時の不安定化を招く\r\nファイルサイズの目安(SDXL,MiB):dim*6.817\r\nconvをオンにするとさらに増加");
+            toolTip1.SetToolTip(nudNetworkDim, "上げると学習能力が若干上昇するが、速度低下とメモリ使用量の増加の原因\r\nなお、これを大きく上げてもモデルの設計上の限界で品質は向上しない");
             nudNetworkDim.Value = new decimal(new int[] { 64, 0, 0, 0 });
             nudNetworkDim.ValueChanged += nudNetworkDim_ValueChanged;
             // 
@@ -401,7 +402,7 @@ namespace Kohya_lora_trainer
             cbxModuleType.Name = "cbxModuleType";
             cbxModuleType.Size = new Size(80, 23);
             cbxModuleType.TabIndex = 6;
-            toolTip1.SetToolTip(cbxModuleType, "LoRA-FAはメモリ消費が減少するが、LoRAの仕様上、減少量は雀の涙\r\nFLUX.1ではLoRAのみ使用可能(LoRA-FAにしてもLoRAになる)");
+            toolTip1.SetToolTip(cbxModuleType, "LoRA-FAはメモリ消費が減少するが、LoRAの仕様上、減少量は雀の涙\r\nFLUX.1/SD3ではLoRAのみ使用可能");
             cbxModuleType.SelectedIndexChanged += cbxModuleType_SelectedIndexChanged;
             // 
             // nudSaveEpoch
@@ -451,7 +452,7 @@ namespace Kohya_lora_trainer
             // 
             // btnSavePreset
             // 
-            btnSavePreset.Location = new Point(525, 470);
+            btnSavePreset.Location = new Point(472, 476);
             btnSavePreset.Name = "btnSavePreset";
             btnSavePreset.Size = new Size(100, 27);
             btnSavePreset.TabIndex = 34;
@@ -462,7 +463,7 @@ namespace Kohya_lora_trainer
             // btnLoadPreset
             // 
             btnLoadPreset.AllowDrop = true;
-            btnLoadPreset.Location = new Point(422, 470);
+            btnLoadPreset.Location = new Point(369, 476);
             btnLoadPreset.Name = "btnLoadPreset";
             btnLoadPreset.Size = new Size(100, 27);
             btnLoadPreset.TabIndex = 35;
@@ -1081,11 +1082,23 @@ namespace Kohya_lora_trainer
             tbxCommand.TabIndex = 0;
             tbxCommand.TextChanged += tbxCommand_TextChanged;
             // 
+            // cbxOverwrite
+            // 
+            cbxOverwrite.AutoSize = true;
+            cbxOverwrite.Location = new Point(480, 455);
+            cbxOverwrite.Name = "cbxOverwrite";
+            cbxOverwrite.Size = new Size(83, 19);
+            cbxOverwrite.TabIndex = 89;
+            cbxOverwrite.Text = "即時上書き";
+            toolTip1.SetToolTip(cbxOverwrite, "最後に開いたプリセットを選択画面の表示や確認無しに上書きする");
+            cbxOverwrite.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(804, 521);
+            Controls.Add(cbxOverwrite);
             Controls.Add(tabControl1);
             Controls.Add(btnGenerateCommands);
             Controls.Add(btnInstaller);
@@ -1230,6 +1243,7 @@ namespace Kohya_lora_trainer
         private Label lblPlaceholderNetworkArgs;
         private Label label23;
         private ComboBox cbxSaveEveryEpoch;
+        private CheckBox cbxOverwrite;
     }
 }
 

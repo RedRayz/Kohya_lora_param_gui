@@ -408,6 +408,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.MaxTokensT5 = nudMaxTokensT5.Value;
             TrainParams.Current.VParameterization = cbxVParameterization.Checked;
             TrainParams.Current.ZeroTerminalSNR = cbxZeroTerminalSNR.Checked;
+            TrainParams.Current.BlocksToSwap = nudBlocksToSwap.Value;
 
             Close();
         }
@@ -573,6 +574,7 @@ namespace Kohya_lora_trainer
             nudMaxTokensT5.Value = TrainParams.Current.MaxTokensT5;
             cbxVParameterization.Checked = TrainParams.Current.VParameterization;
             cbxZeroTerminalSNR.Checked = TrainParams.Current.ZeroTerminalSNR;
+            nudBlocksToSwap.Value = TrainParams.Current.BlocksToSwap;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)

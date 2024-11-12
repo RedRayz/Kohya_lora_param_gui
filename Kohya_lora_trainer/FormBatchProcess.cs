@@ -69,5 +69,20 @@ namespace Kohya_lora_trainer
             cbxShuffleCaptionsBefore.Checked = BatchProcess.ShuffleCaptionsBeforeTraining;
             nudKeepTokens.Value = BatchProcess.KeepTokensCount;
         }
+
+        private void tbxPrestList_DragEnter(object sender, DragEventArgs e)
+        {
+            MyUtils.CommonFileDragEnterEvent(e, ".xmlora");
+        }
+
+        private void tbxPrestList_DragDrop(object sender, DragEventArgs e)
+        {
+            string dropped = MyUtils.GetDroppedFileName(e, ".xmlora");
+            if (!string.IsNullOrEmpty(dropped))
+            {
+                tbxPrestList.Text += dropped;
+                tbxPrestList.Text += "\r\n";
+            }
+        }
     }
 }

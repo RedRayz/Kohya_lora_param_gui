@@ -26,7 +26,8 @@ namespace Kohya_lora_trainer
         private bool HaveNonAscillInOutputName, HaveNonAscillInImageFolder, HaveNonAscillInRegFolder, HaveNonAscillInModelPath, HaveNonAscillInOutputPath;
         private int StepsPerEpoch;
         private decimal TotalSteps, TotalStepsBatch1;
-        public static string? ScriptPath = string.Empty;
+        internal static string? ScriptPath = string.Empty;
+        private string? LastOpenPresetPath = string.Empty;
 
         public Form1()
         {
@@ -378,32 +379,55 @@ namespace Kohya_lora_trainer
                 return;
             }
 
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.FileName = "New Preset.xmlora";
-            sfd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
-            sfd.Title = "Save a preset";
-            sfd.RestoreDirectory = true;
-            if (Directory.Exists(MyUtils.GetDefaultDir("SavePresetDir")))
-            {
-                sfd.InitialDirectory = MyUtils.GetDefaultDir("SavePresetDir");
-            }
-
-
-            if (sfd.ShowDialog() == DialogResult.OK)
+            if (cbxOverwrite.Checked && File.Exists(LastOpenPresetPath))
             {
                 try
                 {
                     XmlSerializer se = new XmlSerializer(typeof(TrainParams));
-                    using (StreamWriter sw = new StreamWriter(sfd.FileName, false, new System.Text.UTF8Encoding(false)))
+                    using (StreamWriter sw = new StreamWriter(LastOpenPresetPath, false, new System.Text.UTF8Encoding(false)))
                     {
                         se.Serialize(sw, TrainParams.Current);
                     }
+                    MessageBox.Show("保存しました。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch
                 {
                     MessageBox.Show("プリセットを保存できません。他のアプリが開いているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+            else
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.FileName = "New Preset.xmlora";
+                sfd.Filter = "LoRA Preset(*.xmlora)|*.xmlora";
+                sfd.Title = "Save a preset";
+                sfd.RestoreDirectory = true;
+                if (File.Exists(LastOpenPresetPath))
+                {
+                    sfd.InitialDirectory = Path.GetDirectoryName(LastOpenPresetPath);
+                }
+                else if (Directory.Exists(MyUtils.GetDefaultDir("SavePresetDir")))
+                {
+                    sfd.InitialDirectory = MyUtils.GetDefaultDir("SavePresetDir");
+                }
 
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        XmlSerializer se = new XmlSerializer(typeof(TrainParams));
+                        using (StreamWriter sw = new StreamWriter(sfd.FileName, false, new System.Text.UTF8Encoding(false)))
+                        {
+                            se.Serialize(sw, TrainParams.Current);
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("プリセットを保存できません。他のアプリが開いているか、権限がありません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
             }
         }
 
@@ -795,6 +819,13 @@ namespace Kohya_lora_trainer
 
         private void LoadPreset(string path, bool ShowMsg)
         {
+            if (!File.Exists(path))
+            {
+                if (ShowMsg)
+                    MessageBox.Show("プリセットファイルが見つかりません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             try
             {
                 XmlSerializer se = new XmlSerializer(typeof(TrainParams));
@@ -810,6 +841,8 @@ namespace Kohya_lora_trainer
                 if (ShowMsg)
                     MessageBox.Show("プリセットを読み込めません。破損しているか、権限がありません。\r\nあるいは、より新しいバージョンのGUIで作成された可能性があります。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            LastOpenPresetPath = path;
 
             TrainParams.Current.CheckBrokenBlockDim();
             TrainParams.Current.ResetObsoleteOptions();
@@ -1290,6 +1323,11 @@ namespace Kohya_lora_trainer
             if ((TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim) && ((TrainParams.Current.StableDiffusionType != ModelArchitecture.Legacy && TrainParams.Current.StableDiffusionType != ModelArchitecture.XL) || TrainParams.Current.ModuleType == NetworkModule.LyCORIS))
             {
                 return MessageBox.Show("SD1,SDXL以外およびLyCORISでは層別学習は非対応ですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+
+            if ((TrainParams.Current.NoiseOffset > 0 || TrainParams.Current.MultiresNoiseIterations > 0) && TrainParams.Current.ZeroTerminalSNR)
+            {
+                return MessageBox.Show("ノイズオフセットまたはMultires noiseとZero Terminal SNRの併用は望ましくありません。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
             return DialogResult.Yes;
         }

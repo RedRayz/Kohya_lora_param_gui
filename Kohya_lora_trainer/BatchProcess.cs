@@ -46,7 +46,7 @@ namespace Kohya_lora_trainer
 
         public static void ShuffleCaptions()
         {
-            if (!ShuffleCaptionsBeforeTraining || TrainParams.Current == null || !IsRunning || !Directory.Exists(TrainParams.Current.TrainImagePath))
+            if (!ShuffleCaptionsBeforeTraining || TrainParams.Current == null || !IsRunning || TrainParams.Current.ShuffleCaptions || !Directory.Exists(TrainParams.Current.TrainImagePath))
                 return;
             try
             {
