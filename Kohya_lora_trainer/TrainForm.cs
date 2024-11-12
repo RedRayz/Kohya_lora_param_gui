@@ -30,6 +30,7 @@ namespace Kohya_lora_trainer
         {
             cbxCompleteAction.SelectedIndex = (int)Form1.CompleteAction;
             cbxCompleteAction.Visible = !ShutdownOnly;
+            lblCompleteAction.Visible = !ShutdownOnly;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -120,19 +121,27 @@ namespace Kohya_lora_trainer
                 return;
             }
 
-            if (Form1.CompleteAction == TrainCompleteAction.ShowTimetaken && stopwatch != null)
+            if (Form1.CompleteAction == TrainCompleteAction.ShowTimetaken)
             {
-                stopwatch.Stop();
-                double tos = stopwatch.Elapsed.TotalSeconds;
+                if(stopwatch != null)
+                {
+                    stopwatch.Stop();
+                    double tos = stopwatch.Elapsed.TotalSeconds;
 
-                double sec = tos % 60;
-                double min = tos / 60;
-                double hour = min / 60;
-                min = Math.Floor(min);
-                hour = Math.Floor(hour);
-                min -= hour * 60;
+                    double sec = tos % 60;
+                    double min = tos / 60;
+                    double hour = min / 60;
+                    min = Math.Floor(min);
+                    hour = Math.Floor(hour);
+                    min -= hour * 60;
 
-                MessageBox.Show("Time taken: " + $"{hour}h{min}m" + sec.ToString("0.000s"), "Result", MessageBoxButtons.OK);
+                    MessageBox.Show("Time taken: " + $"{hour}h{min}m" + sec.ToString("0.000s"), "Result", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show("学習終了の動作が最初から経過時間表示でなかったため経過時間は未計測です。", "お知らせ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
             }
 
 

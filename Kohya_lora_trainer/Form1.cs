@@ -556,7 +556,7 @@ namespace Kohya_lora_trainer
                         sw.WriteLine(BatchProcess.LogText);
                     }
                 }
-                cbxCompleteAction.SelectedIndex = (int)CompleteAction;
+                
                 if ((CompleteAction == TrainCompleteAction.Shutdown || CompleteAction == TrainCompleteAction.Suspend) && !BatchProcess.IsCancel)
                 {
                     Form train0 = new TrainForm(true);
@@ -590,9 +590,9 @@ namespace Kohya_lora_trainer
                 BatchProcess.FailCount = 0;
                 BatchProcess.IsCancel = false;
                 BatchProcess.LogText = string.Empty;
+                cbxCompleteAction.SelectedIndex = (int)CompleteAction;
                 return;
             }
-
             if (!IsTrainingAvailable(true))
             {
                 DialogResult res = MessageBox.Show("設定が正しくない可能性がありますが、\n続けてもよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -603,6 +603,7 @@ namespace Kohya_lora_trainer
             Form train = new TrainForm(false);
             train.ShowDialog();
             train.Dispose();
+            cbxCompleteAction.SelectedIndex = (int)CompleteAction;
         }
 
         private bool HasScriptFile(string str, bool showMsg)

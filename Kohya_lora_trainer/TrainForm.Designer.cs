@@ -37,7 +37,7 @@
             lblProcessingCaptions = new Label();
             btnTensorboard = new Button();
             cbxCompleteAction = new ComboBox();
-            label1 = new Label();
+            lblCompleteAction = new Label();
             SuspendLayout();
             // 
             // btnStop
@@ -66,7 +66,7 @@
             // btnCopyCmd
             // 
             btnCopyCmd.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCopyCmd.Location = new Point(215, 178);
+            btnCopyCmd.Location = new Point(211, 177);
             btnCopyCmd.Name = "btnCopyCmd";
             btnCopyCmd.Size = new Size(93, 24);
             btnCopyCmd.TabIndex = 4;
@@ -102,7 +102,7 @@
             // 
             // btnTensorboard
             // 
-            btnTensorboard.Location = new Point(123, 179);
+            btnTensorboard.Location = new Point(119, 177);
             btnTensorboard.Name = "btnTensorboard";
             btnTensorboard.Size = new Size(86, 24);
             btnTensorboard.TabIndex = 8;
@@ -118,26 +118,26 @@
             cbxCompleteAction.Items.AddRange(new object[] { "なにもしない", "経過時間表示", "シャットダウン", "スリープ" });
             cbxCompleteAction.Location = new Point(12, 179);
             cbxCompleteAction.Name = "cbxCompleteAction";
-            cbxCompleteAction.Size = new Size(98, 23);
+            cbxCompleteAction.Size = new Size(101, 23);
             cbxCompleteAction.TabIndex = 9;
             cbxCompleteAction.SelectedIndexChanged += cbxCompleteAction_SelectedIndexChanged;
             // 
-            // label1
+            // lblCompleteAction
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 161);
-            label1.Name = "label1";
-            label1.Size = new Size(101, 15);
-            label1.TabIndex = 10;
-            label1.Text = "学習終了時の動作";
+            lblCompleteAction.AutoSize = true;
+            lblCompleteAction.Location = new Point(12, 161);
+            lblCompleteAction.Name = "lblCompleteAction";
+            lblCompleteAction.Size = new Size(101, 15);
+            lblCompleteAction.TabIndex = 10;
+            lblCompleteAction.Text = "学習終了時の動作";
             // 
             // TrainForm
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(317, 214);
+            ClientSize = new Size(321, 214);
             ControlBox = false;
-            Controls.Add(label1);
+            Controls.Add(lblCompleteAction);
             Controls.Add(cbxCompleteAction);
             Controls.Add(btnTensorboard);
             Controls.Add(lblProcessingCaptions);
@@ -169,6 +169,6 @@
         private Label lblProcessingCaptions;
         private Button btnTensorboard;
         private ComboBox cbxCompleteAction;
-        private Label label1;
+        private Label lblCompleteAction;
     }
 }
