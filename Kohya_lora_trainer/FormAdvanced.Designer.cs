@@ -258,6 +258,8 @@ namespace Kohya_lora_trainer
             cbxTimestepSampling = new ComboBox();
             label58 = new Label();
             label56 = new Label();
+            nudBlocksToSwap = new NumericUpDown();
+            label78 = new Label();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -311,6 +313,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudGuidanceScale).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudDiscreteFlowShift).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudSigmoidScale).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudBlocksToSwap).BeginInit();
             SuspendLayout();
             // 
             // tbxUnetLR
@@ -1795,9 +1798,9 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(nudMinLRRatio);
             tabPage6.Controls.Add(nudSchedulerTimescale);
             tabPage6.Controls.Add(label47);
-            tabPage6.Location = new Point(4, 26);
+            tabPage6.Location = new Point(4, 24);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(660, 322);
+            tabPage6.Size = new Size(660, 324);
             tabPage6.TabIndex = 13;
             tabPage6.Text = "スケジューラー";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1853,9 +1856,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 26);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(660, 322);
+            tabPage7.Size = new Size(660, 324);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -2547,6 +2550,8 @@ namespace Kohya_lora_trainer
             // 
             // tabPage8
             // 
+            tabPage8.Controls.Add(label78);
+            tabPage8.Controls.Add(nudBlocksToSwap);
             tabPage8.Controls.Add(cbxApplyClipAttnMask);
             tabPage8.Controls.Add(cbxCpuOffloadCheckpointing);
             tabPage8.Controls.Add(cbxTrainT5XXL);
@@ -2632,16 +2637,16 @@ namespace Kohya_lora_trainer
             // nudDiscreteFlowShift
             // 
             nudDiscreteFlowShift.DecimalPlaces = 4;
-            nudDiscreteFlowShift.Location = new Point(400, 134);
+            nudDiscreteFlowShift.Location = new Point(397, 130);
             nudDiscreteFlowShift.Name = "nudDiscreteFlowShift";
-            nudDiscreteFlowShift.Size = new Size(120, 23);
+            nudDiscreteFlowShift.Size = new Size(90, 23);
             nudDiscreteFlowShift.TabIndex = 3;
             nudDiscreteFlowShift.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label61
             // 
             label61.AutoSize = true;
-            label61.Location = new Point(309, 136);
+            label61.Location = new Point(309, 133);
             label61.Name = "label61";
             label61.Size = new Size(82, 15);
             label61.TabIndex = 2;
@@ -2731,6 +2736,23 @@ namespace Kohya_lora_trainer
             label56.TabIndex = 58;
             label56.Text = "#がつく項目は0を指定すると未指定にする\r\n##がつく項目は空欄で未指定にする";
             // 
+            // nudBlocksToSwap
+            // 
+            nudBlocksToSwap.Location = new Point(397, 162);
+            nudBlocksToSwap.Name = "nudBlocksToSwap";
+            nudBlocksToSwap.Size = new Size(90, 23);
+            nudBlocksToSwap.TabIndex = 44;
+            toolTip1.SetToolTip(nudBlocksToSwap, "不要なブロックをCPUに移動することで\r\nVRAM使用量を減らす");
+            // 
+            // label78
+            // 
+            label78.AutoSize = true;
+            label78.Location = new Point(276, 165);
+            label78.Name = "label78";
+            label78.Size = new Size(115, 15);
+            label78.TabIndex = 45;
+            label78.Text = "スワップするブロック数#";
+            // 
             // FormAdvanced
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -2812,6 +2834,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudGuidanceScale).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudDiscreteFlowShift).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudSigmoidScale).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudBlocksToSwap).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -3047,5 +3070,7 @@ namespace Kohya_lora_trainer
         private NumericUpDown nudTEBatchSize;
         private CheckBox cbxVParameterization;
         private CheckBox cbxZeroTerminalSNR;
+        private Label label78;
+        private NumericUpDown nudBlocksToSwap;
     }
 }
