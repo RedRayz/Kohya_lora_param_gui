@@ -36,13 +36,15 @@
             timer1 = new System.Windows.Forms.Timer(components);
             lblProcessingCaptions = new Label();
             btnTensorboard = new Button();
+            cbxCompleteAction = new ComboBox();
+            lblCompleteAction = new Label();
             SuspendLayout();
             // 
             // btnStop
             // 
             btnStop.BackColor = Color.MistyRose;
             btnStop.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnStop.Location = new Point(61, 12);
+            btnStop.Location = new Point(76, 12);
             btnStop.Name = "btnStop";
             btnStop.Size = new Size(170, 36);
             btnStop.TabIndex = 1;
@@ -53,7 +55,7 @@
             // btnClose
             // 
             btnClose.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
-            btnClose.Location = new Point(61, 54);
+            btnClose.Location = new Point(76, 54);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(170, 36);
             btnClose.TabIndex = 2;
@@ -64,7 +66,7 @@
             // btnCopyCmd
             // 
             btnCopyCmd.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCopyCmd.Location = new Point(175, 166);
+            btnCopyCmd.Location = new Point(211, 177);
             btnCopyCmd.Name = "btnCopyCmd";
             btnCopyCmd.Size = new Size(93, 24);
             btnCopyCmd.TabIndex = 4;
@@ -77,7 +79,7 @@
             lblCountdown.AutoSize = true;
             lblCountdown.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             lblCountdown.ForeColor = Color.OrangeRed;
-            lblCountdown.Location = new Point(24, 114);
+            lblCountdown.Location = new Point(41, 114);
             lblCountdown.Name = "lblCountdown";
             lblCountdown.Size = new Size(244, 38);
             lblCountdown.TabIndex = 6;
@@ -92,7 +94,7 @@
             // 
             lblProcessingCaptions.AutoSize = true;
             lblProcessingCaptions.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lblProcessingCaptions.Location = new Point(61, 93);
+            lblProcessingCaptions.Location = new Point(76, 93);
             lblProcessingCaptions.Name = "lblProcessingCaptions";
             lblProcessingCaptions.Size = new Size(167, 21);
             lblProcessingCaptions.TabIndex = 7;
@@ -100,7 +102,7 @@
             // 
             // btnTensorboard
             // 
-            btnTensorboard.Location = new Point(83, 166);
+            btnTensorboard.Location = new Point(119, 177);
             btnTensorboard.Name = "btnTensorboard";
             btnTensorboard.Size = new Size(86, 24);
             btnTensorboard.TabIndex = 8;
@@ -109,12 +111,34 @@
             btnTensorboard.Visible = false;
             btnTensorboard.Click += btnTensorboard_Click;
             // 
+            // cbxCompleteAction
+            // 
+            cbxCompleteAction.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxCompleteAction.FormattingEnabled = true;
+            cbxCompleteAction.Items.AddRange(new object[] { "なにもしない", "経過時間表示", "シャットダウン", "スリープ" });
+            cbxCompleteAction.Location = new Point(12, 179);
+            cbxCompleteAction.Name = "cbxCompleteAction";
+            cbxCompleteAction.Size = new Size(101, 23);
+            cbxCompleteAction.TabIndex = 9;
+            cbxCompleteAction.SelectedIndexChanged += cbxCompleteAction_SelectedIndexChanged;
+            // 
+            // lblCompleteAction
+            // 
+            lblCompleteAction.AutoSize = true;
+            lblCompleteAction.Location = new Point(12, 161);
+            lblCompleteAction.Name = "lblCompleteAction";
+            lblCompleteAction.Size = new Size(101, 15);
+            lblCompleteAction.TabIndex = 10;
+            lblCompleteAction.Text = "学習終了時の動作";
+            // 
             // TrainForm
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(280, 202);
+            ClientSize = new Size(321, 214);
             ControlBox = false;
+            Controls.Add(lblCompleteAction);
+            Controls.Add(cbxCompleteAction);
             Controls.Add(btnTensorboard);
             Controls.Add(lblProcessingCaptions);
             Controls.Add(lblCountdown);
@@ -144,5 +168,7 @@
         private System.Windows.Forms.Timer timer1;
         private Label lblProcessingCaptions;
         private Button btnTensorboard;
+        private ComboBox cbxCompleteAction;
+        private Label lblCompleteAction;
     }
 }

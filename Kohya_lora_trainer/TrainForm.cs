@@ -19,23 +19,23 @@ namespace Kohya_lora_trainer
         private bool ShutdownOnly;
         private Stopwatch? stopwatch;
         private int Duration = 60;
-        private TrainCompleteAction TrainCompletedAction;
 
-        public TrainForm(TrainCompleteAction act, bool shutdownOnly)
+        public TrainForm(bool shutdownOnly)
         {
             InitializeComponent();
             ShutdownOnly = shutdownOnly;
-            TrainCompletedAction = act;
         }
 
         private void TrainForm_Load(object sender, EventArgs e)
         {
-
+            cbxCompleteAction.SelectedIndex = (int)Form1.CompleteAction;
+            cbxCompleteAction.Visible = !ShutdownOnly;
+            lblCompleteAction.Visible = !ShutdownOnly;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if (TrainCompletedAction == TrainCompleteAction.Shutdown || TrainCompletedAction == TrainCompleteAction.Suspend)
+            if (Form1.CompleteAction == TrainCompleteAction.Shutdown || Form1.CompleteAction == TrainCompleteAction.Suspend)
             {
                 Duration = 60;
                 timer1.Stop();
@@ -121,24 +121,32 @@ namespace Kohya_lora_trainer
                 return;
             }
 
-            if (TrainCompletedAction == TrainCompleteAction.ShowTimetaken && stopwatch != null)
+            if (Form1.CompleteAction == TrainCompleteAction.ShowTimetaken)
             {
-                stopwatch.Stop();
-                double tos = stopwatch.Elapsed.TotalSeconds;
+                if(stopwatch != null)
+                {
+                    stopwatch.Stop();
+                    double tos = stopwatch.Elapsed.TotalSeconds;
 
-                double sec = tos % 60;
-                double min = tos / 60;
-                double hour = min / 60;
-                min = Math.Floor(min);
-                hour = Math.Floor(hour);
-                min -= hour * 60;
+                    double sec = tos % 60;
+                    double min = tos / 60;
+                    double hour = min / 60;
+                    min = Math.Floor(min);
+                    hour = Math.Floor(hour);
+                    min -= hour * 60;
 
-                MessageBox.Show("Time taken: " + $"{hour}h{min}m" + sec.ToString("0.000s"), "Result", MessageBoxButtons.OK);
+                    MessageBox.Show("Time taken: " + $"{hour}h{min}m" + sec.ToString("0.000s"), "Result", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show("学習終了の動作が最初から経過時間表示でなかったため経過時間は未計測です。", "お知らせ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
             }
 
 
 
-            if (TrainCompletedAction == TrainCompleteAction.Shutdown || TrainCompletedAction == TrainCompleteAction.Suspend)
+            if (Form1.CompleteAction == TrainCompleteAction.Shutdown || Form1.CompleteAction == TrainCompleteAction.Suspend)
             {
                 lblCountdown.Visible = true;
                 timer1.Interval = 1000;
@@ -183,7 +191,7 @@ namespace Kohya_lora_trainer
 
         private void UpdateCountdownText()
         {
-            switch (TrainCompletedAction)
+            switch (Form1.CompleteAction)
             {
                 case TrainCompleteAction.Shutdown:
                     lblCountdown.Text = Duration.ToString() + "秒後にシャットダウンします \n しない場合はこのウィンドウを閉じてください";
@@ -196,7 +204,7 @@ namespace Kohya_lora_trainer
 
         private void ShutdownOrSuspendPC()
         {
-            switch (TrainCompletedAction)
+            switch (Form1.CompleteAction)
             {
                 case TrainCompleteAction.Shutdown:
                     ProcessStartInfo ps = new ProcessStartInfo()
@@ -219,7 +227,7 @@ namespace Kohya_lora_trainer
         {
             lblProcessingCaptions.Visible = false;
 
-            if (ShutdownOnly && (TrainCompletedAction == TrainCompleteAction.Shutdown || TrainCompletedAction == TrainCompleteAction.Suspend))
+            if (ShutdownOnly && (Form1.CompleteAction == TrainCompleteAction.Shutdown || Form1.CompleteAction == TrainCompleteAction.Suspend))
             {
                 btnCopyCmd.Enabled = false;
                 btnStop.Enabled = false;
@@ -260,7 +268,7 @@ namespace Kohya_lora_trainer
 
             StringBuilder sbCmd = new StringBuilder();
 
-            if (TrainCompletedAction != TrainCompleteAction.None || BatchProcess.IsRunning)
+            if (Form1.CompleteAction != TrainCompleteAction.None || BatchProcess.IsRunning)
             {
                 sbCmd.Append(@"/c ");
             }
@@ -284,7 +292,7 @@ namespace Kohya_lora_trainer
             lblCountdown.Text = string.Empty;
             sbCmd.Append(MyUtils.GenerateCommands());
 
-            if (TrainCompletedAction == TrainCompleteAction.ShowTimetaken || (BatchProcess.IsRunning && BatchProcess.LogResultText))
+            if (Form1.CompleteAction == TrainCompleteAction.ShowTimetaken || (BatchProcess.IsRunning && BatchProcess.LogResultText))
             {
                 stopwatch = Stopwatch.StartNew();
             }
@@ -323,6 +331,11 @@ namespace Kohya_lora_trainer
             ps.Arguments = sb.ToString();
 
             Process.Start(ps);
+        }
+
+        private void cbxCompleteAction_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Form1.CompleteAction = (TrainCompleteAction)Enum.ToObject(typeof(TrainCompleteAction), cbxCompleteAction.SelectedIndex);
         }
     }
 }

@@ -29,6 +29,8 @@ namespace Kohya_lora_trainer
         internal static string? ScriptPath = string.Empty;
         private string? LastOpenPresetPath = string.Empty;
 
+        internal static TrainCompleteAction CompleteAction = TrainCompleteAction.None;
+
         public Form1()
         {
             InitializeComponent();
@@ -51,6 +53,7 @@ namespace Kohya_lora_trainer
             btnCustomScriptPath.Visible = false;
             lblScriptPathDesc.Visible = false;
             btnInstaller.Visible = false;
+            cbxCompleteAction.SelectedIndex = 0;
             MyUtils.InitRegistry();
             //一応LoRAEasyTrainingのフォルダ名にも対応させる
             if (Directory.Exists(@"..\sd-scripts\"))
@@ -446,19 +449,7 @@ namespace Kohya_lora_trainer
                 var res = MessageBox.Show("出力先に同名のファイルが存在します。学習完了時に上書きされますがよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == DialogResult.No) return;
             }
-            TrainCompleteAction act = TrainCompleteAction.None;
-            if (rbtShutdown.Checked)
-            {
-                act = TrainCompleteAction.Shutdown;
-            }
-            else if (rbtSleep.Checked)
-            {
-                act = TrainCompleteAction.Suspend;
-            }
-            else if (rbtBenckmark.Checked)
-            {
-                act = TrainCompleteAction.ShowTimetaken;
-            }
+
 
 
             if (BatchProcess.BatchStack.Count > 0)
@@ -551,7 +542,7 @@ namespace Kohya_lora_trainer
                         continue;
                     }
                     Debug.WriteLine("Start training: " + pth);
-                    Form train0 = new TrainForm(act, false);
+                    Form train0 = new TrainForm(false);
                     train0.ShowDialog();
                     train0.Dispose();
                     BatchProcess.CompletedCount++;
@@ -565,10 +556,10 @@ namespace Kohya_lora_trainer
                         sw.WriteLine(BatchProcess.LogText);
                     }
                 }
-
-                if ((act == TrainCompleteAction.Shutdown || act == TrainCompleteAction.Suspend) && !BatchProcess.IsCancel)
+                
+                if ((CompleteAction == TrainCompleteAction.Shutdown || CompleteAction == TrainCompleteAction.Suspend) && !BatchProcess.IsCancel)
                 {
-                    Form train0 = new TrainForm(act, true);
+                    Form train0 = new TrainForm(true);
                     train0.ShowDialog();
                     train0.Dispose();
                 }
@@ -599,9 +590,9 @@ namespace Kohya_lora_trainer
                 BatchProcess.FailCount = 0;
                 BatchProcess.IsCancel = false;
                 BatchProcess.LogText = string.Empty;
+                cbxCompleteAction.SelectedIndex = (int)CompleteAction;
                 return;
             }
-
             if (!IsTrainingAvailable(true))
             {
                 DialogResult res = MessageBox.Show("設定が正しくない可能性がありますが、\n続けてもよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -609,9 +600,10 @@ namespace Kohya_lora_trainer
                     return;
             }
 
-            Form train = new TrainForm(act, false);
+            Form train = new TrainForm(false);
             train.ShowDialog();
             train.Dispose();
+            cbxCompleteAction.SelectedIndex = (int)CompleteAction;
         }
 
         private bool HasScriptFile(string str, bool showMsg)
@@ -1495,6 +1487,11 @@ namespace Kohya_lora_trainer
         private void cbxSaveEveryEpoch_SelectedIndexChanged(object sender, EventArgs e)
         {
             TrainParams.Current.SaveWeightEveryEpoch = cbxSaveEveryEpoch.SelectedIndex == 0;
+        }
+
+        private void cbxCompleteAction_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CompleteAction = (TrainCompleteAction)Enum.ToObject(typeof(TrainCompleteAction), cbxCompleteAction.SelectedIndex);
         }
     }
 }

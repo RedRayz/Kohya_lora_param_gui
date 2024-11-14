@@ -53,12 +53,13 @@ namespace Kohya_lora_trainer
             ofd.RestoreDirectory = true;
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                if (!string.IsNullOrEmpty(tbxPrestList.Text))
+                if (!string.IsNullOrEmpty(tbxPrestList.Text) && !tbxPrestList.Text.EndsWith("\r\n"))
                 {
                     tbxPrestList.Text += "\r\n";
                 }
 
                 tbxPrestList.Text += ofd.FileName;
+                tbxPrestList.Text += "\r\n";
             }
         }
 
@@ -80,6 +81,10 @@ namespace Kohya_lora_trainer
             string dropped = MyUtils.GetDroppedFileName(e, ".xmlora");
             if (!string.IsNullOrEmpty(dropped))
             {
+                if (!string.IsNullOrEmpty(tbxPrestList.Text) && !tbxPrestList.Text.EndsWith("\r\n"))
+                {
+                    tbxPrestList.Text += "\r\n";
+                }
                 tbxPrestList.Text += dropped;
                 tbxPrestList.Text += "\r\n";
             }
