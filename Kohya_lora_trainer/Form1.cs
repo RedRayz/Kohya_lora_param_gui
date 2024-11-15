@@ -179,6 +179,23 @@ namespace Kohya_lora_trainer
             }
         }
 
+        private void ShowDatasetDocument()
+        {
+            try
+            {
+                //.NET CoreではUseShellExecute=trueにしないとファイルがないと怒る
+                Process.Start(new ProcessStartInfo
+                {
+                    UseShellExecute = true,
+                    FileName = "https://github.com/kohya-ss/sd-scripts/blob/main/docs/train_README-ja.md",
+                });
+            }
+            catch
+            {
+                MessageBox.Show("ブラウザを開けません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnImage_Click(object sender, EventArgs e)
         {
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
@@ -202,7 +219,11 @@ namespace Kohya_lora_trainer
                 IsInvalidImageFolder = !CheckUtil.IsImageDirectoryValid(cof.FileName, out StepsPerEpoch);
                 if (IsInvalidImageFolder)
                 {
-                    MessageBox.Show("教師画像フォルダの指定を間違えている可能性があります。\n「繰り返し数_プロンプト」の名前のフォルダが1つ以上入ったフォルダを指定する必要があります。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    DialogResult res = MessageBox.Show("フォルダの指定を間違えている可能性があります。\n「数字_名前」のフォルダが1つ以上入ったフォルダを指定する必要があります。\n詳細は、sd-scriptsのドキュメントをご覧ください。\nOKを押すとドキュメントを表示します。", "注意", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if(res == DialogResult.OK)
+                    {
+                        ShowDatasetDocument();
+                    }
                 }
                 UpdateTotalStepCount();
                 tbxImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
@@ -241,7 +262,11 @@ namespace Kohya_lora_trainer
                 IsInvalidRegFolder = !CheckUtil.IsImageDirectoryValid(TrainParams.Current.RegImagePath, out num);
                 if (IsInvalidRegFolder)
                 {
-                    MessageBox.Show("正則化画像フォルダの指定を間違えている可能性があります。\n「繰り返し数_プロンプト」の名前のフォルダが1つ以上入ったフォルダを指定する必要があります。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    DialogResult res = MessageBox.Show("フォルダの指定を間違えている可能性があります。\n「数字_名前」のフォルダが1つ以上入ったフォルダを指定する必要があります。\n詳細は、sd-scriptsのドキュメントをご覧ください。\nOKを押すとドキュメントを表示します。", "注意", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (res == DialogResult.OK)
+                    {
+                        ShowDatasetDocument();
+                    }
                 }
 
                 tbxRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
