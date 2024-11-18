@@ -34,8 +34,7 @@ namespace Kohya_lora_trainer
         public Form1()
         {
             InitializeComponent();
-
-            var ins = new TrainParams();
+            new TrainParams();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -220,7 +219,7 @@ namespace Kohya_lora_trainer
                 if (IsInvalidImageFolder)
                 {
                     DialogResult res = MessageBox.Show("フォルダの指定を間違えている可能性があります。\n「数字_名前」のフォルダが1つ以上入ったフォルダを指定する必要があります。\n詳細は、sd-scriptsのドキュメントをご覧ください。\nOKを押すとドキュメントを表示します。", "注意", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                    if(res == DialogResult.OK)
+                    if (res == DialogResult.OK)
                     {
                         ShowDatasetDocument();
                     }
@@ -581,7 +580,7 @@ namespace Kohya_lora_trainer
                         sw.WriteLine(BatchProcess.LogText);
                     }
                 }
-                
+
                 if ((CompleteAction == TrainCompleteAction.Shutdown || CompleteAction == TrainCompleteAction.Suspend) && !BatchProcess.IsCancel)
                 {
                     Form train0 = new TrainForm(true);
@@ -1517,6 +1516,17 @@ namespace Kohya_lora_trainer
         private void cbxCompleteAction_SelectedIndexChanged(object sender, EventArgs e)
         {
             CompleteAction = (TrainCompleteAction)Enum.ToObject(typeof(TrainCompleteAction), cbxCompleteAction.SelectedIndex);
+        }
+
+        private void 学習パラメータ初期化ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("学習設定を初期化します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
+            {
+                new TrainParams();
+                LastOpenPresetPath = string.Empty;
+                UpdateAllContents();
+            }
         }
     }
 }
