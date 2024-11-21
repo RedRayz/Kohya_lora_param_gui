@@ -515,13 +515,10 @@ namespace Kohya_lora_trainer
                         continue;
                     }
 
-                    try
+
+                    if(!LoadPreset(pth, false))
                     {
-                        LoadPreset(pth, false);
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine("Skipped. Got an exception: " + ex.Message);
+                        Debug.WriteLine("Skipped. Errored.");
                         if (!string.IsNullOrWhiteSpace(pth))
                         {
                             BatchProcess.LogText += pth + "\r\nプリセット読込失敗のためスキップ\r\n\r\n";
@@ -833,13 +830,14 @@ namespace Kohya_lora_trainer
             ShowLoadPresetDialog();
         }
 
-        private void LoadPreset(string path, bool ShowMsg)
+        private bool LoadPreset(string path, bool ShowMsg)
         {
             if (!File.Exists(path))
             {
                 if (ShowMsg)
                     MessageBox.Show("プリセットファイルが見つかりません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                LastOpenPresetPath = string.Empty;
+                return false;
             }
 
             try
@@ -856,6 +854,8 @@ namespace Kohya_lora_trainer
                 Debug.WriteLine("Failed to load preset");
                 if (ShowMsg)
                     MessageBox.Show("プリセットを読み込めません。破損しているか、権限がありません。\r\nあるいは、より新しいバージョンのGUIで作成された可能性があります。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LastOpenPresetPath = string.Empty;
+                return false;
             }
 
             LastOpenPresetPath = path;
@@ -863,6 +863,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.CheckBrokenBlockDim();
             TrainParams.Current.ResetObsoleteOptions();
             UpdateAllContents();
+            return true;
         }
 
         private void tbxOutputPath_TextChanged(object sender, EventArgs e)
@@ -1521,7 +1522,7 @@ namespace Kohya_lora_trainer
         private void 学習パラメータ初期化ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("学習設定を初期化します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
             {
                 new TrainParams();
                 LastOpenPresetPath = string.Empty;
