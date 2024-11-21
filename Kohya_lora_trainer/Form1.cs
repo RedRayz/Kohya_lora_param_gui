@@ -34,8 +34,7 @@ namespace Kohya_lora_trainer
         public Form1()
         {
             InitializeComponent();
-
-            var ins = new TrainParams();
+            new TrainParams();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -179,6 +178,23 @@ namespace Kohya_lora_trainer
             }
         }
 
+        private void ShowDatasetDocument()
+        {
+            try
+            {
+                //.NET CoreではUseShellExecute=trueにしないとファイルがないと怒る
+                Process.Start(new ProcessStartInfo
+                {
+                    UseShellExecute = true,
+                    FileName = "https://github.com/kohya-ss/sd-scripts/blob/main/docs/train_README-ja.md",
+                });
+            }
+            catch
+            {
+                MessageBox.Show("ブラウザを開けません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnImage_Click(object sender, EventArgs e)
         {
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
@@ -202,7 +218,11 @@ namespace Kohya_lora_trainer
                 IsInvalidImageFolder = !CheckUtil.IsImageDirectoryValid(cof.FileName, out StepsPerEpoch);
                 if (IsInvalidImageFolder)
                 {
-                    MessageBox.Show("教師画像フォルダの指定を間違えている可能性があります。\n「繰り返し数_プロンプト」の名前のフォルダが1つ以上入ったフォルダを指定する必要があります。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    DialogResult res = MessageBox.Show("フォルダの指定を間違えている可能性があります。\n「数字_名前」のフォルダが1つ以上入ったフォルダを指定する必要があります。\n詳細は、sd-scriptsのドキュメントをご覧ください。\nOKを押すとドキュメントを表示します。", "注意", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (res == DialogResult.OK)
+                    {
+                        ShowDatasetDocument();
+                    }
                 }
                 UpdateTotalStepCount();
                 tbxImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
@@ -241,7 +261,11 @@ namespace Kohya_lora_trainer
                 IsInvalidRegFolder = !CheckUtil.IsImageDirectoryValid(TrainParams.Current.RegImagePath, out num);
                 if (IsInvalidRegFolder)
                 {
-                    MessageBox.Show("正則化画像フォルダの指定を間違えている可能性があります。\n「繰り返し数_プロンプト」の名前のフォルダが1つ以上入ったフォルダを指定する必要があります。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    DialogResult res = MessageBox.Show("フォルダの指定を間違えている可能性があります。\n「数字_名前」のフォルダが1つ以上入ったフォルダを指定する必要があります。\n詳細は、sd-scriptsのドキュメントをご覧ください。\nOKを押すとドキュメントを表示します。", "注意", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    if (res == DialogResult.OK)
+                    {
+                        ShowDatasetDocument();
+                    }
                 }
 
                 tbxRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
@@ -491,13 +515,10 @@ namespace Kohya_lora_trainer
                         continue;
                     }
 
-                    try
+
+                    if(!LoadPreset(pth, false))
                     {
-                        LoadPreset(pth, false);
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.WriteLine("Skipped. Got an exception: " + ex.Message);
+                        Debug.WriteLine("Skipped. Errored.");
                         if (!string.IsNullOrWhiteSpace(pth))
                         {
                             BatchProcess.LogText += pth + "\r\nプリセット読込失敗のためスキップ\r\n\r\n";
@@ -556,7 +577,7 @@ namespace Kohya_lora_trainer
                         sw.WriteLine(BatchProcess.LogText);
                     }
                 }
-                
+
                 if ((CompleteAction == TrainCompleteAction.Shutdown || CompleteAction == TrainCompleteAction.Suspend) && !BatchProcess.IsCancel)
                 {
                     Form train0 = new TrainForm(true);
@@ -809,13 +830,14 @@ namespace Kohya_lora_trainer
             ShowLoadPresetDialog();
         }
 
-        private void LoadPreset(string path, bool ShowMsg)
+        private bool LoadPreset(string path, bool ShowMsg)
         {
             if (!File.Exists(path))
             {
                 if (ShowMsg)
                     MessageBox.Show("プリセットファイルが見つかりません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                LastOpenPresetPath = string.Empty;
+                return false;
             }
 
             try
@@ -832,6 +854,8 @@ namespace Kohya_lora_trainer
                 Debug.WriteLine("Failed to load preset");
                 if (ShowMsg)
                     MessageBox.Show("プリセットを読み込めません。破損しているか、権限がありません。\r\nあるいは、より新しいバージョンのGUIで作成された可能性があります。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LastOpenPresetPath = string.Empty;
+                return false;
             }
 
             LastOpenPresetPath = path;
@@ -839,6 +863,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.CheckBrokenBlockDim();
             TrainParams.Current.ResetObsoleteOptions();
             UpdateAllContents();
+            return true;
         }
 
         private void tbxOutputPath_TextChanged(object sender, EventArgs e)
@@ -1492,6 +1517,17 @@ namespace Kohya_lora_trainer
         private void cbxCompleteAction_SelectedIndexChanged(object sender, EventArgs e)
         {
             CompleteAction = (TrainCompleteAction)Enum.ToObject(typeof(TrainCompleteAction), cbxCompleteAction.SelectedIndex);
+        }
+
+        private void 学習パラメータ初期化ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("学習設定を初期化します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                new TrainParams();
+                LastOpenPresetPath = string.Empty;
+                UpdateAllContents();
+            }
         }
     }
 }
