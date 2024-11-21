@@ -62,13 +62,13 @@
             btnInstallExtension = new Button();
             btnUpdateRepo = new Button();
             tabPage4 = new TabPage();
+            lblSwitching = new Label();
             label7 = new Label();
             label6 = new Label();
             btnSwitchBranch = new Button();
             label5 = new Label();
             tbxBranchName = new TextBox();
             toolTip1 = new ToolTip(components);
-            lblSwitching = new Label();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -435,14 +435,24 @@
             tabPage4.Text = "ブランチ";
             tabPage4.UseVisualStyleBackColor = true;
             // 
+            // lblSwitching
+            // 
+            lblSwitching.AutoSize = true;
+            lblSwitching.Location = new Point(78, 187);
+            lblSwitching.Name = "lblSwitching";
+            lblSwitching.Size = new Size(310, 15);
+            lblSwitching.TabIndex = 5;
+            lblSwitching.Text = "切り替え中です。終了メッセージが表示されるまでお待ちください。";
+            lblSwitching.Visible = false;
+            // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(87, 74);
+            label7.Location = new Point(66, 74);
             label7.Name = "label7";
-            label7.Size = new Size(281, 45);
+            label7.Size = new Size(416, 90);
             label7.TabIndex = 4;
-            label7.Text = "初期ブランチは「main」です。\r\nSDXL学習は「dev」を推奨します。\r\nFLUX.1は「sd3」、SD3は「sd3_5_support」のみ対応です。";
+            label7.Text = "初期ブランチは「main」です。mainは古いため一部の機能は使用できません。\r\n2024年11月21日時点で、SDXL学習は「dev」または「sd3」を推奨します。\r\nFLUX.1とSD3は「sd3」のみ対応です。\r\n\r\nブランチ切り替え後は、GUIのユーティリティの更新タブで\r\n「pythonパッケージのみ更新」にチェックをつけて「sd-scriptsのアップデート」をしてください。";
             // 
             // label6
             // 
@@ -478,16 +488,6 @@
             tbxBranchName.Name = "tbxBranchName";
             tbxBranchName.Size = new Size(155, 23);
             tbxBranchName.TabIndex = 0;
-            // 
-            // lblSwitching
-            // 
-            lblSwitching.AutoSize = true;
-            lblSwitching.Location = new Point(78, 131);
-            lblSwitching.Name = "lblSwitching";
-            lblSwitching.Size = new Size(310, 15);
-            lblSwitching.TabIndex = 5;
-            lblSwitching.Text = "切り替え中です。終了メッセージが表示されるまでお待ちください。";
-            lblSwitching.Visible = false;
             // 
             // FormUtils
             // 
