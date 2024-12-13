@@ -28,6 +28,7 @@ namespace Kohya_lora_trainer
             float unetlr = -1;
             float weightdecay = 0;
             float eps = 0;
+            float eps1 = 0;
             float dzero = 0;
             float growthrate = 0;
             float betas0 = 0;
@@ -121,14 +122,29 @@ namespace Kohya_lora_trainer
             {
                 if (val < 0f)
                 {
-                    MessageBox.Show("epsの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("epsの第一の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     IsValid = false;
                 }
                 eps = val;
             }
             else
             {
-                MessageBox.Show("epsの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("epsの第一の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                IsValid = false;
+            }
+
+            if (float.TryParse(tbxEps1.Text, out val))
+            {
+                if (val < 0f)
+                {
+                    MessageBox.Show("epsの第二の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    IsValid = false;
+                }
+                eps1 = val;
+            }
+            else
+            {
+                MessageBox.Show("epsの第二の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 IsValid = false;
             }
 
@@ -274,6 +290,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.UnetLR = unetlr;
             TrainParams.Current.WeightDecay = weightdecay;
             TrainParams.Current.Eps = eps;
+            TrainParams.Current.Eps1 = eps1;
             TrainParams.Current.D0 = dzero;
             TrainParams.Current.GrowthRate = growthrate;
             TrainParams.Current.Betas0 = betas0;
@@ -479,6 +496,7 @@ namespace Kohya_lora_trainer
 
             tbxWeightDecay.Text = TrainParams.Current.WeightDecay.ToString("g");
             tbxEps.Text = TrainParams.Current.Eps.ToString("g");
+            tbxEps1.Text = TrainParams.Current.Eps1.ToString("g");
             tbxD0.Text = TrainParams.Current.D0.ToString("g");
             tbxGrowthRate.Text = TrainParams.Current.GrowthRate.ToString("g");
             tbxBetas0.Text = TrainParams.Current.Betas0.ToString("g");

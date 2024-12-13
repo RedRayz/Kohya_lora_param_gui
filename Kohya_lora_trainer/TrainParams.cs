@@ -75,8 +75,8 @@ namespace Kohya_lora_trainer {
         public int DataLoaderThreads = 1, MaxTokens = 75;
         public MixedPrecision mixedPrecisionType = MixedPrecision.fp16;
 
-        //DAdaptation関連
-        public float WeightDecay = 0, Eps = 1e-06f, D0 = 1e-06f, GrowthRate = 0, Betas0 = 0.9f, Betas1 = 0.999f, Betas2 = 0.999f, DAdaptMomentum = 0.9f, ProdigyBeta3 = 0, DCoef = 1;
+        //Optimizer関連
+        public float WeightDecay = 0, Eps = 1e-06f, Eps1 = 1e-16f, D0 = 1e-06f, GrowthRate = 0, Betas0 = 0.9f, Betas1 = 0.999f, Betas2 = 0.999f, DAdaptMomentum = 0.9f, ProdigyBeta3 = 0, DCoef = 1;
         public bool Decouple = false, NoProx = false, SafeguardWarmup = false, UseBiasCorrection = false;
 
         public ModelArchitecture StableDiffusionType = ModelArchitecture.Legacy;
