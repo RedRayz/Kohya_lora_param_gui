@@ -103,8 +103,9 @@ namespace Kohya_lora_trainer
             ツールToolStripMenuItem = new ToolStripMenuItem();
             ユーティリティToolStripMenuItem = new ToolStripMenuItem();
             データセット編集選別ツールToolStripMenuItem = new ToolStripMenuItem();
+            学習パラメータ初期化ToolStripMenuItem = new ToolStripMenuItem();
             tabControl1 = new TabControl();
-            tabPage1 = new TabPage();
+            tabPageTrain = new TabPage();
             cbxSaveEveryEpoch = new ComboBox();
             tabPageAddArgs = new TabPage();
             label23 = new Label();
@@ -113,13 +114,19 @@ namespace Kohya_lora_trainer
             label19 = new Label();
             tbxAdditionalNetworkArgs = new TextBox();
             tbxAdditionalArgs = new TextBox();
-            tabPage2 = new TabPage();
+            tabPageCustomOpt = new TabPage();
+            tbxCustomOptName = new TextBox();
+            label28 = new Label();
+            label26 = new Label();
+            tbxCustomOptArgs = new TextBox();
+            label27 = new Label();
+            label25 = new Label();
+            tabPageCustomCommands = new TabPage();
             label14 = new Label();
             label15 = new Label();
             tbxCommand = new TextBox();
             cbxCompleteAction = new ComboBox();
             label24 = new Label();
-            学習パラメータ初期化ToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDim).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudResolution).BeginInit();
@@ -130,9 +137,10 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudEpochs).BeginInit();
             menuStrip1.SuspendLayout();
             tabControl1.SuspendLayout();
-            tabPage1.SuspendLayout();
+            tabPageTrain.SuspendLayout();
             tabPageAddArgs.SuspendLayout();
-            tabPage2.SuspendLayout();
+            tabPageCustomOpt.SuspendLayout();
+            tabPageCustomCommands.SuspendLayout();
             SuspendLayout();
             // 
             // btnModel
@@ -220,7 +228,7 @@ namespace Kohya_lora_trainer
             cbxOptimizer.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxOptimizer.ForeColor = SystemColors.WindowText;
             cbxOptimizer.FormattingEnabled = true;
-            cbxOptimizer.Items.AddRange(new object[] { "AdamW8bit", "AdamW", "AdaFactor", "Lion", "SGDNesterov", "SGDNesterov8bit", "DAdaptAdamPreprint", "Lion8bit", "DAdaptAdaGrad", "DAdaptAdam", "DAdaptAdan", "DAdaptSGD", "DAdaptAdanIP", "DAdaptLion", "Prodigy", "PagedAdamW8bit", "PagedLion8bit", "AdamWScheduleFree", "SGDScheduleFree", "AdEMAMix8bit", "PagedAdEMAMIX8bit", "CAME" });
+            cbxOptimizer.Items.AddRange(new object[] { "AdamW8bit", "AdamW", "AdaFactor", "Lion", "SGDNesterov", "SGDNesterov8bit", "DAdaptAdamPreprint", "Lion8bit", "DAdaptAdaGrad", "DAdaptAdam", "DAdaptAdan", "DAdaptSGD", "DAdaptAdanIP", "DAdaptLion", "Prodigy", "PagedAdamW8bit", "PagedLion8bit", "AdamWScheduleFree", "SGDScheduleFree", "AdEMAMix8bit", "PagedAdEMAMIX8bit", "CAME", "カスタム" });
             cbxOptimizer.Location = new Point(100, 164);
             cbxOptimizer.Name = "cbxOptimizer";
             cbxOptimizer.Size = new Size(139, 23);
@@ -765,28 +773,28 @@ namespace Kohya_lora_trainer
             // 設定ToolStripMenuItem
             // 
             設定ToolStripMenuItem.Name = "設定ToolStripMenuItem";
-            設定ToolStripMenuItem.Size = new Size(180, 22);
+            設定ToolStripMenuItem.Size = new Size(159, 22);
             設定ToolStripMenuItem.Text = "設定";
             設定ToolStripMenuItem.Click += 設定ToolStripMenuItem_Click;
             // 
             // プリセットを開くToolStripMenuItem
             // 
             プリセットを開くToolStripMenuItem.Name = "プリセットを開くToolStripMenuItem";
-            プリセットを開くToolStripMenuItem.Size = new Size(180, 22);
+            プリセットを開くToolStripMenuItem.Size = new Size(159, 22);
             プリセットを開くToolStripMenuItem.Text = "プリセットを開く";
             プリセットを開くToolStripMenuItem.Click += プリセットを開くToolStripMenuItem_Click;
             // 
             // プリセットを保存ToolStripMenuItem
             // 
             プリセットを保存ToolStripMenuItem.Name = "プリセットを保存ToolStripMenuItem";
-            プリセットを保存ToolStripMenuItem.Size = new Size(180, 22);
+            プリセットを保存ToolStripMenuItem.Size = new Size(159, 22);
             プリセットを保存ToolStripMenuItem.Text = "プリセットを保存";
             プリセットを保存ToolStripMenuItem.Click += プリセットを保存ToolStripMenuItem_Click;
             // 
             // 終了ToolStripMenuItem
             // 
             終了ToolStripMenuItem.Name = "終了ToolStripMenuItem";
-            終了ToolStripMenuItem.Size = new Size(180, 22);
+            終了ToolStripMenuItem.Size = new Size(159, 22);
             終了ToolStripMenuItem.Text = "終了";
             終了ToolStripMenuItem.Click += 終了ToolStripMenuItem_Click_1;
             // 
@@ -800,14 +808,14 @@ namespace Kohya_lora_trainer
             // ヒントToolStripMenuItem
             // 
             ヒントToolStripMenuItem.Name = "ヒントToolStripMenuItem";
-            ヒントToolStripMenuItem.Size = new Size(180, 22);
+            ヒントToolStripMenuItem.Size = new Size(168, 22);
             ヒントToolStripMenuItem.Text = "LoRA学習のヒント";
             ヒントToolStripMenuItem.Click += ヒントToolStripMenuItem_Click;
             // 
             // 配布ページToolStripMenuItem
             // 
             配布ページToolStripMenuItem.Name = "配布ページToolStripMenuItem";
-            配布ページToolStripMenuItem.Size = new Size(180, 22);
+            配布ページToolStripMenuItem.Size = new Size(168, 22);
             配布ページToolStripMenuItem.Text = "GUI配布ページ";
             配布ページToolStripMenuItem.Click += 配布ページToolStripMenuItem_Click;
             // 
@@ -832,69 +840,77 @@ namespace Kohya_lora_trainer
             データセット編集選別ツールToolStripMenuItem.Text = "データセット編集/選別ツール";
             データセット編集選別ツールToolStripMenuItem.Click += データセット編集選別ツールToolStripMenuItem_Click;
             // 
+            // 学習パラメータ初期化ToolStripMenuItem
+            // 
+            学習パラメータ初期化ToolStripMenuItem.Name = "学習パラメータ初期化ToolStripMenuItem";
+            学習パラメータ初期化ToolStripMenuItem.Size = new Size(226, 22);
+            学習パラメータ初期化ToolStripMenuItem.Text = "学習パラメータ初期化";
+            学習パラメータ初期化ToolStripMenuItem.Click += 学習パラメータ初期化ToolStripMenuItem_Click;
+            // 
             // tabControl1
             // 
-            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPageTrain);
             tabControl1.Controls.Add(tabPageAddArgs);
-            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPageCustomOpt);
+            tabControl1.Controls.Add(tabPageCustomCommands);
             tabControl1.Location = new Point(12, 63);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(771, 316);
             tabControl1.TabIndex = 88;
             // 
-            // tabPage1
+            // tabPageTrain
             // 
-            tabPage1.Controls.Add(btnModel);
-            tabPage1.Controls.Add(cbxSaveEveryEpoch);
-            tabPage1.Controls.Add(cbxEpochOrStep);
-            tabPage1.Controls.Add(btnImage);
-            tabPage1.Controls.Add(cbxSDType);
-            tabPage1.Controls.Add(btnRegImage);
-            tabPage1.Controls.Add(label2);
-            tabPage1.Controls.Add(label3);
-            tabPage1.Controls.Add(label4);
-            tabPage1.Controls.Add(label11);
-            tabPage1.Controls.Add(tbxLR);
-            tabPage1.Controls.Add(lblLR);
-            tabPage1.Controls.Add(cbxOptimizer);
-            tabPage1.Controls.Add(label6);
-            tabPage1.Controls.Add(cbxModuleType);
-            tabPage1.Controls.Add(tbxOutputPath);
-            tabPage1.Controls.Add(label10);
-            tabPage1.Controls.Add(tbxRegImgPath);
-            tabPage1.Controls.Add(label13);
-            tabPage1.Controls.Add(tbxImagePath);
-            tabPage1.Controls.Add(label17);
-            tabPage1.Controls.Add(tbxModelPath);
-            tabPage1.Controls.Add(cbxShuffle);
-            tabPage1.Controls.Add(label12);
-            tabPage1.Controls.Add(lblResolution);
-            tabPage1.Controls.Add(tbxFileName);
-            tabPage1.Controls.Add(btnOutputPath);
-            tabPage1.Controls.Add(lblFileName);
-            tabPage1.Controls.Add(label8);
-            tabPage1.Controls.Add(label16);
-            tabPage1.Controls.Add(btnClearRegImagePath);
-            tabPage1.Controls.Add(label18);
-            tabPage1.Controls.Add(label9);
-            tabPage1.Controls.Add(label20);
-            tabPage1.Controls.Add(label21);
-            tabPage1.Controls.Add(nudWarmupSteps);
-            tabPage1.Controls.Add(nudNetworkAlpha);
-            tabPage1.Controls.Add(nudNetworkDim);
-            tabPage1.Controls.Add(nudEpochs);
-            tabPage1.Controls.Add(nudResolution);
-            tabPage1.Controls.Add(nudBatchSize);
-            tabPage1.Controls.Add(nudKeepTokens);
-            tabPage1.Controls.Add(nudSaveEpoch);
-            tabPage1.Location = new Point(4, 24);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(763, 288);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "学習";
-            tabPage1.UseVisualStyleBackColor = true;
+            tabPageTrain.Controls.Add(btnModel);
+            tabPageTrain.Controls.Add(cbxSaveEveryEpoch);
+            tabPageTrain.Controls.Add(cbxEpochOrStep);
+            tabPageTrain.Controls.Add(btnImage);
+            tabPageTrain.Controls.Add(cbxSDType);
+            tabPageTrain.Controls.Add(btnRegImage);
+            tabPageTrain.Controls.Add(label2);
+            tabPageTrain.Controls.Add(label3);
+            tabPageTrain.Controls.Add(label4);
+            tabPageTrain.Controls.Add(label11);
+            tabPageTrain.Controls.Add(tbxLR);
+            tabPageTrain.Controls.Add(lblLR);
+            tabPageTrain.Controls.Add(cbxOptimizer);
+            tabPageTrain.Controls.Add(label6);
+            tabPageTrain.Controls.Add(cbxModuleType);
+            tabPageTrain.Controls.Add(tbxOutputPath);
+            tabPageTrain.Controls.Add(label10);
+            tabPageTrain.Controls.Add(tbxRegImgPath);
+            tabPageTrain.Controls.Add(label13);
+            tabPageTrain.Controls.Add(tbxImagePath);
+            tabPageTrain.Controls.Add(label17);
+            tabPageTrain.Controls.Add(tbxModelPath);
+            tabPageTrain.Controls.Add(cbxShuffle);
+            tabPageTrain.Controls.Add(label12);
+            tabPageTrain.Controls.Add(lblResolution);
+            tabPageTrain.Controls.Add(tbxFileName);
+            tabPageTrain.Controls.Add(btnOutputPath);
+            tabPageTrain.Controls.Add(lblFileName);
+            tabPageTrain.Controls.Add(label8);
+            tabPageTrain.Controls.Add(label16);
+            tabPageTrain.Controls.Add(btnClearRegImagePath);
+            tabPageTrain.Controls.Add(label18);
+            tabPageTrain.Controls.Add(label9);
+            tabPageTrain.Controls.Add(label20);
+            tabPageTrain.Controls.Add(label21);
+            tabPageTrain.Controls.Add(nudWarmupSteps);
+            tabPageTrain.Controls.Add(nudNetworkAlpha);
+            tabPageTrain.Controls.Add(nudNetworkDim);
+            tabPageTrain.Controls.Add(nudEpochs);
+            tabPageTrain.Controls.Add(nudResolution);
+            tabPageTrain.Controls.Add(nudBatchSize);
+            tabPageTrain.Controls.Add(nudKeepTokens);
+            tabPageTrain.Controls.Add(nudSaveEpoch);
+            tabPageTrain.Location = new Point(4, 24);
+            tabPageTrain.Name = "tabPageTrain";
+            tabPageTrain.Padding = new Padding(3);
+            tabPageTrain.Size = new Size(763, 288);
+            tabPageTrain.TabIndex = 0;
+            tabPageTrain.Text = "学習";
+            tabPageTrain.UseVisualStyleBackColor = true;
             // 
             // cbxSaveEveryEpoch
             // 
@@ -915,9 +931,9 @@ namespace Kohya_lora_trainer
             tabPageAddArgs.Controls.Add(label19);
             tabPageAddArgs.Controls.Add(tbxAdditionalNetworkArgs);
             tabPageAddArgs.Controls.Add(tbxAdditionalArgs);
-            tabPageAddArgs.Location = new Point(4, 26);
+            tabPageAddArgs.Location = new Point(4, 24);
             tabPageAddArgs.Name = "tabPageAddArgs";
-            tabPageAddArgs.Size = new Size(763, 286);
+            tabPageAddArgs.Size = new Size(763, 288);
             tabPageAddArgs.TabIndex = 2;
             tabPageAddArgs.Text = "追加の引数";
             tabPageAddArgs.UseVisualStyleBackColor = true;
@@ -990,18 +1006,96 @@ namespace Kohya_lora_trainer
             tbxAdditionalArgs.TabIndex = 0;
             tbxAdditionalArgs.TextChanged += tbxAdditionalArgs_TextChanged;
             // 
-            // tabPage2
+            // tabPageCustomOpt
             // 
-            tabPage2.Controls.Add(label14);
-            tabPage2.Controls.Add(label15);
-            tabPage2.Controls.Add(tbxCommand);
-            tabPage2.Location = new Point(4, 26);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(763, 286);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "カスタムコマンド";
-            tabPage2.UseVisualStyleBackColor = true;
+            tabPageCustomOpt.Controls.Add(tbxCustomOptName);
+            tabPageCustomOpt.Controls.Add(label28);
+            tabPageCustomOpt.Controls.Add(label26);
+            tabPageCustomOpt.Controls.Add(tbxCustomOptArgs);
+            tabPageCustomOpt.Controls.Add(label27);
+            tabPageCustomOpt.Controls.Add(label25);
+            tabPageCustomOpt.Location = new Point(4, 24);
+            tabPageCustomOpt.Name = "tabPageCustomOpt";
+            tabPageCustomOpt.Size = new Size(763, 288);
+            tabPageCustomOpt.TabIndex = 3;
+            tabPageCustomOpt.Text = "カスタムオプティマイザ";
+            tabPageCustomOpt.UseVisualStyleBackColor = true;
+            // 
+            // tbxCustomOptName
+            // 
+            tbxCustomOptName.Location = new Point(18, 40);
+            tbxCustomOptName.Name = "tbxCustomOptName";
+            tbxCustomOptName.Size = new Size(733, 23);
+            tbxCustomOptName.TabIndex = 0;
+            tbxCustomOptName.TextChanged += tbxCustomOptName_TextChanged;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.BackColor = Color.Transparent;
+            label28.ForeColor = Color.DimGray;
+            label28.Location = new Point(135, 22);
+            label28.Name = "label28";
+            label28.Size = new Size(223, 15);
+            label28.TabIndex = 2;
+            label28.Text = "例: prodigyplus.ProdigyPlusScheduleFree";
+            label28.UseMnemonic = false;
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.BackColor = Color.Transparent;
+            label26.ForeColor = Color.DimGray;
+            label26.Location = new Point(135, 82);
+            label26.Name = "label26";
+            label26.Size = new Size(452, 15);
+            label26.TabIndex = 2;
+            label26.Text = "例: \"key_bool=True\" \"key_int=10\" \"key_float=1.5\" \"key_array=1,2,3,4,5\" \"key_str=abc\"";
+            label26.UseMnemonic = false;
+            // 
+            // tbxCustomOptArgs
+            // 
+            tbxCustomOptArgs.BackColor = Color.FromArgb(64, 64, 64);
+            tbxCustomOptArgs.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxCustomOptArgs.ForeColor = Color.White;
+            tbxCustomOptArgs.Location = new Point(15, 100);
+            tbxCustomOptArgs.Multiline = true;
+            tbxCustomOptArgs.Name = "tbxCustomOptArgs";
+            tbxCustomOptArgs.ScrollBars = ScrollBars.Vertical;
+            tbxCustomOptArgs.Size = new Size(736, 109);
+            tbxCustomOptArgs.TabIndex = 0;
+            tbxCustomOptArgs.TextChanged += tbxCustomOptArgs_TextChanged;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Location = new Point(18, 22);
+            label27.Name = "label27";
+            label27.Size = new Size(92, 15);
+            label27.TabIndex = 1;
+            label27.Text = "Optimizerの名称";
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Location = new Point(18, 82);
+            label25.Name = "label25";
+            label25.Size = new Size(83, 15);
+            label25.TabIndex = 1;
+            label25.Text = "optimizer_args";
+            // 
+            // tabPageCustomCommands
+            // 
+            tabPageCustomCommands.Controls.Add(label14);
+            tabPageCustomCommands.Controls.Add(label15);
+            tabPageCustomCommands.Controls.Add(tbxCommand);
+            tabPageCustomCommands.Location = new Point(4, 24);
+            tabPageCustomCommands.Name = "tabPageCustomCommands";
+            tabPageCustomCommands.Padding = new Padding(3);
+            tabPageCustomCommands.Size = new Size(763, 288);
+            tabPageCustomCommands.TabIndex = 1;
+            tabPageCustomCommands.Text = "カスタムコマンド";
+            tabPageCustomCommands.UseVisualStyleBackColor = true;
             // 
             // label14
             // 
@@ -1055,18 +1149,11 @@ namespace Kohya_lora_trainer
             label24.TabIndex = 91;
             label24.Text = "学習終了時の動作";
             // 
-            // 学習パラメータ初期化ToolStripMenuItem
-            // 
-            学習パラメータ初期化ToolStripMenuItem.Name = "学習パラメータ初期化ToolStripMenuItem";
-            学習パラメータ初期化ToolStripMenuItem.Size = new Size(226, 22);
-            学習パラメータ初期化ToolStripMenuItem.Text = "学習パラメータ初期化";
-            学習パラメータ初期化ToolStripMenuItem.Click += 学習パラメータ初期化ToolStripMenuItem_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(804, 498);
+            ClientSize = new Size(804, 506);
             Controls.Add(label24);
             Controls.Add(cbxCompleteAction);
             Controls.Add(cbxOverwrite);
@@ -1110,12 +1197,14 @@ namespace Kohya_lora_trainer
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             tabControl1.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
+            tabPageTrain.ResumeLayout(false);
+            tabPageTrain.PerformLayout();
             tabPageAddArgs.ResumeLayout(false);
             tabPageAddArgs.PerformLayout();
-            tabPage2.ResumeLayout(false);
-            tabPage2.PerformLayout();
+            tabPageCustomOpt.ResumeLayout(false);
+            tabPageCustomOpt.PerformLayout();
+            tabPageCustomCommands.ResumeLayout(false);
+            tabPageCustomCommands.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1190,8 +1279,8 @@ namespace Kohya_lora_trainer
         private ToolStripMenuItem ヒントToolStripMenuItem;
         private ToolStripMenuItem 配布ページToolStripMenuItem;
         private TabControl tabControl1;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
+        private TabPage tabPageTrain;
+        private TabPage tabPageCustomCommands;
         private TextBox tbxCommand;
         private Label label15;
         private Label label14;
@@ -1210,6 +1299,13 @@ namespace Kohya_lora_trainer
         private ComboBox cbxCompleteAction;
         private Label label24;
         private ToolStripMenuItem 学習パラメータ初期化ToolStripMenuItem;
+        private TabPage tabPageCustomOpt;
+        private TextBox tbxCustomOptName;
+        private Label label28;
+        private Label label26;
+        private TextBox tbxCustomOptArgs;
+        private Label label27;
+        private Label label25;
     }
 }
 
