@@ -95,7 +95,7 @@ namespace Kohya_lora_trainer {
 
         public decimal ImmiscibleNoise = 0;
 
-        public string CustomCommands = string.Empty, AdditionalArgs = string.Empty, AdditionalNetworkArgs = string.Empty;
+        public string CustomCommands = string.Empty, AdditionalArgs = string.Empty, AdditionalNetworkArgs = string.Empty, CustomOptName = string.Empty, CustomOptArgs = string.Empty;
 
         //Diffusion Transformer関連
         public decimal Sigmoidscale = 1m, DiscreteFlowShift = 3m, GuidanceScale = 0, MaxTokensT5 = 256, BlocksToSwap = 0;
@@ -221,7 +221,8 @@ namespace Kohya_lora_trainer {
         SGDScheduleFree,
         AdEMAMix8bit,
         PagedAdEMAMix8bit,
-        Came
+        Came,
+        Custom
     }
 
     public enum SavePrecision {

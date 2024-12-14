@@ -516,7 +516,7 @@ namespace Kohya_lora_trainer
                     }
 
 
-                    if(!LoadPreset(pth, false))
+                    if (!LoadPreset(pth, false))
                     {
                         Debug.WriteLine("Skipped. Errored.");
                         if (!string.IsNullOrWhiteSpace(pth))
@@ -801,6 +801,13 @@ namespace Kohya_lora_trainer
             {
                 if (showMsg)
                     MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。\r\nユーティリティからvenvの再生成ができます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (TrainParams.Current.OptimizerType == Optimizer.Custom && string.IsNullOrWhiteSpace(TrainParams.Current.CustomOptName))
+            {
+                if (showMsg)
+                    MessageBox.Show("オプティマイザにカスタムが指定されていますが、\r\nオプティマイザの名称が指定されていません。\r\nカスタムオプティマイザで指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -1270,6 +1277,9 @@ namespace Kohya_lora_trainer
             tbxAdditionalArgs.Text = TrainParams.Current.AdditionalArgs;
             tbxAdditionalNetworkArgs.Text = TrainParams.Current.AdditionalNetworkArgs;
 
+            tbxCustomOptName.Text = TrainParams.Current.CustomOptName;
+            tbxCustomOptArgs.Text = TrainParams.Current.CustomOptArgs;
+
             UpdateTotalStepCount();
         }
 
@@ -1528,6 +1538,16 @@ namespace Kohya_lora_trainer
                 LastOpenPresetPath = string.Empty;
                 UpdateAllContents();
             }
+        }
+
+        private void tbxCustomOptName_TextChanged(object sender, EventArgs e)
+        {
+            TrainParams.Current.CustomOptName = tbxCustomOptName.Text;
+        }
+
+        private void tbxCustomOptArgs_TextChanged(object sender, EventArgs e)
+        {
+            TrainParams.Current.CustomOptArgs = tbxCustomOptArgs.Text;
         }
     }
 }

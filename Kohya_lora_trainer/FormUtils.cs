@@ -191,7 +191,7 @@ namespace Kohya_lora_trainer
                     sb.Append(Constants.CurrentSdScriptsPath);
                 }
 
-                sb.Append(" && .\\venv\\Scripts\\activate && pip install -U dadaptation lycoris_lora came-pytorch scipy");
+                sb.Append(" && .\\venv\\Scripts\\activate && pip install -U dadaptation lycoris_lora came-pytorch scipy prodigy-plus-schedule-free");
 
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
