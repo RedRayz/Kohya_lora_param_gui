@@ -120,7 +120,13 @@
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <data name="label7.Text" xml:space="preserve">
+    <value>初期ブランチは「main」です。mainは古いため一部の機能は使用できません。
+2024年11月21日時点で、SDXL学習は「dev」または「sd3」を推奨します。
+FLUX.1とSD3は「sd3」のみ対応です。
+GUIでインストールしたブランチはデフォルトで「dev」です。
+
+ブランチ切り替え後は、GUIのユーティリティの更新タブで
+「pythonパッケージのみ更新」にチェックをつけて「sd-scriptsのアップデート」をしてください。</value>
+  </data>
 </root>

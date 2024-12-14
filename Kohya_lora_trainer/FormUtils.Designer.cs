@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUtils));
             btnRunTensorboard = new Button();
             label3 = new Label();
             btnSelectModel = new Button();
@@ -438,7 +439,7 @@
             // lblSwitching
             // 
             lblSwitching.AutoSize = true;
-            lblSwitching.Location = new Point(78, 187);
+            lblSwitching.Location = new Point(91, 224);
             lblSwitching.Name = "lblSwitching";
             lblSwitching.Size = new Size(310, 15);
             lblSwitching.TabIndex = 5;
@@ -448,11 +449,11 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(66, 74);
+            label7.Location = new Point(65, 74);
             label7.Name = "label7";
-            label7.Size = new Size(416, 90);
+            label7.Size = new Size(416, 105);
             label7.TabIndex = 4;
-            label7.Text = "初期ブランチは「main」です。mainは古いため一部の機能は使用できません。\r\n2024年11月21日時点で、SDXL学習は「dev」または「sd3」を推奨します。\r\nFLUX.1とSD3は「sd3」のみ対応です。\r\n\r\nブランチ切り替え後は、GUIのユーティリティの更新タブで\r\n「pythonパッケージのみ更新」にチェックをつけて「sd-scriptsのアップデート」をしてください。";
+            label7.Text = resources.GetString("label7.Text");
             // 
             // label6
             // 
