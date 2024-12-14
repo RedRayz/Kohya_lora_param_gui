@@ -337,6 +337,12 @@ namespace Kohya_lora_trainer
 
         private void btnSwitchBranch_Click(object sender, EventArgs e)
         {
+            if (!Directory.Exists(Constants.CurrentSdScriptsPath))
+            {
+                MessageBox.Show("sd-scriptsがみつかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string branch = tbxBranchName.Text.Trim();
             Regex regex = new Regex(@"^[-A-Za-z0-9_]*$");
             if (string.IsNullOrEmpty(branch))
