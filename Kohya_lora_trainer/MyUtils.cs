@@ -738,6 +738,7 @@ namespace Kohya_lora_trainer
             if (!string.IsNullOrEmpty(TrainParams.Current.TensorBoardLogPath))
             {
                 sb.Append(" --logging_dir \"").Append(TrainParams.Current.TensorBoardLogPath).Append('"');
+                sb.Append(" --log_tracker_name \"").Append(TrainParams.Current.OutputName).Append('"');
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.DatasetConfigPath))
