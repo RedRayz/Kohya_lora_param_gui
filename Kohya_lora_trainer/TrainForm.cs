@@ -263,7 +263,7 @@ namespace Kohya_lora_trainer
             btnStop.Enabled = true;
             btnClose.Enabled = false;
             if (BatchProcess.IsRunning)
-                btnStop.Text = "バッチ処理の中止";
+                btnStop.Text = "バッチ処理の停止";
 
 
             StringBuilder sbCmd = new StringBuilder();

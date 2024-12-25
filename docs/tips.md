@@ -14,7 +14,7 @@ SDXLなら、詳細設定->パスでVAEに https://huggingface.co/madebyollin/sd
 
 バッチサイズを下げる、cache_latentsを有効にする、不要なアプリは終了する。
 
-それでもダメなら、gradient_checkpointing使用する。
+それでもダメなら、gradient_checkpointing使用する。SDXLは必須。
 
 ## 速度が極端に遅い！
 
@@ -122,6 +122,8 @@ lossが上下に振れるのが普通。振れ方はseed値によって変化す
 
 lossの急上昇や上昇し続けるときは発散の兆候。上昇を続けてavr_lossがnanになったら学習は失敗。発散を避けるにはLRを下げよう。
 
+v-predictionモデルは0.5前後でも正常。
+
 ## LR Schedulerについて
 LR調整アルゴリズム。
 ### cosine_with_restarts
@@ -131,9 +133,9 @@ LR調整アルゴリズム。
 ### linear
 線形に減衰。
 ### constant_with_warmup
-warmupまで線形でLRを上げた後は一定。非推奨。
+warmupまで線形でLRを上げた後は一定。非推奨。ScheduleFree系向け。
 ### constant
-LRは常に一定。非推奨。
+LRは常に一定。RAdamScheduleFree以外は非推奨。
 ### polynomial
 多項式。powerの値で減衰速度が変化する。
 
