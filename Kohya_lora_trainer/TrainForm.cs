@@ -29,8 +29,10 @@ namespace Kohya_lora_trainer
         private void TrainForm_Load(object sender, EventArgs e)
         {
             cbxCompleteAction.SelectedIndex = (int)Form1.CompleteAction;
-            cbxCompleteAction.Visible = !ShutdownOnly;
-            lblCompleteAction.Visible = !ShutdownOnly;
+            //シャットダウンのみか単発処理でなにもしない選択している場合は非表示
+            bool show = !ShutdownOnly && (BatchProcess.IsRunning || Form1.CompleteAction != TrainCompleteAction.None);
+            cbxCompleteAction.Visible = show;
+            lblCompleteAction.Visible = show;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
