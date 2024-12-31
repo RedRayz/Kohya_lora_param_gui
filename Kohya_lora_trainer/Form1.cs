@@ -1134,36 +1134,45 @@ namespace Kohya_lora_trainer
 
         private void UpdateTotalStepCount()
         {
-            if (TrainParams.Current.IsEpoch)
+            try
             {
-                if (StepsPerEpoch <= 0 || (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath) && !Directory.Exists(TrainParams.Current.RegImagePath)))
+                if (TrainParams.Current.IsEpoch)
                 {
-                    lblNumSteps.Text = "?";
-                    lblNumStepsBatch1.Text = "?";
+                    if (StepsPerEpoch <= 0 || (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath) && !Directory.Exists(TrainParams.Current.RegImagePath)))
+                    {
+                        lblNumSteps.Text = "?";
+                        lblNumStepsBatch1.Text = "?";
+                    }
+                    else
+                    {
+                        //sd-scriptsに近い計算式でもずれるときはずれる。Bucketingの影響らしい
+                        decimal eps = (decimal)StepsPerEpoch / TrainParams.Current.BatchSize / TrainParams.Current.GradAccSteps;
+
+                        TotalSteps = TrainParams.Current.Epochs * Math.Ceiling(eps);
+
+                        TotalStepsBatch1 = StepsPerEpoch * TrainParams.Current.Epochs;
+                        if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
+                        {
+                            TotalSteps *= 2;
+                            TotalStepsBatch1 *= 2;
+                        }
+
+
+                        lblNumSteps.Text = TotalSteps.ToString("#,0");
+                        lblNumStepsBatch1.Text = TotalStepsBatch1.ToString("#,0");
+                    }
                 }
                 else
                 {
-                    //sd-scriptsに近い計算式でもずれるときはずれる。Bucketingの影響らしい
-                    decimal eps = (decimal)StepsPerEpoch / TrainParams.Current.BatchSize / TrainParams.Current.GradAccSteps;
-
-                    TotalSteps = TrainParams.Current.Epochs * Math.Ceiling(eps);
-
-                    TotalStepsBatch1 = StepsPerEpoch * TrainParams.Current.Epochs;
-                    if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
-                    {
-                        TotalSteps *= 2;
-                        TotalStepsBatch1 *= 2;
-                    }
-
-
-                    lblNumSteps.Text = TotalSteps.ToString("#,0");
-                    lblNumStepsBatch1.Text = TotalStepsBatch1.ToString("#,0");
+                    lblNumSteps.Text = TrainParams.Current.Epochs.ToString("#,0");
+                    lblNumStepsBatch1.Text = (TrainParams.Current.Epochs * TrainParams.Current.BatchSize * TrainParams.Current.GradAccSteps).ToString("#,0");
                 }
             }
-            else
+            catch(Exception ex)
             {
-                lblNumSteps.Text = TrainParams.Current.Epochs.ToString("#,0");
-                lblNumStepsBatch1.Text = (TrainParams.Current.Epochs * TrainParams.Current.BatchSize * TrainParams.Current.GradAccSteps).ToString("#,0");
+                lblNumSteps.Text = "エラー";
+                lblNumStepsBatch1.Text = "エラー";
+                Debug.WriteLine("Error checking steps: " + ex.Message);
             }
 
         }
