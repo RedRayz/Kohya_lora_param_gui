@@ -103,6 +103,7 @@ namespace Kohya_lora_trainer
             cbxUseAdditionalOptArgs = new CheckBox();
             nudMultiresNoiseIterations = new NumericUpDown();
             nudMultiresNoiseDiscount = new NumericUpDown();
+            cbxDebiasedEstimation = new CheckBox();
             cbxAdvancedTrain = new ComboBox();
             label6 = new Label();
             label9 = new Label();
@@ -264,7 +265,6 @@ namespace Kohya_lora_trainer
             label79 = new Label();
             label55 = new Label();
             label56 = new Label();
-            cbxDebiasedEstimation = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -754,7 +754,7 @@ namespace Kohya_lora_trainer
             nudMinSNRGamma.Name = "nudMinSNRGamma";
             nudMinSNRGamma.Size = new Size(80, 23);
             nudMinSNRGamma.TabIndex = 51;
-            toolTip1.SetToolTip(nudMinSNRGamma, "設定するとLoRA重ね掛けしたときに不安定になる？");
+            toolTip1.SetToolTip(nudMinSNRGamma, "安定性を改善する\r\nDebiased Estimationを使うなら0にする");
             // 
             // cbxWeightDecomposition
             // 
@@ -1026,7 +1026,7 @@ namespace Kohya_lora_trainer
             cbxZeroTerminalSNR.Size = new Size(122, 19);
             cbxZeroTerminalSNR.TabIndex = 58;
             cbxZeroTerminalSNR.Text = "Zero Terminal SNR";
-            toolTip1.SetToolTip(cbxZeroTerminalSNR, "ノイズスケジューラーの問題を修正して\r\n全体が明るい/暗い状況でグレー寄りになるのを防ぐ\r\n生成時に一部サンプラーの相性が悪くなる欠点あり？");
+            toolTip1.SetToolTip(cbxZeroTerminalSNR, "ノイズスケジューラーの問題を修正して\r\n全体が明るい/暗い状況でグレー寄りになるのを防ぐ\r\n出力が不安定になりやすい");
             cbxZeroTerminalSNR.UseVisualStyleBackColor = true;
             // 
             // nudBlocksToSwap
@@ -1077,6 +1077,17 @@ namespace Kohya_lora_trainer
             nudMultiresNoiseDiscount.Size = new Size(80, 23);
             nudMultiresNoiseDiscount.TabIndex = 55;
             toolTip1.SetToolTip(nudMultiresNoiseDiscount, "Zero Terminal SNRを使うなら0にする");
+            // 
+            // cbxDebiasedEstimation
+            // 
+            cbxDebiasedEstimation.AutoSize = true;
+            cbxDebiasedEstimation.Location = new Point(138, 213);
+            cbxDebiasedEstimation.Name = "cbxDebiasedEstimation";
+            cbxDebiasedEstimation.Size = new Size(132, 19);
+            cbxDebiasedEstimation.TabIndex = 58;
+            cbxDebiasedEstimation.Text = "Debiased Estimation";
+            toolTip1.SetToolTip(cbxDebiasedEstimation, "安定性を改善する\r\n不安定なZero Terminal SNRとの相性GOOD");
+            cbxDebiasedEstimation.UseVisualStyleBackColor = true;
             // 
             // cbxAdvancedTrain
             // 
@@ -1829,9 +1840,9 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(nudMinLRRatio);
             tabPage6.Controls.Add(nudSchedulerTimescale);
             tabPage6.Controls.Add(label47);
-            tabPage6.Location = new Point(4, 26);
+            tabPage6.Location = new Point(4, 24);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(660, 322);
+            tabPage6.Size = new Size(660, 324);
             tabPage6.TabIndex = 13;
             tabPage6.Text = "スケジューラー";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1964,9 +1975,9 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(label35);
             tabPage5.Controls.Add(tbxD0);
             tabPage5.Controls.Add(tbxGrowthRate);
-            tabPage5.Location = new Point(4, 26);
+            tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(660, 322);
+            tabPage5.Size = new Size(660, 324);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "オプティマイザ";
             tabPage5.UseVisualStyleBackColor = true;
@@ -2804,17 +2815,6 @@ namespace Kohya_lora_trainer
             label56.Size = new Size(205, 30);
             label56.TabIndex = 58;
             label56.Text = "#がつく項目は0を指定すると未指定にする\r\n##がつく項目は空欄で未指定にする";
-            // 
-            // cbxDebiasedEstimation
-            // 
-            cbxDebiasedEstimation.AutoSize = true;
-            cbxDebiasedEstimation.Location = new Point(138, 213);
-            cbxDebiasedEstimation.Name = "cbxDebiasedEstimation";
-            cbxDebiasedEstimation.Size = new Size(132, 19);
-            cbxDebiasedEstimation.TabIndex = 58;
-            cbxDebiasedEstimation.Text = "Debiased Estimation";
-            toolTip1.SetToolTip(cbxDebiasedEstimation, "安定性が改善するかも");
-            cbxDebiasedEstimation.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
