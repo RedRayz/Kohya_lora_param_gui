@@ -841,6 +841,11 @@ namespace Kohya_lora_trainer
                 sb.Append(" --masked_loss");
             }
 
+            if (TrainParams.Current.DebiasedEstimation)
+            {
+                sb.Append(" --debiased_estimation");
+            }
+
             if (TrainParams.Current.DisableMmapLoadSafetensors)
             {
                 sb.Append(" --disable_mmap_load_safetensors");

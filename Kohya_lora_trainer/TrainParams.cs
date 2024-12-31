@@ -71,6 +71,7 @@ namespace Kohya_lora_trainer {
         //Advanced1
         public bool UseColorAug = false, UseFastLoading = true, DontSaveMetadata = false, UseFlipAug = false, CropRandomly = false, CacheLatents = false, CacheLatentsToDisk = false, HighVRAM = false, UseAdditionalOptArgs = false;
         //public string ModelConfigPath = string.Empty;
+        public bool DebiasedEstimation = false;
         public decimal LRSchedulerCycle = 4m, GradAccSteps = 1m;
         public int DataLoaderThreads = 1, MaxTokens = 75;
         public MixedPrecision mixedPrecisionType = MixedPrecision.fp16;
