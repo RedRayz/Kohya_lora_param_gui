@@ -861,6 +861,11 @@ namespace Kohya_lora_trainer
                 sb.Append(" --immiscible_noise ").Append(TrainParams.Current.ImmiscibleNoise.ToString());
             }
 
+            if (TrainParams.Current.ScaleWeightNorms > 0)
+            {
+                sb.Append(" --scale_weight_norms ").Append(TrainParams.Current.ScaleWeightNorms.ToString());
+            }
+
             if (TrainParams.Current.TEBatchSize > 0)
                 sb.Append(" --text_encoder_batch_size ").Append(TrainParams.Current.TEBatchSize.ToString("0"));
 
