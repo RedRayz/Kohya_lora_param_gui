@@ -427,6 +427,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.ZeroTerminalSNR = cbxZeroTerminalSNR.Checked;
             TrainParams.Current.BlocksToSwap = nudBlocksToSwap.Value;
             TrainParams.Current.DebiasedEstimation = cbxDebiasedEstimation.Checked;
+            TrainParams.Current.ScaleWeightNorms = nudScaleWeightNorms.Value;
 
             Close();
         }
@@ -595,6 +596,7 @@ namespace Kohya_lora_trainer
             cbxZeroTerminalSNR.Checked = TrainParams.Current.ZeroTerminalSNR;
             nudBlocksToSwap.Value = TrainParams.Current.BlocksToSwap;
             cbxDebiasedEstimation.Checked = TrainParams.Current.DebiasedEstimation;
+            nudScaleWeightNorms.Value = TrainParams.Current.ScaleWeightNorms;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)

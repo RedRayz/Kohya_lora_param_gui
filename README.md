@@ -37,9 +37,11 @@ NVIDIA製グラフィックボードを搭載したパソコンでの動作を�
 ### A.GUIの簡易インストーラーを使用する
 v1.6以降でご利用いただけます。
 
-0.あらかじめgitとPython3.10(3.11でもOK)をインストールしておく。
+0.あらかじめ[git](https://git-scm.com/downloads/win)と[Python](https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe)をインストールしておく。これらはsd-scriptsが必要とするものです。
 
-1.[releases](https://github.com/RedRayz/Kohya_lora_param_gui/releases)からkohya_lora_gui-x.x.x.zipをDLする
+※この時点で理解できない・AUTOMATIC1111のインストールが難しい人は学習も難しいと思われます。
+
+1.[releases](https://github.com/RedRayz/Kohya_lora_param_gui/releases)からkohya_lora_param_gui-x.x.x.zipをDLする
 
 2.zipを解凍し、中にあるexeファイルをダブルクリックしてGUIを起動する。
 

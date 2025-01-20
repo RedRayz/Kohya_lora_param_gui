@@ -152,7 +152,7 @@
             MinimizeBox = false;
             Name = "TrainForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "学習";
+            Text = "コマンド実行";
             FormClosing += TrainForm_FormClosing;
             Load += TrainForm_Load;
             Shown += TrainForm_Shown;
