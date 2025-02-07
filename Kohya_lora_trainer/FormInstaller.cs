@@ -44,7 +44,10 @@ namespace Kohya_lora_trainer
                 .Append(Constants.TORCHVISION_VERSION).Append(" --index-url ")
                 .Append(Constants.INDEX_URL)
                 .Append(" && pip install --upgrade -r requirements.txt && pip install xformers==")
-                .Append(Constants.XFORMERS_VERSION).Append(" && ");
+                .Append(Constants.XFORMERS_VERSION)
+                .Append(" --index-url ")
+                .Append(Constants.INDEX_URL)
+                .Append(" && ");
 
             sb.Append("pip install dadaptation lycoris_lora came-pytorch scipy prodigy-plus-schedule-free && ").Append("accelerate config");
             ProcessStartInfo ps = new ProcessStartInfo();
