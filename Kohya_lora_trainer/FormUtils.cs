@@ -228,9 +228,7 @@ namespace Kohya_lora_trainer
                     .Append(vision).Append(" --index-url ")
                     .Append(index)
                     .Append(" && pip install --upgrade -r requirements.txt && pip install xformers==")
-                    .Append(xformers).Append(" --index-url ")
-                    .Append(index)
-                    .Append(" && ");
+                    .Append(xformers).Append(" && ");
 
                 sb.Append("pip install dadaptation lycoris_lora");
                 ProcessStartInfo ps = new ProcessStartInfo();
