@@ -649,7 +649,7 @@ namespace Kohya_lora_trainer
             nudMaxTokens.Name = "nudMaxTokens";
             nudMaxTokens.Size = new Size(92, 23);
             nudMaxTokens.TabIndex = 17;
-            toolTip1.SetToolTip(nudMaxTokens, "コンマ区切りではなくCLIPのトークン数\r\nSD1専用");
+            toolTip1.SetToolTip(nudMaxTokens, "コンマ区切りではなくCLIPのトークン数\r\nSD1以外で動作するかは不明");
             nudMaxTokens.Value = new decimal(new int[] { 75, 0, 0, 0 });
             // 
             // cbxUseConv2d
@@ -2579,6 +2579,7 @@ namespace Kohya_lora_trainer
             nudMaxTokensT5.Name = "nudMaxTokensT5";
             nudMaxTokensT5.Size = new Size(92, 23);
             nudMaxTokensT5.TabIndex = 17;
+            toolTip1.SetToolTip(nudMaxTokensT5, "SD3とFLUX.1専用");
             nudMaxTokensT5.Value = new decimal(new int[] { 256, 0, 0, 0 });
             // 
             // label73
@@ -2701,9 +2702,9 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(cbxApplyT5AttnMask);
             tabPage8.Controls.Add(nudDiscreteFlowShift);
             tabPage8.Controls.Add(label61);
-            tabPage8.Location = new Point(4, 26);
+            tabPage8.Location = new Point(4, 24);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 335);
+            tabPage8.Size = new Size(660, 337);
             tabPage8.TabIndex = 12;
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;
