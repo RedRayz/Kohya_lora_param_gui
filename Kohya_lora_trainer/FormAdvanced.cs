@@ -105,7 +105,7 @@ namespace Kohya_lora_trainer
             float val = 0;
             if (float.TryParse(tbxWeightDecay.Text, out val))
             {
-                if (val < 0f)
+                if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
                 {
                     MessageBox.Show("Weight Decayの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     IsValid = false;
@@ -120,7 +120,7 @@ namespace Kohya_lora_trainer
 
             if (float.TryParse(tbxEps.Text, out val))
             {
-                if (val < 0f)
+                if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
                 {
                     MessageBox.Show("epsの第一の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     IsValid = false;
@@ -135,7 +135,7 @@ namespace Kohya_lora_trainer
 
             if (float.TryParse(tbxEps1.Text, out val))
             {
-                if (val < 0f)
+                if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
                 {
                     MessageBox.Show("epsの第二の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     IsValid = false;
@@ -150,7 +150,7 @@ namespace Kohya_lora_trainer
 
             if (float.TryParse(tbxD0.Text, out val))
             {
-                if (val < 0f)
+                if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
                 {
                     MessageBox.Show("d0の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     IsValid = false;
@@ -165,7 +165,7 @@ namespace Kohya_lora_trainer
 
             if (float.TryParse(tbxGrowthRate.Text, out val))
             {
-                if (val < 0f)
+                if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
                 {
                     MessageBox.Show("growth_rateの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     IsValid = false;
@@ -180,7 +180,7 @@ namespace Kohya_lora_trainer
 
             if (float.TryParse(tbxBetas0.Text, out val))
             {
-                if (val < 0f)
+                if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
                 {
                     MessageBox.Show("betasの一番目の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     IsValid = false;
@@ -195,7 +195,7 @@ namespace Kohya_lora_trainer
 
             if (float.TryParse(tbxBetas1.Text, out val))
             {
-                if (val < 0f)
+                if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
                 {
                     MessageBox.Show("betasの二番目の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     IsValid = false;
@@ -210,7 +210,7 @@ namespace Kohya_lora_trainer
 
             if (float.TryParse(tbxBetas2.Text, out val))
             {
-                if (val < 0f)
+                if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
                 {
                     MessageBox.Show("betasの三番目の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     IsValid = false;
@@ -225,7 +225,7 @@ namespace Kohya_lora_trainer
 
             if (float.TryParse(tbxMomentum.Text, out val))
             {
-                if (val < 0f)
+                if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
                 {
                     MessageBox.Show("DAdaptationのmomentumの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     IsValid = false;
@@ -240,7 +240,7 @@ namespace Kohya_lora_trainer
 
             if (float.TryParse(tbxProdigyBeta3.Text, out val))
             {
-                if (val < 0f)
+                if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
                 {
                     MessageBox.Show("beta3の値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     IsValid = false;
@@ -255,7 +255,7 @@ namespace Kohya_lora_trainer
 
             if (float.TryParse(tbxDCoef.Text, out val))
             {
-                if (val < 0f)
+                if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
                 {
                     MessageBox.Show("d coefの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     IsValid = false;

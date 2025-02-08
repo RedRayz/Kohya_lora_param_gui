@@ -191,7 +191,7 @@ namespace Kohya_lora_trainer
                     sb.Append(Constants.CurrentSdScriptsPath);
                 }
 
-                sb.Append(" && .\\venv\\Scripts\\activate && pip install -U dadaptation lycoris_lora came-pytorch scipy prodigy-plus-schedule-free");
+                sb.Append(" && .\\venv\\Scripts\\activate && pip install -U dadaptation lycoris_lora came-pytorch scipy prodigy-plus-schedule-free && pip install numpy==1.26.4");
 
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
@@ -230,7 +230,7 @@ namespace Kohya_lora_trainer
                     .Append(" && pip install --upgrade -r requirements.txt && pip install xformers==")
                     .Append(xformers).Append(" && ");
 
-                sb.Append("pip install dadaptation lycoris_lora");
+                sb.Append("pip install dadaptation lycoris_lora && pip install numpy==1.26.4");
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
                 ps.Arguments = sb.ToString();
