@@ -1374,6 +1374,11 @@ namespace Kohya_lora_trainer
             {
                 return MessageBox.Show("ノイズオフセットまたはMultires noiseとZero Terminal SNRの併用は望ましくありません。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
+
+            if (!TrainParams.Current.VParameterization && TrainParams.Current.ZeroTerminalSNR)
+            {
+                return MessageBox.Show("Zero Terminal SNRはV Parameterizationが有効でないと動作しません(NaN演算の原因)。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
             return DialogResult.Yes;
         }
 
