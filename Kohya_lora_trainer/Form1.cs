@@ -800,7 +800,7 @@ namespace Kohya_lora_trainer
             if (!Directory.Exists(Constants.CurrentSdScriptsPath + @"venv"))
             {
                 if (showMsg)
-                    MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。\r\nユーティリティからvenvの再生成ができます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。\r\nツール->ユーティリティからvenvの再生成ができます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
