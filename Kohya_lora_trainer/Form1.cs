@@ -824,6 +824,10 @@ namespace Kohya_lora_trainer
             {
                 ofd.InitialDirectory = MyUtils.GetDefaultDir("LoadPresetDir");
             }
+            else if (File.Exists(LastOpenPresetPath))
+            {
+                ofd.InitialDirectory = Path.GetDirectoryName(LastOpenPresetPath);
+            }
 
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -1168,7 +1172,7 @@ namespace Kohya_lora_trainer
                     lblNumStepsBatch1.Text = (TrainParams.Current.Epochs * TrainParams.Current.BatchSize * TrainParams.Current.GradAccSteps).ToString("#,0");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 lblNumSteps.Text = "エラー";
                 lblNumStepsBatch1.Text = "エラー";
