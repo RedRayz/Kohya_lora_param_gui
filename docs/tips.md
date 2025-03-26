@@ -84,7 +84,7 @@ AdaFactorはLoRA学習ではAdamWより遅く、メリットはない。あれ�
 
 画風は癖のないAdamWかLionがいい感じだった。
 
-sd3ブランチ限定になるが、AdamWScheduleFreeもあり。スケジューラーはconstantでLRは0.0004でも過学習や発散を起こさない。
+sd3ブランチ限定になるが、AdamWScheduleFreeもあり。スケジューラーはconstant_with_warmupでLRは0.0004でも過学習や発散を起こさない。
 
 ## おすすめのステップ数は?
 
