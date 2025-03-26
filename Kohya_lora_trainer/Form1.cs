@@ -411,7 +411,7 @@ namespace Kohya_lora_trainer
                 try
                 {
                     XmlSerializer se = new XmlSerializer(typeof(TrainParams));
-                    using (StreamWriter sw = new StreamWriter(LastOpenPresetPath, false, new System.Text.UTF8Encoding(false)))
+                    using (StreamWriter sw = new StreamWriter(LastOpenPresetPath, false, new UTF8Encoding(false)))
                     {
                         se.Serialize(sw, TrainParams.Current);
                     }
@@ -444,10 +444,11 @@ namespace Kohya_lora_trainer
                     try
                     {
                         XmlSerializer se = new XmlSerializer(typeof(TrainParams));
-                        using (StreamWriter sw = new StreamWriter(sfd.FileName, false, new System.Text.UTF8Encoding(false)))
+                        using (StreamWriter sw = new StreamWriter(sfd.FileName, false, new UTF8Encoding(false)))
                         {
                             se.Serialize(sw, TrainParams.Current);
                         }
+                        LastOpenPresetPath = sfd.FileName;
                     }
                     catch
                     {
