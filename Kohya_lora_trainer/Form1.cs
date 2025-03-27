@@ -411,7 +411,7 @@ namespace Kohya_lora_trainer
                 try
                 {
                     XmlSerializer se = new XmlSerializer(typeof(TrainParams));
-                    using (StreamWriter sw = new StreamWriter(LastOpenPresetPath, false, new System.Text.UTF8Encoding(false)))
+                    using (StreamWriter sw = new StreamWriter(LastOpenPresetPath, false, new UTF8Encoding(false)))
                     {
                         se.Serialize(sw, TrainParams.Current);
                     }
@@ -444,10 +444,11 @@ namespace Kohya_lora_trainer
                     try
                     {
                         XmlSerializer se = new XmlSerializer(typeof(TrainParams));
-                        using (StreamWriter sw = new StreamWriter(sfd.FileName, false, new System.Text.UTF8Encoding(false)))
+                        using (StreamWriter sw = new StreamWriter(sfd.FileName, false, new UTF8Encoding(false)))
                         {
                             se.Serialize(sw, TrainParams.Current);
                         }
+                        LastOpenPresetPath = sfd.FileName;
                     }
                     catch
                     {
@@ -800,7 +801,7 @@ namespace Kohya_lora_trainer
             if (!Directory.Exists(Constants.CurrentSdScriptsPath + @"venv"))
             {
                 if (showMsg)
-                    MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。\r\nユーティリティからvenvの再生成ができます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。\r\nツール->ユーティリティからvenvの再生成ができます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -823,6 +824,10 @@ namespace Kohya_lora_trainer
             if (Directory.Exists(MyUtils.GetDefaultDir("LoadPresetDir")))
             {
                 ofd.InitialDirectory = MyUtils.GetDefaultDir("LoadPresetDir");
+            }
+            else if (File.Exists(LastOpenPresetPath))
+            {
+                ofd.InitialDirectory = Path.GetDirectoryName(LastOpenPresetPath);
             }
 
 
@@ -1168,7 +1173,7 @@ namespace Kohya_lora_trainer
                     lblNumStepsBatch1.Text = (TrainParams.Current.Epochs * TrainParams.Current.BatchSize * TrainParams.Current.GradAccSteps).ToString("#,0");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 lblNumSteps.Text = "エラー";
                 lblNumStepsBatch1.Text = "エラー";
@@ -1348,7 +1353,12 @@ namespace Kohya_lora_trainer
             }
             if (TrainParams.Current.ShuffleCaptions && TrainParams.Current.CacheTextencoder)
             {
-                return MessageBox.Show("TEのキャッシュとキャプションのシャッフルは併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                return MessageBox.Show("Text Encoderのキャッシュとキャプションのシャッフルは併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+
+            if (TrainParams.Current.advancedTrainType != AdvancedTrain.UNetOnly && TrainParams.Current.CacheTextencoder)
+            {
+                return MessageBox.Show("Text Encoderの学習(or両方学習)とTEのキャッシュは併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
             if (TrainParams.Current.ImmiscibleNoise > 0)
@@ -1364,6 +1374,11 @@ namespace Kohya_lora_trainer
             if ((TrainParams.Current.NoiseOffset > 0 || TrainParams.Current.MultiresNoiseIterations > 0) && TrainParams.Current.ZeroTerminalSNR)
             {
                 return MessageBox.Show("ノイズオフセットまたはMultires noiseとZero Terminal SNRの併用は望ましくありません。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+
+            if (!TrainParams.Current.VParameterization && TrainParams.Current.ZeroTerminalSNR)
+            {
+                return MessageBox.Show("Zero Terminal SNRはV Parameterizationが有効でないと動作しません(NaN演算の原因)。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
             return DialogResult.Yes;
         }

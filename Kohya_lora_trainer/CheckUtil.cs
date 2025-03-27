@@ -39,6 +39,7 @@ namespace Kohya_lora_trainer
         public static bool IsImageDirectoryValid(string path, out int ccnt)
         {
             ccnt = 0;
+            
             if (string.IsNullOrEmpty(path) || !Directory.Exists(path))
             {
                 return false;
@@ -51,6 +52,7 @@ namespace Kohya_lora_trainer
             }
             else
             {
+                int dirCnt = 0;
                 Regex ExtensionReg = new Regex(@"png|jpg|jpeg|webp|bmp", RegexOptions.Compiled);
                 foreach (string dc2 in dc)
                 {
@@ -62,6 +64,7 @@ namespace Kohya_lora_trainer
                         int num = 0;
                         if (int.TryParse(str, out num) && num > 0)
                         {
+                            dirCnt++;
                             string[] files = Directory.GetFiles(dc2);
                             int fileCnt = 0;
                             foreach (string file in files)
@@ -76,8 +79,8 @@ namespace Kohya_lora_trainer
                     }
                 }
 
-                //数字_名前のディレクトリが一つもないか、あっても画像が無いなら無効とする
-                if(ccnt == 0)
+                //数字_名前のディレクトリが一つもないときだけ無効とする
+                if(ccnt + dirCnt == 0)
                 {
                     return false;
                 }
