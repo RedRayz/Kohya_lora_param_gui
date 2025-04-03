@@ -158,14 +158,12 @@ namespace Kohya_lora_trainer
             label70 = new Label();
             nudT5DropoutRate = new NumericUpDown();
             nudClipGDropoutRate = new NumericUpDown();
-            label39 = new Label();
             label44 = new Label();
             label38 = new Label();
             label75 = new Label();
             label37 = new Label();
             label74 = new Label();
             label36 = new Label();
-            nudMaxNormReg = new NumericUpDown();
             nudNetworkDropout = new NumericUpDown();
             nudModuleDropout = new NumericUpDown();
             numericUpDown2 = new NumericUpDown();
@@ -318,7 +316,6 @@ namespace Kohya_lora_trainer
             tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudT5DropoutRate).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudClipGDropoutRate).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudMaxNormReg).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDropout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudModuleDropout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
@@ -1622,23 +1619,21 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(nudT5DropoutRate);
             tabPage4.Controls.Add(nudClipGDropoutRate);
             tabPage4.Controls.Add(nudCaptionTagDropout);
-            tabPage4.Controls.Add(label39);
             tabPage4.Controls.Add(label44);
             tabPage4.Controls.Add(label38);
             tabPage4.Controls.Add(label75);
             tabPage4.Controls.Add(label37);
             tabPage4.Controls.Add(label74);
             tabPage4.Controls.Add(label36);
-            tabPage4.Controls.Add(nudMaxNormReg);
             tabPage4.Controls.Add(nudNetworkDropout);
             tabPage4.Controls.Add(nudModuleDropout);
             tabPage4.Controls.Add(numericUpDown2);
             tabPage4.Controls.Add(nudRankDropout);
             tabPage4.Controls.Add(nudClipLDropoutRate);
             tabPage4.Controls.Add(nudCaptionDropout);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 26);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(660, 337);
+            tabPage4.Size = new Size(660, 335);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "dropout";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1690,15 +1685,6 @@ namespace Kohya_lora_trainer
             nudClipGDropoutRate.Size = new Size(78, 23);
             nudClipGDropoutRate.TabIndex = 48;
             // 
-            // label39
-            // 
-            label39.AutoSize = true;
-            label39.Location = new Point(68, 164);
-            label39.Name = "label39";
-            label39.Size = new Size(148, 15);
-            label39.TabIndex = 25;
-            label39.Text = "Max Norm Regularization#";
-            // 
             // label44
             // 
             label44.AutoSize = true;
@@ -1720,7 +1706,7 @@ namespace Kohya_lora_trainer
             // label75
             // 
             label75.AutoSize = true;
-            label75.Location = new Point(95, 193);
+            label75.Location = new Point(95, 164);
             label75.Name = "label75";
             label75.Size = new Size(121, 15);
             label75.TabIndex = 25;
@@ -1753,16 +1739,6 @@ namespace Kohya_lora_trainer
             label36.TabIndex = 25;
             label36.Text = "captionドロップアウト確率#";
             // 
-            // nudMaxNormReg
-            // 
-            nudMaxNormReg.DecimalPlaces = 4;
-            nudMaxNormReg.Increment = new decimal(new int[] { 5, 0, 0, 131072 });
-            nudMaxNormReg.Location = new Point(222, 162);
-            nudMaxNormReg.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            nudMaxNormReg.Name = "nudMaxNormReg";
-            nudMaxNormReg.Size = new Size(78, 23);
-            nudMaxNormReg.TabIndex = 24;
-            // 
             // nudNetworkDropout
             // 
             nudNetworkDropout.DecimalPlaces = 4;
@@ -1787,7 +1763,7 @@ namespace Kohya_lora_trainer
             // 
             numericUpDown2.DecimalPlaces = 4;
             numericUpDown2.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            numericUpDown2.Location = new Point(222, 191);
+            numericUpDown2.Location = new Point(222, 162);
             numericUpDown2.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new Size(78, 23);
@@ -1904,6 +1880,7 @@ namespace Kohya_lora_trainer
             nudScaleWeightNorms.Name = "nudScaleWeightNorms";
             nudScaleWeightNorms.Size = new Size(80, 23);
             nudScaleWeightNorms.TabIndex = 51;
+            toolTip1.SetToolTip(nudScaleWeightNorms, "Max Norm Regularizationのこと");
             // 
             // label48
             // 
@@ -3019,7 +2996,6 @@ namespace Kohya_lora_trainer
             tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudT5DropoutRate).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudClipGDropoutRate).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudMaxNormReg).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDropout).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudModuleDropout).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
@@ -3169,8 +3145,6 @@ namespace Kohya_lora_trainer
         private NumericUpDown nudModuleDropout;
         private NumericUpDown nudRankDropout;
         private NumericUpDown nudCaptionDropout;
-        private Label label39;
-        private NumericUpDown nudMaxNormReg;
         private CheckBox cbxDecouple;
         private CheckBox cbxNoProx;
         private Label label40;
