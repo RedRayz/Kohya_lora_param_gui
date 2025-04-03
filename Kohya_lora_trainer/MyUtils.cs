@@ -949,6 +949,11 @@ namespace Kohya_lora_trainer
                 sb.Append(" --zero_terminal_snr");
             }
 
+            if (TrainParams.Current.ResizeInterpolationType != ResizeInterpolation.None)
+            {
+                sb.Append(" --resize_interpolation \"").Append(TrainParams.Current.ResizeInterpolationType.ToString().ToLower()).Append('"');
+            }
+
             string str = TrainParams.Current.AdditionalArgs.Trim();
             str = str.Replace("\r\n", string.Empty);
             if (!string.IsNullOrEmpty(str))

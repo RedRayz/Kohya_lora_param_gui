@@ -429,6 +429,8 @@ namespace Kohya_lora_trainer
             TrainParams.Current.DebiasedEstimation = cbxDebiasedEstimation.Checked;
             TrainParams.Current.ScaleWeightNorms = nudScaleWeightNorms.Value;
 
+            TrainParams.Current.ResizeInterpolationType = (ResizeInterpolation)Enum.ToObject(typeof(ResizeInterpolation), cbxResizeInterpolation.SelectedIndex);
+
             Close();
         }
 
@@ -597,6 +599,8 @@ namespace Kohya_lora_trainer
             nudBlocksToSwap.Value = TrainParams.Current.BlocksToSwap;
             cbxDebiasedEstimation.Checked = TrainParams.Current.DebiasedEstimation;
             nudScaleWeightNorms.Value = TrainParams.Current.ScaleWeightNorms;
+
+            cbxResizeInterpolation.SelectedIndex = (int)TrainParams.Current.ResizeInterpolationType;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)
