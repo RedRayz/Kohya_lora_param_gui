@@ -322,7 +322,7 @@ namespace Kohya_lora_trainer
             // 
             // nudNetworkDim
             // 
-            nudNetworkDim.Location = new Point(404, 163);
+            nudNetworkDim.Location = new Point(404, 159);
             nudNetworkDim.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
             nudNetworkDim.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudNetworkDim.Name = "nudNetworkDim";
@@ -399,7 +399,7 @@ namespace Kohya_lora_trainer
             tbxFileName.ScrollBars = ScrollBars.Vertical;
             tbxFileName.Size = new Size(329, 73);
             tbxFileName.TabIndex = 38;
-            toolTip1.SetToolTip(tbxFileName, "空白、マルチバイト文字(日本語など)は非推奨");
+            toolTip1.SetToolTip(tbxFileName, "空白、マルチバイト文字(日本語など)は非推奨\r\n再起動すると改行は消えるので注意");
             tbxFileName.TextChanged += tbxFileName_TextChanged;
             // 
             // cbxModuleType
@@ -543,7 +543,7 @@ namespace Kohya_lora_trainer
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(325, 165);
+            label20.Location = new Point(325, 161);
             label20.Name = "label20";
             label20.Size = new Size(77, 15);
             label20.TabIndex = 48;
@@ -958,9 +958,9 @@ namespace Kohya_lora_trainer
             tabPageAddArgs.Controls.Add(label19);
             tabPageAddArgs.Controls.Add(tbxAdditionalNetworkArgs);
             tabPageAddArgs.Controls.Add(tbxAdditionalArgs);
-            tabPageAddArgs.Location = new Point(4, 26);
+            tabPageAddArgs.Location = new Point(4, 24);
             tabPageAddArgs.Name = "tabPageAddArgs";
-            tabPageAddArgs.Size = new Size(759, 382);
+            tabPageAddArgs.Size = new Size(759, 384);
             tabPageAddArgs.TabIndex = 2;
             tabPageAddArgs.Text = "追加の引数";
             tabPageAddArgs.UseVisualStyleBackColor = true;
@@ -1041,9 +1041,9 @@ namespace Kohya_lora_trainer
             tabPageCustomOpt.Controls.Add(tbxCustomOptArgs);
             tabPageCustomOpt.Controls.Add(label27);
             tabPageCustomOpt.Controls.Add(label25);
-            tabPageCustomOpt.Location = new Point(4, 26);
+            tabPageCustomOpt.Location = new Point(4, 24);
             tabPageCustomOpt.Name = "tabPageCustomOpt";
-            tabPageCustomOpt.Size = new Size(759, 382);
+            tabPageCustomOpt.Size = new Size(759, 384);
             tabPageCustomOpt.TabIndex = 3;
             tabPageCustomOpt.Text = "カスタムオプティマイザ";
             tabPageCustomOpt.UseVisualStyleBackColor = true;
