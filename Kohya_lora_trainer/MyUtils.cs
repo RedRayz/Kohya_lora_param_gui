@@ -746,11 +746,6 @@ namespace Kohya_lora_trainer
                 sb.Append(" --dataset_config \"").Append(TrainParams.Current.DatasetConfigPath).Append('"');
             }
 
-            if (TrainParams.Current.MaxNormReg > 0)
-            {
-                sb.Append(" --scale_weight_norms ").Append(TrainParams.Current.MaxNormReg.ToString());
-            }
-
             if (TrainParams.Current.NetworkDropout > 0)
             {
                 sb.Append(" --network_dropout ").Append(TrainParams.Current.NetworkDropout.ToString());

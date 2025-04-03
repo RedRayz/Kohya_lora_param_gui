@@ -1636,9 +1636,9 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(nudRankDropout);
             tabPage4.Controls.Add(nudClipLDropoutRate);
             tabPage4.Controls.Add(nudCaptionDropout);
-            tabPage4.Location = new Point(4, 26);
+            tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(660, 335);
+            tabPage4.Size = new Size(660, 337);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "dropout";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1842,9 +1842,9 @@ namespace Kohya_lora_trainer
             page3.Controls.Add(label57);
             page3.Controls.Add(label17);
             page3.Controls.Add(nudIpNoiseGamma);
-            page3.Location = new Point(4, 26);
+            page3.Location = new Point(4, 24);
             page3.Name = "page3";
-            page3.Size = new Size(660, 335);
+            page3.Size = new Size(660, 337);
             page3.TabIndex = 10;
             page3.Text = "損失とノイズ";
             page3.UseVisualStyleBackColor = true;
@@ -1898,6 +1898,7 @@ namespace Kohya_lora_trainer
             // 
             // nudScaleWeightNorms
             // 
+            nudScaleWeightNorms.DecimalPlaces = 4;
             nudScaleWeightNorms.Location = new Point(445, 194);
             nudScaleWeightNorms.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             nudScaleWeightNorms.Name = "nudScaleWeightNorms";

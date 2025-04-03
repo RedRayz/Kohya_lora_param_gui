@@ -357,8 +357,6 @@ namespace Kohya_lora_trainer
             TrainParams.Current.RankDropout = nudRankDropout.Value;
             TrainParams.Current.ModuleDropout = nudModuleDropout.Value;
 
-            TrainParams.Current.MaxNormReg = nudMaxNormReg.Value;
-
             TrainParams.Current.Decouple = cbxDecouple.Checked;
             TrainParams.Current.NoProx = cbxNoProx.Checked;
 
@@ -513,8 +511,6 @@ namespace Kohya_lora_trainer
             nudRankDropout.Value = TrainParams.Current.RankDropout;
             nudModuleDropout.Value = TrainParams.Current.ModuleDropout;
             nudNetworkDropout.Value = TrainParams.Current.NetworkDropout;
-
-            nudMaxNormReg.Value = TrainParams.Current.MaxNormReg;
 
             cbxDecouple.Checked = TrainParams.Current.Decouple;
             cbxNoProx.Checked = TrainParams.Current.NoProx;
