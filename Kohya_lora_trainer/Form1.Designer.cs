@@ -396,7 +396,8 @@ namespace Kohya_lora_trainer
             tbxFileName.Location = new Point(102, 295);
             tbxFileName.Multiline = true;
             tbxFileName.Name = "tbxFileName";
-            tbxFileName.Size = new Size(308, 48);
+            tbxFileName.ScrollBars = ScrollBars.Vertical;
+            tbxFileName.Size = new Size(329, 59);
             tbxFileName.TabIndex = 38;
             toolTip1.SetToolTip(tbxFileName, "空白、マルチバイト文字(日本語など)は非推奨");
             tbxFileName.TextChanged += tbxFileName_TextChanged;
@@ -959,7 +960,7 @@ namespace Kohya_lora_trainer
             tabPageAddArgs.Controls.Add(tbxAdditionalArgs);
             tabPageAddArgs.Location = new Point(4, 26);
             tabPageAddArgs.Name = "tabPageAddArgs";
-            tabPageAddArgs.Size = new Size(759, 351);
+            tabPageAddArgs.Size = new Size(759, 382);
             tabPageAddArgs.TabIndex = 2;
             tabPageAddArgs.Text = "追加の引数";
             tabPageAddArgs.UseVisualStyleBackColor = true;
@@ -1042,7 +1043,7 @@ namespace Kohya_lora_trainer
             tabPageCustomOpt.Controls.Add(label25);
             tabPageCustomOpt.Location = new Point(4, 26);
             tabPageCustomOpt.Name = "tabPageCustomOpt";
-            tabPageCustomOpt.Size = new Size(759, 351);
+            tabPageCustomOpt.Size = new Size(759, 382);
             tabPageCustomOpt.TabIndex = 3;
             tabPageCustomOpt.Text = "カスタムオプティマイザ";
             tabPageCustomOpt.UseVisualStyleBackColor = true;
@@ -1118,7 +1119,7 @@ namespace Kohya_lora_trainer
             tabPageCustomCommands.Location = new Point(4, 26);
             tabPageCustomCommands.Name = "tabPageCustomCommands";
             tabPageCustomCommands.Padding = new Padding(3);
-            tabPageCustomCommands.Size = new Size(759, 351);
+            tabPageCustomCommands.Size = new Size(759, 382);
             tabPageCustomCommands.TabIndex = 1;
             tabPageCustomCommands.Text = "カスタムコマンド";
             tabPageCustomCommands.UseVisualStyleBackColor = true;

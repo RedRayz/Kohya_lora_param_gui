@@ -627,7 +627,7 @@ namespace Kohya_lora_trainer
 
             if (!string.IsNullOrEmpty(TrainParams.Current.OutputName))
             {
-                sb.Append(" --output_name \"").Append(TrainParams.Current.OutputName).Append('"');
+                sb.Append(" --output_name \"").Append(TrainParams.Current.OutputName.Replace("\r\n", string.Empty)).Append('"');
             }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath))
