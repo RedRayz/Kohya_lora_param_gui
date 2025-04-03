@@ -1559,20 +1559,12 @@ namespace Kohya_lora_trainer
 
         private void btnShowTipsDatasetDir_Click(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show("「数字_名前」のフォルダが1つ以上入ったフォルダを指定する必要があります。\n詳細は、sd-scriptsのドキュメントをご覧ください。\nOKを押すとドキュメントを表示します。", "ヒント", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            if (res == DialogResult.OK)
-            {
-                ShowDatasetDocument();
-            }
+            MessageBox.Show("「数字_名前」のフォルダが1つ以上入ったフォルダを指定する必要があります。\n詳細は、sd-scriptsのドキュメントをご覧ください。", "ヒント", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
         }
 
         private void btnShowTipsRegImageDir_Click(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show("「数字_名前」のフォルダが1つ以上入ったフォルダを指定する必要があります。\n詳細は、sd-scriptsのドキュメントをご覧ください。\nOKを押すとドキュメントを表示します。", "ヒント", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            if (res == DialogResult.OK)
-            {
-                ShowDatasetDocument();
-            }
+            MessageBox.Show("「数字_名前」のフォルダが1つ以上入ったフォルダを指定する必要があります。\n詳細は、sd-scriptsのドキュメントをご覧ください。", "ヒント", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
         }
     }
 }
