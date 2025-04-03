@@ -746,11 +746,6 @@ namespace Kohya_lora_trainer
                 sb.Append(" --dataset_config \"").Append(TrainParams.Current.DatasetConfigPath).Append('"');
             }
 
-            if (TrainParams.Current.MaxNormReg > 0)
-            {
-                sb.Append(" --scale_weight_norms ").Append(TrainParams.Current.MaxNormReg.ToString());
-            }
-
             if (TrainParams.Current.NetworkDropout > 0)
             {
                 sb.Append(" --network_dropout ").Append(TrainParams.Current.NetworkDropout.ToString());
@@ -947,6 +942,11 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.ZeroTerminalSNR)
             {
                 sb.Append(" --zero_terminal_snr");
+            }
+
+            if (TrainParams.Current.ResizeInterpolationType != ResizeInterpolation.None)
+            {
+                sb.Append(" --resize_interpolation \"").Append(TrainParams.Current.ResizeInterpolationType.ToString().ToLower()).Append('"');
             }
 
             string str = TrainParams.Current.AdditionalArgs.Trim();
