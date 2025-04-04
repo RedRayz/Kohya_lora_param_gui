@@ -268,7 +268,7 @@ namespace Kohya_lora_trainer
             // 
             // btnStartTraining
             // 
-            btnStartTraining.Font = new Font("Yu Gothic UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            btnStartTraining.Font = new Font("Yu Gothic UI", 14F);
             btnStartTraining.Location = new Point(643, 545);
             btnStartTraining.Name = "btnStartTraining";
             btnStartTraining.Size = new Size(132, 39);
@@ -316,7 +316,7 @@ namespace Kohya_lora_trainer
             nudNetworkAlpha.Name = "nudNetworkAlpha";
             nudNetworkAlpha.Size = new Size(80, 23);
             nudNetworkAlpha.TabIndex = 51;
-            toolTip1.SetToolTip(nudNetworkAlpha, "dimの半分以下の値が望ましい\r\n高い値は生成時に崩壊かクローン人間発生の原因\r\n画風は低いほう(1/8)がいいかも");
+            toolTip1.SetToolTip(nudNetworkAlpha, "dimの半分以下の値が望ましい\r\n高い値は生成時に崩壊かクローン人間発生の原因\r\n画風は低いほう(1/4,1/8)がいいかも");
             nudNetworkAlpha.Value = new decimal(new int[] { 16, 0, 0, 0 });
             nudNetworkAlpha.ValueChanged += nudNetworkAlpha_ValueChanged;
             // 
@@ -375,7 +375,7 @@ namespace Kohya_lora_trainer
             nudWarmupSteps.Name = "nudWarmupSteps";
             nudWarmupSteps.Size = new Size(72, 23);
             nudWarmupSteps.TabIndex = 62;
-            toolTip1.SetToolTip(nudWarmupSteps, "0から指定したステップ/進捗の割合にかけて徐々にLRを上げる\r\n数値をn.00でステップ数、少数を.00以外にすると比率になる");
+            toolTip1.SetToolTip(nudWarmupSteps, "0から指定したステップ/進捗の割合にかけて徐々にLRを上げる\r\n数値をn.00でステップ数、少数を.00以外にすると比率(0-1)になる");
             nudWarmupSteps.Value = new decimal(new int[] { 500, 0, 0, 0 });
             nudWarmupSteps.ValueChanged += nudWarmupSteps_ValueChanged;
             // 
@@ -399,7 +399,7 @@ namespace Kohya_lora_trainer
             tbxFileName.ScrollBars = ScrollBars.Vertical;
             tbxFileName.Size = new Size(329, 73);
             tbxFileName.TabIndex = 38;
-            toolTip1.SetToolTip(tbxFileName, "空白、マルチバイト文字(日本語など)は非推奨\r\n再起動すると改行は消えるので注意");
+            toolTip1.SetToolTip(tbxFileName, "空白、マルチバイト文字(日本語など)は非推奨\r\n改行は自動的に消えるので注意");
             tbxFileName.TextChanged += tbxFileName_TextChanged;
             // 
             // cbxModuleType
@@ -427,7 +427,7 @@ namespace Kohya_lora_trainer
             // tbxRegImgPath
             // 
             tbxRegImgPath.AllowDrop = true;
-            tbxRegImgPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxRegImgPath.Font = new Font("Yu Gothic UI", 8F);
             tbxRegImgPath.Location = new Point(380, 100);
             tbxRegImgPath.Name = "tbxRegImgPath";
             tbxRegImgPath.Size = new Size(360, 22);
@@ -580,7 +580,7 @@ namespace Kohya_lora_trainer
             // 
             // lblNumSteps
             // 
-            lblNumSteps.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblNumSteps.Font = new Font("Yu Gothic UI", 10F);
             lblNumSteps.Location = new Point(669, 478);
             lblNumSteps.Name = "lblNumSteps";
             lblNumSteps.Size = new Size(106, 24);
@@ -590,7 +590,7 @@ namespace Kohya_lora_trainer
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Font = new Font("Yu Gothic UI", 9F);
             label9.Location = new Point(256, 222);
             label9.Name = "label9";
             label9.Size = new Size(146, 15);
@@ -609,7 +609,7 @@ namespace Kohya_lora_trainer
             // 
             // lblNumStepsBatch1
             // 
-            lblNumStepsBatch1.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblNumStepsBatch1.Font = new Font("Yu Gothic UI", 10F);
             lblNumStepsBatch1.Location = new Point(669, 502);
             lblNumStepsBatch1.Name = "lblNumStepsBatch1";
             lblNumStepsBatch1.Size = new Size(106, 22);
@@ -676,7 +676,7 @@ namespace Kohya_lora_trainer
             // tbxModelPath
             // 
             tbxModelPath.AllowDrop = true;
-            tbxModelPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxModelPath.Font = new Font("Yu Gothic UI", 8F);
             tbxModelPath.Location = new Point(8, 38);
             tbxModelPath.Name = "tbxModelPath";
             tbxModelPath.Size = new Size(732, 22);
@@ -688,7 +688,7 @@ namespace Kohya_lora_trainer
             // tbxImagePath
             // 
             tbxImagePath.AllowDrop = true;
-            tbxImagePath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxImagePath.Font = new Font("Yu Gothic UI", 8F);
             tbxImagePath.Location = new Point(6, 100);
             tbxImagePath.Name = "tbxImagePath";
             tbxImagePath.Size = new Size(360, 22);
@@ -700,7 +700,7 @@ namespace Kohya_lora_trainer
             // tbxOutputPath
             // 
             tbxOutputPath.AllowDrop = true;
-            tbxOutputPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxOutputPath.Font = new Font("Yu Gothic UI", 8F);
             tbxOutputPath.Location = new Point(448, 305);
             tbxOutputPath.Name = "tbxOutputPath";
             tbxOutputPath.Size = new Size(292, 22);
@@ -958,9 +958,9 @@ namespace Kohya_lora_trainer
             tabPageAddArgs.Controls.Add(label19);
             tabPageAddArgs.Controls.Add(tbxAdditionalNetworkArgs);
             tabPageAddArgs.Controls.Add(tbxAdditionalArgs);
-            tabPageAddArgs.Location = new Point(4, 24);
+            tabPageAddArgs.Location = new Point(4, 26);
             tabPageAddArgs.Name = "tabPageAddArgs";
-            tabPageAddArgs.Size = new Size(759, 384);
+            tabPageAddArgs.Size = new Size(759, 382);
             tabPageAddArgs.TabIndex = 2;
             tabPageAddArgs.Text = "追加の引数";
             tabPageAddArgs.UseVisualStyleBackColor = true;
@@ -1010,7 +1010,7 @@ namespace Kohya_lora_trainer
             // tbxAdditionalNetworkArgs
             // 
             tbxAdditionalNetworkArgs.BackColor = Color.FromArgb(64, 64, 64);
-            tbxAdditionalNetworkArgs.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxAdditionalNetworkArgs.Font = new Font("Verdana", 9F);
             tbxAdditionalNetworkArgs.ForeColor = Color.White;
             tbxAdditionalNetworkArgs.Location = new Point(16, 174);
             tbxAdditionalNetworkArgs.Multiline = true;
@@ -1023,7 +1023,7 @@ namespace Kohya_lora_trainer
             // tbxAdditionalArgs
             // 
             tbxAdditionalArgs.BackColor = Color.FromArgb(64, 64, 64);
-            tbxAdditionalArgs.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxAdditionalArgs.Font = new Font("Verdana", 9F);
             tbxAdditionalArgs.ForeColor = Color.White;
             tbxAdditionalArgs.Location = new Point(14, 31);
             tbxAdditionalArgs.Multiline = true;
@@ -1041,9 +1041,9 @@ namespace Kohya_lora_trainer
             tabPageCustomOpt.Controls.Add(tbxCustomOptArgs);
             tabPageCustomOpt.Controls.Add(label27);
             tabPageCustomOpt.Controls.Add(label25);
-            tabPageCustomOpt.Location = new Point(4, 24);
+            tabPageCustomOpt.Location = new Point(4, 26);
             tabPageCustomOpt.Name = "tabPageCustomOpt";
-            tabPageCustomOpt.Size = new Size(759, 384);
+            tabPageCustomOpt.Size = new Size(759, 382);
             tabPageCustomOpt.TabIndex = 3;
             tabPageCustomOpt.Text = "カスタムオプティマイザ";
             tabPageCustomOpt.UseVisualStyleBackColor = true;
@@ -1083,7 +1083,7 @@ namespace Kohya_lora_trainer
             // tbxCustomOptArgs
             // 
             tbxCustomOptArgs.BackColor = Color.FromArgb(64, 64, 64);
-            tbxCustomOptArgs.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxCustomOptArgs.Font = new Font("Verdana", 9F);
             tbxCustomOptArgs.ForeColor = Color.White;
             tbxCustomOptArgs.Location = new Point(15, 100);
             tbxCustomOptArgs.Multiline = true;
@@ -1136,7 +1136,7 @@ namespace Kohya_lora_trainer
             // label15
             // 
             label15.AutoSize = true;
-            label15.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label15.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold);
             label15.Location = new Point(20, 267);
             label15.Name = "label15";
             label15.Size = new Size(393, 60);
@@ -1147,7 +1147,7 @@ namespace Kohya_lora_trainer
             // tbxCommand
             // 
             tbxCommand.BackColor = Color.FromArgb(64, 0, 0);
-            tbxCommand.Font = new Font("Verdana", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxCommand.Font = new Font("Verdana", 9F);
             tbxCommand.ForeColor = Color.White;
             tbxCommand.Location = new Point(20, 6);
             tbxCommand.Multiline = true;
@@ -1202,7 +1202,7 @@ namespace Kohya_lora_trainer
             Controls.Add(btnStartTraining);
             Controls.Add(btnAdvanced);
             Controls.Add(menuStrip1);
-            Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Yu Gothic UI", 9F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
