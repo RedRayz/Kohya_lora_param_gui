@@ -1497,11 +1497,6 @@ namespace Kohya_lora_trainer
             TrainParams.Current.CustomCommands = tbxCommand.Text.Replace("\r\n", string.Empty);
         }
 
-        private void データセット編集ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ユーティリティToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form frm = new FormUtils();
