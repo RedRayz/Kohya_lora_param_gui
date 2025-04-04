@@ -215,15 +215,6 @@ namespace Kohya_lora_trainer
                 HaveNonAscillInImageFolder = false;
                 TrainParams.Current.TrainImagePath = cof.FileName;
                 tbxImagePath.Text = TrainParams.Current.TrainImagePath;
-                IsInvalidImageFolder = !CheckUtil.IsImageDirectoryValid(cof.FileName, out StepsPerEpoch);
-                if (IsInvalidImageFolder)
-                {
-                    DialogResult res = MessageBox.Show("フォルダの指定を間違えている可能性があります。\n「数字_名前」のフォルダが1つ以上入ったフォルダを指定する必要があります。\n詳細は、sd-scriptsのドキュメントをご覧ください。\nOKを押すとドキュメントを表示します。", "注意", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                    if (res == DialogResult.OK)
-                    {
-                        ShowDatasetDocument();
-                    }
-                }
                 UpdateTotalStepCount();
                 tbxImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
                 if (CheckUtil.HaveNonAsciiOrSpace(cof.FileName) && !IsInvalidImageFolder)
@@ -258,15 +249,7 @@ namespace Kohya_lora_trainer
                 tbxRegImgPath.Text = TrainParams.Current.RegImagePath;
                 int num = 0;
                 HaveNonAscillInRegFolder = false;
-                IsInvalidRegFolder = !CheckUtil.IsImageDirectoryValid(TrainParams.Current.RegImagePath, out num);
-                if (IsInvalidRegFolder)
-                {
-                    DialogResult res = MessageBox.Show("フォルダの指定を間違えている可能性があります。\n「数字_名前」のフォルダが1つ以上入ったフォルダを指定する必要があります。\n詳細は、sd-scriptsのドキュメントをご覧ください。\nOKを押すとドキュメントを表示します。", "注意", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-                    if (res == DialogResult.OK)
-                    {
-                        ShowDatasetDocument();
-                    }
-                }
+
 
                 tbxRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
                 if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.RegImagePath) && !IsInvalidRegFolder)
@@ -1514,11 +1497,6 @@ namespace Kohya_lora_trainer
             TrainParams.Current.CustomCommands = tbxCommand.Text.Replace("\r\n", string.Empty);
         }
 
-        private void データセット編集ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ユーティリティToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form frm = new FormUtils();
@@ -1572,6 +1550,33 @@ namespace Kohya_lora_trainer
         private void tbxCustomOptArgs_TextChanged(object sender, EventArgs e)
         {
             TrainParams.Current.CustomOptArgs = tbxCustomOptArgs.Text;
+        }
+
+        private void btnShowTipsDatasetDir_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("「数字_名前」のフォルダが1つ以上入ったフォルダを指定する必要があります。\n詳細は、sd-scriptsのドキュメントをご覧ください。", "ヒント", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnShowTipsRegImageDir_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("「数字_名前」のフォルダが1つ以上入ったフォルダを指定する必要があります。\n詳細は、sd-scriptsのドキュメントをご覧ください。", "ヒント", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void sdscriptsリポジトリToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //.NET CoreではUseShellExecute=trueにしないとファイルがないと怒る
+                Process.Start(new ProcessStartInfo
+                {
+                    UseShellExecute = true,
+                    FileName = "https://github.com/kohya-ss/sd-scripts",
+                });
+            }
+            catch
+            {
+                MessageBox.Show("ブラウザを開けません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

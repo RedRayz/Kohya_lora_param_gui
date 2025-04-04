@@ -68,9 +68,11 @@ v1.6以降でご利用いただけます。
 Kohya_lora_trainer.exeをダブルクリックする。ショートカット作ると便利かも?
 
 ## 動作環境
-* Windows 10/11 21H2以降
+* Windows 10/11 21H2(x64)以降
 
-* [.NET Desktop Runtime 6.0](https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/runtime-desktop-6.0.29-windows-x64-installer)
+※Armアーキテクチャ(Snapdragonなど)のCPUは非対応です。
+
+* [.NET Desktop Runtime 9.0](https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/runtime-desktop-9.0.3-windows-x64-installer)
 
 ## ガイドなど
 
