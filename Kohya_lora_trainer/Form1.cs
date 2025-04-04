@@ -1566,5 +1566,22 @@ namespace Kohya_lora_trainer
         {
             MessageBox.Show("「数字_名前」のフォルダが1つ以上入ったフォルダを指定する必要があります。\n詳細は、sd-scriptsのドキュメントをご覧ください。", "ヒント", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void sdscriptsリポジトリToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //.NET CoreではUseShellExecute=trueにしないとファイルがないと怒る
+                Process.Start(new ProcessStartInfo
+                {
+                    UseShellExecute = true,
+                    FileName = "https://github.com/kohya-ss/sd-scripts",
+                });
+            }
+            catch
+            {
+                MessageBox.Show("ブラウザを開けません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

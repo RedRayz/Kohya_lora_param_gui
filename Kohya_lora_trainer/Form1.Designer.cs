@@ -129,6 +129,7 @@ namespace Kohya_lora_trainer
             tbxCommand = new TextBox();
             cbxCompleteAction = new ComboBox();
             label24 = new Label();
+            sdscriptsリポジトリToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDim).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudResolution).BeginInit();
@@ -815,7 +816,7 @@ namespace Kohya_lora_trainer
             // 
             // ヘルプToolStripMenuItem
             // 
-            ヘルプToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ヒントToolStripMenuItem, 配布ページToolStripMenuItem });
+            ヘルプToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ヒントToolStripMenuItem, 配布ページToolStripMenuItem, sdscriptsリポジトリToolStripMenuItem });
             ヘルプToolStripMenuItem.Name = "ヘルプToolStripMenuItem";
             ヘルプToolStripMenuItem.Size = new Size(55, 21);
             ヘルプToolStripMenuItem.Text = "ヘルプ";
@@ -823,14 +824,14 @@ namespace Kohya_lora_trainer
             // ヒントToolStripMenuItem
             // 
             ヒントToolStripMenuItem.Name = "ヒントToolStripMenuItem";
-            ヒントToolStripMenuItem.Size = new Size(168, 22);
+            ヒントToolStripMenuItem.Size = new Size(180, 22);
             ヒントToolStripMenuItem.Text = "LoRA学習のヒント";
             ヒントToolStripMenuItem.Click += ヒントToolStripMenuItem_Click;
             // 
             // 配布ページToolStripMenuItem
             // 
             配布ページToolStripMenuItem.Name = "配布ページToolStripMenuItem";
-            配布ページToolStripMenuItem.Size = new Size(168, 22);
+            配布ページToolStripMenuItem.Size = new Size(180, 22);
             配布ページToolStripMenuItem.Text = "GUI配布ページ";
             配布ページToolStripMenuItem.Click += 配布ページToolStripMenuItem_Click;
             // 
@@ -1176,6 +1177,13 @@ namespace Kohya_lora_trainer
             label24.TabIndex = 91;
             label24.Text = "学習終了時の動作";
             // 
+            // sdscriptsリポジトリToolStripMenuItem
+            // 
+            sdscriptsリポジトリToolStripMenuItem.Name = "sdscriptsリポジトリToolStripMenuItem";
+            sdscriptsリポジトリToolStripMenuItem.Size = new Size(180, 22);
+            sdscriptsリポジトリToolStripMenuItem.Text = "sd-scriptsリポジトリ";
+            sdscriptsリポジトリToolStripMenuItem.Click += sdscriptsリポジトリToolStripMenuItem_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -1335,6 +1343,7 @@ namespace Kohya_lora_trainer
         private Label label25;
         private Button btnShowTipsDatasetDir;
         private Button btnShowTipsRegImageDir;
+        private ToolStripMenuItem sdscriptsリポジトリToolStripMenuItem;
     }
 }
 
