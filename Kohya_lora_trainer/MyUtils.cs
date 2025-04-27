@@ -318,6 +318,8 @@ namespace Kohya_lora_trainer
                 case CrossAtten.sdpa:
                     sb.Append(" --sdpa");
                     break;
+                default:
+                    break;
             }
 
             if (TrainParams.Current.UseGradient)

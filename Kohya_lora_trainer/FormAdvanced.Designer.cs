@@ -106,6 +106,7 @@ namespace Kohya_lora_trainer
             cbxDebiasedEstimation = new CheckBox();
             nudMaxTokensT5 = new NumericUpDown();
             cbxResizeInterpolation = new ComboBox();
+            nudScaleWeightNorms = new NumericUpDown();
             cbxAdvancedTrain = new ComboBox();
             label6 = new Label();
             label9 = new Label();
@@ -175,7 +176,6 @@ namespace Kohya_lora_trainer
             label8 = new Label();
             cbxHuberSchedule = new ComboBox();
             label49 = new Label();
-            nudScaleWeightNorms = new NumericUpDown();
             label48 = new Label();
             label57 = new Label();
             tabPage6 = new TabPage();
@@ -300,6 +300,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseIterations).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseDiscount).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxTokensT5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudScaleWeightNorms).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMomentum).BeginInit();
@@ -322,7 +323,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudRankDropout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudClipLDropoutRate).BeginInit();
             page3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudScaleWeightNorms).BeginInit();
             tabPage6.SuspendLayout();
             tabPage7.SuspendLayout();
             tabPage5.SuspendLayout();
@@ -460,7 +460,7 @@ namespace Kohya_lora_trainer
             // 
             cbxCrossAttenType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxCrossAttenType.FormattingEnabled = true;
-            cbxCrossAttenType.Items.AddRange(new object[] { "xformers", "mem_eff_attn", "sdpa" });
+            cbxCrossAttenType.Items.AddRange(new object[] { "xformers", "mem_eff_attn", "sdpa", "無し" });
             cbxCrossAttenType.Location = new Point(160, 101);
             cbxCrossAttenType.Name = "cbxCrossAttenType";
             cbxCrossAttenType.Size = new Size(98, 23);
@@ -1127,6 +1127,16 @@ namespace Kohya_lora_trainer
             cbxResizeInterpolation.TabIndex = 26;
             toolTip1.SetToolTip(cbxResizeInterpolation, "画像を学習解像度にリサイズする方法\r\n2025/04/03時点でsd3ブランチ専用。\r\nmainやdevで未指定以外にするとエラー落ち");
             // 
+            // nudScaleWeightNorms
+            // 
+            nudScaleWeightNorms.DecimalPlaces = 4;
+            nudScaleWeightNorms.Location = new Point(445, 194);
+            nudScaleWeightNorms.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            nudScaleWeightNorms.Name = "nudScaleWeightNorms";
+            nudScaleWeightNorms.Size = new Size(80, 23);
+            nudScaleWeightNorms.TabIndex = 51;
+            toolTip1.SetToolTip(nudScaleWeightNorms, "Max Norm Regularizationのこと");
+            // 
             // cbxAdvancedTrain
             // 
             cbxAdvancedTrain.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -1158,7 +1168,7 @@ namespace Kohya_lora_trainer
             // 
             // button1
             // 
-            button1.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.Font = new Font("Yu Gothic UI", 12F);
             button1.Location = new Point(505, 386);
             button1.Name = "button1";
             button1.Size = new Size(171, 31);
@@ -1211,7 +1221,7 @@ namespace Kohya_lora_trainer
             // 
             // btnDiscardAndClose
             // 
-            btnDiscardAndClose.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDiscardAndClose.Font = new Font("Yu Gothic UI", 11F);
             btnDiscardAndClose.Location = new Point(330, 386);
             btnDiscardAndClose.Name = "btnDiscardAndClose";
             btnDiscardAndClose.Size = new Size(165, 31);
@@ -1241,7 +1251,7 @@ namespace Kohya_lora_trainer
             // 
             // lblTBoardPath
             // 
-            lblTBoardPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTBoardPath.Font = new Font("Yu Gothic UI", 8F);
             lblTBoardPath.Location = new Point(27, 139);
             lblTBoardPath.Name = "lblTBoardPath";
             lblTBoardPath.Size = new Size(240, 32);
@@ -1270,11 +1280,11 @@ namespace Kohya_lora_trainer
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(33, 104);
+            label4.Location = new Point(22, 104);
             label4.Name = "label4";
-            label4.Size = new Size(121, 15);
+            label4.Size = new Size(136, 15);
             label4.TabIndex = 40;
-            label4.Text = "クロスアテンションの種類";
+            label4.Text = "Cross-Attentionの最適化";
             // 
             // label3
             // 
@@ -1307,7 +1317,7 @@ namespace Kohya_lora_trainer
             // 
             // lblLoRAmodelPath
             // 
-            lblLoRAmodelPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblLoRAmodelPath.Font = new Font("Yu Gothic UI", 8F);
             lblLoRAmodelPath.Location = new Point(27, 58);
             lblLoRAmodelPath.Name = "lblLoRAmodelPath";
             lblLoRAmodelPath.Size = new Size(240, 36);
@@ -1364,7 +1374,7 @@ namespace Kohya_lora_trainer
             // 
             // lblVAEPath
             // 
-            lblVAEPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblVAEPath.Font = new Font("Yu Gothic UI", 8F);
             lblVAEPath.Location = new Point(310, 59);
             lblVAEPath.Name = "lblVAEPath";
             lblVAEPath.Size = new Size(240, 35);
@@ -1530,7 +1540,7 @@ namespace Kohya_lora_trainer
             // 
             label45.AutoSize = true;
             label45.BackColor = Color.Transparent;
-            label45.Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            label45.Font = new Font("Yu Gothic UI", 9F);
             label45.ForeColor = Color.DimGray;
             label45.Location = new Point(200, 23);
             label45.Name = "label45";
@@ -1818,9 +1828,9 @@ namespace Kohya_lora_trainer
             page3.Controls.Add(label57);
             page3.Controls.Add(label17);
             page3.Controls.Add(nudIpNoiseGamma);
-            page3.Location = new Point(4, 24);
+            page3.Location = new Point(4, 26);
             page3.Name = "page3";
-            page3.Size = new Size(660, 337);
+            page3.Size = new Size(660, 335);
             page3.TabIndex = 10;
             page3.Text = "損失とノイズ";
             page3.UseVisualStyleBackColor = true;
@@ -1871,16 +1881,6 @@ namespace Kohya_lora_trainer
             label49.Size = new Size(102, 15);
             label49.TabIndex = 2;
             label49.Text = "huberのスケジュール";
-            // 
-            // nudScaleWeightNorms
-            // 
-            nudScaleWeightNorms.DecimalPlaces = 4;
-            nudScaleWeightNorms.Location = new Point(445, 194);
-            nudScaleWeightNorms.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            nudScaleWeightNorms.Name = "nudScaleWeightNorms";
-            nudScaleWeightNorms.Size = new Size(80, 23);
-            nudScaleWeightNorms.TabIndex = 51;
-            toolTip1.SetToolTip(nudScaleWeightNorms, "Max Norm Regularizationのこと");
             // 
             // label48
             // 
@@ -1970,9 +1970,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 26);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(660, 335);
+            tabPage7.Size = new Size(660, 337);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -2087,7 +2087,7 @@ namespace Kohya_lora_trainer
             // label65
             // 
             label65.AutoSize = true;
-            label65.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label65.Font = new Font("Yu Gothic UI", 8F);
             label65.Location = new Point(163, 61);
             label65.Name = "label65";
             label65.Size = new Size(67, 13);
@@ -2414,7 +2414,7 @@ namespace Kohya_lora_trainer
             // 
             // lblConfigPath
             // 
-            lblConfigPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblConfigPath.Font = new Font("Yu Gothic UI", 8F);
             lblConfigPath.Location = new Point(309, 139);
             lblConfigPath.Name = "lblConfigPath";
             lblConfigPath.Size = new Size(240, 36);
@@ -2442,7 +2442,7 @@ namespace Kohya_lora_trainer
             // 
             // lblT5XXLPath
             // 
-            lblT5XXLPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblT5XXLPath.Font = new Font("Yu Gothic UI", 8F);
             lblT5XXLPath.Location = new Point(310, 211);
             lblT5XXLPath.Name = "lblT5XXLPath";
             lblT5XXLPath.Size = new Size(240, 34);
@@ -2461,7 +2461,7 @@ namespace Kohya_lora_trainer
             // 
             // lblClipGPath
             // 
-            lblClipGPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblClipGPath.Font = new Font("Yu Gothic UI", 8F);
             lblClipGPath.Location = new Point(27, 281);
             lblClipGPath.Name = "lblClipGPath";
             lblClipGPath.Size = new Size(240, 34);
@@ -2470,7 +2470,7 @@ namespace Kohya_lora_trainer
             // 
             // lblClipLPath
             // 
-            lblClipLPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblClipLPath.Font = new Font("Yu Gothic UI", 8F);
             lblClipLPath.Location = new Point(27, 211);
             lblClipLPath.Name = "lblClipLPath";
             lblClipLPath.Size = new Size(240, 34);
@@ -2938,7 +2938,7 @@ namespace Kohya_lora_trainer
             Controls.Add(tabControl1);
             Controls.Add(btnDiscardAndClose);
             Controls.Add(button1);
-            Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Yu Gothic UI", 9F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
@@ -2973,6 +2973,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseIterations).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseDiscount).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxTokensT5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudScaleWeightNorms).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMomentum).EndInit();
@@ -3003,7 +3004,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudClipLDropoutRate).EndInit();
             page3.ResumeLayout(false);
             page3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudScaleWeightNorms).EndInit();
             tabPage6.ResumeLayout(false);
             tabPage6.PerformLayout();
             tabPage7.ResumeLayout(false);
