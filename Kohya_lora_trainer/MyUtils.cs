@@ -853,11 +853,6 @@ namespace Kohya_lora_trainer
                 sb.Append(" --gradient_accumulation_steps ").Append(TrainParams.Current.GradAccSteps.ToString());
             }
 
-            if (TrainParams.Current.ImmiscibleNoise > 0)
-            {
-                sb.Append(" --immiscible_noise ").Append(TrainParams.Current.ImmiscibleNoise.ToString());
-            }
-
             if (TrainParams.Current.ScaleWeightNorms > 0)
             {
                 sb.Append(" --scale_weight_norms ").Append(TrainParams.Current.ScaleWeightNorms.ToString());
