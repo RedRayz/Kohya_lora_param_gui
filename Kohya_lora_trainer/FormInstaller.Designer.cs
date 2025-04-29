@@ -57,7 +57,7 @@
             label1.Font = new Font("Yu Gothic UI", 9F);
             label1.Location = new Point(32, 141);
             label1.Name = "label1";
-            label1.Size = new Size(352, 105);
+            label1.Size = new Size(432, 105);
             label1.TabIndex = 1;
             label1.Text = resources.GetString("label1.Text");
             // 
@@ -108,6 +108,7 @@
             cbxUseLatestTorch.Size = new Size(365, 19);
             cbxUseLatestTorch.TabIndex = 6;
             cbxUseLatestTorch.Text = "Torch 2.1.2(CUDA 12.1)の代わりに 2.7.0(CUDA 12.8)をインストールする";
+            toolTip1.SetToolTip(cbxUseLatestTorch, "Blackwell GPU使用者はチェックつける");
             cbxUseLatestTorch.UseVisualStyleBackColor = true;
             // 
             // FormInstaller
