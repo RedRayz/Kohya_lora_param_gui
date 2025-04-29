@@ -39,12 +39,9 @@ namespace Kohya_lora_trainer
             sb.Append(@"/k cd /d ").Append(path);
             string py = cbxPythonVersion.SelectedIndex == 0 ? "py -3.10" : "py -3.11";
             sb.Append(@" && git clone https://github.com/kohya-ss/sd-scripts.git && cd sd-scripts && git checkout -b dev origin/dev && ")
-                .Append(cbxUsePy.Checked ? py : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && pip install torch==")
-                .Append(Constants.TORCH_VERSION).Append(" torchvision==")
-                .Append(Constants.TORCHVISION_VERSION).Append(" --index-url ")
-                .Append(Constants.INDEX_URL)
-                .Append(" && pip install --upgrade -r requirements.txt && pip install xformers==")
-                .Append(Constants.XFORMERS_VERSION).Append(" && ");
+                .Append(cbxUsePy.Checked ? py : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && ").Append(MyUtils.GenerateMinInstallCommands(cbxUseLatestTorch.Checked));
+
+            sb.Append(" && ");
 
             sb.Append("pip install dadaptation lycoris_lora came-pytorch scipy prodigy-plus-schedule-free && pip install numpy==1.26.4 && ").Append("accelerate config");
             ProcessStartInfo ps = new ProcessStartInfo();

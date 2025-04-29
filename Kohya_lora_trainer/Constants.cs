@@ -16,5 +16,10 @@ namespace Kohya_lora_trainer
         public const string XFORMERS_VERSION = "0.0.23.post1";
         public const string INDEX_URL = "https://download.pytorch.org/whl/cu121";
         public const string WEIGHT_EXTENSION_FILTER = "Weight(*.pt;*.ckpt;*.pth;*.safetensors;*.sft)|*.pt;*.ckpt;*.pth;*.safetensors;*.sft";
+
+        public const string LATEST_TORCH_VERSION = "2.7.0+cu128";
+        public const string LATEST_TORCHVISION_VERSION = "0.22.0+cu128";
+        public const string LATEST_INDEX_URL = "https://download.pytorch.org/whl/cu128";
+        public const string LATEST_XFORMERS_VERSION = "0.0.30";
     }
 }

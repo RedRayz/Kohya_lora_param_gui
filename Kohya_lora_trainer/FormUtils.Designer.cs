@@ -131,7 +131,7 @@
             // 
             // lblLoraPath
             // 
-            lblLoraPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblLoraPath.Font = new Font("Yu Gothic UI", 8F);
             lblLoraPath.Location = new Point(119, 18);
             lblLoraPath.Name = "lblLoraPath";
             lblLoraPath.Size = new Size(383, 37);
@@ -140,7 +140,7 @@
             // 
             // lblOutputPath
             // 
-            lblOutputPath.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblOutputPath.Font = new Font("Yu Gothic UI", 8F);
             lblOutputPath.Location = new Point(119, 60);
             lblOutputPath.Name = "lblOutputPath";
             lblOutputPath.Size = new Size(383, 37);
@@ -214,10 +214,10 @@
             cbxUseLatestTorch.AutoSize = true;
             cbxUseLatestTorch.Location = new Point(161, 123);
             cbxUseLatestTorch.Name = "cbxUseLatestTorch";
-            cbxUseLatestTorch.Size = new Size(132, 19);
+            cbxUseLatestTorch.Size = new Size(198, 19);
             cbxUseLatestTorch.TabIndex = 9;
-            cbxUseLatestTorch.Text = "Torch2.4をインストール";
-            toolTip1.SetToolTip(cbxUseLatestTorch, "主にFLUX用");
+            cbxUseLatestTorch.Text = "Torch 2.7(CUDA 12.8)をインストール";
+            toolTip1.SetToolTip(cbxUseLatestTorch, "Blackwell GPU使用中ならチェックつける");
             cbxUseLatestTorch.UseVisualStyleBackColor = true;
             // 
             // cbxPythonVersion
@@ -254,7 +254,7 @@
             // lblProcessingNpz
             // 
             lblProcessingNpz.AutoSize = true;
-            lblProcessingNpz.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblProcessingNpz.Font = new Font("Yu Gothic UI", 10F);
             lblProcessingNpz.Location = new Point(339, 275);
             lblProcessingNpz.Name = "lblProcessingNpz";
             lblProcessingNpz.Size = new Size(61, 19);
@@ -429,9 +429,9 @@
             tabPage4.Controls.Add(btnSwitchBranch);
             tabPage4.Controls.Add(label5);
             tabPage4.Controls.Add(tbxBranchName);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 26);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(525, 401);
+            tabPage4.Size = new Size(525, 399);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "ブランチ";
             tabPage4.UseVisualStyleBackColor = true;
@@ -497,7 +497,7 @@
             AutoScroll = true;
             ClientSize = new Size(562, 481);
             Controls.Add(tabControl1);
-            Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Yu Gothic UI", 9F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
