@@ -318,6 +318,8 @@ namespace Kohya_lora_trainer
                 case CrossAtten.sdpa:
                     sb.Append(" --sdpa");
                     break;
+                default:
+                    break;
             }
 
             if (TrainParams.Current.UseGradient)
@@ -849,11 +851,6 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.GradAccSteps > 1m)
             {
                 sb.Append(" --gradient_accumulation_steps ").Append(TrainParams.Current.GradAccSteps.ToString());
-            }
-
-            if (TrainParams.Current.ImmiscibleNoise > 0)
-            {
-                sb.Append(" --immiscible_noise ").Append(TrainParams.Current.ImmiscibleNoise.ToString());
             }
 
             if (TrainParams.Current.ScaleWeightNorms > 0)
@@ -1525,5 +1522,32 @@ namespace Kohya_lora_trainer
                 Registry.SetValue("HKEY_CURRENT_USER\\Software\\kohya_lora_gui", "ScriptPath", string.Empty);
             }
         }
+
+        /// <summary>
+        /// 最小限のPythonパッケージのインストールコマンド(torch,xformers,依存パッケージ)生成。
+        /// </summary>
+        /// <param name="UseLatestTorch">最新のTorchをインストールするか</param>
+        /// <returns>pip installコマンドの文字列</returns>
+        internal static string GenerateMinInstallCommands(bool UseLatestTorch)
+        {
+            string torch = UseLatestTorch ? Constants.LATEST_TORCH_VERSION : Constants.TORCH_VERSION;
+            string vision = UseLatestTorch ? Constants.LATEST_TORCHVISION_VERSION : Constants.TORCHVISION_VERSION;
+            string index = UseLatestTorch ? Constants.LATEST_INDEX_URL : Constants.INDEX_URL;
+            string xformers = UseLatestTorch ? Constants.LATEST_XFORMERS_VERSION : Constants.XFORMERS_VERSION;
+            StringBuilder sb = new StringBuilder();
+            sb.Append("pip install torch==")
+            .Append(torch).Append(" torchvision==")
+            .Append(vision).Append(" --index-url ")
+            .Append(index)
+            .Append(" && pip install --upgrade -r requirements.txt && pip install xformers==")
+            .Append(xformers);
+
+            if (UseLatestTorch)
+            {
+                sb.Append(" --index-url ").Append(index);
+            }
+            return sb.ToString();
+        }
+
     }
 }

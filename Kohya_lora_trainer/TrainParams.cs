@@ -272,7 +272,8 @@ namespace Kohya_lora_trainer {
     public enum CrossAtten {
         xformers,
         mem_eff_attn,
-        sdpa
+        sdpa,
+        None
     }
 
     public enum BlockWeightPreset

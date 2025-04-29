@@ -395,7 +395,6 @@ namespace Kohya_lora_trainer
             TrainParams.Current.RandomNoiseOffset = cbxRandomNoiseOffset.Checked;
             TrainParams.Current.RandomIpNoiseGamma = cbxRandomIpNoiseGamma.Checked;
             TrainParams.Current.AlphaMask = cbxAlphaMask.Checked;
-            TrainParams.Current.ImmiscibleNoise = nudImmiscibleNoise.Value;
 
             TrainParams.Current.Sigmoidscale = nudSigmoidScale.Value;
             TrainParams.Current.DiscreteFlowShift = nudDiscreteFlowShift.Value;
@@ -559,8 +558,6 @@ namespace Kohya_lora_trainer
             cbxRandomNoiseOffset.Checked = TrainParams.Current.RandomNoiseOffset;
             cbxRandomIpNoiseGamma.Checked = TrainParams.Current.RandomIpNoiseGamma;
             cbxAlphaMask.Checked = TrainParams.Current.AlphaMask;
-
-            nudImmiscibleNoise.Value = TrainParams.Current.ImmiscibleNoise;
 
             nudSigmoidScale.Value = TrainParams.Current.Sigmoidscale;
             nudDiscreteFlowShift.Value = TrainParams.Current.DiscreteFlowShift;

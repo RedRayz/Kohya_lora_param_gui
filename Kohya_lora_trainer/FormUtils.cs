@@ -191,7 +191,7 @@ namespace Kohya_lora_trainer
                     sb.Append(Constants.CurrentSdScriptsPath);
                 }
 
-                sb.Append(" && .\\venv\\Scripts\\activate && pip install -U dadaptation lycoris_lora came-pytorch scipy prodigy-plus-schedule-free && pip install numpy==1.26.4");
+                sb.Append(" && .\\venv\\Scripts\\activate && pip install -U dadaptation lycoris_lora came-pytorch prodigy-plus-schedule-free && pip install numpy==1.26.4");
 
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
@@ -216,19 +216,8 @@ namespace Kohya_lora_trainer
                 sb.Append(@"/k cd ").Append(Constants.CurrentSdScriptsPath);
 
                 string py = cbxPythonVersion.SelectedIndex == 0 ? "py -3.10" : "py -3.11";
-
-                string torch = cbxUseLatestTorch.Checked ? "2.4.0+cu124" : Constants.TORCH_VERSION;
-                string vision = cbxUseLatestTorch.Checked ? "0.19.0+cu124" : Constants.TORCHVISION_VERSION;
-                string index = cbxUseLatestTorch.Checked ? "https://download.pytorch.org/whl/cu124" : Constants.INDEX_URL;
-                string xformers = cbxUseLatestTorch.Checked ? "0.0.27.post2" : Constants.XFORMERS_VERSION;
-
-                sb.Append(@" && ")
-                    .Append(cbxUsePy.Checked ? py : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && pip install torch==")
-                    .Append(torch).Append(" torchvision==")
-                    .Append(vision).Append(" --index-url ")
-                    .Append(index)
-                    .Append(" && pip install --upgrade -r requirements.txt && pip install xformers==")
-                    .Append(xformers).Append(" && ");
+                sb.Append(@" && ").Append(cbxUsePy.Checked ? py : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && ").Append(MyUtils.GenerateMinInstallCommands(cbxUseLatestTorch.Checked));
+                sb.Append(" && ");
 
                 sb.Append("pip install dadaptation lycoris_lora && pip install numpy==1.26.4");
                 ProcessStartInfo ps = new ProcessStartInfo();

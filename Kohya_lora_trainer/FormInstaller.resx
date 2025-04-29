@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!--
-    Microsoft ResX Schema 
+    Microsoft ResX Schema
 
     Version 2.0
 
@@ -48,7 +48,7 @@
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
     value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
@@ -119,7 +119,7 @@
   </resheader>
   <data name="label1.Text" xml:space="preserve">
     <value>上のボタンを押すとインストール先フォルダの選択画面が出ます。
-フォルダはGUIが入ったフォルダと同階層を指定するか、
+フォルダはGUIが入ったフォルダと同階層(GUIのexeが入ったフォルダの一つ上)を指定するか、
 インストール後にGUIのフォルダをsd-scriptsと同階層に移動させてください。
 選択後、ターミナルが立ち上がり、必要なコマンドを実行します。
 なお、gitとpythonは事前にインストールする必要があります。
