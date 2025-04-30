@@ -38,7 +38,7 @@ namespace Kohya_lora_trainer
             StringBuilder sb = new StringBuilder();
             sb.Append(@"/k cd /d ").Append(path);
             string py = cbxPythonVersion.SelectedIndex == 0 ? "py -3.10" : "py -3.11";
-            sb.Append(@" && git clone https://github.com/kohya-ss/sd-scripts.git && cd sd-scripts && git checkout -b dev origin/dev && ")
+            sb.Append(@" && git clone https://github.com/kohya-ss/sd-scripts.git && cd sd-scripts && git checkout -b sd3 origin/sd3 && ")
                 .Append(cbxUsePy.Checked ? py : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && ").Append(MyUtils.GenerateMinInstallCommands(cbxUseLatestTorch.Checked));
 
             sb.Append(" && ");
