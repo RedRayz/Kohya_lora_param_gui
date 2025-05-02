@@ -1545,6 +1545,7 @@ namespace Kohya_lora_trainer
             if (UseLatestTorch)
             {
                 sb.Append(" --index-url ").Append(index);
+                sb.Append(" && pip install bitsandbytes==0.45.5");
             }
             return sb.ToString();
         }
