@@ -33,8 +33,11 @@ namespace Kohya_lora_trainer
             }
         }
 
-        private void RunInstall(string path)
+        private void RunInstall(string? path)
         {
+            if (string.IsNullOrEmpty(path))
+                return;
+
             StringBuilder sb = new StringBuilder();
             sb.Append(@"/k cd /d ").Append(path);
             string py = cbxPythonVersion.SelectedIndex == 0 ? "py -3.10" : "py -3.11";

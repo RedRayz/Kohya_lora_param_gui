@@ -394,7 +394,7 @@ namespace Kohya_lora_trainer
             btnSwitchBranch.Enabled = true;
             lblSwitching.Visible = false;
             Update();
-            MessageBox.Show("切り替えが終了しました。\n切り替わらない場合は手動で切り替えてください。");
+            MessageBox.Show("切り替えが終了しました。\n切り替わらない場合は手動で切り替えてください。\n切り替え後、venv再生成を推奨します。");
         }
 
     }
