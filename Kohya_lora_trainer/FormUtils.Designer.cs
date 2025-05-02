@@ -217,7 +217,7 @@
             cbxUseLatestTorch.Size = new Size(198, 19);
             cbxUseLatestTorch.TabIndex = 9;
             cbxUseLatestTorch.Text = "Torch 2.7(CUDA 12.8)をインストール";
-            toolTip1.SetToolTip(cbxUseLatestTorch, "Blackwell GPU使用中ならチェックつける");
+            toolTip1.SetToolTip(cbxUseLatestTorch, "NVIDIA RTX 50シリーズ使用中ならチェックつける");
             cbxUseLatestTorch.UseVisualStyleBackColor = true;
             // 
             // cbxPythonVersion
