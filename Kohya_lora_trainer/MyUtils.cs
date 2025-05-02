@@ -1536,15 +1536,13 @@ namespace Kohya_lora_trainer
             string xformers = UseLatestTorch ? Constants.LATEST_XFORMERS_VERSION : Constants.XFORMERS_VERSION;
             StringBuilder sb = new StringBuilder();
             sb.Append("pip install torch==")
-            .Append(torch).Append(" torchvision==")
-            .Append(vision).Append(" --index-url ")
-            .Append(index)
-            .Append(" && pip install --upgrade -r requirements.txt && pip install xformers==")
-            .Append(xformers);
+            .Append(torch).Append(" torchvision==").Append(vision)
+            .Append(" xformers==").Append(xformers)
+            .Append(" --index-url ").Append(index)
+            .Append(" && pip install --upgrade -r requirements.txt");
 
             if (UseLatestTorch)
             {
-                sb.Append(" --index-url ").Append(index);
                 sb.Append(" && pip install bitsandbytes==0.45.5");
             }
             return sb.ToString();
