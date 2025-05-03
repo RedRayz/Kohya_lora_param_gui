@@ -268,8 +268,6 @@ namespace Kohya_lora_trainer
             cbxApplyT5AttnMask = new CheckBox();
             label61 = new Label();
             label56 = new Label();
-            label80 = new Label();
-            label81 = new Label();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -1525,7 +1523,6 @@ namespace Kohya_lora_trainer
             label45.AutoSize = true;
             label45.BackColor = Color.Transparent;
             label45.Font = new Font("Yu Gothic UI", 9F);
-            label45.ForeColor = Color.DimGray;
             label45.Location = new Point(200, 23);
             label45.Name = "label45";
             label45.Size = new Size(101, 15);
@@ -2693,7 +2690,7 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(cbxApplyT5AttnMask);
             tabPage8.Controls.Add(nudDiscreteFlowShift);
             tabPage8.Controls.Add(label61);
-            tabPage8.ForeColor = Color.DimGray;
+            tabPage8.ForeColor = SystemColors.ControlText;
             tabPage8.Location = new Point(4, 24);
             tabPage8.Name = "tabPage8";
             tabPage8.Size = new Size(660, 337);
@@ -2862,32 +2859,11 @@ namespace Kohya_lora_trainer
             label56.TabIndex = 58;
             label56.Text = "#がつく項目は0を指定すると未指定にする\r\n##がつく項目は空欄で未指定にする";
             // 
-            // label80
-            // 
-            label80.AutoSize = true;
-            label80.ForeColor = Color.DimGray;
-            label80.Location = new Point(12, 410);
-            label80.Name = "label80";
-            label80.Size = new Size(65, 15);
-            label80.TabIndex = 59;
-            label80.Text = "灰色の項目";
-            // 
-            // label81
-            // 
-            label81.AutoSize = true;
-            label81.Location = new Point(71, 410);
-            label81.Name = "label81";
-            label81.Size = new Size(96, 15);
-            label81.TabIndex = 59;
-            label81.Text = "はSD3ブランチ専用";
-            // 
             // FormAdvanced
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(692, 434);
-            Controls.Add(label81);
-            Controls.Add(label80);
             Controls.Add(label56);
             Controls.Add(tabControl1);
             Controls.Add(btnDiscardAndClose);
@@ -3225,7 +3201,5 @@ namespace Kohya_lora_trainer
         private NumericUpDown nudScaleWeightNorms;
         private Label label45;
         private ComboBox cbxResizeInterpolation;
-        private Label label80;
-        private Label label81;
     }
 }
