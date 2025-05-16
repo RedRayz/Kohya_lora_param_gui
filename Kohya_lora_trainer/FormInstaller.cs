@@ -46,7 +46,7 @@ namespace Kohya_lora_trainer
 
             sb.Append(" && ");
 
-            sb.Append("pip install dadaptation lycoris_lora came-pytorch prodigy-plus-schedule-free && pip install numpy==1.26.4 && ").Append("accelerate config");
+            sb.Append("pip install dadaptation lycoris_lora prodigy-plus-schedule-free && pip install numpy==1.26.4 && ").Append("accelerate config");
             ProcessStartInfo ps = new ProcessStartInfo();
             ps.FileName = "cmd";
             ps.Arguments = sb.ToString();
