@@ -69,7 +69,11 @@
             btnSwitchBranch = new Button();
             label5 = new Label();
             tbxBranchName = new TextBox();
+            tabPage5 = new TabPage();
+            label9 = new Label();
+            btnPurgePipCache = new Button();
             toolTip1 = new ToolTip(components);
+            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -77,6 +81,7 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
+            tabPage5.SuspendLayout();
             SuspendLayout();
             // 
             // btnRunTensorboard
@@ -182,6 +187,7 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
+            tabControl1.Controls.Add(tabPage5);
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -366,9 +372,9 @@
             tabPage3.Controls.Add(label1);
             tabPage3.Controls.Add(btnInstallExtension);
             tabPage3.Controls.Add(btnUpdateRepo);
-            tabPage3.Location = new Point(4, 26);
+            tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(525, 399);
+            tabPage3.Size = new Size(525, 401);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "更新";
             tabPage3.UseVisualStyleBackColor = true;
@@ -376,7 +382,7 @@
             // cbxUpdateOnlyPackage
             // 
             cbxUpdateOnlyPackage.AutoSize = true;
-            cbxUpdateOnlyPackage.Location = new Point(188, 117);
+            cbxUpdateOnlyPackage.Location = new Point(41, 81);
             cbxUpdateOnlyPackage.Name = "cbxUpdateOnlyPackage";
             cbxUpdateOnlyPackage.Size = new Size(154, 19);
             cbxUpdateOnlyPackage.TabIndex = 4;
@@ -386,7 +392,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(150, 99);
+            label4.Location = new Point(41, 63);
             label4.Name = "label4";
             label4.Size = new Size(255, 15);
             label4.TabIndex = 3;
@@ -395,7 +401,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(188, 210);
+            label1.Location = new Point(41, 144);
             label1.Name = "label1";
             label1.Size = new Size(174, 30);
             label1.TabIndex = 2;
@@ -403,7 +409,7 @@
             // 
             // btnInstallExtension
             // 
-            btnInstallExtension.Location = new Point(188, 163);
+            btnInstallExtension.Location = new Point(41, 106);
             btnInstallExtension.Name = "btnInstallExtension";
             btnInstallExtension.Size = new Size(169, 35);
             btnInstallExtension.TabIndex = 1;
@@ -413,7 +419,7 @@
             // 
             // btnUpdateRepo
             // 
-            btnUpdateRepo.Location = new Point(188, 61);
+            btnUpdateRepo.Location = new Point(41, 25);
             btnUpdateRepo.Name = "btnUpdateRepo";
             btnUpdateRepo.Size = new Size(169, 35);
             btnUpdateRepo.TabIndex = 0;
@@ -429,9 +435,9 @@
             tabPage4.Controls.Add(btnSwitchBranch);
             tabPage4.Controls.Add(label5);
             tabPage4.Controls.Add(tbxBranchName);
-            tabPage4.Location = new Point(4, 26);
+            tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(525, 399);
+            tabPage4.Size = new Size(525, 401);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "ブランチ";
             tabPage4.UseVisualStyleBackColor = true;
@@ -490,6 +496,46 @@
             tbxBranchName.Size = new Size(155, 23);
             tbxBranchName.TabIndex = 0;
             // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(label9);
+            tabPage5.Controls.Add(label11);
+            tabPage5.Controls.Add(btnPurgePipCache);
+            tabPage5.Location = new Point(4, 24);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Size = new Size(525, 401);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "不具合修正";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(39, 61);
+            label9.Name = "label9";
+            label9.Size = new Size(284, 15);
+            label9.TabIndex = 1;
+            label9.Text = "pipのパッケージのインストールのエラーが解決する可能性あり";
+            // 
+            // btnPurgePipCache
+            // 
+            btnPurgePipCache.Location = new Point(39, 27);
+            btnPurgePipCache.Name = "btnPurgePipCache";
+            btnPurgePipCache.Size = new Size(117, 31);
+            btnPurgePipCache.TabIndex = 0;
+            btnPurgePipCache.Text = "pipキャッシュの消去";
+            btnPurgePipCache.UseVisualStyleBackColor = true;
+            btnPurgePipCache.Click += btnPurgePipCache_Click;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(165, 35);
+            label11.Name = "label11";
+            label11.Size = new Size(158, 15);
+            label11.TabIndex = 1;
+            label11.Text = "ターミナルは手動で閉じてください";
+            // 
             // FormUtils
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -517,6 +563,8 @@
             tabPage3.PerformLayout();
             tabPage4.ResumeLayout(false);
             tabPage4.PerformLayout();
+            tabPage5.ResumeLayout(false);
+            tabPage5.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -561,5 +609,9 @@
         private TextBox tbxBranchName;
         private Label label7;
         private Label lblSwitching;
+        private TabPage tabPage5;
+        private Label label9;
+        private Button btnPurgePipCache;
+        private Label label11;
     }
 }

@@ -191,7 +191,7 @@ namespace Kohya_lora_trainer
                     sb.Append(Constants.CurrentSdScriptsPath);
                 }
 
-                sb.Append(" && .\\venv\\Scripts\\activate && pip install -U dadaptation lycoris_lora came-pytorch prodigy-plus-schedule-free && pip install numpy==1.26.4");
+                sb.Append(" && .\\venv\\Scripts\\activate && pip install -U dadaptation lycoris_lora prodigy-plus-schedule-free && pip install numpy==1.26.4");
 
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
@@ -397,5 +397,20 @@ namespace Kohya_lora_trainer
             MessageBox.Show("切り替えが終了しました。\n切り替わらない場合は手動で切り替えてください。\n切り替え後、venv再生成を推奨します。");
         }
 
+        private void btnPurgePipCache_Click(object sender, EventArgs e)
+        {
+            var res = MessageBox.Show("pipのキャッシュを消去します。よろしいですか。\r\nターミナルにFiles removedと出るまでお待ちください。", "確認", MessageBoxButtons.YesNo);
+            if (res == DialogResult.Yes)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append(@"/k pip cache purge");
+                ProcessStartInfo ps = new ProcessStartInfo();
+                ps.FileName = "cmd";
+                ps.Arguments = sb.ToString();
+                var process = new Process();
+                process.StartInfo = ps;
+                process.Start();
+            }
+        }
     }
 }

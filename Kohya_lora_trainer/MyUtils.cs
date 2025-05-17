@@ -384,10 +384,10 @@ namespace Kohya_lora_trainer
             switch (TrainParams.Current.SchedulerType)
             {
                 case Scheduler.polynomial:
-                    sb.Append(" --lr_scheduler_power ").Append(TrainParams.Current.LRSchedulerCycle);
+                    sb.Append(" --lr_scheduler_power ").Append(TrainParams.Current.LRSchedulerCycle.ToString("0.###"));
                     break;
                 case Scheduler.cosine_with_restarts:
-                    sb.Append(" --lr_scheduler_num_cycles ").Append(TrainParams.Current.LRSchedulerCycle);
+                    sb.Append(" --lr_scheduler_num_cycles ").Append(TrainParams.Current.LRSchedulerCycle.ToString("0.###"));
                     break;
                 default:
                     break;
@@ -440,7 +440,7 @@ namespace Kohya_lora_trainer
                     opt = "bitsandbytes.optim.PagedAdEMAMix8bit";
                     break;
                 case Optimizer.Came:
-                    opt = "came_pytorch.CAME";
+                    opt = "pytorch_optimizer.CAME";
                     break;
                 default:
                     opt = TrainParams.Current.OptimizerType.ToString();
@@ -599,8 +599,8 @@ namespace Kohya_lora_trainer
                         {
                             if (TrainParams.Current.UseAdditionalOptArgs)
                             {
-                                sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).Append(',').Append(TrainParams.Current.Betas2.ToString("g")).Append("\" \"eps=")
-        .Append(TrainParams.Current.Eps.ToString("g")).Append(',').Append(TrainParams.Current.Eps1.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append('"');
+                                sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).Append(',').Append(TrainParams.Current.Betas2.ToString("g")).Append("\" \"eps1=")
+        .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"eps2=").Append(TrainParams.Current.Eps1.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append('"');
                             }
                         }
                         break;
