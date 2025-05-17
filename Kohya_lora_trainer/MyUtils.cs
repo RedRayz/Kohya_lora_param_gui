@@ -384,10 +384,10 @@ namespace Kohya_lora_trainer
             switch (TrainParams.Current.SchedulerType)
             {
                 case Scheduler.polynomial:
-                    sb.Append(" --lr_scheduler_power ").Append(TrainParams.Current.LRSchedulerCycle);
+                    sb.Append(" --lr_scheduler_power ").Append(TrainParams.Current.LRSchedulerCycle.ToString("0.###"));
                     break;
                 case Scheduler.cosine_with_restarts:
-                    sb.Append(" --lr_scheduler_num_cycles ").Append(TrainParams.Current.LRSchedulerCycle);
+                    sb.Append(" --lr_scheduler_num_cycles ").Append(TrainParams.Current.LRSchedulerCycle.ToString("0.###"));
                     break;
                 default:
                     break;
