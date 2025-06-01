@@ -37,7 +37,7 @@ NVIDIA製グラフィックボードを搭載したパソコンでの動作を�
 ### A.GUIの簡易インストーラーを使用する
 v1.6以降でご利用いただけます。
 
-0.あらかじめ[git](https://git-scm.com/downloads/win)と[Python](https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe)をインストールしておく。これらはsd-scriptsが必要とするものです。
+0.あらかじめ[git](https://git-scm.com/downloads/win)と[Python 3.11.9](https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe)をインストールしておく。これらはsd-scriptsが必要とするものです。
 
 ※この時点で理解できない・AUTOMATIC1111のインストールが難しい人は学習も難しいと思われます。
 
@@ -68,11 +68,17 @@ v1.6以降でご利用いただけます。
 Kohya_lora_trainer.exeをダブルクリックする。ショートカット作ると便利かも?
 
 ## 動作環境
-* Windows 10/11 21H2(x64)以降
+* Windows 10/11 21H2(x86-64)以降
 
-※Armアーキテクチャ(Snapdragonなど)のCPUは非対応です。
+なお、Armアーキテクチャ(Snapdragonなど)のCPUは非対応です。
 
 * [.NET Desktop Runtime 9.0](https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/runtime-desktop-9.0.3-windows-x64-installer)
+
+* Python 3.11.9
+
+それ以外のPythonではsd-scriptsが動作しない可能性があります。
+
+* Turing以降のNVIDIA製GPU
 
 ## ガイドなど
 
