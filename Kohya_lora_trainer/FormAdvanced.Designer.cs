@@ -545,7 +545,7 @@ namespace Kohya_lora_trainer
             nudNoiseOffset.Name = "nudNoiseOffset";
             nudNoiseOffset.Size = new Size(80, 23);
             nudNoiseOffset.TabIndex = 44;
-            toolTip1.SetToolTip(nudNoiseOffset, "全体的に明るい/暗い環境でグレー寄りになるのを軽減する\r\n変色と明度の変化を減らすため学習元モデルで使用された値を設定すべき\r\nちなみにAnimagine XL,Kivotos XLで使用された値は0.0357\r\nZero Terminal SNRを使うなら0にする");
+            toolTip1.SetToolTip(nudNoiseOffset, "全体的に明るい/暗い環境でグレー寄りになるのを軽減する\r\n変色と明度の変化を減らすため学習元モデルで使用された値を設定すべき\r\nちなみにAnimagine XL系で使用された値は0.0357\r\nZero Terminal SNRを使うなら0にする");
             // 
             // nudCaptionDropout
             // 
@@ -1013,7 +1013,7 @@ namespace Kohya_lora_trainer
             cbxVParameterization.Size = new Size(125, 19);
             cbxVParameterization.TabIndex = 58;
             cbxVParameterization.Text = "v-parameterization";
-            toolTip1.SetToolTip(cbxVParameterization, "v-predictionを使う\r\n学習元モデルが使用を明記している場合のみチェックをつける");
+            toolTip1.SetToolTip(cbxVParameterization, "ノイズ予測にv-prediction(デノイズ前後の差分の予測)を使う\r\n学習元モデルが使用を明記している場合のみチェックをつける");
             cbxVParameterization.UseVisualStyleBackColor = true;
             // 
             // cbxZeroTerminalSNR
@@ -1024,7 +1024,7 @@ namespace Kohya_lora_trainer
             cbxZeroTerminalSNR.Size = new Size(122, 19);
             cbxZeroTerminalSNR.TabIndex = 58;
             cbxZeroTerminalSNR.Text = "Zero Terminal SNR";
-            toolTip1.SetToolTip(cbxZeroTerminalSNR, "ノイズスケジューラーの問題を修正して\r\n全体が明るい/暗い状況でグレー寄りになるのを防ぐ\r\n出力が不安定になりやすい");
+            toolTip1.SetToolTip(cbxZeroTerminalSNR, "ノイズスケジューラーの問題を修正して\r\n全体が明るい/暗い状況でグレー寄りになるのを防ぐ\r\n出力が不安定になりやすい(おそらくNoobAI-XL特有の問題)");
             cbxZeroTerminalSNR.UseVisualStyleBackColor = true;
             // 
             // nudBlocksToSwap
@@ -1054,7 +1054,7 @@ namespace Kohya_lora_trainer
             cbxUseAdditionalOptArgs.Size = new Size(239, 19);
             cbxUseAdditionalOptArgs.TabIndex = 26;
             cbxUseAdditionalOptArgs.Text = "一部Optimizerに追加のパラメータを指定する";
-            toolTip1.SetToolTip(cbxUseAdditionalOptArgs, "DAdaptationは常に指定されます。");
+            toolTip1.SetToolTip(cbxUseAdditionalOptArgs, "DAdaptationは常に指定される");
             cbxUseAdditionalOptArgs.UseVisualStyleBackColor = true;
             // 
             // nudMultiresNoiseIterations
@@ -1634,9 +1634,9 @@ namespace Kohya_lora_trainer
             label71.AutoSize = true;
             label71.Location = new Point(334, 78);
             label71.Name = "label71";
-            label71.Size = new Size(129, 15);
+            label71.Size = new Size(130, 15);
             label71.TabIndex = 49;
-            label71.Text = "T5XLLドロップアウト確率#";
+            label71.Text = "T5XXLドロップアウト確率#";
             // 
             // label76
             // 

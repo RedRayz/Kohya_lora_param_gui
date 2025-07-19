@@ -1120,11 +1120,11 @@
             // label34
             // 
             label34.AutoSize = true;
-            label34.Location = new Point(57, 99);
+            label34.Location = new Point(14, 99);
             label34.Name = "label34";
-            label34.Size = new Size(34, 15);
+            label34.Size = new Size(74, 15);
             label34.TabIndex = 5;
-            label34.Text = "BASE";
+            label34.Text = "Text Encoder";
             // 
             // label35
             // 
@@ -1138,7 +1138,7 @@
             // label36
             // 
             label36.AutoSize = true;
-            label36.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label36.Font = new Font("Yu Gothic UI", 8F);
             label36.Location = new Point(33, 42);
             label36.Name = "label36";
             label36.Size = new Size(186, 13);
@@ -1247,7 +1247,7 @@
             Controls.Add(nudDimBase);
             Controls.Add(nudDimIn00);
             Controls.Add(cbxEnableBlockDim);
-            Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Yu Gothic UI", 9F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;

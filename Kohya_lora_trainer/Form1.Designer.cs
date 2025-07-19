@@ -101,6 +101,7 @@ namespace Kohya_lora_trainer
             ヘルプToolStripMenuItem = new ToolStripMenuItem();
             ヒントToolStripMenuItem = new ToolStripMenuItem();
             配布ページToolStripMenuItem = new ToolStripMenuItem();
+            sdscriptsリポジトリToolStripMenuItem = new ToolStripMenuItem();
             ツールToolStripMenuItem = new ToolStripMenuItem();
             ユーティリティToolStripMenuItem = new ToolStripMenuItem();
             データセット編集選別ツールToolStripMenuItem = new ToolStripMenuItem();
@@ -129,7 +130,6 @@ namespace Kohya_lora_trainer
             tbxCommand = new TextBox();
             cbxCompleteAction = new ComboBox();
             label24 = new Label();
-            sdscriptsリポジトリToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDim).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudResolution).BeginInit();
@@ -616,15 +616,16 @@ namespace Kohya_lora_trainer
             lblNumStepsBatch1.Size = new Size(106, 22);
             lblNumStepsBatch1.TabIndex = 61;
             lblNumStepsBatch1.Text = "999,999,999";
+            toolTip1.SetToolTip(lblNumStepsBatch1, "batch1相当と本来のbatch1は全くの別物であることに注意\r\nこれは総ステップ数調整の参考のために表示している");
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(565, 504);
+            label5.Location = new Point(553, 504);
             label5.Name = "label5";
-            label5.Size = new Size(102, 15);
+            label5.Size = new Size(114, 15);
             label5.TabIndex = 60;
-            label5.Text = "batch1相当(目安):";
+            label5.Text = "batch1相当(参考値):";
             // 
             // label8
             // 
@@ -824,16 +825,23 @@ namespace Kohya_lora_trainer
             // ヒントToolStripMenuItem
             // 
             ヒントToolStripMenuItem.Name = "ヒントToolStripMenuItem";
-            ヒントToolStripMenuItem.Size = new Size(180, 22);
+            ヒントToolStripMenuItem.Size = new Size(179, 22);
             ヒントToolStripMenuItem.Text = "LoRA学習のヒント";
             ヒントToolStripMenuItem.Click += ヒントToolStripMenuItem_Click;
             // 
             // 配布ページToolStripMenuItem
             // 
             配布ページToolStripMenuItem.Name = "配布ページToolStripMenuItem";
-            配布ページToolStripMenuItem.Size = new Size(180, 22);
+            配布ページToolStripMenuItem.Size = new Size(179, 22);
             配布ページToolStripMenuItem.Text = "GUI配布ページ";
             配布ページToolStripMenuItem.Click += 配布ページToolStripMenuItem_Click;
+            // 
+            // sdscriptsリポジトリToolStripMenuItem
+            // 
+            sdscriptsリポジトリToolStripMenuItem.Name = "sdscriptsリポジトリToolStripMenuItem";
+            sdscriptsリポジトリToolStripMenuItem.Size = new Size(179, 22);
+            sdscriptsリポジトリToolStripMenuItem.Text = "sd-scriptsリポジトリ";
+            sdscriptsリポジトリToolStripMenuItem.Click += sdscriptsリポジトリToolStripMenuItem_Click;
             // 
             // ツールToolStripMenuItem
             // 
@@ -1176,13 +1184,6 @@ namespace Kohya_lora_trainer
             label24.Size = new Size(101, 15);
             label24.TabIndex = 91;
             label24.Text = "学習終了時の動作";
-            // 
-            // sdscriptsリポジトリToolStripMenuItem
-            // 
-            sdscriptsリポジトリToolStripMenuItem.Name = "sdscriptsリポジトリToolStripMenuItem";
-            sdscriptsリポジトリToolStripMenuItem.Size = new Size(180, 22);
-            sdscriptsリポジトリToolStripMenuItem.Text = "sd-scriptsリポジトリ";
-            sdscriptsリポジトリToolStripMenuItem.Click += sdscriptsリポジトリToolStripMenuItem_Click;
             // 
             // Form1
             // 
