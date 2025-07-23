@@ -856,7 +856,6 @@ namespace Kohya_lora_trainer
             LastOpenPresetPath = path;
 
             TrainParams.Current.CheckBrokenBlockDim();
-            TrainParams.Current.ResetObsoleteOptions();
             UpdateAllContents();
             return true;
         }
@@ -1342,11 +1341,6 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.advancedTrainType != AdvancedTrain.UNetOnly && TrainParams.Current.CacheTextencoder)
             {
                 return MessageBox.Show("Text Encoderの学習(or両方学習)とTEのキャッシュは併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            }
-
-            if (TrainParams.Current.ImmiscibleNoise > 0)
-            {
-                return MessageBox.Show("Immiscible Noiseは現在Pull requestの段階であり未実装です。\n使用するにはPRのチェックアウトが必要になりますが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
             if ((TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim) && ((TrainParams.Current.StableDiffusionType != ModelArchitecture.Legacy && TrainParams.Current.StableDiffusionType != ModelArchitecture.XL) || TrainParams.Current.ModuleType == NetworkModule.LyCORIS))

@@ -333,17 +333,12 @@ namespace Kohya_lora_trainer
 
             TrainParams.Current.UseColorAug = cbxUseColorAug.Checked;
             TrainParams.Current.UseFastLoading = cbxUseFastLoading.Checked;
-            //Obsoleted: SD2なんぞ廃止や
-            //TrainParams.Current.UseSDV2 = cbxUseV2.Checked;
-            //TrainParams.Current.UseParameterization = cbxUseParametarization.Checked;
-            //TrainParams.Current.ScaleVPredLoss = cbxScaleVPredLoss.Checked;
+
             TrainParams.Current.UseFlipAug = cbxFlipAug.Checked;
             TrainParams.Current.CropRandomly = cbxCropRandomly.Checked;
             TrainParams.Current.DontSaveMetadata = cbxDontSaveMetadata.Checked;
             TrainParams.Current.CacheLatents = cbxCacheLatents.Checked;
             TrainParams.Current.CacheLatentsToDisk = cbxCacheLatentsToDisk.Checked;
-
-            //TrainParams.Current.ModelConfigPath = tbxModelConfigPath.Text;
 
             TrainParams.Current.mixedPrecisionType = (MixedPrecision)Enum.ToObject(typeof(MixedPrecision), cbxMixedPrecision.SelectedIndex);
 
@@ -479,9 +474,6 @@ namespace Kohya_lora_trainer
 
             cbxUseColorAug.Checked = TrainParams.Current.UseColorAug;
             cbxUseFastLoading.Checked = TrainParams.Current.UseFastLoading;
-            //cbxUseV2.Checked = TrainParams.Current.UseSDV2;
-            //cbxUseParametarization.Checked = TrainParams.Current.UseParameterization;
-            //cbxScaleVPredLoss.Checked = TrainParams.Current.ScaleVPredLoss;
             cbxFlipAug.Checked = TrainParams.Current.UseFlipAug;
             cbxCropRandomly.Checked = TrainParams.Current.CropRandomly;
             cbxDontSaveMetadata.Checked = TrainParams.Current.DontSaveMetadata;
