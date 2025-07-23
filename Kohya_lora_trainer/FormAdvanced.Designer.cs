@@ -614,7 +614,7 @@ namespace Kohya_lora_trainer
             // cbxCacheTextEncoder
             // 
             cbxCacheTextEncoder.AutoSize = true;
-            cbxCacheTextEncoder.Location = new Point(311, 199);
+            cbxCacheTextEncoder.Location = new Point(311, 174);
             cbxCacheTextEncoder.Name = "cbxCacheTextEncoder";
             cbxCacheTextEncoder.Size = new Size(180, 19);
             cbxCacheTextEncoder.TabIndex = 18;
@@ -690,7 +690,7 @@ namespace Kohya_lora_trainer
             // cbxNoHalfVae
             // 
             cbxNoHalfVae.AutoSize = true;
-            cbxNoHalfVae.Location = new Point(311, 174);
+            cbxNoHalfVae.Location = new Point(311, 149);
             cbxNoHalfVae.Name = "cbxNoHalfVae";
             cbxNoHalfVae.Size = new Size(199, 19);
             cbxNoHalfVae.TabIndex = 18;
@@ -712,7 +712,7 @@ namespace Kohya_lora_trainer
             // cbxUseFullFp16
             // 
             cbxUseFullFp16.AutoSize = true;
-            cbxUseFullFp16.Location = new Point(311, 124);
+            cbxUseFullFp16.Location = new Point(314, 161);
             cbxUseFullFp16.Name = "cbxUseFullFp16";
             cbxUseFullFp16.Size = new Size(149, 19);
             cbxUseFullFp16.TabIndex = 41;
@@ -723,7 +723,7 @@ namespace Kohya_lora_trainer
             // cbxUseFP8
             // 
             cbxUseFP8.AutoSize = true;
-            cbxUseFP8.Location = new Point(311, 149);
+            cbxUseFP8.Location = new Point(311, 124);
             cbxUseFP8.Name = "cbxUseFP8";
             cbxUseFP8.Size = new Size(135, 19);
             cbxUseFP8.TabIndex = 42;
@@ -880,9 +880,9 @@ namespace Kohya_lora_trainer
             cbxAlphaMask.AutoSize = true;
             cbxAlphaMask.Location = new Point(138, 140);
             cbxAlphaMask.Name = "cbxAlphaMask";
-            cbxAlphaMask.Size = new Size(120, 19);
+            cbxAlphaMask.Size = new Size(87, 19);
             cbxAlphaMask.TabIndex = 7;
-            cbxAlphaMask.Text = "アルファマスクを使用";
+            cbxAlphaMask.Text = "アルファマスク";
             toolTip1.SetToolTip(cbxAlphaMask, "画像の透過部分を学習させない");
             cbxAlphaMask.UseVisualStyleBackColor = true;
             // 
@@ -997,7 +997,7 @@ namespace Kohya_lora_trainer
             // cbxDisableMmapLoadSafetensors
             // 
             cbxDisableMmapLoadSafetensors.AutoSize = true;
-            cbxDisableMmapLoadSafetensors.Location = new Point(311, 249);
+            cbxDisableMmapLoadSafetensors.Location = new Point(311, 224);
             cbxDisableMmapLoadSafetensors.Name = "cbxDisableMmapLoadSafetensors";
             cbxDisableMmapLoadSafetensors.Size = new Size(234, 19);
             cbxDisableMmapLoadSafetensors.TabIndex = 44;
@@ -1821,9 +1821,9 @@ namespace Kohya_lora_trainer
             cbxMaskLoss.AutoSize = true;
             cbxMaskLoss.Location = new Point(138, 118);
             cbxMaskLoss.Name = "cbxMaskLoss";
-            cbxMaskLoss.Size = new Size(113, 19);
+            cbxMaskLoss.Size = new Size(80, 19);
             cbxMaskLoss.TabIndex = 7;
-            cbxMaskLoss.Text = "Mask Lossを使用";
+            cbxMaskLoss.Text = "Mask Loss";
             cbxMaskLoss.UseVisualStyleBackColor = true;
             // 
             // label50
@@ -1934,7 +1934,6 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(label51);
             tabPage7.Controls.Add(cbxUseFP8);
             tabPage7.Controls.Add(cbxCacheTextEncoder);
-            tabPage7.Controls.Add(cbxUseFullFp16);
             tabPage7.Controls.Add(nudGradAccSteps);
             tabPage7.Controls.Add(cbxNoHalfVae);
             tabPage7.Controls.Add(cbxCacheLatents);
@@ -1961,7 +1960,7 @@ namespace Kohya_lora_trainer
             // cbxCacheTextencoderToDisk
             // 
             cbxCacheTextencoderToDisk.AutoSize = true;
-            cbxCacheTextencoderToDisk.Location = new Point(311, 224);
+            cbxCacheTextencoderToDisk.Location = new Point(311, 199);
             cbxCacheTextencoderToDisk.Name = "cbxCacheTextencoderToDisk";
             cbxCacheTextencoderToDisk.Size = new Size(222, 19);
             cbxCacheTextencoderToDisk.TabIndex = 18;
@@ -2473,6 +2472,7 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(groupBox2);
             pageMisc.Controls.Add(label41);
             pageMisc.Controls.Add(label40);
+            pageMisc.Controls.Add(cbxUseFullFp16);
             pageMisc.Controls.Add(cbxUseWeightedCaption);
             pageMisc.Controls.Add(cbxDontSaveMetadata);
             pageMisc.Controls.Add(tbxTokensSeparator);

@@ -35,9 +35,9 @@
             label2 = new Label();
             cbxUsePy = new CheckBox();
             toolTip1 = new ToolTip(components);
+            cbxUseLatestTorch = new CheckBox();
             cbxPythonVersion = new ComboBox();
             label3 = new Label();
-            cbxUseLatestTorch = new CheckBox();
             SuspendLayout();
             // 
             // btnInstall
@@ -81,6 +81,17 @@
             toolTip1.SetToolTip(cbxUsePy, "ターミナルpythonとだけ表示されて何も起きないか\r\nPythonバージョンを指定する場合にチェックをつけてください");
             cbxUsePy.UseVisualStyleBackColor = true;
             // 
+            // cbxUseLatestTorch
+            // 
+            cbxUseLatestTorch.AutoSize = true;
+            cbxUseLatestTorch.Location = new Point(85, 60);
+            cbxUseLatestTorch.Name = "cbxUseLatestTorch";
+            cbxUseLatestTorch.Size = new Size(365, 19);
+            cbxUseLatestTorch.TabIndex = 6;
+            cbxUseLatestTorch.Text = "Torch 2.4.1(CUDA 12.4)の代わりに 2.7.0(CUDA 12.8)をインストールする";
+            toolTip1.SetToolTip(cbxUseLatestTorch, "Blackwell GPU使用者はチェックつける");
+            cbxUseLatestTorch.UseVisualStyleBackColor = true;
+            // 
             // cbxPythonVersion
             // 
             cbxPythonVersion.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -99,17 +110,6 @@
             label3.Size = new Size(186, 15);
             label3.TabIndex = 5;
             label3.Text = "Pythonバージョン(pyを使用する場合)";
-            // 
-            // cbxUseLatestTorch
-            // 
-            cbxUseLatestTorch.AutoSize = true;
-            cbxUseLatestTorch.Location = new Point(85, 60);
-            cbxUseLatestTorch.Name = "cbxUseLatestTorch";
-            cbxUseLatestTorch.Size = new Size(365, 19);
-            cbxUseLatestTorch.TabIndex = 6;
-            cbxUseLatestTorch.Text = "Torch 2.1.2(CUDA 12.1)の代わりに 2.7.0(CUDA 12.8)をインストールする";
-            toolTip1.SetToolTip(cbxUseLatestTorch, "Blackwell GPU使用者はチェックつける");
-            cbxUseLatestTorch.UseVisualStyleBackColor = true;
             // 
             // FormInstaller
             // 
