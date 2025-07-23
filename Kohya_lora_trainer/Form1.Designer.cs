@@ -63,6 +63,7 @@ namespace Kohya_lora_trainer
             btnBlockDim = new Button();
             cbxOverwrite = new CheckBox();
             btnShowTipsDatasetDir = new Button();
+            lblNumStepsBatch1 = new Label();
             btnSavePreset = new Button();
             btnLoadPreset = new Button();
             lblResolution = new Label();
@@ -76,7 +77,6 @@ namespace Kohya_lora_trainer
             lblNumSteps = new Label();
             label9 = new Label();
             btnClearRegImagePath = new Button();
-            lblNumStepsBatch1 = new Label();
             label5 = new Label();
             label8 = new Label();
             label11 = new Label();
@@ -236,7 +236,7 @@ namespace Kohya_lora_trainer
             cbxOptimizer.Name = "cbxOptimizer";
             cbxOptimizer.Size = new Size(139, 23);
             cbxOptimizer.TabIndex = 6;
-            toolTip1.SetToolTip(cbxOptimizer, "LionとProdigyがおすすめ\r\nDAdaptation系(Prodigy含む)はCPUボトルネックが大きい\r\nPonyDiffusionでDAdapt系を使うならLRを下げるべき");
+            toolTip1.SetToolTip(cbxOptimizer, "DAdaptation系(Prodigy含む)はCPUボトルネックが大きい");
             cbxOptimizer.SelectedIndexChanged += cbxOptimizer_SelectedIndexChanged;
             // 
             // label10
@@ -482,6 +482,16 @@ namespace Kohya_lora_trainer
             btnShowTipsDatasetDir.UseVisualStyleBackColor = true;
             btnShowTipsDatasetDir.Click += btnShowTipsDatasetDir_Click;
             // 
+            // lblNumStepsBatch1
+            // 
+            lblNumStepsBatch1.Font = new Font("Yu Gothic UI", 10F);
+            lblNumStepsBatch1.Location = new Point(669, 502);
+            lblNumStepsBatch1.Name = "lblNumStepsBatch1";
+            lblNumStepsBatch1.Size = new Size(106, 22);
+            lblNumStepsBatch1.TabIndex = 61;
+            lblNumStepsBatch1.Text = "999,999,999";
+            toolTip1.SetToolTip(lblNumStepsBatch1, "batch1相当と本来のbatch1は全くの別物であることに注意\r\nこれは総ステップ数調整の参考のために表示している");
+            // 
             // btnSavePreset
             // 
             btnSavePreset.Location = new Point(384, 557);
@@ -607,16 +617,6 @@ namespace Kohya_lora_trainer
             btnClearRegImagePath.Text = "クリア";
             btnClearRegImagePath.UseVisualStyleBackColor = true;
             btnClearRegImagePath.Click += btnClearRegImagePath_Click;
-            // 
-            // lblNumStepsBatch1
-            // 
-            lblNumStepsBatch1.Font = new Font("Yu Gothic UI", 10F);
-            lblNumStepsBatch1.Location = new Point(669, 502);
-            lblNumStepsBatch1.Name = "lblNumStepsBatch1";
-            lblNumStepsBatch1.Size = new Size(106, 22);
-            lblNumStepsBatch1.TabIndex = 61;
-            lblNumStepsBatch1.Text = "999,999,999";
-            toolTip1.SetToolTip(lblNumStepsBatch1, "batch1相当と本来のbatch1は全くの別物であることに注意\r\nこれは総ステップ数調整の参考のために表示している");
             // 
             // label5
             // 
