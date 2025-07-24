@@ -95,8 +95,6 @@ namespace Kohya_lora_trainer {
         //LoRA+
         public decimal LoRAPlusLRRatio = 0, LoRAPlusUnetLRRatio = 0, LoRAPlusTELRRatio = 0;
 
-        public decimal ImmiscibleNoise = 0;
-
         public string CustomCommands = string.Empty, AdditionalArgs = string.Empty, AdditionalNetworkArgs = string.Empty, CustomOptName = string.Empty, CustomOptArgs = string.Empty;
 
         //Diffusion Transformer関連
@@ -189,15 +187,6 @@ namespace Kohya_lora_trainer {
             {
                 MessageBox.Show("層別Dim/Alphaの設定が破損しています。破損箇所はリセットされました。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        public void ResetObsoleteOptions()
-        {
-            //IA3Network will be removed but ia3 still available
-            //if(AlgoType == AlgoType.ia3)
-            //{
-            //    AlgoType = AlgoType.lora;
-            //}
         }
     }
 

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUtils));
             btnRunTensorboard = new Button();
             label3 = new Label();
             btnSelectModel = new Button();
@@ -71,9 +70,9 @@
             tbxBranchName = new TextBox();
             tabPage5 = new TabPage();
             label9 = new Label();
+            label11 = new Label();
             btnPurgePipCache = new Button();
             toolTip1 = new ToolTip(components);
-            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -321,10 +320,10 @@
             tabPage2.Controls.Add(nudTargetDim);
             tabPage2.Controls.Add(lblLoraPath);
             tabPage2.Controls.Add(lblOutputPath);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(525, 399);
+            tabPage2.Size = new Size(525, 401);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Dimリサイズ";
             tabPage2.UseVisualStyleBackColor = true;
@@ -457,9 +456,9 @@
             label7.AutoSize = true;
             label7.Location = new Point(65, 74);
             label7.Name = "label7";
-            label7.Size = new Size(416, 105);
+            label7.Size = new Size(416, 75);
             label7.TabIndex = 4;
-            label7.Text = resources.GetString("label7.Text");
+            label7.Text = "初期ブランチは「sd3」です。mainは古いため一部の機能は使用できません。\r\nFLUX.1とSD3は「sd3」のみ対応です。\r\n\r\nブランチ切り替え後は、GUIのユーティリティの更新タブで\r\n「pythonパッケージのみ更新」にチェックをつけて「sd-scriptsのアップデート」をしてください。";
             // 
             // label6
             // 
@@ -517,6 +516,15 @@
             label9.TabIndex = 1;
             label9.Text = "pipのパッケージのインストールのエラーが解決する可能性あり";
             // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(165, 35);
+            label11.Name = "label11";
+            label11.Size = new Size(158, 15);
+            label11.TabIndex = 1;
+            label11.Text = "ターミナルは手動で閉じてください";
+            // 
             // btnPurgePipCache
             // 
             btnPurgePipCache.Location = new Point(39, 27);
@@ -526,15 +534,6 @@
             btnPurgePipCache.Text = "pipキャッシュの消去";
             btnPurgePipCache.UseVisualStyleBackColor = true;
             btnPurgePipCache.Click += btnPurgePipCache_Click;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(165, 35);
-            label11.Name = "label11";
-            label11.Size = new Size(158, 15);
-            label11.TabIndex = 1;
-            label11.Text = "ターミナルは手動で閉じてください";
             // 
             // FormUtils
             // 

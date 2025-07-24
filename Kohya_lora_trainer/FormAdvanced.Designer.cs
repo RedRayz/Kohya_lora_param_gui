@@ -545,7 +545,7 @@ namespace Kohya_lora_trainer
             nudNoiseOffset.Name = "nudNoiseOffset";
             nudNoiseOffset.Size = new Size(80, 23);
             nudNoiseOffset.TabIndex = 44;
-            toolTip1.SetToolTip(nudNoiseOffset, "全体的に明るい/暗い環境でグレー寄りになるのを軽減する\r\n変色と明度の変化を減らすため学習元モデルで使用された値を設定すべき\r\nちなみにAnimagine XL,Kivotos XLで使用された値は0.0357\r\nZero Terminal SNRを使うなら0にする");
+            toolTip1.SetToolTip(nudNoiseOffset, "全体的に明るい/暗い環境でグレー寄りになるのを軽減する\r\n変色と明度の変化を減らすため学習元モデルで使用された値を設定すべき\r\nちなみにAnimagine XL系で使用された値は0.0357\r\nZero Terminal SNRを使うなら0にする");
             // 
             // nudCaptionDropout
             // 
@@ -614,7 +614,7 @@ namespace Kohya_lora_trainer
             // cbxCacheTextEncoder
             // 
             cbxCacheTextEncoder.AutoSize = true;
-            cbxCacheTextEncoder.Location = new Point(311, 199);
+            cbxCacheTextEncoder.Location = new Point(311, 174);
             cbxCacheTextEncoder.Name = "cbxCacheTextEncoder";
             cbxCacheTextEncoder.Size = new Size(180, 19);
             cbxCacheTextEncoder.TabIndex = 18;
@@ -690,7 +690,7 @@ namespace Kohya_lora_trainer
             // cbxNoHalfVae
             // 
             cbxNoHalfVae.AutoSize = true;
-            cbxNoHalfVae.Location = new Point(311, 174);
+            cbxNoHalfVae.Location = new Point(311, 149);
             cbxNoHalfVae.Name = "cbxNoHalfVae";
             cbxNoHalfVae.Size = new Size(199, 19);
             cbxNoHalfVae.TabIndex = 18;
@@ -712,7 +712,7 @@ namespace Kohya_lora_trainer
             // cbxUseFullFp16
             // 
             cbxUseFullFp16.AutoSize = true;
-            cbxUseFullFp16.Location = new Point(311, 124);
+            cbxUseFullFp16.Location = new Point(314, 161);
             cbxUseFullFp16.Name = "cbxUseFullFp16";
             cbxUseFullFp16.Size = new Size(149, 19);
             cbxUseFullFp16.TabIndex = 41;
@@ -723,7 +723,7 @@ namespace Kohya_lora_trainer
             // cbxUseFP8
             // 
             cbxUseFP8.AutoSize = true;
-            cbxUseFP8.Location = new Point(311, 149);
+            cbxUseFP8.Location = new Point(311, 124);
             cbxUseFP8.Name = "cbxUseFP8";
             cbxUseFP8.Size = new Size(135, 19);
             cbxUseFP8.TabIndex = 42;
@@ -880,9 +880,9 @@ namespace Kohya_lora_trainer
             cbxAlphaMask.AutoSize = true;
             cbxAlphaMask.Location = new Point(138, 140);
             cbxAlphaMask.Name = "cbxAlphaMask";
-            cbxAlphaMask.Size = new Size(120, 19);
+            cbxAlphaMask.Size = new Size(87, 19);
             cbxAlphaMask.TabIndex = 7;
-            cbxAlphaMask.Text = "アルファマスクを使用";
+            cbxAlphaMask.Text = "アルファマスク";
             toolTip1.SetToolTip(cbxAlphaMask, "画像の透過部分を学習させない");
             cbxAlphaMask.UseVisualStyleBackColor = true;
             // 
@@ -997,7 +997,7 @@ namespace Kohya_lora_trainer
             // cbxDisableMmapLoadSafetensors
             // 
             cbxDisableMmapLoadSafetensors.AutoSize = true;
-            cbxDisableMmapLoadSafetensors.Location = new Point(311, 249);
+            cbxDisableMmapLoadSafetensors.Location = new Point(311, 224);
             cbxDisableMmapLoadSafetensors.Name = "cbxDisableMmapLoadSafetensors";
             cbxDisableMmapLoadSafetensors.Size = new Size(234, 19);
             cbxDisableMmapLoadSafetensors.TabIndex = 44;
@@ -1013,7 +1013,7 @@ namespace Kohya_lora_trainer
             cbxVParameterization.Size = new Size(125, 19);
             cbxVParameterization.TabIndex = 58;
             cbxVParameterization.Text = "v-parameterization";
-            toolTip1.SetToolTip(cbxVParameterization, "v-predictionを使う\r\n学習元モデルが使用を明記している場合のみチェックをつける");
+            toolTip1.SetToolTip(cbxVParameterization, "ノイズ予測にv-prediction(デノイズ前後の差分の予測)を使う\r\n学習元モデルが使用を明記している場合のみチェックをつける");
             cbxVParameterization.UseVisualStyleBackColor = true;
             // 
             // cbxZeroTerminalSNR
@@ -1024,7 +1024,7 @@ namespace Kohya_lora_trainer
             cbxZeroTerminalSNR.Size = new Size(122, 19);
             cbxZeroTerminalSNR.TabIndex = 58;
             cbxZeroTerminalSNR.Text = "Zero Terminal SNR";
-            toolTip1.SetToolTip(cbxZeroTerminalSNR, "ノイズスケジューラーの問題を修正して\r\n全体が明るい/暗い状況でグレー寄りになるのを防ぐ\r\n出力が不安定になりやすい");
+            toolTip1.SetToolTip(cbxZeroTerminalSNR, "ノイズスケジューラーの問題を修正して\r\n全体が明るい/暗い状況でグレー寄りになるのを防ぐ\r\n出力が不安定になりやすい(おそらくNoobAI-XL特有の問題)");
             cbxZeroTerminalSNR.UseVisualStyleBackColor = true;
             // 
             // nudBlocksToSwap
@@ -1054,7 +1054,7 @@ namespace Kohya_lora_trainer
             cbxUseAdditionalOptArgs.Size = new Size(239, 19);
             cbxUseAdditionalOptArgs.TabIndex = 26;
             cbxUseAdditionalOptArgs.Text = "一部Optimizerに追加のパラメータを指定する";
-            toolTip1.SetToolTip(cbxUseAdditionalOptArgs, "DAdaptationは常に指定されます。");
+            toolTip1.SetToolTip(cbxUseAdditionalOptArgs, "DAdaptationは常に指定される");
             cbxUseAdditionalOptArgs.UseVisualStyleBackColor = true;
             // 
             // nudMultiresNoiseIterations
@@ -1634,9 +1634,9 @@ namespace Kohya_lora_trainer
             label71.AutoSize = true;
             label71.Location = new Point(334, 78);
             label71.Name = "label71";
-            label71.Size = new Size(129, 15);
+            label71.Size = new Size(130, 15);
             label71.TabIndex = 49;
-            label71.Text = "T5XLLドロップアウト確率#";
+            label71.Text = "T5XXLドロップアウト確率#";
             // 
             // label76
             // 
@@ -1821,9 +1821,9 @@ namespace Kohya_lora_trainer
             cbxMaskLoss.AutoSize = true;
             cbxMaskLoss.Location = new Point(138, 118);
             cbxMaskLoss.Name = "cbxMaskLoss";
-            cbxMaskLoss.Size = new Size(113, 19);
+            cbxMaskLoss.Size = new Size(80, 19);
             cbxMaskLoss.TabIndex = 7;
-            cbxMaskLoss.Text = "Mask Lossを使用";
+            cbxMaskLoss.Text = "Mask Loss";
             cbxMaskLoss.UseVisualStyleBackColor = true;
             // 
             // label50
@@ -1934,7 +1934,6 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(label51);
             tabPage7.Controls.Add(cbxUseFP8);
             tabPage7.Controls.Add(cbxCacheTextEncoder);
-            tabPage7.Controls.Add(cbxUseFullFp16);
             tabPage7.Controls.Add(nudGradAccSteps);
             tabPage7.Controls.Add(cbxNoHalfVae);
             tabPage7.Controls.Add(cbxCacheLatents);
@@ -1961,7 +1960,7 @@ namespace Kohya_lora_trainer
             // cbxCacheTextencoderToDisk
             // 
             cbxCacheTextencoderToDisk.AutoSize = true;
-            cbxCacheTextencoderToDisk.Location = new Point(311, 224);
+            cbxCacheTextencoderToDisk.Location = new Point(311, 199);
             cbxCacheTextencoderToDisk.Name = "cbxCacheTextencoderToDisk";
             cbxCacheTextencoderToDisk.Size = new Size(222, 19);
             cbxCacheTextencoderToDisk.TabIndex = 18;
@@ -2473,6 +2472,7 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(groupBox2);
             pageMisc.Controls.Add(label41);
             pageMisc.Controls.Add(label40);
+            pageMisc.Controls.Add(cbxUseFullFp16);
             pageMisc.Controls.Add(cbxUseWeightedCaption);
             pageMisc.Controls.Add(cbxDontSaveMetadata);
             pageMisc.Controls.Add(tbxTokensSeparator);
