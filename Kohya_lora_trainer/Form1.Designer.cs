@@ -64,6 +64,7 @@ namespace Kohya_lora_trainer
             cbxOverwrite = new CheckBox();
             btnShowTipsDatasetDir = new Button();
             lblNumStepsBatch1 = new Label();
+            btnRefreshPath = new Button();
             btnSavePreset = new Button();
             btnLoadPreset = new Button();
             lblResolution = new Label();
@@ -475,7 +476,7 @@ namespace Kohya_lora_trainer
             // 
             btnShowTipsDatasetDir.Location = new Point(247, 70);
             btnShowTipsDatasetDir.Name = "btnShowTipsDatasetDir";
-            btnShowTipsDatasetDir.Size = new Size(23, 23);
+            btnShowTipsDatasetDir.Size = new Size(24, 24);
             btnShowTipsDatasetDir.TabIndex = 87;
             btnShowTipsDatasetDir.Text = "?";
             toolTip1.SetToolTip(btnShowTipsDatasetDir, "ヒント");
@@ -491,6 +492,17 @@ namespace Kohya_lora_trainer
             lblNumStepsBatch1.TabIndex = 61;
             lblNumStepsBatch1.Text = "999,999,999";
             toolTip1.SetToolTip(lblNumStepsBatch1, "batch1相当と本来のbatch1は全くの別物であることに注意\r\nこれは総ステップ数調整の参考のために表示している");
+            // 
+            // btnRefreshPath
+            // 
+            btnRefreshPath.Image = (Image)resources.GetObject("btnRefreshPath.Image");
+            btnRefreshPath.Location = new Point(751, 34);
+            btnRefreshPath.Name = "btnRefreshPath";
+            btnRefreshPath.Size = new Size(24, 24);
+            btnRefreshPath.TabIndex = 88;
+            toolTip1.SetToolTip(btnRefreshPath, "パス指定欄の再読み込み");
+            btnRefreshPath.UseVisualStyleBackColor = true;
+            btnRefreshPath.Click += btnRefreshPath_Click;
             // 
             // btnSavePreset
             // 
@@ -942,7 +954,7 @@ namespace Kohya_lora_trainer
             // 
             btnShowTipsRegImageDir.Location = new Point(681, 69);
             btnShowTipsRegImageDir.Name = "btnShowTipsRegImageDir";
-            btnShowTipsRegImageDir.Size = new Size(23, 23);
+            btnShowTipsRegImageDir.Size = new Size(24, 24);
             btnShowTipsRegImageDir.TabIndex = 87;
             btnShowTipsRegImageDir.Text = "?";
             btnShowTipsRegImageDir.UseVisualStyleBackColor = true;
@@ -1190,6 +1202,7 @@ namespace Kohya_lora_trainer
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(799, 614);
+            Controls.Add(btnRefreshPath);
             Controls.Add(label24);
             Controls.Add(cbxCompleteAction);
             Controls.Add(cbxOverwrite);
@@ -1220,6 +1233,7 @@ namespace Kohya_lora_trainer
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Kohya_lora_param_gui";
+            Activated += Form1_Activated;
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).EndInit();
@@ -1345,6 +1359,7 @@ namespace Kohya_lora_trainer
         private Button btnShowTipsDatasetDir;
         private Button btnShowTipsRegImageDir;
         private ToolStripMenuItem sdscriptsリポジトリToolStripMenuItem;
+        private Button btnRefreshPath;
     }
 }
 
