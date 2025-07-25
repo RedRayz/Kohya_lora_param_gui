@@ -28,6 +28,7 @@ namespace Kohya_lora_trainer
         private decimal TotalSteps, TotalStepsBatch1;
         internal static string? ScriptPath = string.Empty;
         private string? LastOpenPresetPath = string.Empty;
+        private bool IsReady = false;
 
         internal static TrainCompleteAction CompleteAction = TrainCompleteAction.None;
 
@@ -133,6 +134,8 @@ namespace Kohya_lora_trainer
             UpdateAllContents();
 
             UpdateChecker.AutomaticCheckUpdate();
+
+            IsReady = true;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -1570,6 +1573,19 @@ namespace Kohya_lora_trainer
             catch
             {
                 MessageBox.Show("ブラウザを開けません。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnRefreshPath_Click(object sender, EventArgs e)
+        {
+            UpdateAllContents();
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            if (IsReady)
+            {
+                UpdateAllContents();
             }
         }
     }
