@@ -9,17 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Kohya_lora_trainer {
-    public partial class FormBlockDim : Form {
+    public partial class FormBlockDim : Form
+    {
         private NumericUpDown[] NudDimIn = new NumericUpDown[12];
         private NumericUpDown[] NudDimOut = new NumericUpDown[12];
         private NumericUpDown[] NudAlphaIn = new NumericUpDown[12];
         private NumericUpDown[] NudAlphaOut = new NumericUpDown[12];
 
-        public FormBlockDim() {
+        public FormBlockDim()
+        {
             InitializeComponent();
         }
 
-        private void btnDiscardChanges_Click(object sender, EventArgs e) {
+        private void btnDiscardChanges_Click(object sender, EventArgs e)
+        {
             Close();
         }
 
@@ -78,44 +81,12 @@ namespace Kohya_lora_trainer {
             NudAlphaOut[10] = nudAlphaOut10;
             NudAlphaOut[11] = nudAlphaOut11;
 
-            //値の読込
-            for(int i=0; i< 12; i++)
-            {
-                NudDimIn[i].Value = TrainParams.Current.BlockDimIn[i];
-            }
+            LoadBlockValues();
 
-            for (int i = 0; i < 12; i++)
-            {
-                NudDimOut[i].Value = TrainParams.Current.BlockDimOut[i];
-            }
-
-            for(int i = 0; i< 12; i++)
-            {
-                NudAlphaIn[i].Value = TrainParams.Current.BlockAlphaInM[i];
-            }
-
-            for (int i = 0; i < 12; i++)
-            {
-                NudAlphaOut[i].Value = TrainParams.Current.BlockAlphaOutM[i];
-            }
-
-            nudDimMid.Value = TrainParams.Current.BlockDimMid;
-            nudAlphaMid.Value = TrainParams.Current.BlockAlphaMidM;
-
-            nudDimMid01.Value = TrainParams.Current.BlockDimMid01;
-            nudAlphaMid01.Value = TrainParams.Current.BlockAlphaMid01;
-            nudDimMid02.Value = TrainParams.Current.BlockDimMid02;
-            nudAlphaMid02.Value = TrainParams.Current.BlockAlphaMid02;
-
-            nudDimBase.Value = TrainParams.Current.BlockDimBase;
-            nudAlphaBase.Value = TrainParams.Current.BlockAlphaBase;
-
-            nudDimOut.Value = TrainParams.Current.BlockDimOutSDXL;
-            nudAlphaOut.Value = TrainParams.Current.BlockAlphaOutSDXL;
 
             cbxEnableBlockDim.Checked = TrainParams.Current.UseBlockDim;
 
-            if(TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+            if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
             {
                 for (int i = 9; i < 12; i++)
                 {
@@ -139,6 +110,44 @@ namespace Kohya_lora_trainer {
             }
         }
 
+        private void LoadBlockValues()
+        {
+            //値の読込
+            for (int i = 0; i < 12; i++)
+            {
+                NudDimIn[i].Value = TrainParams.Current.BlockDimIn[i];
+            }
+
+            for (int i = 0; i < 12; i++)
+            {
+                NudDimOut[i].Value = TrainParams.Current.BlockDimOut[i];
+            }
+
+            for (int i = 0; i < 12; i++)
+            {
+                NudAlphaIn[i].Value = TrainParams.Current.BlockAlphaInM[i];
+            }
+
+            for (int i = 0; i < 12; i++)
+            {
+                NudAlphaOut[i].Value = TrainParams.Current.BlockAlphaOutM[i];
+            }
+
+            nudDimMid.Value = TrainParams.Current.BlockDimMid;
+            nudAlphaMid.Value = TrainParams.Current.BlockAlphaMidM;
+
+            nudDimMid01.Value = TrainParams.Current.BlockDimMid01;
+            nudAlphaMid01.Value = TrainParams.Current.BlockAlphaMid01;
+            nudDimMid02.Value = TrainParams.Current.BlockDimMid02;
+            nudAlphaMid02.Value = TrainParams.Current.BlockAlphaMid02;
+
+            nudDimBase.Value = TrainParams.Current.BlockDimBase;
+            nudAlphaBase.Value = TrainParams.Current.BlockAlphaBase;
+
+            nudDimOut.Value = TrainParams.Current.BlockDimOutSDXL;
+            nudAlphaOut.Value = TrainParams.Current.BlockAlphaOutSDXL;
+        }
+
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
             //値の読込
@@ -152,7 +161,7 @@ namespace Kohya_lora_trainer {
                 TrainParams.Current.BlockDimOut[i] = (int)NudDimOut[i].Value;
             }
 
-            for(int i = 0; i< 12; i++)
+            for (int i = 0; i < 12; i++)
             {
                 TrainParams.Current.BlockAlphaInM[i] = NudAlphaIn[i].Value;
             }
@@ -178,6 +187,53 @@ namespace Kohya_lora_trainer {
             TrainParams.Current.UseBlockDim = cbxEnableBlockDim.Checked;
 
             Close();
+        }
+
+        private void btnResetAll_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("全てのブロックの値をnetwork_dim/alphaの値に変更しますか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                //DIM IN
+                for (int i = 0; i < 12; i++)
+                {
+                    TrainParams.Current.BlockDimIn[i] = TrainParams.Current.NetworkDim;
+                }
+
+                //DIM OUT
+                for (int i = 0; i < 12; i++)
+                {
+                    TrainParams.Current.BlockDimOut[i] = TrainParams.Current.NetworkDim;
+                }
+
+                //ALPHA IN
+                for (int i = 0; i < 12; i++)
+                {
+                    TrainParams.Current.BlockAlphaInM[i] = TrainParams.Current.NetworkAlpha;
+                }
+
+                //ALPHA OUT
+                for (int i = 0; i < 12; i++)
+                {
+                    TrainParams.Current.BlockAlphaOutM[i] = TrainParams.Current.NetworkAlpha;
+                }
+
+                //MID Block Dim-Alpha
+                TrainParams.Current.BlockDimMid = TrainParams.Current.NetworkDim;
+                TrainParams.Current.BlockAlphaMidM = TrainParams.Current.NetworkAlpha;
+
+                TrainParams.Current.BlockDimMid01 = TrainParams.Current.NetworkDim;
+                TrainParams.Current.BlockAlphaMid01 = TrainParams.Current.NetworkAlpha;
+                TrainParams.Current.BlockDimMid02 = TrainParams.Current.NetworkDim;
+                TrainParams.Current.BlockAlphaMid02 = TrainParams.Current.NetworkAlpha;
+
+                TrainParams.Current.BlockDimBase = TrainParams.Current.NetworkDim;
+                TrainParams.Current.BlockAlphaBase = TrainParams.Current.NetworkAlpha;
+
+                TrainParams.Current.BlockDimOutSDXL = TrainParams.Current.NetworkDim;
+                TrainParams.Current.BlockAlphaOutSDXL = TrainParams.Current.NetworkAlpha;
+
+                LoadBlockValues();
+            }
         }
     }
 }

@@ -121,6 +121,7 @@
             label34 = new Label();
             label35 = new Label();
             label36 = new Label();
+            btnResetAll = new Button();
             ((System.ComponentModel.ISupportInitialize)nudDimIn00).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudAlphaIn00).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudDimIn01).BeginInit();
@@ -195,7 +196,6 @@
             // 
             nudDimIn00.Location = new Point(94, 126);
             nudDimIn00.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimIn00.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimIn00.Name = "nudDimIn00";
             nudDimIn00.Size = new Size(70, 23);
             nudDimIn00.TabIndex = 1;
@@ -206,7 +206,6 @@
             nudAlphaIn00.DecimalPlaces = 4;
             nudAlphaIn00.Location = new Point(186, 126);
             nudAlphaIn00.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaIn00.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaIn00.Name = "nudAlphaIn00";
             nudAlphaIn00.Size = new Size(70, 23);
             nudAlphaIn00.TabIndex = 1;
@@ -263,7 +262,6 @@
             // 
             nudDimIn01.Location = new Point(94, 155);
             nudDimIn01.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimIn01.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimIn01.Name = "nudDimIn01";
             nudDimIn01.Size = new Size(70, 23);
             nudDimIn01.TabIndex = 1;
@@ -274,7 +272,6 @@
             nudAlphaIn01.DecimalPlaces = 4;
             nudAlphaIn01.Location = new Point(186, 155);
             nudAlphaIn01.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaIn01.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaIn01.Name = "nudAlphaIn01";
             nudAlphaIn01.Size = new Size(70, 23);
             nudAlphaIn01.TabIndex = 1;
@@ -293,7 +290,6 @@
             // 
             nudDimIn02.Location = new Point(94, 184);
             nudDimIn02.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimIn02.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimIn02.Name = "nudDimIn02";
             nudDimIn02.Size = new Size(70, 23);
             nudDimIn02.TabIndex = 1;
@@ -304,7 +300,6 @@
             nudAlphaIn02.DecimalPlaces = 4;
             nudAlphaIn02.Location = new Point(186, 184);
             nudAlphaIn02.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaIn02.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaIn02.Name = "nudAlphaIn02";
             nudAlphaIn02.Size = new Size(70, 23);
             nudAlphaIn02.TabIndex = 1;
@@ -314,7 +309,6 @@
             // 
             nudDimIn03.Location = new Point(94, 213);
             nudDimIn03.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimIn03.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimIn03.Name = "nudDimIn03";
             nudDimIn03.Size = new Size(70, 23);
             nudDimIn03.TabIndex = 1;
@@ -325,7 +319,6 @@
             nudAlphaIn03.DecimalPlaces = 4;
             nudAlphaIn03.Location = new Point(186, 213);
             nudAlphaIn03.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaIn03.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaIn03.Name = "nudAlphaIn03";
             nudAlphaIn03.Size = new Size(70, 23);
             nudAlphaIn03.TabIndex = 1;
@@ -353,7 +346,6 @@
             // 
             nudDimIn04.Location = new Point(94, 242);
             nudDimIn04.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimIn04.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimIn04.Name = "nudDimIn04";
             nudDimIn04.Size = new Size(70, 23);
             nudDimIn04.TabIndex = 1;
@@ -364,7 +356,6 @@
             nudAlphaIn04.DecimalPlaces = 4;
             nudAlphaIn04.Location = new Point(186, 242);
             nudAlphaIn04.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaIn04.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaIn04.Name = "nudAlphaIn04";
             nudAlphaIn04.Size = new Size(70, 23);
             nudAlphaIn04.TabIndex = 1;
@@ -374,7 +365,6 @@
             // 
             nudDimIn05.Location = new Point(94, 271);
             nudDimIn05.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimIn05.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimIn05.Name = "nudDimIn05";
             nudDimIn05.Size = new Size(70, 23);
             nudDimIn05.TabIndex = 1;
@@ -385,7 +375,6 @@
             nudAlphaIn05.DecimalPlaces = 4;
             nudAlphaIn05.Location = new Point(186, 271);
             nudAlphaIn05.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaIn05.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaIn05.Name = "nudAlphaIn05";
             nudAlphaIn05.Size = new Size(70, 23);
             nudAlphaIn05.TabIndex = 1;
@@ -413,7 +402,6 @@
             // 
             nudDimIn06.Location = new Point(94, 300);
             nudDimIn06.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimIn06.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimIn06.Name = "nudDimIn06";
             nudDimIn06.Size = new Size(70, 23);
             nudDimIn06.TabIndex = 1;
@@ -424,7 +412,6 @@
             nudAlphaIn06.DecimalPlaces = 4;
             nudAlphaIn06.Location = new Point(186, 300);
             nudAlphaIn06.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaIn06.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaIn06.Name = "nudAlphaIn06";
             nudAlphaIn06.Size = new Size(70, 23);
             nudAlphaIn06.TabIndex = 1;
@@ -434,7 +421,6 @@
             // 
             nudDimIn07.Location = new Point(94, 329);
             nudDimIn07.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimIn07.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimIn07.Name = "nudDimIn07";
             nudDimIn07.Size = new Size(70, 23);
             nudDimIn07.TabIndex = 1;
@@ -445,7 +431,6 @@
             nudAlphaIn07.DecimalPlaces = 4;
             nudAlphaIn07.Location = new Point(186, 329);
             nudAlphaIn07.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaIn07.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaIn07.Name = "nudAlphaIn07";
             nudAlphaIn07.Size = new Size(70, 23);
             nudAlphaIn07.TabIndex = 1;
@@ -473,7 +458,6 @@
             // 
             nudDimIn08.Location = new Point(94, 358);
             nudDimIn08.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimIn08.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimIn08.Name = "nudDimIn08";
             nudDimIn08.Size = new Size(70, 23);
             nudDimIn08.TabIndex = 1;
@@ -484,7 +468,6 @@
             nudAlphaIn08.DecimalPlaces = 4;
             nudAlphaIn08.Location = new Point(186, 358);
             nudAlphaIn08.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaIn08.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaIn08.Name = "nudAlphaIn08";
             nudAlphaIn08.Size = new Size(70, 23);
             nudAlphaIn08.TabIndex = 1;
@@ -494,7 +477,6 @@
             // 
             nudDimIn09.Location = new Point(94, 387);
             nudDimIn09.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimIn09.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimIn09.Name = "nudDimIn09";
             nudDimIn09.Size = new Size(70, 23);
             nudDimIn09.TabIndex = 1;
@@ -505,7 +487,6 @@
             nudAlphaIn09.DecimalPlaces = 4;
             nudAlphaIn09.Location = new Point(186, 387);
             nudAlphaIn09.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaIn09.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaIn09.Name = "nudAlphaIn09";
             nudAlphaIn09.Size = new Size(70, 23);
             nudAlphaIn09.TabIndex = 1;
@@ -533,7 +514,6 @@
             // 
             nudDimIn10.Location = new Point(94, 416);
             nudDimIn10.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimIn10.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimIn10.Name = "nudDimIn10";
             nudDimIn10.Size = new Size(70, 23);
             nudDimIn10.TabIndex = 1;
@@ -544,7 +524,6 @@
             nudAlphaIn10.DecimalPlaces = 4;
             nudAlphaIn10.Location = new Point(186, 416);
             nudAlphaIn10.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaIn10.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaIn10.Name = "nudAlphaIn10";
             nudAlphaIn10.Size = new Size(70, 23);
             nudAlphaIn10.TabIndex = 1;
@@ -554,7 +533,6 @@
             // 
             nudDimIn11.Location = new Point(94, 445);
             nudDimIn11.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimIn11.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimIn11.Name = "nudDimIn11";
             nudDimIn11.Size = new Size(70, 23);
             nudDimIn11.TabIndex = 1;
@@ -565,7 +543,6 @@
             nudAlphaIn11.DecimalPlaces = 4;
             nudAlphaIn11.Location = new Point(186, 445);
             nudAlphaIn11.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaIn11.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaIn11.Name = "nudAlphaIn11";
             nudAlphaIn11.Size = new Size(70, 23);
             nudAlphaIn11.TabIndex = 1;
@@ -593,7 +570,6 @@
             // 
             nudDimMid.Location = new Point(186, 498);
             nudDimMid.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimMid.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimMid.Name = "nudDimMid";
             nudDimMid.Size = new Size(70, 23);
             nudDimMid.TabIndex = 1;
@@ -604,7 +580,6 @@
             nudAlphaMid.DecimalPlaces = 4;
             nudAlphaMid.Location = new Point(298, 498);
             nudAlphaMid.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaMid.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaMid.Name = "nudAlphaMid";
             nudAlphaMid.Size = new Size(70, 23);
             nudAlphaMid.TabIndex = 1;
@@ -623,7 +598,6 @@
             // 
             nudDimOut11.Location = new Point(362, 126);
             nudDimOut11.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimOut11.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimOut11.Name = "nudDimOut11";
             nudDimOut11.Size = new Size(70, 23);
             nudDimOut11.TabIndex = 1;
@@ -634,7 +608,6 @@
             nudAlphaOut11.DecimalPlaces = 4;
             nudAlphaOut11.Location = new Point(451, 126);
             nudAlphaOut11.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaOut11.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaOut11.Name = "nudAlphaOut11";
             nudAlphaOut11.Size = new Size(70, 23);
             nudAlphaOut11.TabIndex = 1;
@@ -644,7 +617,6 @@
             // 
             nudDimOut09.Location = new Point(362, 184);
             nudDimOut09.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimOut09.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimOut09.Name = "nudDimOut09";
             nudDimOut09.Size = new Size(70, 23);
             nudDimOut09.TabIndex = 1;
@@ -655,7 +627,6 @@
             nudAlphaOut09.DecimalPlaces = 4;
             nudAlphaOut09.Location = new Point(451, 184);
             nudAlphaOut09.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaOut09.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaOut09.Name = "nudAlphaOut09";
             nudAlphaOut09.Size = new Size(70, 23);
             nudAlphaOut09.TabIndex = 1;
@@ -665,7 +636,6 @@
             // 
             nudDimOut07.Location = new Point(362, 242);
             nudDimOut07.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimOut07.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimOut07.Name = "nudDimOut07";
             nudDimOut07.Size = new Size(70, 23);
             nudDimOut07.TabIndex = 1;
@@ -676,7 +646,6 @@
             nudAlphaOut07.DecimalPlaces = 4;
             nudAlphaOut07.Location = new Point(451, 242);
             nudAlphaOut07.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaOut07.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaOut07.Name = "nudAlphaOut07";
             nudAlphaOut07.Size = new Size(70, 23);
             nudAlphaOut07.TabIndex = 1;
@@ -686,7 +655,6 @@
             // 
             nudDimOut05.Location = new Point(362, 300);
             nudDimOut05.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimOut05.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimOut05.Name = "nudDimOut05";
             nudDimOut05.Size = new Size(70, 23);
             nudDimOut05.TabIndex = 1;
@@ -697,7 +665,6 @@
             nudAlphaOut05.DecimalPlaces = 4;
             nudAlphaOut05.Location = new Point(451, 300);
             nudAlphaOut05.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaOut05.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaOut05.Name = "nudAlphaOut05";
             nudAlphaOut05.Size = new Size(70, 23);
             nudAlphaOut05.TabIndex = 1;
@@ -707,7 +674,6 @@
             // 
             nudDimOut03.Location = new Point(362, 358);
             nudDimOut03.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimOut03.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimOut03.Name = "nudDimOut03";
             nudDimOut03.Size = new Size(70, 23);
             nudDimOut03.TabIndex = 1;
@@ -718,7 +684,6 @@
             nudAlphaOut03.DecimalPlaces = 4;
             nudAlphaOut03.Location = new Point(451, 358);
             nudAlphaOut03.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaOut03.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaOut03.Name = "nudAlphaOut03";
             nudAlphaOut03.Size = new Size(70, 23);
             nudAlphaOut03.TabIndex = 1;
@@ -728,7 +693,6 @@
             // 
             nudDimOut01.Location = new Point(362, 416);
             nudDimOut01.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimOut01.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimOut01.Name = "nudDimOut01";
             nudDimOut01.Size = new Size(70, 23);
             nudDimOut01.TabIndex = 1;
@@ -739,7 +703,6 @@
             nudAlphaOut01.DecimalPlaces = 4;
             nudAlphaOut01.Location = new Point(451, 416);
             nudAlphaOut01.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaOut01.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaOut01.Name = "nudAlphaOut01";
             nudAlphaOut01.Size = new Size(70, 23);
             nudAlphaOut01.TabIndex = 1;
@@ -749,7 +712,6 @@
             // 
             nudDimOut10.Location = new Point(362, 155);
             nudDimOut10.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimOut10.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimOut10.Name = "nudDimOut10";
             nudDimOut10.Size = new Size(70, 23);
             nudDimOut10.TabIndex = 1;
@@ -759,7 +721,6 @@
             // 
             nudDimOut08.Location = new Point(362, 213);
             nudDimOut08.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimOut08.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimOut08.Name = "nudDimOut08";
             nudDimOut08.Size = new Size(70, 23);
             nudDimOut08.TabIndex = 1;
@@ -769,7 +730,6 @@
             // 
             nudDimOut06.Location = new Point(362, 271);
             nudDimOut06.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimOut06.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimOut06.Name = "nudDimOut06";
             nudDimOut06.Size = new Size(70, 23);
             nudDimOut06.TabIndex = 1;
@@ -779,7 +739,6 @@
             // 
             nudDimOut04.Location = new Point(362, 329);
             nudDimOut04.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimOut04.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimOut04.Name = "nudDimOut04";
             nudDimOut04.Size = new Size(70, 23);
             nudDimOut04.TabIndex = 1;
@@ -789,7 +748,6 @@
             // 
             nudDimOut02.Location = new Point(362, 387);
             nudDimOut02.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimOut02.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimOut02.Name = "nudDimOut02";
             nudDimOut02.Size = new Size(70, 23);
             nudDimOut02.TabIndex = 1;
@@ -799,7 +757,6 @@
             // 
             nudDimOut00.Location = new Point(362, 445);
             nudDimOut00.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimOut00.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimOut00.Name = "nudDimOut00";
             nudDimOut00.Size = new Size(70, 23);
             nudDimOut00.TabIndex = 1;
@@ -810,7 +767,6 @@
             nudAlphaOut10.DecimalPlaces = 4;
             nudAlphaOut10.Location = new Point(451, 155);
             nudAlphaOut10.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaOut10.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaOut10.Name = "nudAlphaOut10";
             nudAlphaOut10.Size = new Size(70, 23);
             nudAlphaOut10.TabIndex = 1;
@@ -821,7 +777,6 @@
             nudAlphaOut08.DecimalPlaces = 4;
             nudAlphaOut08.Location = new Point(451, 213);
             nudAlphaOut08.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaOut08.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaOut08.Name = "nudAlphaOut08";
             nudAlphaOut08.Size = new Size(70, 23);
             nudAlphaOut08.TabIndex = 1;
@@ -832,7 +787,6 @@
             nudAlphaOut06.DecimalPlaces = 4;
             nudAlphaOut06.Location = new Point(451, 271);
             nudAlphaOut06.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaOut06.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaOut06.Name = "nudAlphaOut06";
             nudAlphaOut06.Size = new Size(70, 23);
             nudAlphaOut06.TabIndex = 1;
@@ -843,7 +797,6 @@
             nudAlphaOut04.DecimalPlaces = 4;
             nudAlphaOut04.Location = new Point(451, 329);
             nudAlphaOut04.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaOut04.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaOut04.Name = "nudAlphaOut04";
             nudAlphaOut04.Size = new Size(70, 23);
             nudAlphaOut04.TabIndex = 1;
@@ -854,7 +807,6 @@
             nudAlphaOut02.DecimalPlaces = 4;
             nudAlphaOut02.Location = new Point(451, 387);
             nudAlphaOut02.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaOut02.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaOut02.Name = "nudAlphaOut02";
             nudAlphaOut02.Size = new Size(70, 23);
             nudAlphaOut02.TabIndex = 1;
@@ -865,7 +817,6 @@
             nudAlphaOut00.DecimalPlaces = 4;
             nudAlphaOut00.Location = new Point(451, 445);
             nudAlphaOut00.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaOut00.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaOut00.Name = "nudAlphaOut00";
             nudAlphaOut00.Size = new Size(70, 23);
             nudAlphaOut00.TabIndex = 1;
@@ -1019,7 +970,6 @@
             // 
             nudDimMid01.Location = new Point(186, 527);
             nudDimMid01.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimMid01.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimMid01.Name = "nudDimMid01";
             nudDimMid01.Size = new Size(70, 23);
             nudDimMid01.TabIndex = 1;
@@ -1030,7 +980,6 @@
             nudAlphaMid01.DecimalPlaces = 4;
             nudAlphaMid01.Location = new Point(298, 527);
             nudAlphaMid01.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaMid01.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaMid01.Name = "nudAlphaMid01";
             nudAlphaMid01.Size = new Size(70, 23);
             nudAlphaMid01.TabIndex = 1;
@@ -1049,7 +998,6 @@
             // 
             nudDimMid02.Location = new Point(186, 556);
             nudDimMid02.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimMid02.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimMid02.Name = "nudDimMid02";
             nudDimMid02.Size = new Size(70, 23);
             nudDimMid02.TabIndex = 1;
@@ -1060,7 +1008,6 @@
             nudAlphaMid02.DecimalPlaces = 4;
             nudAlphaMid02.Location = new Point(298, 556);
             nudAlphaMid02.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaMid02.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaMid02.Name = "nudAlphaMid02";
             nudAlphaMid02.Size = new Size(70, 23);
             nudAlphaMid02.TabIndex = 1;
@@ -1079,7 +1026,6 @@
             // 
             nudDimBase.Location = new Point(94, 97);
             nudDimBase.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimBase.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimBase.Name = "nudDimBase";
             nudDimBase.Size = new Size(70, 23);
             nudDimBase.TabIndex = 1;
@@ -1090,7 +1036,6 @@
             nudAlphaBase.DecimalPlaces = 4;
             nudAlphaBase.Location = new Point(186, 97);
             nudAlphaBase.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaBase.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaBase.Name = "nudAlphaBase";
             nudAlphaBase.Size = new Size(70, 23);
             nudAlphaBase.TabIndex = 1;
@@ -1100,7 +1045,6 @@
             // 
             nudDimOut.Location = new Point(362, 97);
             nudDimOut.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudDimOut.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimOut.Name = "nudDimOut";
             nudDimOut.Size = new Size(70, 23);
             nudDimOut.TabIndex = 1;
@@ -1111,7 +1055,6 @@
             nudAlphaOut.DecimalPlaces = 4;
             nudAlphaOut.Location = new Point(451, 97);
             nudAlphaOut.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudAlphaOut.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
             nudAlphaOut.Name = "nudAlphaOut";
             nudAlphaOut.Size = new Size(70, 23);
             nudAlphaOut.TabIndex = 1;
@@ -1145,11 +1088,22 @@
             label36.TabIndex = 6;
             label36.Text = "※SD1とSDXLのnetworks.loraのみ対応";
             // 
+            // btnResetAll
+            // 
+            btnResetAll.Location = new Point(439, 554);
+            btnResetAll.Name = "btnResetAll";
+            btnResetAll.Size = new Size(82, 23);
+            btnResetAll.TabIndex = 7;
+            btnResetAll.Text = "値の統一";
+            btnResetAll.UseVisualStyleBackColor = true;
+            btnResetAll.Click += btnResetAll_Click;
+            // 
             // FormBlockDim
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(582, 598);
+            Controls.Add(btnResetAll);
             Controls.Add(label36);
             Controls.Add(label33);
             Controls.Add(label32);
@@ -1416,5 +1370,6 @@
         private Label label34;
         private Label label35;
         private Label label36;
+        private Button btnResetAll;
     }
 }
