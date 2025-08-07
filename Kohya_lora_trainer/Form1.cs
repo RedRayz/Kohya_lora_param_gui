@@ -1360,6 +1360,12 @@ namespace Kohya_lora_trainer
             {
                 return MessageBox.Show("Zero Terminal SNRはV Parameterizationが有効でないと動作しません(NaN演算の原因)。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
+            Scheduler sc = TrainParams.Current.SchedulerType;
+            if (TrainParams.Current.WarmupSteps > 0 && (sc != Scheduler.cosine_with_restarts && sc != Scheduler.constant_with_warmup && sc != Scheduler.warmup_stable_decay))
+            {
+                return MessageBox.Show("warmup系スケジューラ以外とウォームアップステップは併用できません。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+
             return DialogResult.Yes;
         }
 

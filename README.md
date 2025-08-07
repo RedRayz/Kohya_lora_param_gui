@@ -78,6 +78,8 @@ Kohya_lora_trainer.exeをダブルクリックする。ショートカット作�
 
 それ以外のPythonではsd-scriptsが動作しない可能性があります。
 
+* Git
+
 * Turing以降のNVIDIA製GPU
 
 ## ガイドなど

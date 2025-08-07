@@ -10,7 +10,7 @@ namespace Kohya_lora_trainer {
         //Required
         public  string ModelPath = string.Empty, TrainImagePath = string.Empty, OutputPath = string.Empty, TensorBoardLogPath = string.Empty, LoraModelPath = string.Empty;
         public  float LearningRate = 0.0001f;
-        public  int Resolution = 512, BatchSize = 2, Epochs = 5, NetworkDim = 16;
+        public  int Resolution = 512, BatchSize = 2, Epochs = 5, NetworkDim = 4;
         public decimal NetworkAlpha = 4;
 
         //Optional
@@ -41,7 +41,7 @@ namespace Kohya_lora_trainer {
         //Addtional(KohakuBlueleaf氏作成拡張スクリプト用)
         public NetworkModule ModuleType = NetworkModule.LoRA;
         public LycoAlgo AlgoType = LycoAlgo.lora;
-        public int ConvDim = 16;
+        public int ConvDim = 4;
         public decimal ConvAlpha = 4;
         //Additional(LoRA)
         public bool UseConv2dExtend = false;
@@ -61,9 +61,9 @@ namespace Kohya_lora_trainer {
 
         //Block Dim,Alpha
         public bool UseBlockDim = false;
-        public int[] BlockDimIn = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
-        public int BlockDimMid = 16, BlockDimMid01 = 4, BlockDimMid02 = 4, BlockDimBase = 4, BlockDimOutSDXL = 4;
-        public int[] BlockDimOut = { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
+        public int[] BlockDimIn = { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
+        public int BlockDimMid = 4, BlockDimMid01 = 4, BlockDimMid02 = 4, BlockDimBase = 4, BlockDimOutSDXL = 4;
+        public int[] BlockDimOut = { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
 
         public decimal[] BlockAlphaInM = { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
         public decimal BlockAlphaMidM = 4, BlockAlphaMid01 = 4, BlockAlphaMid02 = 4, BlockAlphaBase = 4, BlockAlphaOutSDXL = 4;
@@ -121,63 +121,97 @@ namespace Kohya_lora_trainer {
 
             if(BlockDimIn.Length < 12)
             {
-                BlockDimIn = new int[] { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
+                BlockDimIn = new int[] { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
                 broken = true;
             }
 
-            if(BlockDimMid <= 0 || BlockDimMid > 512)
+            if (BlockDimBase <= 0 || BlockDimBase > 1280)
+            {
+                BlockDimBase = 4;
+            }
+
+            if (BlockAlphaBase < 0.0001m || BlockAlphaBase > 1280)
+            {
+                BlockAlphaBase = 1;
+            }
+
+            if (BlockDimMid < 0 || BlockDimMid > 1280)
             {
                 BlockDimMid = 32;
                 broken = true;
             }
 
-            if(BlockDimOut.Length < 12)
+            if (BlockDimMid01 < 0 || BlockDimMid01 > 1280)
             {
-                BlockDimOut = new int[] { 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64, 64 };
+                BlockDimMid01 = 4;
+                broken = true;
+            }
+
+            if (BlockDimMid02 < 0 || BlockDimMid02 > 1280)
+            {
+                BlockDimMid02 = 4;
+                broken = true;
+            }
+
+            if (BlockAlphaMid01 < 0 || BlockAlphaMid01 > 1280)
+            {
+                BlockAlphaMid01 = 1;
+                broken = true;
+            }
+
+            if (BlockAlphaMid02 < 0 || BlockAlphaMid02 > 1280)
+            {
+                BlockAlphaMid02 = 1;
+                broken = true;
+            }
+
+            if (BlockDimOut.Length < 12)
+            {
+                BlockDimOut = new int[] { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
                 broken = true;
             }
 
             if(BlockAlphaInM.Length < 12)
             {
-                BlockAlphaInM = new decimal[] { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
+                BlockAlphaInM = new decimal[] { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
                 broken = true;
             }
 
-            if(BlockAlphaMidM <= 0)
+            if(BlockAlphaMidM < 0)
             {
-                BlockAlphaMidM = 16;
+                BlockAlphaMidM = 4;
                 broken = true;
             }
 
             if(BlockAlphaOutM.Length < 12)
             {
-                BlockAlphaOutM = new decimal[] { 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16 };
+                BlockAlphaOutM = new decimal[] { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
                 broken = true;
             }
 
             for(int i = 0; i< 12; i++)
             {
-                if (BlockDimIn[i] <= 0 || BlockDimIn[i] > 512)
+                if (BlockDimIn[i] < 0 || BlockDimIn[i] > 1280)
                 {
-                    BlockDimIn[i] = 64;
+                    BlockDimIn[i] = 1;
                     broken = true;
                 }
 
-                if (BlockDimOut[i] <= 0 || BlockDimOut[i] > 512)
+                if (BlockDimOut[i] < 0 || BlockDimOut[i] > 1280)
                 {
-                    BlockDimOut[i] = 64;
+                    BlockDimOut[i] = 1;
                     broken = true;
                 }
 
-                if (BlockAlphaInM[i] <= 0)
+                if (BlockAlphaInM[i] < 0)
                 {
-                    BlockAlphaInM[i] = 16;
+                    BlockAlphaInM[i] = 1;
                     broken = true;
                 }
 
-                if (BlockAlphaOutM[i] <= 0)
+                if (BlockAlphaOutM[i] < 0)
                 {
-                    BlockAlphaOutM[i] = 16;
+                    BlockAlphaOutM[i] = 1;
                     broken = true;
                 }
 
