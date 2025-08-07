@@ -1026,6 +1026,7 @@
             // 
             nudDimBase.Location = new Point(94, 97);
             nudDimBase.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
+            nudDimBase.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDimBase.Name = "nudDimBase";
             nudDimBase.Size = new Size(70, 23);
             nudDimBase.TabIndex = 1;
@@ -1036,6 +1037,7 @@
             nudAlphaBase.DecimalPlaces = 4;
             nudAlphaBase.Location = new Point(186, 97);
             nudAlphaBase.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
+            nudAlphaBase.Minimum = new decimal(new int[] { 1, 0, 0, 262144 });
             nudAlphaBase.Name = "nudAlphaBase";
             nudAlphaBase.Size = new Size(70, 23);
             nudAlphaBase.TabIndex = 1;
