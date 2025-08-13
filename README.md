@@ -81,6 +81,7 @@ Kohya_lora_trainer.exeをダブルクリックする。ショートカット作�
 * Git
 
 * Turing以降のNVIDIA製GPU
+Torch 2.8.0以降、Volta以前のNVIDIA製GPUは非対応になります。さらに、2025年10月以降はNVIDIAによるドライバ更新は脆弱性修正のみとなります。
 
 ## ガイドなど
 
