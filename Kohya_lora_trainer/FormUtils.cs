@@ -135,11 +135,7 @@ namespace Kohya_lora_trainer
             if (res == DialogResult.Yes)
             {
                 string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.CurrentSdScriptsPath : Form1.ScriptPath + "\\";
-                if (!Directory.Exists(path + "venv"))
-                {
-                    MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
+
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("/k cd ");
@@ -157,8 +153,17 @@ namespace Kohya_lora_trainer
                     sb.Append(" && git pull");
                 }
 
+                if (Directory.Exists(path + "venv"))
+                {
+                    sb.Append(" && .\\venv\\Scripts\\activate && pip install --use-pep517 --upgrade -r requirements.txt");
+                }
+                else if (cbxUpdateOnlyPackage.Checked)
+                {
+                    MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
-                sb.Append(" && .\\venv\\Scripts\\activate && pip install --use-pep517 --upgrade -r requirements.txt");
+
 
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
