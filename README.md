@@ -74,7 +74,7 @@ Kohya_lora_trainer.exeをダブルクリックする。ショートカット作�
 
 * [.NET Desktop Runtime 9.0](https://dotnet.microsoft.com/ja-jp/download/dotnet/thank-you/runtime-desktop-9.0.3-windows-x64-installer)
 
-* Python 3.11.9
+* Python 3.11.9または3.12.9
 
 それ以外のPythonではsd-scriptsが動作しない可能性があります。
 
