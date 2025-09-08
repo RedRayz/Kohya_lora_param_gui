@@ -135,11 +135,7 @@ namespace Kohya_lora_trainer
             if (res == DialogResult.Yes)
             {
                 string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.CurrentSdScriptsPath : Form1.ScriptPath + "\\";
-                if (!Directory.Exists(path + "venv"))
-                {
-                    MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
+
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("/k cd ");
@@ -157,8 +153,17 @@ namespace Kohya_lora_trainer
                     sb.Append(" && git pull");
                 }
 
+                if (Directory.Exists(path + "venv"))
+                {
+                    sb.Append(" && .\\venv\\Scripts\\activate && pip install --use-pep517 --upgrade -r requirements.txt");
+                }
+                else if (cbxUpdateOnlyPackage.Checked)
+                {
+                    MessageBox.Show("venvのあるsd-scriptsフォルダが見つかりません。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
-                sb.Append(" && .\\venv\\Scripts\\activate && pip install --use-pep517 --upgrade -r requirements.txt");
+
 
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
@@ -215,11 +220,27 @@ namespace Kohya_lora_trainer
                 StringBuilder sb = new StringBuilder();
                 sb.Append(@"/k cd ").Append(Constants.CurrentSdScriptsPath);
 
-                string py = cbxPythonVersion.SelectedIndex == 0 ? "py -3.10" : "py -3.11";
+                string py = string.Empty;
+                switch (cbxPythonVersion.SelectedIndex)
+                {
+                    case 0:
+                        py = "py -3.10";
+                        break;
+                    case 1:
+                        py = "py -3.11";
+                        break;
+                    case 2:
+                        py = "py -3.12";
+                        break;
+                    default:
+                        py = "py -3.10";
+                        break;
+                }
+
                 sb.Append(@" && ").Append(cbxUsePy.Checked ? py : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && ").Append(MyUtils.GenerateMinInstallCommands(cbxUseLatestTorch.Checked));
                 sb.Append(" && ");
 
-                sb.Append("pip install dadaptation lycoris_lora && pip install numpy==1.26.4");
+                sb.Append("pip install dadaptation lycoris_lora");
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
                 ps.Arguments = sb.ToString();

@@ -1541,10 +1541,6 @@ namespace Kohya_lora_trainer
             .Append(" --index-url ").Append(index)
             .Append(" && pip install --upgrade -r requirements.txt");
 
-            if (UseLatestTorch)
-            {
-                sb.Append(" && pip install bitsandbytes==0.45.5");
-            }
             return sb.ToString();
         }
 
