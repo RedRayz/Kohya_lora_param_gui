@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBatchProcess));
             tbxPrestList = new TextBox();
             label1 = new Label();
             btnDiscardChanges = new Button();
@@ -51,7 +52,7 @@
             // tbxPrestList
             // 
             tbxPrestList.AllowDrop = true;
-            tbxPrestList.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            tbxPrestList.Font = new Font("Yu Gothic UI", 8F);
             tbxPrestList.Location = new Point(8, 9);
             tbxPrestList.Margin = new Padding(2, 3, 2, 3);
             tbxPrestList.Multiline = true;
@@ -67,9 +68,9 @@
             label1.Location = new Point(5, 3);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(277, 182);
+            label1.Size = new Size(279, 182);
             label1.TabIndex = 1;
-            label1.Text = "バッチ処理\r\n入力したプリセットを基に順番に学習します。\r\n★使用方法\r\n左のテキストボックスに1行ごとにプリセットファイルのパスを入力します。\r\nプリセットを追加する場合は改行してから入力します。\r\n空欄にするとバッチ処理を行いません。\r\n★注意\r\nプリセットが見つからないか無効な場合は無視されます。\r\nバッチ処理時は「経過時間の表示」は無視されます。";
+            label1.Text = resources.GetString("label1.Text");
             // 
             // btnDiscardChanges
             // 
@@ -132,7 +133,7 @@
             tabControl1.Location = new Point(399, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(285, 303);
+            tabControl1.Size = new Size(292, 303);
             tabControl1.TabIndex = 6;
             // 
             // tabPage1
@@ -141,7 +142,7 @@
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(277, 275);
+            tabPage1.Size = new Size(284, 275);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "説明";
             tabPage1.UseVisualStyleBackColor = true;
@@ -210,7 +211,7 @@
             Controls.Add(btnApplyChanges);
             Controls.Add(btnDiscardChanges);
             Controls.Add(tbxPrestList);
-            Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Yu Gothic UI", 9F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(2, 3, 2, 3);
             MaximizeBox = false;
