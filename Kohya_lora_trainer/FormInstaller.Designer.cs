@@ -96,7 +96,7 @@
             // 
             cbxPythonVersion.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxPythonVersion.FormattingEnabled = true;
-            cbxPythonVersion.Items.AddRange(new object[] { "3.10", "3.11" });
+            cbxPythonVersion.Items.AddRange(new object[] { "3.10", "3.11", "3.12", "3.13" });
             cbxPythonVersion.Location = new Point(277, 109);
             cbxPythonVersion.Name = "cbxPythonVersion";
             cbxPythonVersion.Size = new Size(96, 23);
