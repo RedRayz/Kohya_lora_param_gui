@@ -221,7 +221,7 @@
             cbxUseLatestTorch.Name = "cbxUseLatestTorch";
             cbxUseLatestTorch.Size = new Size(198, 19);
             cbxUseLatestTorch.TabIndex = 9;
-            cbxUseLatestTorch.Text = "Torch 2.7(CUDA 12.8)をインストール";
+            cbxUseLatestTorch.Text = "Torch 2.8(CUDA 12.8)をインストール";
             toolTip1.SetToolTip(cbxUseLatestTorch, "NVIDIA RTX 50シリーズ使用中ならチェックつける");
             cbxUseLatestTorch.UseVisualStyleBackColor = true;
             // 
@@ -229,7 +229,7 @@
             // 
             cbxPythonVersion.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxPythonVersion.FormattingEnabled = true;
-            cbxPythonVersion.Items.AddRange(new object[] { "3.10", "3.11" });
+            cbxPythonVersion.Items.AddRange(new object[] { "3.10", "3.11", "3.12", "3.13" });
             cbxPythonVersion.Location = new Point(260, 178);
             cbxPythonVersion.Name = "cbxPythonVersion";
             cbxPythonVersion.Size = new Size(103, 23);
@@ -320,10 +320,10 @@
             tabPage2.Controls.Add(nudTargetDim);
             tabPage2.Controls.Add(lblLoraPath);
             tabPage2.Controls.Add(lblOutputPath);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(525, 401);
+            tabPage2.Size = new Size(525, 399);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Dimリサイズ";
             tabPage2.UseVisualStyleBackColor = true;
@@ -371,9 +371,9 @@
             tabPage3.Controls.Add(label1);
             tabPage3.Controls.Add(btnInstallExtension);
             tabPage3.Controls.Add(btnUpdateRepo);
-            tabPage3.Location = new Point(4, 24);
+            tabPage3.Location = new Point(4, 26);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(525, 401);
+            tabPage3.Size = new Size(525, 399);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "更新";
             tabPage3.UseVisualStyleBackColor = true;
@@ -434,9 +434,9 @@
             tabPage4.Controls.Add(btnSwitchBranch);
             tabPage4.Controls.Add(label5);
             tabPage4.Controls.Add(tbxBranchName);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 26);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(525, 401);
+            tabPage4.Size = new Size(525, 399);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "ブランチ";
             tabPage4.UseVisualStyleBackColor = true;
@@ -500,9 +500,9 @@
             tabPage5.Controls.Add(label9);
             tabPage5.Controls.Add(label11);
             tabPage5.Controls.Add(btnPurgePipCache);
-            tabPage5.Location = new Point(4, 24);
+            tabPage5.Location = new Point(4, 26);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(525, 401);
+            tabPage5.Size = new Size(525, 399);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "不具合修正";
             tabPage5.UseVisualStyleBackColor = true;

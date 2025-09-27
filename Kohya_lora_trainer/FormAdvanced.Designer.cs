@@ -49,7 +49,6 @@ namespace Kohya_lora_trainer
             cbxMixedPrecision = new ComboBox();
             nudLRSchedulerCycle = new NumericUpDown();
             cbxAlgoType = new ComboBox();
-            cbxUseWarmupInit = new CheckBox();
             cbxUseGradient = new CheckBox();
             nudNoiseOffset = new NumericUpDown();
             nudCaptionDropout = new NumericUpDown();
@@ -126,8 +125,6 @@ namespace Kohya_lora_trainer
             btnClearLoRAmodel = new Button();
             lblLoRAmodelPath = new Label();
             label14 = new Label();
-            nudMomentum = new NumericUpDown();
-            label15 = new Label();
             btnClearVAE = new Button();
             label16 = new Label();
             lblVAEPath = new Label();
@@ -188,16 +185,13 @@ namespace Kohya_lora_trainer
             label27 = new Label();
             tabPage5 = new TabPage();
             groupBox3 = new GroupBox();
-            cbxScaleParameter = new CheckBox();
-            cbxRelativeStep = new CheckBox();
+            cbxDecouple = new CheckBox();
+            cbxUseBiasCorrection = new CheckBox();
+            cbxUseSafeguard = new CheckBox();
             label65 = new Label();
             btnShowTipsAboutOpts = new Button();
             label43 = new Label();
             label42 = new Label();
-            cbxUseSafeguard = new CheckBox();
-            cbxUseBiasCorrection = new CheckBox();
-            cbxNoProx = new CheckBox();
-            cbxDecouple = new CheckBox();
             tbxMomentum = new TextBox();
             label30 = new Label();
             label31 = new Label();
@@ -296,7 +290,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudScaleWeightNorms).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudMomentum).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudAdaptiveNoiseScale).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -513,17 +506,6 @@ namespace Kohya_lora_trainer
             cbxAlgoType.Size = new Size(121, 23);
             cbxAlgoType.TabIndex = 14;
             toolTip1.SetToolTip(cbxAlgoType, "loha、lokrやia3の実質的なdimは2乗になる");
-            // 
-            // cbxUseWarmupInit
-            // 
-            cbxUseWarmupInit.AutoSize = true;
-            cbxUseWarmupInit.Location = new Point(8, 22);
-            cbxUseWarmupInit.Name = "cbxUseWarmupInit";
-            cbxUseWarmupInit.Size = new Size(91, 19);
-            cbxUseWarmupInit.TabIndex = 18;
-            cbxUseWarmupInit.Text = "warmup_init";
-            toolTip1.SetToolTip(cbxUseWarmupInit, "必要なステップ数がだいたい1万以上になる");
-            cbxUseWarmupInit.UseVisualStyleBackColor = true;
             // 
             // cbxUseGradient
             // 
@@ -1316,26 +1298,6 @@ namespace Kohya_lora_trainer
             label14.TabIndex = 45;
             label14.Text = "ノイズオフセット#";
             // 
-            // nudMomentum
-            // 
-            nudMomentum.DecimalPlaces = 4;
-            nudMomentum.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nudMomentum.Location = new Point(314, 178);
-            nudMomentum.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            nudMomentum.Name = "nudMomentum";
-            nudMomentum.Size = new Size(78, 23);
-            nudMomentum.TabIndex = 44;
-            nudMomentum.Value = new decimal(new int[] { 9, 0, 0, 65536 });
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Location = new Point(231, 178);
-            label15.Name = "label15";
-            label15.Size = new Size(75, 30);
-            label15.TabIndex = 45;
-            label15.Text = "Nesterovの\r\nmomentum#";
-            // 
             // btnClearVAE
             // 
             btnClearVAE.Location = new Point(454, 22);
@@ -2002,12 +1964,6 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(cbxUseAdditionalOptArgs);
             tabPage5.Controls.Add(label43);
             tabPage5.Controls.Add(label42);
-            tabPage5.Controls.Add(nudMomentum);
-            tabPage5.Controls.Add(label15);
-            tabPage5.Controls.Add(cbxUseSafeguard);
-            tabPage5.Controls.Add(cbxUseBiasCorrection);
-            tabPage5.Controls.Add(cbxNoProx);
-            tabPage5.Controls.Add(cbxDecouple);
             tabPage5.Controls.Add(tbxMomentum);
             tabPage5.Controls.Add(label30);
             tabPage5.Controls.Add(tbxWeightDecay);
@@ -2034,35 +1990,45 @@ namespace Kohya_lora_trainer
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(cbxUseWarmupInit);
-            groupBox3.Controls.Add(cbxScaleParameter);
-            groupBox3.Controls.Add(cbxRelativeStep);
-            groupBox3.Location = new Point(484, 166);
+            groupBox3.Controls.Add(cbxDecouple);
+            groupBox3.Controls.Add(cbxUseBiasCorrection);
+            groupBox3.Controls.Add(cbxUseSafeguard);
+            groupBox3.Location = new Point(27, 188);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(144, 100);
+            groupBox3.Size = new Size(200, 100);
             groupBox3.TabIndex = 47;
             groupBox3.TabStop = false;
-            groupBox3.Text = "AdaFactor";
+            groupBox3.Text = "Prodigy";
             // 
-            // cbxScaleParameter
+            // cbxDecouple
             // 
-            cbxScaleParameter.AutoSize = true;
-            cbxScaleParameter.Location = new Point(8, 69);
-            cbxScaleParameter.Name = "cbxScaleParameter";
-            cbxScaleParameter.Size = new Size(110, 19);
-            cbxScaleParameter.TabIndex = 18;
-            cbxScaleParameter.Text = "scale_parameter";
-            cbxScaleParameter.UseVisualStyleBackColor = true;
+            cbxDecouple.AutoSize = true;
+            cbxDecouple.Location = new Point(12, 22);
+            cbxDecouple.Name = "cbxDecouple";
+            cbxDecouple.Size = new Size(75, 19);
+            cbxDecouple.TabIndex = 24;
+            cbxDecouple.Text = "decouple";
+            cbxDecouple.UseVisualStyleBackColor = true;
             // 
-            // cbxRelativeStep
+            // cbxUseBiasCorrection
             // 
-            cbxRelativeStep.AutoSize = true;
-            cbxRelativeStep.Location = new Point(8, 47);
-            cbxRelativeStep.Name = "cbxRelativeStep";
-            cbxRelativeStep.Size = new Size(91, 19);
-            cbxRelativeStep.TabIndex = 18;
-            cbxRelativeStep.Text = "relative_step";
-            cbxRelativeStep.UseVisualStyleBackColor = true;
+            cbxUseBiasCorrection.AutoSize = true;
+            cbxUseBiasCorrection.Location = new Point(12, 47);
+            cbxUseBiasCorrection.Name = "cbxUseBiasCorrection";
+            cbxUseBiasCorrection.Size = new Size(104, 19);
+            cbxUseBiasCorrection.TabIndex = 24;
+            cbxUseBiasCorrection.Text = "bias correction";
+            cbxUseBiasCorrection.UseVisualStyleBackColor = true;
+            // 
+            // cbxUseSafeguard
+            // 
+            cbxUseSafeguard.AutoSize = true;
+            cbxUseSafeguard.Location = new Point(12, 72);
+            cbxUseSafeguard.Name = "cbxUseSafeguard";
+            cbxUseSafeguard.Size = new Size(124, 19);
+            cbxUseSafeguard.TabIndex = 24;
+            cbxUseSafeguard.Text = "safeguard warmup";
+            cbxUseSafeguard.UseVisualStyleBackColor = true;
             // 
             // label65
             // 
@@ -2101,46 +2067,6 @@ namespace Kohya_lora_trainer
             label42.Size = new Size(77, 30);
             label42.TabIndex = 25;
             label42.Text = "beta3#\r\n(prodigyのみ)";
-            // 
-            // cbxUseSafeguard
-            // 
-            cbxUseSafeguard.AutoSize = true;
-            cbxUseSafeguard.Location = new Point(20, 263);
-            cbxUseSafeguard.Name = "cbxUseSafeguard";
-            cbxUseSafeguard.Size = new Size(194, 19);
-            cbxUseSafeguard.TabIndex = 24;
-            cbxUseSafeguard.Text = "safeguard warmup(prodigyのみ)";
-            cbxUseSafeguard.UseVisualStyleBackColor = true;
-            // 
-            // cbxUseBiasCorrection
-            // 
-            cbxUseBiasCorrection.AutoSize = true;
-            cbxUseBiasCorrection.Location = new Point(20, 238);
-            cbxUseBiasCorrection.Name = "cbxUseBiasCorrection";
-            cbxUseBiasCorrection.Size = new Size(174, 19);
-            cbxUseBiasCorrection.TabIndex = 24;
-            cbxUseBiasCorrection.Text = "bias correction(prodigyのみ)";
-            cbxUseBiasCorrection.UseVisualStyleBackColor = true;
-            // 
-            // cbxNoProx
-            // 
-            cbxNoProx.AutoSize = true;
-            cbxNoProx.Location = new Point(20, 213);
-            cbxNoProx.Name = "cbxNoProx";
-            cbxNoProx.Size = new Size(136, 19);
-            cbxNoProx.TabIndex = 24;
-            cbxNoProx.Text = "no prox(Adan系のみ)";
-            cbxNoProx.UseVisualStyleBackColor = true;
-            // 
-            // cbxDecouple
-            // 
-            cbxDecouple.AutoSize = true;
-            cbxDecouple.Location = new Point(20, 188);
-            cbxDecouple.Name = "cbxDecouple";
-            cbxDecouple.Size = new Size(147, 19);
-            cbxDecouple.TabIndex = 24;
-            cbxDecouple.Text = "decouple(Adam系のみ)";
-            cbxDecouple.UseVisualStyleBackColor = true;
             // 
             // tbxMomentum
             // 
@@ -2905,7 +2831,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudScaleWeightNorms).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudMomentum).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudAdaptiveNoiseScale).EndInit();
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
@@ -2975,7 +2900,6 @@ namespace Kohya_lora_trainer
         private ToolTip toolTip1;
         private Label label7;
         private Label label6;
-        private CheckBox cbxUseWarmupInit;
         private TextBox tbxExtension;
         private Label label9;
         private Button button1;
@@ -3003,8 +2927,6 @@ namespace Kohya_lora_trainer
         private Label lblLoRAmodelPath;
         private NumericUpDown nudNoiseOffset;
         private Label label14;
-        private NumericUpDown nudMomentum;
-        private Label label15;
         private Button btnSelectVAE;
         private Button btnClearVAE;
         private Label label16;
@@ -3073,7 +2995,6 @@ namespace Kohya_lora_trainer
         private NumericUpDown nudRankDropout;
         private NumericUpDown nudCaptionDropout;
         private CheckBox cbxDecouple;
-        private CheckBox cbxNoProx;
         private Label label40;
         private TextBox tbxComment;
         private Label label41;
@@ -3094,8 +3015,6 @@ namespace Kohya_lora_trainer
         private Label label46;
         private CheckBox cbxUseFP8;
         private TabPage page3;
-        private CheckBox cbxScaleParameter;
-        private CheckBox cbxRelativeStep;
         private TabPage tabPage3;
         private CheckBox cbxTrainNorm;
         private CheckBox cbxWeightDecomposition;
@@ -3195,11 +3114,11 @@ namespace Kohya_lora_trainer
         private GroupBox groupBox6;
         private GroupBox groupBox5;
         private GroupBox groupBox4;
-        private GroupBox groupBox3;
         private GroupBox groupBox8;
         private Label label8;
         private NumericUpDown nudScaleWeightNorms;
         private Label label45;
         private ComboBox cbxResizeInterpolation;
+        private GroupBox groupBox3;
     }
 }

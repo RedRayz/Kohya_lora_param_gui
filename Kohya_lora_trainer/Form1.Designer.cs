@@ -232,7 +232,7 @@ namespace Kohya_lora_trainer
             cbxOptimizer.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxOptimizer.ForeColor = SystemColors.WindowText;
             cbxOptimizer.FormattingEnabled = true;
-            cbxOptimizer.Items.AddRange(new object[] { "AdamW8bit", "AdamW", "AdaFactor", "Lion", "SGDNesterov", "SGDNesterov8bit", "DAdaptAdamPreprint", "Lion8bit", "DAdaptAdaGrad", "DAdaptAdam", "DAdaptAdan", "DAdaptSGD", "DAdaptAdanIP", "DAdaptLion", "Prodigy", "PagedAdamW8bit", "PagedLion8bit", "AdamWScheduleFree", "SGDScheduleFree", "AdEMAMix8bit", "PagedAdEMAMIX8bit", "CAME", "カスタム" });
+            cbxOptimizer.Items.AddRange(new object[] { "AdamW8bit", "AdamW", "Lion", "Lion8bit", "DAdaptLion", "Prodigy", "AdamWScheduleFree", "RAdamScheduleFree", "CAME", "カスタム" });
             cbxOptimizer.Location = new Point(104, 219);
             cbxOptimizer.Name = "cbxOptimizer";
             cbxOptimizer.Size = new Size(139, 23);
@@ -385,7 +385,7 @@ namespace Kohya_lora_trainer
             // 
             cbxSDType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxSDType.FormattingEnabled = true;
-            cbxSDType.Items.AddRange(new object[] { "SD1", "SDXL", "FLUX.1", "SD3" });
+            cbxSDType.Items.AddRange(new object[] { "SD1", "SDXL", "FLUX.1(廃止予定)", "SD3(廃止予定)" });
             cbxSDType.Location = new Point(104, 252);
             cbxSDType.Name = "cbxSDType";
             cbxSDType.Size = new Size(139, 23);
@@ -653,9 +653,9 @@ namespace Kohya_lora_trainer
             label11.AutoSize = true;
             label11.Location = new Point(445, 279);
             label11.Name = "label11";
-            label11.Size = new Size(83, 15);
+            label11.Size = new Size(78, 15);
             label11.TabIndex = 3;
-            label11.Text = "出力先フォルダ*";
+            label11.Text = "出力先フォルダ";
             // 
             // btnOutputPath
             // 
@@ -979,9 +979,9 @@ namespace Kohya_lora_trainer
             tabPageAddArgs.Controls.Add(label19);
             tabPageAddArgs.Controls.Add(tbxAdditionalNetworkArgs);
             tabPageAddArgs.Controls.Add(tbxAdditionalArgs);
-            tabPageAddArgs.Location = new Point(4, 26);
+            tabPageAddArgs.Location = new Point(4, 24);
             tabPageAddArgs.Name = "tabPageAddArgs";
-            tabPageAddArgs.Size = new Size(759, 382);
+            tabPageAddArgs.Size = new Size(759, 384);
             tabPageAddArgs.TabIndex = 2;
             tabPageAddArgs.Text = "追加の引数";
             tabPageAddArgs.UseVisualStyleBackColor = true;
@@ -1062,9 +1062,9 @@ namespace Kohya_lora_trainer
             tabPageCustomOpt.Controls.Add(tbxCustomOptArgs);
             tabPageCustomOpt.Controls.Add(label27);
             tabPageCustomOpt.Controls.Add(label25);
-            tabPageCustomOpt.Location = new Point(4, 26);
+            tabPageCustomOpt.Location = new Point(4, 24);
             tabPageCustomOpt.Name = "tabPageCustomOpt";
-            tabPageCustomOpt.Size = new Size(759, 382);
+            tabPageCustomOpt.Size = new Size(759, 384);
             tabPageCustomOpt.TabIndex = 3;
             tabPageCustomOpt.Text = "カスタムオプティマイザ";
             tabPageCustomOpt.UseVisualStyleBackColor = true;
@@ -1137,10 +1137,10 @@ namespace Kohya_lora_trainer
             tabPageCustomCommands.Controls.Add(label14);
             tabPageCustomCommands.Controls.Add(label15);
             tabPageCustomCommands.Controls.Add(tbxCommand);
-            tabPageCustomCommands.Location = new Point(4, 26);
+            tabPageCustomCommands.Location = new Point(4, 24);
             tabPageCustomCommands.Name = "tabPageCustomCommands";
             tabPageCustomCommands.Padding = new Padding(3);
-            tabPageCustomCommands.Size = new Size(759, 382);
+            tabPageCustomCommands.Size = new Size(759, 384);
             tabPageCustomCommands.TabIndex = 1;
             tabPageCustomCommands.Text = "カスタムコマンド";
             tabPageCustomCommands.UseVisualStyleBackColor = true;

@@ -40,13 +40,31 @@ namespace Kohya_lora_trainer
 
             StringBuilder sb = new StringBuilder();
             sb.Append(@"/k cd /d ").Append(path);
-            string py = cbxPythonVersion.SelectedIndex == 0 ? "py -3.10" : "py -3.11";
+            string py = string.Empty;
+            switch (cbxPythonVersion.SelectedIndex)
+            {
+                case 0:
+                    py = "py -3.10";
+                    break;
+                case 1:
+                    py = "py -3.11";
+                    break;
+                case 2:
+                    py = "py -3.12";
+                    break;
+                case 3:
+                    py = "py -3.13";
+                    break;
+                default:
+                    py = "py -3.10";
+                    break;
+            }
             sb.Append(@" && git clone https://github.com/kohya-ss/sd-scripts.git && cd sd-scripts && git checkout -b sd3 origin/sd3 && ")
                 .Append(cbxUsePy.Checked ? py : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && ").Append(MyUtils.GenerateMinInstallCommands(cbxUseLatestTorch.Checked));
 
             sb.Append(" && ");
 
-            sb.Append("pip install dadaptation lycoris_lora prodigy-plus-schedule-free && pip install numpy==1.26.4 && ").Append("accelerate config");
+            sb.Append("pip install dadaptation lycoris_lora prodigy-plus-schedule-free && ").Append("accelerate config");
             ProcessStartInfo ps = new ProcessStartInfo();
             ps.FileName = "cmd";
             ps.Arguments = sb.ToString();

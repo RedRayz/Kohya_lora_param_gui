@@ -88,7 +88,7 @@
             cbxUseLatestTorch.Name = "cbxUseLatestTorch";
             cbxUseLatestTorch.Size = new Size(365, 19);
             cbxUseLatestTorch.TabIndex = 6;
-            cbxUseLatestTorch.Text = "Torch 2.4.1(CUDA 12.4)の代わりに 2.7.0(CUDA 12.8)をインストールする";
+            cbxUseLatestTorch.Text = "Torch 2.6.0(CUDA 12.4)の代わりに 2.8.0(CUDA 12.8)をインストールする";
             toolTip1.SetToolTip(cbxUseLatestTorch, "Blackwell GPU使用者はチェックつける");
             cbxUseLatestTorch.UseVisualStyleBackColor = true;
             // 
@@ -96,7 +96,7 @@
             // 
             cbxPythonVersion.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxPythonVersion.FormattingEnabled = true;
-            cbxPythonVersion.Items.AddRange(new object[] { "3.10", "3.11" });
+            cbxPythonVersion.Items.AddRange(new object[] { "3.10", "3.11", "3.12", "3.13" });
             cbxPythonVersion.Location = new Point(277, 109);
             cbxPythonVersion.Name = "cbxPythonVersion";
             cbxPythonVersion.Size = new Size(96, 23);

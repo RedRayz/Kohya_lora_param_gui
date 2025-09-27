@@ -86,7 +86,7 @@ namespace Kohya_lora_trainer {
 
             cbxEnableBlockDim.Checked = TrainParams.Current.UseBlockDim;
 
-            if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+            if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
             {
                 for (int i = 9; i < 12; i++)
                 {

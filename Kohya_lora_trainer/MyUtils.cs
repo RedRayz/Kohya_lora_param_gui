@@ -162,7 +162,7 @@ namespace Kohya_lora_trainer
             NetworkArgs.Clear();
 
             sb.Append("accelerate launch --num_cpu_threads_per_process ").Append(TrainParams.Current.CpuThreads);
-            switch (TrainParams.Current.StableDiffusionType)
+            switch (TrainParams.Current.ModelArchitectureEnum)
             {
                 case ModelArchitecture.Legacy:
                     sb.Append(" train_network.py");
@@ -190,7 +190,7 @@ namespace Kohya_lora_trainer
                 case NetworkModule.LoRA:
                 case NetworkModule.LoRAFA:
                     {
-                        switch (TrainParams.Current.StableDiffusionType)
+                        switch (TrainParams.Current.ModelArchitectureEnum)
                         {
                             case ModelArchitecture.Flux1:
                                 sb.Append(" --network_module \"").Append("networks.lora_flux").Append('"');
@@ -431,7 +431,7 @@ namespace Kohya_lora_trainer
             }
 
             string opt = string.Empty;
-            switch (TrainParams.Current.OptimizerType)
+            switch (TrainParams.Current.OptimizerTypeEnum)
             {
                 case Optimizer.AdEMAMix8bit:
                     opt = "bitsandbytes.optim.AdEMAMix8bit";
@@ -443,14 +443,14 @@ namespace Kohya_lora_trainer
                     opt = "pytorch_optimizer.CAME";
                     break;
                 default:
-                    opt = TrainParams.Current.OptimizerType.ToString();
+                    opt = TrainParams.Current.OptimizerTypeEnum.ToString();
                     break;
             }
 
             
 
             //Optimizerの引数
-            if(TrainParams.Current.OptimizerType == Optimizer.Custom)
+            if(TrainParams.Current.OptimizerTypeEnum == Optimizer.Custom)
             {
                 sb.Append(" --optimizer_type \"").Append(TrainParams.Current.CustomOptName.Trim()).Append('"');
                 string str1 = TrainParams.Current.CustomOptArgs.Trim();
@@ -463,97 +463,13 @@ namespace Kohya_lora_trainer
             else
             {
                 sb.Append(" --optimizer_type \"").Append(opt).Append('"');
-                switch (TrainParams.Current.OptimizerType)
+                switch (TrainParams.Current.OptimizerTypeEnum)
                 {
-                    case Optimizer.AdaFactor:
-                        {
-                            sb.Append(" --optimizer_args \"relative_step=").Append(TrainParams.Current.RelativeStep.ToString()).Append("\" \"scale_parameter=").Append(TrainParams.Current.ScaleParameter.ToString()).Append("\" \"warmup_init=").Append(TrainParams.Current.UseWarmupInit.ToString()).Append('"');
-                        }
-                        break;
-                    case Optimizer.SGDNesterov:
-                    case Optimizer.SGDNesterov8bit:
-                        {
-                            sb.Append(" --optimizer_args \"momentum=").Append(TrainParams.Current.Momentum.ToString()).Append('"');
-                        }
-                        break;
-                    case Optimizer.DAdaptAdaGrad:
-                        {
-                            sb.Append(" --optimizer_args \"eps=").Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
-                                .Append(TrainParams.Current.D0.ToString("g")).Append('"');
-
-                            if (TrainParams.Current.GrowthRate > 0f)
-                            {
-                                sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append('"');
-                            }
-                        }
-                        break;
-                    case Optimizer.DAdaptAdam:
-                        {
-                            sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
-                                .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
-                                .Append(TrainParams.Current.D0.ToString("g")).Append("\" \"decouple=").Append(TrainParams.Current.Decouple.ToString()).Append('"');
-
-                            if (TrainParams.Current.GrowthRate > 0f)
-                            {
-                                sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append('"');
-                            }
-
-                        }
-                        break;
-                    case Optimizer.DAdaptAdan:
-                        {
-                            sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).Append(',').Append(TrainParams.Current.Betas2.ToString("g")).Append("\" \"eps=")
-        .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
-        .Append(TrainParams.Current.D0.ToString("g")).Append("\" \"no_prox=").Append(TrainParams.Current.NoProx.ToString()).Append('"');
-
-                            if (TrainParams.Current.GrowthRate > 0f)
-                            {
-                                sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append('"');
-                            }
-                        }
-                        break;
                     case Optimizer.DAdaptLion:
                         {
                             sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g"))
                                 .Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
                                 .Append(TrainParams.Current.D0.ToString("g")).Append('"');
-                        }
-                        break;
-                    case Optimizer.DAdaptSGD:
-                        {
-                            sb.Append(" --optimizer_args \"momentum=").Append(TrainParams.Current.DAdaptMomentum.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
-                                .Append(TrainParams.Current.D0.ToString("g")).Append('"');
-
-                            if (TrainParams.Current.GrowthRate > 0f)
-                            {
-                                sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append('"');
-                            }
-                        }
-                        break;
-                    //dadapt_adam_preprint.pyの説明にはmomontumが書いてあるが実際にはない
-                    //DAdaptAdamPreprint
-                    case Optimizer.DAdaptation:
-                        {
-                            sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
-        .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
-        .Append(TrainParams.Current.D0.ToString("g")).Append("\" \"decouple=").Append(TrainParams.Current.Decouple.ToString()).Append('"');
-
-                            if (TrainParams.Current.GrowthRate > 0f)
-                            {
-                                sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append('"');
-                            }
-                        }
-                        break;
-                    case Optimizer.DAdaptAdanIP:
-                        {
-                            sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).Append(',').Append(TrainParams.Current.Betas2.ToString("g")).Append("\" \"eps=")
-        .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
-        .Append(TrainParams.Current.D0.ToString("g")).Append("\" \"no_prox=").Append(TrainParams.Current.NoProx.ToString()).Append('"');
-
-                            if (TrainParams.Current.GrowthRate > 0f)
-                            {
-                                sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append('"');
-                            }
                         }
                         break;
                     case Optimizer.prodigy:
@@ -577,6 +493,7 @@ namespace Kohya_lora_trainer
                     case Optimizer.AdamW:
                     case Optimizer.AdamW8bit:
                     case Optimizer.AdamWScheduleFree:
+                    case Optimizer.RAdamScheduleFree:
                         {
                             if (TrainParams.Current.UseAdditionalOptArgs)
                             {
@@ -635,7 +552,7 @@ namespace Kohya_lora_trainer
             if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath))
             {
 
-                switch (TrainParams.Current.StableDiffusionType)
+                switch (TrainParams.Current.ModelArchitectureEnum)
                 {
                     case ModelArchitecture.Flux1:
                         sb.Append(" --ae \"").Append(TrainParams.Current.VAEPath).Append('"');
@@ -659,7 +576,7 @@ namespace Kohya_lora_trainer
             }
 
 
-            if (TrainParams.Current.StableDiffusionType == ModelArchitecture.Legacy)
+            if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.Legacy)
             {
                 sb.Append(" --clip_skip ").Append(TrainParams.Current.ClipSkip);
             }
@@ -861,7 +778,7 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.TEBatchSize > 0)
                 sb.Append(" --text_encoder_batch_size ").Append(TrainParams.Current.TEBatchSize.ToString("0"));
 
-            switch (TrainParams.Current.StableDiffusionType)
+            switch (TrainParams.Current.ModelArchitectureEnum)
             {
                 case ModelArchitecture.Flux1:
                     {
@@ -984,7 +901,7 @@ namespace Kohya_lora_trainer
 
         private static void GenerateBlockWeightCmmands()
         {
-            int loopNum = TrainParams.Current.StableDiffusionType == ModelArchitecture.Legacy ? 12 : 9;
+            int loopNum = TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.Legacy ? 12 : 9;
             if (TrainParams.Current.UseBlockWeight)
             {
                 switch (TrainParams.Current.BlockWeightPresetTypeIn)
@@ -1014,7 +931,7 @@ namespace Kohya_lora_trainer
                         }
                         break;
                 }
-                if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+                if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
                 {
                     NetworkArgs.Add("mid_lr_weight=" + (0.05m * TrainParams.Current.BlockWeightMid).ToString() + ',' + (0.05m * TrainParams.Current.BlockWeightMid01).ToString() + ',' + (0.05m * TrainParams.Current.BlockWeightMid02).ToString());
                 }
@@ -1062,7 +979,7 @@ namespace Kohya_lora_trainer
             {
                 StringBuilder sb = new StringBuilder();
                 sb.Append(TrainParams.Current.UseConv2dExtend ? "conv_block_dims=" : "block_dims=");
-                if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+                if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
                 {
                     sb.Append(TrainParams.Current.BlockDimBase).Append(',');
                 }
@@ -1074,7 +991,7 @@ namespace Kohya_lora_trainer
                 }
                 //DIM MID
 
-                if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+                if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
                 {
                     sb.Append(TrainParams.Current.BlockDimMid).Append(',').Append(TrainParams.Current.BlockDimMid01).Append(',').Append(TrainParams.Current.BlockDimMid02).Append(',');
                 }
@@ -1091,14 +1008,14 @@ namespace Kohya_lora_trainer
                         sb.Append(',');
                 }
 
-                if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+                if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
                 {
                     sb.Append(',').Append(TrainParams.Current.BlockDimOutSDXL);
                 }
 
                 StringBuilder sbalpha = new StringBuilder();
                 sbalpha.Append(TrainParams.Current.UseConv2dExtend ? "conv_block_alphas=" : "block_alphas=");
-                if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+                if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
                 {
                     sbalpha.Append(TrainParams.Current.BlockAlphaBase).Append(',');
                 }
@@ -1109,7 +1026,7 @@ namespace Kohya_lora_trainer
                     sbalpha.Append(',');
                 }
                 //ALPHA MID
-                if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+                if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
                 {
                     sbalpha.Append(TrainParams.Current.BlockAlphaMidM).Append(',').Append(TrainParams.Current.BlockAlphaMid01).Append(',').Append(TrainParams.Current.BlockAlphaMid02).Append(',');
                 }
@@ -1127,7 +1044,7 @@ namespace Kohya_lora_trainer
                         sbalpha.Append(',');
                 }
 
-                if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+                if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
                 {
                     sbalpha.Append(',').Append(TrainParams.Current.BlockAlphaOutSDXL);
                 }
@@ -1478,13 +1395,10 @@ namespace Kohya_lora_trainer
                     int height = 0;
                     int width = 0;
 
-                    using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    using (var image = Image.FromFile(filePath, false))
                     {
-                        using (var image = Image.FromStream(fileStream, false, false))
-                        {
-                            height = image.Height;
-                            width = image.Width;
-                        }
+                        height = image.Height;
+                        width = image.Width;
                     }
 
                     return new Size(height, width);
