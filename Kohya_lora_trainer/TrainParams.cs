@@ -4,33 +4,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
-namespace Kohya_lora_trainer {
-    public  class TrainParams {
+namespace Kohya_lora_trainer
+{
+    public class TrainParams
+    {
         //Required
-        public  string ModelPath = string.Empty, TrainImagePath = string.Empty, OutputPath = string.Empty, TensorBoardLogPath = string.Empty, LoraModelPath = string.Empty;
-        public  float LearningRate = 0.0001f;
-        public  int Resolution = 512, BatchSize = 2, Epochs = 5, NetworkDim = 4;
+        public string ModelPath = string.Empty, TrainImagePath = string.Empty, OutputPath = string.Empty, TensorBoardLogPath = string.Empty, LoraModelPath = string.Empty;
+        public float LearningRate = 0.0001f;
+        public int Resolution = 512, BatchSize = 2, Epochs = 5, NetworkDim = 4;
         public decimal NetworkAlpha = 4;
 
         //Optional
-        public  string RegImagePath = string.Empty;
-        public  bool ShuffleCaptions = true;
-        public  int KeepTokenCount = 1, SaveEveryNEpochs = 0;
-        public  Optimizer OptimizerType = Optimizer.AdamW;
-        public  decimal WarmupSteps = 0m, LRDecaySteps = 0m;
-        public  string OutputName = string.Empty, Comment = string.Empty;
+        public string RegImagePath = string.Empty;
+        public bool ShuffleCaptions = true;
+        public int KeepTokenCount = 1, SaveEveryNEpochs = 0;
+        [XmlIgnore]
+        public Optimizer OptimizerTypeEnum;
+        public decimal WarmupSteps = 0m, LRDecaySteps = 0m;
+        public string OutputName = string.Empty, Comment = string.Empty;
 
         //Advanced
-        public  int CpuThreads = 1;
-        public  bool NoBucketUpscaling = false, UseWarmupInit = false;
-        public  int ClipSkip = 2;
+        public int CpuThreads = 1;
+        public bool NoBucketUpscaling = false, UseWarmupInit = false;
+        public int ClipSkip = 2;
         public long Seed = -1;
-        public  SavePrecision SavePrecision = SavePrecision.fp16;
-        public  Scheduler SchedulerType = Scheduler.cosine_with_restarts;
-        public  int MinBucketResolution = 256, MaxBucketResolution = 1024;
-        public  string CaptionFileExtension = ".txt", VAEPath = string.Empty;
-        public  float UnetLR = -1, TextEncoderLR = -1, NoiseOffset = 0, Momentum = 0.9f;
+        public SavePrecision SavePrecision = SavePrecision.fp16;
+        public Scheduler SchedulerType = Scheduler.cosine_with_restarts;
+        public int MinBucketResolution = 256, MaxBucketResolution = 1024;
+        public string CaptionFileExtension = ".txt", VAEPath = string.Empty;
+        public float UnetLR = -1, TextEncoderLR = -1, NoiseOffset = 0, Momentum = 0.9f;
         public AdvancedTrain advancedTrainType = AdvancedTrain.None;
         public CrossAtten CrossAttenType = CrossAtten.xformers;
         public bool UseGradient = false, UseWeightedCaptions = false, DisableMmapLoadSafetensors = false, VParameterization = false, ZeroTerminalSNR = false;
@@ -108,18 +112,187 @@ namespace Kohya_lora_trainer {
         //Scheduler
         public decimal SchedulerTimescale = 0m, MinLRRatio = 0m;
 
+        private string CustomOptNameXmlIgnored = string.Empty;
+        private Optimizer OptimizerTypeEnumUnmodified;
+
+        [XmlIgnore]
+        public bool IsOptimizerUnknown { get; private set; }
+
+        /// <summary>
+        /// OptimizerのString版。主にXMLシリアライザで使用する。
+        /// </summary>
+        public string OptimizerType
+        {
+            get
+            {
+                return OptimizerTypeEnum.ToString();
+            }
+            set
+            {
+                var result = Optimizer.AdamW8bit;
+                if (Enum.TryParse(value, out result))
+                {
+                    IsOptimizerUnknown = false;
+                    OptimizerTypeEnumUnmodified = result;
+                    //需要のないOptimizerは全部カスタムにする
+                    switch (result)
+                    {
+                        case Optimizer.AdaFactor:
+                        case Optimizer.SGDNesterov:
+                        case Optimizer.SGDNesterov8bit:
+                        case Optimizer.DAdaptation:
+                        case Optimizer.DAdaptAdaGrad:
+                        case Optimizer.DAdaptAdam:
+                        case Optimizer.DAdaptAdan:
+                        case Optimizer.DAdaptSGD:
+                        case Optimizer.DAdaptAdanIP:
+                        case Optimizer.PagedAdamW8bit:
+                        case Optimizer.PagedLion8bit:
+                        case Optimizer.SGDScheduleFree:
+                            CustomOptNameXmlIgnored = result.ToString();
+                            result = Optimizer.Custom;
+                            break;
+                        case Optimizer.AdEMAMix8bit:
+                            CustomOptNameXmlIgnored = "bitsandbytes.optim.AdEMAMix8bit";
+                            result = Optimizer.Custom;
+                            break;
+                        case Optimizer.PagedAdEMAMix8bit:
+                            CustomOptNameXmlIgnored = "bitsandbytes.optim.PagedAdEMAMix8bit";
+                            result = Optimizer.Custom;
+                            break;
+                    }
+                    OptimizerTypeEnum = result;
+                }
+                else
+                {
+                    IsOptimizerUnknown = true;
+                }
+            }
+        }
+
         [NonSerialized]
         public static TrainParams? Current;
 
-        public TrainParams() {
+        public TrainParams()
+        {
             Current = this;
+        }
+
+        /// <summary>
+        /// 読み込んだプリセットのOptimizerが廃止ならカスタムに変換する。Xmlデシリアライズ後に呼び出す。
+        /// </summary>
+        public void OverwriteCustomOptName()
+        {
+            if (!string.IsNullOrEmpty(CustomOptNameXmlIgnored))
+                CustomOptName = CustomOptNameXmlIgnored;
+        }
+
+        /// <summary>
+        /// 廃止したOptimizer指定時に自動で引数を追加する
+        /// </summary>
+        public void OverwriteCustomOptArgs()
+        {
+            StringBuilder sb = new StringBuilder();
+            switch (OptimizerTypeEnumUnmodified)
+            {
+                case Optimizer.AdaFactor:
+                    {
+                        sb.Append("\"relative_step=").Append(RelativeStep.ToString()).Append("\" \"scale_parameter=").Append(ScaleParameter.ToString()).Append("\" \"warmup_init=").Append(UseWarmupInit.ToString()).Append('"');
+                    }
+                    break;
+                case Optimizer.SGDNesterov:
+                case Optimizer.SGDNesterov8bit:
+                    {
+                        sb.Append("\"momentum=").Append(Momentum.ToString()).Append('"');
+                    }
+                    break;
+                case Optimizer.DAdaptAdaGrad:
+                    {
+                        sb.Append("\"eps=").Append(Eps.ToString("g")).Append("\" \"weight_decay=").Append(WeightDecay.ToString("g")).Append("\" \"d0=")
+                            .Append(D0.ToString("g")).Append('"');
+
+                        if (GrowthRate > 0f)
+                        {
+                            sb.Append(" \"growth_rate=").Append(GrowthRate.ToString("g")).Append('"');
+                        }
+                    }
+                    break;
+                case Optimizer.DAdaptAdam:
+                    {
+                        sb.Append("\"betas=").Append(Betas0.ToString("g")).Append(',').Append(Betas1.ToString("g")).Append("\" \"eps=")
+                            .Append(Eps.ToString("g")).Append("\" \"weight_decay=").Append(WeightDecay.ToString("g")).Append("\" \"d0=")
+                            .Append(D0.ToString("g")).Append("\" \"decouple=").Append(Decouple.ToString()).Append('"');
+
+                        if (GrowthRate > 0f)
+                        {
+                            sb.Append(" \"growth_rate=").Append(GrowthRate.ToString("g")).Append('"');
+                        }
+
+                    }
+                    break;
+                case Optimizer.DAdaptAdan:
+                    {
+                        sb.Append("\"betas=").Append(Betas0.ToString("g")).Append(',').Append(Betas1.ToString("g")).Append(',').Append(Betas2.ToString("g")).Append("\" \"eps=")
+    .Append(Eps.ToString("g")).Append("\" \"weight_decay=").Append(WeightDecay.ToString("g")).Append("\" \"d0=")
+    .Append(D0.ToString("g")).Append("\" \"no_prox=").Append(NoProx.ToString()).Append('"');
+
+                        if (GrowthRate > 0f)
+                        {
+                            sb.Append(" \"growth_rate=").Append(GrowthRate.ToString("g")).Append('"');
+                        }
+                    }
+                    break;
+                case Optimizer.DAdaptSGD:
+                    {
+                        sb.Append("\"momentum=").Append(DAdaptMomentum.ToString("g")).Append("\" \"weight_decay=").Append(WeightDecay.ToString("g")).Append("\" \"d0=")
+                            .Append(D0.ToString("g")).Append('"');
+
+                        if (GrowthRate > 0f)
+                        {
+                            sb.Append(" \"growth_rate=").Append(GrowthRate.ToString("g")).Append('"');
+                        }
+                    }
+                    break;
+                //dadapt_adam_preprint.pyの説明にはmomontumが書いてあるが実際にはない
+                //DAdaptAdamPreprint
+                case Optimizer.DAdaptation:
+                    {
+                        sb.Append("\"betas=").Append(Betas0.ToString("g")).Append(',').Append(Betas1.ToString("g")).Append("\" \"eps=")
+    .Append(Eps.ToString("g")).Append("\" \"weight_decay=").Append(WeightDecay.ToString("g")).Append("\" \"d0=")
+    .Append(D0.ToString("g")).Append("\" \"decouple=").Append(Decouple.ToString()).Append('"');
+
+                        if (GrowthRate > 0f)
+                        {
+                            sb.Append(" \"growth_rate=").Append(GrowthRate.ToString("g")).Append('"');
+                        }
+                    }
+                    break;
+                case Optimizer.DAdaptAdanIP:
+                    {
+                        sb.Append("\"betas=").Append(Betas0.ToString("g")).Append(',').Append(Betas1.ToString("g")).Append(',').Append(Betas2.ToString("g")).Append("\" \"eps=")
+    .Append(Eps.ToString("g")).Append("\" \"weight_decay=").Append(WeightDecay.ToString("g")).Append("\" \"d0=")
+    .Append(D0.ToString("g")).Append("\" \"no_prox=").Append(NoProx.ToString()).Append('"');
+
+                        if (GrowthRate > 0f)
+                        {
+                            sb.Append(" \"growth_rate=").Append(GrowthRate.ToString("g")).Append('"');
+                        }
+                    }
+                    break;
+            }
+
+            string str = sb.ToString();
+            if (!string.IsNullOrEmpty(str)) 
+            {
+                CustomOptArgs = str;
+            }
         }
 
         public void CheckBrokenBlockDim()
         {
             bool broken = false;
 
-            if(BlockDimIn.Length < 12)
+            if (BlockDimIn.Length < 12)
             {
                 BlockDimIn = new int[] { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
                 broken = true;
@@ -171,25 +344,25 @@ namespace Kohya_lora_trainer {
                 broken = true;
             }
 
-            if(BlockAlphaInM.Length < 12)
+            if (BlockAlphaInM.Length < 12)
             {
                 BlockAlphaInM = new decimal[] { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
                 broken = true;
             }
 
-            if(BlockAlphaMidM < 0)
+            if (BlockAlphaMidM < 0)
             {
                 BlockAlphaMidM = 4;
                 broken = true;
             }
 
-            if(BlockAlphaOutM.Length < 12)
+            if (BlockAlphaOutM.Length < 12)
             {
                 BlockAlphaOutM = new decimal[] { 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 };
                 broken = true;
             }
 
-            for(int i = 0; i< 12; i++)
+            for (int i = 0; i < 12; i++)
             {
                 if (BlockDimIn[i] < 0 || BlockDimIn[i] > 1280)
                 {
@@ -224,39 +397,44 @@ namespace Kohya_lora_trainer {
         }
     }
 
-    public enum Optimizer {
+    public enum Optimizer
+    {
         AdamW8bit,
         AdamW,
-        AdaFactor,
         Lion,
+        Lion8bit,
+        DAdaptLion,
+        prodigy,
+        AdamWScheduleFree,
+        RAdamScheduleFree,
+        Came,
+        Custom,
+        //Deprecated optimizer
+        AdaFactor,
         SGDNesterov,
         SGDNesterov8bit,
         DAdaptation,
-        Lion8bit,
         DAdaptAdaGrad,
         DAdaptAdam,
         DAdaptAdan,
         DAdaptSGD,
         DAdaptAdanIP,
-        DAdaptLion,
-        prodigy,
         PagedAdamW8bit,
         PagedLion8bit,
-        AdamWScheduleFree,
         SGDScheduleFree,
         AdEMAMix8bit,
         PagedAdEMAMix8bit,
-        Came,
-        Custom
     }
 
-    public enum SavePrecision {
+    public enum SavePrecision
+    {
         fp16,
         bf16,
         fp32
     }
 
-    public enum Scheduler {
+    public enum Scheduler
+    {
         cosine_with_restarts,
         cosine,
         linear,
@@ -268,20 +446,23 @@ namespace Kohya_lora_trainer {
         warmup_stable_decay
     }
 
-    public enum AdvancedTrain {
+    public enum AdvancedTrain
+    {
         None,
         TextEncoderOnly,
         UNetOnly,
     }
 
-    public enum NetworkModule {
+    public enum NetworkModule
+    {
         LoRA,
         LyCORIS,
         DyLoRA,
         LoRAFA
     }
 
-    public enum LycoAlgo {
+    public enum LycoAlgo
+    {
         lora,
         loha,
         ia3,
@@ -292,7 +473,8 @@ namespace Kohya_lora_trainer {
         boft
     }
 
-    public enum CrossAtten {
+    public enum CrossAtten
+    {
         xformers,
         mem_eff_attn,
         sdpa,

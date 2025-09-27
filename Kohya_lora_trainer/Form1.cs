@@ -127,6 +127,12 @@ namespace Kohya_lora_trainer
                 }
             }
 
+            if (TrainParams.Current.IsOptimizerUnknown)
+            {
+                MessageBox.Show("プリセットファイルで指定されたOptimizerが不明なため、\r\nAdamW8bitに変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            TrainParams.Current.OverwriteCustomOptName();
+            TrainParams.Current.OverwriteCustomOptArgs();
             TrainParams.Current.CheckBrokenBlockDim();
 
             MyUtils.LoadDefaultDirSettings();
@@ -791,7 +797,7 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
-            if (TrainParams.Current.OptimizerType == Optimizer.Custom && string.IsNullOrWhiteSpace(TrainParams.Current.CustomOptName))
+            if (TrainParams.Current.OptimizerTypeEnum == Optimizer.Custom && string.IsNullOrWhiteSpace(TrainParams.Current.CustomOptName))
             {
                 if (showMsg)
                     MessageBox.Show("オプティマイザにカスタムが指定されていますが、\r\nオプティマイザの名称が指定されていません。\r\nカスタムオプティマイザで指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -856,8 +862,15 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
+            if (TrainParams.Current.IsOptimizerUnknown && ShowMsg)
+            {
+                MessageBox.Show("プリセットファイルで指定されたOptimizerが不明なため、\r\nAdamW8bitに変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             LastOpenPresetPath = path;
 
+            TrainParams.Current.OverwriteCustomOptName();
+            TrainParams.Current.OverwriteCustomOptArgs();
             TrainParams.Current.CheckBrokenBlockDim();
             UpdateAllContents();
             return true;
@@ -999,7 +1012,7 @@ namespace Kohya_lora_trainer
 
         private void cbxOptimizer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.OptimizerType = (Optimizer)Enum.ToObject(typeof(Optimizer), cbxOptimizer.SelectedIndex);
+            TrainParams.Current.OptimizerTypeEnum = (Optimizer)Enum.ToObject(typeof(Optimizer), cbxOptimizer.SelectedIndex);
         }
 
         private void tbxModelPath_TextChanged(object sender, EventArgs e)
@@ -1251,7 +1264,7 @@ namespace Kohya_lora_trainer
             //SaveEveryNEpoch
             nudSaveEpoch.Value = TrainParams.Current.SaveEveryNEpochs;
             //Optimizer
-            cbxOptimizer.SelectedIndex = (int)TrainParams.Current.OptimizerType;
+            cbxOptimizer.SelectedIndex = (int)TrainParams.Current.OptimizerTypeEnum;
             //ModuleType
             cbxModuleType.SelectedIndex = (int)TrainParams.Current.ModuleType;
             //OutputName
@@ -1284,7 +1297,7 @@ namespace Kohya_lora_trainer
 
         private DialogResult NotifyBadParams()
         {
-            switch (TrainParams.Current.OptimizerType)
+            switch (TrainParams.Current.OptimizerTypeEnum)
             {
                 case Optimizer.AdaFactor:
                     {

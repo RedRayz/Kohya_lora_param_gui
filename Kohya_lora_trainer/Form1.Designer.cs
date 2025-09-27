@@ -232,7 +232,7 @@ namespace Kohya_lora_trainer
             cbxOptimizer.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxOptimizer.ForeColor = SystemColors.WindowText;
             cbxOptimizer.FormattingEnabled = true;
-            cbxOptimizer.Items.AddRange(new object[] { "AdamW8bit", "AdamW", "AdaFactor", "Lion", "SGDNesterov", "SGDNesterov8bit", "DAdaptAdamPreprint", "Lion8bit", "DAdaptAdaGrad", "DAdaptAdam", "DAdaptAdan", "DAdaptSGD", "DAdaptAdanIP", "DAdaptLion", "Prodigy", "PagedAdamW8bit", "PagedLion8bit", "AdamWScheduleFree", "SGDScheduleFree", "AdEMAMix8bit", "PagedAdEMAMIX8bit", "CAME", "カスタム" });
+            cbxOptimizer.Items.AddRange(new object[] { "AdamW8bit", "AdamW", "Lion", "Lion8bit", "DAdaptLion", "Prodigy", "AdamWScheduleFree", "RAdamScheduleFree", "CAME", "カスタム" });
             cbxOptimizer.Location = new Point(104, 219);
             cbxOptimizer.Name = "cbxOptimizer";
             cbxOptimizer.Size = new Size(139, 23);
