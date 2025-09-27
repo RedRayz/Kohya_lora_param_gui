@@ -1395,13 +1395,10 @@ namespace Kohya_lora_trainer
                     int height = 0;
                     int width = 0;
 
-                    using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                    using (var image = Image.FromFile(filePath, false))
                     {
-                        using (var image = Image.FromStream(fileStream, false, false))
-                        {
-                            height = image.Height;
-                            width = image.Width;
-                        }
+                        height = image.Height;
+                        width = image.Width;
                     }
 
                     return new Size(height, width);
