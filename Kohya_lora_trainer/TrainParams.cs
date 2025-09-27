@@ -85,7 +85,8 @@ namespace Kohya_lora_trainer
         public float WeightDecay = 0, Eps = 1e-06f, Eps1 = 1e-16f, D0 = 1e-06f, GrowthRate = 0, Betas0 = 0.9f, Betas1 = 0.999f, Betas2 = 0.999f, DAdaptMomentum = 0.9f, ProdigyBeta3 = 0, DCoef = 1;
         public bool Decouple = false, NoProx = false, SafeguardWarmup = false, UseBiasCorrection = false;
 
-        public ModelArchitecture StableDiffusionType = ModelArchitecture.Legacy;
+        [XmlIgnore]
+        public ModelArchitecture ModelArchitectureEnum = ModelArchitecture.Legacy;
 
         public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true, UseFullFP16 = false, UseFP8Base = false, RelativeStep = true, ScaleParameter = true, SaveState = false, MaskLoss = false, AlphaMask = false;
         public bool RandomNoiseOffset = false, RandomIpNoiseGamma = false, SaveWeightEveryEpoch = true;
@@ -117,6 +118,8 @@ namespace Kohya_lora_trainer
 
         [XmlIgnore]
         public bool IsOptimizerUnknown { get; private set; }
+        [XmlIgnore]
+        public bool IsModelArchitectureUnkown { get; private set; }
 
         /// <summary>
         /// OptimizerのString版。主にXMLシリアライザで使用する。
@@ -166,6 +169,37 @@ namespace Kohya_lora_trainer
                 else
                 {
                     IsOptimizerUnknown = true;
+                }
+            }
+        }
+
+        public string StableDiffusionType
+        {
+            get
+            {
+                return ModelArchitectureEnum.ToString();
+            }
+            set
+            {
+                var result = ModelArchitecture.Legacy;
+                if (Enum.TryParse(value, out result))
+                {
+                    IsModelArchitectureUnkown = false;
+                    //廃止モデルまたは不明であればSD1にする
+                    switch (result)
+                    {
+                        case ModelArchitecture.Flux1:
+                        case ModelArchitecture.SD3:
+                            //次のリリースでアンコメントして有効にする
+                            //result = ModelArchitecture.Legacy;
+                            //IsModelArchitectureUnkown = true;
+                            break;
+                    }
+                    ModelArchitectureEnum = result;
+                }
+                else
+                {
+                    IsModelArchitectureUnkown = true;
                 }
             }
         }

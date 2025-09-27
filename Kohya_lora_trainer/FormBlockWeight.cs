@@ -129,7 +129,7 @@ namespace Kohya_lora_trainer {
 
             cbxPresetIn.SelectedIndex = (int)TrainParams.Current.BlockWeightPresetTypeIn;
             cbxPresetOut.SelectedIndex = (int)TrainParams.Current.BlockWeightPresetTypeOut;
-            if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+            if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
             {
                 tbrIn09.Enabled = false;
                 tbrIn10.Enabled = false;

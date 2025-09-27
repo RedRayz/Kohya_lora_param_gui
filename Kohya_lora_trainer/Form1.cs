@@ -131,6 +131,11 @@ namespace Kohya_lora_trainer
             {
                 MessageBox.Show("プリセットファイルで指定されたOptimizerが不明なため、\r\nAdamW8bitに変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+
+            if (TrainParams.Current.IsModelArchitectureUnkown)
+            {
+                MessageBox.Show("プリセットファイルで指定されたモデルの種類が不明かサポート終了済みのため、\r\nSD1に変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             TrainParams.Current.OverwriteCustomOptName();
             TrainParams.Current.OverwriteCustomOptArgs();
             TrainParams.Current.CheckBrokenBlockDim();
@@ -783,7 +788,7 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
-            if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL && !File.Exists(Constants.CurrentSdScriptsPath + @"sdxl_train_network.py"))
+            if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL && !File.Exists(Constants.CurrentSdScriptsPath + @"sdxl_train_network.py"))
             {
                 if (showMsg)
                     MessageBox.Show("sdxl_train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -865,6 +870,11 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.IsOptimizerUnknown && ShowMsg)
             {
                 MessageBox.Show("プリセットファイルで指定されたOptimizerが不明なため、\r\nAdamW8bitに変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            if (TrainParams.Current.IsModelArchitectureUnkown && ShowMsg)
+            {
+                MessageBox.Show("プリセットファイルで指定されたモデルの種類が不明かサポート終了済みのため、\r\nSD1に変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             LastOpenPresetPath = path;
@@ -987,7 +997,7 @@ namespace Kohya_lora_trainer
 
         private void cbxSDType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.StableDiffusionType = (ModelArchitecture)Enum.ToObject(typeof(ModelArchitecture), cbxSDType.SelectedIndex);
+            TrainParams.Current.ModelArchitectureEnum = (ModelArchitecture)Enum.ToObject(typeof(ModelArchitecture), cbxSDType.SelectedIndex);
         }
 
         private void cbxEpochOrStep_SelectedIndexChanged(object sender, EventArgs e)
@@ -1276,7 +1286,7 @@ namespace Kohya_lora_trainer
                 HaveNonAscillInOutputName = true;
             }
 
-            cbxSDType.SelectedIndex = (int)TrainParams.Current.StableDiffusionType;
+            cbxSDType.SelectedIndex = (int)TrainParams.Current.ModelArchitectureEnum;
 
             //WarmupSteps
             nudWarmupSteps.Value = TrainParams.Current.WarmupSteps;
@@ -1338,7 +1348,7 @@ namespace Kohya_lora_trainer
                 return MessageBox.Show("非推奨のオプション「full fp16を使用」が有効になっています。\r\n学習能力の低下がありますが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
-            switch (TrainParams.Current.StableDiffusionType)
+            switch (TrainParams.Current.ModelArchitectureEnum)
             {
                 case ModelArchitecture.Flux1:
                     if (TrainParams.Current.SplitMode && TrainParams.Current.TrainBlockType != TrainBlock.Single)
@@ -1359,7 +1369,7 @@ namespace Kohya_lora_trainer
                 return MessageBox.Show("Text Encoderの学習(or両方学習)とTEのキャッシュは併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
-            if ((TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim) && ((TrainParams.Current.StableDiffusionType != ModelArchitecture.Legacy && TrainParams.Current.StableDiffusionType != ModelArchitecture.XL) || TrainParams.Current.ModuleType == NetworkModule.LyCORIS))
+            if ((TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim) && ((TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.Legacy && TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.XL) || TrainParams.Current.ModuleType == NetworkModule.LyCORIS))
             {
                 return MessageBox.Show("SD1,SDXL以外およびLyCORISでは層別学習は非対応ですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }

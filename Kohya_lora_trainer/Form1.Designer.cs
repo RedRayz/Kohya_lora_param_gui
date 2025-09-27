@@ -653,9 +653,9 @@ namespace Kohya_lora_trainer
             label11.AutoSize = true;
             label11.Location = new Point(445, 279);
             label11.Name = "label11";
-            label11.Size = new Size(83, 15);
+            label11.Size = new Size(78, 15);
             label11.TabIndex = 3;
-            label11.Text = "出力先フォルダ*";
+            label11.Text = "出力先フォルダ";
             // 
             // btnOutputPath
             // 
@@ -979,9 +979,9 @@ namespace Kohya_lora_trainer
             tabPageAddArgs.Controls.Add(label19);
             tabPageAddArgs.Controls.Add(tbxAdditionalNetworkArgs);
             tabPageAddArgs.Controls.Add(tbxAdditionalArgs);
-            tabPageAddArgs.Location = new Point(4, 26);
+            tabPageAddArgs.Location = new Point(4, 24);
             tabPageAddArgs.Name = "tabPageAddArgs";
-            tabPageAddArgs.Size = new Size(759, 382);
+            tabPageAddArgs.Size = new Size(759, 384);
             tabPageAddArgs.TabIndex = 2;
             tabPageAddArgs.Text = "追加の引数";
             tabPageAddArgs.UseVisualStyleBackColor = true;
@@ -1062,9 +1062,9 @@ namespace Kohya_lora_trainer
             tabPageCustomOpt.Controls.Add(tbxCustomOptArgs);
             tabPageCustomOpt.Controls.Add(label27);
             tabPageCustomOpt.Controls.Add(label25);
-            tabPageCustomOpt.Location = new Point(4, 26);
+            tabPageCustomOpt.Location = new Point(4, 24);
             tabPageCustomOpt.Name = "tabPageCustomOpt";
-            tabPageCustomOpt.Size = new Size(759, 382);
+            tabPageCustomOpt.Size = new Size(759, 384);
             tabPageCustomOpt.TabIndex = 3;
             tabPageCustomOpt.Text = "カスタムオプティマイザ";
             tabPageCustomOpt.UseVisualStyleBackColor = true;
@@ -1137,10 +1137,10 @@ namespace Kohya_lora_trainer
             tabPageCustomCommands.Controls.Add(label14);
             tabPageCustomCommands.Controls.Add(label15);
             tabPageCustomCommands.Controls.Add(tbxCommand);
-            tabPageCustomCommands.Location = new Point(4, 26);
+            tabPageCustomCommands.Location = new Point(4, 24);
             tabPageCustomCommands.Name = "tabPageCustomCommands";
             tabPageCustomCommands.Padding = new Padding(3);
-            tabPageCustomCommands.Size = new Size(759, 382);
+            tabPageCustomCommands.Size = new Size(759, 384);
             tabPageCustomCommands.TabIndex = 1;
             tabPageCustomCommands.Text = "カスタムコマンド";
             tabPageCustomCommands.UseVisualStyleBackColor = true;

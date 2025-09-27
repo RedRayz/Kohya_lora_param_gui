@@ -162,7 +162,7 @@ namespace Kohya_lora_trainer
             NetworkArgs.Clear();
 
             sb.Append("accelerate launch --num_cpu_threads_per_process ").Append(TrainParams.Current.CpuThreads);
-            switch (TrainParams.Current.StableDiffusionType)
+            switch (TrainParams.Current.ModelArchitectureEnum)
             {
                 case ModelArchitecture.Legacy:
                     sb.Append(" train_network.py");
@@ -190,7 +190,7 @@ namespace Kohya_lora_trainer
                 case NetworkModule.LoRA:
                 case NetworkModule.LoRAFA:
                     {
-                        switch (TrainParams.Current.StableDiffusionType)
+                        switch (TrainParams.Current.ModelArchitectureEnum)
                         {
                             case ModelArchitecture.Flux1:
                                 sb.Append(" --network_module \"").Append("networks.lora_flux").Append('"');
@@ -552,7 +552,7 @@ namespace Kohya_lora_trainer
             if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath))
             {
 
-                switch (TrainParams.Current.StableDiffusionType)
+                switch (TrainParams.Current.ModelArchitectureEnum)
                 {
                     case ModelArchitecture.Flux1:
                         sb.Append(" --ae \"").Append(TrainParams.Current.VAEPath).Append('"');
@@ -576,7 +576,7 @@ namespace Kohya_lora_trainer
             }
 
 
-            if (TrainParams.Current.StableDiffusionType == ModelArchitecture.Legacy)
+            if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.Legacy)
             {
                 sb.Append(" --clip_skip ").Append(TrainParams.Current.ClipSkip);
             }
@@ -778,7 +778,7 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.TEBatchSize > 0)
                 sb.Append(" --text_encoder_batch_size ").Append(TrainParams.Current.TEBatchSize.ToString("0"));
 
-            switch (TrainParams.Current.StableDiffusionType)
+            switch (TrainParams.Current.ModelArchitectureEnum)
             {
                 case ModelArchitecture.Flux1:
                     {
@@ -901,7 +901,7 @@ namespace Kohya_lora_trainer
 
         private static void GenerateBlockWeightCmmands()
         {
-            int loopNum = TrainParams.Current.StableDiffusionType == ModelArchitecture.Legacy ? 12 : 9;
+            int loopNum = TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.Legacy ? 12 : 9;
             if (TrainParams.Current.UseBlockWeight)
             {
                 switch (TrainParams.Current.BlockWeightPresetTypeIn)
@@ -931,7 +931,7 @@ namespace Kohya_lora_trainer
                         }
                         break;
                 }
-                if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+                if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
                 {
                     NetworkArgs.Add("mid_lr_weight=" + (0.05m * TrainParams.Current.BlockWeightMid).ToString() + ',' + (0.05m * TrainParams.Current.BlockWeightMid01).ToString() + ',' + (0.05m * TrainParams.Current.BlockWeightMid02).ToString());
                 }
@@ -979,7 +979,7 @@ namespace Kohya_lora_trainer
             {
                 StringBuilder sb = new StringBuilder();
                 sb.Append(TrainParams.Current.UseConv2dExtend ? "conv_block_dims=" : "block_dims=");
-                if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+                if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
                 {
                     sb.Append(TrainParams.Current.BlockDimBase).Append(',');
                 }
@@ -991,7 +991,7 @@ namespace Kohya_lora_trainer
                 }
                 //DIM MID
 
-                if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+                if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
                 {
                     sb.Append(TrainParams.Current.BlockDimMid).Append(',').Append(TrainParams.Current.BlockDimMid01).Append(',').Append(TrainParams.Current.BlockDimMid02).Append(',');
                 }
@@ -1008,14 +1008,14 @@ namespace Kohya_lora_trainer
                         sb.Append(',');
                 }
 
-                if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+                if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
                 {
                     sb.Append(',').Append(TrainParams.Current.BlockDimOutSDXL);
                 }
 
                 StringBuilder sbalpha = new StringBuilder();
                 sbalpha.Append(TrainParams.Current.UseConv2dExtend ? "conv_block_alphas=" : "block_alphas=");
-                if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+                if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
                 {
                     sbalpha.Append(TrainParams.Current.BlockAlphaBase).Append(',');
                 }
@@ -1026,7 +1026,7 @@ namespace Kohya_lora_trainer
                     sbalpha.Append(',');
                 }
                 //ALPHA MID
-                if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+                if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
                 {
                     sbalpha.Append(TrainParams.Current.BlockAlphaMidM).Append(',').Append(TrainParams.Current.BlockAlphaMid01).Append(',').Append(TrainParams.Current.BlockAlphaMid02).Append(',');
                 }
@@ -1044,7 +1044,7 @@ namespace Kohya_lora_trainer
                         sbalpha.Append(',');
                 }
 
-                if (TrainParams.Current.StableDiffusionType == ModelArchitecture.XL)
+                if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL)
                 {
                     sbalpha.Append(',').Append(TrainParams.Current.BlockAlphaOutSDXL);
                 }
