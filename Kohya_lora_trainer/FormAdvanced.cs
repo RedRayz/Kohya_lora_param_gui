@@ -308,14 +308,12 @@ namespace Kohya_lora_trainer
             TrainParams.Current.MinBucketResolution = (int)nudMinBucketReso.Value;
             TrainParams.Current.MaxBucketResolution = (int)nudMaxBucketReso.Value;
             TrainParams.Current.NoBucketUpscaling = cbxNoUpscale.Checked;
-            TrainParams.Current.UseWarmupInit = cbxUseWarmupInit.Checked;
             TrainParams.Current.ClipSkip = (int)nudClipSkip.Value;
             TrainParams.Current.Seed = (long)nudSeed.Value;
             TrainParams.Current.CaptionFileExtension = tbxExtension.Text;
             TrainParams.Current.UseGradient = cbxUseGradient.Checked;
             TrainParams.Current.LoraModelPath = lblLoRAmodelPath.Text;
             TrainParams.Current.NoiseOffset = (float)nudNoiseOffset.Value;
-            TrainParams.Current.Momentum = (float)nudMomentum.Value;
             TrainParams.Current.VAEPath = lblVAEPath.Text;
             TrainParams.Current.UseWeightedCaptions = cbxUseWeightedCaption.Checked;
             TrainParams.Current.AdaptiveNoiseScale = nudAdaptiveNoiseScale.Value;
@@ -353,7 +351,6 @@ namespace Kohya_lora_trainer
             TrainParams.Current.ModuleDropout = nudModuleDropout.Value;
 
             TrainParams.Current.Decouple = cbxDecouple.Checked;
-            TrainParams.Current.NoProx = cbxNoProx.Checked;
 
             TrainParams.Current.SafeguardWarmup = cbxUseSafeguard.Checked;
             TrainParams.Current.UseBiasCorrection = cbxUseBiasCorrection.Checked;
@@ -363,9 +360,6 @@ namespace Kohya_lora_trainer
             TrainParams.Current.UseFullFP16 = cbxUseFullFp16.Checked;
             TrainParams.Current.TokensSeparator = tbxTokensSeparator.Text;
             TrainParams.Current.UseFP8Base = cbxUseFP8.Checked;
-
-            TrainParams.Current.RelativeStep = cbxRelativeStep.Checked;
-            TrainParams.Current.ScaleParameter = cbxScaleParameter.Checked;
 
             TrainParams.Current.WeightDocomposition = cbxWeightDecomposition.Checked;
             TrainParams.Current.TrainNorm = cbxTrainNorm.Checked;
@@ -436,7 +430,6 @@ namespace Kohya_lora_trainer
             nudMinBucketReso.Value = TrainParams.Current.MinBucketResolution;
             nudMaxBucketReso.Value = TrainParams.Current.MaxBucketResolution;
             cbxNoUpscale.Checked = TrainParams.Current.NoBucketUpscaling;
-            cbxUseWarmupInit.Checked = TrainParams.Current.UseWarmupInit;
             cbxAdvancedTrain.SelectedIndex = (int)TrainParams.Current.advancedTrainType;
             cbxCrossAttenType.SelectedIndex = (int)TrainParams.Current.CrossAttenType;
             cbxUseWeightedCaption.Checked = TrainParams.Current.UseWeightedCaptions;
@@ -460,7 +453,6 @@ namespace Kohya_lora_trainer
 
             lblLoRAmodelPath.Text = TrainParams.Current.LoraModelPath;
             nudNoiseOffset.Value = (decimal)TrainParams.Current.NoiseOffset;
-            nudMomentum.Value = (decimal)TrainParams.Current.Momentum;
             lblVAEPath.Text = TrainParams.Current.VAEPath;
 
             cbxAlgoType.SelectedIndex = (int)TrainParams.Current.AlgoType;
@@ -504,7 +496,6 @@ namespace Kohya_lora_trainer
             nudNetworkDropout.Value = TrainParams.Current.NetworkDropout;
 
             cbxDecouple.Checked = TrainParams.Current.Decouple;
-            cbxNoProx.Checked = TrainParams.Current.NoProx;
             tbxComment.Text = TrainParams.Current.Comment;
 
             cbxUseSafeguard.Checked = TrainParams.Current.SafeguardWarmup;
@@ -519,8 +510,6 @@ namespace Kohya_lora_trainer
             cbxUseFullFp16.Checked = TrainParams.Current.UseFullFP16;
             tbxTokensSeparator.Text = TrainParams.Current.TokensSeparator;
             cbxUseFP8.Checked = TrainParams.Current.UseFP8Base;
-            cbxRelativeStep.Checked = TrainParams.Current.RelativeStep;
-            cbxScaleParameter.Checked = TrainParams.Current.ScaleParameter;
 
             cbxWeightDecomposition.Checked = TrainParams.Current.WeightDocomposition;
             cbxTrainNorm.Checked = TrainParams.Current.TrainNorm;
