@@ -88,7 +88,7 @@
             cbxUseLatestTorch.Name = "cbxUseLatestTorch";
             cbxUseLatestTorch.Size = new Size(365, 19);
             cbxUseLatestTorch.TabIndex = 6;
-            cbxUseLatestTorch.Text = "Torch 2.4.1(CUDA 12.4)の代わりに 2.7.0(CUDA 12.8)をインストールする";
+            cbxUseLatestTorch.Text = "Torch 2.6.0(CUDA 12.4)の代わりに 2.8.0(CUDA 12.8)をインストールする";
             toolTip1.SetToolTip(cbxUseLatestTorch, "Blackwell GPU使用者はチェックつける");
             cbxUseLatestTorch.UseVisualStyleBackColor = true;
             // 
