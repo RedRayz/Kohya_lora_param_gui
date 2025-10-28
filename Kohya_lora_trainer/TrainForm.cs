@@ -49,7 +49,7 @@ namespace Kohya_lora_trainer
         {
             if (process != null && !process.HasExited)
             {
-                DialogResult result = MessageBox.Show("実行中のデータは失われます。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("実行中のデータは失われます。よろしいですか。\r\nなお、ボタンを押してウィンドウが閉じた後、現在の学習ステップが完了してから完全に停止します。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     //メッセージボックスが出ている間に閉じたかもしれないので再度確認
