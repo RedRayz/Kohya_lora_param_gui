@@ -191,8 +191,8 @@ namespace Kohya_lora_trainer
                         case ModelArchitecture.Flux1:
                         case ModelArchitecture.SD3:
                             //次のリリースでアンコメントして有効にする
-                            //result = ModelArchitecture.Legacy;
-                            //IsModelArchitectureUnkown = true;
+                            result = ModelArchitecture.Legacy;
+                            IsModelArchitectureUnkown = true;
                             break;
                     }
                     ModelArchitectureEnum = result;

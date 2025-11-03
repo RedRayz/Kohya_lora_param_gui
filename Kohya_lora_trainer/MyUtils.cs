@@ -170,11 +170,8 @@ namespace Kohya_lora_trainer
                 case ModelArchitecture.XL:
                     sb.Append(" sdxl_train_network.py");
                     break;
-                case ModelArchitecture.Flux1:
-                    sb.Append(" flux_train_network.py");
-                    break;
-                case ModelArchitecture.SD3:
-                    sb.Append(" sd3_train_network.py");
+                default:
+                    sb.Append(" train_network.py");
                     break;
             }
             sb.Append(" --pretrained_model_name_or_path \"").Append(TrainParams.Current.ModelPath).Append('"').Append(" --train_data_dir \"")
@@ -192,15 +189,9 @@ namespace Kohya_lora_trainer
                     {
                         switch (TrainParams.Current.ModelArchitectureEnum)
                         {
-                            case ModelArchitecture.Flux1:
-                                sb.Append(" --network_module \"").Append("networks.lora_flux").Append('"');
-                                break;
                             case ModelArchitecture.Legacy:
                             case ModelArchitecture.XL:
                                 sb.Append(" --network_module \"").Append(TrainParams.Current.ModuleType == NetworkModule.LoRA ? "networks.lora" : "networks.lora_fa").Append('"');
-                                break;
-                            case ModelArchitecture.SD3:
-                                sb.Append(" --network_module \"").Append("networks.lora_sd3").Append('"');
                                 break;
                         }
 
@@ -551,16 +542,7 @@ namespace Kohya_lora_trainer
 
             if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath))
             {
-
-                switch (TrainParams.Current.ModelArchitectureEnum)
-                {
-                    case ModelArchitecture.Flux1:
-                        sb.Append(" --ae \"").Append(TrainParams.Current.VAEPath).Append('"');
-                        break;
-                    default:
-                        sb.Append(" --vae \"").Append(TrainParams.Current.VAEPath).Append('"');
-                        break;
-                }
+                sb.Append(" --vae \"").Append(TrainParams.Current.VAEPath).Append('"');
             }
 
             //Advanced
@@ -778,55 +760,7 @@ namespace Kohya_lora_trainer
             if (TrainParams.Current.TEBatchSize > 0)
                 sb.Append(" --text_encoder_batch_size ").Append(TrainParams.Current.TEBatchSize.ToString("0"));
 
-            switch (TrainParams.Current.ModelArchitectureEnum)
-            {
-                case ModelArchitecture.Flux1:
-                    {
-                        sb.Append(" --model_prediction_type \"").Append(TrainParams.Current.ModelPredictionType.ToString().ToLower()).Append('"');
-                        sb.Append(" --discrete_flow_shift ").Append(TrainParams.Current.DiscreteFlowShift.ToString());
-                        NetworkArgs.Add("train_blocks=" + TrainParams.Current.TrainBlockType.ToString().ToLower());
-                        sb.Append(" --timestep_sampling \"").Append(TrainParams.Current.TimestepSamplingType.ToString().ToLower()).Append('"');
-                        if (TrainParams.Current.TimestepSamplingType == TimestepSampling.Sigmoid)
-                            sb.Append(" --sigmoid_scale ").Append(TrainParams.Current.Sigmoidscale.ToString());
-                        if (TrainParams.Current.SplitMode)
-                            sb.Append(" --split_mode");
-                        if (TrainParams.Current.ApplyT5AttnMask)
-                            sb.Append(" --apply_t5_attn_mask");
-                        if (TrainParams.Current.GuidanceScale > 0m)
-                            sb.Append(" --guidance_scale ").Append(TrainParams.Current.GuidanceScale.ToString());
-                        if (TrainParams.Current.TrainT5XXL)
-                            NetworkArgs.Add("train_t5xxl=True");
-                        if (TrainParams.Current.BlocksToSwap > 0m)
-                            sb.Append(" --blocks_to_swap ").Append(TrainParams.Current.BlocksToSwap.ToString("0"));
-                    }
-                    break;
-                case ModelArchitecture.SD3:
-                    {
-                        if (TrainParams.Current.ApplyT5AttnMask)
-                            sb.Append(" --apply_t5_attn_mask");
-                        if (TrainParams.Current.ApplyClipAttnMask)
-                            sb.Append(" --apply_lg_attn_mask");
 
-                        if (TrainParams.Current.ClipLDropoutRate > 0m)
-                            sb.Append(" --clip_l_dropout_rate ").Append(TrainParams.Current.ClipLDropoutRate.ToString());
-                        if (TrainParams.Current.ClipGDropoutRate > 0m)
-                            sb.Append(" --clip_g_dropout_rate ").Append(TrainParams.Current.ClipGDropoutRate.ToString());
-                        if (TrainParams.Current.ClipLDropoutRate > 0m)
-                            sb.Append(" --t5_dropout_rate ").Append(TrainParams.Current.T5DropoutRate.ToString());
-
-                        if (TrainParams.Current.MaxTokensT5 != 256)
-                            sb.Append(" --t5xxl_max_token_length ").Append(TrainParams.Current.MaxTokensT5.ToString("0"));
-
-                        if(TrainParams.Current.DiscreteFlowShift != 1m)
-                            sb.Append(" --training_shift ").Append(TrainParams.Current.DiscreteFlowShift.ToString());
-
-                        if (TrainParams.Current.BlocksToSwap > 0m)
-                            sb.Append(" --blocks_to_swap ").Append(TrainParams.Current.BlocksToSwap.ToString("0"));
-                    }
-                    break;
-                default:
-                    break;
-            }
 
             if (!string.IsNullOrEmpty(TrainParams.Current.ClipLPath))
             {

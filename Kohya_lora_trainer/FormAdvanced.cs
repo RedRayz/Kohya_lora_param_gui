@@ -268,11 +268,7 @@ namespace Kohya_lora_trainer
                 IsValid = false;
             }
 
-            if (nudGuidanceScale.Value > 0m && nudGuidanceScale.Value < 1m)
-            {
-                MessageBox.Show("ガイダンススケールを使用する場合に1未満は使用できません。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                IsValid = false;
-            }
+
 
 
             Regex regex = new Regex("[&:/\\\\\\?\\*<>\\|\"'`]");
@@ -385,21 +381,11 @@ namespace Kohya_lora_trainer
             TrainParams.Current.RandomIpNoiseGamma = cbxRandomIpNoiseGamma.Checked;
             TrainParams.Current.AlphaMask = cbxAlphaMask.Checked;
 
-            TrainParams.Current.Sigmoidscale = nudSigmoidScale.Value;
-            TrainParams.Current.DiscreteFlowShift = nudDiscreteFlowShift.Value;
-            TrainParams.Current.GuidanceScale = nudGuidanceScale.Value;
-            TrainParams.Current.ModelPredictionType = (ModelPrediction)Enum.ToObject(typeof(ModelPrediction), cbxModelPredictionType.SelectedIndex);
-            TrainParams.Current.TimestepSamplingType = (TimestepSampling)Enum.ToObject(typeof(TimestepSampling), cbxTimestepSampling.SelectedIndex);
-            TrainParams.Current.TrainBlockType = (TrainBlock)Enum.ToObject(typeof(TrainBlock), cbxTrainBlock.SelectedIndex);
-            TrainParams.Current.SplitMode = cbxSplitMode.Checked;
 
             TrainParams.Current.ClipLPath = lblClipLPath.Text;
             TrainParams.Current.ClipGPath = lblClipGPath.Text;
             TrainParams.Current.T5XXLPath = lblT5XXLPath.Text;
-            TrainParams.Current.ApplyT5AttnMask = cbxApplyT5AttnMask.Checked;
-            TrainParams.Current.ApplyClipAttnMask = cbxApplyClipAttnMask.Checked;
-            TrainParams.Current.TrainT5XXL = cbxTrainT5XXL.Checked;
-            TrainParams.Current.CpuOffloadCheckpointing = cbxCpuOffloadCheckpointing.Checked;
+
             TrainParams.Current.SchedulerTimescale = nudSchedulerTimescale.Value;
             TrainParams.Current.LRDecaySteps = nudLRDecaySteps.Value;
             TrainParams.Current.MinLRRatio = nudMinLRRatio.Value;
@@ -411,7 +397,6 @@ namespace Kohya_lora_trainer
             TrainParams.Current.MaxTokensT5 = nudMaxTokensT5.Value;
             TrainParams.Current.VParameterization = cbxVParameterization.Checked;
             TrainParams.Current.ZeroTerminalSNR = cbxZeroTerminalSNR.Checked;
-            TrainParams.Current.BlocksToSwap = nudBlocksToSwap.Value;
             TrainParams.Current.DebiasedEstimation = cbxDebiasedEstimation.Checked;
             TrainParams.Current.ScaleWeightNorms = nudScaleWeightNorms.Value;
 
@@ -540,29 +525,16 @@ namespace Kohya_lora_trainer
             cbxRandomIpNoiseGamma.Checked = TrainParams.Current.RandomIpNoiseGamma;
             cbxAlphaMask.Checked = TrainParams.Current.AlphaMask;
 
-            nudSigmoidScale.Value = TrainParams.Current.Sigmoidscale;
-            nudDiscreteFlowShift.Value = TrainParams.Current.DiscreteFlowShift;
-            nudGuidanceScale.Value = TrainParams.Current.GuidanceScale;
-            cbxTimestepSampling.SelectedIndex = (int)TrainParams.Current.TimestepSamplingType;
-            cbxModelPredictionType.SelectedIndex = (int)TrainParams.Current.ModelPredictionType;
-            cbxTrainBlock.SelectedIndex = (int)TrainParams.Current.TrainBlockType;
-            cbxSplitMode.Checked = TrainParams.Current.SplitMode;
-
             lblClipLPath.Text = TrainParams.Current.ClipLPath;
             lblClipGPath.Text = TrainParams.Current.ClipGPath;
             lblT5XXLPath.Text = TrainParams.Current.T5XXLPath;
-            cbxApplyT5AttnMask.Checked = TrainParams.Current.ApplyT5AttnMask;
-            cbxApplyClipAttnMask.Checked = TrainParams.Current.ApplyClipAttnMask;
             cbxDisableMmapLoadSafetensors.Checked = TrainParams.Current.DisableMmapLoadSafetensors;
 
             nudClipLDropoutRate.Value = TrainParams.Current.ClipLDropoutRate;
             nudClipGDropoutRate.Value = TrainParams.Current.ClipGDropoutRate;
             nudT5DropoutRate.Value = TrainParams.Current.T5DropoutRate;
-            nudDiscreteFlowShift.Value = TrainParams.Current.DiscreteFlowShift;
             nudTEBatchSize.Value = TrainParams.Current.TEBatchSize;
 
-            cbxTrainT5XXL.Checked = TrainParams.Current.TrainT5XXL;
-            cbxCpuOffloadCheckpointing.Checked = TrainParams.Current.CpuOffloadCheckpointing;
 
             nudSchedulerTimescale.Value = TrainParams.Current.SchedulerTimescale;
             nudLRDecaySteps.Value = TrainParams.Current.LRDecaySteps;
@@ -570,7 +542,7 @@ namespace Kohya_lora_trainer
             nudMaxTokensT5.Value = TrainParams.Current.MaxTokensT5;
             cbxVParameterization.Checked = TrainParams.Current.VParameterization;
             cbxZeroTerminalSNR.Checked = TrainParams.Current.ZeroTerminalSNR;
-            nudBlocksToSwap.Value = TrainParams.Current.BlocksToSwap;
+
             cbxDebiasedEstimation.Checked = TrainParams.Current.DebiasedEstimation;
             nudScaleWeightNorms.Value = TrainParams.Current.ScaleWeightNorms;
 

@@ -86,9 +86,6 @@ namespace Kohya_lora_trainer
             nudHuberC = new NumericUpDown();
             nudIpNoiseGamma = new NumericUpDown();
             btnSelectVAE = new Button();
-            cbxSplitMode = new CheckBox();
-            cbxCpuOffloadCheckpointing = new CheckBox();
-            cbxTrainT5XXL = new CheckBox();
             nudSchedulerTimescale = new NumericUpDown();
             nudMinLRRatio = new NumericUpDown();
             nudLRDecaySteps = new NumericUpDown();
@@ -96,8 +93,6 @@ namespace Kohya_lora_trainer
             cbxDisableMmapLoadSafetensors = new CheckBox();
             cbxVParameterization = new CheckBox();
             cbxZeroTerminalSNR = new CheckBox();
-            nudBlocksToSwap = new NumericUpDown();
-            nudDiscreteFlowShift = new NumericUpDown();
             cbxUseAdditionalOptArgs = new CheckBox();
             nudMultiresNoiseIterations = new NumericUpDown();
             nudMultiresNoiseDiscount = new NumericUpDown();
@@ -245,22 +240,6 @@ namespace Kohya_lora_trainer
             cbxRescaledOFT = new CheckBox();
             cbxTrainNorm = new CheckBox();
             label23 = new Label();
-            tabPage8 = new TabPage();
-            groupBox1 = new GroupBox();
-            cbxModelPredictionType = new ComboBox();
-            label58 = new Label();
-            cbxTimestepSampling = new ComboBox();
-            label60 = new Label();
-            label63 = new Label();
-            cbxTrainBlock = new ComboBox();
-            label59 = new Label();
-            nudSigmoidScale = new NumericUpDown();
-            label62 = new Label();
-            nudGuidanceScale = new NumericUpDown();
-            label78 = new Label();
-            cbxApplyClipAttnMask = new CheckBox();
-            cbxApplyT5AttnMask = new CheckBox();
-            label61 = new Label();
             label56 = new Label();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
@@ -282,8 +261,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudMinLRRatio).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRDecaySteps).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudCaptionTagDropout).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudBlocksToSwap).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudDiscreteFlowShift).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseIterations).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseDiscount).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxTokensT5).BeginInit();
@@ -318,10 +295,6 @@ namespace Kohya_lora_trainer
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudTEBatchSize).BeginInit();
             tabPage3.SuspendLayout();
-            tabPage8.SuspendLayout();
-            groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudSigmoidScale).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudGuidanceScale).BeginInit();
             SuspendLayout();
             // 
             // tbxUnetLR
@@ -902,39 +875,6 @@ namespace Kohya_lora_trainer
             btnSelectVAE.UseVisualStyleBackColor = true;
             btnSelectVAE.Click += btnSelectVAE_Click;
             // 
-            // cbxSplitMode
-            // 
-            cbxSplitMode.AutoSize = true;
-            cbxSplitMode.Location = new Point(139, 163);
-            cbxSplitMode.Name = "cbxSplitMode";
-            cbxSplitMode.Size = new Size(75, 19);
-            cbxSplitMode.TabIndex = 4;
-            cbxSplitMode.Text = "分割モード";
-            toolTip1.SetToolTip(cbxSplitMode, "VRAM消費を減らす代わりに2-3倍遅くなる");
-            cbxSplitMode.UseVisualStyleBackColor = true;
-            // 
-            // cbxCpuOffloadCheckpointing
-            // 
-            cbxCpuOffloadCheckpointing.AutoSize = true;
-            cbxCpuOffloadCheckpointing.Location = new Point(139, 200);
-            cbxCpuOffloadCheckpointing.Name = "cbxCpuOffloadCheckpointing";
-            cbxCpuOffloadCheckpointing.Size = new Size(165, 19);
-            cbxCpuOffloadCheckpointing.TabIndex = 43;
-            cbxCpuOffloadCheckpointing.Text = "cpu offload checkpointing";
-            toolTip1.SetToolTip(cbxCpuOffloadCheckpointing, "gradient checkpointingをCPUにオフロードする\r\nVRAM消費が最大1GB減少するが学習が約15%遅くなる\r\nFLUX.1限定かつ分割モードの併用不可");
-            cbxCpuOffloadCheckpointing.UseVisualStyleBackColor = true;
-            // 
-            // cbxTrainT5XXL
-            // 
-            cbxTrainT5XXL.AutoSize = true;
-            cbxTrainT5XXL.Location = new Point(139, 182);
-            cbxTrainT5XXL.Name = "cbxTrainT5XXL";
-            cbxTrainT5XXL.Size = new Size(113, 19);
-            cbxTrainT5XXL.TabIndex = 8;
-            cbxTrainT5XXL.Text = "T5 XXLを学習する";
-            toolTip1.SetToolTip(cbxTrainT5XXL, "かなりのVRAMが必要？");
-            cbxTrainT5XXL.UseVisualStyleBackColor = true;
-            // 
             // nudSchedulerTimescale
             // 
             nudSchedulerTimescale.Location = new Point(148, 49);
@@ -1008,25 +948,6 @@ namespace Kohya_lora_trainer
             cbxZeroTerminalSNR.Text = "Zero Terminal SNR";
             toolTip1.SetToolTip(cbxZeroTerminalSNR, "ノイズスケジューラーの問題を修正して\r\n全体が明るい/暗い状況でグレー寄りになるのを防ぐ\r\n出力が不安定になりやすい(おそらくNoobAI-XL特有の問題)");
             cbxZeroTerminalSNR.UseVisualStyleBackColor = true;
-            // 
-            // nudBlocksToSwap
-            // 
-            nudBlocksToSwap.Location = new Point(468, 115);
-            nudBlocksToSwap.Maximum = new decimal(new int[] { 35, 0, 0, 0 });
-            nudBlocksToSwap.Name = "nudBlocksToSwap";
-            nudBlocksToSwap.Size = new Size(90, 23);
-            nudBlocksToSwap.TabIndex = 44;
-            toolTip1.SetToolTip(nudBlocksToSwap, "不要なブロックをCPUに移動することで\r\nVRAM使用量を減らす\r\n最大値はSD3.5 Mediumが22、FLUX.1が35");
-            // 
-            // nudDiscreteFlowShift
-            // 
-            nudDiscreteFlowShift.DecimalPlaces = 4;
-            nudDiscreteFlowShift.Location = new Point(468, 83);
-            nudDiscreteFlowShift.Name = "nudDiscreteFlowShift";
-            nudDiscreteFlowShift.Size = new Size(90, 23);
-            nudDiscreteFlowShift.TabIndex = 3;
-            toolTip1.SetToolTip(nudDiscreteFlowShift, "デフォルト値はSD3.5が1\r\nFLUX.1が3");
-            nudDiscreteFlowShift.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // cbxUseAdditionalOptArgs
             // 
@@ -1383,7 +1304,6 @@ namespace Kohya_lora_trainer
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(pageMisc);
             tabControl1.Controls.Add(tabPage3);
-            tabControl1.Controls.Add(tabPage8);
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -2607,175 +2527,6 @@ namespace Kohya_lora_trainer
             label23.TabIndex = 17;
             label23.Text = "LyCORISのアルゴリズム";
             // 
-            // tabPage8
-            // 
-            tabPage8.Controls.Add(groupBox1);
-            tabPage8.Controls.Add(label78);
-            tabPage8.Controls.Add(nudBlocksToSwap);
-            tabPage8.Controls.Add(cbxApplyClipAttnMask);
-            tabPage8.Controls.Add(cbxApplyT5AttnMask);
-            tabPage8.Controls.Add(nudDiscreteFlowShift);
-            tabPage8.Controls.Add(label61);
-            tabPage8.ForeColor = SystemColors.ControlText;
-            tabPage8.Location = new Point(4, 24);
-            tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 337);
-            tabPage8.TabIndex = 12;
-            tabPage8.Text = "DiT";
-            tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            groupBox1.Controls.Add(cbxModelPredictionType);
-            groupBox1.Controls.Add(label58);
-            groupBox1.Controls.Add(cbxTimestepSampling);
-            groupBox1.Controls.Add(label60);
-            groupBox1.Controls.Add(cbxCpuOffloadCheckpointing);
-            groupBox1.Controls.Add(label63);
-            groupBox1.Controls.Add(cbxTrainT5XXL);
-            groupBox1.Controls.Add(cbxTrainBlock);
-            groupBox1.Controls.Add(label59);
-            groupBox1.Controls.Add(nudSigmoidScale);
-            groupBox1.Controls.Add(cbxSplitMode);
-            groupBox1.Controls.Add(label62);
-            groupBox1.Controls.Add(nudGuidanceScale);
-            groupBox1.Location = new Point(17, 17);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(311, 245);
-            groupBox1.TabIndex = 46;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "FLUX.1専用";
-            // 
-            // cbxModelPredictionType
-            // 
-            cbxModelPredictionType.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbxModelPredictionType.FormattingEnabled = true;
-            cbxModelPredictionType.Items.AddRange(new object[] { "Raw", "Additive", "Sigma Scaled" });
-            cbxModelPredictionType.Location = new Point(139, 74);
-            cbxModelPredictionType.Name = "cbxModelPredictionType";
-            cbxModelPredictionType.Size = new Size(121, 23);
-            cbxModelPredictionType.TabIndex = 1;
-            // 
-            // label58
-            // 
-            label58.AutoSize = true;
-            label58.Location = new Point(16, 19);
-            label58.Name = "label58";
-            label58.Size = new Size(122, 15);
-            label58.TabIndex = 0;
-            label58.Text = "タイムステップサンプリング";
-            // 
-            // cbxTimestepSampling
-            // 
-            cbxTimestepSampling.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbxTimestepSampling.FormattingEnabled = true;
-            cbxTimestepSampling.Items.AddRange(new object[] { "Sigma", "Uniform", "Sigmoid", "Shift", "Flux Shift" });
-            cbxTimestepSampling.Location = new Point(140, 16);
-            cbxTimestepSampling.Name = "cbxTimestepSampling";
-            cbxTimestepSampling.Size = new Size(121, 23);
-            cbxTimestepSampling.TabIndex = 1;
-            // 
-            // label60
-            // 
-            label60.AutoSize = true;
-            label60.Location = new Point(41, 77);
-            label60.Name = "label60";
-            label60.Size = new Size(93, 15);
-            label60.TabIndex = 0;
-            label60.Text = "モデル予測の種類";
-            // 
-            // label63
-            // 
-            label63.AutoSize = true;
-            label63.Location = new Point(46, 106);
-            label63.Name = "label63";
-            label63.Size = new Size(85, 15);
-            label63.TabIndex = 0;
-            label63.Text = "学習するブロック";
-            // 
-            // cbxTrainBlock
-            // 
-            cbxTrainBlock.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbxTrainBlock.FormattingEnabled = true;
-            cbxTrainBlock.Items.AddRange(new object[] { "すべて", "doubleのみ", "singleのみ" });
-            cbxTrainBlock.Location = new Point(140, 103);
-            cbxTrainBlock.Name = "cbxTrainBlock";
-            cbxTrainBlock.Size = new Size(121, 23);
-            cbxTrainBlock.TabIndex = 1;
-            // 
-            // label59
-            // 
-            label59.AutoSize = true;
-            label59.Location = new Point(41, 47);
-            label59.Name = "label59";
-            label59.Size = new Size(97, 15);
-            label59.TabIndex = 2;
-            label59.Text = "シグモイドのスケール";
-            // 
-            // nudSigmoidScale
-            // 
-            nudSigmoidScale.DecimalPlaces = 4;
-            nudSigmoidScale.Location = new Point(140, 45);
-            nudSigmoidScale.Name = "nudSigmoidScale";
-            nudSigmoidScale.Size = new Size(120, 23);
-            nudSigmoidScale.TabIndex = 3;
-            nudSigmoidScale.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            // 
-            // label62
-            // 
-            label62.AutoSize = true;
-            label62.Location = new Point(10, 136);
-            label62.Name = "label62";
-            label62.Size = new Size(124, 15);
-            label62.TabIndex = 2;
-            label62.Text = "ガイダンス(CFG)スケール#";
-            // 
-            // nudGuidanceScale
-            // 
-            nudGuidanceScale.DecimalPlaces = 4;
-            nudGuidanceScale.Location = new Point(140, 134);
-            nudGuidanceScale.Name = "nudGuidanceScale";
-            nudGuidanceScale.Size = new Size(120, 23);
-            nudGuidanceScale.TabIndex = 3;
-            // 
-            // label78
-            // 
-            label78.AutoSize = true;
-            label78.Location = new Point(347, 118);
-            label78.Name = "label78";
-            label78.Size = new Size(115, 15);
-            label78.TabIndex = 45;
-            label78.Text = "スワップするブロック数#";
-            // 
-            // cbxApplyClipAttnMask
-            // 
-            cbxApplyClipAttnMask.AutoSize = true;
-            cbxApplyClipAttnMask.Location = new Point(390, 32);
-            cbxApplyClipAttnMask.Name = "cbxApplyClipAttnMask";
-            cbxApplyClipAttnMask.Size = new Size(192, 19);
-            cbxApplyClipAttnMask.TabIndex = 9;
-            cbxApplyClipAttnMask.Text = "CLIP L/Gにattn maskを適用(SD3)";
-            cbxApplyClipAttnMask.UseVisualStyleBackColor = true;
-            // 
-            // cbxApplyT5AttnMask
-            // 
-            cbxApplyT5AttnMask.AutoSize = true;
-            cbxApplyT5AttnMask.Location = new Point(390, 58);
-            cbxApplyT5AttnMask.Name = "cbxApplyT5AttnMask";
-            cbxApplyT5AttnMask.Size = new Size(131, 19);
-            cbxApplyT5AttnMask.TabIndex = 7;
-            cbxApplyT5AttnMask.Text = "T5にattn maskを適用";
-            cbxApplyT5AttnMask.UseVisualStyleBackColor = true;
-            // 
-            // label61
-            // 
-            label61.AutoSize = true;
-            label61.Location = new Point(380, 86);
-            label61.Name = "label61";
-            label61.Size = new Size(82, 15);
-            label61.TabIndex = 2;
-            label61.Text = "離散フローシフト";
-            // 
             // label56
             // 
             label56.AutoSize = true;
@@ -2823,8 +2574,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudMinLRRatio).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudLRDecaySteps).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudCaptionTagDropout).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudBlocksToSwap).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudDiscreteFlowShift).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseIterations).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseDiscount).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxTokensT5).EndInit();
@@ -2875,12 +2624,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudTEBatchSize).EndInit();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
-            tabPage8.ResumeLayout(false);
-            tabPage8.PerformLayout();
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudSigmoidScale).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudGuidanceScale).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -3047,20 +2790,6 @@ namespace Kohya_lora_trainer
         private Label label57;
         private NumericUpDown nudIpNoiseGamma;
         private CheckBox cbxAlphaMask;
-        private TabPage tabPage8;
-        private NumericUpDown nudSigmoidScale;
-        private Label label59;
-        private ComboBox cbxModelPredictionType;
-        private Label label60;
-        private ComboBox cbxTimestepSampling;
-        private Label label58;
-        private NumericUpDown nudGuidanceScale;
-        private Label label62;
-        private NumericUpDown nudDiscreteFlowShift;
-        private Label label61;
-        private CheckBox cbxSplitMode;
-        private ComboBox cbxTrainBlock;
-        private Label label63;
         private Button btnClearT5XXLPath;
         private Button btnClearClipLPath;
         private Button btnT5XXLPath;
@@ -3068,10 +2797,7 @@ namespace Kohya_lora_trainer
         private Label lblT5XXLPath;
         private Label lblClipLPath;
         private Label label68;
-        private CheckBox cbxApplyT5AttnMask;
         private Label label67;
-        private CheckBox cbxCpuOffloadCheckpointing;
-        private CheckBox cbxTrainT5XXL;
         private Label label47;
         private NumericUpDown nudSchedulerTimescale;
         private Label label66;
@@ -3088,7 +2814,6 @@ namespace Kohya_lora_trainer
         private NumericUpDown nudMaxTokensT5;
         private Label label73;
         private CheckBox cbxApplyAttnMaskToT5;
-        private CheckBox cbxApplyClipAttnMask;
         private CheckBox cbxDisableMmapLoadSafetensors;
         private Label label76;
         private NumericUpDown nudClipGDropoutRate;
@@ -3102,10 +2827,7 @@ namespace Kohya_lora_trainer
         private NumericUpDown nudTEBatchSize;
         private CheckBox cbxVParameterization;
         private CheckBox cbxZeroTerminalSNR;
-        private Label label78;
-        private NumericUpDown nudBlocksToSwap;
         private Label label64;
-        private GroupBox groupBox1;
         private Label label65;
         private TextBox tbxEps1;
         private GroupBox groupBox2;

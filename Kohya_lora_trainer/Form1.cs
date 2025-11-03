@@ -552,6 +552,18 @@ namespace Kohya_lora_trainer
                         continue;
                     }
 
+                    if (TrainParams.Current.IsOptimizerUnknown || TrainParams.Current.IsModelArchitectureUnkown)
+                    {
+                        Debug.WriteLine("Skipped. Unknown model or optimizer");
+                        if (!string.IsNullOrWhiteSpace(pth))
+                        {
+                            BatchProcess.LogText += pth + "\r\nオプティマイザまたはモデルの種類が不明なためスキップ\r\n\r\n";
+                        }
+
+                        BatchProcess.SkippedCount++;
+                        continue;
+                    }
+
                     //コマンド未指定かつLoRAパラメータがおかしい
                     if (!IsTrainingAvailable(false) && IsCommandEmpty())
                     {
