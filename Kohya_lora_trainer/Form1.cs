@@ -1355,22 +1355,11 @@ namespace Kohya_lora_trainer
                     }
                     break;
             }
-            if (TrainParams.Current.UseFullFP16)
+            if (TrainParams.Current.UseFullBf16)
             {
-                return MessageBox.Show("非推奨のオプション「full fp16を使用」が有効になっています。\r\n学習能力の低下がありますが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                return MessageBox.Show("「full bf16を使用」が有効になっています。\r\nbfloat16は新しめのGPUが必要です。GPUの対応を確認できたら「はい」を押して開始してください。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
-            switch (TrainParams.Current.ModelArchitectureEnum)
-            {
-                case ModelArchitecture.Flux1:
-                    if (TrainParams.Current.SplitMode && TrainParams.Current.TrainBlockType != TrainBlock.Single)
-                    {
-                        return MessageBox.Show("分割モードは学習するブロックをsingleにしないと使用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    }
-                    break;
-                default:
-                    break;
-            }
             if (TrainParams.Current.ShuffleCaptions && TrainParams.Current.CacheTextencoder)
             {
                 return MessageBox.Show("Text Encoderのキャッシュとキャプションのシャッフルは併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

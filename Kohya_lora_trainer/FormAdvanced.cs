@@ -353,7 +353,7 @@ namespace Kohya_lora_trainer
             TrainParams.Current.NoHalfVAE = cbxNoHalfVae.Checked;
             TrainParams.Current.CacheTextencoder = cbxCacheTextEncoder.Checked;
             TrainParams.Current.CacheTextencoderToDisk = cbxCacheTextencoderToDisk.Checked;
-            TrainParams.Current.UseFullFP16 = cbxUseFullFp16.Checked;
+            TrainParams.Current.UseFullBf16 = cbxUseFullBf16.Checked;
             TrainParams.Current.TokensSeparator = tbxTokensSeparator.Text;
             TrainParams.Current.UseFP8Base = cbxUseFP8.Checked;
 
@@ -492,7 +492,7 @@ namespace Kohya_lora_trainer
             cbxNoHalfVae.Checked = TrainParams.Current.NoHalfVAE;
             cbxCacheTextEncoder.Checked = TrainParams.Current.CacheTextencoder;
             cbxCacheTextencoderToDisk.Checked = TrainParams.Current.CacheTextencoderToDisk;
-            cbxUseFullFp16.Checked = TrainParams.Current.UseFullFP16;
+            cbxUseFullBf16.Checked = TrainParams.Current.UseFullBf16;
             tbxTokensSeparator.Text = TrainParams.Current.TokensSeparator;
             cbxUseFP8.Checked = TrainParams.Current.UseFP8Base;
 

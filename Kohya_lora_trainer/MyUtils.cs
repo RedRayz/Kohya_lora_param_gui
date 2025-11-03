@@ -343,9 +343,9 @@ namespace Kohya_lora_trainer
                 sb.Append(" --no_metadata");
             }
 
-            if (TrainParams.Current.UseFullFP16)
+            if (TrainParams.Current.UseFullBf16)
             {
-                sb.Append(" --full_fp16");
+                sb.Append(" --full_bf16");
             }
 
             if (TrainParams.Current.CacheLatents)
