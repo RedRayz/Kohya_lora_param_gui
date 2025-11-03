@@ -88,7 +88,7 @@ namespace Kohya_lora_trainer
         [XmlIgnore]
         public ModelArchitecture ModelArchitectureEnum = ModelArchitecture.Legacy;
 
-        public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true, UseFullFP16 = false, UseFP8Base = false, RelativeStep = true, ScaleParameter = true, SaveState = false, MaskLoss = false, AlphaMask = false;
+        public bool NoHalfVAE = false, CacheTextencoder = false, CacheTextencoderToDisk = false, IsEpoch = true, UseFullBf16 = false, UseFP8Base = false, RelativeStep = true, ScaleParameter = true, SaveState = false, MaskLoss = false, AlphaMask = false;
         public bool RandomNoiseOffset = false, RandomIpNoiseGamma = false, SaveWeightEveryEpoch = true;
         public string TokensSeparator = string.Empty;
 
@@ -112,6 +112,9 @@ namespace Kohya_lora_trainer
 
         //Scheduler
         public decimal SchedulerTimescale = 0m, MinLRRatio = 0m;
+
+        //Token warmup
+        public decimal TokenWarmupMin = 0m, TokenWarmupStep = 0m;
 
         private string CustomOptNameXmlIgnored = string.Empty;
         private Optimizer OptimizerTypeEnumUnmodified;
@@ -191,8 +194,8 @@ namespace Kohya_lora_trainer
                         case ModelArchitecture.Flux1:
                         case ModelArchitecture.SD3:
                             //次のリリースでアンコメントして有効にする
-                            //result = ModelArchitecture.Legacy;
-                            //IsModelArchitectureUnkown = true;
+                            result = ModelArchitecture.Legacy;
+                            IsModelArchitectureUnkown = true;
                             break;
                     }
                     ModelArchitectureEnum = result;
