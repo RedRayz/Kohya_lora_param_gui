@@ -1365,7 +1365,7 @@ namespace Kohya_lora_trainer
                 return MessageBox.Show("Text Encoderのキャッシュとキャプションのシャッフルは併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
-            if (TrainParams.Current.ShuffleCaptions && TrainParams.Current.TokenWarmupMin > 0)
+            if (TrainParams.Current.CacheTextencoder && TrainParams.Current.TokenWarmupMin > 0)
             {
                 return MessageBox.Show("Text EncoderのキャッシュとToken warmup最小タグ数は併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
