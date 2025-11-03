@@ -1365,6 +1365,11 @@ namespace Kohya_lora_trainer
                 return MessageBox.Show("Text Encoderのキャッシュとキャプションのシャッフルは併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
+            if (TrainParams.Current.ShuffleCaptions && TrainParams.Current.TokenWarmupMin > 0)
+            {
+                return MessageBox.Show("Text EncoderのキャッシュとToken warmup最小タグ数は併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+
             if (TrainParams.Current.advancedTrainType != AdvancedTrain.UNetOnly && TrainParams.Current.CacheTextencoder)
             {
                 return MessageBox.Show("Text Encoderの学習(or両方学習)とTEのキャッシュは併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

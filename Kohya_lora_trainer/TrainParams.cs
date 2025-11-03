@@ -113,6 +113,9 @@ namespace Kohya_lora_trainer
         //Scheduler
         public decimal SchedulerTimescale = 0m, MinLRRatio = 0m;
 
+        //Token warmup
+        public decimal TokenWarmupMin = 0m, TokenWarmupStep = 0m;
+
         private string CustomOptNameXmlIgnored = string.Empty;
         private Optimizer OptimizerTypeEnumUnmodified;
 

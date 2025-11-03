@@ -797,6 +797,17 @@ namespace Kohya_lora_trainer
                 sb.Append(" --resize_interpolation \"").Append(TrainParams.Current.ResizeInterpolationType.ToString().ToLower()).Append('"');
             }
 
+            if (TrainParams.Current.TokenWarmupMin > 0)
+            {
+                sb.Append(" --token_warmup_min ").Append(TrainParams.Current.TokenWarmupMin.ToString("0.####"));
+                if (TrainParams.Current.TokenWarmupStep > 0)
+                {
+                    sb.Append(" --token_warmup_step ").Append(TrainParams.Current.TokenWarmupStep.ToString("0.####"));
+                }
+            }
+
+
+
             string str = TrainParams.Current.AdditionalArgs.Trim();
             str = str.Replace("\r\n", string.Empty);
             if (!string.IsNullOrEmpty(str))

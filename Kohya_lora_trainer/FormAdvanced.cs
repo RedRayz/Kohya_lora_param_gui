@@ -401,6 +401,9 @@ namespace Kohya_lora_trainer
 
             TrainParams.Current.ResizeInterpolationType = (ResizeInterpolation)Enum.ToObject(typeof(ResizeInterpolation), cbxResizeInterpolation.SelectedIndex);
 
+            TrainParams.Current.TokenWarmupMin = nudTokenWarmupMin.Value;
+            TrainParams.Current.TokenWarmupStep = nudTokenWarmupStep.Value;
+
             Close();
         }
 
@@ -545,6 +548,9 @@ namespace Kohya_lora_trainer
             nudScaleWeightNorms.Value = TrainParams.Current.ScaleWeightNorms;
 
             cbxResizeInterpolation.SelectedIndex = (int)TrainParams.Current.ResizeInterpolationType;
+
+            nudTokenWarmupMin.Value = TrainParams.Current.TokenWarmupMin;
+            nudTokenWarmupStep.Value = TrainParams.Current.TokenWarmupStep;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)
