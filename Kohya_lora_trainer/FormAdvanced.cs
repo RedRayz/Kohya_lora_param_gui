@@ -384,7 +384,6 @@ namespace Kohya_lora_trainer
 
             TrainParams.Current.ClipLPath = lblClipLPath.Text;
             TrainParams.Current.ClipGPath = lblClipGPath.Text;
-            TrainParams.Current.T5XXLPath = lblT5XXLPath.Text;
 
             TrainParams.Current.SchedulerTimescale = nudSchedulerTimescale.Value;
             TrainParams.Current.LRDecaySteps = nudLRDecaySteps.Value;
@@ -527,7 +526,6 @@ namespace Kohya_lora_trainer
 
             lblClipLPath.Text = TrainParams.Current.ClipLPath;
             lblClipGPath.Text = TrainParams.Current.ClipGPath;
-            lblT5XXLPath.Text = TrainParams.Current.T5XXLPath;
             cbxDisableMmapLoadSafetensors.Checked = TrainParams.Current.DisableMmapLoadSafetensors;
 
             nudClipLDropoutRate.Value = TrainParams.Current.ClipLDropoutRate;
@@ -714,29 +712,6 @@ namespace Kohya_lora_trainer
         private void btnClearClipLPath_Click(object sender, EventArgs e)
         {
             lblClipLPath.Text = string.Empty;
-        }
-
-        private void btnT5XXLPath_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = Constants.WEIGHT_EXTENSION_FILTER;
-            ofd.Title = "Select a T5XXL";
-            ofd.RestoreDirectory = true;
-
-            if (File.Exists(TrainParams.Current.T5XXLPath))
-            {
-                ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.T5XXLPath);
-            }
-
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                lblT5XXLPath.Text = ofd.FileName;
-            }
-        }
-
-        private void btnClearT5XXLPath_Click(object sender, EventArgs e)
-        {
-            lblT5XXLPath.Text = string.Empty;
         }
 
         private void btnClipGPath_Click(object sender, EventArgs e)

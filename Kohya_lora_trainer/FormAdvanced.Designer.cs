@@ -99,6 +99,7 @@ namespace Kohya_lora_trainer
             nudMaxTokensT5 = new NumericUpDown();
             cbxResizeInterpolation = new ComboBox();
             nudScaleWeightNorms = new NumericUpDown();
+            cbxUseFullBf16 = new CheckBox();
             cbxAdvancedTrain = new ComboBox();
             label6 = new Label();
             label9 = new Label();
@@ -207,18 +208,14 @@ namespace Kohya_lora_trainer
             btnClipGPath = new Button();
             label72 = new Label();
             label67 = new Label();
-            btnClearT5XXLPath = new Button();
             btnClearClipLPath = new Button();
-            btnT5XXLPath = new Button();
             btnClipLPath = new Button();
             lblConfigPath = new Label();
             label21 = new Label();
             btnClearConfigPath = new Button();
-            lblT5XXLPath = new Label();
             btnSelectConfigPath = new Button();
             lblClipGPath = new Label();
             lblClipLPath = new Label();
-            label68 = new Label();
             pageMisc = new TabPage();
             label77 = new Label();
             groupBox2 = new GroupBox();
@@ -240,7 +237,6 @@ namespace Kohya_lora_trainer
             cbxTrainNorm = new CheckBox();
             label23 = new Label();
             label56 = new Label();
-            cbxUseFullBf16 = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -1012,6 +1008,17 @@ namespace Kohya_lora_trainer
             nudScaleWeightNorms.TabIndex = 51;
             toolTip1.SetToolTip(nudScaleWeightNorms, "Max Norm Regularizationのこと");
             // 
+            // cbxUseFullBf16
+            // 
+            cbxUseFullBf16.AutoSize = true;
+            cbxUseFullBf16.Location = new Point(314, 161);
+            cbxUseFullBf16.Name = "cbxUseFullBf16";
+            cbxUseFullBf16.Size = new Size(171, 19);
+            cbxUseFullBf16.TabIndex = 41;
+            cbxUseFullBf16.Text = "Full bf16を使用(互換性注意)";
+            toolTip1.SetToolTip(cbxUseFullBf16, "NVIDIAであればAmpere以降のみ対応");
+            cbxUseFullBf16.UseVisualStyleBackColor = true;
+            // 
             // cbxAdvancedTrain
             // 
             cbxAdvancedTrain.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -1764,9 +1771,9 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(nudMinLRRatio);
             tabPage6.Controls.Add(nudSchedulerTimescale);
             tabPage6.Controls.Add(label47);
-            tabPage6.Location = new Point(4, 26);
+            tabPage6.Location = new Point(4, 24);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(660, 335);
+            tabPage6.Size = new Size(660, 337);
             tabPage6.TabIndex = 13;
             tabPage6.Text = "スケジューラ";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1821,9 +1828,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 26);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(660, 335);
+            tabPage7.Size = new Size(660, 337);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -1890,9 +1897,9 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(label35);
             tabPage5.Controls.Add(tbxD0);
             tabPage5.Controls.Add(tbxGrowthRate);
-            tabPage5.Location = new Point(4, 26);
+            tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(660, 335);
+            tabPage5.Size = new Size(660, 337);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "オプティマイザ";
             tabPage5.UseVisualStyleBackColor = true;
@@ -2117,9 +2124,7 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClipGPath);
             tabPage2.Controls.Add(label72);
             tabPage2.Controls.Add(label67);
-            tabPage2.Controls.Add(btnClearT5XXLPath);
             tabPage2.Controls.Add(btnClearClipLPath);
-            tabPage2.Controls.Add(btnT5XXLPath);
             tabPage2.Controls.Add(btnClipLPath);
             tabPage2.Controls.Add(lblConfigPath);
             tabPage2.Controls.Add(lblVAEPath);
@@ -2127,12 +2132,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearTBoardPath);
             tabPage2.Controls.Add(btnClearConfigPath);
             tabPage2.Controls.Add(btnSelectLoRAmodel);
-            tabPage2.Controls.Add(lblT5XXLPath);
             tabPage2.Controls.Add(btnSelectConfigPath);
             tabPage2.Controls.Add(lblClipGPath);
             tabPage2.Controls.Add(lblClipLPath);
             tabPage2.Controls.Add(lblTBoardPath);
-            tabPage2.Controls.Add(label68);
             tabPage2.Controls.Add(label3);
             tabPage2.Controls.Add(label12);
             tabPage2.Controls.Add(btnClearLoRAmodel);
@@ -2141,10 +2144,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 335);
+            tabPage2.Size = new Size(660, 337);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -2187,16 +2190,6 @@ namespace Kohya_lora_trainer
             label67.TabIndex = 50;
             label67.Text = "CLIP L";
             // 
-            // btnClearT5XXLPath
-            // 
-            btnClearT5XXLPath.Location = new Point(454, 178);
-            btnClearT5XXLPath.Name = "btnClearT5XXLPath";
-            btnClearT5XXLPath.Size = new Size(64, 30);
-            btnClearT5XXLPath.TabIndex = 48;
-            btnClearT5XXLPath.Text = "クリア";
-            btnClearT5XXLPath.UseVisualStyleBackColor = true;
-            btnClearT5XXLPath.Click += btnClearT5XXLPath_Click;
-            // 
             // btnClearClipLPath
             // 
             btnClearClipLPath.Location = new Point(182, 178);
@@ -2206,16 +2199,6 @@ namespace Kohya_lora_trainer
             btnClearClipLPath.Text = "クリア";
             btnClearClipLPath.UseVisualStyleBackColor = true;
             btnClearClipLPath.Click += btnClearClipLPath_Click;
-            // 
-            // btnT5XXLPath
-            // 
-            btnT5XXLPath.Location = new Point(384, 178);
-            btnT5XXLPath.Name = "btnT5XXLPath";
-            btnT5XXLPath.Size = new Size(64, 30);
-            btnT5XXLPath.TabIndex = 48;
-            btnT5XXLPath.Text = "選択";
-            btnT5XXLPath.UseVisualStyleBackColor = true;
-            btnT5XXLPath.Click += btnT5XXLPath_Click;
             // 
             // btnClipLPath
             // 
@@ -2255,15 +2238,6 @@ namespace Kohya_lora_trainer
             btnClearConfigPath.UseVisualStyleBackColor = true;
             btnClearConfigPath.Click += btnClearConfigPath_Click;
             // 
-            // lblT5XXLPath
-            // 
-            lblT5XXLPath.Font = new Font("Yu Gothic UI", 8F);
-            lblT5XXLPath.Location = new Point(310, 211);
-            lblT5XXLPath.Name = "lblT5XXLPath";
-            lblT5XXLPath.Size = new Size(240, 34);
-            lblT5XXLPath.TabIndex = 34;
-            lblT5XXLPath.Text = "very very long name";
-            // 
             // btnSelectConfigPath
             // 
             btnSelectConfigPath.Location = new Point(384, 97);
@@ -2291,15 +2265,6 @@ namespace Kohya_lora_trainer
             lblClipLPath.Size = new Size(240, 34);
             lblClipLPath.TabIndex = 34;
             lblClipLPath.Text = "very very long name";
-            // 
-            // label68
-            // 
-            label68.AutoSize = true;
-            label68.Location = new Point(339, 186);
-            label68.Name = "label68";
-            label68.Size = new Size(39, 15);
-            label68.TabIndex = 33;
-            label68.Text = "T5XXL";
             // 
             // pageMisc
             // 
@@ -2524,17 +2489,6 @@ namespace Kohya_lora_trainer
             label56.Size = new Size(205, 30);
             label56.TabIndex = 58;
             label56.Text = "#がつく項目は0を指定すると未指定にする\r\n##がつく項目は空欄で未指定にする";
-            // 
-            // cbxUseFullBf16
-            // 
-            cbxUseFullBf16.AutoSize = true;
-            cbxUseFullBf16.Location = new Point(314, 161);
-            cbxUseFullBf16.Name = "cbxUseFullBf16";
-            cbxUseFullBf16.Size = new Size(171, 19);
-            cbxUseFullBf16.TabIndex = 41;
-            cbxUseFullBf16.Text = "Full bf16を使用(互換性注意)";
-            toolTip1.SetToolTip(cbxUseFullBf16, "NVIDIAであればAmpere以降のみ対応");
-            cbxUseFullBf16.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
@@ -2789,13 +2743,9 @@ namespace Kohya_lora_trainer
         private Label label57;
         private NumericUpDown nudIpNoiseGamma;
         private CheckBox cbxAlphaMask;
-        private Button btnClearT5XXLPath;
         private Button btnClearClipLPath;
-        private Button btnT5XXLPath;
         private Button btnClipLPath;
-        private Label lblT5XXLPath;
         private Label lblClipLPath;
-        private Label label68;
         private Label label67;
         private Label label47;
         private NumericUpDown nudSchedulerTimescale;
