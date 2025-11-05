@@ -314,11 +314,11 @@ namespace Kohya_lora_trainer
             nudNetworkAlpha.DecimalPlaces = 4;
             nudNetworkAlpha.Location = new Point(587, 159);
             nudNetworkAlpha.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudNetworkAlpha.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
+            nudNetworkAlpha.Minimum = new decimal(new int[] { 1, 0, 0, 262144 });
             nudNetworkAlpha.Name = "nudNetworkAlpha";
             nudNetworkAlpha.Size = new Size(80, 23);
             nudNetworkAlpha.TabIndex = 51;
-            toolTip1.SetToolTip(nudNetworkAlpha, "dimの半分以下の値が望ましい\r\n高い値は生成時に崩壊かクローン人間発生の原因\r\n画風は低いほう(1/4,1/8)がいいかも");
+            toolTip1.SetToolTip(nudNetworkAlpha, "dimの半分以下の値が望ましい\r\n高い値は生成時に崩壊かクローン人間発生の原因");
             nudNetworkAlpha.Value = new decimal(new int[] { 16, 0, 0, 0 });
             nudNetworkAlpha.ValueChanged += nudNetworkAlpha_ValueChanged;
             // 

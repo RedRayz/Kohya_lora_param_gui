@@ -390,7 +390,6 @@ namespace Kohya_lora_trainer
             TrainParams.Current.MinLRRatio = nudMinLRRatio.Value;
             TrainParams.Current.ClipLDropoutRate = nudClipLDropoutRate.Value;
             TrainParams.Current.ClipGDropoutRate = nudClipGDropoutRate.Value;
-            TrainParams.Current.T5DropoutRate = nudT5DropoutRate.Value;
             TrainParams.Current.DisableMmapLoadSafetensors = cbxDisableMmapLoadSafetensors.Checked;
             TrainParams.Current.TEBatchSize = nudTEBatchSize.Value;
             TrainParams.Current.VParameterization = cbxVParameterization.Checked;
@@ -532,7 +531,6 @@ namespace Kohya_lora_trainer
 
             nudClipLDropoutRate.Value = TrainParams.Current.ClipLDropoutRate;
             nudClipGDropoutRate.Value = TrainParams.Current.ClipGDropoutRate;
-            nudT5DropoutRate.Value = TrainParams.Current.T5DropoutRate;
             nudTEBatchSize.Value = TrainParams.Current.TEBatchSize;
 
 
