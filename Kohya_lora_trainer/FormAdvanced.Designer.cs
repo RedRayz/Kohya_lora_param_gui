@@ -96,7 +96,6 @@ namespace Kohya_lora_trainer
             nudMultiresNoiseIterations = new NumericUpDown();
             nudMultiresNoiseDiscount = new NumericUpDown();
             cbxDebiasedEstimation = new CheckBox();
-            nudMaxTokensT5 = new NumericUpDown();
             cbxResizeInterpolation = new ComboBox();
             nudScaleWeightNorms = new NumericUpDown();
             cbxUseFullBf16 = new CheckBox();
@@ -230,7 +229,6 @@ namespace Kohya_lora_trainer
             tbxTokensSeparator = new TextBox();
             nudTEBatchSize = new NumericUpDown();
             label46 = new Label();
-            label73 = new Label();
             label26 = new Label();
             tbxComment = new TextBox();
             tabPage3 = new TabPage();
@@ -264,7 +262,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudCaptionTagDropout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseIterations).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseDiscount).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudMaxTokensT5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudScaleWeightNorms).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudTokenWarmupMin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudTokenWarmupStep).BeginInit();
@@ -982,18 +979,6 @@ namespace Kohya_lora_trainer
             cbxDebiasedEstimation.Text = "Debiased Estimation";
             toolTip1.SetToolTip(cbxDebiasedEstimation, "色ずれを軽減する\r\n安定性も改善する");
             cbxDebiasedEstimation.UseVisualStyleBackColor = true;
-            // 
-            // nudMaxTokensT5
-            // 
-            nudMaxTokensT5.Increment = new decimal(new int[] { 64, 0, 0, 0 });
-            nudMaxTokensT5.Location = new Point(144, 123);
-            nudMaxTokensT5.Maximum = new decimal(new int[] { 1024, 0, 0, 0 });
-            nudMaxTokensT5.Minimum = new decimal(new int[] { 64, 0, 0, 0 });
-            nudMaxTokensT5.Name = "nudMaxTokensT5";
-            nudMaxTokensT5.Size = new Size(92, 23);
-            nudMaxTokensT5.TabIndex = 17;
-            toolTip1.SetToolTip(nudMaxTokensT5, "SD3とFLUX.1専用");
-            nudMaxTokensT5.Value = new decimal(new int[] { 256, 0, 0, 0 });
             // 
             // cbxResizeInterpolation
             // 
@@ -2337,8 +2322,6 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(tbxTokensSeparator);
             pageMisc.Controls.Add(nudTEBatchSize);
             pageMisc.Controls.Add(label46);
-            pageMisc.Controls.Add(nudMaxTokensT5);
-            pageMisc.Controls.Add(label73);
             pageMisc.Controls.Add(nudMaxTokens);
             pageMisc.Controls.Add(label26);
             pageMisc.Controls.Add(tbxComment);
@@ -2429,15 +2412,6 @@ namespace Kohya_lora_trainer
             label46.Size = new Size(111, 15);
             label46.TabIndex = 46;
             label46.Text = "トークンのセパレータ##";
-            // 
-            // label73
-            // 
-            label73.AutoSize = true;
-            label73.Location = new Point(21, 125);
-            label73.Name = "label73";
-            label73.Size = new Size(117, 15);
-            label73.TabIndex = 19;
-            label73.Text = "最大トークン数(T5XXL)";
             // 
             // label26
             // 
@@ -2590,7 +2564,6 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudCaptionTagDropout).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseIterations).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseDiscount).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudMaxTokensT5).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudScaleWeightNorms).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudTokenWarmupMin).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudTokenWarmupStep).EndInit();
@@ -2824,8 +2797,6 @@ namespace Kohya_lora_trainer
         private Button btnClipGPath;
         private Label label72;
         private Label lblClipGPath;
-        private NumericUpDown nudMaxTokensT5;
-        private Label label73;
         private CheckBox cbxApplyAttnMaskToT5;
         private CheckBox cbxDisableMmapLoadSafetensors;
         private Label label76;

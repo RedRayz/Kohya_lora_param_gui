@@ -393,7 +393,6 @@ namespace Kohya_lora_trainer
             TrainParams.Current.T5DropoutRate = nudT5DropoutRate.Value;
             TrainParams.Current.DisableMmapLoadSafetensors = cbxDisableMmapLoadSafetensors.Checked;
             TrainParams.Current.TEBatchSize = nudTEBatchSize.Value;
-            TrainParams.Current.MaxTokensT5 = nudMaxTokensT5.Value;
             TrainParams.Current.VParameterization = cbxVParameterization.Checked;
             TrainParams.Current.ZeroTerminalSNR = cbxZeroTerminalSNR.Checked;
             TrainParams.Current.DebiasedEstimation = cbxDebiasedEstimation.Checked;
@@ -540,7 +539,6 @@ namespace Kohya_lora_trainer
             nudSchedulerTimescale.Value = TrainParams.Current.SchedulerTimescale;
             nudLRDecaySteps.Value = TrainParams.Current.LRDecaySteps;
             nudMinLRRatio.Value = TrainParams.Current.MinLRRatio;
-            nudMaxTokensT5.Value = TrainParams.Current.MaxTokensT5;
             cbxVParameterization.Checked = TrainParams.Current.VParameterization;
             cbxZeroTerminalSNR.Checked = TrainParams.Current.ZeroTerminalSNR;
 
