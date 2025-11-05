@@ -214,7 +214,7 @@ namespace Kohya_lora_trainer
             tbxLR.Size = new Size(73, 23);
             tbxLR.TabIndex = 4;
             tbxLR.Text = "1e-4";
-            toolTip1.SetToolTip(tbxLR, "AdamW/Lionは0.0001、AdaFactorは0.001、DAdaptation系は1推奨\r\nLRが高いと収束が速くなる代わりに品質が低下する傾向がある");
+            toolTip1.SetToolTip(tbxLR, "AdamW/Lionは0.0001、DAdaptation系は1推奨\r\nScheduleFreeは0.0005程度まで平気\r\nCAMEは速すぎるので0.0001以下推奨\r\nLRが高いと収束が速くなる代わりに品質が低下する傾向がある");
             tbxLR.TextChanged += tbxLR_TextChanged;
             // 
             // lblLR
@@ -314,11 +314,11 @@ namespace Kohya_lora_trainer
             nudNetworkAlpha.DecimalPlaces = 4;
             nudNetworkAlpha.Location = new Point(587, 159);
             nudNetworkAlpha.Maximum = new decimal(new int[] { 1280, 0, 0, 0 });
-            nudNetworkAlpha.Minimum = new decimal(new int[] { 1, 0, 0, 131072 });
+            nudNetworkAlpha.Minimum = new decimal(new int[] { 1, 0, 0, 262144 });
             nudNetworkAlpha.Name = "nudNetworkAlpha";
             nudNetworkAlpha.Size = new Size(80, 23);
             nudNetworkAlpha.TabIndex = 51;
-            toolTip1.SetToolTip(nudNetworkAlpha, "dimの半分以下の値が望ましい\r\n高い値は生成時に崩壊かクローン人間発生の原因\r\n画風は低いほう(1/4,1/8)がいいかも");
+            toolTip1.SetToolTip(nudNetworkAlpha, "dimの半分以下の値が望ましい\r\n高い値は生成時に崩壊かクローン人間発生の原因");
             nudNetworkAlpha.Value = new decimal(new int[] { 16, 0, 0, 0 });
             nudNetworkAlpha.ValueChanged += nudNetworkAlpha_ValueChanged;
             // 
@@ -343,7 +343,7 @@ namespace Kohya_lora_trainer
             nudResolution.Name = "nudResolution";
             nudResolution.Size = new Size(72, 23);
             nudResolution.TabIndex = 54;
-            toolTip1.SetToolTip(nudResolution, "SD1が512、SDXL以降が1024推奨\r\n上記の推奨未満の解像度にすると胴体分裂などの悪影響あり");
+            toolTip1.SetToolTip(nudResolution, "SD1が512、SDXL以降が1024推奨\r\n上記の推奨未満の解像度にすると胴体分裂などの悪影響あり\r\n推奨超過にしても速度が低下するだけで大きなメリットなし");
             nudResolution.Value = new decimal(new int[] { 512, 0, 0, 0 });
             nudResolution.ValueChanged += nudResolution_ValueChanged;
             // 
@@ -365,7 +365,7 @@ namespace Kohya_lora_trainer
             nudBatchSize.Name = "nudBatchSize";
             nudBatchSize.Size = new Size(80, 23);
             nudBatchSize.TabIndex = 57;
-            toolTip1.SetToolTip(nudBatchSize, "高batchでは学習効率が低下するので、LRかエポック数を多めにする\r\n高バッチではCPUボトルネックが大きい環境ほど速くなる\r\n(1080pと4Kゲーミングの違いみたいなもの)");
+            toolTip1.SetToolTip(nudBatchSize, "高batchでは学習効率が若干低下するので、LRかエポック数を多めにする\r\n高バッチではCPUボトルネックが大きい環境ほど速くなる\r\n(1080pと4Kゲーミングの違いみたいなもの)");
             nudBatchSize.Value = new decimal(new int[] { 1, 0, 0, 0 });
             nudBatchSize.ValueChanged += nudBatchSize_ValueChanged;
             // 
@@ -390,7 +390,7 @@ namespace Kohya_lora_trainer
             cbxSDType.Name = "cbxSDType";
             cbxSDType.Size = new Size(139, 23);
             cbxSDType.TabIndex = 85;
-            toolTip1.SetToolTip(cbxSDType, "SDXLは要求スペックもXLサイズ\r\nFLUX.1とSD3.5 Largeはそれの3倍以上");
+            toolTip1.SetToolTip(cbxSDType, "SDXLはVRAM12GB以上を推奨\r\n10GB未満はfp8有効化推奨");
             cbxSDType.SelectedIndexChanged += cbxSDType_SelectedIndexChanged;
             // 
             // tbxFileName
@@ -413,7 +413,7 @@ namespace Kohya_lora_trainer
             cbxModuleType.Name = "cbxModuleType";
             cbxModuleType.Size = new Size(80, 23);
             cbxModuleType.TabIndex = 6;
-            toolTip1.SetToolTip(cbxModuleType, "LoRA-FAはメモリ消費が減少するが、LoRAの仕様上、減少量は雀の涙\r\nFLUX.1/SD3ではLoRAのみ使用可能");
+            toolTip1.SetToolTip(cbxModuleType, "LoRA-FAはメモリ消費がわずかに減少する\r\nまた学習が遅くなる代わりに安定性向上？");
             cbxModuleType.SelectedIndexChanged += cbxModuleType_SelectedIndexChanged;
             // 
             // nudSaveEpoch

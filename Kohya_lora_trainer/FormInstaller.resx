@@ -124,7 +124,9 @@
 選択後、ターミナルが立ち上がり、必要なコマンドを実行します。
 なお、gitとpythonは事前にインストールする必要があります。
 最後にaccelerate configの質問が出るのでターミナルで
-数字キーとEnterキーを用いて以下のように答えてください。</value>
+数字キーとEnterキーを用いて以下のように答えてください。
+なお、過去にaccelerateの設定をしたことがあれば、
+質問を無視してターミナルを閉じてもかまいません。</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>- This machine
