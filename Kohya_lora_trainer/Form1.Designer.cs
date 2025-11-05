@@ -214,7 +214,7 @@ namespace Kohya_lora_trainer
             tbxLR.Size = new Size(73, 23);
             tbxLR.TabIndex = 4;
             tbxLR.Text = "1e-4";
-            toolTip1.SetToolTip(tbxLR, "AdamW/Lionは0.0001、AdaFactorは0.001、DAdaptation系は1推奨\r\nLRが高いと収束が速くなる代わりに品質が低下する傾向がある");
+            toolTip1.SetToolTip(tbxLR, "AdamW/Lionは0.0001、DAdaptation系は1推奨\r\nScheduleFreeは0.0005程度まで平気\r\nCAMEは速すぎるので0.0001以下推奨\r\nLRが高いと収束が速くなる代わりに品質が低下する傾向がある");
             tbxLR.TextChanged += tbxLR_TextChanged;
             // 
             // lblLR
@@ -343,7 +343,7 @@ namespace Kohya_lora_trainer
             nudResolution.Name = "nudResolution";
             nudResolution.Size = new Size(72, 23);
             nudResolution.TabIndex = 54;
-            toolTip1.SetToolTip(nudResolution, "SD1が512、SDXL以降が1024推奨\r\n上記の推奨未満の解像度にすると胴体分裂などの悪影響あり");
+            toolTip1.SetToolTip(nudResolution, "SD1が512、SDXL以降が1024推奨\r\n上記の推奨未満の解像度にすると胴体分裂などの悪影響あり\r\n推奨超過にしても速度が低下するだけで大きなメリットなし");
             nudResolution.Value = new decimal(new int[] { 512, 0, 0, 0 });
             nudResolution.ValueChanged += nudResolution_ValueChanged;
             // 
@@ -365,7 +365,7 @@ namespace Kohya_lora_trainer
             nudBatchSize.Name = "nudBatchSize";
             nudBatchSize.Size = new Size(80, 23);
             nudBatchSize.TabIndex = 57;
-            toolTip1.SetToolTip(nudBatchSize, "高batchでは学習効率が低下するので、LRかエポック数を多めにする\r\n高バッチではCPUボトルネックが大きい環境ほど速くなる\r\n(1080pと4Kゲーミングの違いみたいなもの)");
+            toolTip1.SetToolTip(nudBatchSize, "高batchでは学習効率が若干低下するので、LRかエポック数を多めにする\r\n高バッチではCPUボトルネックが大きい環境ほど速くなる\r\n(1080pと4Kゲーミングの違いみたいなもの)");
             nudBatchSize.Value = new decimal(new int[] { 1, 0, 0, 0 });
             nudBatchSize.ValueChanged += nudBatchSize_ValueChanged;
             // 
