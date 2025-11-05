@@ -57,14 +57,14 @@
             label1.Font = new Font("Yu Gothic UI", 9F);
             label1.Location = new Point(32, 141);
             label1.Name = "label1";
-            label1.Size = new Size(432, 105);
+            label1.Size = new Size(432, 135);
             label1.TabIndex = 1;
             label1.Text = resources.GetString("label1.Text");
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(32, 263);
+            label2.Location = new Point(32, 288);
             label2.Name = "label2";
             label2.Size = new Size(394, 180);
             label2.TabIndex = 2;
