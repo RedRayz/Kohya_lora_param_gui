@@ -390,7 +390,7 @@ namespace Kohya_lora_trainer
             cbxSDType.Name = "cbxSDType";
             cbxSDType.Size = new Size(139, 23);
             cbxSDType.TabIndex = 85;
-            toolTip1.SetToolTip(cbxSDType, "SDXLは要求スペックもXLサイズ\r\nFLUX.1とSD3.5 Largeはそれの3倍以上");
+            toolTip1.SetToolTip(cbxSDType, "SDXLはVRAM12GB以上を推奨\r\n10GB未満はfp8有効化推奨");
             cbxSDType.SelectedIndexChanged += cbxSDType_SelectedIndexChanged;
             // 
             // tbxFileName
@@ -413,7 +413,7 @@ namespace Kohya_lora_trainer
             cbxModuleType.Name = "cbxModuleType";
             cbxModuleType.Size = new Size(80, 23);
             cbxModuleType.TabIndex = 6;
-            toolTip1.SetToolTip(cbxModuleType, "LoRA-FAはメモリ消費が減少するが、LoRAの仕様上、減少量は雀の涙\r\nFLUX.1/SD3ではLoRAのみ使用可能");
+            toolTip1.SetToolTip(cbxModuleType, "LoRA-FAはメモリ消費がわずかに減少する\r\nまた学習が遅くなる代わりに安定性向上？");
             cbxModuleType.SelectedIndexChanged += cbxModuleType_SelectedIndexChanged;
             // 
             // nudSaveEpoch

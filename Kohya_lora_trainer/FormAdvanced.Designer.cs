@@ -100,6 +100,8 @@ namespace Kohya_lora_trainer
             cbxResizeInterpolation = new ComboBox();
             nudScaleWeightNorms = new NumericUpDown();
             cbxUseFullBf16 = new CheckBox();
+            nudTokenWarmupMin = new NumericUpDown();
+            nudTokenWarmupStep = new NumericUpDown();
             cbxAdvancedTrain = new ComboBox();
             label6 = new Label();
             label9 = new Label();
@@ -131,9 +133,7 @@ namespace Kohya_lora_trainer
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             groupBox1 = new GroupBox();
-            nudTokenWarmupMin = new NumericUpDown();
             label39 = new Label();
-            nudTokenWarmupStep = new NumericUpDown();
             label15 = new Label();
             groupBox8 = new GroupBox();
             groupBox7 = new GroupBox();
@@ -266,14 +266,14 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseDiscount).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxTokensT5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudScaleWeightNorms).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudTokenWarmupMin).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudTokenWarmupStep).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudAdaptiveNoiseScale).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudTokenWarmupMin).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudTokenWarmupStep).BeginInit();
             groupBox8.SuspendLayout();
             groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudConvAlpha).BeginInit();
@@ -422,12 +422,12 @@ namespace Kohya_lora_trainer
             // 
             cbxCrossAttenType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxCrossAttenType.FormattingEnabled = true;
-            cbxCrossAttenType.Items.AddRange(new object[] { "xformers", "mem_eff_attn", "sdpa", "無し" });
+            cbxCrossAttenType.Items.AddRange(new object[] { "xformers", "mem_eff_attn", "sdpa(推奨)", "無し" });
             cbxCrossAttenType.Location = new Point(160, 101);
             cbxCrossAttenType.Name = "cbxCrossAttenType";
             cbxCrossAttenType.Size = new Size(98, 23);
             cbxCrossAttenType.TabIndex = 38;
-            toolTip1.SetToolTip(cbxCrossAttenType, "最適化アルゴリズムの種類\r\nmef_eff_attenは省メモリだが遅い\r\nxformersは高速だがNVIDIAのみ対応\r\nsdpaは高速だがtorchのエラーで動かないかも(原因不明)");
+            toolTip1.SetToolTip(cbxCrossAttenType, "最適化アルゴリズムの種類\r\nmef_eff_attenは省メモリだが遅い\r\nxformersは高速だがエラー落ちの可能性あり\r\nかつNVIDIA製GPUかRDNA3以降のAMD製GPUが必要\r\nsdpaは高速かつすべてのGPUで利用可能");
             // 
             // cbxUseColorAug
             // 
@@ -601,7 +601,7 @@ namespace Kohya_lora_trainer
             nudMaxTokens.Name = "nudMaxTokens";
             nudMaxTokens.Size = new Size(92, 23);
             nudMaxTokens.TabIndex = 17;
-            toolTip1.SetToolTip(nudMaxTokens, "コンマ区切りではなくCLIPのトークン数\r\nSD1以外で動作するかは不明");
+            toolTip1.SetToolTip(nudMaxTokens, "コンマ区切りではなくCLIPのトークン数");
             nudMaxTokens.Value = new decimal(new int[] { 75, 0, 0, 0 });
             // 
             // cbxUseConv2d
@@ -654,7 +654,7 @@ namespace Kohya_lora_trainer
             cbxNoHalfVae.Size = new Size(199, 19);
             cbxNoHalfVae.TabIndex = 18;
             cbxNoHalfVae.Text = "VAEを32ビットで使用(No-half VAE)";
-            toolTip1.SetToolTip(cbxNoHalfVae, "no-half VAE\r\nVAEのNaN演算をなくす\r\nStabilityAIのSDXL VAEはこの設定が必須");
+            toolTip1.SetToolTip(cbxNoHalfVae, "no-half VAE\r\nVAEのNaN演算をなくすがVAEエンコード速度低下とVRAM消費増加\r\nStabilityAIのSDXL VAEはこの設定が必須\r\nSDXLはSDXL VAE fp16 fixの使用を推奨(オフで動くため)");
             cbxNoHalfVae.UseVisualStyleBackColor = true;
             // 
             // cbxFlipAug
@@ -1027,6 +1027,25 @@ namespace Kohya_lora_trainer
             toolTip1.SetToolTip(cbxUseFullBf16, "NVIDIAであればAmpere以降のみ対応");
             cbxUseFullBf16.UseVisualStyleBackColor = true;
             // 
+            // nudTokenWarmupMin
+            // 
+            nudTokenWarmupMin.Location = new Point(148, 23);
+            nudTokenWarmupMin.Maximum = new decimal(new int[] { 9999999, 0, 0, 0 });
+            nudTokenWarmupMin.Name = "nudTokenWarmupMin";
+            nudTokenWarmupMin.Size = new Size(72, 23);
+            nudTokenWarmupMin.TabIndex = 18;
+            toolTip1.SetToolTip(nudTokenWarmupMin, "学習開始時のキャプションのタグ数を指定した値にする");
+            // 
+            // nudTokenWarmupStep
+            // 
+            nudTokenWarmupStep.DecimalPlaces = 4;
+            nudTokenWarmupStep.Location = new Point(148, 52);
+            nudTokenWarmupStep.Maximum = new decimal(new int[] { 9999999, 0, 0, 0 });
+            nudTokenWarmupStep.Name = "nudTokenWarmupStep";
+            nudTokenWarmupStep.Size = new Size(72, 23);
+            nudTokenWarmupStep.TabIndex = 19;
+            toolTip1.SetToolTip(nudTokenWarmupStep, "タグ数を徐々に増やして最大になるまでのステップ数または比率\r\n1以下で比率指定で1以上の整数でステップ数");
+            // 
             // cbxAdvancedTrain
             // 
             cbxAdvancedTrain.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -1170,11 +1189,11 @@ namespace Kohya_lora_trainer
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(22, 104);
+            label4.Location = new Point(51, 104);
             label4.Name = "label4";
-            label4.Size = new Size(136, 15);
+            label4.Size = new Size(103, 15);
             label4.TabIndex = 40;
-            label4.Text = "Cross-Attentionの最適化";
+            label4.Text = "Attentionの最適化";
             // 
             // label3
             // 
@@ -1345,15 +1364,6 @@ namespace Kohya_lora_trainer
             groupBox1.TabStop = false;
             groupBox1.Text = "キャプション関連";
             // 
-            // nudTokenWarmupMin
-            // 
-            nudTokenWarmupMin.Location = new Point(148, 23);
-            nudTokenWarmupMin.Maximum = new decimal(new int[] { 9999999, 0, 0, 0 });
-            nudTokenWarmupMin.Name = "nudTokenWarmupMin";
-            nudTokenWarmupMin.Size = new Size(72, 23);
-            nudTokenWarmupMin.TabIndex = 18;
-            toolTip1.SetToolTip(nudTokenWarmupMin, "学習開始時のキャプションのタグ数を指定した値にする");
-            // 
             // label39
             // 
             label39.AutoSize = true;
@@ -1362,16 +1372,6 @@ namespace Kohya_lora_trainer
             label39.Size = new Size(138, 15);
             label39.TabIndex = 16;
             label39.Text = "Token warmupステップ数#";
-            // 
-            // nudTokenWarmupStep
-            // 
-            nudTokenWarmupStep.DecimalPlaces = 4;
-            nudTokenWarmupStep.Location = new Point(148, 52);
-            nudTokenWarmupStep.Maximum = new decimal(new int[] { 9999999, 0, 0, 0 });
-            nudTokenWarmupStep.Name = "nudTokenWarmupStep";
-            nudTokenWarmupStep.Size = new Size(72, 23);
-            nudTokenWarmupStep.TabIndex = 19;
-            toolTip1.SetToolTip(nudTokenWarmupStep, "タグ数を徐々に増やして最大になるまでのステップ数または比率\r\n1以下で比率指定で1以上の整数でステップ数");
             // 
             // label15
             // 
@@ -1830,9 +1830,9 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(nudMinLRRatio);
             tabPage6.Controls.Add(nudSchedulerTimescale);
             tabPage6.Controls.Add(label47);
-            tabPage6.Location = new Point(4, 26);
+            tabPage6.Location = new Point(4, 24);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(660, 335);
+            tabPage6.Size = new Size(660, 337);
             tabPage6.TabIndex = 13;
             tabPage6.Text = "スケジューラ";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1887,9 +1887,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 26);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(660, 335);
+            tabPage7.Size = new Size(660, 337);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -1956,9 +1956,9 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(label35);
             tabPage5.Controls.Add(tbxD0);
             tabPage5.Controls.Add(tbxGrowthRate);
-            tabPage5.Location = new Point(4, 26);
+            tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(660, 335);
+            tabPage5.Size = new Size(660, 337);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "オプティマイザ";
             tabPage5.UseVisualStyleBackColor = true;
@@ -2203,10 +2203,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 335);
+            tabPage2.Size = new Size(660, 337);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -2342,9 +2342,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(nudMaxTokens);
             pageMisc.Controls.Add(label26);
             pageMisc.Controls.Add(tbxComment);
-            pageMisc.Location = new Point(4, 26);
+            pageMisc.Location = new Point(4, 24);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(660, 335);
+            pageMisc.Size = new Size(660, 337);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -2419,6 +2419,7 @@ namespace Kohya_lora_trainer
             nudTEBatchSize.Name = "nudTEBatchSize";
             nudTEBatchSize.Size = new Size(92, 23);
             nudTEBatchSize.TabIndex = 21;
+            toolTip1.SetToolTip(nudTEBatchSize, "動作未確認");
             // 
             // label46
             // 
@@ -2465,9 +2466,9 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(cbxTrainNorm);
             tabPage3.Controls.Add(cbxAlgoType);
             tabPage3.Controls.Add(label23);
-            tabPage3.Location = new Point(4, 26);
+            tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(660, 335);
+            tabPage3.Size = new Size(660, 337);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;
@@ -2591,6 +2592,8 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudMultiresNoiseDiscount).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxTokensT5).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudScaleWeightNorms).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudTokenWarmupMin).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudTokenWarmupStep).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudAdaptiveNoiseScale).EndInit();
@@ -2599,8 +2602,6 @@ namespace Kohya_lora_trainer
             tabPage1.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudTokenWarmupMin).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudTokenWarmupStep).EndInit();
             groupBox8.ResumeLayout(false);
             groupBox8.PerformLayout();
             groupBox7.ResumeLayout(false);
