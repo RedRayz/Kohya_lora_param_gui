@@ -11,15 +11,15 @@ gradioを使用するものと比べ以下のメリットがあります。
 - 比較的コンパクトなUI
 
 ## 他の機能
-* 学習パラメータのプリセットをxmlで保存/読込
+* 学習パラメータのプリセットをXMLで保存/読込
 * tensorboardの起動
-* GUI終了時に設定を記憶し、次回起動時に反映
+* GUI終了時の設定を記憶、次回起動時に復元
 * 複数LoRAの一括学習
 * Dimのリサイズ
 * sd-scriptsのインストール・更新
 
 ## 注意事項
-簡易インストーラか手動で[sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法でセットアップしている環境を前提としています。
+簡易インストーラか手動で[sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法でセットアップしている環境を前提としています。bmaltais氏のkohya_ssで作成した環境は非対応とします。
 
 NVIDIA製グラフィックボードを搭載したパソコンでの動作を想定しています。
 
@@ -66,7 +66,7 @@ v1.6以降でご利用いただけます。
 
 注意:ディレクトリの階層は次のようにします。
 
-※LECOの学習機能は削除されました。
+※LECO、SD3、FLUX.1の学習機能は廃止しました。
 ![directory](./images/image1.png)
 
 
