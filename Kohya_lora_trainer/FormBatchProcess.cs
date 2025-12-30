@@ -73,21 +73,29 @@ namespace Kohya_lora_trainer
 
         private void tbxPrestList_DragEnter(object sender, DragEventArgs e)
         {
-            MyUtils.CommonFileDragEnterEvent(e, ".xmlora");
+            MyUtils.CommonMultipleFileDragEnterEvent(e, ".xmlora");
         }
 
         private void tbxPrestList_DragDrop(object sender, DragEventArgs e)
         {
-            string dropped = MyUtils.GetDroppedFileName(e, ".xmlora");
-            if (!string.IsNullOrEmpty(dropped))
+            string[]? dropped = MyUtils.GetDroppedFileArray(e, ".xmlora");
+
+            if(dropped != null)
             {
-                if (!string.IsNullOrEmpty(tbxPrestList.Text) && !tbxPrestList.Text.EndsWith("\r\n"))
+                foreach(string droppedItem in dropped)
                 {
-                    tbxPrestList.Text += "\r\n";
+                    if (!string.IsNullOrEmpty(droppedItem))
+                    {
+                        if (!string.IsNullOrEmpty(tbxPrestList.Text) && !tbxPrestList.Text.EndsWith("\r\n"))
+                        {
+                            tbxPrestList.Text += "\r\n";
+                        }
+                        tbxPrestList.Text += droppedItem;
+                        tbxPrestList.Text += "\r\n";
+                    }
                 }
-                tbxPrestList.Text += dropped;
-                tbxPrestList.Text += "\r\n";
             }
+
         }
     }
 }
