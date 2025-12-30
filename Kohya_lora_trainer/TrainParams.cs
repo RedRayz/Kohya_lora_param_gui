@@ -512,9 +512,9 @@ namespace Kohya_lora_trainer
 
     public enum CrossAtten
     {
+        sdpa,
         xformers,
         mem_eff_attn,
-        sdpa,
         None
     }
 
