@@ -1392,11 +1392,10 @@ namespace Kohya_lora_trainer
             string torch = UseLatestTorch ? Constants.LATEST_TORCH_VERSION : Constants.TORCH_VERSION;
             string vision = UseLatestTorch ? Constants.LATEST_TORCHVISION_VERSION : Constants.TORCHVISION_VERSION;
             string index = UseLatestTorch ? Constants.LATEST_INDEX_URL : Constants.INDEX_URL;
-            string xformers = UseLatestTorch ? Constants.LATEST_XFORMERS_VERSION : Constants.XFORMERS_VERSION;
+
             StringBuilder sb = new StringBuilder();
             sb.Append("pip install torch==")
             .Append(torch).Append(" torchvision==").Append(vision)
-            .Append(" xformers==").Append(xformers)
             .Append(" --index-url ").Append(index)
             .Append(" && pip install --upgrade -r requirements.txt");
 
