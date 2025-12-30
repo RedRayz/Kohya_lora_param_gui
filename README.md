@@ -58,7 +58,7 @@ v1.6以降でご利用いただけます。
 ### B.手動インストール
 簡易インストールがうまくいかないか違うバージョンのtorchを入れたい場合はこちら
 
-1.[sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法sd-scriptsの導入をする。
+1.[sd-scriptsのREADME](https://github.com/kohya-ss/sd-scripts/blob/main/README-ja.md)の方法sd-scriptsの導入をする。※`pip install xformers`は不要
 
 2.[releases](https://github.com/RedRayz/Kohya_lora_param_gui/releases)からkohya_lora_gui-x.x.x.zipをDLする
 
@@ -89,6 +89,8 @@ Kohya_lora_trainer.exeをダブルクリックする。ショートカット作�
 * Turing以降のNVIDIA製GPU
 
 Torch 2.8.0以降では、Volta以前のNVIDIA製GPUは非対応になります。さらに、2025年10月以降はNVIDIAによるドライバ更新は脆弱性修正のみとなります。
+
+Intel ArcやAMD Radeon環境では手動でPyTorchをインストールしてください。xformersはPyTorch内蔵のsdpaに対する優位性がないためインストールは不要です。
 
 ## ガイドなど
 

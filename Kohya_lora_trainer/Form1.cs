@@ -1377,7 +1377,7 @@ namespace Kohya_lora_trainer
 
             if ((TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim) && ((TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.Legacy && TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.XL) || TrainParams.Current.ModuleType == NetworkModule.LyCORIS))
             {
-                return MessageBox.Show("SD1,SDXL以外およびLyCORISでは層別学習は非対応ですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                return MessageBox.Show("LyCORISでは層別学習は非対応ですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
             if ((TrainParams.Current.NoiseOffset > 0 || TrainParams.Current.MultiresNoiseIterations > 0) && TrainParams.Current.ZeroTerminalSNR)

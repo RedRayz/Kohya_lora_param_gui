@@ -220,8 +220,8 @@ namespace Kohya_lora_trainer
             lblClipGPath = new Label();
             lblClipLPath = new Label();
             pageMisc = new TabPage();
-            label77 = new Label();
             groupBox2 = new GroupBox();
+            label77 = new Label();
             cbxSaveState = new CheckBox();
             label41 = new Label();
             label40 = new Label();
@@ -421,7 +421,7 @@ namespace Kohya_lora_trainer
             cbxCrossAttenType.Name = "cbxCrossAttenType";
             cbxCrossAttenType.Size = new Size(98, 23);
             cbxCrossAttenType.TabIndex = 38;
-            toolTip1.SetToolTip(cbxCrossAttenType, "最適化アルゴリズムの種類\r\nmef_eff_attenは省メモリだが遅い\r\nxformersは高速だがエラー落ちの可能性あり\r\nかつNVIDIA製GPUかRDNA3以降のAMD製GPUが必要\r\nsdpaは高速かつすべてのGPUで利用可能");
+            toolTip1.SetToolTip(cbxCrossAttenType, "最適化アルゴリズムの種類\r\nmef_eff_attenは省メモリだが遅い\r\nxformersはsdpaと同じだが別途インストール必要\r\nsdpaは高速かつすべてのGPUで利用可能");
             // 
             // cbxUseColorAug
             // 
@@ -1548,9 +1548,9 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(nudRankDropout);
             tabPage4.Controls.Add(nudClipLDropoutRate);
             tabPage4.Controls.Add(nudCaptionDropout);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 26);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(660, 337);
+            tabPage4.Size = new Size(660, 335);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "dropout";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1716,9 +1716,9 @@ namespace Kohya_lora_trainer
             page3.Controls.Add(label57);
             page3.Controls.Add(label17);
             page3.Controls.Add(nudIpNoiseGamma);
-            page3.Location = new Point(4, 24);
+            page3.Location = new Point(4, 26);
             page3.Name = "page3";
-            page3.Size = new Size(660, 337);
+            page3.Size = new Size(660, 335);
             page3.TabIndex = 10;
             page3.Text = "損失とノイズ";
             page3.UseVisualStyleBackColor = true;
@@ -1800,9 +1800,9 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(nudMinLRRatio);
             tabPage6.Controls.Add(nudSchedulerTimescale);
             tabPage6.Controls.Add(label47);
-            tabPage6.Location = new Point(4, 24);
+            tabPage6.Location = new Point(4, 26);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(660, 337);
+            tabPage6.Size = new Size(660, 335);
             tabPage6.TabIndex = 13;
             tabPage6.Text = "スケジューラ";
             tabPage6.UseVisualStyleBackColor = true;
@@ -2308,21 +2308,12 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(nudMaxTokens);
             pageMisc.Controls.Add(label26);
             pageMisc.Controls.Add(tbxComment);
-            pageMisc.Location = new Point(4, 24);
+            pageMisc.Location = new Point(4, 26);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(660, 337);
+            pageMisc.Size = new Size(660, 335);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
-            // 
-            // label77
-            // 
-            label77.AutoSize = true;
-            label77.Location = new Point(13, 85);
-            label77.Name = "label77";
-            label77.Size = new Size(91, 15);
-            label77.TabIndex = 22;
-            label77.Text = "TEのバッチサイズ#";
             // 
             // groupBox2
             // 
@@ -2343,6 +2334,15 @@ namespace Kohya_lora_trainer
             groupBox2.TabIndex = 59;
             groupBox2.TabStop = false;
             groupBox2.Text = "通常編集する必要のない設定";
+            // 
+            // label77
+            // 
+            label77.AutoSize = true;
+            label77.Location = new Point(13, 85);
+            label77.Name = "label77";
+            label77.Size = new Size(91, 15);
+            label77.TabIndex = 22;
+            label77.Text = "TEのバッチサイズ#";
             // 
             // cbxSaveState
             // 
