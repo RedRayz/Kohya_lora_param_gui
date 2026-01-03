@@ -318,7 +318,7 @@ namespace Kohya_lora_trainer
             nudNetworkAlpha.Name = "nudNetworkAlpha";
             nudNetworkAlpha.Size = new Size(80, 23);
             nudNetworkAlpha.TabIndex = 51;
-            toolTip1.SetToolTip(nudNetworkAlpha, "dimの半分以下の値が望ましい\r\n高い値は生成時に崩壊かクローン人間発生の原因");
+            toolTip1.SetToolTip(nudNetworkAlpha, "dimの半分以下の値が望ましい\r\n高い値は品質低下の原因となる");
             nudNetworkAlpha.Value = new decimal(new int[] { 16, 0, 0, 0 });
             nudNetworkAlpha.ValueChanged += nudNetworkAlpha_ValueChanged;
             // 

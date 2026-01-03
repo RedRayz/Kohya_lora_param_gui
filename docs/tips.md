@@ -149,7 +149,7 @@ Ponyで使用された値は不明だが、明暗に弱いあたり未使用と�
 
 ## GrabberでGelbooruの画像やタグを正しく取得できない
 
-今年6月から、GelbooruのAPIアクセスにはAPIキー(要アカウント)が必要だ。
+2025年6月から、GelbooruのAPIアクセスにはAPIキー(要アカウント)が必要だ。
 
 以下の手順でユーザーIDとAPIキーを取得してGrabberに設定する。
 
@@ -165,7 +165,7 @@ Ponyで使用された値は不明だが、明暗に弱いあたり未使用と�
 
 6.  確認、OKを押して設定を閉じたら完了。ウィンドウ右上にあるOkを押すと画像とタグを取得するはず。
 
-注意: Gelbooruは「ウマ娘」の検索にCloudflareの認証を要求するためGrabberでは表示できない。
+注意: Gelbooruは「umamusume」の検索にCloudflareの認証を要求するためGrabberでは表示できない。
 
 ## GrabberでDanbooruを閲覧できない
 

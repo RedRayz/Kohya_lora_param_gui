@@ -1058,8 +1058,8 @@ namespace Kohya_lora_trainer
             {
                 return string.Empty;
             }
-            var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (files.Length == 1)
+            string[]? files = (string[]?)e.Data.GetData(DataFormats.FileDrop, false);
+            if (files != null && files != null && files.Length == 1)
             {
                 string fileName = files[0];
                 if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
@@ -1080,14 +1080,50 @@ namespace Kohya_lora_trainer
             return string.Empty;
         }
 
+        /// <summary>
+        /// Formにドロップされたアイテムのファイル名を取得する。ファイル以外なら空文字を返す。
+        /// </summary>
+        /// <param name="e"></param>
+        /// <param name="fileExtension">受け付けるファイルの拡張子(任意)。指定時に一致しないなら空文字を返す</param>
+        /// <returns></returns>
+        internal static string[]? GetDroppedFileArray(DragEventArgs e, string fileExtension = "")
+        {
+            if (e == null || e.Data == null)
+            {
+                return null;
+            }
+            string[]? files = (string[]?)e.Data.GetData(DataFormats.FileDrop, false);
+            if (files !=null && files.Length > 0)
+            {
+                for(int i=0; i < files.Length; i++)
+                {
+                    string fileName = files[i];
+                    if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
+                    {
+                        if (!string.IsNullOrEmpty(fileExtension) && Path.GetExtension(fileName) != fileExtension)
+                        {
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                return files;
+            }
+
+            return null;
+        }
+
         internal static string GetDroppedWeightName(DragEventArgs e)
         {
             if (e == null || e.Data == null)
             {
                 return string.Empty;
             }
-            var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (files.Length == 1)
+            string[]? files = (string[]?)e.Data.GetData(DataFormats.FileDrop, false);
+            if (files != null && files != null && files.Length == 1)
             {
                 string fileName = files[0];
                 if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
@@ -1118,8 +1154,8 @@ namespace Kohya_lora_trainer
             {
                 return;
             }
-            var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (files.Length == 1)
+            string[]? files = (string[]?)e.Data.GetData(DataFormats.FileDrop, false);
+            if (files != null && files.Length == 1)
             {
                 string fileName = files[0];
                 if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
@@ -1138,14 +1174,47 @@ namespace Kohya_lora_trainer
             e.Effect = DragDropEffects.None;
         }
 
+        internal static void CommonMultipleFileDragEnterEvent(DragEventArgs e, string fileExtension = "")
+        {
+            if (e == null || e.Data == null)
+            {
+                e.Effect = DragDropEffects.None;
+                return;
+            }
+            string[]? files = (string[]?)e.Data.GetData(DataFormats.FileDrop, false);
+            if (files != null && files.Length > 0)
+            {
+                for (int i = 0; i < files.Length; i++)
+                {
+                    string fileName = files[i];
+                    if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
+                    {
+                        if (!string.IsNullOrEmpty(fileExtension) && Path.GetExtension(fileName) != fileExtension)
+                        {
+                            e.Effect = DragDropEffects.None;
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        e.Effect = DragDropEffects.None;
+                        return;
+                    }
+                }
+                e.Effect = DragDropEffects.Copy;
+                return;
+            }
+            e.Effect = DragDropEffects.None;
+        }
+
         internal static void WeightFileDragEnterEvent(DragEventArgs e)
         {
             if (e == null || e.Data == null)
             {
                 return;
             }
-            var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (files.Length == 1)
+            string[]? files = (string[]?)e.Data.GetData(DataFormats.FileDrop, false);
+            if (files != null && files.Length == 1)
             {
                 string fileName = files[0];
                 if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
@@ -1175,8 +1244,8 @@ namespace Kohya_lora_trainer
                 return string.Empty;
             }
 
-            var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (files.Length == 1)
+            string[]? files = (string[]?)e.Data.GetData(DataFormats.FileDrop, false);
+            if (files != null && files.Length == 1)
             {
                 string fileName = files[0];
                 if (!string.IsNullOrEmpty(fileName) && Directory.Exists(fileName))
@@ -1203,8 +1272,8 @@ namespace Kohya_lora_trainer
             {
                 return;
             }
-            var files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            if (files.Length == 1)
+            string[]? files = (string[]?)e.Data.GetData(DataFormats.FileDrop, false);
+            if (files != null && files.Length == 1)
             {
                 string fileName = files[0];
                 if (!string.IsNullOrEmpty(fileName) && Directory.Exists(fileName))
@@ -1392,11 +1461,10 @@ namespace Kohya_lora_trainer
             string torch = UseLatestTorch ? Constants.LATEST_TORCH_VERSION : Constants.TORCH_VERSION;
             string vision = UseLatestTorch ? Constants.LATEST_TORCHVISION_VERSION : Constants.TORCHVISION_VERSION;
             string index = UseLatestTorch ? Constants.LATEST_INDEX_URL : Constants.INDEX_URL;
-            string xformers = UseLatestTorch ? Constants.LATEST_XFORMERS_VERSION : Constants.XFORMERS_VERSION;
+
             StringBuilder sb = new StringBuilder();
             sb.Append("pip install torch==")
             .Append(torch).Append(" torchvision==").Append(vision)
-            .Append(" xformers==").Append(xformers)
             .Append(" --index-url ").Append(index)
             .Append(" && pip install --upgrade -r requirements.txt");
 
