@@ -11,9 +11,9 @@
         public const string INDEX_URL = "https://download.pytorch.org/whl/cu124";
         public const string WEIGHT_EXTENSION_FILTER = "Weight(*.pt;*.ckpt;*.pth;*.safetensors;*.sft)|*.pt;*.ckpt;*.pth;*.safetensors;*.sft";
 
-        public const string LATEST_TORCH_VERSION = "2.8.0";
-        public const string LATEST_TORCHVISION_VERSION = "0.23.0";
-        public const string LATEST_INDEX_URL = "https://download.pytorch.org/whl/cu128";
+        public const string LATEST_TORCH_VERSION = "2.9.1";
+        public const string LATEST_TORCHVISION_VERSION = "0.24.1";
+        public const string LATEST_INDEX_URL = "https://download.pytorch.org/whl/cu130";
         //public const string LATEST_XFORMERS_VERSION = "0.0.32.post1";
     }
 }

@@ -84,12 +84,14 @@
             // cbxUseLatestTorch
             // 
             cbxUseLatestTorch.AutoSize = true;
+            cbxUseLatestTorch.Checked = true;
+            cbxUseLatestTorch.CheckState = CheckState.Checked;
             cbxUseLatestTorch.Location = new Point(85, 60);
             cbxUseLatestTorch.Name = "cbxUseLatestTorch";
             cbxUseLatestTorch.Size = new Size(365, 19);
             cbxUseLatestTorch.TabIndex = 6;
-            cbxUseLatestTorch.Text = "Torch 2.6.0(CUDA 12.4)の代わりに 2.8.0(CUDA 12.8)をインストールする";
-            toolTip1.SetToolTip(cbxUseLatestTorch, "Blackwell GPU使用者はチェックつける");
+            cbxUseLatestTorch.Text = "Torch 2.6.0(CUDA 12.4)の代わりに 2.9.1(CUDA 13.0)をインストールする";
+            toolTip1.SetToolTip(cbxUseLatestTorch, "Volta, Pascal以前のGPU使用者はチェックを外す");
             cbxUseLatestTorch.UseVisualStyleBackColor = true;
             // 
             // cbxPythonVersion

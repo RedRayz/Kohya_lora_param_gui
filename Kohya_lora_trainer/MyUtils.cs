@@ -1466,12 +1466,8 @@ namespace Kohya_lora_trainer
             sb.Append("pip install torch==")
             .Append(torch).Append(" torchvision==").Append(vision)
             .Append(" --index-url ").Append(index)
-            .Append(" && pip install --upgrade -r requirements.txt");
+            .Append(" && pip install --upgrade -r requirements.txt && pip install bitsandbytes==0.49.1");
 
-            if (UseLatestTorch)
-            {
-                sb.Append(" && pip install bitsandbytes==0.45.5");
-            }
             return sb.ToString();
         }
 
