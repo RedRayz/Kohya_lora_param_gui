@@ -217,12 +217,14 @@
             // cbxUseLatestTorch
             // 
             cbxUseLatestTorch.AutoSize = true;
+            cbxUseLatestTorch.Checked = true;
+            cbxUseLatestTorch.CheckState = CheckState.Checked;
             cbxUseLatestTorch.Location = new Point(161, 123);
             cbxUseLatestTorch.Name = "cbxUseLatestTorch";
             cbxUseLatestTorch.Size = new Size(207, 19);
             cbxUseLatestTorch.TabIndex = 9;
             cbxUseLatestTorch.Text = "Torch 2.9.1(CUDA 13.0)をインストール";
-            toolTip1.SetToolTip(cbxUseLatestTorch, "NVIDIA RTX 50シリーズ使用中ならチェックつける");
+            toolTip1.SetToolTip(cbxUseLatestTorch, "Volta, Pascal以前のGPU使用者はチェックを外す\r\n");
             cbxUseLatestTorch.UseVisualStyleBackColor = true;
             // 
             // cbxPythonVersion
