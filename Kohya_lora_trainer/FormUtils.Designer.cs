@@ -219,9 +219,9 @@
             cbxUseLatestTorch.AutoSize = true;
             cbxUseLatestTorch.Location = new Point(161, 123);
             cbxUseLatestTorch.Name = "cbxUseLatestTorch";
-            cbxUseLatestTorch.Size = new Size(198, 19);
+            cbxUseLatestTorch.Size = new Size(207, 19);
             cbxUseLatestTorch.TabIndex = 9;
-            cbxUseLatestTorch.Text = "Torch 2.8(CUDA 12.8)をインストール";
+            cbxUseLatestTorch.Text = "Torch 2.9.1(CUDA 13.0)をインストール";
             toolTip1.SetToolTip(cbxUseLatestTorch, "NVIDIA RTX 50シリーズ使用中ならチェックつける");
             cbxUseLatestTorch.UseVisualStyleBackColor = true;
             // 
