@@ -1753,6 +1753,11 @@ namespace Kohya_lora_trainer
 
             string scale = "KiB";
 
+            if(para.SavePrecision == SavePrecision.fp32)
+            {
+                filesize *= 2m;
+            }
+
             if(filesize > 1024m)
             {
                 filesize /= 1024m;
