@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using Microsoft.WindowsAPICodePack.Shell;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,8 +13,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using Microsoft.WindowsAPICodePack.Shell;
+using System.Xml.Linq;
 
 namespace Kohya_lora_trainer
 {
@@ -429,6 +430,61 @@ namespace Kohya_lora_trainer
                 process.StartInfo = ps;
                 process.Start();
             }
+        }
+
+        private void btnShowTorchVer_Click(object sender, EventArgs e)
+        {
+            if (!Directory.Exists(Constants.CurrentSdScriptsPath))
+            {
+                MessageBox.Show("sd-scriptsがみつかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!Directory.Exists(Constants.CurrentSdScriptsPath + "venv\\Lib\\site-packages"))
+            {
+                MessageBox.Show("venvがありません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string fullpath = Path.GetFullPath(Constants.CurrentSdScriptsPath + "venv\\Lib\\site-packages");
+
+            string[] dirs = Directory.GetDirectories(fullpath);
+            if (dirs.Length > 0)
+            {
+                Regex reg = new Regex(@"torch-\d\.\d\.\d\+.*\.dist-info", RegexOptions.Compiled, TimeSpan.FromMilliseconds(50));
+                for (int i = 0; i < dirs.Length; i++)
+                {
+                    string? dirName = Path.GetFileName(dirs[i]);
+                    string fname = dirs[i] + "\\METADATA";
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(dirName) && reg.IsMatch(dirName) && File.Exists(fname))
+                        {
+                            string text = File.ReadAllText(fname);
+                            string[] lines = text.Split("\r\n");
+                            for (int j = 0; j < lines.Length; j++) 
+                            {
+                                if (j > 0 && lines[j].Contains("Version"))
+                                {
+                                    MessageBox.Show("PyTorchバージョン: " + lines[j].Replace("Version: ", string.Empty), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("エラーが発生しました。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("ディレクトリ数が0やぞ\r\n" + fullpath, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            MessageBox.Show("なにもなかった\r\nディレクトリ数は" + dirs.Length.ToString(), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

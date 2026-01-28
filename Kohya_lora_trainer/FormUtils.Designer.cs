@@ -73,6 +73,8 @@
             label11 = new Label();
             btnPurgePipCache = new Button();
             toolTip1 = new ToolTip(components);
+            btnShowTorchVer = new Button();
+            label15 = new Label();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -499,12 +501,14 @@
             // 
             // tabPage5
             // 
+            tabPage5.Controls.Add(label15);
+            tabPage5.Controls.Add(btnShowTorchVer);
             tabPage5.Controls.Add(label9);
             tabPage5.Controls.Add(label11);
             tabPage5.Controls.Add(btnPurgePipCache);
-            tabPage5.Location = new Point(4, 26);
+            tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(525, 399);
+            tabPage5.Size = new Size(525, 401);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "不具合修正";
             tabPage5.UseVisualStyleBackColor = true;
@@ -536,6 +540,25 @@
             btnPurgePipCache.Text = "pipキャッシュの消去";
             btnPurgePipCache.UseVisualStyleBackColor = true;
             btnPurgePipCache.Click += btnPurgePipCache_Click;
+            // 
+            // btnShowTorchVer
+            // 
+            btnShowTorchVer.Location = new Point(39, 94);
+            btnShowTorchVer.Name = "btnShowTorchVer";
+            btnShowTorchVer.Size = new Size(117, 32);
+            btnShowTorchVer.TabIndex = 2;
+            btnShowTorchVer.Text = "Torchのver確認";
+            btnShowTorchVer.UseVisualStyleBackColor = true;
+            btnShowTorchVer.Click += btnShowTorchVer_Click;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(39, 129);
+            label15.Name = "label15";
+            label15.Size = new Size(256, 15);
+            label15.TabIndex = 3;
+            label15.Text = "venvにインストールされたtorchのバージョンを表示する";
             // 
             // FormUtils
             // 
@@ -614,5 +637,7 @@
         private Label label9;
         private Button btnPurgePipCache;
         private Label label11;
+        private Label label15;
+        private Button btnShowTorchVer;
     }
 }
