@@ -7,7 +7,7 @@ https://github.com/kohya-ss/sd-scripts のLoRA学習用のパラメータをGUI�
 
 gradioを使用するものと比べ以下のメリットがあります。
 - python、gradioを使用しないためファイルサイズが小さく起動が早い
-- Webブラウザを使用しないため軽量
+- Webアプリではなく従来のデスクトップアプリのため軽量
 - 比較的コンパクトなUI
 
 ## 他の機能
@@ -30,7 +30,7 @@ NVIDIA製グラフィックボードを搭載したパソコンでの動作を�
 このGUIはコマンドを生成し、sd-scriptsに渡しているだけであり直接の関係はありません。sd-scripts開発者にGUIについて問い合わせる行為はご遠慮ください。
 
 ## 「スマート アプリ コントロールが安全でない可能性のあるアプリをブロックしました」の対処
-これは個人製作のアプリなどあまり認知されていないものをブロックするWindowsの余計な機能です。
+これは個人製作のアプリなどあまり認知されていないものをブロックするWindowsの機能です。
 
 次のページを見て「スマート アプリ コントロール」をオフにしてください。
 
@@ -43,9 +43,10 @@ http://faq3.dospara.co.jp/faq/show/15260?category_id=1&site_domain=default
 ### A.GUIの簡易インストーラーを使用する
 v1.6以降でご利用いただけます。
 
-0.あらかじめ[git](https://git-scm.com/downloads/win)と[Python 3.11.9](https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe)をインストールしておく。これらはsd-scriptsが必要とするものです。
+0.あらかじめ[git](https://git-scm.com/downloads/win)と[Python 3.11](https://www.python.org/ftp/python/3.11.9/python-3.11.9-amd64.exe)をインストールしておく。これらはsd-scriptsが必要とするものです。
 
-※この時点で理解できない・AUTOMATIC1111のインストールが難しい人は学習も難しいと思われます。
+- この時点で理解できない・AUTOMATIC1111のインストールが難しい人は学習も難しいと思われます。
+- CUDA Toolkitのインストールは不要です。PyTorchにCUDAランタイムが同梱されています。
 
 1.[releases](https://github.com/RedRayz/Kohya_lora_param_gui/releases)からkohya_lora_param_gui-x.x.x.zipをDLする
 
@@ -62,7 +63,7 @@ v1.6以降でご利用いただけます。
 
 2.[releases](https://github.com/RedRayz/Kohya_lora_param_gui/releases)からkohya_lora_gui-x.x.x.zipをDLする
 
-3.zipを解凍してできたフォルダをsd-scriptsと同じ階層のフォルダに移動させる
+3.zipを解凍してできたフォルダをsd-scriptsと同じ階層のフォルダに移動させる(sd-scriptsの中ではない!)
 
 注意:ディレクトリの階層は次のようにします。
 
