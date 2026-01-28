@@ -65,6 +65,7 @@ namespace Kohya_lora_trainer
             btnShowTipsDatasetDir = new Button();
             lblNumStepsBatch1 = new Label();
             btnRefreshPath = new Button();
+            lblPredictedLoraFilesize = new Label();
             btnSavePreset = new Button();
             btnLoadPreset = new Button();
             lblResolution = new Label();
@@ -131,6 +132,7 @@ namespace Kohya_lora_trainer
             tbxCommand = new TextBox();
             cbxCompleteAction = new ComboBox();
             label24 = new Label();
+            lblPredictedLoraFilesizeTitle = new Label();
             ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDim).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudResolution).BeginInit();
@@ -271,7 +273,7 @@ namespace Kohya_lora_trainer
             // btnStartTraining
             // 
             btnStartTraining.Font = new Font("Yu Gothic UI", 14F);
-            btnStartTraining.Location = new Point(643, 545);
+            btnStartTraining.Location = new Point(643, 557);
             btnStartTraining.Name = "btnStartTraining";
             btnStartTraining.Size = new Size(132, 39);
             btnStartTraining.TabIndex = 27;
@@ -464,7 +466,7 @@ namespace Kohya_lora_trainer
             // cbxOverwrite
             // 
             cbxOverwrite.AutoSize = true;
-            cbxOverwrite.Location = new Point(392, 536);
+            cbxOverwrite.Location = new Point(396, 544);
             cbxOverwrite.Name = "cbxOverwrite";
             cbxOverwrite.Size = new Size(83, 19);
             cbxOverwrite.TabIndex = 89;
@@ -504,9 +506,19 @@ namespace Kohya_lora_trainer
             btnRefreshPath.UseVisualStyleBackColor = true;
             btnRefreshPath.Click += btnRefreshPath_Click;
             // 
+            // lblPredictedLoraFilesize
+            // 
+            lblPredictedLoraFilesize.Font = new Font("Yu Gothic UI", 10F);
+            lblPredictedLoraFilesize.Location = new Point(668, 528);
+            lblPredictedLoraFilesize.Name = "lblPredictedLoraFilesize";
+            lblPredictedLoraFilesize.Size = new Size(106, 22);
+            lblPredictedLoraFilesize.TabIndex = 61;
+            lblPredictedLoraFilesize.Text = "100KB";
+            toolTip1.SetToolTip(lblPredictedLoraFilesize, "おおよそのファイルサイズ");
+            // 
             // btnSavePreset
             // 
-            btnSavePreset.Location = new Point(384, 557);
+            btnSavePreset.Location = new Point(384, 569);
             btnSavePreset.Name = "btnSavePreset";
             btnSavePreset.Size = new Size(100, 27);
             btnSavePreset.TabIndex = 34;
@@ -517,7 +529,7 @@ namespace Kohya_lora_trainer
             // btnLoadPreset
             // 
             btnLoadPreset.AllowDrop = true;
-            btnLoadPreset.Location = new Point(281, 557);
+            btnLoadPreset.Location = new Point(281, 569);
             btnLoadPreset.Name = "btnLoadPreset";
             btnLoadPreset.Size = new Size(100, 27);
             btnLoadPreset.TabIndex = 35;
@@ -754,7 +766,7 @@ namespace Kohya_lora_trainer
             // 
             // btnGenerateCommands
             // 
-            btnGenerateCommands.Location = new Point(510, 557);
+            btnGenerateCommands.Location = new Point(510, 569);
             btnGenerateCommands.Name = "btnGenerateCommands";
             btnGenerateCommands.Size = new Size(127, 27);
             btnGenerateCommands.TabIndex = 83;
@@ -1197,11 +1209,21 @@ namespace Kohya_lora_trainer
             label24.TabIndex = 91;
             label24.Text = "学習終了時の動作";
             // 
+            // lblPredictedLoraFilesizeTitle
+            // 
+            lblPredictedLoraFilesizeTitle.AutoSize = true;
+            lblPredictedLoraFilesizeTitle.Location = new Point(571, 530);
+            lblPredictedLoraFilesizeTitle.Name = "lblPredictedLoraFilesizeTitle";
+            lblPredictedLoraFilesizeTitle.Size = new Size(96, 15);
+            lblPredictedLoraFilesizeTitle.TabIndex = 92;
+            lblPredictedLoraFilesizeTitle.Text = "予想ファイルサイズ:";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(799, 614);
+            Controls.Add(lblPredictedLoraFilesizeTitle);
             Controls.Add(btnRefreshPath);
             Controls.Add(label24);
             Controls.Add(cbxCompleteAction);
@@ -1214,6 +1236,7 @@ namespace Kohya_lora_trainer
             Controls.Add(btnBlockWeight);
             Controls.Add(lblScriptPathDesc);
             Controls.Add(btnCustomScriptPath);
+            Controls.Add(lblPredictedLoraFilesize);
             Controls.Add(lblNumStepsBatch1);
             Controls.Add(label5);
             Controls.Add(lblNumSteps);
@@ -1360,6 +1383,8 @@ namespace Kohya_lora_trainer
         private Button btnShowTipsRegImageDir;
         private ToolStripMenuItem sdscriptsリポジトリToolStripMenuItem;
         private Button btnRefreshPath;
+        private Label lblPredictedLoraFilesizeTitle;
+        private Label lblPredictedLoraFilesize;
     }
 }
 

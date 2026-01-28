@@ -112,13 +112,14 @@ namespace Kohya_lora_trainer {
                 lblOut[i].Text = (0.05m * TrainParams.Current.BlockWeightOut[i]).ToString();
             }
 
+            tbrMid.Value = TrainParams.Current.BlockWeightMid;
+            lblMId.Text = (0.05m * TrainParams.Current.BlockWeightMid).ToString();
             tbrMid01.Value = TrainParams.Current.BlockWeightMid01;
             lblMid01.Text = (0.05m * TrainParams.Current.BlockWeightMid01).ToString();
             tbrMid02.Value = TrainParams.Current.BlockWeightMid02;
             lblMid02.Text = (0.05m * TrainParams.Current.BlockWeightMid02).ToString();
 
-            tbrMid.Value = TrainParams.Current.BlockWeightMid;
-            lblMId.Text = (0.05m * TrainParams.Current.BlockWeightMid).ToString();
+
             tbrThreshold.Value = TrainParams.Current.BlockWeightZeroThreshold;
             lblThreshold.Text = (0.05m * TrainParams.Current.BlockWeightZeroThreshold).ToString();
 
