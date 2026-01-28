@@ -1653,29 +1653,29 @@ namespace Kohya_lora_trainer
                         //Attn Depth=2
                         if (i == 4 || i == 5)
                         {
-                            filesize += 510940;
+                            filesize += 99.793m;
                         }
                         //Attn depth=10
                         if (i == 7 || i == 8)
                         {
-                            filesize += 851316;
+                            filesize += 831.3633m;
                         }
                     }
                     //MID01 Attn depth10
-                    filesize += 851316;
+                    filesize += 831.3633m;
 
                     for (int i = 0; i < 9; i++) //OUT
                     {
                         //Attn depth=10
                         if (i >= 0 && i <= 2)
                         {
-                            filesize += 851316;
+                            filesize += 831.3633m;
                         }
 
                         //Attn depth=2
                         if (i >= 3 && i <= 5)
                         {
-                            filesize += 510940;
+                            filesize += 99.793m;
                         }
                     }
 
@@ -1684,7 +1684,7 @@ namespace Kohya_lora_trainer
                     //畳み込み層
                     if (para.UseConv2dExtend)
                     {
-                        filesize += 270800m * para.ConvDim;
+                        filesize += 264.4531m * para.ConvDim;
                     }
                 }
                 else //Block WeightまたはBlock Dim有効
@@ -1696,16 +1696,16 @@ namespace Kohya_lora_trainer
                             //Attn Depth=2
                             if ((i == 4 || i == 5))
                             {
-                                filesize += 510940 * (para.UseBlockDim ? para.BlockDimIn[i] : para.NetworkDim);
+                                filesize += 99.793m * (para.UseBlockDim ? para.BlockDimIn[i] : para.NetworkDim);
                             }
                             //Attn depth=10
                             else if (i == 7 || i == 8)
                             {
-                                filesize += 851316 * (para.UseBlockDim ? para.BlockDimIn[i] : para.NetworkDim);
+                                filesize += 831.3633m * (para.UseBlockDim ? para.BlockDimIn[i] : para.NetworkDim);
                             }
                             else if (para.UseConv2dExtend)
                             {
-                                filesize += 27080 * (para.UseBlockDim ? para.BlockDimIn[i] : para.NetworkDim);
+                                filesize += 26.4453m * (para.UseBlockDim ? para.BlockDimIn[i] : para.NetworkDim);
                             }
                         }
 
@@ -1713,11 +1713,11 @@ namespace Kohya_lora_trainer
 
                     //MID
                     if (para.BlockWeightMid > 0 || (para.UseBlockDim && para.BlockDimMid > 0))
-                        filesize += 27080 * (para.UseBlockDim ? para.BlockDimMid : para.NetworkDim);
+                        filesize += 26.4453m * (para.UseBlockDim ? para.BlockDimMid : para.NetworkDim);
                     if (para.BlockWeightMid01 > 0 || (para.UseBlockDim && para.BlockDimMid01 > 0))
-                        filesize += 851316 * (para.UseBlockDim ? para.BlockDimMid01 : para.NetworkDim);
+                        filesize += 831.3633m * (para.UseBlockDim ? para.BlockDimMid01 : para.NetworkDim);
                     if (para.BlockWeightMid02 > 0 || (para.UseBlockDim && para.BlockDimMid02 > 0))
-                        filesize += 27080 * (para.UseBlockDim ? para.BlockDimMid02 : para.NetworkDim);
+                        filesize += 26.4453m * (para.UseBlockDim ? para.BlockDimMid02 : para.NetworkDim);
 
                     for (int i = 0; i < 9; i++) //OUT
                     {
@@ -1726,16 +1726,16 @@ namespace Kohya_lora_trainer
                             //Attn depth=10
                             if (i >= 0 && i <= 2)
                             {
-                                filesize += 851316 * (para.UseBlockDim ? para.BlockDimOut[i] : para.NetworkDim);
+                                filesize += 831.3633m * (para.UseBlockDim ? para.BlockDimOut[i] : para.NetworkDim);
                             }
                             //Attn depth=2
                             else if (i >= 3 && i <= 5)
                             {
-                                filesize += 510940 * (para.UseBlockDim ? para.BlockDimOut[i] : para.NetworkDim);
+                                filesize += 99.793m * (para.UseBlockDim ? para.BlockDimOut[i] : para.NetworkDim);
                             }
                             else if (para.UseConv2dExtend)
                             {
-                                filesize += 27080 * (para.UseBlockDim ? para.BlockDimOut[i] : para.NetworkDim);
+                                filesize += 26.4453m * (para.UseBlockDim ? para.BlockDimOut[i] : para.NetworkDim);
                             }
                         }
 
@@ -1748,12 +1748,10 @@ namespace Kohya_lora_trainer
 
             if (para.advancedTrainType == AdvancedTrain.None || para.advancedTrainType == AdvancedTrain.TextEncoderOnly)
             {
-                filesize += 1909128 * para.NetworkDim;
+                filesize += 1864.3828m * para.NetworkDim;
             }
 
             string scale = "KiB";
-
-            filesize /= 1024m;
 
             if(filesize > 1024m)
             {
@@ -1768,7 +1766,15 @@ namespace Kohya_lora_trainer
             }
 
             lblPredictedLoraFilesizeTitle.Enabled = true;
-            lblPredictedLoraFilesize.Text = filesize.ToString("#,0.00" + scale);
+            if(filesize >= 0)
+            {
+                lblPredictedLoraFilesize.Text = filesize.ToString("#,0.00" + scale);
+            }
+            else
+            {
+                lblPredictedLoraFilesize.Text = "オーバーフロー";
+            }
+            
         }
     }
 }
