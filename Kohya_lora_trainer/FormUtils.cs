@@ -1,19 +1,7 @@
 ﻿using Microsoft.WindowsAPICodePack.Dialogs;
-using Microsoft.WindowsAPICodePack.Shell;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace Kohya_lora_trainer
 {
@@ -479,12 +467,7 @@ namespace Kohya_lora_trainer
                     }
                 }
             }
-            else
-            {
-                MessageBox.Show("ディレクトリ数が0やぞ\r\n" + fullpath, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            MessageBox.Show("なにもなかった\r\nディレクトリ数は" + dirs.Length.ToString(), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("PyTorchはインストールされていません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
