@@ -28,6 +28,10 @@ namespace Kohya_lora_trainer {
 
         private void FormBlockDim_Load(object sender, EventArgs e)
         {
+            if (TrainParams.Current == null)
+            {
+                return;
+            }
             //配列の設定
             NudDimIn[0] = nudDimIn00;
             NudDimIn[1] = nudDimIn01;
@@ -112,6 +116,12 @@ namespace Kohya_lora_trainer {
 
         private void LoadBlockValues()
         {
+            if (TrainParams.Current == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             //値の読込
             for (int i = 0; i < 12; i++)
             {
@@ -150,6 +160,12 @@ namespace Kohya_lora_trainer {
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
+            if (TrainParams.Current == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+                return;
+            }
             //値の読込
             for (int i = 0; i < 12; i++)
             {
@@ -191,7 +207,12 @@ namespace Kohya_lora_trainer {
 
         private void btnResetAll_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("全てのブロックの値をnetwork_dim/alphaの値に変更しますか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (TrainParams.Current == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (MessageBox.Show("全てのブロックの値をnetwork_dim/alphaの値に変更しますか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 //DIM IN
                 for (int i = 0; i < 12; i++)

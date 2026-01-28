@@ -368,6 +368,7 @@ namespace Kohya_lora_trainer
         private void nudNetworkDim_ValueChanged(object sender, EventArgs e)
         {
             TrainParams.Current.NetworkDim = (int)nudNetworkDim.Value;
+            PredictLoraFilesize();
         }
 
         private void nudNetworkAlpha_ValueChanged(object sender, EventArgs e)
@@ -977,6 +978,7 @@ namespace Kohya_lora_trainer
         private void cbxModuleType_SelectedIndexChanged(object sender, EventArgs e)
         {
             TrainParams.Current.ModuleType = (NetworkModule)Enum.ToObject(typeof(NetworkModule), cbxModuleType.SelectedIndex);
+            PredictLoraFilesize();
         }
 
         private void btnGenerateCommands_Click(object sender, EventArgs e)
@@ -1010,6 +1012,7 @@ namespace Kohya_lora_trainer
         private void cbxSDType_SelectedIndexChanged(object sender, EventArgs e)
         {
             TrainParams.Current.ModelArchitectureEnum = (ModelArchitecture)Enum.ToObject(typeof(ModelArchitecture), cbxSDType.SelectedIndex);
+            PredictLoraFilesize();
         }
 
         private void cbxEpochOrStep_SelectedIndexChanged(object sender, EventArgs e)
@@ -1313,6 +1316,8 @@ namespace Kohya_lora_trainer
 
             tbxCustomOptName.Text = TrainParams.Current.CustomOptName;
             tbxCustomOptArgs.Text = TrainParams.Current.CustomOptArgs;
+
+            PredictLoraFilesize();
 
             UpdateTotalStepCount();
         }
@@ -1622,6 +1627,148 @@ namespace Kohya_lora_trainer
             {
                 UpdateAllContents();
             }
+        }
+
+        private void PredictLoraFilesize()
+        {
+            var para = TrainParams.Current;
+
+            if (para.ModelArchitectureEnum != ModelArchitecture.XL || para.ModuleType != NetworkModule.LoRA)
+            {
+                lblPredictedLoraFilesizeTitle.Enabled = false;
+                lblPredictedLoraFilesize.Text = string.Empty;
+                return;
+            }
+
+            decimal filesize = 0;
+
+            //両方学習 or Unetオンリー
+            if(para.advancedTrainType == AdvancedTrain.None || para.advancedTrainType == AdvancedTrain.UNetOnly)
+            {
+                //層別WeightとDimの両方使わない
+                if (!para.UseBlockWeight && !para.UseBlockDim)
+                {
+                    for (int i = 0; i < 9; i++) //IN
+                    {
+                        //Attn Depth=2
+                        if (i == 4 || i == 5)
+                        {
+                            filesize += 510940;
+                        }
+                        //Attn depth=10
+                        if (i == 7 || i == 8)
+                        {
+                            filesize += 851316;
+                        }
+                    }
+                    //MID01 Attn depth10
+                    filesize += 851316;
+
+                    for (int i = 0; i < 9; i++) //OUT
+                    {
+                        //Attn depth=10
+                        if (i >= 0 && i <= 2)
+                        {
+                            filesize += 851316;
+                        }
+
+                        //Attn depth=2
+                        if (i >= 3 && i <= 5)
+                        {
+                            filesize += 510940;
+                        }
+                    }
+
+
+                    filesize *= para.NetworkDim;
+                    //畳み込み層
+                    if (para.UseConv2dExtend)
+                    {
+                        filesize += 270800m * para.ConvDim;
+                    }
+                }
+                else //Block WeightまたはBlock Dim有効
+                {
+                    for (int i = 0; i < 9; i++) //IN
+                    {
+                        if (para.BlockWeightIn[i] > 0 || (para.UseBlockDim && para.BlockDimIn[i] > 0))
+                        {
+                            //Attn Depth=2
+                            if ((i == 4 || i == 5))
+                            {
+                                filesize += 510940 * (para.UseBlockDim ? para.BlockDimIn[i] : para.NetworkDim);
+                            }
+                            //Attn depth=10
+                            else if (i == 7 || i == 8)
+                            {
+                                filesize += 851316 * (para.UseBlockDim ? para.BlockDimIn[i] : para.NetworkDim);
+                            }
+                            else if (para.UseConv2dExtend)
+                            {
+                                filesize += 27080 * (para.UseBlockDim ? para.BlockDimIn[i] : para.NetworkDim);
+                            }
+                        }
+
+                    }
+
+                    //MID
+                    if (para.BlockWeightMid > 0 || (para.UseBlockDim && para.BlockDimMid > 0))
+                        filesize += 27080 * (para.UseBlockDim ? para.BlockDimMid : para.NetworkDim);
+                    if (para.BlockWeightMid01 > 0 || (para.UseBlockDim && para.BlockDimMid01 > 0))
+                        filesize += 851316 * (para.UseBlockDim ? para.BlockDimMid01 : para.NetworkDim);
+                    if (para.BlockWeightMid02 > 0 || (para.UseBlockDim && para.BlockDimMid02 > 0))
+                        filesize += 27080 * (para.UseBlockDim ? para.BlockDimMid02 : para.NetworkDim);
+
+                    for (int i = 0; i < 9; i++) //OUT
+                    {
+                        if (para.BlockWeightOut[i] > 0 || (para.UseBlockDim && para.BlockDimOut[i] > 0))
+                        {
+                            //Attn depth=10
+                            if (i >= 0 && i <= 2)
+                            {
+                                filesize += 851316 * (para.UseBlockDim ? para.BlockDimOut[i] : para.NetworkDim);
+                            }
+                            //Attn depth=2
+                            else if (i >= 3 && i <= 5)
+                            {
+                                filesize += 510940 * (para.UseBlockDim ? para.BlockDimOut[i] : para.NetworkDim);
+                            }
+                            else if (para.UseConv2dExtend)
+                            {
+                                filesize += 27080 * (para.UseBlockDim ? para.BlockDimOut[i] : para.NetworkDim);
+                            }
+                        }
+
+                    }
+                }
+
+            }
+
+
+
+            if (para.advancedTrainType == AdvancedTrain.None || para.advancedTrainType == AdvancedTrain.TextEncoderOnly)
+            {
+                filesize += 1909128 * para.NetworkDim;
+            }
+
+            string scale = "KiB";
+
+            filesize /= 1024m;
+
+            if(filesize > 1024m)
+            {
+                filesize /= 1024m;
+                scale = "MiB";
+            }
+
+            if (filesize > 1024m)
+            {
+                filesize /= 1024m;
+                scale = "GiB";
+            }
+
+            lblPredictedLoraFilesizeTitle.Enabled = true;
+            lblPredictedLoraFilesize.Text = filesize.ToString("#,0.00" + scale);
         }
     }
 }
