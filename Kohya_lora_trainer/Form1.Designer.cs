@@ -387,7 +387,7 @@ namespace Kohya_lora_trainer
             // 
             cbxSDType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxSDType.FormattingEnabled = true;
-            cbxSDType.Items.AddRange(new object[] { "SD1", "SDXL" });
+            cbxSDType.Items.AddRange(new object[] { "SD1", "SDXL", "Anima" });
             cbxSDType.Location = new Point(104, 252);
             cbxSDType.Name = "cbxSDType";
             cbxSDType.Size = new Size(139, 23);
