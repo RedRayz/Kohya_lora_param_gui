@@ -761,17 +761,6 @@ namespace Kohya_lora_trainer
                 sb.Append(" --text_encoder_batch_size ").Append(TrainParams.Current.TEBatchSize.ToString("0"));
 
 
-
-            if (!string.IsNullOrEmpty(TrainParams.Current.ClipLPath))
-            {
-                sb.Append(" --clip_l \"").Append(TrainParams.Current.ClipLPath).Append('"');
-            }
-
-            if (!string.IsNullOrEmpty(TrainParams.Current.ClipGPath))
-            {
-                sb.Append(" --clip_g \"").Append(TrainParams.Current.ClipGPath).Append('"');
-            }
-
             if (!string.IsNullOrEmpty(TrainParams.Current.T5XXLPath))
             {
                 sb.Append(" --t5xxl \"").Append(TrainParams.Current.T5XXLPath).Append('"');

@@ -381,15 +381,9 @@ namespace Kohya_lora_trainer
             TrainParams.Current.RandomIpNoiseGamma = cbxRandomIpNoiseGamma.Checked;
             TrainParams.Current.AlphaMask = cbxAlphaMask.Checked;
 
-
-            TrainParams.Current.ClipLPath = lblClipLPath.Text;
-            TrainParams.Current.ClipGPath = lblClipGPath.Text;
-
             TrainParams.Current.SchedulerTimescale = nudSchedulerTimescale.Value;
             TrainParams.Current.LRDecaySteps = nudLRDecaySteps.Value;
             TrainParams.Current.MinLRRatio = nudMinLRRatio.Value;
-            TrainParams.Current.ClipLDropoutRate = nudClipLDropoutRate.Value;
-            TrainParams.Current.ClipGDropoutRate = nudClipGDropoutRate.Value;
             TrainParams.Current.DisableMmapLoadSafetensors = cbxDisableMmapLoadSafetensors.Checked;
             TrainParams.Current.TEBatchSize = nudTEBatchSize.Value;
             TrainParams.Current.VParameterization = cbxVParameterization.Checked;
@@ -525,12 +519,8 @@ namespace Kohya_lora_trainer
             cbxRandomIpNoiseGamma.Checked = TrainParams.Current.RandomIpNoiseGamma;
             cbxAlphaMask.Checked = TrainParams.Current.AlphaMask;
 
-            lblClipLPath.Text = TrainParams.Current.ClipLPath;
-            lblClipGPath.Text = TrainParams.Current.ClipGPath;
             cbxDisableMmapLoadSafetensors.Checked = TrainParams.Current.DisableMmapLoadSafetensors;
 
-            nudClipLDropoutRate.Value = TrainParams.Current.ClipLDropoutRate;
-            nudClipGDropoutRate.Value = TrainParams.Current.ClipGDropoutRate;
             nudTEBatchSize.Value = TrainParams.Current.TEBatchSize;
 
 
@@ -693,50 +683,16 @@ namespace Kohya_lora_trainer
             tips.Dispose();
         }
 
-        private void btnClipLPath_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = Constants.WEIGHT_EXTENSION_FILTER;
-            ofd.Title = "Select a CLIP L";
-            ofd.RestoreDirectory = true;
 
-            if (File.Exists(TrainParams.Current.ClipLPath))
-            {
-                ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.ClipLPath);
-            }
-
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                lblClipLPath.Text = ofd.FileName;
-            }
-        }
-
-        private void btnClearClipLPath_Click(object sender, EventArgs e)
-        {
-            lblClipLPath.Text = string.Empty;
-        }
 
         private void btnClipGPath_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = Constants.WEIGHT_EXTENSION_FILTER;
-            ofd.Title = "Select a CLIP G";
-            ofd.RestoreDirectory = true;
 
-            if (File.Exists(TrainParams.Current.ClipGPath))
-            {
-                ofd.InitialDirectory = Path.GetDirectoryName(TrainParams.Current.ClipGPath);
-            }
-
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                lblClipGPath.Text = ofd.FileName;
-            }
         }
 
         private void btnClearClipGPath_Click(object sender, EventArgs e)
         {
-            lblClipGPath.Text = string.Empty;
+
         }
     }
 }
