@@ -487,10 +487,10 @@ namespace Kohya_lora_trainer
                 while (BatchProcess.BatchStack.Count > 0)
                 {
                     string pth = BatchProcess.BatchStack.Pop();
-                    //train_networkがない
+                    //必須のファイルがない
                     if (!HasScriptFile(str, false))
                     {
-                        Debug.WriteLine("Skip training. train_network.py not found");
+                        Debug.WriteLine("Skip training. required files are not found");
                         BatchProcess.LogText += TrainParams.Current.OutputPath + "\\" + TrainParams.Current.OutputName + ".safetensors\r\ntrain_network.pyがないためスキップ\r\n\r\n";
 
                         BatchProcess.SkippedCount++;
@@ -634,6 +634,8 @@ namespace Kohya_lora_trainer
                     return;
             }
 
+            Debug.WriteLine("Execute the command");
+
             Form train = new TrainForm(false);
             train.ShowDialog();
             train.Dispose();
@@ -642,24 +644,34 @@ namespace Kohya_lora_trainer
 
         private bool HasScriptFile(string str, bool showMsg)
         {
-#if DEBUG
-            if (!File.Exists(str + "train_network.py"))
+            switch (TrainParams.Current.ModelArchitectureEnum)
             {
-                if (showMsg)
-                    MessageBox.Show("train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                case ModelArchitecture.Legacy:
+                    if (!File.Exists(str + "train_network.py"))
+                    {
+                        if (showMsg)
+                            MessageBox.Show("train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                    break;
+                case ModelArchitecture.XL:
+                    if (!File.Exists(str + @"sdxl_train_network.py"))
+                    {
+                        if (showMsg)
+                            MessageBox.Show("sdxl_train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                    break;
+                case ModelArchitecture.Anima:
+                    if (!File.Exists(str + "anima_train_network.py"))
+                    {
+                        if (showMsg)
+                            MessageBox.Show("anima_train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                    break;
             }
-            return true;
-#endif
-
-            if (!File.Exists(str + "train_network.py"))
-            {
-                if (showMsg)
-                    MessageBox.Show("train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (!Directory.Exists(Constants.CurrentSdScriptsPath + @"venv"))
+            if (!Directory.Exists(str + "venv"))
             {
                 if (showMsg)
                     MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。\r\nユーティリティからvenvの再生成ができます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -806,20 +818,6 @@ namespace Kohya_lora_trainer
             {
                 if (showMsg)
                     MessageBox.Show("VAEが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL && !File.Exists(Constants.CurrentSdScriptsPath + @"sdxl_train_network.py"))
-            {
-                if (showMsg)
-                    MessageBox.Show("sdxl_train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (!Directory.Exists(Constants.CurrentSdScriptsPath + @"venv"))
-            {
-                if (showMsg)
-                    MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。\r\nツール->ユーティリティからvenvの再生成ができます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
