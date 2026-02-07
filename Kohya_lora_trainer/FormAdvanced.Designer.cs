@@ -241,7 +241,6 @@ namespace Kohya_lora_trainer
             cbxTrainNorm = new CheckBox();
             label23 = new Label();
             tabPage8 = new TabPage();
-            cbxApplyT5AttnMask = new CheckBox();
             label58 = new Label();
             label61 = new Label();
             label60 = new Label();
@@ -2221,10 +2220,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 337);
+            tabPage2.Size = new Size(660, 335);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -2354,9 +2353,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(tbxTokensSeparator);
             pageMisc.Controls.Add(label46);
             pageMisc.Controls.Add(tbxComment);
-            pageMisc.Location = new Point(4, 24);
+            pageMisc.Location = new Point(4, 26);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(660, 337);
+            pageMisc.Size = new Size(660, 335);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -2541,7 +2540,6 @@ namespace Kohya_lora_trainer
             // 
             // tabPage8
             // 
-            tabPage8.Controls.Add(cbxApplyT5AttnMask);
             tabPage8.Controls.Add(label58);
             tabPage8.Controls.Add(label61);
             tabPage8.Controls.Add(label60);
@@ -2549,22 +2547,12 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(nudSigmoidScale);
             tabPage8.Controls.Add(nudDiscreteFlowShift);
             tabPage8.Controls.Add(nudBlocksToSwap);
-            tabPage8.Location = new Point(4, 26);
+            tabPage8.Location = new Point(4, 24);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 335);
+            tabPage8.Size = new Size(660, 337);
             tabPage8.TabIndex = 14;
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;
-            // 
-            // cbxApplyT5AttnMask
-            // 
-            cbxApplyT5AttnMask.AutoSize = true;
-            cbxApplyT5AttnMask.Location = new Point(318, 56);
-            cbxApplyT5AttnMask.Name = "cbxApplyT5AttnMask";
-            cbxApplyT5AttnMask.Size = new Size(161, 19);
-            cbxApplyT5AttnMask.TabIndex = 3;
-            cbxApplyT5AttnMask.Text = "T5にAttention Maskを適用";
-            cbxApplyT5AttnMask.UseVisualStyleBackColor = true;
             // 
             // label58
             // 
@@ -2941,6 +2929,5 @@ namespace Kohya_lora_trainer
         private NumericUpDown nudDiscreteFlowShift;
         private Label label61;
         private NumericUpDown nudSigmoidScale;
-        private CheckBox cbxApplyT5AttnMask;
     }
 }

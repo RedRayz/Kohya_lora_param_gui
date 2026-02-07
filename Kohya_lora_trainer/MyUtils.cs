@@ -660,11 +660,6 @@ namespace Kohya_lora_trainer
                     sb.Append(" --blocks_to_swap ").Append(para.BlocksToSwap.ToString());
                 }
 
-                if (para.ApplyT5AttnMask)
-                {
-                    sb.Append(" --apply_t5_attn_mask");
-                }
-
                 sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.##"));
                 sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.##"));
             }

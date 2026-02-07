@@ -407,7 +407,6 @@ namespace Kohya_lora_trainer
             para.CpuOffloadCheckpointing = cbxCpuOffloadCheckpointing.Checked;
             para.Sigmoidscale = nudSigmoidScale.Value;
             para.DiscreteFlowShift = nudDiscreteFlowShift.Value;
-            para.ApplyT5AttnMask = cbxApplyT5AttnMask.Checked;
             para.DitPath = lblDitPath.Text;
             para.Qwen3Path = lblQwen3Path.Text;
 
@@ -564,7 +563,6 @@ namespace Kohya_lora_trainer
             cbxCpuOffloadCheckpointing.Checked = para.CpuOffloadCheckpointing;
             nudSigmoidScale.Value = para.Sigmoidscale;
             nudDiscreteFlowShift.Value = para.DiscreteFlowShift;
-            cbxApplyT5AttnMask.Checked = para.ApplyT5AttnMask;
 
             lblDitPath.Text = para.DitPath;
             lblQwen3Path.Text = para.Qwen3Path;
