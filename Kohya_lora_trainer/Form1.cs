@@ -30,6 +30,8 @@ namespace Kohya_lora_trainer
         private string? LastOpenPresetPath = string.Empty;
         private bool IsReady = false;
 
+        private bool PrevCustomCmdActiveFlag = false, PrevAddArgActiveFlag = false, PrevCustomOptActiveFlag = false;
+
         internal static TrainCompleteAction CompleteAction = TrainCompleteAction.None;
 
         public Form1()
@@ -1328,6 +1330,15 @@ namespace Kohya_lora_trainer
             tbxCustomOptName.Text = para.CustomOptName;
             tbxCustomOptArgs.Text = para.CustomOptArgs;
 
+            PrevCustomCmdActiveFlag = string.IsNullOrEmpty(TrainParams.Current.CustomCommands);
+            tabPageCustomCommands.Text = PrevCustomCmdActiveFlag ? "カスタムコマンド" : "カスタムコマンド(使用中)";
+
+            PrevAddArgActiveFlag = string.IsNullOrEmpty(TrainParams.Current.AdditionalArgs) && string.IsNullOrEmpty(TrainParams.Current.AdditionalNetworkArgs);
+            tabPageAddArgs.Text = PrevAddArgActiveFlag ? "追加の引数" : "追加の引数(使用中)";
+
+            PrevCustomOptActiveFlag = string.IsNullOrEmpty(TrainParams.Current.CustomOptName);
+            tabPageCustomOpt.Text = PrevCustomOptActiveFlag ? "カスタムオプティマイザ" : "カスタムオプティマイザ(使用中)";
+
             PredictLoraFilesize();
 
             UpdateTotalStepCount();
@@ -1555,7 +1566,14 @@ namespace Kohya_lora_trainer
 
         private void tbxCommand_TextChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.CustomCommands = tbxCommand.Text.Replace("\r\n", string.Empty);
+            TrainParams.Current.CustomCommands = tbxCommand.Text.Replace("\r\n", string.Empty).Trim();
+            
+            bool hasNoTxt = string.IsNullOrEmpty(TrainParams.Current.CustomCommands);
+            if (hasNoTxt != PrevCustomCmdActiveFlag)
+            {
+                tabPageCustomCommands.Text = hasNoTxt ? "カスタムコマンド" : "カスタムコマンド(使用中)";
+                PrevCustomCmdActiveFlag = hasNoTxt;
+            }
         }
 
         private void ユーティリティToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1574,12 +1592,26 @@ namespace Kohya_lora_trainer
 
         private void tbxAdditionalArgs_TextChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.AdditionalArgs = tbxAdditionalArgs.Text;
+            TrainParams.Current.AdditionalArgs = tbxAdditionalArgs.Text.Trim();
+
+            bool hasNoTxt = string.IsNullOrEmpty(TrainParams.Current.AdditionalArgs) && string.IsNullOrEmpty(TrainParams.Current.AdditionalNetworkArgs);
+            if (hasNoTxt != PrevAddArgActiveFlag)
+            {
+                tabPageAddArgs.Text = hasNoTxt ? "追加の引数" : "追加の引数(使用中)";
+                PrevAddArgActiveFlag = hasNoTxt;
+            }
         }
 
         private void tbxAdditionalNetworkArgs_TextChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.AdditionalNetworkArgs = tbxAdditionalNetworkArgs.Text;
+            TrainParams.Current.AdditionalNetworkArgs = tbxAdditionalNetworkArgs.Text.Trim();
+
+            bool hasNoTxt = string.IsNullOrEmpty(TrainParams.Current.AdditionalArgs) && string.IsNullOrEmpty(TrainParams.Current.AdditionalNetworkArgs);
+            if (hasNoTxt != PrevAddArgActiveFlag)
+            {
+                tabPageAddArgs.Text = hasNoTxt ? "追加の引数" : "追加の引数(使用中)";
+                PrevAddArgActiveFlag = hasNoTxt;
+            }
         }
 
         private void cbxSaveEveryEpoch_SelectedIndexChanged(object sender, EventArgs e)
@@ -1605,12 +1637,18 @@ namespace Kohya_lora_trainer
 
         private void tbxCustomOptName_TextChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.CustomOptName = tbxCustomOptName.Text;
+            TrainParams.Current.CustomOptName = tbxCustomOptName.Text.Trim();
+            bool hasNoTxt = string.IsNullOrEmpty(TrainParams.Current.CustomOptName);
+            if (hasNoTxt != PrevCustomOptActiveFlag)
+            {
+                tabPageCustomOpt.Text = hasNoTxt ? "カスタムオプティマイザ" : "カスタムオプティマイザ(使用中)";
+                PrevCustomOptActiveFlag = hasNoTxt;
+            }
         }
 
         private void tbxCustomOptArgs_TextChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.CustomOptArgs = tbxCustomOptArgs.Text;
+            TrainParams.Current.CustomOptArgs = tbxCustomOptArgs.Text.Trim();
         }
 
         private void btnShowTipsDatasetDir_Click(object sender, EventArgs e)
