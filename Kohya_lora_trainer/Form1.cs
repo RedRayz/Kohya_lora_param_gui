@@ -700,7 +700,7 @@ namespace Kohya_lora_trainer
                 if ((!command.StartsWith("python") && !command.StartsWith("accelerate")) || command.Contains("&&"))
                 {
                     if (showMsg)
-                        MessageBox.Show("そのカスタムコマンドは使用できません。\r\n「カスタムコマンド」タブを確認してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("そのカスタムコマンドは使用できません。\r\n「カスタムコマンド」タブを確認してください。\r\n不要であればカスタムコマンドを空にしてください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
                 return true;
