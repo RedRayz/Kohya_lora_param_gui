@@ -1086,7 +1086,7 @@ namespace Kohya_lora_trainer
             // 
             cbxAdvancedTrain.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxAdvancedTrain.FormattingEnabled = true;
-            cbxAdvancedTrain.Items.AddRange(new object[] { "両方学習", "TEのみ学習", "UNet/DiTのみ学習" });
+            cbxAdvancedTrain.Items.AddRange(new object[] { "両方学習", "TEのみ", "UNet/DiTのみ" });
             cbxAdvancedTrain.Location = new Point(119, 73);
             cbxAdvancedTrain.Name = "cbxAdvancedTrain";
             cbxAdvancedTrain.Size = new Size(102, 23);
@@ -2547,9 +2547,9 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(nudSigmoidScale);
             tabPage8.Controls.Add(nudDiscreteFlowShift);
             tabPage8.Controls.Add(nudBlocksToSwap);
-            tabPage8.Location = new Point(4, 24);
+            tabPage8.Location = new Point(4, 26);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 337);
+            tabPage8.Size = new Size(660, 335);
             tabPage8.TabIndex = 14;
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;

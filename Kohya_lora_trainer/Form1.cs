@@ -666,7 +666,7 @@ namespace Kohya_lora_trainer
                     if (!File.Exists(str + "anima_train_network.py"))
                     {
                         if (showMsg)
-                            MessageBox.Show("anima_train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageBox.Show("anima_train_network.pyが見つかりません。\r\nsd-scriptsのアップデートをお試しください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return false;
                     }
                     break;
@@ -1340,6 +1340,9 @@ namespace Kohya_lora_trainer
             PredictLoraFilesize();
 
             UpdateTotalStepCount();
+
+            btnBlockWeight.BackColor = para.UseBlockWeight ? Color.MistyRose : Color.White;
+            btnBlockDim.BackColor = para.UseBlockDim ? Color.MistyRose : Color.White;
         }
 
         private DialogResult NotifyBadParams()
