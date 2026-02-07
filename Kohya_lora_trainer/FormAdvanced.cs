@@ -23,6 +23,13 @@ namespace Kohya_lora_trainer
 
         private void button1_Click(object sender, EventArgs e)
         {
+            var para = TrainParams.Current;
+            if (para == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             bool IsValid = true;
             float telr = -1;
             float unetlr = -1;
@@ -281,262 +288,286 @@ namespace Kohya_lora_trainer
             if (!IsValid)
                 return;
 
-            TrainParams.Current.Comment = tbxComment.Text;
-            TrainParams.Current.TextEncoderLR = telr;
-            TrainParams.Current.UnetLR = unetlr;
-            TrainParams.Current.WeightDecay = weightdecay;
-            TrainParams.Current.Eps = eps;
-            TrainParams.Current.Eps1 = eps1;
-            TrainParams.Current.D0 = dzero;
-            TrainParams.Current.GrowthRate = growthrate;
-            TrainParams.Current.Betas0 = betas0;
-            TrainParams.Current.Betas1 = betas1;
-            TrainParams.Current.Betas2 = betas2;
-            TrainParams.Current.DAdaptMomentum = momentum;
-            TrainParams.Current.ProdigyBeta3 = beta3;
-            TrainParams.Current.DCoef = dcoef;
+            para.Comment = tbxComment.Text;
+            para.TextEncoderLR = telr;
+            para.UnetLR = unetlr;
+            para.WeightDecay = weightdecay;
+            para.Eps = eps;
+            para.Eps1 = eps1;
+            para.D0 = dzero;
+            para.GrowthRate = growthrate;
+            para.Betas0 = betas0;
+            para.Betas1 = betas1;
+            para.Betas2 = betas2;
+            para.DAdaptMomentum = momentum;
+            para.ProdigyBeta3 = beta3;
+            para.DCoef = dcoef;
 
-            TrainParams.Current.CpuThreads = tbrCpuThreads.Value;
-            TrainParams.Current.SchedulerType = (Scheduler)Enum.ToObject(typeof(Scheduler), cbxScheduler.SelectedIndex);
-            TrainParams.Current.SavePrecision = (SavePrecision)Enum.ToObject(typeof(SavePrecision), cbxPrecision.SelectedIndex);
-            TrainParams.Current.advancedTrainType = (AdvancedTrain)Enum.ToObject(typeof(AdvancedTrain), cbxAdvancedTrain.SelectedIndex);
-            TrainParams.Current.CrossAttenType = (CrossAtten)Enum.ToObject(typeof(CrossAtten), cbxCrossAttenType.SelectedIndex);
-            TrainParams.Current.MinBucketResolution = (int)nudMinBucketReso.Value;
-            TrainParams.Current.MaxBucketResolution = (int)nudMaxBucketReso.Value;
-            TrainParams.Current.NoBucketUpscaling = cbxNoUpscale.Checked;
-            TrainParams.Current.ClipSkip = (int)nudClipSkip.Value;
-            TrainParams.Current.Seed = (long)nudSeed.Value;
-            TrainParams.Current.CaptionFileExtension = tbxExtension.Text;
-            TrainParams.Current.UseGradient = cbxUseGradient.Checked;
-            TrainParams.Current.LoraModelPath = lblLoRAmodelPath.Text;
-            TrainParams.Current.NoiseOffset = (float)nudNoiseOffset.Value;
-            TrainParams.Current.VAEPath = lblVAEPath.Text;
-            TrainParams.Current.UseWeightedCaptions = cbxUseWeightedCaption.Checked;
-            TrainParams.Current.AdaptiveNoiseScale = nudAdaptiveNoiseScale.Value;
-            TrainParams.Current.MinSNRGamma = nudMinSNRGamma.Value;
-            TrainParams.Current.MultiresNoiseIterations = nudMultiresNoiseIterations.Value;
-            TrainParams.Current.MultiresNoiseDiscount = nudMultiresNoiseDiscount.Value;
+            para.CpuThreads = tbrCpuThreads.Value;
+            para.SchedulerType = (Scheduler)Enum.ToObject(typeof(Scheduler), cbxScheduler.SelectedIndex);
+            para.SavePrecision = (SavePrecision)Enum.ToObject(typeof(SavePrecision), cbxPrecision.SelectedIndex);
+            para.advancedTrainType = (AdvancedTrain)Enum.ToObject(typeof(AdvancedTrain), cbxAdvancedTrain.SelectedIndex);
+            para.CrossAttenType = (CrossAtten)Enum.ToObject(typeof(CrossAtten), cbxCrossAttenType.SelectedIndex);
+            para.MinBucketResolution = (int)nudMinBucketReso.Value;
+            para.MaxBucketResolution = (int)nudMaxBucketReso.Value;
+            para.NoBucketUpscaling = cbxNoUpscale.Checked;
+            para.ClipSkip = (int)nudClipSkip.Value;
+            para.Seed = (long)nudSeed.Value;
+            para.CaptionFileExtension = tbxExtension.Text;
+            para.UseGradient = cbxUseGradient.Checked;
+            para.LoraModelPath = lblLoRAmodelPath.Text;
+            para.NoiseOffset = (float)nudNoiseOffset.Value;
+            para.VAEPath = lblVAEPath.Text;
+            para.UseWeightedCaptions = cbxUseWeightedCaption.Checked;
+            para.AdaptiveNoiseScale = nudAdaptiveNoiseScale.Value;
+            para.MinSNRGamma = nudMinSNRGamma.Value;
+            para.MultiresNoiseIterations = nudMultiresNoiseIterations.Value;
+            para.MultiresNoiseDiscount = nudMultiresNoiseDiscount.Value;
 
-            TrainParams.Current.ConvDim = (int)nudConvDim.Value;
-            TrainParams.Current.ConvAlpha = nudConvAlpha.Value;
-            TrainParams.Current.UseConv2dExtend = cbxUseConv2d.Checked;
-            TrainParams.Current.DyLoRAUnit = nudDyLoRAUnit.Value;
-            TrainParams.Current.DatasetConfigPath = lblConfigPath.Text;
+            para.ConvDim = (int)nudConvDim.Value;
+            para.ConvAlpha = nudConvAlpha.Value;
+            para.UseConv2dExtend = cbxUseConv2d.Checked;
+            para.DyLoRAUnit = nudDyLoRAUnit.Value;
+            para.DatasetConfigPath = lblConfigPath.Text;
 
-            TrainParams.Current.AlgoType = (LycoAlgo)Enum.ToObject(typeof(LycoAlgo), cbxAlgoType.SelectedIndex);
+            para.AlgoType = (LycoAlgo)Enum.ToObject(typeof(LycoAlgo), cbxAlgoType.SelectedIndex);
 
-            TrainParams.Current.UseColorAug = cbxUseColorAug.Checked;
-            TrainParams.Current.UseFastLoading = cbxUseFastLoading.Checked;
+            para.UseColorAug = cbxUseColorAug.Checked;
+            para.UseFastLoading = cbxUseFastLoading.Checked;
 
-            TrainParams.Current.UseFlipAug = cbxFlipAug.Checked;
-            TrainParams.Current.CropRandomly = cbxCropRandomly.Checked;
-            TrainParams.Current.DontSaveMetadata = cbxDontSaveMetadata.Checked;
-            TrainParams.Current.CacheLatents = cbxCacheLatents.Checked;
-            TrainParams.Current.CacheLatentsToDisk = cbxCacheLatentsToDisk.Checked;
+            para.UseFlipAug = cbxFlipAug.Checked;
+            para.CropRandomly = cbxCropRandomly.Checked;
+            para.DontSaveMetadata = cbxDontSaveMetadata.Checked;
+            para.CacheLatents = cbxCacheLatents.Checked;
+            para.CacheLatentsToDisk = cbxCacheLatentsToDisk.Checked;
 
-            TrainParams.Current.mixedPrecisionType = (MixedPrecision)Enum.ToObject(typeof(MixedPrecision), cbxMixedPrecision.SelectedIndex);
+            para.mixedPrecisionType = (MixedPrecision)Enum.ToObject(typeof(MixedPrecision), cbxMixedPrecision.SelectedIndex);
 
-            TrainParams.Current.LRSchedulerCycle = nudLRSchedulerCycle.Value;
-            TrainParams.Current.DataLoaderThreads = (int)nudDataLoaderThreads.Value;
-            TrainParams.Current.MaxTokens = (int)nudMaxTokens.Value;
+            para.LRSchedulerCycle = nudLRSchedulerCycle.Value;
+            para.DataLoaderThreads = (int)nudDataLoaderThreads.Value;
+            para.MaxTokens = (int)nudMaxTokens.Value;
 
-            TrainParams.Current.CaptionDropout = nudCaptionDropout.Value;
-            TrainParams.Current.CaptionTagDropout = nudCaptionTagDropout.Value;
-            TrainParams.Current.NetworkDropout = nudNetworkDropout.Value;
-            TrainParams.Current.RankDropout = nudRankDropout.Value;
-            TrainParams.Current.ModuleDropout = nudModuleDropout.Value;
+            para.CaptionDropout = nudCaptionDropout.Value;
+            para.CaptionTagDropout = nudCaptionTagDropout.Value;
+            para.NetworkDropout = nudNetworkDropout.Value;
+            para.RankDropout = nudRankDropout.Value;
+            para.ModuleDropout = nudModuleDropout.Value;
 
-            TrainParams.Current.Decouple = cbxDecouple.Checked;
+            para.Decouple = cbxDecouple.Checked;
 
-            TrainParams.Current.SafeguardWarmup = cbxUseSafeguard.Checked;
-            TrainParams.Current.UseBiasCorrection = cbxUseBiasCorrection.Checked;
-            TrainParams.Current.NoHalfVAE = cbxNoHalfVae.Checked;
-            TrainParams.Current.CacheTextencoder = cbxCacheTextEncoder.Checked;
-            TrainParams.Current.CacheTextencoderToDisk = cbxCacheTextencoderToDisk.Checked;
-            TrainParams.Current.UseFullBf16 = cbxUseFullBf16.Checked;
-            TrainParams.Current.TokensSeparator = tbxTokensSeparator.Text;
-            TrainParams.Current.UseFP8Base = cbxUseFP8.Checked;
+            para.SafeguardWarmup = cbxUseSafeguard.Checked;
+            para.UseBiasCorrection = cbxUseBiasCorrection.Checked;
+            para.NoHalfVAE = cbxNoHalfVae.Checked;
+            para.CacheTextencoder = cbxCacheTextEncoder.Checked;
+            para.CacheTextencoderToDisk = cbxCacheTextencoderToDisk.Checked;
+            para.UseFullBf16 = cbxUseFullBf16.Checked;
+            para.TokensSeparator = tbxTokensSeparator.Text;
+            para.UseFP8Base = cbxUseFP8.Checked;
 
-            TrainParams.Current.WeightDocomposition = cbxWeightDecomposition.Checked;
-            TrainParams.Current.TrainNorm = cbxTrainNorm.Checked;
-            TrainParams.Current.RescaledOFT = cbxRescaledOFT.Checked;
-            TrainParams.Current.ConstrainedOFT = cbxConstrainedOFT.Checked;
-            TrainParams.Current.UseTucker = cbxUseTucker.Checked;
-            TrainParams.Current.UseScalar = cbxUseScalar.Checked;
+            para.WeightDocomposition = cbxWeightDecomposition.Checked;
+            para.TrainNorm = cbxTrainNorm.Checked;
+            para.RescaledOFT = cbxRescaledOFT.Checked;
+            para.ConstrainedOFT = cbxConstrainedOFT.Checked;
+            para.UseTucker = cbxUseTucker.Checked;
+            para.UseScalar = cbxUseScalar.Checked;
 
-            TrainParams.Current.HighVRAM = cbxHighVRAM.Checked;
+            para.HighVRAM = cbxHighVRAM.Checked;
 
-            TrainParams.Current.LossType = (LossType)Enum.ToObject(typeof(LossType), cbxLossType.SelectedIndex);
-            TrainParams.Current.HuberScheduleType = (HuberSchedule)Enum.ToObject(typeof(HuberSchedule), cbxHuberSchedule.SelectedIndex);
-            TrainParams.Current.HuberC = nudHuberC.Value;
-            TrainParams.Current.SaveState = cbxSaveState.Checked;
-            TrainParams.Current.MaskLoss = cbxMaskLoss.Checked;
-            TrainParams.Current.GradAccSteps = nudGradAccSteps.Value;
-            TrainParams.Current.LoRAPlusLRRatio = nudLoRAPlusLRRatio.Value;
-            TrainParams.Current.LoRAPlusUnetLRRatio = nudLoRAPlusUnetLRRatio.Value;
-            TrainParams.Current.LoRAPlusTELRRatio = nudLoRAPlusTELRRatio.Value;
-            TrainParams.Current.UseAdditionalOptArgs = cbxUseAdditionalOptArgs.Checked;
-            TrainParams.Current.IpNoiseGamma = nudIpNoiseGamma.Value;
-            TrainParams.Current.RandomNoiseOffset = cbxRandomNoiseOffset.Checked;
-            TrainParams.Current.RandomIpNoiseGamma = cbxRandomIpNoiseGamma.Checked;
-            TrainParams.Current.AlphaMask = cbxAlphaMask.Checked;
+            para.LossType = (LossType)Enum.ToObject(typeof(LossType), cbxLossType.SelectedIndex);
+            para.HuberScheduleType = (HuberSchedule)Enum.ToObject(typeof(HuberSchedule), cbxHuberSchedule.SelectedIndex);
+            para.HuberC = nudHuberC.Value;
+            para.SaveState = cbxSaveState.Checked;
+            para.MaskLoss = cbxMaskLoss.Checked;
+            para.GradAccSteps = nudGradAccSteps.Value;
+            para.LoRAPlusLRRatio = nudLoRAPlusLRRatio.Value;
+            para.LoRAPlusUnetLRRatio = nudLoRAPlusUnetLRRatio.Value;
+            para.LoRAPlusTELRRatio = nudLoRAPlusTELRRatio.Value;
+            para.UseAdditionalOptArgs = cbxUseAdditionalOptArgs.Checked;
+            para.IpNoiseGamma = nudIpNoiseGamma.Value;
+            para.RandomNoiseOffset = cbxRandomNoiseOffset.Checked;
+            para.RandomIpNoiseGamma = cbxRandomIpNoiseGamma.Checked;
+            para.AlphaMask = cbxAlphaMask.Checked;
 
-            TrainParams.Current.SchedulerTimescale = nudSchedulerTimescale.Value;
-            TrainParams.Current.LRDecaySteps = nudLRDecaySteps.Value;
-            TrainParams.Current.MinLRRatio = nudMinLRRatio.Value;
-            TrainParams.Current.DisableMmapLoadSafetensors = cbxDisableMmapLoadSafetensors.Checked;
-            TrainParams.Current.TEBatchSize = nudTEBatchSize.Value;
-            TrainParams.Current.VParameterization = cbxVParameterization.Checked;
-            TrainParams.Current.ZeroTerminalSNR = cbxZeroTerminalSNR.Checked;
-            TrainParams.Current.DebiasedEstimation = cbxDebiasedEstimation.Checked;
-            TrainParams.Current.ScaleWeightNorms = nudScaleWeightNorms.Value;
+            para.SchedulerTimescale = nudSchedulerTimescale.Value;
+            para.LRDecaySteps = nudLRDecaySteps.Value;
+            para.MinLRRatio = nudMinLRRatio.Value;
+            para.DisableMmapLoadSafetensors = cbxDisableMmapLoadSafetensors.Checked;
+            para.TEBatchSize = nudTEBatchSize.Value;
+            para.VParameterization = cbxVParameterization.Checked;
+            para.ZeroTerminalSNR = cbxZeroTerminalSNR.Checked;
+            para.DebiasedEstimation = cbxDebiasedEstimation.Checked;
+            para.ScaleWeightNorms = nudScaleWeightNorms.Value;
 
-            TrainParams.Current.ResizeInterpolationType = (ResizeInterpolation)Enum.ToObject(typeof(ResizeInterpolation), cbxResizeInterpolation.SelectedIndex);
+            para.ResizeInterpolationType = (ResizeInterpolation)Enum.ToObject(typeof(ResizeInterpolation), cbxResizeInterpolation.SelectedIndex);
 
-            TrainParams.Current.TokenWarmupMin = nudTokenWarmupMin.Value;
-            TrainParams.Current.TokenWarmupStep = nudTokenWarmupStep.Value;
+            para.TokenWarmupMin = nudTokenWarmupMin.Value;
+            para.TokenWarmupStep = nudTokenWarmupStep.Value;
+
+            para.BlocksToSwap = nudBlocksToSwap.Value;
+            para.CpuOffloadCheckpointing = cbxCpuOffloadCheckpointing.Checked;
+            para.Sigmoidscale = nudSigmoidScale.Value;
+            para.DiscreteFlowShift = nudDiscreteFlowShift.Value;
+            para.ApplyT5AttnMask = cbxApplyT5AttnMask.Checked;
+            para.DitPath = lblDitPath.Text;
+            para.Qwen3Path = lblQwen3Path.Text;
 
             Close();
         }
 
         private void Form_Advanced_Load(object sender, EventArgs e)
         {
-            tbrCpuThreads.Value = TrainParams.Current.CpuThreads;
-            lblCpuThreadsCounter.Text = TrainParams.Current.CpuThreads.ToString();
-            cbxScheduler.SelectedIndex = (int)TrainParams.Current.SchedulerType;
-            tbxUnetLR.Text = TrainParams.Current.UnetLR < 0f ? string.Empty : TrainParams.Current.UnetLR.ToString();
-            tbxTextEncoLR.Text = TrainParams.Current.TextEncoderLR < 0f ? string.Empty : TrainParams.Current.TextEncoderLR.ToString();
-            nudMinBucketReso.Value = TrainParams.Current.MinBucketResolution;
-            nudMaxBucketReso.Value = TrainParams.Current.MaxBucketResolution;
-            cbxNoUpscale.Checked = TrainParams.Current.NoBucketUpscaling;
-            cbxAdvancedTrain.SelectedIndex = (int)TrainParams.Current.advancedTrainType;
-            cbxCrossAttenType.SelectedIndex = (int)TrainParams.Current.CrossAttenType;
-            cbxUseWeightedCaption.Checked = TrainParams.Current.UseWeightedCaptions;
-            nudAdaptiveNoiseScale.Value = TrainParams.Current.AdaptiveNoiseScale;
+            var para = TrainParams.Current;
+            if (para == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            nudClipSkip.Value = TrainParams.Current.ClipSkip;
-            nudSeed.Value = TrainParams.Current.Seed;
-            tbxExtension.Text = TrainParams.Current.CaptionFileExtension;
-            cbxPrecision.SelectedIndex = (int)TrainParams.Current.SavePrecision;
+            tbrCpuThreads.Value = para.CpuThreads;
+            lblCpuThreadsCounter.Text = para.CpuThreads.ToString();
+            cbxScheduler.SelectedIndex = (int)para.SchedulerType;
+            tbxUnetLR.Text = para.UnetLR < 0f ? string.Empty : para.UnetLR.ToString();
+            tbxTextEncoLR.Text = para.TextEncoderLR < 0f ? string.Empty : para.TextEncoderLR.ToString();
+            nudMinBucketReso.Value = para.MinBucketResolution;
+            nudMaxBucketReso.Value = para.MaxBucketResolution;
+            cbxNoUpscale.Checked = para.NoBucketUpscaling;
+            cbxAdvancedTrain.SelectedIndex = (int)para.advancedTrainType;
+            cbxCrossAttenType.SelectedIndex = (int)para.CrossAttenType;
+            cbxUseWeightedCaption.Checked = para.UseWeightedCaptions;
+            nudAdaptiveNoiseScale.Value = para.AdaptiveNoiseScale;
 
-            lblTBoardPath.Text = TrainParams.Current.TensorBoardLogPath;
-            cbxUseGradient.Checked = TrainParams.Current.UseGradient;
-            nudMinSNRGamma.Value = TrainParams.Current.MinSNRGamma;
-            nudMultiresNoiseIterations.Value = TrainParams.Current.MultiresNoiseIterations;
-            nudMultiresNoiseDiscount.Value = TrainParams.Current.MultiresNoiseDiscount;
+            nudClipSkip.Value = para.ClipSkip;
+            nudSeed.Value = para.Seed;
+            tbxExtension.Text = para.CaptionFileExtension;
+            cbxPrecision.SelectedIndex = (int)para.SavePrecision;
+
+            lblTBoardPath.Text = para.TensorBoardLogPath;
+            cbxUseGradient.Checked = para.UseGradient;
+            nudMinSNRGamma.Value = para.MinSNRGamma;
+            nudMultiresNoiseIterations.Value = para.MultiresNoiseIterations;
+            nudMultiresNoiseDiscount.Value = para.MultiresNoiseDiscount;
             bool valid = nudMinBucketReso.Value % 64 == 0;
             lblMinBucketReso.ForeColor = valid ? Color.Black : Color.Red;
 
             valid = nudMaxBucketReso.Value % 64 == 0;
             lblMaxBucketReso.ForeColor = valid ? Color.Black : Color.Red;
 
-            lblLoRAmodelPath.Text = TrainParams.Current.LoraModelPath;
-            nudNoiseOffset.Value = (decimal)TrainParams.Current.NoiseOffset;
-            lblVAEPath.Text = TrainParams.Current.VAEPath;
+            lblLoRAmodelPath.Text = para.LoraModelPath;
+            nudNoiseOffset.Value = (decimal)para.NoiseOffset;
+            lblVAEPath.Text = para.VAEPath;
 
-            cbxAlgoType.SelectedIndex = (int)TrainParams.Current.AlgoType;
+            cbxAlgoType.SelectedIndex = (int)para.AlgoType;
 
-            nudConvDim.Value = TrainParams.Current.ConvDim;
-            nudConvAlpha.Value = TrainParams.Current.ConvAlpha;
-            cbxUseConv2d.Checked = TrainParams.Current.UseConv2dExtend;
-            nudDyLoRAUnit.Value = TrainParams.Current.DyLoRAUnit;
+            nudConvDim.Value = para.ConvDim;
+            nudConvAlpha.Value = para.ConvAlpha;
+            cbxUseConv2d.Checked = para.UseConv2dExtend;
+            nudDyLoRAUnit.Value = para.DyLoRAUnit;
 
-            lblConfigPath.Text = TrainParams.Current.DatasetConfigPath;
+            lblConfigPath.Text = para.DatasetConfigPath;
 
-            cbxUseColorAug.Checked = TrainParams.Current.UseColorAug;
-            cbxUseFastLoading.Checked = TrainParams.Current.UseFastLoading;
-            cbxFlipAug.Checked = TrainParams.Current.UseFlipAug;
-            cbxCropRandomly.Checked = TrainParams.Current.CropRandomly;
-            cbxDontSaveMetadata.Checked = TrainParams.Current.DontSaveMetadata;
-            cbxCacheLatentsToDisk.Checked = TrainParams.Current.CacheLatentsToDisk;
-            cbxCacheLatents.Checked = TrainParams.Current.CacheLatents;
+            cbxUseColorAug.Checked = para.UseColorAug;
+            cbxUseFastLoading.Checked = para.UseFastLoading;
+            cbxFlipAug.Checked = para.UseFlipAug;
+            cbxCropRandomly.Checked = para.CropRandomly;
+            cbxDontSaveMetadata.Checked = para.DontSaveMetadata;
+            cbxCacheLatentsToDisk.Checked = para.CacheLatentsToDisk;
+            cbxCacheLatents.Checked = para.CacheLatents;
 
-            cbxMixedPrecision.SelectedIndex = (int)TrainParams.Current.mixedPrecisionType;
+            cbxMixedPrecision.SelectedIndex = (int)para.mixedPrecisionType;
 
-            nudLRSchedulerCycle.Value = TrainParams.Current.LRSchedulerCycle;
-            nudDataLoaderThreads.Value = TrainParams.Current.DataLoaderThreads;
-            nudMaxTokens.Value = TrainParams.Current.MaxTokens;
-
-
-            tbxWeightDecay.Text = TrainParams.Current.WeightDecay.ToString("g");
-            tbxEps.Text = TrainParams.Current.Eps.ToString("g");
-            tbxEps1.Text = TrainParams.Current.Eps1.ToString("g");
-            tbxD0.Text = TrainParams.Current.D0.ToString("g");
-            tbxGrowthRate.Text = TrainParams.Current.GrowthRate.ToString("g");
-            tbxBetas0.Text = TrainParams.Current.Betas0.ToString("g");
-            tbxBetas1.Text = TrainParams.Current.Betas1.ToString("g");
-            tbxBetas2.Text = TrainParams.Current.Betas2.ToString("g");
-            tbxMomentum.Text = TrainParams.Current.DAdaptMomentum.ToString("g");
-
-            nudCaptionDropout.Value = TrainParams.Current.CaptionDropout;
-            nudCaptionTagDropout.Value = TrainParams.Current.CaptionTagDropout;
-            nudRankDropout.Value = TrainParams.Current.RankDropout;
-            nudModuleDropout.Value = TrainParams.Current.ModuleDropout;
-            nudNetworkDropout.Value = TrainParams.Current.NetworkDropout;
-
-            cbxDecouple.Checked = TrainParams.Current.Decouple;
-            tbxComment.Text = TrainParams.Current.Comment;
-
-            cbxUseSafeguard.Checked = TrainParams.Current.SafeguardWarmup;
-            cbxUseBiasCorrection.Checked = TrainParams.Current.UseBiasCorrection;
-
-            tbxProdigyBeta3.Text = TrainParams.Current.ProdigyBeta3.ToString("g");
-            tbxDCoef.Text = TrainParams.Current.DCoef.ToString("g");
-
-            cbxNoHalfVae.Checked = TrainParams.Current.NoHalfVAE;
-            cbxCacheTextEncoder.Checked = TrainParams.Current.CacheTextencoder;
-            cbxCacheTextencoderToDisk.Checked = TrainParams.Current.CacheTextencoderToDisk;
-            cbxUseFullBf16.Checked = TrainParams.Current.UseFullBf16;
-            tbxTokensSeparator.Text = TrainParams.Current.TokensSeparator;
-            cbxUseFP8.Checked = TrainParams.Current.UseFP8Base;
-
-            cbxWeightDecomposition.Checked = TrainParams.Current.WeightDocomposition;
-            cbxTrainNorm.Checked = TrainParams.Current.TrainNorm;
-            cbxRescaledOFT.Checked = TrainParams.Current.RescaledOFT;
-            cbxConstrainedOFT.Checked = TrainParams.Current.ConstrainedOFT;
-            cbxUseTucker.Checked = TrainParams.Current.UseTucker;
-            cbxUseScalar.Checked = TrainParams.Current.UseScalar;
-            cbxHighVRAM.Checked = TrainParams.Current.HighVRAM;
-
-            cbxLossType.SelectedIndex = (int)TrainParams.Current.LossType;
-            cbxHuberSchedule.SelectedIndex = (int)TrainParams.Current.HuberScheduleType;
-            nudHuberC.Value = TrainParams.Current.HuberC;
-
-            cbxSaveState.Checked = TrainParams.Current.SaveState;
-            cbxMaskLoss.Checked = TrainParams.Current.MaskLoss;
-
-            nudGradAccSteps.Value = TrainParams.Current.GradAccSteps;
-
-            nudLoRAPlusLRRatio.Value = TrainParams.Current.LoRAPlusLRRatio;
-            nudLoRAPlusUnetLRRatio.Value = TrainParams.Current.LoRAPlusUnetLRRatio;
-            nudLoRAPlusTELRRatio.Value = TrainParams.Current.LoRAPlusTELRRatio;
-
-            cbxUseAdditionalOptArgs.Checked = TrainParams.Current.UseAdditionalOptArgs;
-
-            nudIpNoiseGamma.Value = TrainParams.Current.IpNoiseGamma;
-
-            cbxRandomNoiseOffset.Checked = TrainParams.Current.RandomNoiseOffset;
-            cbxRandomIpNoiseGamma.Checked = TrainParams.Current.RandomIpNoiseGamma;
-            cbxAlphaMask.Checked = TrainParams.Current.AlphaMask;
-
-            cbxDisableMmapLoadSafetensors.Checked = TrainParams.Current.DisableMmapLoadSafetensors;
-
-            nudTEBatchSize.Value = TrainParams.Current.TEBatchSize;
+            nudLRSchedulerCycle.Value = para.LRSchedulerCycle;
+            nudDataLoaderThreads.Value = para.DataLoaderThreads;
+            nudMaxTokens.Value = para.MaxTokens;
 
 
-            nudSchedulerTimescale.Value = TrainParams.Current.SchedulerTimescale;
-            nudLRDecaySteps.Value = TrainParams.Current.LRDecaySteps;
-            nudMinLRRatio.Value = TrainParams.Current.MinLRRatio;
-            cbxVParameterization.Checked = TrainParams.Current.VParameterization;
-            cbxZeroTerminalSNR.Checked = TrainParams.Current.ZeroTerminalSNR;
+            tbxWeightDecay.Text = para.WeightDecay.ToString("g");
+            tbxEps.Text = para.Eps.ToString("g");
+            tbxEps1.Text = para.Eps1.ToString("g");
+            tbxD0.Text = para.D0.ToString("g");
+            tbxGrowthRate.Text = para.GrowthRate.ToString("g");
+            tbxBetas0.Text = para.Betas0.ToString("g");
+            tbxBetas1.Text = para.Betas1.ToString("g");
+            tbxBetas2.Text = para.Betas2.ToString("g");
+            tbxMomentum.Text = para.DAdaptMomentum.ToString("g");
 
-            cbxDebiasedEstimation.Checked = TrainParams.Current.DebiasedEstimation;
-            nudScaleWeightNorms.Value = TrainParams.Current.ScaleWeightNorms;
+            nudCaptionDropout.Value = para.CaptionDropout;
+            nudCaptionTagDropout.Value = para.CaptionTagDropout;
+            nudRankDropout.Value = para.RankDropout;
+            nudModuleDropout.Value = para.ModuleDropout;
+            nudNetworkDropout.Value = para.NetworkDropout;
 
-            cbxResizeInterpolation.SelectedIndex = (int)TrainParams.Current.ResizeInterpolationType;
+            cbxDecouple.Checked = para.Decouple;
+            tbxComment.Text = para.Comment;
 
-            nudTokenWarmupMin.Value = TrainParams.Current.TokenWarmupMin;
-            nudTokenWarmupStep.Value = TrainParams.Current.TokenWarmupStep;
+            cbxUseSafeguard.Checked = para.SafeguardWarmup;
+            cbxUseBiasCorrection.Checked = para.UseBiasCorrection;
+
+            tbxProdigyBeta3.Text = para.ProdigyBeta3.ToString("g");
+            tbxDCoef.Text = para.DCoef.ToString("g");
+
+            cbxNoHalfVae.Checked = para.NoHalfVAE;
+            cbxCacheTextEncoder.Checked = para.CacheTextencoder;
+            cbxCacheTextencoderToDisk.Checked = para.CacheTextencoderToDisk;
+            cbxUseFullBf16.Checked = para.UseFullBf16;
+            tbxTokensSeparator.Text = para.TokensSeparator;
+            cbxUseFP8.Checked = para.UseFP8Base;
+
+            cbxWeightDecomposition.Checked = para.WeightDocomposition;
+            cbxTrainNorm.Checked = para.TrainNorm;
+            cbxRescaledOFT.Checked = para.RescaledOFT;
+            cbxConstrainedOFT.Checked = para.ConstrainedOFT;
+            cbxUseTucker.Checked = para.UseTucker;
+            cbxUseScalar.Checked = para.UseScalar;
+            cbxHighVRAM.Checked = para.HighVRAM;
+
+            cbxLossType.SelectedIndex = (int)para.LossType;
+            cbxHuberSchedule.SelectedIndex = (int)para.HuberScheduleType;
+            nudHuberC.Value = para.HuberC;
+
+            cbxSaveState.Checked = para.SaveState;
+            cbxMaskLoss.Checked = para.MaskLoss;
+
+            nudGradAccSteps.Value = para.GradAccSteps;
+
+            nudLoRAPlusLRRatio.Value = para.LoRAPlusLRRatio;
+            nudLoRAPlusUnetLRRatio.Value = para.LoRAPlusUnetLRRatio;
+            nudLoRAPlusTELRRatio.Value = para.LoRAPlusTELRRatio;
+
+            cbxUseAdditionalOptArgs.Checked = para.UseAdditionalOptArgs;
+
+            nudIpNoiseGamma.Value = para.IpNoiseGamma;
+
+            cbxRandomNoiseOffset.Checked = para.RandomNoiseOffset;
+            cbxRandomIpNoiseGamma.Checked = para.RandomIpNoiseGamma;
+            cbxAlphaMask.Checked = para.AlphaMask;
+
+            cbxDisableMmapLoadSafetensors.Checked = para.DisableMmapLoadSafetensors;
+
+            nudTEBatchSize.Value = para.TEBatchSize;
+
+
+            nudSchedulerTimescale.Value = para.SchedulerTimescale;
+            nudLRDecaySteps.Value = para.LRDecaySteps;
+            nudMinLRRatio.Value = para.MinLRRatio;
+            cbxVParameterization.Checked = para.VParameterization;
+            cbxZeroTerminalSNR.Checked = para.ZeroTerminalSNR;
+
+            cbxDebiasedEstimation.Checked = para.DebiasedEstimation;
+            nudScaleWeightNorms.Value = para.ScaleWeightNorms;
+
+            cbxResizeInterpolation.SelectedIndex = (int)para.ResizeInterpolationType;
+
+            nudTokenWarmupMin.Value = para.TokenWarmupMin;
+            nudTokenWarmupStep.Value = para.TokenWarmupStep;
+
+            nudBlocksToSwap.Value = para.BlocksToSwap;
+            cbxCpuOffloadCheckpointing.Checked = para.CpuOffloadCheckpointing;
+            nudSigmoidScale.Value = para.Sigmoidscale;
+            nudDiscreteFlowShift.Value = para.DiscreteFlowShift;
+            cbxApplyT5AttnMask.Checked = para.ApplyT5AttnMask;
+
+            lblDitPath.Text = para.DitPath;
+            lblQwen3Path.Text = para.Qwen3Path;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)
@@ -551,6 +582,11 @@ namespace Kohya_lora_trainer
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (TrainParams.Current == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             CommonOpenFileDialog cof = new CommonOpenFileDialog();
             cof.Title = "Select Image Folder";
             cof.IsFolderPicker = true;
@@ -574,6 +610,11 @@ namespace Kohya_lora_trainer
 
         private void btnClearTBoardPath_Click(object sender, EventArgs e)
         {
+            if (TrainParams.Current == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             lblTBoardPath.Text = string.Empty;
             TrainParams.Current.TensorBoardLogPath = string.Empty;
         }
@@ -592,6 +633,11 @@ namespace Kohya_lora_trainer
 
         private void btnSelectLoRAmodel_Click(object sender, EventArgs e)
         {
+            if (TrainParams.Current == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = Constants.WEIGHT_EXTENSION_FILTER;
             ofd.Title = "Select a lora";
@@ -619,6 +665,11 @@ namespace Kohya_lora_trainer
 
         private void btnSelectVAE_Click(object sender, EventArgs e)
         {
+            if (TrainParams.Current == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = Constants.WEIGHT_EXTENSION_FILTER;
             ofd.Title = "Select a VAE";
@@ -651,6 +702,12 @@ namespace Kohya_lora_trainer
 
         private void btnSelectConfigPath_Click(object sender, EventArgs e)
         {
+            if (TrainParams.Current == null) 
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "TOML(*.toml)|*.toml";
             ofd.Title = "Select a dataset config";
@@ -683,16 +740,40 @@ namespace Kohya_lora_trainer
             tips.Dispose();
         }
 
-
-
-        private void btnClipGPath_Click(object sender, EventArgs e)
+        private void btnDitPath_Click(object sender, EventArgs e)
         {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = Constants.WEIGHT_EXTENSION_FILTER;
+            ofd.Title = "Select a Diffuion Model weight";
+            ofd.RestoreDirectory = true;
 
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                lblDitPath.Text = ofd.FileName;
+            }
         }
 
-        private void btnClearClipGPath_Click(object sender, EventArgs e)
+        private void btnClearDitPath_Click(object sender, EventArgs e)
         {
+            lblDitPath.Text = string.Empty;
+        }
 
+        private void btnQwen3Path_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = Constants.WEIGHT_EXTENSION_FILTER;
+            ofd.Title = "Select Qwen3-0.6B weight";
+            ofd.RestoreDirectory = true;
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                lblQwen3Path.Text = ofd.FileName;
+            }
+        }
+
+        private void btnClearQwen3Path_Click(object sender, EventArgs e)
+        {
+            lblQwen3Path.Text = string.Empty;
         }
     }
 }

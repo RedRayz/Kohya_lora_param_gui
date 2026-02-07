@@ -11,7 +11,7 @@ namespace Kohya_lora_trainer
     public class TrainParams
     {
         //Required
-        public string ModelPath = string.Empty, TrainImagePath = string.Empty, OutputPath = string.Empty, TensorBoardLogPath = string.Empty, LoraModelPath = string.Empty;
+        public string? ModelPath = string.Empty, TrainImagePath = string.Empty, OutputPath = string.Empty, TensorBoardLogPath = string.Empty, LoraModelPath = string.Empty;
         public float LearningRate = 0.0001f;
         public int Resolution = 512, BatchSize = 2, Epochs = 5, NetworkDim = 4;
         public decimal NetworkAlpha = 4;
@@ -103,12 +103,12 @@ namespace Kohya_lora_trainer
         public string CustomCommands = string.Empty, AdditionalArgs = string.Empty, AdditionalNetworkArgs = string.Empty, CustomOptName = string.Empty, CustomOptArgs = string.Empty;
 
         //Diffusion Transformer関連
-        public decimal Sigmoidscale = 1m, DiscreteFlowShift = 3m, GuidanceScale = 0, MaxTokensT5 = 256, BlocksToSwap = 0;
+        public decimal Sigmoidscale = 1m, DiscreteFlowShift = 3m, GuidanceScale = 0, MaxTokensT5 = 512, BlocksToSwap = 0;
         public ModelPrediction ModelPredictionType;
         public TimestepSampling TimestepSamplingType;
         public TrainBlock TrainBlockType;
-        public bool SplitMode = false, ApplyT5AttnMask = false, TrainT5XXL = false, CpuOffloadCheckpointing = false, ApplyClipAttnMask = false;
-        public string ClipLPath = string.Empty, T5XXLPath = string.Empty, ClipGPath = string.Empty;
+        public bool SplitMode = false, CpuOffloadCheckpointing = false, ApplyT5AttnMask = false;
+        public string DitPath = string.Empty, Qwen3Path = string.Empty;
 
         //Scheduler
         public decimal SchedulerTimescale = 0m, MinLRRatio = 0m;
@@ -188,16 +188,6 @@ namespace Kohya_lora_trainer
                 if (Enum.TryParse(value, out result))
                 {
                     IsModelArchitectureUnkown = false;
-                    //廃止モデルまたは不明であればSD1にする
-                    switch (result)
-                    {
-                        case ModelArchitecture.Flux1:
-                        case ModelArchitecture.SD3:
-                            //次のリリースでアンコメントして有効にする
-                            result = ModelArchitecture.Legacy;
-                            IsModelArchitectureUnkown = true;
-                            break;
-                    }
                     ModelArchitectureEnum = result;
                 }
                 else
@@ -539,8 +529,7 @@ namespace Kohya_lora_trainer
     {
         Legacy,
         XL,
-        Flux1,
-        SD3,
+        Anima,
     }
 
     public enum TrainCompleteAction

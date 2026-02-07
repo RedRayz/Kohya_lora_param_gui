@@ -150,7 +150,9 @@ namespace Kohya_lora_trainer
                 return string.Empty;
             }
 
-            string command = TrainParams.Current.CustomCommands.Trim();
+            var para = TrainParams.Current;
+
+            string command = para.CustomCommands.Trim();
             command = command.Replace("\r\n", string.Empty);
             command = command.Trim();
             if (!string.IsNullOrWhiteSpace(command))
@@ -161,8 +163,8 @@ namespace Kohya_lora_trainer
             StringBuilder sb = new StringBuilder();
             NetworkArgs.Clear();
 
-            sb.Append("accelerate launch --num_cpu_threads_per_process ").Append(TrainParams.Current.CpuThreads);
-            switch (TrainParams.Current.ModelArchitectureEnum)
+            sb.Append("accelerate launch --num_cpu_threads_per_process ").Append(para.CpuThreads);
+            switch (para.ModelArchitectureEnum)
             {
                 case ModelArchitecture.Legacy:
                     sb.Append(" train_network.py");
@@ -170,81 +172,91 @@ namespace Kohya_lora_trainer
                 case ModelArchitecture.XL:
                     sb.Append(" sdxl_train_network.py");
                     break;
+                case ModelArchitecture.Anima:
+                    sb.Append(" anima_train_network.py");
+                    break;
                 default:
                     sb.Append(" train_network.py");
                     break;
             }
-            sb.Append(" --pretrained_model_name_or_path \"").Append(TrainParams.Current.ModelPath).Append('"').Append(" --train_data_dir \"")
-                .Append(TrainParams.Current.TrainImagePath).Append("\" --output_dir \"").Append(TrainParams.Current.OutputPath).Append('"');
-            //Optional(RegImage)
-            if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
+            //AnimaではCheckpointではなく個別のウェイトに分かれているので空文字であれば無視
+            if (!string.IsNullOrEmpty(para.ModelPath))
             {
-                sb.Append(" --reg_data_dir \"").Append(TrainParams.Current.RegImagePath).Append('"');
+                sb.Append(" --pretrained_model_name_or_path \"").Append(para.ModelPath).Append('"');
             }
 
-            switch (TrainParams.Current.ModuleType)
+
+            sb.Append(" --train_data_dir \"").Append(para.TrainImagePath).Append("\" --output_dir \"").Append(para.OutputPath).Append('"');
+            //Optional(RegImage)
+            if (!string.IsNullOrEmpty(para.RegImagePath))
+            {
+                sb.Append(" --reg_data_dir \"").Append(para.RegImagePath).Append('"');
+            }
+
+            switch (para.ModuleType)
             {
                 case NetworkModule.LoRA:
                 case NetworkModule.LoRAFA:
                     {
-                        switch (TrainParams.Current.ModelArchitectureEnum)
+                        switch (para.ModelArchitectureEnum)
                         {
                             case ModelArchitecture.Legacy:
                             case ModelArchitecture.XL:
-                                sb.Append(" --network_module \"").Append(TrainParams.Current.ModuleType == NetworkModule.LoRA ? "networks.lora" : "networks.lora_fa").Append('"');
+                                sb.Append(" --network_module \"").Append(para.ModuleType == NetworkModule.LoRA ? "networks.lora" : "networks.lora_fa").Append('"');
+                                if (para.UseConv2dExtend)
+                                {
+                                    bool di = para.ConvDim > 0;
+                                    bool al = para.ConvAlpha > 0;
+                                    if (di || al)
+                                    {
+                                        if (di)
+                                            NetworkArgs.Add("conv_dim=" + para.ConvDim.ToString());
+                                        if (al)
+                                            NetworkArgs.Add("conv_alpha=" + para.ConvAlpha.ToString());
+                                    }
+                                }
                                 break;
-                        }
-
-
-                        if (TrainParams.Current.UseConv2dExtend)
-                        {
-                            bool di = TrainParams.Current.ConvDim > 0;
-                            bool al = TrainParams.Current.ConvAlpha > 0;
-                            if (di || al)
-                            {
-                                if (di)
-                                    NetworkArgs.Add("conv_dim=" + TrainParams.Current.ConvDim.ToString());
-                                if (al)
-                                    NetworkArgs.Add("conv_alpha=" + TrainParams.Current.ConvAlpha.ToString());
-                            }
+                            case ModelArchitecture.Anima:
+                                sb.Append(" --network_module \"networks.lora_anima\"");
+                                break;
                         }
                     }
                     break;
                 case NetworkModule.LyCORIS:
                     {
-                        string algo = TrainParams.Current.AlgoType == LycoAlgo.diag_oft ? "diag-oft" : TrainParams.Current.AlgoType.ToString();
+                        string algo = para.AlgoType == LycoAlgo.diag_oft ? "diag-oft" : para.AlgoType.ToString();
 
                         sb.Append(" --network_module \"").Append("lycoris.kohya\"");
                         NetworkArgs.Add("algo=" + algo);
 
-                        if (TrainParams.Current.WeightDocomposition)
+                        if (para.WeightDocomposition)
                             NetworkArgs.Add("dora_wd=True");
 
-                        if (TrainParams.Current.TrainNorm)
+                        if (para.TrainNorm)
                             NetworkArgs.Add("train_norm=True");
 
-                        if (TrainParams.Current.RescaledOFT)
+                        if (para.RescaledOFT)
                             NetworkArgs.Add("rescaled=True");
 
-                        if (TrainParams.Current.ConstrainedOFT)
+                        if (para.ConstrainedOFT)
                             NetworkArgs.Add("constrain=FLOAT");
 
-                        if (TrainParams.Current.UseTucker)
+                        if (para.UseTucker)
                             NetworkArgs.Add("use_tucker=True");
 
-                        if (TrainParams.Current.UseScalar)
+                        if (para.UseScalar)
                             NetworkArgs.Add("use_scalar=True");
 
-                        if (TrainParams.Current.UseConv2dExtend)
+                        if (para.UseConv2dExtend)
                         {
-                            bool di = TrainParams.Current.ConvDim > 0;
-                            bool al = TrainParams.Current.ConvAlpha > 0;
+                            bool di = para.ConvDim > 0;
+                            bool al = para.ConvAlpha > 0;
                             if (di || al)
                             {
                                 if (di)
-                                    NetworkArgs.Add("conv_dim=" + TrainParams.Current.ConvDim.ToString());
+                                    NetworkArgs.Add("conv_dim=" + para.ConvDim.ToString());
                                 if (al)
-                                    NetworkArgs.Add("conv_alpha=" + TrainParams.Current.ConvAlpha.ToString());
+                                    NetworkArgs.Add("conv_alpha=" + para.ConvAlpha.ToString());
                             }
                         }
                         else
@@ -257,17 +269,17 @@ namespace Kohya_lora_trainer
                 case NetworkModule.DyLoRA:
                     {
                         sb.Append(" --network_module \"").Append("networks.dylora").Append('"');
-                        NetworkArgs.Add("unit=" + TrainParams.Current.DyLoRAUnit.ToString());
-                        if (TrainParams.Current.UseConv2dExtend)
+                        NetworkArgs.Add("unit=" + para.DyLoRAUnit.ToString());
+                        if (para.UseConv2dExtend)
                         {
-                            bool di = TrainParams.Current.ConvDim > 0;
-                            bool al = TrainParams.Current.ConvAlpha > 0;
+                            bool di = para.ConvDim > 0;
+                            bool al = para.ConvAlpha > 0;
                             if (di || al)
                             {
                                 if (di)
-                                    NetworkArgs.Add("conv_dim=" + TrainParams.Current.ConvDim.ToString());
+                                    NetworkArgs.Add("conv_dim=" + para.ConvDim.ToString());
                                 if (al)
-                                    NetworkArgs.Add("conv_alpha=" + TrainParams.Current.ConvAlpha.ToString());
+                                    NetworkArgs.Add("conv_alpha=" + para.ConvAlpha.ToString());
                             }
                         }
                     }
@@ -276,29 +288,29 @@ namespace Kohya_lora_trainer
 
             GenerateBlockWeightCmmands();
 
-            if (TrainParams.Current.RankDropout > 0)
-                NetworkArgs.Add("rank_dropout=" + TrainParams.Current.RankDropout.ToString());
-            if (TrainParams.Current.ModuleDropout > 0)
-                NetworkArgs.Add("module_dropout=" + TrainParams.Current.ModuleDropout.ToString());
+            if (para.RankDropout > 0)
+                NetworkArgs.Add("rank_dropout=" + para.RankDropout.ToString());
+            if (para.ModuleDropout > 0)
+                NetworkArgs.Add("module_dropout=" + para.ModuleDropout.ToString());
 
-            if (TrainParams.Current.LoRAPlusLRRatio > 0)
+            if (para.LoRAPlusLRRatio > 0)
             {
-                NetworkArgs.Add("loraplus_lr_ratio=" + TrainParams.Current.LoRAPlusLRRatio.ToString());
+                NetworkArgs.Add("loraplus_lr_ratio=" + para.LoRAPlusLRRatio.ToString());
             }
 
-            if (TrainParams.Current.LoRAPlusUnetLRRatio > 0)
+            if (para.LoRAPlusUnetLRRatio > 0)
             {
-                NetworkArgs.Add("loraplus_unet_lr_ratio=" + TrainParams.Current.LoRAPlusUnetLRRatio.ToString());
+                NetworkArgs.Add("loraplus_unet_lr_ratio=" + para.LoRAPlusUnetLRRatio.ToString());
             }
 
-            if (TrainParams.Current.LoRAPlusTELRRatio > 0)
+            if (para.LoRAPlusTELRRatio > 0)
             {
-                NetworkArgs.Add("loraplus_text_encoder_lr_ratio=" + TrainParams.Current.LoRAPlusTELRRatio.ToString());
+                NetworkArgs.Add("loraplus_text_encoder_lr_ratio=" + para.LoRAPlusTELRRatio.ToString());
             }
 
 
 
-            switch (TrainParams.Current.CrossAttenType)
+            switch (para.CrossAttenType)
             {
                 case CrossAtten.xformers:
                     sb.Append(" --xformers");
@@ -313,116 +325,113 @@ namespace Kohya_lora_trainer
                     break;
             }
 
-            if (TrainParams.Current.UseGradient)
+            if (para.UseGradient)
             {
                 sb.Append(" --gradient_checkpointing");
             }
 
-            if (TrainParams.Current.UseColorAug)
+            if (para.UseColorAug)
             {
                 sb.Append(" --color_aug");
             }
 
-            if (TrainParams.Current.UseFlipAug)
+            if (para.UseFlipAug)
             {
                 sb.Append(" --flip_aug");
             }
 
-            if (TrainParams.Current.CropRandomly)
+            if (para.CropRandomly)
             {
                 sb.Append(" --random_crop");
             }
 
-            if (TrainParams.Current.UseFastLoading)
+            if (para.UseFastLoading)
             {
                 sb.Append(" --persistent_data_loader_workers");
             }
 
-            if (TrainParams.Current.DontSaveMetadata)
+            if (para.DontSaveMetadata)
             {
                 sb.Append(" --no_metadata");
             }
 
-            if (TrainParams.Current.UseFullBf16)
+            if (para.UseFullBf16)
             {
                 sb.Append(" --full_bf16");
             }
 
-            if (TrainParams.Current.CacheLatents)
+            if (para.CacheLatents)
             {
                 sb.Append(" --cache_latents");
 
-                if (TrainParams.Current.CacheLatentsToDisk)
+                if (para.CacheLatentsToDisk)
                 {
                     sb.Append(" --cache_latents_to_disk");
                 }
 
             }
 
-            if (TrainParams.Current.AdaptiveNoiseScale != 0)
+            if (para.AdaptiveNoiseScale != 0)
             {
-                sb.Append(" --adaptive_noise_scale ").Append(TrainParams.Current.AdaptiveNoiseScale.ToString());
+                sb.Append(" --adaptive_noise_scale ").Append(para.AdaptiveNoiseScale.ToString());
             }
 
-            if (TrainParams.Current.MaxTokens > 75)
-                sb.Append(" --max_token_length ").Append(TrainParams.Current.MaxTokens);
-
-            sb.Append(" --max_data_loader_n_workers ").Append(TrainParams.Current.DataLoaderThreads);
+            sb.Append(" --max_data_loader_n_workers ").Append(para.DataLoaderThreads);
 
             //Automatic
             sb.Append(" --enable_bucket --save_model_as \"safetensors\"");
 
-            switch (TrainParams.Current.SchedulerType)
+            switch (para.SchedulerType)
             {
                 case Scheduler.polynomial:
-                    sb.Append(" --lr_scheduler_power ").Append(TrainParams.Current.LRSchedulerCycle.ToString("0.###"));
+                    sb.Append(" --lr_scheduler_power ").Append(para.LRSchedulerCycle.ToString("0.###"));
                     break;
                 case Scheduler.cosine_with_restarts:
-                    sb.Append(" --lr_scheduler_num_cycles ").Append(TrainParams.Current.LRSchedulerCycle.ToString("0.###"));
+                    sb.Append(" --lr_scheduler_num_cycles ").Append(para.LRSchedulerCycle.ToString("0.###"));
                     break;
                 default:
                     break;
             }
 
 
-            if (TrainParams.Current.mixedPrecisionType != MixedPrecision.None)
-                sb.Append(" --mixed_precision \"").Append(TrainParams.Current.mixedPrecisionType.ToString()).Append('"');
+            if (para.mixedPrecisionType != MixedPrecision.None)
+                sb.Append(" --mixed_precision \"").Append(para.mixedPrecisionType.ToString()).Append('"');
 
             //Main
-            sb.Append(" --learning_rate ").Append(TrainParams.Current.LearningRate.ToString("g"))
-                .Append(" --resolution ").Append(TrainParams.Current.Resolution)
-                .Append(" --train_batch_size ").Append(TrainParams.Current.BatchSize);
+            sb.Append(" --learning_rate ").Append(para.LearningRate.ToString("g"))
+                .Append(" --resolution ").Append(para.Resolution)
+                .Append(" --train_batch_size ").Append(para.BatchSize);
 
-            if (TrainParams.Current.IsEpoch)
+            if (para.IsEpoch)
             {
-                sb.Append(" --max_train_epochs ").Append(TrainParams.Current.Epochs);
+                sb.Append(" --max_train_epochs ").Append(para.Epochs);
             }
             else
             {
-                sb.Append(" --max_train_steps ").Append(TrainParams.Current.Epochs);
+                sb.Append(" --max_train_steps ").Append(para.Epochs);
             }
 
 
-            sb.Append(" --network_dim ").Append(TrainParams.Current.NetworkDim)
-            .Append(" --network_alpha ").Append(TrainParams.Current.NetworkAlpha);
+            sb.Append(" --network_dim ").Append(para.NetworkDim)
+            .Append(" --network_alpha ").Append(para.NetworkAlpha);
 
             //Optional Main
-            if (TrainParams.Current.ShuffleCaptions)
+            if (para.ShuffleCaptions)
             {
                 sb.Append(" --shuffle_caption");
-                if (TrainParams.Current.KeepTokenCount > 0)
+                if (para.KeepTokenCount > 0)
                 {
-                    sb.Append(" --keep_tokens ").Append(TrainParams.Current.KeepTokenCount);
+                    sb.Append(" --keep_tokens ").Append(para.KeepTokenCount);
                 }
             }
 
-            if (TrainParams.Current.SaveEveryNEpochs > 0)
+            if (para.SaveEveryNEpochs > 0)
             {
-                sb.Append(TrainParams.Current.SaveWeightEveryEpoch ? " --save_every_n_epochs " : " --save_every_n_steps ").Append(TrainParams.Current.SaveEveryNEpochs);
+                sb.Append(para.SaveWeightEveryEpoch ? " --save_every_n_epochs " : " --save_every_n_steps ").Append(para.SaveEveryNEpochs);
             }
 
             string opt = string.Empty;
-            switch (TrainParams.Current.OptimizerTypeEnum)
+            switch (para.OptimizerTypeEnum)
             {
                 case Optimizer.AdEMAMix8bit:
                     opt = "bitsandbytes.optim.AdEMAMix8bit";
@@ -434,17 +443,17 @@ namespace Kohya_lora_trainer
                     opt = "pytorch_optimizer.CAME";
                     break;
                 default:
-                    opt = TrainParams.Current.OptimizerTypeEnum.ToString();
+                    opt = para.OptimizerTypeEnum.ToString();
                     break;
             }
 
             
 
             //Optimizerの引数
-            if(TrainParams.Current.OptimizerTypeEnum == Optimizer.Custom)
+            if(para.OptimizerTypeEnum == Optimizer.Custom)
             {
-                sb.Append(" --optimizer_type \"").Append(TrainParams.Current.CustomOptName.Trim()).Append('"');
-                string str1 = TrainParams.Current.CustomOptArgs.Trim();
+                sb.Append(" --optimizer_type \"").Append(para.CustomOptName.Trim()).Append('"');
+                string str1 = para.CustomOptArgs.Trim();
                 str1 = str1.Replace("\r\n", string.Empty);
                 if (!string.IsNullOrEmpty(str1))
                 {
@@ -454,30 +463,30 @@ namespace Kohya_lora_trainer
             else
             {
                 sb.Append(" --optimizer_type \"").Append(opt).Append('"');
-                switch (TrainParams.Current.OptimizerTypeEnum)
+                switch (para.OptimizerTypeEnum)
                 {
                     case Optimizer.DAdaptLion:
                         {
-                            sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g"))
-                                .Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
-                                .Append(TrainParams.Current.D0.ToString("g")).Append('"');
+                            sb.Append(" --optimizer_args \"betas=").Append(para.Betas0.ToString("g")).Append(',').Append(para.Betas1.ToString("g"))
+                                .Append("\" \"weight_decay=").Append(para.WeightDecay.ToString("g")).Append("\" \"d0=")
+                                .Append(para.D0.ToString("g")).Append('"');
                         }
                         break;
                     case Optimizer.prodigy:
                         {
-                            sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
-        .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append("\" \"d0=")
-        .Append(TrainParams.Current.D0.ToString("g")).Append("\" \"decouple=").Append(TrainParams.Current.Decouple.ToString()).Append("\" \"d_coef=").Append(TrainParams.Current.DCoef.ToString("g"))
-        .Append("\" \"use_bias_correction=").Append(TrainParams.Current.UseBiasCorrection.ToString()).Append("\" \"safeguard_warmup=").Append(TrainParams.Current.SafeguardWarmup.ToString()).Append('"');
+                            sb.Append(" --optimizer_args \"betas=").Append(para.Betas0.ToString("g")).Append(',').Append(para.Betas1.ToString("g")).Append("\" \"eps=")
+        .Append(para.Eps.ToString("g")).Append("\" \"weight_decay=").Append(para.WeightDecay.ToString("g")).Append("\" \"d0=")
+        .Append(para.D0.ToString("g")).Append("\" \"decouple=").Append(para.Decouple.ToString()).Append("\" \"d_coef=").Append(para.DCoef.ToString("g"))
+        .Append("\" \"use_bias_correction=").Append(para.UseBiasCorrection.ToString()).Append("\" \"safeguard_warmup=").Append(para.SafeguardWarmup.ToString()).Append('"');
 
-                            if (TrainParams.Current.GrowthRate > 0f)
+                            if (para.GrowthRate > 0f)
                             {
-                                sb.Append(" \"growth_rate=").Append(TrainParams.Current.GrowthRate.ToString("g")).Append('"');
+                                sb.Append(" \"growth_rate=").Append(para.GrowthRate.ToString("g")).Append('"');
                             }
 
-                            if (TrainParams.Current.ProdigyBeta3 > 0f)
+                            if (para.ProdigyBeta3 > 0f)
                             {
-                                sb.Append(" \"beta3=").Append(TrainParams.Current.ProdigyBeta3.ToString("g")).Append('"');
+                                sb.Append(" \"beta3=").Append(para.ProdigyBeta3.ToString("g")).Append('"');
                             }
                         }
                         break;
@@ -486,95 +495,95 @@ namespace Kohya_lora_trainer
                     case Optimizer.AdamWScheduleFree:
                     case Optimizer.RAdamScheduleFree:
                         {
-                            if (TrainParams.Current.UseAdditionalOptArgs)
+                            if (para.UseAdditionalOptArgs)
                             {
-                                sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).Append("\" \"eps=")
-        .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append('"');
+                                sb.Append(" --optimizer_args \"betas=").Append(para.Betas0.ToString("g")).Append(',').Append(para.Betas1.ToString("g")).Append("\" \"eps=")
+        .Append(para.Eps.ToString("g")).Append("\" \"weight_decay=").Append(para.WeightDecay.ToString("g")).Append('"');
                             }
                         }
                         break;
                     case Optimizer.Lion:
                     case Optimizer.Lion8bit:
                         {
-                            if (TrainParams.Current.UseAdditionalOptArgs)
+                            if (para.UseAdditionalOptArgs)
                             {
-                                sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).
-                                    Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append('"');
+                                sb.Append(" --optimizer_args \"betas=").Append(para.Betas0.ToString("g")).Append(',').Append(para.Betas1.ToString("g")).
+                                    Append("\" \"weight_decay=").Append(para.WeightDecay.ToString("g")).Append('"');
                             }
                         }
                         break;
                     case Optimizer.Came:
                         {
-                            if (TrainParams.Current.UseAdditionalOptArgs)
+                            if (para.UseAdditionalOptArgs)
                             {
-                                sb.Append(" --optimizer_args \"betas=").Append(TrainParams.Current.Betas0.ToString("g")).Append(',').Append(TrainParams.Current.Betas1.ToString("g")).Append(',').Append(TrainParams.Current.Betas2.ToString("g")).Append("\" \"eps1=")
-        .Append(TrainParams.Current.Eps.ToString("g")).Append("\" \"eps2=").Append(TrainParams.Current.Eps1.ToString("g")).Append("\" \"weight_decay=").Append(TrainParams.Current.WeightDecay.ToString("g")).Append('"');
+                                sb.Append(" --optimizer_args \"betas=").Append(para.Betas0.ToString("g")).Append(',').Append(para.Betas1.ToString("g")).Append(',').Append(para.Betas2.ToString("g")).Append("\" \"eps1=")
+        .Append(para.Eps.ToString("g")).Append("\" \"eps2=").Append(para.Eps1.ToString("g")).Append("\" \"weight_decay=").Append(para.WeightDecay.ToString("g")).Append('"');
                             }
                         }
                         break;
                 }
             }
 
-            if (TrainParams.Current.WarmupSteps > 0m)
+            if (para.WarmupSteps > 0m)
             {
-                sb.Append(" --lr_warmup_steps ").Append(TrainParams.Current.WarmupSteps.ToString("0.##"));
+                sb.Append(" --lr_warmup_steps ").Append(para.WarmupSteps.ToString("0.##"));
             }
 
-            if (TrainParams.Current.LRDecaySteps > 0m && TrainParams.Current.SchedulerType == Scheduler.warmup_stable_decay)
+            if (para.LRDecaySteps > 0m && para.SchedulerType == Scheduler.warmup_stable_decay)
             {
-                sb.Append(" --lr_decay_steps ").Append(TrainParams.Current.LRDecaySteps.ToString("0.##"));
+                sb.Append(" --lr_decay_steps ").Append(para.LRDecaySteps.ToString("0.##"));
             }
 
-            if (TrainParams.Current.MinLRRatio > 0m && (TrainParams.Current.SchedulerType == Scheduler.warmup_stable_decay || TrainParams.Current.SchedulerType == Scheduler.cosine_with_min_lr))
+            if (para.MinLRRatio > 0m && (para.SchedulerType == Scheduler.warmup_stable_decay || para.SchedulerType == Scheduler.cosine_with_min_lr))
             {
-                sb.Append(" --lr_scheduler_min_lr_ratio ").Append(TrainParams.Current.MinLRRatio);
+                sb.Append(" --lr_scheduler_min_lr_ratio ").Append(para.MinLRRatio);
             }
 
-            if (TrainParams.Current.SchedulerTimescale > 0m && TrainParams.Current.SchedulerType == Scheduler.inverse_sqrt)
+            if (para.SchedulerTimescale > 0m && para.SchedulerType == Scheduler.inverse_sqrt)
             {
-                sb.Append(" --lr_scheduler_timescale ").Append(TrainParams.Current.SchedulerTimescale);
+                sb.Append(" --lr_scheduler_timescale ").Append(para.SchedulerTimescale);
             }
 
-            if (!string.IsNullOrEmpty(TrainParams.Current.OutputName))
+            if (!string.IsNullOrEmpty(para.OutputName))
             {
-                sb.Append(" --output_name \"").Append(TrainParams.Current.OutputName.Replace("\r\n", string.Empty)).Append('"');
+                sb.Append(" --output_name \"").Append(para.OutputName.Replace("\r\n", string.Empty)).Append('"');
             }
 
-            if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath))
+            if (!string.IsNullOrEmpty(para.VAEPath))
             {
-                sb.Append(" --vae \"").Append(TrainParams.Current.VAEPath).Append('"');
+                sb.Append(" --vae \"").Append(para.VAEPath).Append('"');
             }
 
             //Advanced
-            if (!string.IsNullOrEmpty(TrainParams.Current.LoraModelPath))
+            if (!string.IsNullOrEmpty(para.LoraModelPath))
             {
-                sb.Append(" --network_weights ").Append('"').Append(TrainParams.Current.LoraModelPath).Append('"');
+                sb.Append(" --network_weights ").Append('"').Append(para.LoraModelPath).Append('"');
             }
 
 
-            if (TrainParams.Current.NoBucketUpscaling)
+            if (para.NoBucketUpscaling)
             {
                 sb.Append(" --bucket_no_upscale");
             }
 
 
-            if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.Legacy)
+            if (para.ModelArchitectureEnum == ModelArchitecture.Legacy)
             {
-                sb.Append(" --clip_skip ").Append(TrainParams.Current.ClipSkip);
+                sb.Append(" --clip_skip ").Append(para.ClipSkip);
             }
 
-            sb.Append(" --save_precision \"").Append(TrainParams.Current.SavePrecision.ToString()).Append('"')
-            .Append(" --lr_scheduler \"").Append(TrainParams.Current.SchedulerType.ToString()).Append('"')
-            .Append(" --min_bucket_reso ").Append(TrainParams.Current.MinBucketResolution)
-            .Append(" --max_bucket_reso ").Append(TrainParams.Current.MaxBucketResolution)
-            .Append(" --caption_extension \"").Append(TrainParams.Current.CaptionFileExtension).Append('"');
+            sb.Append(" --save_precision \"").Append(para.SavePrecision.ToString()).Append('"')
+            .Append(" --lr_scheduler \"").Append(para.SchedulerType.ToString()).Append('"')
+            .Append(" --min_bucket_reso ").Append(para.MinBucketResolution)
+            .Append(" --max_bucket_reso ").Append(para.MaxBucketResolution)
+            .Append(" --caption_extension \"").Append(para.CaptionFileExtension).Append('"');
 
-            if (TrainParams.Current.Seed >= 0)
+            if (para.Seed >= 0)
             {
-                sb.Append(" --seed ").Append(TrainParams.Current.Seed);
+                sb.Append(" --seed ").Append(para.Seed);
             }
 
-            switch (TrainParams.Current.advancedTrainType)
+            switch (para.advancedTrainType)
             {
                 case AdvancedTrain.TextEncoderOnly:
                     sb.Append(" --network_train_text_encoder_only");
@@ -586,124 +595,165 @@ namespace Kohya_lora_trainer
                     break;
             }
 
-
-            if (TrainParams.Current.TextEncoderLR > 0)
+            //U-netのStable Diffusion専用オプション
+            if(para.ModelArchitectureEnum != ModelArchitecture.Anima)
             {
-                sb.Append(" --text_encoder_lr ").Append(TrainParams.Current.TextEncoderLR.ToString("g"));
-            }
+                if (para.MaxTokens > 75)
+                    sb.Append(" --max_token_length ").Append(para.MaxTokens);
 
-            if (TrainParams.Current.UnetLR > 0)
-            {
-                sb.Append(" --unet_lr ").Append(TrainParams.Current.UnetLR.ToString("g"));
-            }
-
-            if (TrainParams.Current.NoiseOffset > 0f)
-            {
-                sb.Append(" --noise_offset ").Append(TrainParams.Current.NoiseOffset.ToString());
-                if (TrainParams.Current.RandomNoiseOffset)
+                if (para.NoiseOffset > 0f)
                 {
-                    sb.Append(" --noise_offset_random_strength");
+                    sb.Append(" --noise_offset ").Append(para.NoiseOffset.ToString());
+                    if (para.RandomNoiseOffset)
+                    {
+                        sb.Append(" --noise_offset_random_strength");
+                    }
+                }
+
+                if (para.IpNoiseGamma > 0)
+                {
+                    sb.Append(" --ip_noise_gamma ").Append(para.IpNoiseGamma.ToString());
+                    if (para.RandomIpNoiseGamma)
+                    {
+                        sb.Append(" --ip_noise_gamma_random_strength");
+                    }
+                }
+
+                if (para.MultiresNoiseIterations > 0)
+                {
+                    sb.Append(" --multires_noise_iterations ").Append(para.MultiresNoiseIterations.ToString());
+                }
+
+                if (para.MultiresNoiseDiscount > 0)
+                {
+                    sb.Append(" --multires_noise_discount ").Append(para.MultiresNoiseDiscount.ToString());
+                }
+
+                if (para.MinSNRGamma > 0)
+                {
+                    sb.Append(" --min_snr_gamma ").Append(para.MinSNRGamma.ToString());
+                }
+                if (para.VParameterization)
+                {
+                    sb.Append(" --v_parameterization");
+                }
+
+                if (para.ZeroTerminalSNR)
+                {
+                    sb.Append(" --zero_terminal_snr");
                 }
             }
-
-            if (TrainParams.Current.IpNoiseGamma > 0)
+            else //Diffusion Transformer+Flow matchingのAnima専用
             {
-                sb.Append(" --ip_noise_gamma ").Append(TrainParams.Current.IpNoiseGamma.ToString());
-                if (TrainParams.Current.RandomIpNoiseGamma)
+                if (!string.IsNullOrEmpty(para.DitPath))
                 {
-                    sb.Append(" --ip_noise_gamma_random_strength");
+                    sb.Append(" --dit_path \"").Append(para.DitPath).Append('"');
                 }
+
+                if (!string.IsNullOrEmpty(para.Qwen3Path))
+                {
+                    sb.Append(" --qwen3_path \"").Append(para.Qwen3Path).Append('"');
+                }
+
+                if (para.BlocksToSwap > 0)
+                {
+                    sb.Append(" --blocks_to_swap ").Append(para.BlocksToSwap.ToString());
+                }
+
+                if (para.ApplyT5AttnMask)
+                {
+                    sb.Append(" --apply_t5_attn_mask");
+                }
+
+                sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.##"));
+                sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.##"));
             }
 
-            if (TrainParams.Current.MultiresNoiseIterations > 0)
+            if (para.TextEncoderLR > 0)
             {
-                sb.Append(" --multires_noise_iterations ").Append(TrainParams.Current.MultiresNoiseIterations.ToString());
+                sb.Append(" --text_encoder_lr ").Append(para.TextEncoderLR.ToString("g"));
             }
 
-            if (TrainParams.Current.MultiresNoiseDiscount > 0)
+            if (para.UnetLR > 0)
             {
-                sb.Append(" --multires_noise_discount ").Append(TrainParams.Current.MultiresNoiseDiscount.ToString());
+                sb.Append(" --unet_lr ").Append(para.UnetLR.ToString("g"));
             }
 
-            if (TrainParams.Current.MinSNRGamma > 0)
-            {
-                sb.Append(" --min_snr_gamma ").Append(TrainParams.Current.MinSNRGamma.ToString());
-            }
+            
 
-
-            if (TrainParams.Current.UseWeightedCaptions)
+            if (para.UseWeightedCaptions)
             {
                 sb.Append(" --weighted_captions");
             }
 
-            if (!string.IsNullOrEmpty(TrainParams.Current.TensorBoardLogPath))
+            if (!string.IsNullOrEmpty(para.TensorBoardLogPath))
             {
-                sb.Append(" --logging_dir \"").Append(TrainParams.Current.TensorBoardLogPath).Append('"');
-                sb.Append(" --log_tracker_name \"").Append(TrainParams.Current.OutputName).Append('"');
+                sb.Append(" --logging_dir \"").Append(para.TensorBoardLogPath).Append('"');
+                sb.Append(" --log_tracker_name \"").Append(para.OutputName).Append('"');
             }
 
-            if (!string.IsNullOrEmpty(TrainParams.Current.DatasetConfigPath))
+            if (!string.IsNullOrEmpty(para.DatasetConfigPath))
             {
-                sb.Append(" --dataset_config \"").Append(TrainParams.Current.DatasetConfigPath).Append('"');
+                sb.Append(" --dataset_config \"").Append(para.DatasetConfigPath).Append('"');
             }
 
-            if (TrainParams.Current.NetworkDropout > 0)
+            if (para.NetworkDropout > 0)
             {
-                sb.Append(" --network_dropout ").Append(TrainParams.Current.NetworkDropout.ToString());
+                sb.Append(" --network_dropout ").Append(para.NetworkDropout.ToString());
             }
 
-            if (TrainParams.Current.CaptionDropout > 0)
+            if (para.CaptionDropout > 0)
             {
-                sb.Append(" --caption_dropout_rate ").Append(TrainParams.Current.CaptionDropout.ToString());
+                sb.Append(" --caption_dropout_rate ").Append(para.CaptionDropout.ToString());
             }
 
-            if (TrainParams.Current.CaptionTagDropout > 0)
+            if (para.CaptionTagDropout > 0)
             {
-                sb.Append(" --caption_tag_dropout_rate ").Append(TrainParams.Current.CaptionTagDropout.ToString());
+                sb.Append(" --caption_tag_dropout_rate ").Append(para.CaptionTagDropout.ToString());
             }
 
-            if (TrainParams.Current.NoHalfVAE)
+            if (para.NoHalfVAE)
             {
                 sb.Append(" --no_half_vae");
             }
 
-            if (TrainParams.Current.CacheTextencoder)
+            if (para.CacheTextencoder)
             {
                 sb.Append(" --cache_text_encoder_outputs");
-                if (TrainParams.Current.CacheTextencoderToDisk)
+                if (para.CacheTextencoderToDisk)
                 {
                     sb.Append(" --cache_text_encoder_outputs_to_disk");
                 }
             }
 
-            if (TrainParams.Current.UseFP8Base)
+            if (para.UseFP8Base)
             {
                 sb.Append(" --fp8_base");
             }
 
-            if (!string.IsNullOrEmpty(TrainParams.Current.TokensSeparator))
+            if (!string.IsNullOrEmpty(para.TokensSeparator))
             {
-                sb.Append(" --keep_tokens_separator \"").Append(TrainParams.Current.TokensSeparator).Append('"');
+                sb.Append(" --keep_tokens_separator \"").Append(para.TokensSeparator).Append('"');
             }
 
-            if (!string.IsNullOrEmpty(TrainParams.Current.Comment))
+            if (!string.IsNullOrEmpty(para.Comment))
             {
-                sb.Append(" --training_comment \"").Append(TrainParams.Current.Comment).Append('"');
+                sb.Append(" --training_comment \"").Append(para.Comment).Append('"');
             }
 
-            if (TrainParams.Current.HighVRAM)
+            if (para.HighVRAM)
             {
                 sb.Append(" --highvram");
             }
 
-            if (TrainParams.Current.AlphaMask)
+            if (para.AlphaMask)
             {
                 sb.Append(" --alpha_mask");
             }
 
             sb.Append(" --loss_type \"");
 
-            switch (TrainParams.Current.LossType)
+            switch (para.LossType)
             {
                 case LossType.LTwo:
                     {
@@ -713,91 +763,76 @@ namespace Kohya_lora_trainer
                 case LossType.Huber:
                     {
                         sb.Append("huber\"");
-
-                        sb.Append(" --huber_c ").Append(TrainParams.Current.HuberC.ToString());
+                        sb.Append(" --huber_c ").Append(para.HuberC.ToString());
+                        sb.Append(" --huber_schedule \"").Append(para.HuberScheduleType.ToString().ToLower()).Append('"');
                     }
                     break;
                 case LossType.SmoothLOne:
                     {
                         sb.Append("smooth_l1\"");
-                        sb.Append(" --huber_c ").Append(TrainParams.Current.HuberC.ToString());
+                        sb.Append(" --huber_c ").Append(para.HuberC.ToString());
+                        sb.Append(" --huber_schedule \"").Append(para.HuberScheduleType.ToString().ToLower()).Append('"');
                     }
                     break;
             }
 
-            sb.Append(" --huber_schedule \"").Append(TrainParams.Current.HuberScheduleType.ToString().ToLower()).Append('"');
+            
 
-            if (TrainParams.Current.SaveState)
+            if (para.SaveState)
             {
                 sb.Append(" --save_state_on_train_end");
             }
 
-            if (TrainParams.Current.MaskLoss)
+            if (para.MaskLoss)
             {
                 sb.Append(" --masked_loss");
             }
 
-            if (TrainParams.Current.DebiasedEstimation)
+            if (para.DebiasedEstimation)
             {
                 sb.Append(" --debiased_estimation");
             }
 
-            if (TrainParams.Current.DisableMmapLoadSafetensors)
+            if (para.DisableMmapLoadSafetensors)
             {
                 sb.Append(" --disable_mmap_load_safetensors");
             }
 
-            if (TrainParams.Current.GradAccSteps > 1m)
+            if (para.GradAccSteps > 1m)
             {
-                sb.Append(" --gradient_accumulation_steps ").Append(TrainParams.Current.GradAccSteps.ToString());
+                sb.Append(" --gradient_accumulation_steps ").Append(para.GradAccSteps.ToString());
             }
 
-            if (TrainParams.Current.ScaleWeightNorms > 0)
+            if (para.ScaleWeightNorms > 0)
             {
-                sb.Append(" --scale_weight_norms ").Append(TrainParams.Current.ScaleWeightNorms.ToString());
+                sb.Append(" --scale_weight_norms ").Append(para.ScaleWeightNorms.ToString());
             }
 
-            if (TrainParams.Current.TEBatchSize > 0)
-                sb.Append(" --text_encoder_batch_size ").Append(TrainParams.Current.TEBatchSize.ToString("0"));
+            if (para.TEBatchSize > 0)
+                sb.Append(" --text_encoder_batch_size ").Append(para.TEBatchSize.ToString("0"));
 
-
-            if (!string.IsNullOrEmpty(TrainParams.Current.T5XXLPath))
-            {
-                sb.Append(" --t5xxl \"").Append(TrainParams.Current.T5XXLPath).Append('"');
-            }
-
-            if (TrainParams.Current.CpuOffloadCheckpointing)
+            if (para.CpuOffloadCheckpointing)
             {
                 sb.Append(" --cpu_offload_checkpointing");
             }
 
-            if (TrainParams.Current.VParameterization)
+            if (para.ResizeInterpolationType != ResizeInterpolation.None)
             {
-                sb.Append(" --v_parameterization");
+                sb.Append(" --resize_interpolation \"").Append(para.ResizeInterpolationType.ToString().ToLower()).Append('"');
             }
 
-            if (TrainParams.Current.ZeroTerminalSNR)
+            if (para.TokenWarmupMin > 0)
             {
-                sb.Append(" --zero_terminal_snr");
-            }
-
-            if (TrainParams.Current.ResizeInterpolationType != ResizeInterpolation.None)
-            {
-                sb.Append(" --resize_interpolation \"").Append(TrainParams.Current.ResizeInterpolationType.ToString().ToLower()).Append('"');
-            }
-
-            if (TrainParams.Current.TokenWarmupMin > 0)
-            {
-                sb.Append(" --token_warmup_min ").Append(TrainParams.Current.TokenWarmupMin.ToString("0.####"));
-                if (TrainParams.Current.TokenWarmupStep > 0)
+                sb.Append(" --token_warmup_min ").Append(para.TokenWarmupMin.ToString("0.####"));
+                if (para.TokenWarmupStep > 0)
                 {
-                    sb.Append(" --token_warmup_step ").Append(TrainParams.Current.TokenWarmupStep.ToString("0.####"));
+                    sb.Append(" --token_warmup_step ").Append(para.TokenWarmupStep.ToString("0.####"));
                 }
             }
 
 
 
-            string str = TrainParams.Current.AdditionalArgs.Trim();
+            string str = para.AdditionalArgs.Trim();
             str = str.Replace("\r\n", string.Empty);
             if (!string.IsNullOrEmpty(str))
             {
@@ -835,6 +870,10 @@ namespace Kohya_lora_trainer
 
         private static void GenerateBlockWeightCmmands()
         {
+            if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.Anima)
+            {
+                return;
+            }
             int loopNum = TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.Legacy ? 12 : 9;
             if (TrainParams.Current.UseBlockWeight)
             {

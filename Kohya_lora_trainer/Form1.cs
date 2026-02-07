@@ -680,7 +680,7 @@ namespace Kohya_lora_trainer
                 if ((!command.StartsWith("python") && !command.StartsWith("accelerate")) || command.Contains("&&"))
                 {
                     if (showMsg)
-                        MessageBox.Show("そのコマンドは使用できません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("そのカスタムコマンドは使用できません。\r\n「カスタムコマンド」タブを確認してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
                 return true;
@@ -703,7 +703,7 @@ namespace Kohya_lora_trainer
                 if (str.Contains("&&"))
                 {
                     if (showMsg)
-                        MessageBox.Show("追加の引数に&&は使用できません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("追加の引数に&&は使用できません。\r\n「追加の引数」タブを確認してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
@@ -714,7 +714,7 @@ namespace Kohya_lora_trainer
                 if (str.Contains("&&"))
                 {
                     if (showMsg)
-                        MessageBox.Show("追加のnetwork_argsに&&は使用できません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("追加のnetwork_argsに&&は使用できません。\r\n「追加の引数」タブを確認してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
@@ -745,7 +745,7 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
-            if (!File.Exists(TrainParams.Current.ModelPath))
+            if (!File.Exists(TrainParams.Current.ModelPath) && TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.Anima)
             {
                 if (showMsg)
                     MessageBox.Show("学習元モデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1380,20 +1380,33 @@ namespace Kohya_lora_trainer
                 return MessageBox.Show("Text Encoderの学習(or両方学習)とTEのキャッシュは併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
-            if ((TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim) && ((TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.Legacy && TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.XL) || TrainParams.Current.ModuleType == NetworkModule.LyCORIS))
+
+
+            if(TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.Anima)
             {
-                return MessageBox.Show("LyCORISでは層別学習は非対応ですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
+                {
+                    return MessageBox.Show("層別学習が有効になっていますがAnimaでは非対応のため、\r\n層別学習を使用せず開始します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }
+            }
+            else
+            {
+                if ((TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim) && ((TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.Legacy && TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.XL) || TrainParams.Current.ModuleType == NetworkModule.LyCORIS))
+                {
+                    return MessageBox.Show("LyCORISでは層別学習は非対応ですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }
+                if ((TrainParams.Current.NoiseOffset > 0 || TrainParams.Current.MultiresNoiseIterations > 0) && TrainParams.Current.ZeroTerminalSNR)
+                {
+                    return MessageBox.Show("ノイズオフセットまたはMultires noiseとZero Terminal SNRの併用は望ましくありません。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }
+
+                if (!TrainParams.Current.VParameterization && TrainParams.Current.ZeroTerminalSNR)
+                {
+                    return MessageBox.Show("Zero Terminal SNRはV Parameterizationが有効でないと動作しません(NaN演算の原因)。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }
             }
 
-            if ((TrainParams.Current.NoiseOffset > 0 || TrainParams.Current.MultiresNoiseIterations > 0) && TrainParams.Current.ZeroTerminalSNR)
-            {
-                return MessageBox.Show("ノイズオフセットまたはMultires noiseとZero Terminal SNRの併用は望ましくありません。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            }
 
-            if (!TrainParams.Current.VParameterization && TrainParams.Current.ZeroTerminalSNR)
-            {
-                return MessageBox.Show("Zero Terminal SNRはV Parameterizationが有効でないと動作しません(NaN演算の原因)。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            }
             Scheduler sc = TrainParams.Current.SchedulerType;
             if (TrainParams.Current.WarmupSteps > 0 && (sc != Scheduler.cosine_with_restarts && sc != Scheduler.constant_with_warmup && sc != Scheduler.warmup_stable_decay))
             {

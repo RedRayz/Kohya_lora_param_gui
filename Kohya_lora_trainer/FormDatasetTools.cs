@@ -552,11 +552,6 @@ namespace Kohya_lora_trainer
                     }
                 }
 
-                if (reg != null && reg.IsMatch("4girls"))
-                {
-                    Debug.WriteLine("test matched");
-                }
-
                 string[] files = Directory.GetFiles(tbxTargetDir.Text);
 
                 foreach (string file in files)

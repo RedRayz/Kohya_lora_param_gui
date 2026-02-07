@@ -66,6 +66,7 @@ namespace Kohya_lora_trainer
             lblNumStepsBatch1 = new Label();
             btnRefreshPath = new Button();
             lblPredictedLoraFilesize = new Label();
+            tbxModelPath = new TextBox();
             btnSavePreset = new Button();
             btnLoadPreset = new Button();
             lblResolution = new Label();
@@ -85,7 +86,6 @@ namespace Kohya_lora_trainer
             btnOutputPath = new Button();
             btnCustomScriptPath = new Button();
             lblScriptPathDesc = new Label();
-            tbxModelPath = new TextBox();
             tbxImagePath = new TextBox();
             tbxOutputPath = new TextBox();
             label6 = new Label();
@@ -415,7 +415,7 @@ namespace Kohya_lora_trainer
             cbxModuleType.Name = "cbxModuleType";
             cbxModuleType.Size = new Size(80, 23);
             cbxModuleType.TabIndex = 6;
-            toolTip1.SetToolTip(cbxModuleType, "LoRA-FAはメモリ消費がわずかに減少する\r\nまた学習が遅くなる代わりに安定性向上？");
+            toolTip1.SetToolTip(cbxModuleType, "LoRA-FAはメモリ消費がわずかに減少する\r\nまた学習が遅くなる代わりに安定性向上？\r\nAnimaはLoRAのみ対応(LyCORISは未確認)");
             cbxModuleType.SelectedIndexChanged += cbxModuleType_SelectedIndexChanged;
             // 
             // nudSaveEpoch
@@ -515,6 +515,19 @@ namespace Kohya_lora_trainer
             lblPredictedLoraFilesize.TabIndex = 61;
             lblPredictedLoraFilesize.Text = "100KB";
             toolTip1.SetToolTip(lblPredictedLoraFilesize, "おおよそのファイルサイズ");
+            // 
+            // tbxModelPath
+            // 
+            tbxModelPath.AllowDrop = true;
+            tbxModelPath.Font = new Font("Yu Gothic UI", 8F);
+            tbxModelPath.Location = new Point(8, 38);
+            tbxModelPath.Name = "tbxModelPath";
+            tbxModelPath.Size = new Size(732, 22);
+            tbxModelPath.TabIndex = 71;
+            toolTip1.SetToolTip(tbxModelPath, "Animaでは使用しない");
+            tbxModelPath.TextChanged += tbxModelPath_TextChanged;
+            tbxModelPath.DragDrop += tbxModelPath_DragDrop;
+            tbxModelPath.DragEnter += tbxModelPath_DragEnter;
             // 
             // btnSavePreset
             // 
@@ -698,18 +711,6 @@ namespace Kohya_lora_trainer
             lblScriptPathDesc.Size = new Size(106, 15);
             lblScriptPathDesc.TabIndex = 68;
             lblScriptPathDesc.Text = "sd-scripts場所選択";
-            // 
-            // tbxModelPath
-            // 
-            tbxModelPath.AllowDrop = true;
-            tbxModelPath.Font = new Font("Yu Gothic UI", 8F);
-            tbxModelPath.Location = new Point(8, 38);
-            tbxModelPath.Name = "tbxModelPath";
-            tbxModelPath.Size = new Size(732, 22);
-            tbxModelPath.TabIndex = 71;
-            tbxModelPath.TextChanged += tbxModelPath_TextChanged;
-            tbxModelPath.DragDrop += tbxModelPath_DragDrop;
-            tbxModelPath.DragEnter += tbxModelPath_DragEnter;
             // 
             // tbxImagePath
             // 
