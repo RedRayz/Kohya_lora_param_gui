@@ -641,6 +641,12 @@ namespace Kohya_lora_trainer
         private bool HasScriptFile(string str, bool showMsg)
         {
 #if DEBUG
+            if (!File.Exists(str + "train_network.py"))
+            {
+                if (showMsg)
+                    MessageBox.Show("train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             return true;
 #endif
 
@@ -1207,40 +1213,45 @@ namespace Kohya_lora_trainer
 
         private void UpdateAllContents()
         {
+            var para = TrainParams.Current;
+            if (para == null)
+            {
+                return;
+            }
             HaveNonAscillInImageFolder = false;
             HaveNonAscillInModelPath = false;
             HaveNonAscillInOutputName = false;
             HaveNonAscillInRegFolder = false;
             HaveNonAscillInOutputPath = false;
             //ModelPath
-            tbxModelPath.Text = TrainParams.Current.ModelPath;
+            tbxModelPath.Text = para.ModelPath;
             tbxModelPath.ForeColor = Color.Black;
-            if (!File.Exists(TrainParams.Current.ModelPath))
+            if (!File.Exists(para.ModelPath))
             {
                 tbxModelPath.ForeColor = Color.Red;
             }
-            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.ModelPath))
+            else if (CheckUtil.HaveNonAsciiOrSpace(para.ModelPath))
             {
                 tbxModelPath.ForeColor = Color.Orange;
                 HaveNonAscillInModelPath = true;
             }
 
             //TrainImage
-            tbxImagePath.Text = TrainParams.Current.TrainImagePath;
-            IsInvalidImageFolder = !CheckUtil.IsImageDirectoryValid(TrainParams.Current.TrainImagePath, out StepsPerEpoch);
+            tbxImagePath.Text = para.TrainImagePath;
+            IsInvalidImageFolder = !CheckUtil.IsImageDirectoryValid(para.TrainImagePath, out StepsPerEpoch);
             tbxImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
-            if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.TrainImagePath))
+            if (CheckUtil.HaveNonAsciiOrSpace(para.TrainImagePath))
             {
                 tbxImagePath.ForeColor = Color.Orange;
                 HaveNonAscillInImageFolder = true;
             }
 
             //RegImage
-            tbxRegImgPath.Text = TrainParams.Current.RegImagePath;
-            if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
+            tbxRegImgPath.Text = para.RegImagePath;
+            if (!string.IsNullOrEmpty(para.RegImagePath))
             {
                 int num = 0;
-                IsInvalidRegFolder = !CheckUtil.IsImageDirectoryValid(TrainParams.Current.RegImagePath, out num);
+                IsInvalidRegFolder = !CheckUtil.IsImageDirectoryValid(para.RegImagePath, out num);
             }
             else
             {
@@ -1248,7 +1259,7 @@ namespace Kohya_lora_trainer
             }
             tbxRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
 
-            if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.RegImagePath))
+            if (CheckUtil.HaveNonAsciiOrSpace(para.RegImagePath))
             {
                 tbxRegImgPath.ForeColor = Color.Orange;
                 HaveNonAscillInRegFolder = true;
@@ -1256,44 +1267,44 @@ namespace Kohya_lora_trainer
 
             //OutputPath
             tbxOutputPath.ForeColor = Color.Black;
-            tbxOutputPath.Text = TrainParams.Current.OutputPath;
-            if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputPath))
+            tbxOutputPath.Text = para.OutputPath;
+            if (CheckUtil.HaveNonAsciiOrSpace(para.OutputPath))
             {
                 tbxOutputPath.ForeColor = Color.Orange;
                 HaveNonAscillInOutputPath = true;
             }
 
-            if (!Directory.Exists(TrainParams.Current.OutputPath))
+            if (!Directory.Exists(para.OutputPath))
             {
                 tbxOutputPath.ForeColor = Color.Red;
             }
             //Epochs
-            nudEpochs.Value = TrainParams.Current.Epochs;
+            nudEpochs.Value = para.Epochs;
             //LR
-            tbxLR.Text = TrainParams.Current.LearningRate.ToString("g");
+            tbxLR.Text = para.LearningRate.ToString("g");
             CheckLR();
             //Reso
-            nudResolution.Value = TrainParams.Current.Resolution;
-            IsInvalidResolution = TrainParams.Current.Resolution % 64 != 0;
+            nudResolution.Value = para.Resolution;
+            IsInvalidResolution = para.Resolution % 64 != 0;
             lblResolution.ForeColor = IsInvalidResolution ? Color.Red : Color.Black;
             //BatchSize
-            nudBatchSize.Value = TrainParams.Current.BatchSize;
+            nudBatchSize.Value = para.BatchSize;
             //NetworkDim
-            nudNetworkDim.Value = TrainParams.Current.NetworkDim;
+            nudNetworkDim.Value = para.NetworkDim;
             //NetworkAlpha
-            nudNetworkAlpha.Value = TrainParams.Current.NetworkAlpha;
+            nudNetworkAlpha.Value = para.NetworkAlpha;
             //Shuffle
-            cbxShuffle.Checked = TrainParams.Current.ShuffleCaptions;
+            cbxShuffle.Checked = para.ShuffleCaptions;
             //KeepTokens
-            nudKeepTokens.Value = TrainParams.Current.KeepTokenCount;
+            nudKeepTokens.Value = para.KeepTokenCount;
             //SaveEveryNEpoch
-            nudSaveEpoch.Value = TrainParams.Current.SaveEveryNEpochs;
+            nudSaveEpoch.Value = para.SaveEveryNEpochs;
             //Optimizer
-            cbxOptimizer.SelectedIndex = (int)TrainParams.Current.OptimizerTypeEnum;
+            cbxOptimizer.SelectedIndex = (int)para.OptimizerTypeEnum;
             //ModuleType
-            cbxModuleType.SelectedIndex = (int)TrainParams.Current.ModuleType;
+            cbxModuleType.SelectedIndex = (int)para.ModuleType;
             //OutputName
-            tbxFileName.Text = TrainParams.Current.OutputName;
+            tbxFileName.Text = para.OutputName;
             tbxFileName.ForeColor = Color.Black;
             if (CheckUtil.HaveNonAsciiOrSpace(tbxFileName.Text))
             {
@@ -1301,21 +1312,21 @@ namespace Kohya_lora_trainer
                 HaveNonAscillInOutputName = true;
             }
 
-            cbxSDType.SelectedIndex = (int)TrainParams.Current.ModelArchitectureEnum;
+            cbxSDType.SelectedIndex = (int)para.ModelArchitectureEnum;
 
             //WarmupSteps
-            nudWarmupSteps.Value = TrainParams.Current.WarmupSteps;
+            nudWarmupSteps.Value = para.WarmupSteps;
 
-            cbxEpochOrStep.SelectedIndex = TrainParams.Current.IsEpoch ? 0 : 1;
-            cbxSaveEveryEpoch.SelectedIndex = TrainParams.Current.SaveWeightEveryEpoch ? 0 : 1;
+            cbxEpochOrStep.SelectedIndex = para.IsEpoch ? 0 : 1;
+            cbxSaveEveryEpoch.SelectedIndex = para.SaveWeightEveryEpoch ? 0 : 1;
 
-            tbxCommand.Text = TrainParams.Current.CustomCommands;
+            tbxCommand.Text = para.CustomCommands;
 
-            tbxAdditionalArgs.Text = TrainParams.Current.AdditionalArgs;
-            tbxAdditionalNetworkArgs.Text = TrainParams.Current.AdditionalNetworkArgs;
+            tbxAdditionalArgs.Text = para.AdditionalArgs;
+            tbxAdditionalNetworkArgs.Text = para.AdditionalNetworkArgs;
 
-            tbxCustomOptName.Text = TrainParams.Current.CustomOptName;
-            tbxCustomOptArgs.Text = TrainParams.Current.CustomOptArgs;
+            tbxCustomOptName.Text = para.CustomOptName;
+            tbxCustomOptArgs.Text = para.CustomOptArgs;
 
             PredictLoraFilesize();
 
