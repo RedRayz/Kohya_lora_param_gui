@@ -30,6 +30,8 @@ namespace Kohya_lora_trainer
         private string? LastOpenPresetPath = string.Empty;
         private bool IsReady = false;
 
+        private bool PrevCustomCmdActiveFlag = false, PrevAddArgActiveFlag = false, PrevCustomOptActiveFlag = false;
+
         internal static TrainCompleteAction CompleteAction = TrainCompleteAction.None;
 
         public Form1()
@@ -485,10 +487,10 @@ namespace Kohya_lora_trainer
                 while (BatchProcess.BatchStack.Count > 0)
                 {
                     string pth = BatchProcess.BatchStack.Pop();
-                    //train_networkがない
+                    //必須のファイルがない
                     if (!HasScriptFile(str, false))
                     {
-                        Debug.WriteLine("Skip training. train_network.py not found");
+                        Debug.WriteLine("Skip training. required files are not found");
                         BatchProcess.LogText += TrainParams.Current.OutputPath + "\\" + TrainParams.Current.OutputName + ".safetensors\r\ntrain_network.pyがないためスキップ\r\n\r\n";
 
                         BatchProcess.SkippedCount++;
@@ -632,6 +634,8 @@ namespace Kohya_lora_trainer
                     return;
             }
 
+            Debug.WriteLine("Execute the command");
+
             Form train = new TrainForm(false);
             train.ShowDialog();
             train.Dispose();
@@ -640,18 +644,34 @@ namespace Kohya_lora_trainer
 
         private bool HasScriptFile(string str, bool showMsg)
         {
-#if DEBUG
-            return true;
-#endif
-
-            if (!File.Exists(str + "train_network.py"))
+            switch (TrainParams.Current.ModelArchitectureEnum)
             {
-                if (showMsg)
-                    MessageBox.Show("train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                case ModelArchitecture.Legacy:
+                    if (!File.Exists(str + "train_network.py"))
+                    {
+                        if (showMsg)
+                            MessageBox.Show("train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                    break;
+                case ModelArchitecture.XL:
+                    if (!File.Exists(str + @"sdxl_train_network.py"))
+                    {
+                        if (showMsg)
+                            MessageBox.Show("sdxl_train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                    break;
+                case ModelArchitecture.Anima:
+                    if (!File.Exists(str + "anima_train_network.py"))
+                    {
+                        if (showMsg)
+                            MessageBox.Show("anima_train_network.pyが見つかりません。\r\nsd-scriptsのアップデートをお試しください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                    break;
             }
-
-            if (!Directory.Exists(Constants.CurrentSdScriptsPath + @"venv"))
+            if (!Directory.Exists(str + "venv"))
             {
                 if (showMsg)
                     MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。\r\nユーティリティからvenvの再生成ができます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -680,7 +700,7 @@ namespace Kohya_lora_trainer
                 if ((!command.StartsWith("python") && !command.StartsWith("accelerate")) || command.Contains("&&"))
                 {
                     if (showMsg)
-                        MessageBox.Show("そのコマンドは使用できません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("そのカスタムコマンドは使用できません。\r\n「カスタムコマンド」タブを確認してください。\r\n不要であればカスタムコマンドを空にしてください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
                 return true;
@@ -703,7 +723,7 @@ namespace Kohya_lora_trainer
                 if (str.Contains("&&"))
                 {
                     if (showMsg)
-                        MessageBox.Show("追加の引数に&&は使用できません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("追加の引数に&&は使用できません。\r\n「追加の引数」タブを確認してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
@@ -714,7 +734,7 @@ namespace Kohya_lora_trainer
                 if (str.Contains("&&"))
                 {
                     if (showMsg)
-                        MessageBox.Show("追加のnetwork_argsに&&は使用できません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("追加のnetwork_argsに&&は使用できません。\r\n「追加の引数」タブを確認してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
@@ -745,7 +765,7 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
-            if (!File.Exists(TrainParams.Current.ModelPath))
+            if (!File.Exists(TrainParams.Current.ModelPath) && TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.Anima)
             {
                 if (showMsg)
                     MessageBox.Show("学習元モデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -798,20 +818,6 @@ namespace Kohya_lora_trainer
             {
                 if (showMsg)
                     MessageBox.Show("VAEが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.XL && !File.Exists(Constants.CurrentSdScriptsPath + @"sdxl_train_network.py"))
-            {
-                if (showMsg)
-                    MessageBox.Show("sdxl_train_network.pyが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (!Directory.Exists(Constants.CurrentSdScriptsPath + @"venv"))
-            {
-                if (showMsg)
-                    MessageBox.Show("Pythonの仮想環境(venv)が見つかりません。\r\nツール->ユーティリティからvenvの再生成ができます。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -1207,40 +1213,45 @@ namespace Kohya_lora_trainer
 
         private void UpdateAllContents()
         {
+            var para = TrainParams.Current;
+            if (para == null)
+            {
+                return;
+            }
             HaveNonAscillInImageFolder = false;
             HaveNonAscillInModelPath = false;
             HaveNonAscillInOutputName = false;
             HaveNonAscillInRegFolder = false;
             HaveNonAscillInOutputPath = false;
             //ModelPath
-            tbxModelPath.Text = TrainParams.Current.ModelPath;
+            tbxModelPath.Text = para.ModelPath;
             tbxModelPath.ForeColor = Color.Black;
-            if (!File.Exists(TrainParams.Current.ModelPath))
+            if (!File.Exists(para.ModelPath))
             {
                 tbxModelPath.ForeColor = Color.Red;
             }
-            else if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.ModelPath))
+            else if (CheckUtil.HaveNonAsciiOrSpace(para.ModelPath))
             {
                 tbxModelPath.ForeColor = Color.Orange;
                 HaveNonAscillInModelPath = true;
             }
 
             //TrainImage
-            tbxImagePath.Text = TrainParams.Current.TrainImagePath;
-            IsInvalidImageFolder = !CheckUtil.IsImageDirectoryValid(TrainParams.Current.TrainImagePath, out StepsPerEpoch);
+            tbxImagePath.Text = para.TrainImagePath;
+            IsInvalidImageFolder = !CheckUtil.IsImageDirectoryValid(para.TrainImagePath, out StepsPerEpoch);
             tbxImagePath.ForeColor = IsInvalidImageFolder ? Color.Red : Color.Black;
-            if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.TrainImagePath))
+            if (CheckUtil.HaveNonAsciiOrSpace(para.TrainImagePath))
             {
                 tbxImagePath.ForeColor = Color.Orange;
                 HaveNonAscillInImageFolder = true;
             }
 
             //RegImage
-            tbxRegImgPath.Text = TrainParams.Current.RegImagePath;
-            if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath))
+            tbxRegImgPath.Text = para.RegImagePath;
+            if (!string.IsNullOrEmpty(para.RegImagePath))
             {
                 int num = 0;
-                IsInvalidRegFolder = !CheckUtil.IsImageDirectoryValid(TrainParams.Current.RegImagePath, out num);
+                IsInvalidRegFolder = !CheckUtil.IsImageDirectoryValid(para.RegImagePath, out num);
             }
             else
             {
@@ -1248,7 +1259,7 @@ namespace Kohya_lora_trainer
             }
             tbxRegImgPath.ForeColor = IsInvalidRegFolder ? Color.Red : Color.Black;
 
-            if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.RegImagePath))
+            if (CheckUtil.HaveNonAsciiOrSpace(para.RegImagePath))
             {
                 tbxRegImgPath.ForeColor = Color.Orange;
                 HaveNonAscillInRegFolder = true;
@@ -1256,44 +1267,44 @@ namespace Kohya_lora_trainer
 
             //OutputPath
             tbxOutputPath.ForeColor = Color.Black;
-            tbxOutputPath.Text = TrainParams.Current.OutputPath;
-            if (CheckUtil.HaveNonAsciiOrSpace(TrainParams.Current.OutputPath))
+            tbxOutputPath.Text = para.OutputPath;
+            if (CheckUtil.HaveNonAsciiOrSpace(para.OutputPath))
             {
                 tbxOutputPath.ForeColor = Color.Orange;
                 HaveNonAscillInOutputPath = true;
             }
 
-            if (!Directory.Exists(TrainParams.Current.OutputPath))
+            if (!Directory.Exists(para.OutputPath))
             {
                 tbxOutputPath.ForeColor = Color.Red;
             }
             //Epochs
-            nudEpochs.Value = TrainParams.Current.Epochs;
+            nudEpochs.Value = para.Epochs;
             //LR
-            tbxLR.Text = TrainParams.Current.LearningRate.ToString("g");
+            tbxLR.Text = para.LearningRate.ToString("g");
             CheckLR();
             //Reso
-            nudResolution.Value = TrainParams.Current.Resolution;
-            IsInvalidResolution = TrainParams.Current.Resolution % 64 != 0;
+            nudResolution.Value = para.Resolution;
+            IsInvalidResolution = para.Resolution % 64 != 0;
             lblResolution.ForeColor = IsInvalidResolution ? Color.Red : Color.Black;
             //BatchSize
-            nudBatchSize.Value = TrainParams.Current.BatchSize;
+            nudBatchSize.Value = para.BatchSize;
             //NetworkDim
-            nudNetworkDim.Value = TrainParams.Current.NetworkDim;
+            nudNetworkDim.Value = para.NetworkDim;
             //NetworkAlpha
-            nudNetworkAlpha.Value = TrainParams.Current.NetworkAlpha;
+            nudNetworkAlpha.Value = para.NetworkAlpha;
             //Shuffle
-            cbxShuffle.Checked = TrainParams.Current.ShuffleCaptions;
+            cbxShuffle.Checked = para.ShuffleCaptions;
             //KeepTokens
-            nudKeepTokens.Value = TrainParams.Current.KeepTokenCount;
+            nudKeepTokens.Value = para.KeepTokenCount;
             //SaveEveryNEpoch
-            nudSaveEpoch.Value = TrainParams.Current.SaveEveryNEpochs;
+            nudSaveEpoch.Value = para.SaveEveryNEpochs;
             //Optimizer
-            cbxOptimizer.SelectedIndex = (int)TrainParams.Current.OptimizerTypeEnum;
+            cbxOptimizer.SelectedIndex = (int)para.OptimizerTypeEnum;
             //ModuleType
-            cbxModuleType.SelectedIndex = (int)TrainParams.Current.ModuleType;
+            cbxModuleType.SelectedIndex = (int)para.ModuleType;
             //OutputName
-            tbxFileName.Text = TrainParams.Current.OutputName;
+            tbxFileName.Text = para.OutputName;
             tbxFileName.ForeColor = Color.Black;
             if (CheckUtil.HaveNonAsciiOrSpace(tbxFileName.Text))
             {
@@ -1301,25 +1312,37 @@ namespace Kohya_lora_trainer
                 HaveNonAscillInOutputName = true;
             }
 
-            cbxSDType.SelectedIndex = (int)TrainParams.Current.ModelArchitectureEnum;
+            cbxSDType.SelectedIndex = (int)para.ModelArchitectureEnum;
 
             //WarmupSteps
-            nudWarmupSteps.Value = TrainParams.Current.WarmupSteps;
+            nudWarmupSteps.Value = para.WarmupSteps;
 
-            cbxEpochOrStep.SelectedIndex = TrainParams.Current.IsEpoch ? 0 : 1;
-            cbxSaveEveryEpoch.SelectedIndex = TrainParams.Current.SaveWeightEveryEpoch ? 0 : 1;
+            cbxEpochOrStep.SelectedIndex = para.IsEpoch ? 0 : 1;
+            cbxSaveEveryEpoch.SelectedIndex = para.SaveWeightEveryEpoch ? 0 : 1;
 
-            tbxCommand.Text = TrainParams.Current.CustomCommands;
+            tbxCommand.Text = para.CustomCommands;
 
-            tbxAdditionalArgs.Text = TrainParams.Current.AdditionalArgs;
-            tbxAdditionalNetworkArgs.Text = TrainParams.Current.AdditionalNetworkArgs;
+            tbxAdditionalArgs.Text = para.AdditionalArgs;
+            tbxAdditionalNetworkArgs.Text = para.AdditionalNetworkArgs;
 
-            tbxCustomOptName.Text = TrainParams.Current.CustomOptName;
-            tbxCustomOptArgs.Text = TrainParams.Current.CustomOptArgs;
+            tbxCustomOptName.Text = para.CustomOptName;
+            tbxCustomOptArgs.Text = para.CustomOptArgs;
+
+            PrevCustomCmdActiveFlag = string.IsNullOrEmpty(TrainParams.Current.CustomCommands);
+            tabPageCustomCommands.Text = PrevCustomCmdActiveFlag ? "カスタムコマンド" : "カスタムコマンド(使用中)";
+
+            PrevAddArgActiveFlag = string.IsNullOrEmpty(TrainParams.Current.AdditionalArgs) && string.IsNullOrEmpty(TrainParams.Current.AdditionalNetworkArgs);
+            tabPageAddArgs.Text = PrevAddArgActiveFlag ? "追加の引数" : "追加の引数(使用中)";
+
+            PrevCustomOptActiveFlag = string.IsNullOrEmpty(TrainParams.Current.CustomOptName);
+            tabPageCustomOpt.Text = PrevCustomOptActiveFlag ? "カスタムオプティマイザ" : "カスタムオプティマイザ(使用中)";
 
             PredictLoraFilesize();
 
             UpdateTotalStepCount();
+
+            btnBlockWeight.BackColor = para.UseBlockWeight ? Color.MistyRose : Color.White;
+            btnBlockDim.BackColor = para.UseBlockDim ? Color.MistyRose : Color.White;
         }
 
         private DialogResult NotifyBadParams()
@@ -1380,20 +1403,33 @@ namespace Kohya_lora_trainer
                 return MessageBox.Show("Text Encoderの学習(or両方学習)とTEのキャッシュは併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
-            if ((TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim) && ((TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.Legacy && TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.XL) || TrainParams.Current.ModuleType == NetworkModule.LyCORIS))
+
+
+            if(TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.Anima)
             {
-                return MessageBox.Show("LyCORISでは層別学習は非対応ですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
+                {
+                    return MessageBox.Show("層別学習が有効になっていますがAnimaでは非対応のため、\r\n層別学習を使用せず開始します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }
+            }
+            else
+            {
+                if ((TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim) && ((TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.Legacy && TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.XL) || TrainParams.Current.ModuleType == NetworkModule.LyCORIS))
+                {
+                    return MessageBox.Show("LyCORISでは層別学習は非対応ですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }
+                if ((TrainParams.Current.NoiseOffset > 0 || TrainParams.Current.MultiresNoiseIterations > 0) && TrainParams.Current.ZeroTerminalSNR)
+                {
+                    return MessageBox.Show("ノイズオフセットまたはMultires noiseとZero Terminal SNRの併用は望ましくありません。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }
+
+                if (!TrainParams.Current.VParameterization && TrainParams.Current.ZeroTerminalSNR)
+                {
+                    return MessageBox.Show("Zero Terminal SNRはV Parameterizationが有効でないと動作しません(NaN演算の原因)。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }
             }
 
-            if ((TrainParams.Current.NoiseOffset > 0 || TrainParams.Current.MultiresNoiseIterations > 0) && TrainParams.Current.ZeroTerminalSNR)
-            {
-                return MessageBox.Show("ノイズオフセットまたはMultires noiseとZero Terminal SNRの併用は望ましくありません。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            }
 
-            if (!TrainParams.Current.VParameterization && TrainParams.Current.ZeroTerminalSNR)
-            {
-                return MessageBox.Show("Zero Terminal SNRはV Parameterizationが有効でないと動作しません(NaN演算の原因)。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            }
             Scheduler sc = TrainParams.Current.SchedulerType;
             if (TrainParams.Current.WarmupSteps > 0 && (sc != Scheduler.cosine_with_restarts && sc != Scheduler.constant_with_warmup && sc != Scheduler.warmup_stable_decay))
             {
@@ -1531,7 +1567,14 @@ namespace Kohya_lora_trainer
 
         private void tbxCommand_TextChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.CustomCommands = tbxCommand.Text.Replace("\r\n", string.Empty);
+            TrainParams.Current.CustomCommands = tbxCommand.Text.Replace("\r\n", string.Empty).Trim();
+            
+            bool hasNoTxt = string.IsNullOrEmpty(TrainParams.Current.CustomCommands);
+            if (hasNoTxt != PrevCustomCmdActiveFlag)
+            {
+                tabPageCustomCommands.Text = hasNoTxt ? "カスタムコマンド" : "カスタムコマンド(使用中)";
+                PrevCustomCmdActiveFlag = hasNoTxt;
+            }
         }
 
         private void ユーティリティToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1550,12 +1593,26 @@ namespace Kohya_lora_trainer
 
         private void tbxAdditionalArgs_TextChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.AdditionalArgs = tbxAdditionalArgs.Text;
+            TrainParams.Current.AdditionalArgs = tbxAdditionalArgs.Text.Trim();
+
+            bool hasNoTxt = string.IsNullOrEmpty(TrainParams.Current.AdditionalArgs) && string.IsNullOrEmpty(TrainParams.Current.AdditionalNetworkArgs);
+            if (hasNoTxt != PrevAddArgActiveFlag)
+            {
+                tabPageAddArgs.Text = hasNoTxt ? "追加の引数" : "追加の引数(使用中)";
+                PrevAddArgActiveFlag = hasNoTxt;
+            }
         }
 
         private void tbxAdditionalNetworkArgs_TextChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.AdditionalNetworkArgs = tbxAdditionalNetworkArgs.Text;
+            TrainParams.Current.AdditionalNetworkArgs = tbxAdditionalNetworkArgs.Text.Trim();
+
+            bool hasNoTxt = string.IsNullOrEmpty(TrainParams.Current.AdditionalArgs) && string.IsNullOrEmpty(TrainParams.Current.AdditionalNetworkArgs);
+            if (hasNoTxt != PrevAddArgActiveFlag)
+            {
+                tabPageAddArgs.Text = hasNoTxt ? "追加の引数" : "追加の引数(使用中)";
+                PrevAddArgActiveFlag = hasNoTxt;
+            }
         }
 
         private void cbxSaveEveryEpoch_SelectedIndexChanged(object sender, EventArgs e)
@@ -1581,12 +1638,18 @@ namespace Kohya_lora_trainer
 
         private void tbxCustomOptName_TextChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.CustomOptName = tbxCustomOptName.Text;
+            TrainParams.Current.CustomOptName = tbxCustomOptName.Text.Trim();
+            bool hasNoTxt = string.IsNullOrEmpty(TrainParams.Current.CustomOptName);
+            if (hasNoTxt != PrevCustomOptActiveFlag)
+            {
+                tabPageCustomOpt.Text = hasNoTxt ? "カスタムオプティマイザ" : "カスタムオプティマイザ(使用中)";
+                PrevCustomOptActiveFlag = hasNoTxt;
+            }
         }
 
         private void tbxCustomOptArgs_TextChanged(object sender, EventArgs e)
         {
-            TrainParams.Current.CustomOptArgs = tbxCustomOptArgs.Text;
+            TrainParams.Current.CustomOptArgs = tbxCustomOptArgs.Text.Trim();
         }
 
         private void btnShowTipsDatasetDir_Click(object sender, EventArgs e)
@@ -1752,6 +1815,11 @@ namespace Kohya_lora_trainer
             }
 
             string scale = "KiB";
+
+            if(para.SavePrecision == SavePrecision.fp32)
+            {
+                filesize *= 2m;
+            }
 
             if(filesize > 1024m)
             {
