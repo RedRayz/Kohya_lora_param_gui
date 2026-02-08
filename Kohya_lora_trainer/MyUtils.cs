@@ -551,7 +551,9 @@ namespace Kohya_lora_trainer
 
             if (!string.IsNullOrEmpty(para.VAEPath))
             {
-                sb.Append(" --vae \"").Append(para.VAEPath).Append('"');
+                string vae = para.ModelArchitectureEnum == ModelArchitecture.Anima ? " --vae_path \"" : " --vae \"";
+
+                sb.Append(vae).Append(para.VAEPath).Append('"');
             }
 
             //Advanced
