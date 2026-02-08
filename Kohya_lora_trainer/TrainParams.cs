@@ -457,7 +457,8 @@ namespace Kohya_lora_trainer
     {
         fp16,
         bf16,
-        fp32
+        fp32,
+        none,
     }
 
     public enum Scheduler

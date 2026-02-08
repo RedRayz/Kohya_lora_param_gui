@@ -574,8 +574,26 @@ namespace Kohya_lora_trainer
                 sb.Append(" --clip_skip ").Append(para.ClipSkip);
             }
 
-            sb.Append(" --save_precision \"").Append(para.SavePrecision.ToString()).Append('"')
-            .Append(" --lr_scheduler \"").Append(para.SchedulerType.ToString()).Append('"')
+            if(para.SavePrecision != SavePrecision.none)
+            {
+                string preci = string.Empty;
+                switch (para.SavePrecision)
+                {
+                    case SavePrecision.fp16:
+                        preci = "fp16";
+                        break;
+                    case SavePrecision.bf16:
+                        preci = "bf16";
+                        break;
+                    case SavePrecision.fp32:
+                        preci = "float";
+                        break;
+                }
+
+                sb.Append(" --save_precision \"").Append(preci).Append('"');
+            }
+            
+            sb.Append(" --lr_scheduler \"").Append(para.SchedulerType.ToString()).Append('"')
             .Append(" --min_bucket_reso ").Append(para.MinBucketResolution)
             .Append(" --max_bucket_reso ").Append(para.MaxBucketResolution)
             .Append(" --caption_extension \"").Append(para.CaptionFileExtension).Append('"');
