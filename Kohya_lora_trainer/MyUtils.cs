@@ -179,11 +179,8 @@ namespace Kohya_lora_trainer
                     sb.Append(" train_network.py");
                     break;
             }
-            //AnimaではCheckpointではなく個別のウェイトに分かれているので空文字であれば無視
-            if (!string.IsNullOrEmpty(para.ModelPath))
-            {
-                sb.Append(" --pretrained_model_name_or_path \"").Append(para.ModelPath).Append('"');
-            }
+            //AnimaではここにDiTウェイトを指定する
+            sb.Append(" --pretrained_model_name_or_path \"").Append(para.ModelPath).Append('"');
 
 
             sb.Append(" --train_data_dir \"").Append(para.TrainImagePath).Append("\" --output_dir \"").Append(para.OutputPath).Append('"');
@@ -551,9 +548,7 @@ namespace Kohya_lora_trainer
 
             if (!string.IsNullOrEmpty(para.VAEPath))
             {
-                string vae = para.ModelArchitectureEnum == ModelArchitecture.Anima ? " --vae_path \"" : " --vae \"";
-
-                sb.Append(vae).Append(para.VAEPath).Append('"');
+                sb.Append(" --vae \"").Append(para.VAEPath).Append('"');
             }
 
             //Advanced
@@ -665,14 +660,15 @@ namespace Kohya_lora_trainer
             }
             else //Diffusion Transformer+Flow matchingのAnima専用
             {
-                if (!string.IsNullOrEmpty(para.DitPath))
-                {
-                    sb.Append(" --dit_path \"").Append(para.DitPath).Append('"');
-                }
+                //dit pathではなく事前学習モデルのほうに変更された
+                //if (!string.IsNullOrEmpty(para.DitPath))
+                //{
+                //    sb.Append(" --dit_path \"").Append(para.DitPath).Append('"');
+                //}
 
                 if (!string.IsNullOrEmpty(para.Qwen3Path))
                 {
-                    sb.Append(" --qwen3_path \"").Append(para.Qwen3Path).Append('"');
+                    sb.Append(" --qwen3 \"").Append(para.Qwen3Path).Append('"');
                 }
 
                 if (para.BlocksToSwap > 0)
@@ -743,7 +739,7 @@ namespace Kohya_lora_trainer
 
             if (para.UseFP8Base)
             {
-                sb.Append(" --fp8_base");
+                sb.Append(para.ModelArchitectureEnum == ModelArchitecture.Anima ? " --fp8_scaled" : " --fp8_base");
             }
 
             if (!string.IsNullOrEmpty(para.TokensSeparator))
