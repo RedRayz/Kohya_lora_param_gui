@@ -102,6 +102,12 @@ namespace Kohya_lora_trainer
             }
 
             MyUtils.CheckAndCreateWorkDir();
+            var para = TrainParams.Current;
+            if (para == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             string document = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
@@ -120,7 +126,7 @@ namespace Kohya_lora_trainer
                     XmlSerializer se = new XmlSerializer(typeof(TrainParams));
                     using (StreamReader sr = new StreamReader(newPath, new UTF8Encoding(false)))
                     {
-                        TrainParams.Current = (TrainParams?)se.Deserialize(sr);
+                        para = TrainParams.Current = (TrainParams?)se.Deserialize(sr);
                     }
                 }
                 catch
@@ -129,18 +135,19 @@ namespace Kohya_lora_trainer
                 }
             }
 
-            if (TrainParams.Current.IsOptimizerUnknown)
+            if (para.IsOptimizerUnknown)
             {
                 MessageBox.Show("プリセットファイルで指定されたOptimizerが不明なため、\r\nAdamW8bitに変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            if (TrainParams.Current.IsModelArchitectureUnkown)
+            if (para.IsModelArchitectureUnkown)
             {
                 MessageBox.Show("プリセットファイルで指定されたモデルの種類が不明かサポート終了済みのため、\r\nSD1に変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            TrainParams.Current.OverwriteCustomOptName();
-            TrainParams.Current.OverwriteCustomOptArgs();
-            TrainParams.Current.CheckBrokenBlockDim();
+            para.OverwriteCustomOptName();
+            para.OverwriteCustomOptArgs();
+            para.CheckBrokenBlockDim();
+            para.FixDeprecatedParams(true);
 
             MyUtils.LoadDefaultDirSettings();
 
@@ -867,13 +874,18 @@ namespace Kohya_lora_trainer
                 LastOpenPresetPath = string.Empty;
                 return false;
             }
-
+            var para = TrainParams.Current;
+            if (para == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
             try
             {
                 XmlSerializer se = new XmlSerializer(typeof(TrainParams));
                 using (StreamReader sr = new StreamReader(path, new System.Text.UTF8Encoding(false)))
                 {
-                    TrainParams.Current = (TrainParams?)se.Deserialize(sr);
+                    para = TrainParams.Current = (TrainParams?)se.Deserialize(sr);
                 }
 
             }
@@ -886,20 +898,21 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
-            if (TrainParams.Current.IsOptimizerUnknown && ShowMsg)
+            if (para.IsOptimizerUnknown && ShowMsg)
             {
                 MessageBox.Show("プリセットファイルで指定されたOptimizerが不明なため、\r\nAdamW8bitに変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            if (TrainParams.Current.IsModelArchitectureUnkown && ShowMsg)
+            if (para.IsModelArchitectureUnkown && ShowMsg)
             {
                 MessageBox.Show("プリセットファイルで指定されたモデルの種類が不明かサポート終了済みのため、\r\nSD1に変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             LastOpenPresetPath = path;
 
-            TrainParams.Current.OverwriteCustomOptName();
-            TrainParams.Current.OverwriteCustomOptArgs();
+            para.OverwriteCustomOptName();
+            para.OverwriteCustomOptArgs();
+            para.FixDeprecatedParams(true);
             TrainParams.Current.CheckBrokenBlockDim();
             UpdateAllContents();
             return true;

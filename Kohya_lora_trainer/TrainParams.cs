@@ -422,6 +422,16 @@ namespace Kohya_lora_trainer
                 MessageBox.Show("層別Dim/Alphaの設定が破損しています。破損箇所はリセットされました。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        public void FixDeprecatedParams(bool showMessage = false)
+        {
+            if(!string.IsNullOrEmpty(DitPath) && string.IsNullOrEmpty(ModelPath))
+            {
+                ModelPath = DitPath;
+                if(showMessage)
+                    MessageBox.Show("Animaの拡散モデルの指定方法が変更されました。\r\n変更に対応するために「DiTのパス」の値を事前学習モデルにコピーしました。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 
     public enum Optimizer

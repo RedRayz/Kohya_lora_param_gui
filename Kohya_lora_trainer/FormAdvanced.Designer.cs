@@ -213,13 +213,9 @@ namespace Kohya_lora_trainer
             btnClearQwen3Path = new Button();
             btnQwen3Path = new Button();
             label62 = new Label();
-            lblDitPath = new Label();
             lblConfigPath = new Label();
-            label59 = new Label();
             label21 = new Label();
-            btnClearDitPath = new Button();
             btnClearConfigPath = new Button();
-            btnDitPath = new Button();
             lblQwen3Path = new Label();
             btnSelectConfigPath = new Button();
             pageMisc = new TabPage();
@@ -1973,9 +1969,9 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(label35);
             tabPage5.Controls.Add(tbxD0);
             tabPage5.Controls.Add(tbxGrowthRate);
-            tabPage5.Location = new Point(4, 26);
+            tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(660, 335);
+            tabPage5.Size = new Size(660, 337);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "オプティマイザ";
             tabPage5.UseVisualStyleBackColor = true;
@@ -2199,16 +2195,12 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearQwen3Path);
             tabPage2.Controls.Add(btnQwen3Path);
             tabPage2.Controls.Add(label62);
-            tabPage2.Controls.Add(lblDitPath);
             tabPage2.Controls.Add(lblConfigPath);
             tabPage2.Controls.Add(lblVAEPath);
-            tabPage2.Controls.Add(label59);
             tabPage2.Controls.Add(label21);
             tabPage2.Controls.Add(btnClearTBoardPath);
-            tabPage2.Controls.Add(btnClearDitPath);
             tabPage2.Controls.Add(btnClearConfigPath);
             tabPage2.Controls.Add(btnSelectLoRAmodel);
-            tabPage2.Controls.Add(btnDitPath);
             tabPage2.Controls.Add(lblQwen3Path);
             tabPage2.Controls.Add(btnSelectConfigPath);
             tabPage2.Controls.Add(lblTBoardPath);
@@ -2220,10 +2212,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 335);
+            tabPage2.Size = new Size(660, 337);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -2257,15 +2249,6 @@ namespace Kohya_lora_trainer
             label62.TabIndex = 50;
             label62.Text = "Qwen 3 TE";
             // 
-            // lblDitPath
-            // 
-            lblDitPath.Font = new Font("Yu Gothic UI", 8F);
-            lblDitPath.Location = new Point(37, 216);
-            lblDitPath.Name = "lblDitPath";
-            lblDitPath.Size = new Size(240, 36);
-            lblDitPath.TabIndex = 25;
-            lblDitPath.Text = "very very long name";
-            // 
             // lblConfigPath
             // 
             lblConfigPath.Font = new Font("Yu Gothic UI", 8F);
@@ -2274,15 +2257,6 @@ namespace Kohya_lora_trainer
             lblConfigPath.Size = new Size(240, 36);
             lblConfigPath.TabIndex = 25;
             lblConfigPath.Text = "very very long name";
-            // 
-            // label59
-            // 
-            label59.AutoSize = true;
-            label59.Location = new Point(37, 181);
-            label59.Name = "label59";
-            label59.Size = new Size(67, 15);
-            label59.TabIndex = 26;
-            label59.Text = "DiTのウェイト";
             // 
             // label21
             // 
@@ -2293,16 +2267,6 @@ namespace Kohya_lora_trainer
             label21.TabIndex = 26;
             label21.Text = "dataset\r\nconfigのパス";
             // 
-            // btnClearDitPath
-            // 
-            btnClearDitPath.Location = new Point(182, 174);
-            btnClearDitPath.Name = "btnClearDitPath";
-            btnClearDitPath.Size = new Size(64, 30);
-            btnClearDitPath.TabIndex = 23;
-            btnClearDitPath.Text = "クリア";
-            btnClearDitPath.UseVisualStyleBackColor = true;
-            btnClearDitPath.Click += btnClearDitPath_Click;
-            // 
             // btnClearConfigPath
             // 
             btnClearConfigPath.Location = new Point(454, 97);
@@ -2312,16 +2276,6 @@ namespace Kohya_lora_trainer
             btnClearConfigPath.Text = "クリア";
             btnClearConfigPath.UseVisualStyleBackColor = true;
             btnClearConfigPath.Click += btnClearConfigPath_Click;
-            // 
-            // btnDitPath
-            // 
-            btnDitPath.Location = new Point(112, 174);
-            btnDitPath.Name = "btnDitPath";
-            btnDitPath.Size = new Size(64, 30);
-            btnDitPath.TabIndex = 24;
-            btnDitPath.Text = "選択";
-            btnDitPath.UseVisualStyleBackColor = true;
-            btnDitPath.Click += btnDitPath_Click;
             // 
             // lblQwen3Path
             // 
@@ -2353,9 +2307,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(tbxTokensSeparator);
             pageMisc.Controls.Add(label46);
             pageMisc.Controls.Add(tbxComment);
-            pageMisc.Location = new Point(4, 24);
+            pageMisc.Location = new Point(4, 26);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(660, 337);
+            pageMisc.Size = new Size(660, 335);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -2463,9 +2417,9 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(cbxTrainNorm);
             tabPage3.Controls.Add(cbxAlgoType);
             tabPage3.Controls.Add(label23);
-            tabPage3.Location = new Point(4, 24);
+            tabPage3.Location = new Point(4, 26);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(660, 337);
+            tabPage3.Size = new Size(660, 335);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;
@@ -2547,9 +2501,9 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(nudSigmoidScale);
             tabPage8.Controls.Add(nudDiscreteFlowShift);
             tabPage8.Controls.Add(nudBlocksToSwap);
-            tabPage8.Location = new Point(4, 24);
+            tabPage8.Location = new Point(4, 26);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 337);
+            tabPage8.Size = new Size(660, 335);
             tabPage8.TabIndex = 14;
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;
@@ -2920,10 +2874,6 @@ namespace Kohya_lora_trainer
         private Button btnClearQwen3Path;
         private Button btnQwen3Path;
         private Label label62;
-        private Label lblDitPath;
-        private Label label59;
-        private Button btnClearDitPath;
-        private Button btnDitPath;
         private Label lblQwen3Path;
         private Label label60;
         private NumericUpDown nudDiscreteFlowShift;
