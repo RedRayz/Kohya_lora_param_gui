@@ -657,6 +657,11 @@ namespace Kohya_lora_trainer
                 {
                     sb.Append(" --zero_terminal_snr");
                 }
+
+                if (para.UseFP8Base)
+                {
+                    sb.Append(" --fp8_base");
+                }
             }
             else //Diffusion Transformer+Flow matchingのAnima専用
             {
@@ -735,11 +740,6 @@ namespace Kohya_lora_trainer
                 {
                     sb.Append(" --cache_text_encoder_outputs_to_disk");
                 }
-            }
-
-            if (para.UseFP8Base)
-            {
-                sb.Append(para.ModelArchitectureEnum == ModelArchitecture.Anima ? " --fp8_scaled" : " --fp8_base");
             }
 
             if (!string.IsNullOrEmpty(para.TokensSeparator))

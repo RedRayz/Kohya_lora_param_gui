@@ -1411,6 +1411,10 @@ namespace Kohya_lora_trainer
                 {
                     return MessageBox.Show("層別学習が有効になっていますがAnimaでは非対応のため、\r\n層別学習を使用せず開始します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }
+                if (TrainParams.Current.UseFP8Base)
+                {
+                    return MessageBox.Show("FP8読み込みが有効になっていますがAnimaでは非対応のため、\r\nFP8を使用せず開始します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }
             }
             else
             {
