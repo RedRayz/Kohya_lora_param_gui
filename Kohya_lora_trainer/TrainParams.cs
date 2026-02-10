@@ -428,7 +428,8 @@ namespace Kohya_lora_trainer
             if(!string.IsNullOrEmpty(DitPath) && string.IsNullOrEmpty(ModelPath))
             {
                 ModelPath = DitPath;
-                if(showMessage)
+                DitPath = string.Empty;
+                if (showMessage)
                     MessageBox.Show("Animaの拡散モデルの指定方法が変更されました。\r\n変更に対応するために「DiTのパス」の値を事前学習モデルにコピーしました。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
