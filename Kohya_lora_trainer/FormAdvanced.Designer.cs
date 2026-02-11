@@ -1075,8 +1075,7 @@ namespace Kohya_lora_trainer
             nudDiscreteFlowShift.Name = "nudDiscreteFlowShift";
             nudDiscreteFlowShift.Size = new Size(73, 23);
             nudDiscreteFlowShift.TabIndex = 0;
-            toolTip1.SetToolTip(nudDiscreteFlowShift, "初期値の3を推奨\r\n初期値から大きく外れると不安定になる");
-            nudDiscreteFlowShift.Value = new decimal(new int[] { 3, 0, 0, 0 });
+            nudDiscreteFlowShift.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // cbxAdvancedTrain
             // 
@@ -1969,9 +1968,9 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(label35);
             tabPage5.Controls.Add(tbxD0);
             tabPage5.Controls.Add(tbxGrowthRate);
-            tabPage5.Location = new Point(4, 24);
+            tabPage5.Location = new Point(4, 26);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(660, 337);
+            tabPage5.Size = new Size(660, 335);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "オプティマイザ";
             tabPage5.UseVisualStyleBackColor = true;
@@ -2212,10 +2211,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 337);
+            tabPage2.Size = new Size(660, 335);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -2501,9 +2500,9 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(nudSigmoidScale);
             tabPage8.Controls.Add(nudDiscreteFlowShift);
             tabPage8.Controls.Add(nudBlocksToSwap);
-            tabPage8.Location = new Point(4, 26);
+            tabPage8.Location = new Point(4, 24);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 335);
+            tabPage8.Size = new Size(660, 337);
             tabPage8.TabIndex = 14;
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;

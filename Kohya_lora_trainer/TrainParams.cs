@@ -103,7 +103,7 @@ namespace Kohya_lora_trainer
         public string CustomCommands = string.Empty, AdditionalArgs = string.Empty, AdditionalNetworkArgs = string.Empty, CustomOptName = string.Empty, CustomOptArgs = string.Empty;
 
         //Diffusion Transformer関連
-        public decimal Sigmoidscale = 1m, DiscreteFlowShift = 3m, GuidanceScale = 0, MaxTokensT5 = 512, BlocksToSwap = 0;
+        public decimal Sigmoidscale = 1m, DiscreteFlowShift = 1m, GuidanceScale = 0, MaxTokensT5 = 512, BlocksToSwap = 0;
         public ModelPrediction ModelPredictionType;
         public TimestepSampling TimestepSamplingType;
         public TrainBlock TrainBlockType;
