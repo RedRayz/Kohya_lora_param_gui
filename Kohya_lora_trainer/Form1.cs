@@ -102,6 +102,12 @@ namespace Kohya_lora_trainer
             }
 
             MyUtils.CheckAndCreateWorkDir();
+            var para = TrainParams.Current;
+            if (para == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             string document = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
@@ -120,7 +126,7 @@ namespace Kohya_lora_trainer
                     XmlSerializer se = new XmlSerializer(typeof(TrainParams));
                     using (StreamReader sr = new StreamReader(newPath, new UTF8Encoding(false)))
                     {
-                        TrainParams.Current = (TrainParams?)se.Deserialize(sr);
+                        para = TrainParams.Current = (TrainParams?)se.Deserialize(sr);
                     }
                 }
                 catch
@@ -129,18 +135,19 @@ namespace Kohya_lora_trainer
                 }
             }
 
-            if (TrainParams.Current.IsOptimizerUnknown)
+            if (para.IsOptimizerUnknown)
             {
                 MessageBox.Show("プリセットファイルで指定されたOptimizerが不明なため、\r\nAdamW8bitに変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            if (TrainParams.Current.IsModelArchitectureUnkown)
+            if (para.IsModelArchitectureUnkown)
             {
                 MessageBox.Show("プリセットファイルで指定されたモデルの種類が不明かサポート終了済みのため、\r\nSD1に変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            TrainParams.Current.OverwriteCustomOptName();
-            TrainParams.Current.OverwriteCustomOptArgs();
-            TrainParams.Current.CheckBrokenBlockDim();
+            para.OverwriteCustomOptName();
+            para.OverwriteCustomOptArgs();
+            para.CheckBrokenBlockDim();
+            para.FixDeprecatedParams(true);
 
             MyUtils.LoadDefaultDirSettings();
 
@@ -867,13 +874,18 @@ namespace Kohya_lora_trainer
                 LastOpenPresetPath = string.Empty;
                 return false;
             }
-
+            var para = TrainParams.Current;
+            if (para == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
             try
             {
                 XmlSerializer se = new XmlSerializer(typeof(TrainParams));
                 using (StreamReader sr = new StreamReader(path, new System.Text.UTF8Encoding(false)))
                 {
-                    TrainParams.Current = (TrainParams?)se.Deserialize(sr);
+                    para = TrainParams.Current = (TrainParams?)se.Deserialize(sr);
                 }
 
             }
@@ -886,20 +898,21 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
-            if (TrainParams.Current.IsOptimizerUnknown && ShowMsg)
+            if (para.IsOptimizerUnknown && ShowMsg)
             {
                 MessageBox.Show("プリセットファイルで指定されたOptimizerが不明なため、\r\nAdamW8bitに変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            if (TrainParams.Current.IsModelArchitectureUnkown && ShowMsg)
+            if (para.IsModelArchitectureUnkown && ShowMsg)
             {
                 MessageBox.Show("プリセットファイルで指定されたモデルの種類が不明かサポート終了済みのため、\r\nSD1に変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             LastOpenPresetPath = path;
 
-            TrainParams.Current.OverwriteCustomOptName();
-            TrainParams.Current.OverwriteCustomOptArgs();
+            para.OverwriteCustomOptName();
+            para.OverwriteCustomOptArgs();
+            para.FixDeprecatedParams(true);
             TrainParams.Current.CheckBrokenBlockDim();
             UpdateAllContents();
             return true;
@@ -1411,6 +1424,10 @@ namespace Kohya_lora_trainer
                 {
                     return MessageBox.Show("層別学習が有効になっていますがAnimaでは非対応のため、\r\n層別学習を使用せず開始します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }
+                if (TrainParams.Current.UseFP8Base)
+                {
+                    return MessageBox.Show("FP8読み込みが有効になっていますがAnimaでは非対応のため、\r\nFP8を使用せず開始します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }
             }
             else
             {
@@ -1696,7 +1713,7 @@ namespace Kohya_lora_trainer
         {
             var para = TrainParams.Current;
 
-            if (para.ModelArchitectureEnum != ModelArchitecture.XL || para.ModuleType != NetworkModule.LoRA)
+            if (para.ModuleType != NetworkModule.LoRA)
             {
                 lblPredictedLoraFilesizeTitle.Enabled = false;
                 lblPredictedLoraFilesize.Text = string.Empty;
@@ -1705,114 +1722,129 @@ namespace Kohya_lora_trainer
 
             decimal filesize = 0;
 
-            //両方学習 or Unetオンリー
-            if(para.advancedTrainType == AdvancedTrain.None || para.advancedTrainType == AdvancedTrain.UNetOnly)
+            switch (para.ModelArchitectureEnum)
             {
-                //層別WeightとDimの両方使わない
-                if (!para.UseBlockWeight && !para.UseBlockDim)
-                {
-                    for (int i = 0; i < 9; i++) //IN
+                case ModelArchitecture.XL:
                     {
-                        //Attn Depth=2
-                        if (i == 4 || i == 5)
+                        //両方学習 or Unetオンリー
+                        if (para.advancedTrainType == AdvancedTrain.None || para.advancedTrainType == AdvancedTrain.UNetOnly)
                         {
-                            filesize += 99.793m;
+                            //層別WeightとDimの両方使わない
+                            if (!para.UseBlockWeight && !para.UseBlockDim)
+                            {
+                                for (int i = 0; i < 9; i++) //IN
+                                {
+                                    //Attn Depth=2
+                                    if (i == 4 || i == 5)
+                                    {
+                                        filesize += 99.793m;
+                                    }
+                                    //Attn depth=10
+                                    if (i == 7 || i == 8)
+                                    {
+                                        filesize += 831.3633m;
+                                    }
+                                }
+                                //MID01 Attn depth10
+                                filesize += 831.3633m;
+
+                                for (int i = 0; i < 9; i++) //OUT
+                                {
+                                    //Attn depth=10
+                                    if (i >= 0 && i <= 2)
+                                    {
+                                        filesize += 831.3633m;
+                                    }
+
+                                    //Attn depth=2
+                                    if (i >= 3 && i <= 5)
+                                    {
+                                        filesize += 99.793m;
+                                    }
+                                }
+
+
+                                filesize *= para.NetworkDim;
+                                //畳み込み層
+                                if (para.UseConv2dExtend)
+                                {
+                                    filesize += 264.4531m * para.ConvDim;
+                                }
+                            }
+                            else //Block WeightまたはBlock Dim有効
+                            {
+                                for (int i = 0; i < 9; i++) //IN
+                                {
+                                    if (para.BlockWeightIn[i] > 0 || (para.UseBlockDim && para.BlockDimIn[i] > 0))
+                                    {
+                                        //Attn Depth=2
+                                        if ((i == 4 || i == 5))
+                                        {
+                                            filesize += 99.793m * (para.UseBlockDim ? para.BlockDimIn[i] : para.NetworkDim);
+                                        }
+                                        //Attn depth=10
+                                        else if (i == 7 || i == 8)
+                                        {
+                                            filesize += 831.3633m * (para.UseBlockDim ? para.BlockDimIn[i] : para.NetworkDim);
+                                        }
+                                        else if (para.UseConv2dExtend)
+                                        {
+                                            filesize += 26.4453m * (para.UseBlockDim ? para.BlockDimIn[i] : para.NetworkDim);
+                                        }
+                                    }
+
+                                }
+
+                                //MID
+                                if (para.BlockWeightMid > 0 || (para.UseBlockDim && para.BlockDimMid > 0))
+                                    filesize += 26.4453m * (para.UseBlockDim ? para.BlockDimMid : para.NetworkDim);
+                                if (para.BlockWeightMid01 > 0 || (para.UseBlockDim && para.BlockDimMid01 > 0))
+                                    filesize += 831.3633m * (para.UseBlockDim ? para.BlockDimMid01 : para.NetworkDim);
+                                if (para.BlockWeightMid02 > 0 || (para.UseBlockDim && para.BlockDimMid02 > 0))
+                                    filesize += 26.4453m * (para.UseBlockDim ? para.BlockDimMid02 : para.NetworkDim);
+
+                                for (int i = 0; i < 9; i++) //OUT
+                                {
+                                    if (para.BlockWeightOut[i] > 0 || (para.UseBlockDim && para.BlockDimOut[i] > 0))
+                                    {
+                                        //Attn depth=10
+                                        if (i >= 0 && i <= 2)
+                                        {
+                                            filesize += 831.3633m * (para.UseBlockDim ? para.BlockDimOut[i] : para.NetworkDim);
+                                        }
+                                        //Attn depth=2
+                                        else if (i >= 3 && i <= 5)
+                                        {
+                                            filesize += 99.793m * (para.UseBlockDim ? para.BlockDimOut[i] : para.NetworkDim);
+                                        }
+                                        else if (para.UseConv2dExtend)
+                                        {
+                                            filesize += 26.4453m * (para.UseBlockDim ? para.BlockDimOut[i] : para.NetworkDim);
+                                        }
+                                    }
+
+                                }
+                            }
+
                         }
-                        //Attn depth=10
-                        if (i == 7 || i == 8)
+
+
+
+                        if (para.advancedTrainType == AdvancedTrain.None || para.advancedTrainType == AdvancedTrain.TextEncoderOnly)
                         {
-                            filesize += 831.3633m;
+                            filesize += 1864.3828m * para.NetworkDim;
                         }
                     }
-                    //MID01 Attn depth10
-                    filesize += 831.3633m;
-
-                    for (int i = 0; i < 9; i++) //OUT
-                    {
-                        //Attn depth=10
-                        if (i >= 0 && i <= 2)
-                        {
-                            filesize += 831.3633m;
-                        }
-
-                        //Attn depth=2
-                        if (i >= 3 && i <= 5)
-                        {
-                            filesize += 99.793m;
-                        }
-                    }
-
-
-                    filesize *= para.NetworkDim;
-                    //畳み込み層
-                    if (para.UseConv2dExtend)
-                    {
-                        filesize += 264.4531m * para.ConvDim;
-                    }
-                }
-                else //Block WeightまたはBlock Dim有効
-                {
-                    for (int i = 0; i < 9; i++) //IN
-                    {
-                        if (para.BlockWeightIn[i] > 0 || (para.UseBlockDim && para.BlockDimIn[i] > 0))
-                        {
-                            //Attn Depth=2
-                            if ((i == 4 || i == 5))
-                            {
-                                filesize += 99.793m * (para.UseBlockDim ? para.BlockDimIn[i] : para.NetworkDim);
-                            }
-                            //Attn depth=10
-                            else if (i == 7 || i == 8)
-                            {
-                                filesize += 831.3633m * (para.UseBlockDim ? para.BlockDimIn[i] : para.NetworkDim);
-                            }
-                            else if (para.UseConv2dExtend)
-                            {
-                                filesize += 26.4453m * (para.UseBlockDim ? para.BlockDimIn[i] : para.NetworkDim);
-                            }
-                        }
-
-                    }
-
-                    //MID
-                    if (para.BlockWeightMid > 0 || (para.UseBlockDim && para.BlockDimMid > 0))
-                        filesize += 26.4453m * (para.UseBlockDim ? para.BlockDimMid : para.NetworkDim);
-                    if (para.BlockWeightMid01 > 0 || (para.UseBlockDim && para.BlockDimMid01 > 0))
-                        filesize += 831.3633m * (para.UseBlockDim ? para.BlockDimMid01 : para.NetworkDim);
-                    if (para.BlockWeightMid02 > 0 || (para.UseBlockDim && para.BlockDimMid02 > 0))
-                        filesize += 26.4453m * (para.UseBlockDim ? para.BlockDimMid02 : para.NetworkDim);
-
-                    for (int i = 0; i < 9; i++) //OUT
-                    {
-                        if (para.BlockWeightOut[i] > 0 || (para.UseBlockDim && para.BlockDimOut[i] > 0))
-                        {
-                            //Attn depth=10
-                            if (i >= 0 && i <= 2)
-                            {
-                                filesize += 831.3633m * (para.UseBlockDim ? para.BlockDimOut[i] : para.NetworkDim);
-                            }
-                            //Attn depth=2
-                            else if (i >= 3 && i <= 5)
-                            {
-                                filesize += 99.793m * (para.UseBlockDim ? para.BlockDimOut[i] : para.NetworkDim);
-                            }
-                            else if (para.UseConv2dExtend)
-                            {
-                                filesize += 26.4453m * (para.UseBlockDim ? para.BlockDimOut[i] : para.NetworkDim);
-                            }
-                        }
-
-                    }
-                }
-
+                    break;
+                case ModelArchitecture.Anima:
+                    filesize = 2895.215m * para.NetworkDim;
+                    break;
+                default:
+                    lblPredictedLoraFilesizeTitle.Enabled = false;
+                    lblPredictedLoraFilesize.Text = string.Empty;
+                    return;
             }
 
-
-
-            if (para.advancedTrainType == AdvancedTrain.None || para.advancedTrainType == AdvancedTrain.TextEncoderOnly)
-            {
-                filesize += 1864.3828m * para.NetworkDim;
-            }
 
             string scale = "KiB";
 

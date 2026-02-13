@@ -407,7 +407,6 @@ namespace Kohya_lora_trainer
             para.CpuOffloadCheckpointing = cbxCpuOffloadCheckpointing.Checked;
             para.Sigmoidscale = nudSigmoidScale.Value;
             para.DiscreteFlowShift = nudDiscreteFlowShift.Value;
-            para.DitPath = lblDitPath.Text;
             para.Qwen3Path = lblQwen3Path.Text;
 
             Close();
@@ -564,7 +563,6 @@ namespace Kohya_lora_trainer
             nudSigmoidScale.Value = para.Sigmoidscale;
             nudDiscreteFlowShift.Value = para.DiscreteFlowShift;
 
-            lblDitPath.Text = para.DitPath;
             lblQwen3Path.Text = para.Qwen3Path;
         }
 
@@ -736,24 +734,6 @@ namespace Kohya_lora_trainer
             Form tips = new FormOptTips();
             tips.ShowDialog();
             tips.Dispose();
-        }
-
-        private void btnDitPath_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = Constants.WEIGHT_EXTENSION_FILTER;
-            ofd.Title = "Select a Diffuion Model weight";
-            ofd.RestoreDirectory = true;
-
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                lblDitPath.Text = ofd.FileName;
-            }
-        }
-
-        private void btnClearDitPath_Click(object sender, EventArgs e)
-        {
-            lblDitPath.Text = string.Empty;
         }
 
         private void btnQwen3Path_Click(object sender, EventArgs e)

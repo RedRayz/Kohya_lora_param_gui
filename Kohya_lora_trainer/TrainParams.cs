@@ -103,7 +103,7 @@ namespace Kohya_lora_trainer
         public string CustomCommands = string.Empty, AdditionalArgs = string.Empty, AdditionalNetworkArgs = string.Empty, CustomOptName = string.Empty, CustomOptArgs = string.Empty;
 
         //Diffusion Transformer関連
-        public decimal Sigmoidscale = 1m, DiscreteFlowShift = 3m, GuidanceScale = 0, MaxTokensT5 = 512, BlocksToSwap = 0;
+        public decimal Sigmoidscale = 1m, DiscreteFlowShift = 1m, GuidanceScale = 0, MaxTokensT5 = 512, BlocksToSwap = 0;
         public ModelPrediction ModelPredictionType;
         public TimestepSampling TimestepSamplingType;
         public TrainBlock TrainBlockType;
@@ -420,6 +420,17 @@ namespace Kohya_lora_trainer
             if (broken)
             {
                 MessageBox.Show("層別Dim/Alphaの設定が破損しています。破損箇所はリセットされました。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        public void FixDeprecatedParams(bool showMessage = false)
+        {
+            if(!string.IsNullOrEmpty(DitPath) && string.IsNullOrEmpty(ModelPath))
+            {
+                ModelPath = DitPath;
+                DitPath = string.Empty;
+                if (showMessage)
+                    MessageBox.Show("Animaの拡散モデルの指定方法が変更されました。\r\n変更に対応するために「DiTのパス」の値を事前学習モデルにコピーしました。", "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
