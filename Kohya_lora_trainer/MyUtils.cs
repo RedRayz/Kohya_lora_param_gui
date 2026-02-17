@@ -19,6 +19,7 @@ namespace Kohya_lora_trainer
         private static Dictionary<string, string> DefaultDirs = new Dictionary<string, string>();
         private static readonly List<string> NetworkArgs = new List<string>();
         private static readonly Regex WeightExtensionRegex = new Regex(@"\.pt|\.pth|\.ckpt|\.safetensors|\.sft", RegexOptions.Compiled, TimeSpan.FromMilliseconds(50));
+        private static readonly Regex SystemDirRegex = new Regex("windows|appdata|program files|programdata", RegexOptions.Compiled);
         //private static Dictionary<string, string> DictSettings = new Dictionary<string, string>();
 
         internal static void SaveSettings()
@@ -1421,7 +1422,7 @@ namespace Kohya_lora_trainer
         {
             string pth = path.ToLower();
 
-            if (pth.Contains(@"c:\windows") || pth.Contains("system"))
+            if (SystemDirRegex.IsMatch(pth))
             {
                 return true;
             }
