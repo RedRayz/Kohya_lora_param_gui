@@ -524,7 +524,6 @@ namespace Kohya_lora_trainer
             tbxModelPath.Name = "tbxModelPath";
             tbxModelPath.Size = new Size(732, 22);
             tbxModelPath.TabIndex = 71;
-            toolTip1.SetToolTip(tbxModelPath, "Animaでは使用しない");
             tbxModelPath.TextChanged += tbxModelPath_TextChanged;
             tbxModelPath.DragDrop += tbxModelPath_DragDrop;
             tbxModelPath.DragEnter += tbxModelPath_DragEnter;
