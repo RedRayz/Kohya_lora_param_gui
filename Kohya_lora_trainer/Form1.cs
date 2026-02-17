@@ -1360,13 +1360,18 @@ namespace Kohya_lora_trainer
 
         private DialogResult NotifyBadParams()
         {
-            switch (TrainParams.Current.OptimizerTypeEnum)
+            var para = TrainParams.Current;
+            if (para == null)
+            {
+                return DialogResult.No;
+            }
+            switch (para.OptimizerTypeEnum)
             {
                 case Optimizer.AdaFactor:
                     {
-                        if (TrainParams.Current.LearningRate > 0.01f)
+                        if (para.LearningRate > 0.01f)
                             return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.001)。\r\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (TrainParams.Current.WarmupSteps > 0m || TrainParams.Current.LRDecaySteps > 0m)
+                        if (para.WarmupSteps > 0m || para.LRDecaySteps > 0m)
                             return MessageBox.Show("Adafactorは完全自動のため、LR上昇/減衰は使用できません。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
@@ -1374,7 +1379,7 @@ namespace Kohya_lora_trainer
                 case Optimizer.AdamW8bit:
                 case Optimizer.Lion:
                     {
-                        if (TrainParams.Current.LearningRate > 0.001f)
+                        if (para.LearningRate > 0.001f)
                             return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:0.0001)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
@@ -1387,70 +1392,68 @@ namespace Kohya_lora_trainer
                 case Optimizer.DAdaptLion:
                 case Optimizer.prodigy:
                     {
-                        if (TrainParams.Current.LearningRate > 3)
+                        if (para.LearningRate > 3)
                             return MessageBox.Show("現在のOptimizerに対するLRが高すぎます(推奨値:1)。\n発散して失敗する可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        else if (TrainParams.Current.LearningRate < 0.1f)
+                        else if (para.LearningRate < 0.1f)
                             return MessageBox.Show("現在のOptimizerに対するLRが低すぎます(推奨値:1)。\n何も学習しない可能性が高いですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (TrainParams.Current.LoRAPlusLRRatio > 0 || TrainParams.Current.LoRAPlusTELRRatio > 0 || TrainParams.Current.LoRAPlusUnetLRRatio > 0)
+                        if (para.LoRAPlusLRRatio > 0 || para.LoRAPlusTELRRatio > 0 || para.LoRAPlusUnetLRRatio > 0)
                             return MessageBox.Show("現在のOptimizerでLoRA+は使用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
             }
-            if (TrainParams.Current.UseFullBf16)
+            if (para.UseFullBf16)
             {
                 return MessageBox.Show("「full bf16を使用」が有効になっています。\r\nbfloat16は新しめのGPUが必要です。GPUの対応を確認できたら「はい」を押して開始してください。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
-            if (TrainParams.Current.ShuffleCaptions && TrainParams.Current.CacheTextencoder)
+            if (para.ShuffleCaptions && para.CacheTextencoder)
             {
                 return MessageBox.Show("Text Encoderのキャッシュとキャプションのシャッフルは併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
-            if (TrainParams.Current.CacheTextencoder && TrainParams.Current.TokenWarmupMin > 0)
+            if (para.CacheTextencoder && para.TokenWarmupMin > 0)
             {
                 return MessageBox.Show("Text EncoderのキャッシュとToken warmup最小タグ数は併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
-            if (TrainParams.Current.advancedTrainType != AdvancedTrain.UNetOnly && TrainParams.Current.CacheTextencoder)
+            if (para.advancedTrainType != AdvancedTrain.UNetOnly && para.CacheTextencoder)
             {
                 return MessageBox.Show("Text Encoderの学習(or両方学習)とTEのキャッシュは併用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
 
 
-            if(TrainParams.Current.ModelArchitectureEnum == ModelArchitecture.Anima)
+            if(para.ModelArchitectureEnum == ModelArchitecture.Anima)
             {
-                if (TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim)
+                if (para.UseBlockWeight || para.UseBlockDim)
                 {
                     return MessageBox.Show("層別学習が有効になっていますがAnimaでは非対応のため、\r\n層別学習を使用せず開始します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }
-                if (TrainParams.Current.UseFP8Base)
+                if (para.UseFP8Base)
                 {
                     return MessageBox.Show("FP8読み込みが有効になっていますがAnimaでは非対応のため、\r\nFP8を使用せず開始します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }
+
+                if (para.CpuOffloadCheckpointing && para.BlocksToSwap > 0)
+                {
+                    return MessageBox.Show("CPU offload checkpointingとブロックスワップは併用できません。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }
             }
             else
             {
-                if ((TrainParams.Current.UseBlockWeight || TrainParams.Current.UseBlockDim) && ((TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.Legacy && TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.XL) || TrainParams.Current.ModuleType == NetworkModule.LyCORIS))
+                if ((para.UseBlockWeight || para.UseBlockDim) && ((para.ModelArchitectureEnum != ModelArchitecture.Legacy && para.ModelArchitectureEnum != ModelArchitecture.XL) || para.ModuleType == NetworkModule.LyCORIS))
                 {
                     return MessageBox.Show("LyCORISでは層別学習は非対応ですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }
-                if ((TrainParams.Current.NoiseOffset > 0 || TrainParams.Current.MultiresNoiseIterations > 0) && TrainParams.Current.ZeroTerminalSNR)
+                if ((para.NoiseOffset > 0 || para.MultiresNoiseIterations > 0) && para.ZeroTerminalSNR)
                 {
                     return MessageBox.Show("ノイズオフセットまたはMultires noiseとZero Terminal SNRの併用は望ましくありません。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }
 
-                if (!TrainParams.Current.VParameterization && TrainParams.Current.ZeroTerminalSNR)
+                if (!para.VParameterization && para.ZeroTerminalSNR)
                 {
                     return MessageBox.Show("Zero Terminal SNRはV Parameterizationが有効でないと動作しません(NaN演算の原因)。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }
-            }
-
-
-            Scheduler sc = TrainParams.Current.SchedulerType;
-            if (TrainParams.Current.WarmupSteps > 0 && (sc != Scheduler.cosine_with_restarts && sc != Scheduler.constant_with_warmup && sc != Scheduler.warmup_stable_decay))
-            {
-                return MessageBox.Show("warmup系スケジューラ以外とウォームアップステップは併用できません。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
             return DialogResult.Yes;
