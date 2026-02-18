@@ -378,17 +378,22 @@ namespace Kohya_lora_trainer
 
             //Automatic
             sb.Append(" --enable_bucket --save_model_as \"safetensors\"");
+            
 
-            switch (para.SchedulerType)
+            if(para.SchedulerType != Scheduler.None)
             {
-                case Scheduler.polynomial:
-                    sb.Append(" --lr_scheduler_power ").Append(para.LRSchedulerCycle.ToString("0.###"));
-                    break;
-                case Scheduler.cosine_with_restarts:
-                    sb.Append(" --lr_scheduler_num_cycles ").Append(para.LRSchedulerCycle.ToString("0.###"));
-                    break;
-                default:
-                    break;
+                sb.Append(" --lr_scheduler \"").Append(para.SchedulerType.ToString()).Append('"');
+                switch (para.SchedulerType)
+                {
+                    case Scheduler.polynomial:
+                        sb.Append(" --lr_scheduler_power ").Append(para.LRSchedulerCycle.ToString("0.###"));
+                        break;
+                    case Scheduler.cosine_with_restarts:
+                        sb.Append(" --lr_scheduler_num_cycles ").Append(para.LRSchedulerCycle.ToString("0.###"));
+                        break;
+                    default:
+                        break;
+                }
             }
 
 
@@ -589,8 +594,8 @@ namespace Kohya_lora_trainer
                 sb.Append(" --save_precision \"").Append(preci).Append('"');
             }
             
-            sb.Append(" --lr_scheduler \"").Append(para.SchedulerType.ToString()).Append('"')
-            .Append(" --min_bucket_reso ").Append(para.MinBucketResolution)
+            
+            sb.Append(" --min_bucket_reso ").Append(para.MinBucketResolution)
             .Append(" --max_bucket_reso ").Append(para.MaxBucketResolution)
             .Append(" --caption_extension \"").Append(para.CaptionFileExtension).Append('"');
 

@@ -482,7 +482,8 @@ namespace Kohya_lora_trainer
         constant_with_warmup,
         inverse_sqrt,
         cosine_with_min_lr,
-        warmup_stable_decay
+        warmup_stable_decay,
+        None
     }
 
     public enum AdvancedTrain

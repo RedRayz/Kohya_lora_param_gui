@@ -699,12 +699,12 @@ namespace Kohya_lora_trainer
             // 
             cbxScheduler.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxScheduler.FormattingEnabled = true;
-            cbxScheduler.Items.AddRange(new object[] { "cosine_with_restarts", "cosine", "linear", "polynomial", "constant", "constant_with_warmup", "inverse_sqrt", "cosine_with_min_lr", "warmup_stable_decay" });
+            cbxScheduler.Items.AddRange(new object[] { "cosine_with_restarts", "cosine", "linear", "polynomial", "constant", "constant_with_warmup", "inverse_sqrt", "cosine_with_min_lr", "warmup_stable_decay", "なし(ScheduleFree用)" });
             cbxScheduler.Location = new Point(148, 18);
             cbxScheduler.Name = "cbxScheduler";
             cbxScheduler.Size = new Size(159, 23);
             cbxScheduler.TabIndex = 27;
-            toolTip1.SetToolTip(cbxScheduler, "LR調整アルゴリズム");
+            toolTip1.SetToolTip(cbxScheduler, "ScheduleFreeは「なし」でいい\r\nScheduleFreeで「なし」以外にしても無視される");
             // 
             // nudMinSNRGamma
             // 
@@ -1841,9 +1841,9 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(nudMinLRRatio);
             tabPage6.Controls.Add(nudSchedulerTimescale);
             tabPage6.Controls.Add(label47);
-            tabPage6.Location = new Point(4, 26);
+            tabPage6.Location = new Point(4, 24);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(660, 335);
+            tabPage6.Size = new Size(660, 337);
             tabPage6.TabIndex = 13;
             tabPage6.Text = "スケジューラ";
             tabPage6.UseVisualStyleBackColor = true;
@@ -2500,9 +2500,9 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(nudSigmoidScale);
             tabPage8.Controls.Add(nudDiscreteFlowShift);
             tabPage8.Controls.Add(nudBlocksToSwap);
-            tabPage8.Location = new Point(4, 24);
+            tabPage8.Location = new Point(4, 26);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 337);
+            tabPage8.Size = new Size(660, 335);
             tabPage8.TabIndex = 14;
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;
