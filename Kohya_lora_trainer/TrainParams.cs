@@ -110,6 +110,9 @@ namespace Kohya_lora_trainer
         public bool SplitMode = false, CpuOffloadCheckpointing = false, ApplyT5AttnMask = false;
         public string DitPath = string.Empty, Qwen3Path = string.Empty;
 
+        //Anima
+        public bool DisableVAECache = true, PatchFP16 = false;
+
         //Scheduler
         public decimal SchedulerTimescale = 0m, MinLRRatio = 0m;
 

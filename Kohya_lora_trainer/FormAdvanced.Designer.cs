@@ -104,6 +104,8 @@ namespace Kohya_lora_trainer
             nudTEBatchSize = new NumericUpDown();
             nudBlocksToSwap = new NumericUpDown();
             cbxCpuOffloadCheckpointing = new CheckBox();
+            cbxPatchFP16 = new CheckBox();
+            cbxDisableVAECache = new CheckBox();
             nudDiscreteFlowShift = new NumericUpDown();
             cbxAdvancedTrain = new ComboBox();
             label6 = new Label();
@@ -1066,6 +1068,28 @@ namespace Kohya_lora_trainer
             toolTip1.SetToolTip(cbxCpuOffloadCheckpointing, "学習勾配をCPUに置く\r\nデータ転送の待機で遅くなる");
             cbxCpuOffloadCheckpointing.UseVisualStyleBackColor = true;
             // 
+            // cbxPatchFP16
+            // 
+            cbxPatchFP16.AutoSize = true;
+            cbxPatchFP16.Location = new Point(46, 186);
+            cbxPatchFP16.Name = "cbxPatchFP16";
+            cbxPatchFP16.Size = new Size(112, 19);
+            cbxPatchFP16.TabIndex = 3;
+            cbxPatchFP16.Text = "FP16で動作させる";
+            toolTip1.SetToolTip(cbxPatchFP16, "Turing,Volta以前はチェックつける");
+            cbxPatchFP16.UseVisualStyleBackColor = true;
+            // 
+            // cbxDisableVAECache
+            // 
+            cbxDisableVAECache.AutoSize = true;
+            cbxDisableVAECache.Location = new Point(46, 161);
+            cbxDisableVAECache.Name = "cbxDisableVAECache";
+            cbxDisableVAECache.Size = new Size(136, 19);
+            cbxDisableVAECache.TabIndex = 4;
+            cbxDisableVAECache.Text = "VAEのキャッシュ無効化";
+            toolTip1.SetToolTip(cbxDisableVAECache, "メモリ使用量を大幅に減らし、高速化する");
+            cbxDisableVAECache.UseVisualStyleBackColor = true;
+            // 
             // nudDiscreteFlowShift
             // 
             nudDiscreteFlowShift.DecimalPlaces = 2;
@@ -1899,9 +1923,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 24);
+            tabPage7.Location = new Point(4, 26);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(660, 337);
+            tabPage7.Size = new Size(660, 335);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -2493,6 +2517,8 @@ namespace Kohya_lora_trainer
             // 
             // tabPage8
             // 
+            tabPage8.Controls.Add(cbxDisableVAECache);
+            tabPage8.Controls.Add(cbxPatchFP16);
             tabPage8.Controls.Add(label58);
             tabPage8.Controls.Add(label61);
             tabPage8.Controls.Add(label60);
@@ -2504,7 +2530,7 @@ namespace Kohya_lora_trainer
             tabPage8.Name = "tabPage8";
             tabPage8.Size = new Size(660, 337);
             tabPage8.TabIndex = 14;
-            tabPage8.Text = "DiT";
+            tabPage8.Text = "Anima";
             tabPage8.UseVisualStyleBackColor = true;
             // 
             // label58
@@ -2512,9 +2538,9 @@ namespace Kohya_lora_trainer
             label58.AutoSize = true;
             label58.Location = new Point(20, 14);
             label58.Name = "label58";
-            label58.Size = new Size(177, 15);
+            label58.Size = new Size(99, 15);
             label58.TabIndex = 2;
-            label58.Text = "Diffusion Transformer関連の設定";
+            label58.Text = "Anima固有の設定";
             // 
             // label61
             // 
@@ -2878,5 +2904,7 @@ namespace Kohya_lora_trainer
         private NumericUpDown nudDiscreteFlowShift;
         private Label label61;
         private NumericUpDown nudSigmoidScale;
+        private CheckBox cbxDisableVAECache;
+        private CheckBox cbxPatchFP16;
     }
 }

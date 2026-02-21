@@ -687,6 +687,16 @@ namespace Kohya_lora_trainer
                     sb.Append(" --blocks_to_swap ").Append(para.BlocksToSwap.ToString());
                 }
 
+                if (para.DisableVAECache)
+                {
+                    sb.Append(" --vae_disable_cache");
+                }
+
+                if (para.PatchFP16)
+                {
+                    sb.Append(" --fp16_safe_patch");
+                }
+
                 sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.##"));
                 sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.##"));
             }
