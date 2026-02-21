@@ -216,7 +216,7 @@ namespace Kohya_lora_trainer
             tbxLR.Size = new Size(73, 23);
             tbxLR.TabIndex = 4;
             tbxLR.Text = "1e-4";
-            toolTip1.SetToolTip(tbxLR, "AdamW/Lionは0.0001、DAdaptation系は1推奨\r\nScheduleFreeは0.0005程度まで平気\r\nCAMEは速すぎるので0.0001以下推奨\r\nLRが高いと収束が速くなる代わりに品質が低下する傾向がある");
+            toolTip1.SetToolTip(tbxLR, "AdamW/Lionは0.0001、DAdaptation系は1推奨\r\nCAMEは速すぎるので0.0001以下推奨\r\nLRが高いと収束が速くなる代わりに品質が低下する傾向がある");
             tbxLR.TextChanged += tbxLR_TextChanged;
             // 
             // lblLR
@@ -320,7 +320,7 @@ namespace Kohya_lora_trainer
             nudNetworkAlpha.Name = "nudNetworkAlpha";
             nudNetworkAlpha.Size = new Size(80, 23);
             nudNetworkAlpha.TabIndex = 51;
-            toolTip1.SetToolTip(nudNetworkAlpha, "dimの半分以下の値が望ましい\r\n高い値は品質低下の原因となる");
+            toolTip1.SetToolTip(nudNetworkAlpha, "dimの半分以下の値が望ましい\r\n高い値は品質低下or不安定化の原因となる");
             nudNetworkAlpha.Value = new decimal(new int[] { 16, 0, 0, 0 });
             nudNetworkAlpha.ValueChanged += nudNetworkAlpha_ValueChanged;
             // 
@@ -345,7 +345,7 @@ namespace Kohya_lora_trainer
             nudResolution.Name = "nudResolution";
             nudResolution.Size = new Size(72, 23);
             nudResolution.TabIndex = 54;
-            toolTip1.SetToolTip(nudResolution, "SD1が512、SDXL以降が1024推奨\r\n上記の推奨未満の解像度にすると胴体分裂などの悪影響あり\r\n推奨超過にしても速度が低下するだけで大きなメリットなし");
+            toolTip1.SetToolTip(nudResolution, "SD1とAnima-previewが512、SDXLが1024推奨\r\n上記の推奨未満の解像度にすると胴体分裂などの悪影響あり\r\n推奨超過にしても速度が低下するだけで大きなメリットなし");
             nudResolution.Value = new decimal(new int[] { 512, 0, 0, 0 });
             nudResolution.ValueChanged += nudResolution_ValueChanged;
             // 
@@ -524,6 +524,7 @@ namespace Kohya_lora_trainer
             tbxModelPath.Name = "tbxModelPath";
             tbxModelPath.Size = new Size(732, 22);
             tbxModelPath.TabIndex = 71;
+            toolTip1.SetToolTip(tbxModelPath, "AnimaのDiTはここに指定する");
             tbxModelPath.TextChanged += tbxModelPath_TextChanged;
             tbxModelPath.DragDrop += tbxModelPath_DragDrop;
             tbxModelPath.DragEnter += tbxModelPath_DragEnter;

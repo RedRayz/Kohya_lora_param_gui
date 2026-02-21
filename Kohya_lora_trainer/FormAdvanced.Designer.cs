@@ -463,7 +463,7 @@ namespace Kohya_lora_trainer
             cbxMixedPrecision.Name = "cbxMixedPrecision";
             cbxMixedPrecision.Size = new Size(74, 23);
             cbxMixedPrecision.TabIndex = 14;
-            toolTip1.SetToolTip(cbxMixedPrecision, "bf16はNVIDIA Ampere世代以降のみ対応");
+            toolTip1.SetToolTip(cbxMixedPrecision, "bf16はNVIDIA Ampere世代以降のみ対応\r\nAnimaはbf16必須で非対応GPUではfp32(遅い)にする");
             // 
             // nudLRSchedulerCycle
             // 
@@ -679,7 +679,7 @@ namespace Kohya_lora_trainer
             cbxUseFP8.Size = new Size(135, 19);
             cbxUseFP8.TabIndex = 42;
             cbxUseFP8.Text = "モデルをfp8で読み込む";
-            toolTip1.SetToolTip(cbxUseFP8, "事前学習モデルをhalfの代わりにfp8_e4m3fnで読み込む\r\n若干の速度低下と引き換えにモデルによるVRAM消費が半減する\r\nVRAM10GB以下では使用を推奨\r\nただし品質が低下する可能性あり");
+            toolTip1.SetToolTip(cbxUseFP8, "事前学習モデルをhalfの代わりにfp8_e4m3fnで読み込む\r\n若干の速度低下と引き換えにモデルによるVRAM消費が半減する\r\nVRAM10GB以下では使用を推奨\r\nただし品質が低下する可能性あり\r\nAnimaは非対応");
             cbxUseFP8.UseVisualStyleBackColor = true;
             // 
             // cbxUseFastLoading
@@ -995,7 +995,7 @@ namespace Kohya_lora_trainer
             cbxResizeInterpolation.Name = "cbxResizeInterpolation";
             cbxResizeInterpolation.Size = new Size(95, 23);
             cbxResizeInterpolation.TabIndex = 26;
-            toolTip1.SetToolTip(cbxResizeInterpolation, "画像を学習解像度にリサイズする方法\r\n2025/04/03時点でsd3ブランチ専用。\r\nmainやdevで未指定以外にするとエラー落ち");
+            toolTip1.SetToolTip(cbxResizeInterpolation, "画像を学習解像度にリサイズする方法");
             // 
             // nudScaleWeightNorms
             // 
@@ -1841,9 +1841,9 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(nudMinLRRatio);
             tabPage6.Controls.Add(nudSchedulerTimescale);
             tabPage6.Controls.Add(label47);
-            tabPage6.Location = new Point(4, 24);
+            tabPage6.Location = new Point(4, 26);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(660, 337);
+            tabPage6.Size = new Size(660, 335);
             tabPage6.TabIndex = 13;
             tabPage6.Text = "スケジューラ";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1899,9 +1899,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 26);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(660, 335);
+            tabPage7.Size = new Size(660, 337);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -2500,9 +2500,9 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(nudSigmoidScale);
             tabPage8.Controls.Add(nudDiscreteFlowShift);
             tabPage8.Controls.Add(nudBlocksToSwap);
-            tabPage8.Location = new Point(4, 26);
+            tabPage8.Location = new Point(4, 24);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 335);
+            tabPage8.Size = new Size(660, 337);
             tabPage8.TabIndex = 14;
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;
