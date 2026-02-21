@@ -111,7 +111,7 @@ namespace Kohya_lora_trainer
         public string DitPath = string.Empty, Qwen3Path = string.Empty;
 
         //Anima
-        public bool DisableVAECache = true, PatchFP16 = false;
+        public bool DisableVAECache = true, PatchFP16 = false, CpuOffloadAsync = false;
 
         //Scheduler
         public decimal SchedulerTimescale = 0m, MinLRRatio = 0m;

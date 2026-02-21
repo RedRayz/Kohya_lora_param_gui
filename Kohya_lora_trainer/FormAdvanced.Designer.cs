@@ -245,6 +245,7 @@ namespace Kohya_lora_trainer
             label55 = new Label();
             nudSigmoidScale = new NumericUpDown();
             label56 = new Label();
+            cbxCpuOffloadAsync = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -2517,6 +2518,7 @@ namespace Kohya_lora_trainer
             // 
             // tabPage8
             // 
+            tabPage8.Controls.Add(cbxCpuOffloadAsync);
             tabPage8.Controls.Add(cbxDisableVAECache);
             tabPage8.Controls.Add(cbxPatchFP16);
             tabPage8.Controls.Add(label58);
@@ -2588,6 +2590,17 @@ namespace Kohya_lora_trainer
             label56.Size = new Size(205, 30);
             label56.TabIndex = 58;
             label56.Text = "#がつく項目は0を指定すると未指定にする\r\n##がつく項目は空欄で未指定にする";
+            // 
+            // cbxCpuOffloadAsync
+            // 
+            cbxCpuOffloadAsync.AutoSize = true;
+            cbxCpuOffloadAsync.Location = new Point(46, 211);
+            cbxCpuOffloadAsync.Name = "cbxCpuOffloadAsync";
+            cbxCpuOffloadAsync.Size = new Size(189, 19);
+            cbxCpuOffloadAsync.TabIndex = 5;
+            cbxCpuOffloadAsync.Text = "unsloth_offload_checkpointing";
+            toolTip1.SetToolTip(cbxCpuOffloadAsync, "Block Swapの方が速い");
+            cbxCpuOffloadAsync.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
@@ -2906,5 +2919,6 @@ namespace Kohya_lora_trainer
         private NumericUpDown nudSigmoidScale;
         private CheckBox cbxDisableVAECache;
         private CheckBox cbxPatchFP16;
+        private CheckBox cbxCpuOffloadAsync;
     }
 }

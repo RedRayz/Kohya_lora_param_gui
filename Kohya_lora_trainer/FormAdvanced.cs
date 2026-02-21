@@ -410,6 +410,7 @@ namespace Kohya_lora_trainer
             para.Qwen3Path = lblQwen3Path.Text;
             para.PatchFP16 = cbxPatchFP16.Checked;
             para.DisableVAECache = cbxDisableVAECache.Checked;
+            para.CpuOffloadAsync = cbxCpuOffloadAsync.Checked;
 
             Close();
         }
@@ -569,6 +570,7 @@ namespace Kohya_lora_trainer
 
             cbxDisableVAECache.Checked = para.DisableVAECache;
             cbxPatchFP16.Checked = para.PatchFP16;
+            cbxCpuOffloadAsync.Checked = para.CpuOffloadAsync;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)

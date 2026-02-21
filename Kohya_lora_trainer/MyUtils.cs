@@ -697,6 +697,11 @@ namespace Kohya_lora_trainer
                     sb.Append(" --fp16_safe_patch");
                 }
 
+                if (para.CpuOffloadAsync)
+                {
+                    sb.Append(" --unsloth_offload_checkpointing");
+                }
+
                 sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.##"));
                 sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.##"));
             }
