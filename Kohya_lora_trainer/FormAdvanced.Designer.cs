@@ -103,7 +103,6 @@ namespace Kohya_lora_trainer
             nudTokenWarmupStep = new NumericUpDown();
             nudTEBatchSize = new NumericUpDown();
             nudBlocksToSwap = new NumericUpDown();
-            cbxCpuOffloadCheckpointing = new CheckBox();
             cbxDisableVAECache = new CheckBox();
             cbxCpuOffloadAsync = new CheckBox();
             nudDiscreteFlowShift = new NumericUpDown();
@@ -1057,17 +1056,6 @@ namespace Kohya_lora_trainer
             nudBlocksToSwap.TabIndex = 0;
             toolTip1.SetToolTip(nudBlocksToSwap, "一部のブロックをCPUに置くことで\r\n速度低下を抑えつつVRAM消費を減らす");
             // 
-            // cbxCpuOffloadCheckpointing
-            // 
-            cbxCpuOffloadCheckpointing.AutoSize = true;
-            cbxCpuOffloadCheckpointing.Location = new Point(311, 249);
-            cbxCpuOffloadCheckpointing.Name = "cbxCpuOffloadCheckpointing";
-            cbxCpuOffloadCheckpointing.Size = new Size(167, 19);
-            cbxCpuOffloadCheckpointing.TabIndex = 3;
-            cbxCpuOffloadCheckpointing.Text = "CPU offload checkpointing";
-            toolTip1.SetToolTip(cbxCpuOffloadCheckpointing, "学習勾配をCPUに置く\r\nデータ転送の待機で遅くなる");
-            cbxCpuOffloadCheckpointing.UseVisualStyleBackColor = true;
-            // 
             // cbxDisableVAECache
             // 
             cbxDisableVAECache.AutoSize = true;
@@ -1901,7 +1889,6 @@ namespace Kohya_lora_trainer
             // 
             // tabPage7
             // 
-            tabPage7.Controls.Add(cbxCpuOffloadCheckpointing);
             tabPage7.Controls.Add(cbxDisableMmapLoadSafetensors);
             tabPage7.Controls.Add(cbxCacheTextencoderToDisk);
             tabPage7.Controls.Add(label51);
@@ -1923,9 +1910,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 26);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(660, 335);
+            tabPage7.Size = new Size(660, 337);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -2330,9 +2317,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(tbxTokensSeparator);
             pageMisc.Controls.Add(label46);
             pageMisc.Controls.Add(tbxComment);
-            pageMisc.Location = new Point(4, 26);
+            pageMisc.Location = new Point(4, 24);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(660, 335);
+            pageMisc.Size = new Size(660, 337);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -2440,9 +2427,9 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(cbxTrainNorm);
             tabPage3.Controls.Add(cbxAlgoType);
             tabPage3.Controls.Add(label23);
-            tabPage3.Location = new Point(4, 26);
+            tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(660, 335);
+            tabPage3.Size = new Size(660, 337);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;
@@ -2895,7 +2882,6 @@ namespace Kohya_lora_trainer
         private Label label58;
         private Label label55;
         private NumericUpDown nudBlocksToSwap;
-        private CheckBox cbxCpuOffloadCheckpointing;
         private Button btnClearQwen3Path;
         private Button btnQwen3Path;
         private Label label62;

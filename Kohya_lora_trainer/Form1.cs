@@ -1434,9 +1434,9 @@ namespace Kohya_lora_trainer
                     return MessageBox.Show("FP8読み込みが有効になっていますがAnimaでは非対応のため、\r\nFP8を使用せず開始します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }
 
-                if (para.CpuOffloadCheckpointing && para.BlocksToSwap > 0)
+                if (para.CpuOffloadAsync && para.BlocksToSwap > 0)
                 {
-                    return MessageBox.Show("CPU offload checkpointingとブロックスワップは併用できません。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    return MessageBox.Show("Unsloth offload checkpointingとブロックスワップは併用できません。\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }
             }
             else
