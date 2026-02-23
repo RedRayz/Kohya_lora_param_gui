@@ -464,7 +464,7 @@ namespace Kohya_lora_trainer
             cbxMixedPrecision.Name = "cbxMixedPrecision";
             cbxMixedPrecision.Size = new Size(74, 23);
             cbxMixedPrecision.TabIndex = 14;
-            toolTip1.SetToolTip(cbxMixedPrecision, "bf16はNVIDIAであればAmpere以降が必要\r\nAnimaはできるだけbf16を選択する\r\nAnimaをfp16で動作させるにはAnimaタブにある\r\nFP16で動作させるにチェックつける");
+            toolTip1.SetToolTip(cbxMixedPrecision, "bf16はNVIDIAであればAmpere以降が必要\r\nAnimaはできるだけbf16を選択する\r\nTuringとVolta世代のNVIDIA製GPUはfp16を選択する");
             // 
             // nudLRSchedulerCycle
             // 
@@ -859,7 +859,7 @@ namespace Kohya_lora_trainer
             nudIpNoiseGamma.Name = "nudIpNoiseGamma";
             nudIpNoiseGamma.Size = new Size(80, 23);
             nudIpNoiseGamma.TabIndex = 49;
-            toolTip1.SetToolTip(nudIpNoiseGamma, "正則化にinput perturbation noiseを使用する\r\nFlow MatchingのAnimaでは使用しない");
+            toolTip1.SetToolTip(nudIpNoiseGamma, "正則化にinput perturbation noiseを使用する");
             // 
             // btnSelectVAE
             // 
@@ -1075,7 +1075,7 @@ namespace Kohya_lora_trainer
             cbxCpuOffloadAsync.Size = new Size(189, 19);
             cbxCpuOffloadAsync.TabIndex = 5;
             cbxCpuOffloadAsync.Text = "unsloth_offload_checkpointing";
-            toolTip1.SetToolTip(cbxCpuOffloadAsync, "Block Swapの方が速い\r\nCPU offload checkpointingおよび\r\nblock swapと併用不可");
+            toolTip1.SetToolTip(cbxCpuOffloadAsync, "Block Swapの方が速い\r\nblock swapと併用不可");
             cbxCpuOffloadAsync.UseVisualStyleBackColor = true;
             // 
             // nudDiscreteFlowShift
@@ -1098,6 +1098,7 @@ namespace Kohya_lora_trainer
             cbxAdvancedTrain.Name = "cbxAdvancedTrain";
             cbxAdvancedTrain.Size = new Size(102, 23);
             cbxAdvancedTrain.TabIndex = 36;
+            toolTip1.SetToolTip(cbxAdvancedTrain, "AnimaはDiTのみでいいと思う");
             // 
             // label6
             // 
@@ -1601,9 +1602,9 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(nudRankDropout);
             tabPage4.Controls.Add(nudClipLDropoutRate);
             tabPage4.Controls.Add(nudCaptionDropout);
-            tabPage4.Location = new Point(4, 26);
+            tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(660, 335);
+            tabPage4.Size = new Size(660, 337);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "dropout";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1769,9 +1770,9 @@ namespace Kohya_lora_trainer
             page3.Controls.Add(label57);
             page3.Controls.Add(label17);
             page3.Controls.Add(nudIpNoiseGamma);
-            page3.Location = new Point(4, 26);
+            page3.Location = new Point(4, 24);
             page3.Name = "page3";
-            page3.Size = new Size(660, 335);
+            page3.Size = new Size(660, 337);
             page3.TabIndex = 10;
             page3.Text = "損失とノイズ";
             page3.UseVisualStyleBackColor = true;
@@ -1853,9 +1854,9 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(nudMinLRRatio);
             tabPage6.Controls.Add(nudSchedulerTimescale);
             tabPage6.Controls.Add(label47);
-            tabPage6.Location = new Point(4, 26);
+            tabPage6.Location = new Point(4, 24);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(660, 335);
+            tabPage6.Size = new Size(660, 337);
             tabPage6.TabIndex = 13;
             tabPage6.Text = "スケジューラ";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1979,9 +1980,9 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(label35);
             tabPage5.Controls.Add(tbxD0);
             tabPage5.Controls.Add(tbxGrowthRate);
-            tabPage5.Location = new Point(4, 26);
+            tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(660, 335);
+            tabPage5.Size = new Size(660, 337);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "オプティマイザ";
             tabPage5.UseVisualStyleBackColor = true;
@@ -2222,10 +2223,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 335);
+            tabPage2.Size = new Size(660, 337);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;

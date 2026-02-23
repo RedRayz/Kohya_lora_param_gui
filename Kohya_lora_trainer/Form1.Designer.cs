@@ -320,7 +320,7 @@ namespace Kohya_lora_trainer
             nudNetworkAlpha.Name = "nudNetworkAlpha";
             nudNetworkAlpha.Size = new Size(80, 23);
             nudNetworkAlpha.TabIndex = 51;
-            toolTip1.SetToolTip(nudNetworkAlpha, "dimの半分以下の値が望ましい\r\n高い値は品質低下or不安定化の原因となる");
+            toolTip1.SetToolTip(nudNetworkAlpha, "dimの半分以下の値が望ましい\r\n高い値(dimに近い値)は品質低下or不安定化の原因となる");
             nudNetworkAlpha.Value = new decimal(new int[] { 16, 0, 0, 0 });
             nudNetworkAlpha.ValueChanged += nudNetworkAlpha_ValueChanged;
             // 
@@ -392,7 +392,7 @@ namespace Kohya_lora_trainer
             cbxSDType.Name = "cbxSDType";
             cbxSDType.Size = new Size(139, 23);
             cbxSDType.TabIndex = 85;
-            toolTip1.SetToolTip(cbxSDType, "SDXLはVRAM12GB以上を推奨\r\n10GB未満はfp8有効化推奨");
+            toolTip1.SetToolTip(cbxSDType, "SDXLとAnimaはVRAM消費を減らすGradient Checkpointingがほぼ必須\r\nSDXLはVRAM12GB以上を推奨\r\n10GB未満はfp8有効化推奨\r\nAnimaは512pxであれば8GB未満で済む\r\n1024px学習かつVRAM8GB以下はblock swap必須");
             cbxSDType.SelectedIndexChanged += cbxSDType_SelectedIndexChanged;
             // 
             // tbxFileName
