@@ -692,11 +692,6 @@ namespace Kohya_lora_trainer
                     sb.Append(" --vae_disable_cache");
                 }
 
-                if (para.PatchFP16)
-                {
-                    sb.Append(" --fp16_safe_patch");
-                }
-
                 if (para.CpuOffloadAsync)
                 {
                     sb.Append(" --unsloth_offload_checkpointing");

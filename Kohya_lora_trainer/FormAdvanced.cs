@@ -408,7 +408,6 @@ namespace Kohya_lora_trainer
             para.Sigmoidscale = nudSigmoidScale.Value;
             para.DiscreteFlowShift = nudDiscreteFlowShift.Value;
             para.Qwen3Path = lblQwen3Path.Text;
-            para.PatchFP16 = cbxPatchFP16.Checked;
             para.DisableVAECache = cbxDisableVAECache.Checked;
             para.CpuOffloadAsync = cbxCpuOffloadAsync.Checked;
 
@@ -569,7 +568,6 @@ namespace Kohya_lora_trainer
             lblQwen3Path.Text = para.Qwen3Path;
 
             cbxDisableVAECache.Checked = para.DisableVAECache;
-            cbxPatchFP16.Checked = para.PatchFP16;
             cbxCpuOffloadAsync.Checked = para.CpuOffloadAsync;
         }
 

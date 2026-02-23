@@ -104,7 +104,6 @@ namespace Kohya_lora_trainer
             nudTEBatchSize = new NumericUpDown();
             nudBlocksToSwap = new NumericUpDown();
             cbxCpuOffloadCheckpointing = new CheckBox();
-            cbxPatchFP16 = new CheckBox();
             cbxDisableVAECache = new CheckBox();
             cbxCpuOffloadAsync = new CheckBox();
             nudDiscreteFlowShift = new NumericUpDown();
@@ -1069,17 +1068,6 @@ namespace Kohya_lora_trainer
             toolTip1.SetToolTip(cbxCpuOffloadCheckpointing, "学習勾配をCPUに置く\r\nデータ転送の待機で遅くなる");
             cbxCpuOffloadCheckpointing.UseVisualStyleBackColor = true;
             // 
-            // cbxPatchFP16
-            // 
-            cbxPatchFP16.AutoSize = true;
-            cbxPatchFP16.Location = new Point(46, 186);
-            cbxPatchFP16.Name = "cbxPatchFP16";
-            cbxPatchFP16.Size = new Size(112, 19);
-            cbxPatchFP16.TabIndex = 3;
-            cbxPatchFP16.Text = "FP16で動作させる";
-            toolTip1.SetToolTip(cbxPatchFP16, "Turing,Volta以前はチェックつける");
-            cbxPatchFP16.UseVisualStyleBackColor = true;
-            // 
             // cbxDisableVAECache
             // 
             cbxDisableVAECache.AutoSize = true;
@@ -1094,7 +1082,7 @@ namespace Kohya_lora_trainer
             // cbxCpuOffloadAsync
             // 
             cbxCpuOffloadAsync.AutoSize = true;
-            cbxCpuOffloadAsync.Location = new Point(46, 211);
+            cbxCpuOffloadAsync.Location = new Point(46, 186);
             cbxCpuOffloadAsync.Name = "cbxCpuOffloadAsync";
             cbxCpuOffloadAsync.Size = new Size(189, 19);
             cbxCpuOffloadAsync.TabIndex = 5;
@@ -1625,9 +1613,9 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(nudRankDropout);
             tabPage4.Controls.Add(nudClipLDropoutRate);
             tabPage4.Controls.Add(nudCaptionDropout);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 26);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(660, 337);
+            tabPage4.Size = new Size(660, 335);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "dropout";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1793,9 +1781,9 @@ namespace Kohya_lora_trainer
             page3.Controls.Add(label57);
             page3.Controls.Add(label17);
             page3.Controls.Add(nudIpNoiseGamma);
-            page3.Location = new Point(4, 24);
+            page3.Location = new Point(4, 26);
             page3.Name = "page3";
-            page3.Size = new Size(660, 337);
+            page3.Size = new Size(660, 335);
             page3.TabIndex = 10;
             page3.Text = "損失とノイズ";
             page3.UseVisualStyleBackColor = true;
@@ -1877,9 +1865,9 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(nudMinLRRatio);
             tabPage6.Controls.Add(nudSchedulerTimescale);
             tabPage6.Controls.Add(label47);
-            tabPage6.Location = new Point(4, 24);
+            tabPage6.Location = new Point(4, 26);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(660, 337);
+            tabPage6.Size = new Size(660, 335);
             tabPage6.TabIndex = 13;
             tabPage6.Text = "スケジューラ";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1935,9 +1923,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 24);
+            tabPage7.Location = new Point(4, 26);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(660, 337);
+            tabPage7.Size = new Size(660, 335);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -2004,9 +1992,9 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(label35);
             tabPage5.Controls.Add(tbxD0);
             tabPage5.Controls.Add(tbxGrowthRate);
-            tabPage5.Location = new Point(4, 24);
+            tabPage5.Location = new Point(4, 26);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(660, 337);
+            tabPage5.Size = new Size(660, 335);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "オプティマイザ";
             tabPage5.UseVisualStyleBackColor = true;
@@ -2342,9 +2330,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(tbxTokensSeparator);
             pageMisc.Controls.Add(label46);
             pageMisc.Controls.Add(tbxComment);
-            pageMisc.Location = new Point(4, 24);
+            pageMisc.Location = new Point(4, 26);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(660, 337);
+            pageMisc.Size = new Size(660, 335);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -2531,7 +2519,6 @@ namespace Kohya_lora_trainer
             // 
             tabPage8.Controls.Add(cbxCpuOffloadAsync);
             tabPage8.Controls.Add(cbxDisableVAECache);
-            tabPage8.Controls.Add(cbxPatchFP16);
             tabPage8.Controls.Add(label58);
             tabPage8.Controls.Add(label61);
             tabPage8.Controls.Add(label60);
@@ -2918,7 +2905,6 @@ namespace Kohya_lora_trainer
         private Label label61;
         private NumericUpDown nudSigmoidScale;
         private CheckBox cbxDisableVAECache;
-        private CheckBox cbxPatchFP16;
         private CheckBox cbxCpuOffloadAsync;
     }
 }
