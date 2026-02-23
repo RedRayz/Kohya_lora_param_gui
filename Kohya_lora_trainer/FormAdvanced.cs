@@ -404,7 +404,6 @@ namespace Kohya_lora_trainer
             para.TokenWarmupStep = nudTokenWarmupStep.Value;
 
             para.BlocksToSwap = nudBlocksToSwap.Value;
-            para.CpuOffloadCheckpointing = cbxCpuOffloadCheckpointing.Checked;
             para.Sigmoidscale = nudSigmoidScale.Value;
             para.DiscreteFlowShift = nudDiscreteFlowShift.Value;
             para.Qwen3Path = lblQwen3Path.Text;
@@ -561,7 +560,6 @@ namespace Kohya_lora_trainer
             nudTokenWarmupStep.Value = para.TokenWarmupStep;
 
             nudBlocksToSwap.Value = para.BlocksToSwap;
-            cbxCpuOffloadCheckpointing.Checked = para.CpuOffloadCheckpointing;
             nudSigmoidScale.Value = para.Sigmoidscale;
             nudDiscreteFlowShift.Value = para.DiscreteFlowShift;
 

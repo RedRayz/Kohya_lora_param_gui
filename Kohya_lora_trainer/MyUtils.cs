@@ -838,11 +838,6 @@ namespace Kohya_lora_trainer
             if (para.TEBatchSize > 0)
                 sb.Append(" --text_encoder_batch_size ").Append(para.TEBatchSize.ToString("0"));
 
-            if (para.CpuOffloadCheckpointing)
-            {
-                sb.Append(" --cpu_offload_checkpointing");
-            }
-
             if (para.ResizeInterpolationType != ResizeInterpolation.None)
             {
                 sb.Append(" --resize_interpolation \"").Append(para.ResizeInterpolationType.ToString().ToLower()).Append('"');
