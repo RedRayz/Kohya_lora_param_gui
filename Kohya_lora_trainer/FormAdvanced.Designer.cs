@@ -103,7 +103,8 @@ namespace Kohya_lora_trainer
             nudTokenWarmupStep = new NumericUpDown();
             nudTEBatchSize = new NumericUpDown();
             nudBlocksToSwap = new NumericUpDown();
-            cbxCpuOffloadCheckpointing = new CheckBox();
+            cbxDisableVAECache = new CheckBox();
+            cbxCpuOffloadAsync = new CheckBox();
             nudDiscreteFlowShift = new NumericUpDown();
             cbxAdvancedTrain = new ComboBox();
             label6 = new Label();
@@ -463,7 +464,7 @@ namespace Kohya_lora_trainer
             cbxMixedPrecision.Name = "cbxMixedPrecision";
             cbxMixedPrecision.Size = new Size(74, 23);
             cbxMixedPrecision.TabIndex = 14;
-            toolTip1.SetToolTip(cbxMixedPrecision, "bf16はNVIDIA Ampere世代以降のみ対応");
+            toolTip1.SetToolTip(cbxMixedPrecision, "bf16はNVIDIAであればAmpere以降が必要\r\nAnimaはできるだけbf16を選択する\r\nTuringとVolta世代のNVIDIA製GPUはfp16を選択する");
             // 
             // nudLRSchedulerCycle
             // 
@@ -679,7 +680,7 @@ namespace Kohya_lora_trainer
             cbxUseFP8.Size = new Size(135, 19);
             cbxUseFP8.TabIndex = 42;
             cbxUseFP8.Text = "モデルをfp8で読み込む";
-            toolTip1.SetToolTip(cbxUseFP8, "事前学習モデルをhalfの代わりにfp8_e4m3fnで読み込む\r\n若干の速度低下と引き換えにモデルによるVRAM消費が半減する\r\nVRAM10GB以下では使用を推奨\r\nただし品質が低下する可能性あり");
+            toolTip1.SetToolTip(cbxUseFP8, "事前学習モデルをfp8_e4m3fnで読み込む\r\n若干の速度低下と引き換えにモデルによるVRAM消費が半減する\r\nただし品質が低下する可能性あり\r\nAnimaは非対応");
             cbxUseFP8.UseVisualStyleBackColor = true;
             // 
             // cbxUseFastLoading
@@ -699,12 +700,12 @@ namespace Kohya_lora_trainer
             // 
             cbxScheduler.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxScheduler.FormattingEnabled = true;
-            cbxScheduler.Items.AddRange(new object[] { "cosine_with_restarts", "cosine", "linear", "polynomial", "constant", "constant_with_warmup", "inverse_sqrt", "cosine_with_min_lr", "warmup_stable_decay" });
+            cbxScheduler.Items.AddRange(new object[] { "cosine_with_restarts", "cosine", "linear", "polynomial", "constant", "constant_with_warmup", "inverse_sqrt", "cosine_with_min_lr", "warmup_stable_decay", "なし(ScheduleFree用)" });
             cbxScheduler.Location = new Point(148, 18);
             cbxScheduler.Name = "cbxScheduler";
             cbxScheduler.Size = new Size(159, 23);
             cbxScheduler.TabIndex = 27;
-            toolTip1.SetToolTip(cbxScheduler, "LR調整アルゴリズム");
+            toolTip1.SetToolTip(cbxScheduler, "ScheduleFreeは「なし」でいい\r\nScheduleFreeで「なし」以外にしても無視される");
             // 
             // nudMinSNRGamma
             // 
@@ -733,7 +734,7 @@ namespace Kohya_lora_trainer
             cbxHighVRAM.Size = new Size(198, 19);
             cbxHighVRAM.TabIndex = 18;
             cbxHighVRAM.Text = "高VRAM(latentキャッシュの高速化)";
-            toolTip1.SetToolTip(cbxHighVRAM, "現時点でlatentのキャッシュのみに影響\r\nlatentキャッシュ中はVRAM消費が徐々に増える");
+            toolTip1.SetToolTip(cbxHighVRAM, "latentのキャッシュ中にVRAMのGCをしない");
             cbxHighVRAM.UseVisualStyleBackColor = true;
             // 
             // label28
@@ -858,7 +859,7 @@ namespace Kohya_lora_trainer
             nudIpNoiseGamma.Name = "nudIpNoiseGamma";
             nudIpNoiseGamma.Size = new Size(80, 23);
             nudIpNoiseGamma.TabIndex = 49;
-            toolTip1.SetToolTip(nudIpNoiseGamma, "正則化にinput perturbation noiseを使用する\r\nFlow MatchingのAnimaでは使用しない");
+            toolTip1.SetToolTip(nudIpNoiseGamma, "正則化にinput perturbation noiseを使用する");
             // 
             // btnSelectVAE
             // 
@@ -995,7 +996,7 @@ namespace Kohya_lora_trainer
             cbxResizeInterpolation.Name = "cbxResizeInterpolation";
             cbxResizeInterpolation.Size = new Size(95, 23);
             cbxResizeInterpolation.TabIndex = 26;
-            toolTip1.SetToolTip(cbxResizeInterpolation, "画像を学習解像度にリサイズする方法\r\n2025/04/03時点でsd3ブランチ専用。\r\nmainやdevで未指定以外にするとエラー落ち");
+            toolTip1.SetToolTip(cbxResizeInterpolation, "画像を学習解像度にリサイズする方法");
             // 
             // nudScaleWeightNorms
             // 
@@ -1055,16 +1056,27 @@ namespace Kohya_lora_trainer
             nudBlocksToSwap.TabIndex = 0;
             toolTip1.SetToolTip(nudBlocksToSwap, "一部のブロックをCPUに置くことで\r\n速度低下を抑えつつVRAM消費を減らす");
             // 
-            // cbxCpuOffloadCheckpointing
+            // cbxDisableVAECache
             // 
-            cbxCpuOffloadCheckpointing.AutoSize = true;
-            cbxCpuOffloadCheckpointing.Location = new Point(311, 249);
-            cbxCpuOffloadCheckpointing.Name = "cbxCpuOffloadCheckpointing";
-            cbxCpuOffloadCheckpointing.Size = new Size(167, 19);
-            cbxCpuOffloadCheckpointing.TabIndex = 3;
-            cbxCpuOffloadCheckpointing.Text = "CPU offload checkpointing";
-            toolTip1.SetToolTip(cbxCpuOffloadCheckpointing, "学習勾配をCPUに置く\r\nデータ転送の待機で遅くなる");
-            cbxCpuOffloadCheckpointing.UseVisualStyleBackColor = true;
+            cbxDisableVAECache.AutoSize = true;
+            cbxDisableVAECache.Location = new Point(46, 161);
+            cbxDisableVAECache.Name = "cbxDisableVAECache";
+            cbxDisableVAECache.Size = new Size(136, 19);
+            cbxDisableVAECache.TabIndex = 4;
+            cbxDisableVAECache.Text = "VAEのキャッシュ無効化";
+            toolTip1.SetToolTip(cbxDisableVAECache, "メモリ使用量を大幅に減らし、高速化する");
+            cbxDisableVAECache.UseVisualStyleBackColor = true;
+            // 
+            // cbxCpuOffloadAsync
+            // 
+            cbxCpuOffloadAsync.AutoSize = true;
+            cbxCpuOffloadAsync.Location = new Point(46, 186);
+            cbxCpuOffloadAsync.Name = "cbxCpuOffloadAsync";
+            cbxCpuOffloadAsync.Size = new Size(189, 19);
+            cbxCpuOffloadAsync.TabIndex = 5;
+            cbxCpuOffloadAsync.Text = "unsloth_offload_checkpointing";
+            toolTip1.SetToolTip(cbxCpuOffloadAsync, "Block Swapの方が速い\r\nblock swapと併用不可");
+            cbxCpuOffloadAsync.UseVisualStyleBackColor = true;
             // 
             // nudDiscreteFlowShift
             // 
@@ -1086,6 +1098,7 @@ namespace Kohya_lora_trainer
             cbxAdvancedTrain.Name = "cbxAdvancedTrain";
             cbxAdvancedTrain.Size = new Size(102, 23);
             cbxAdvancedTrain.TabIndex = 36;
+            toolTip1.SetToolTip(cbxAdvancedTrain, "AnimaはDiTのみでいいと思う");
             // 
             // label6
             // 
@@ -1589,9 +1602,9 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(nudRankDropout);
             tabPage4.Controls.Add(nudClipLDropoutRate);
             tabPage4.Controls.Add(nudCaptionDropout);
-            tabPage4.Location = new Point(4, 26);
+            tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(660, 335);
+            tabPage4.Size = new Size(660, 337);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "dropout";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1757,9 +1770,9 @@ namespace Kohya_lora_trainer
             page3.Controls.Add(label57);
             page3.Controls.Add(label17);
             page3.Controls.Add(nudIpNoiseGamma);
-            page3.Location = new Point(4, 26);
+            page3.Location = new Point(4, 24);
             page3.Name = "page3";
-            page3.Size = new Size(660, 335);
+            page3.Size = new Size(660, 337);
             page3.TabIndex = 10;
             page3.Text = "損失とノイズ";
             page3.UseVisualStyleBackColor = true;
@@ -1841,9 +1854,9 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(nudMinLRRatio);
             tabPage6.Controls.Add(nudSchedulerTimescale);
             tabPage6.Controls.Add(label47);
-            tabPage6.Location = new Point(4, 26);
+            tabPage6.Location = new Point(4, 24);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(660, 335);
+            tabPage6.Size = new Size(660, 337);
             tabPage6.TabIndex = 13;
             tabPage6.Text = "スケジューラ";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1877,7 +1890,6 @@ namespace Kohya_lora_trainer
             // 
             // tabPage7
             // 
-            tabPage7.Controls.Add(cbxCpuOffloadCheckpointing);
             tabPage7.Controls.Add(cbxDisableMmapLoadSafetensors);
             tabPage7.Controls.Add(cbxCacheTextencoderToDisk);
             tabPage7.Controls.Add(label51);
@@ -1899,9 +1911,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 26);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(660, 335);
+            tabPage7.Size = new Size(660, 337);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -1968,9 +1980,9 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(label35);
             tabPage5.Controls.Add(tbxD0);
             tabPage5.Controls.Add(tbxGrowthRate);
-            tabPage5.Location = new Point(4, 26);
+            tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(660, 335);
+            tabPage5.Size = new Size(660, 337);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "オプティマイザ";
             tabPage5.UseVisualStyleBackColor = true;
@@ -2211,10 +2223,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 335);
+            tabPage2.Size = new Size(660, 337);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -2306,9 +2318,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(tbxTokensSeparator);
             pageMisc.Controls.Add(label46);
             pageMisc.Controls.Add(tbxComment);
-            pageMisc.Location = new Point(4, 26);
+            pageMisc.Location = new Point(4, 24);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(660, 335);
+            pageMisc.Size = new Size(660, 337);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -2416,9 +2428,9 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(cbxTrainNorm);
             tabPage3.Controls.Add(cbxAlgoType);
             tabPage3.Controls.Add(label23);
-            tabPage3.Location = new Point(4, 26);
+            tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(660, 335);
+            tabPage3.Size = new Size(660, 337);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;
@@ -2493,6 +2505,8 @@ namespace Kohya_lora_trainer
             // 
             // tabPage8
             // 
+            tabPage8.Controls.Add(cbxCpuOffloadAsync);
+            tabPage8.Controls.Add(cbxDisableVAECache);
             tabPage8.Controls.Add(label58);
             tabPage8.Controls.Add(label61);
             tabPage8.Controls.Add(label60);
@@ -2504,7 +2518,7 @@ namespace Kohya_lora_trainer
             tabPage8.Name = "tabPage8";
             tabPage8.Size = new Size(660, 337);
             tabPage8.TabIndex = 14;
-            tabPage8.Text = "DiT";
+            tabPage8.Text = "Anima";
             tabPage8.UseVisualStyleBackColor = true;
             // 
             // label58
@@ -2512,9 +2526,9 @@ namespace Kohya_lora_trainer
             label58.AutoSize = true;
             label58.Location = new Point(20, 14);
             label58.Name = "label58";
-            label58.Size = new Size(177, 15);
+            label58.Size = new Size(99, 15);
             label58.TabIndex = 2;
-            label58.Text = "Diffusion Transformer関連の設定";
+            label58.Text = "Anima固有の設定";
             // 
             // label61
             // 
@@ -2869,7 +2883,6 @@ namespace Kohya_lora_trainer
         private Label label58;
         private Label label55;
         private NumericUpDown nudBlocksToSwap;
-        private CheckBox cbxCpuOffloadCheckpointing;
         private Button btnClearQwen3Path;
         private Button btnQwen3Path;
         private Label label62;
@@ -2878,5 +2891,7 @@ namespace Kohya_lora_trainer
         private NumericUpDown nudDiscreteFlowShift;
         private Label label61;
         private NumericUpDown nudSigmoidScale;
+        private CheckBox cbxDisableVAECache;
+        private CheckBox cbxCpuOffloadAsync;
     }
 }

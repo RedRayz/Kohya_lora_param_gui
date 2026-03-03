@@ -107,8 +107,11 @@ namespace Kohya_lora_trainer
         public ModelPrediction ModelPredictionType;
         public TimestepSampling TimestepSamplingType;
         public TrainBlock TrainBlockType;
-        public bool SplitMode = false, CpuOffloadCheckpointing = false, ApplyT5AttnMask = false;
+        public bool SplitMode = false, ApplyT5AttnMask = false;
         public string DitPath = string.Empty, Qwen3Path = string.Empty;
+
+        //Anima
+        public bool DisableVAECache = true, CpuOffloadAsync = false;
 
         //Scheduler
         public decimal SchedulerTimescale = 0m, MinLRRatio = 0m;
@@ -482,7 +485,8 @@ namespace Kohya_lora_trainer
         constant_with_warmup,
         inverse_sqrt,
         cosine_with_min_lr,
-        warmup_stable_decay
+        warmup_stable_decay,
+        None
     }
 
     public enum AdvancedTrain

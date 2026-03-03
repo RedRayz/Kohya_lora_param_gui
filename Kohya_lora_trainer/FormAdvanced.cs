@@ -404,10 +404,11 @@ namespace Kohya_lora_trainer
             para.TokenWarmupStep = nudTokenWarmupStep.Value;
 
             para.BlocksToSwap = nudBlocksToSwap.Value;
-            para.CpuOffloadCheckpointing = cbxCpuOffloadCheckpointing.Checked;
             para.Sigmoidscale = nudSigmoidScale.Value;
             para.DiscreteFlowShift = nudDiscreteFlowShift.Value;
             para.Qwen3Path = lblQwen3Path.Text;
+            para.DisableVAECache = cbxDisableVAECache.Checked;
+            para.CpuOffloadAsync = cbxCpuOffloadAsync.Checked;
 
             Close();
         }
@@ -559,11 +560,13 @@ namespace Kohya_lora_trainer
             nudTokenWarmupStep.Value = para.TokenWarmupStep;
 
             nudBlocksToSwap.Value = para.BlocksToSwap;
-            cbxCpuOffloadCheckpointing.Checked = para.CpuOffloadCheckpointing;
             nudSigmoidScale.Value = para.Sigmoidscale;
             nudDiscreteFlowShift.Value = para.DiscreteFlowShift;
 
             lblQwen3Path.Text = para.Qwen3Path;
+
+            cbxDisableVAECache.Checked = para.DisableVAECache;
+            cbxCpuOffloadAsync.Checked = para.CpuOffloadAsync;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)

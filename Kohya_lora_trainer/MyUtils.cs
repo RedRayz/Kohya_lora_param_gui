@@ -19,6 +19,7 @@ namespace Kohya_lora_trainer
         private static Dictionary<string, string> DefaultDirs = new Dictionary<string, string>();
         private static readonly List<string> NetworkArgs = new List<string>();
         private static readonly Regex WeightExtensionRegex = new Regex(@"\.pt|\.pth|\.ckpt|\.safetensors|\.sft", RegexOptions.Compiled, TimeSpan.FromMilliseconds(50));
+        private static readonly Regex SystemDirRegex = new Regex("windows|appdata|program files|programdata", RegexOptions.Compiled);
         //private static Dictionary<string, string> DictSettings = new Dictionary<string, string>();
 
         internal static void SaveSettings()
@@ -377,17 +378,22 @@ namespace Kohya_lora_trainer
 
             //Automatic
             sb.Append(" --enable_bucket --save_model_as \"safetensors\"");
+            
 
-            switch (para.SchedulerType)
+            if(para.SchedulerType != Scheduler.None)
             {
-                case Scheduler.polynomial:
-                    sb.Append(" --lr_scheduler_power ").Append(para.LRSchedulerCycle.ToString("0.###"));
-                    break;
-                case Scheduler.cosine_with_restarts:
-                    sb.Append(" --lr_scheduler_num_cycles ").Append(para.LRSchedulerCycle.ToString("0.###"));
-                    break;
-                default:
-                    break;
+                sb.Append(" --lr_scheduler \"").Append(para.SchedulerType.ToString()).Append('"');
+                switch (para.SchedulerType)
+                {
+                    case Scheduler.polynomial:
+                        sb.Append(" --lr_scheduler_power ").Append(para.LRSchedulerCycle.ToString("0.###"));
+                        break;
+                    case Scheduler.cosine_with_restarts:
+                        sb.Append(" --lr_scheduler_num_cycles ").Append(para.LRSchedulerCycle.ToString("0.###"));
+                        break;
+                    default:
+                        break;
+                }
             }
 
 
@@ -588,8 +594,8 @@ namespace Kohya_lora_trainer
                 sb.Append(" --save_precision \"").Append(preci).Append('"');
             }
             
-            sb.Append(" --lr_scheduler \"").Append(para.SchedulerType.ToString()).Append('"')
-            .Append(" --min_bucket_reso ").Append(para.MinBucketResolution)
+            
+            sb.Append(" --min_bucket_reso ").Append(para.MinBucketResolution)
             .Append(" --max_bucket_reso ").Append(para.MaxBucketResolution)
             .Append(" --caption_extension \"").Append(para.CaptionFileExtension).Append('"');
 
@@ -679,6 +685,16 @@ namespace Kohya_lora_trainer
                 if (para.BlocksToSwap > 0)
                 {
                     sb.Append(" --blocks_to_swap ").Append(para.BlocksToSwap.ToString());
+                }
+
+                if (para.DisableVAECache)
+                {
+                    sb.Append(" --vae_disable_cache");
+                }
+
+                if (para.CpuOffloadAsync)
+                {
+                    sb.Append(" --unsloth_offload_checkpointing");
                 }
 
                 sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.##"));
@@ -821,11 +837,6 @@ namespace Kohya_lora_trainer
 
             if (para.TEBatchSize > 0)
                 sb.Append(" --text_encoder_batch_size ").Append(para.TEBatchSize.ToString("0"));
-
-            if (para.CpuOffloadCheckpointing)
-            {
-                sb.Append(" --cpu_offload_checkpointing");
-            }
 
             if (para.ResizeInterpolationType != ResizeInterpolation.None)
             {
@@ -1421,7 +1432,7 @@ namespace Kohya_lora_trainer
         {
             string pth = path.ToLower();
 
-            if (pth.Contains(@"c:\windows") || pth.Contains("system"))
+            if (SystemDirRegex.IsMatch(pth))
             {
                 return true;
             }
