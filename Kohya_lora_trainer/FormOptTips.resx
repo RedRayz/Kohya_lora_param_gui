@@ -117,15 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
-    <value>AdamWはeps,betas(左二つ),weight_decayが、
-Lionはbetas(左二つ),weight_decayが使用されます。
-オフの場合は以下の初期値が使用されます。
-AdamWの初期値:
-eps=1e-08,weight_decay=0.01,betas=0.9,0.999
-Lionの初期値:
-weight_decay=0,betas=0.9,0.99
-CAMEの初期値:
-weight_decay=0, eps1=1e-30, eps2=1e-16, betas=0.9,0.999,0.9999</value>
-  </data>
 </root>
