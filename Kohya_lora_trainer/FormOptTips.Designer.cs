@@ -38,7 +38,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(12, 8);
             label1.Name = "label1";
-            label1.Size = new Size(300, 120);
+            label1.Size = new Size(350, 135);
             label1.TabIndex = 0;
             label1.Text = resources.GetString("label1.Text");
             // 
@@ -59,13 +59,13 @@
             ClientSize = new Size(451, 209);
             Controls.Add(btnOK);
             Controls.Add(label1);
-            Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Yu Gothic UI", 9F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FormOptTips";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Tips for AdamW/Lion";
+            Text = "Tips";
             ResumeLayout(false);
             PerformLayout();
         }
