@@ -1840,7 +1840,20 @@ namespace Kohya_lora_trainer
                     }
                     break;
                 case ModelArchitecture.Anima:
-                    filesize = 2895.215m * para.NetworkDim;
+                    {
+                        switch (para.advancedTrainType)
+                        {
+                            case AdvancedTrain.None:
+                                filesize = 4144.1484m * para.NetworkDim;
+                                break;
+                            case AdvancedTrain.UNetOnly:
+                                filesize = 2895.215m * para.NetworkDim;
+                                break;
+                            case AdvancedTrain.TextEncoderOnly:
+                                filesize = 1249.0234m * para.NetworkDim;
+                                break;
+                        }
+                    }
                     break;
                 default:
                     lblPredictedLoraFilesizeTitle.Enabled = false;
