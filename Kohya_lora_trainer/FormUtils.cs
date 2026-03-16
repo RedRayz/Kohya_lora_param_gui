@@ -116,6 +116,8 @@ namespace Kohya_lora_trainer
             lblLoraPath.Text = string.Empty;
             cbxPythonVersion.SelectedIndex = 0;
             cbxPythonVersion.Update();
+            cbxClearNpzTargetSelection.SelectedIndex = 0;
+            cbxClearNpzTargetSelection.Update();
         }
 
         private void btnUpdateRepo_Click(object sender, EventArgs e)
@@ -263,6 +265,7 @@ namespace Kohya_lora_trainer
                     MessageBox.Show("OS関連のディレクトリは指定できません。", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
+                int selection = cbxClearNpzTargetSelection.SelectedIndex;
 
                 string[] files = Directory.GetFiles(path);
                 //直下にあるnpzの消去
@@ -273,8 +276,29 @@ namespace Kohya_lora_trainer
                         string ext = Path.GetExtension(file).ToLower();
                         if (ext == ".npz")
                         {
-                            File.Delete(file);
-                            removedCnt++;
+                            switch (selection)
+                            {
+                                case 0:
+                                    File.Delete(file);
+                                    removedCnt++;
+                                    break;
+                                case 1:
+                                    if (!file.EndsWith("_te.npz"))
+                                    {
+                                        File.Delete(file);
+                                        removedCnt++;
+                                    }
+                                    break;
+                                case 2:
+                                    if (file.EndsWith("_te.npz"))
+                                    {
+                                        File.Delete(file);
+                                        removedCnt++;
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
                     catch
@@ -295,8 +319,29 @@ namespace Kohya_lora_trainer
                             string ext = Path.GetExtension(file).ToLower();
                             if (ext == ".npz")
                             {
-                                File.Delete(file);
-                                removedCnt++;
+                                switch (selection)
+                                {
+                                    case 0:
+                                        File.Delete(file);
+                                        removedCnt++;
+                                        break;
+                                    case 1:
+                                        if (!file.EndsWith("_te.npz"))
+                                        {
+                                            File.Delete(file);
+                                            removedCnt++;
+                                        }
+                                        break;
+                                    case 2:
+                                        if (file.EndsWith("_te.npz"))
+                                        {
+                                            File.Delete(file);
+                                            removedCnt++;
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                }
                             }
                         }
                         catch
