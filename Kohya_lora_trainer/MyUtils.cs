@@ -282,6 +282,16 @@ namespace Kohya_lora_trainer
                         }
                     }
                     break;
+                case NetworkModule.LoHA:
+                    {
+                        sb.Append(" --network_module \"networks.loha\"");
+                    }
+                    break;
+                case NetworkModule.LoKr:
+                    {
+                        sb.Append(" --network_module \"networks.lokr\"");
+                    }
+                    break;
             }
 
             GenerateBlockWeightCmmands();

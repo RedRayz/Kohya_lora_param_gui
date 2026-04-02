@@ -501,7 +501,9 @@ namespace Kohya_lora_trainer
         LoRA,
         LyCORIS,
         DyLoRA,
-        LoRAFA
+        LoRAFA,
+        LoHA,
+        LoKr,
     }
 
     public enum LycoAlgo

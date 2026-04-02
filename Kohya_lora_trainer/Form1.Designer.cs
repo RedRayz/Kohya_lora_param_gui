@@ -410,7 +410,7 @@ namespace Kohya_lora_trainer
             // 
             cbxModuleType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxModuleType.FormattingEnabled = true;
-            cbxModuleType.Items.AddRange(new object[] { "LoRA", "LyCORIS", "DyLoRA", "LoRA-FA" });
+            cbxModuleType.Items.AddRange(new object[] { "LoRA", "LyCORIS", "DyLoRA", "LoRA-FA", "LoHA", "LoKr" });
             cbxModuleType.Location = new Point(587, 219);
             cbxModuleType.Name = "cbxModuleType";
             cbxModuleType.Size = new Size(80, 23);
