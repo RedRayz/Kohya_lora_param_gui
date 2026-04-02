@@ -41,6 +41,8 @@
             btnSelectOutputPath = new Button();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            label16 = new Label();
+            cbxClearNpzTargetSelection = new ComboBox();
             cbxUseLatestTorch = new CheckBox();
             cbxPythonVersion = new ComboBox();
             label14 = new Label();
@@ -69,12 +71,12 @@
             label5 = new Label();
             tbxBranchName = new TextBox();
             tabPage5 = new TabPage();
+            label15 = new Label();
+            btnShowTorchVer = new Button();
             label9 = new Label();
             label11 = new Label();
             btnPurgePipCache = new Button();
             toolTip1 = new ToolTip(components);
-            btnShowTorchVer = new Button();
-            label15 = new Label();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -197,6 +199,8 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(label16);
+            tabPage1.Controls.Add(cbxClearNpzTargetSelection);
             tabPage1.Controls.Add(cbxUseLatestTorch);
             tabPage1.Controls.Add(cbxPythonVersion);
             tabPage1.Controls.Add(label14);
@@ -215,6 +219,25 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "ユーティリティ";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(343, 277);
+            label16.Name = "label16";
+            label16.Size = new Size(31, 15);
+            label16.TabIndex = 11;
+            label16.Text = "対象";
+            // 
+            // cbxClearNpzTargetSelection
+            // 
+            cbxClearNpzTargetSelection.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxClearNpzTargetSelection.FormattingEnabled = true;
+            cbxClearNpzTargetSelection.Items.AddRange(new object[] { "すべてのnpz", "Latent", "Text Encoder" });
+            cbxClearNpzTargetSelection.Location = new Point(380, 274);
+            cbxClearNpzTargetSelection.Name = "cbxClearNpzTargetSelection";
+            cbxClearNpzTargetSelection.Size = new Size(104, 23);
+            cbxClearNpzTargetSelection.TabIndex = 10;
             // 
             // cbxUseLatestTorch
             // 
@@ -264,7 +287,7 @@
             // 
             lblProcessingNpz.AutoSize = true;
             lblProcessingNpz.Font = new Font("Yu Gothic UI", 10F);
-            lblProcessingNpz.Location = new Point(339, 275);
+            lblProcessingNpz.Location = new Point(225, 335);
             lblProcessingNpz.Name = "lblProcessingNpz";
             lblProcessingNpz.Size = new Size(61, 19);
             lblProcessingNpz.TabIndex = 5;
@@ -506,12 +529,31 @@
             tabPage5.Controls.Add(label9);
             tabPage5.Controls.Add(label11);
             tabPage5.Controls.Add(btnPurgePipCache);
-            tabPage5.Location = new Point(4, 24);
+            tabPage5.Location = new Point(4, 26);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(525, 401);
+            tabPage5.Size = new Size(525, 399);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "不具合修正";
             tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(39, 129);
+            label15.Name = "label15";
+            label15.Size = new Size(256, 15);
+            label15.TabIndex = 3;
+            label15.Text = "venvにインストールされたtorchのバージョンを表示する";
+            // 
+            // btnShowTorchVer
+            // 
+            btnShowTorchVer.Location = new Point(39, 94);
+            btnShowTorchVer.Name = "btnShowTorchVer";
+            btnShowTorchVer.Size = new Size(117, 32);
+            btnShowTorchVer.TabIndex = 2;
+            btnShowTorchVer.Text = "Torchのver確認";
+            btnShowTorchVer.UseVisualStyleBackColor = true;
+            btnShowTorchVer.Click += btnShowTorchVer_Click;
             // 
             // label9
             // 
@@ -540,25 +582,6 @@
             btnPurgePipCache.Text = "pipキャッシュの消去";
             btnPurgePipCache.UseVisualStyleBackColor = true;
             btnPurgePipCache.Click += btnPurgePipCache_Click;
-            // 
-            // btnShowTorchVer
-            // 
-            btnShowTorchVer.Location = new Point(39, 94);
-            btnShowTorchVer.Name = "btnShowTorchVer";
-            btnShowTorchVer.Size = new Size(117, 32);
-            btnShowTorchVer.TabIndex = 2;
-            btnShowTorchVer.Text = "Torchのver確認";
-            btnShowTorchVer.UseVisualStyleBackColor = true;
-            btnShowTorchVer.Click += btnShowTorchVer_Click;
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Location = new Point(39, 129);
-            label15.Name = "label15";
-            label15.Size = new Size(256, 15);
-            label15.TabIndex = 3;
-            label15.Text = "venvにインストールされたtorchのバージョンを表示する";
             // 
             // FormUtils
             // 
@@ -639,5 +662,7 @@
         private Label label11;
         private Label label15;
         private Button btnShowTorchVer;
+        private ComboBox cbxClearNpzTargetSelection;
+        private Label label16;
     }
 }

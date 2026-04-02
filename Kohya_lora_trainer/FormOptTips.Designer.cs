@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormOptTips));
             label1 = new Label();
             btnOK = new Button();
             SuspendLayout();
@@ -38,9 +37,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(12, 8);
             label1.Name = "label1";
-            label1.Size = new Size(300, 120);
+            label1.Size = new Size(350, 105);
             label1.TabIndex = 0;
-            label1.Text = resources.GetString("label1.Text");
+            label1.Text = "各Optimizerの初期値\r\nAdamW:\r\neps=1e-08,weight_decay=0.01,betas=0.9,0.999\r\nLion:\r\nweight_decay=0,betas=0.9,0.99\r\nCAME:\r\nweight_decay=0, eps1=1e-30, eps2=1e-16, betas=0.9,0.999,0.9999";
             // 
             // btnOK
             // 
@@ -59,13 +58,13 @@
             ClientSize = new Size(451, 209);
             Controls.Add(btnOK);
             Controls.Add(label1);
-            Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Yu Gothic UI", 9F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "FormOptTips";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Tips for AdamW/Lion";
+            Text = "Tips";
             ResumeLayout(false);
             PerformLayout();
         }

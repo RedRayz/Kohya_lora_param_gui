@@ -105,8 +105,8 @@ namespace Kohya_lora_trainer
             nudBlocksToSwap = new NumericUpDown();
             cbxDisableVAECache = new CheckBox();
             cbxCpuOffloadAsync = new CheckBox();
-            nudDiscreteFlowShift = new NumericUpDown();
             cbxAdvancedTrain = new ComboBox();
+            nudDiscreteFlowShift = new NumericUpDown();
             label6 = new Label();
             label9 = new Label();
             button1 = new Button();
@@ -755,7 +755,7 @@ namespace Kohya_lora_trainer
             nudGradAccSteps.Name = "nudGradAccSteps";
             nudGradAccSteps.Size = new Size(96, 23);
             nudGradAccSteps.TabIndex = 8;
-            toolTip1.SetToolTip(nudGradAccSteps, "勾配を合計するステップ数\r\nバッチサイズに似た効果がある");
+            toolTip1.SetToolTip(nudGradAccSteps, "勾配を合計するステップ数\r\nバッチサイズに似た効果がある\r\n2以上にすると勾配がオーバーフローで壊れるかも");
             nudGradAccSteps.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // nudLoRAPlusLRRatio
@@ -951,9 +951,9 @@ namespace Kohya_lora_trainer
             cbxUseAdditionalOptArgs.AutoSize = true;
             cbxUseAdditionalOptArgs.Location = new Point(12, 13);
             cbxUseAdditionalOptArgs.Name = "cbxUseAdditionalOptArgs";
-            cbxUseAdditionalOptArgs.Size = new Size(239, 19);
+            cbxUseAdditionalOptArgs.Size = new Size(205, 19);
             cbxUseAdditionalOptArgs.TabIndex = 26;
-            cbxUseAdditionalOptArgs.Text = "一部Optimizerに追加のパラメータを指定する";
+            cbxUseAdditionalOptArgs.Text = "一部Optimizerにパラメータを指定する";
             toolTip1.SetToolTip(cbxUseAdditionalOptArgs, "DAdaptationは常に指定される");
             cbxUseAdditionalOptArgs.UseVisualStyleBackColor = true;
             // 
@@ -1078,17 +1078,6 @@ namespace Kohya_lora_trainer
             toolTip1.SetToolTip(cbxCpuOffloadAsync, "Block Swapの方が速い\r\nblock swapと併用不可");
             cbxCpuOffloadAsync.UseVisualStyleBackColor = true;
             // 
-            // nudDiscreteFlowShift
-            // 
-            nudDiscreteFlowShift.DecimalPlaces = 2;
-            nudDiscreteFlowShift.Location = new Point(134, 85);
-            nudDiscreteFlowShift.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            nudDiscreteFlowShift.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            nudDiscreteFlowShift.Name = "nudDiscreteFlowShift";
-            nudDiscreteFlowShift.Size = new Size(73, 23);
-            nudDiscreteFlowShift.TabIndex = 0;
-            nudDiscreteFlowShift.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            // 
             // cbxAdvancedTrain
             // 
             cbxAdvancedTrain.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -1099,6 +1088,17 @@ namespace Kohya_lora_trainer
             cbxAdvancedTrain.Size = new Size(102, 23);
             cbxAdvancedTrain.TabIndex = 36;
             toolTip1.SetToolTip(cbxAdvancedTrain, "AnimaはDiTのみでいいと思う");
+            // 
+            // nudDiscreteFlowShift
+            // 
+            nudDiscreteFlowShift.DecimalPlaces = 2;
+            nudDiscreteFlowShift.Location = new Point(134, 85);
+            nudDiscreteFlowShift.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            nudDiscreteFlowShift.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudDiscreteFlowShift.Name = "nudDiscreteFlowShift";
+            nudDiscreteFlowShift.Size = new Size(73, 23);
+            nudDiscreteFlowShift.TabIndex = 0;
+            nudDiscreteFlowShift.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label6
             // 
@@ -1602,9 +1602,9 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(nudRankDropout);
             tabPage4.Controls.Add(nudClipLDropoutRate);
             tabPage4.Controls.Add(nudCaptionDropout);
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 26);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(660, 337);
+            tabPage4.Size = new Size(660, 335);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "dropout";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1770,9 +1770,9 @@ namespace Kohya_lora_trainer
             page3.Controls.Add(label57);
             page3.Controls.Add(label17);
             page3.Controls.Add(nudIpNoiseGamma);
-            page3.Location = new Point(4, 24);
+            page3.Location = new Point(4, 26);
             page3.Name = "page3";
-            page3.Size = new Size(660, 337);
+            page3.Size = new Size(660, 335);
             page3.TabIndex = 10;
             page3.Text = "損失とノイズ";
             page3.UseVisualStyleBackColor = true;
@@ -1980,9 +1980,9 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(label35);
             tabPage5.Controls.Add(tbxD0);
             tabPage5.Controls.Add(tbxGrowthRate);
-            tabPage5.Location = new Point(4, 24);
+            tabPage5.Location = new Point(4, 26);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(660, 337);
+            tabPage5.Size = new Size(660, 335);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "オプティマイザ";
             tabPage5.UseVisualStyleBackColor = true;
@@ -2041,11 +2041,12 @@ namespace Kohya_lora_trainer
             // 
             // btnShowTipsAboutOpts
             // 
-            btnShowTipsAboutOpts.Location = new Point(254, 8);
+            btnShowTipsAboutOpts.Font = new Font("Yu Gothic UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 128);
+            btnShowTipsAboutOpts.Location = new Point(223, 7);
             btnShowTipsAboutOpts.Name = "btnShowTipsAboutOpts";
-            btnShowTipsAboutOpts.Size = new Size(195, 26);
+            btnShowTipsAboutOpts.Size = new Size(26, 26);
             btnShowTipsAboutOpts.TabIndex = 27;
-            btnShowTipsAboutOpts.Text = "AdamWとLionに関するヒントを表示";
+            btnShowTipsAboutOpts.Text = "?";
             btnShowTipsAboutOpts.UseVisualStyleBackColor = true;
             btnShowTipsAboutOpts.Click += btnShowTipsAboutOpts_Click;
             // 
@@ -2223,10 +2224,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 337);
+            tabPage2.Size = new Size(660, 335);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -2318,9 +2319,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(tbxTokensSeparator);
             pageMisc.Controls.Add(label46);
             pageMisc.Controls.Add(tbxComment);
-            pageMisc.Location = new Point(4, 24);
+            pageMisc.Location = new Point(4, 26);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(660, 337);
+            pageMisc.Size = new Size(660, 335);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -2428,9 +2429,9 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(cbxTrainNorm);
             tabPage3.Controls.Add(cbxAlgoType);
             tabPage3.Controls.Add(label23);
-            tabPage3.Location = new Point(4, 24);
+            tabPage3.Location = new Point(4, 26);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(660, 337);
+            tabPage3.Size = new Size(660, 335);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;
@@ -2514,9 +2515,9 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(nudSigmoidScale);
             tabPage8.Controls.Add(nudDiscreteFlowShift);
             tabPage8.Controls.Add(nudBlocksToSwap);
-            tabPage8.Location = new Point(4, 24);
+            tabPage8.Location = new Point(4, 26);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 337);
+            tabPage8.Size = new Size(660, 335);
             tabPage8.TabIndex = 14;
             tabPage8.Text = "Anima";
             tabPage8.UseVisualStyleBackColor = true;
