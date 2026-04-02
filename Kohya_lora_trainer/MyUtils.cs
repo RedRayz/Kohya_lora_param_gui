@@ -285,11 +285,47 @@ namespace Kohya_lora_trainer
                 case NetworkModule.LoHA:
                     {
                         sb.Append(" --network_module \"networks.loha\"");
+                        switch (para.ModelArchitectureEnum)
+                        {
+                            case ModelArchitecture.Legacy:
+                            case ModelArchitecture.XL:
+                                if (para.UseConv2dExtend)
+                                {
+                                    bool di = para.ConvDim > 0;
+                                    bool al = para.ConvAlpha > 0;
+                                    if (di || al)
+                                    {
+                                        if (di)
+                                            NetworkArgs.Add("conv_dim=" + para.ConvDim.ToString());
+                                        if (al)
+                                            NetworkArgs.Add("conv_alpha=" + para.ConvAlpha.ToString());
+                                    }
+                                }
+                                break;
+                        }
                     }
                     break;
                 case NetworkModule.LoKr:
                     {
                         sb.Append(" --network_module \"networks.lokr\"");
+                        switch (para.ModelArchitectureEnum)
+                        {
+                            case ModelArchitecture.Legacy:
+                            case ModelArchitecture.XL:
+                                if (para.UseConv2dExtend)
+                                {
+                                    bool di = para.ConvDim > 0;
+                                    bool al = para.ConvAlpha > 0;
+                                    if (di || al)
+                                    {
+                                        if (di)
+                                            NetworkArgs.Add("conv_dim=" + para.ConvDim.ToString());
+                                        if (al)
+                                            NetworkArgs.Add("conv_alpha=" + para.ConvAlpha.ToString());
+                                    }
+                                }
+                                break;
+                        }
                     }
                     break;
             }
