@@ -415,7 +415,7 @@ namespace Kohya_lora_trainer
             cbxModuleType.Name = "cbxModuleType";
             cbxModuleType.Size = new Size(80, 23);
             cbxModuleType.TabIndex = 6;
-            toolTip1.SetToolTip(cbxModuleType, "LoRA-FAはメモリ消費がわずかに減少する\r\nまた学習が遅くなる代わりに安定性向上？\r\nAnimaはLoRAのみ対応(LyCORISは未確認)");
+            toolTip1.SetToolTip(cbxModuleType, "LoRA-FAはメモリ消費がわずかに減少する\r\nLoHAとLoKrは計算が遅い\r\nAnimaはLoRA、LoHA、LoKrのみ対応");
             cbxModuleType.SelectedIndexChanged += cbxModuleType_SelectedIndexChanged;
             // 
             // nudSaveEpoch
