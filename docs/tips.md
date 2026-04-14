@@ -43,13 +43,15 @@ GPU-ZやMSI Afterburnerのグラフを見るのもあり。それのグラフで
 
 ## 次元数(DimまたはRank)は高いほうがいいの？
 
-高いほど学習能力が上昇するが学習・生成が遅くなる。また高くしても細部が良くなるわけではない。
+高いほど学習能力が少し上昇するが学習が遅くなる。また高くしても細部が良くなるわけではない。
 
 SD1のみだが、高いほど生成時に崩壊しやすい。
 
 SDXL/Animaは、アニメキャラのような情報量が少ない対象は4～8のような低い値で良い。
 
 基本的にSD1は16でいい。SDXLとAnimaは性能とファイルサイズの観点から16以下を推奨。
+
+Network Dimを4から16倍の64にしても16倍良くなることはない。せいぜい1.3倍良くなるだけ。
 
 ## データセットについて
 
@@ -138,7 +140,7 @@ v-prediction+ztsnrモデルで特に不安定。
 ちなみに、AnimaはFlow Matchingの効果なのかはわからないが、学習が安定している。
 
 ## LR Schedulerについて
-LR調整アルゴリズム。
+LR調整アルゴリズム。ScheduleFree Optimizerでは使用しない。
 ### cosine_with_restarts
 推奨。num_lr_scheduler_cycleで指定した分だけコサイン波を繰り返す。warmupが指定されているなら0から始まりwarmupまで線形でLRを上げる。
 ### cosine
@@ -148,7 +150,7 @@ LR調整アルゴリズム。
 ### constant_with_warmup
 warmupまで線形でLRを上げた後は一定。非推奨。ScheduleFree系向け。
 ### constant
-LRは常に一定。RAdamScheduleFree以外は非推奨。
+LRは常に一定。非推奨。
 ### polynomial
 多項式。powerの値で減衰速度が変化する。
 
