@@ -345,7 +345,7 @@ namespace Kohya_lora_trainer
             nudResolution.Name = "nudResolution";
             nudResolution.Size = new Size(72, 23);
             nudResolution.TabIndex = 54;
-            toolTip1.SetToolTip(nudResolution, "SD1とAnima-previewが512、SDXLが1024推奨\r\n上記の推奨未満の解像度にすると胴体分裂などの悪影響あり\r\n推奨超過にしても速度が低下するだけで大きなメリットなし");
+            toolTip1.SetToolTip(nudResolution, "SD1とAnima-previewが512、SDXLとAnima preview3以降が1024推奨\r\n上記の推奨未満の解像度にすると胴体分裂などの悪影響あり\r\n推奨超過にしても速度が低下するだけで大きなメリットなし");
             nudResolution.Value = new decimal(new int[] { 512, 0, 0, 0 });
             nudResolution.ValueChanged += nudResolution_ValueChanged;
             // 

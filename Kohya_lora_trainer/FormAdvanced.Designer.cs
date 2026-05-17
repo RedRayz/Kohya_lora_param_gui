@@ -327,11 +327,11 @@ namespace Kohya_lora_trainer
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(27, 20);
+            label1.Location = new Point(23, 20);
             label1.Name = "label1";
-            label1.Size = new Size(86, 15);
+            label1.Size = new Size(92, 15);
             label1.TabIndex = 2;
-            label1.Text = "UNet/DiT LR##";
+            label1.Text = "拡散ﾓﾃﾞﾙのLR##";
             // 
             // label2
             // 
@@ -459,7 +459,7 @@ namespace Kohya_lora_trainer
             // 
             cbxMixedPrecision.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxMixedPrecision.FormattingEnabled = true;
-            cbxMixedPrecision.Items.AddRange(new object[] { "なし", "fp16", "bf16" });
+            cbxMixedPrecision.Items.AddRange(new object[] { "なし(非推奨)", "fp16", "bf16" });
             cbxMixedPrecision.Location = new Point(372, 63);
             cbxMixedPrecision.Name = "cbxMixedPrecision";
             cbxMixedPrecision.Size = new Size(74, 23);
@@ -755,7 +755,7 @@ namespace Kohya_lora_trainer
             nudGradAccSteps.Name = "nudGradAccSteps";
             nudGradAccSteps.Size = new Size(96, 23);
             nudGradAccSteps.TabIndex = 8;
-            toolTip1.SetToolTip(nudGradAccSteps, "勾配を合計するステップ数\r\nバッチサイズに似た効果がある\r\n2以上にすると勾配がオーバーフローで壊れるかも");
+            toolTip1.SetToolTip(nudGradAccSteps, "勾配を合計するステップ数\r\nバッチサイズに似た効果がある");
             nudGradAccSteps.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // nudLoRAPlusLRRatio
@@ -921,7 +921,7 @@ namespace Kohya_lora_trainer
             cbxDisableMmapLoadSafetensors.Size = new Size(234, 19);
             cbxDisableMmapLoadSafetensors.TabIndex = 44;
             cbxDisableMmapLoadSafetensors.Text = "safetensors読込のメモリマッピングの無効化";
-            toolTip1.SetToolTip(cbxDisableMmapLoadSafetensors, "safetensorsファイルの読込が少し早くなる");
+            toolTip1.SetToolTip(cbxDisableMmapLoadSafetensors, "safetensorsファイルの読込が少し早くなる\r\nSD1非対応");
             cbxDisableMmapLoadSafetensors.UseVisualStyleBackColor = true;
             // 
             // cbxVParameterization
@@ -1064,7 +1064,7 @@ namespace Kohya_lora_trainer
             cbxDisableVAECache.Size = new Size(136, 19);
             cbxDisableVAECache.TabIndex = 4;
             cbxDisableVAECache.Text = "VAEのキャッシュ無効化";
-            toolTip1.SetToolTip(cbxDisableVAECache, "メモリ使用量を大幅に減らし、高速化する");
+            toolTip1.SetToolTip(cbxDisableVAECache, "VAEエンコードのメモリ使用量を大幅に減らし、高速化する");
             cbxDisableVAECache.UseVisualStyleBackColor = true;
             // 
             // cbxCpuOffloadAsync
@@ -1082,12 +1082,12 @@ namespace Kohya_lora_trainer
             // 
             cbxAdvancedTrain.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxAdvancedTrain.FormattingEnabled = true;
-            cbxAdvancedTrain.Items.AddRange(new object[] { "両方学習", "TEのみ", "UNet/DiTのみ" });
+            cbxAdvancedTrain.Items.AddRange(new object[] { "両方学習", "TEのみ", "拡散ﾓﾃﾞﾙのみ" });
             cbxAdvancedTrain.Location = new Point(119, 73);
             cbxAdvancedTrain.Name = "cbxAdvancedTrain";
             cbxAdvancedTrain.Size = new Size(102, 23);
             cbxAdvancedTrain.TabIndex = 36;
-            toolTip1.SetToolTip(cbxAdvancedTrain, "AnimaはDiTのみでいいと思う");
+            toolTip1.SetToolTip(cbxAdvancedTrain, "AnimaにTEは原則不要");
             // 
             // nudDiscreteFlowShift
             // 
@@ -1098,6 +1098,7 @@ namespace Kohya_lora_trainer
             nudDiscreteFlowShift.Name = "nudDiscreteFlowShift";
             nudDiscreteFlowShift.Size = new Size(73, 23);
             nudDiscreteFlowShift.TabIndex = 0;
+            toolTip1.SetToolTip(nudDiscreteFlowShift, "基本的に1にする");
             nudDiscreteFlowShift.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label6
@@ -1228,7 +1229,7 @@ namespace Kohya_lora_trainer
             label13.Name = "label13";
             label13.Size = new Size(110, 15);
             label13.TabIndex = 37;
-            label13.Text = "UNet(DiT)/TEの学習";
+            label13.Text = "拡散モデル/TEの学習";
             // 
             // label4
             // 
@@ -1770,9 +1771,9 @@ namespace Kohya_lora_trainer
             page3.Controls.Add(label57);
             page3.Controls.Add(label17);
             page3.Controls.Add(nudIpNoiseGamma);
-            page3.Location = new Point(4, 26);
+            page3.Location = new Point(4, 24);
             page3.Name = "page3";
-            page3.Size = new Size(660, 335);
+            page3.Size = new Size(660, 337);
             page3.TabIndex = 10;
             page3.Text = "損失とノイズ";
             page3.UseVisualStyleBackColor = true;
@@ -1814,6 +1815,7 @@ namespace Kohya_lora_trainer
             cbxHuberSchedule.Name = "cbxHuberSchedule";
             cbxHuberSchedule.Size = new Size(121, 23);
             cbxHuberSchedule.TabIndex = 3;
+            toolTip1.SetToolTip(cbxHuberSchedule, "AnimaはSNR非対応");
             // 
             // label49
             // 
@@ -1980,9 +1982,9 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(label35);
             tabPage5.Controls.Add(tbxD0);
             tabPage5.Controls.Add(tbxGrowthRate);
-            tabPage5.Location = new Point(4, 26);
+            tabPage5.Location = new Point(4, 24);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(660, 335);
+            tabPage5.Size = new Size(660, 337);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "オプティマイザ";
             tabPage5.UseVisualStyleBackColor = true;
@@ -2429,9 +2431,9 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(cbxTrainNorm);
             tabPage3.Controls.Add(cbxAlgoType);
             tabPage3.Controls.Add(label23);
-            tabPage3.Location = new Point(4, 26);
+            tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(660, 335);
+            tabPage3.Size = new Size(660, 337);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;
@@ -2515,9 +2517,9 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(nudSigmoidScale);
             tabPage8.Controls.Add(nudDiscreteFlowShift);
             tabPage8.Controls.Add(nudBlocksToSwap);
-            tabPage8.Location = new Point(4, 26);
+            tabPage8.Location = new Point(4, 24);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 335);
+            tabPage8.Size = new Size(660, 337);
             tabPage8.TabIndex = 14;
             tabPage8.Text = "Anima";
             tabPage8.UseVisualStyleBackColor = true;
