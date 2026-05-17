@@ -1064,7 +1064,7 @@ namespace Kohya_lora_trainer
             cbxDisableVAECache.Size = new Size(136, 19);
             cbxDisableVAECache.TabIndex = 4;
             cbxDisableVAECache.Text = "VAEのキャッシュ無効化";
-            toolTip1.SetToolTip(cbxDisableVAECache, "メモリ使用量を大幅に減らし、高速化する");
+            toolTip1.SetToolTip(cbxDisableVAECache, "VAEエンコードのメモリ使用量を大幅に減らし、高速化する");
             cbxDisableVAECache.UseVisualStyleBackColor = true;
             // 
             // cbxCpuOffloadAsync
@@ -1087,7 +1087,7 @@ namespace Kohya_lora_trainer
             cbxAdvancedTrain.Name = "cbxAdvancedTrain";
             cbxAdvancedTrain.Size = new Size(102, 23);
             cbxAdvancedTrain.TabIndex = 36;
-            toolTip1.SetToolTip(cbxAdvancedTrain, "AnimaはDiTのみでいいと思う");
+            toolTip1.SetToolTip(cbxAdvancedTrain, "AnimaにTEは原則不要");
             // 
             // nudDiscreteFlowShift
             // 
@@ -1815,6 +1815,7 @@ namespace Kohya_lora_trainer
             cbxHuberSchedule.Name = "cbxHuberSchedule";
             cbxHuberSchedule.Size = new Size(121, 23);
             cbxHuberSchedule.TabIndex = 3;
+            toolTip1.SetToolTip(cbxHuberSchedule, "AnimaはSNR非対応");
             // 
             // label49
             // 
@@ -2225,10 +2226,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 337);
+            tabPage2.Size = new Size(660, 335);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -2320,9 +2321,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(tbxTokensSeparator);
             pageMisc.Controls.Add(label46);
             pageMisc.Controls.Add(tbxComment);
-            pageMisc.Location = new Point(4, 24);
+            pageMisc.Location = new Point(4, 26);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(660, 337);
+            pageMisc.Size = new Size(660, 335);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
