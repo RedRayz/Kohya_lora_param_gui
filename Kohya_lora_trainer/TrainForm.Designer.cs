@@ -43,7 +43,7 @@
             // btnStop
             // 
             btnStop.BackColor = Color.MistyRose;
-            btnStop.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnStop.Font = new Font("Yu Gothic UI", 12F);
             btnStop.Location = new Point(76, 12);
             btnStop.Name = "btnStop";
             btnStop.Size = new Size(170, 36);
@@ -54,7 +54,7 @@
             // 
             // btnClose
             // 
-            btnClose.Font = new Font("Yu Gothic UI", 11F, FontStyle.Regular, GraphicsUnit.Point);
+            btnClose.Font = new Font("Yu Gothic UI", 11F);
             btnClose.Location = new Point(76, 54);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(170, 36);
@@ -65,7 +65,7 @@
             // 
             // btnCopyCmd
             // 
-            btnCopyCmd.Font = new Font("Yu Gothic UI", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCopyCmd.Font = new Font("Yu Gothic UI", 8F);
             btnCopyCmd.Location = new Point(211, 177);
             btnCopyCmd.Name = "btnCopyCmd";
             btnCopyCmd.Size = new Size(93, 24);
@@ -77,7 +77,7 @@
             // lblCountdown
             // 
             lblCountdown.AutoSize = true;
-            lblCountdown.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
+            lblCountdown.Font = new Font("Yu Gothic UI", 10F, FontStyle.Bold);
             lblCountdown.ForeColor = Color.OrangeRed;
             lblCountdown.Location = new Point(41, 114);
             lblCountdown.Name = "lblCountdown";
@@ -93,7 +93,7 @@
             // lblProcessingCaptions
             // 
             lblProcessingCaptions.AutoSize = true;
-            lblProcessingCaptions.Font = new Font("Yu Gothic UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblProcessingCaptions.Font = new Font("Yu Gothic UI", 12F);
             lblProcessingCaptions.Location = new Point(76, 93);
             lblProcessingCaptions.Name = "lblProcessingCaptions";
             lblProcessingCaptions.Size = new Size(167, 21);
@@ -115,7 +115,7 @@
             // 
             cbxCompleteAction.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxCompleteAction.FormattingEnabled = true;
-            cbxCompleteAction.Items.AddRange(new object[] { "なにもしない", "経過時間表示", "シャットダウン", "スリープ" });
+            cbxCompleteAction.Items.AddRange(new object[] { "なにもしない", "経過時間表示", "シャットダウン", "スリープ", "閉じる" });
             cbxCompleteAction.Location = new Point(12, 179);
             cbxCompleteAction.Name = "cbxCompleteAction";
             cbxCompleteAction.Size = new Size(101, 23);
@@ -145,7 +145,7 @@
             Controls.Add(btnCopyCmd);
             Controls.Add(btnClose);
             Controls.Add(btnStop);
-            Font = new Font("Yu Gothic UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Yu Gothic UI", 9F);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;

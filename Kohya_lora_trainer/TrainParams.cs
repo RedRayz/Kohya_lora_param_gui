@@ -555,7 +555,8 @@ namespace Kohya_lora_trainer
         None,
         ShowTimetaken,
         Shutdown,
-        Suspend
+        Suspend,
+        CloseTerminal
     }
 
     public enum LossType

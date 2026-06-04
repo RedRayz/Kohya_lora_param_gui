@@ -82,7 +82,15 @@ namespace Kohya_lora_trainer
                 btnStop.Enabled = false;
                 btnClose.Enabled = true;
             }
-            bool failed = !File.Exists(TrainParams.Current.OutputPath + "\\" + TrainParams.Current.OutputName + ".safetensors");
+
+            var para = TrainParams.Current;
+            if (para == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            bool failed = !File.Exists(para.OutputPath + "\\" + para.OutputName + ".safetensors");
 
             if (BatchProcess.IsRunning && BatchProcess.LogResultText && stopwatch != null)
             {
@@ -96,7 +104,7 @@ namespace Kohya_lora_trainer
                 hour = Math.Floor(hour);
                 min -= hour * 60;
                 BatchProcess.LogText += ", 終了時刻:" + DateTime.Now.ToString() + ", 経過時間: " + $"{hour}時間{min}分" + sec.ToString("0.000秒");
-                if (!string.IsNullOrWhiteSpace(TrainParams.Current.CustomCommands))
+                if (!string.IsNullOrWhiteSpace(para.CustomCommands))
                 {
                     BatchProcess.LogText += "\r\nコマンド実行のみ。";
                 }
@@ -115,17 +123,22 @@ namespace Kohya_lora_trainer
 
             if (BatchProcess.IsRunning)
             {
-                if (failed && string.IsNullOrWhiteSpace(TrainParams.Current.CustomCommands))
+                if (failed && string.IsNullOrWhiteSpace(para.CustomCommands))
                 {
                     BatchProcess.FailCount++;
                 }
                 Close();
                 return;
             }
+            if (Form1.CompleteAction == TrainCompleteAction.CloseTerminal)
+            {
+                Close();
+                return;
+            }
 
             if (Form1.CompleteAction == TrainCompleteAction.ShowTimetaken)
             {
-                if(stopwatch != null)
+                if (stopwatch != null)
                 {
                     stopwatch.Stop();
                     double tos = stopwatch.Elapsed.TotalSeconds;

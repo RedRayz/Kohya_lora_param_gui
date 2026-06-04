@@ -468,6 +468,12 @@ namespace Kohya_lora_trainer
 
         private void btnStartTraining_Click(object sender, EventArgs e)
         {
+            var para = TrainParams.Current;
+            if (para == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             string str = string.IsNullOrEmpty(ScriptPath) ? Constants.CurrentSdScriptsPath : ScriptPath + "\\";
 
             if (!HasScriptFile(str, true) || !IsCommandAvailable(true) || !IsAdditionalArgsAvailable(true))
@@ -476,7 +482,7 @@ namespace Kohya_lora_trainer
             if (NotifyBadParams() != DialogResult.Yes)
                 return;
 
-            if (File.Exists(TrainParams.Current.OutputPath + "\\" + TrainParams.Current.OutputName + ".safetensors"))
+            if (File.Exists(para.OutputPath + "\\" + para.OutputName + ".safetensors"))
             {
                 var res = MessageBox.Show("出力先に同名のファイルが存在します。学習完了時に上書きされますがよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == DialogResult.No) return;
@@ -498,7 +504,7 @@ namespace Kohya_lora_trainer
                     if (!HasScriptFile(str, false))
                     {
                         Debug.WriteLine("Skip training. required files are not found");
-                        BatchProcess.LogText += TrainParams.Current.OutputPath + "\\" + TrainParams.Current.OutputName + ".safetensors\r\ntrain_network.pyがないためスキップ\r\n\r\n";
+                        BatchProcess.LogText += para.OutputPath + "\\" + para.OutputName + ".safetensors\r\ntrain_network.pyがないためスキップ\r\n\r\n";
 
                         BatchProcess.SkippedCount++;
                         continue;
@@ -562,7 +568,7 @@ namespace Kohya_lora_trainer
                         continue;
                     }
 
-                    if (TrainParams.Current.IsOptimizerUnknown || TrainParams.Current.IsModelArchitectureUnkown)
+                    if (para.IsOptimizerUnknown || para.IsModelArchitectureUnkown)
                     {
                         Debug.WriteLine("Skipped. Unknown model or optimizer");
                         if (!string.IsNullOrWhiteSpace(pth))
@@ -647,6 +653,21 @@ namespace Kohya_lora_trainer
             train.ShowDialog();
             train.Dispose();
             cbxCompleteAction.SelectedIndex = (int)CompleteAction;
+            if(CompleteAction == TrainCompleteAction.CloseTerminal)
+            {
+                StringBuilder sb = new StringBuilder();
+                bool failed = !File.Exists(para.OutputPath + "\\" + para.OutputName + ".safetensors") && string.IsNullOrWhiteSpace(para.CustomCommands);
+                if (failed)
+                {
+                    sb.Append("コマンド実行(学習)が終了しましたが失敗した可能性があります。");
+                }
+                else
+                {
+                    sb.Append("コマンド実行(学習)が終了しました。");
+                }
+
+                MessageBox.Show(sb.ToString(), "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private bool HasScriptFile(string str, bool showMsg)

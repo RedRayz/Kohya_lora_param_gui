@@ -1194,10 +1194,10 @@ namespace Kohya_lora_trainer
             // 
             cbxCompleteAction.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxCompleteAction.FormattingEnabled = true;
-            cbxCompleteAction.Items.AddRange(new object[] { "何もしない", "経過時間表示", "シャットダウン", "スリープ" });
+            cbxCompleteAction.Items.AddRange(new object[] { "何もしない", "経過時間表示", "シャットダウン", "スリープ", "ウィンドウを閉じる" });
             cbxCompleteAction.Location = new Point(116, 481);
             cbxCompleteAction.Name = "cbxCompleteAction";
-            cbxCompleteAction.Size = new Size(121, 23);
+            cbxCompleteAction.Size = new Size(143, 23);
             cbxCompleteAction.TabIndex = 90;
             cbxCompleteAction.SelectedIndexChanged += cbxCompleteAction_SelectedIndexChanged;
             // 
