@@ -468,6 +468,12 @@ namespace Kohya_lora_trainer
 
         private void btnStartTraining_Click(object sender, EventArgs e)
         {
+            var para = TrainParams.Current;
+            if (para == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             string str = string.IsNullOrEmpty(ScriptPath) ? Constants.CurrentSdScriptsPath : ScriptPath + "\\";
 
             if (!HasScriptFile(str, true) || !IsCommandAvailable(true) || !IsAdditionalArgsAvailable(true))
@@ -476,7 +482,7 @@ namespace Kohya_lora_trainer
             if (NotifyBadParams() != DialogResult.Yes)
                 return;
 
-            if (File.Exists(TrainParams.Current.OutputPath + "\\" + TrainParams.Current.OutputName + ".safetensors"))
+            if (File.Exists(para.OutputPath + "\\" + para.OutputName + ".safetensors"))
             {
                 var res = MessageBox.Show("出力先に同名のファイルが存在します。学習完了時に上書きされますがよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == DialogResult.No) return;
@@ -498,7 +504,7 @@ namespace Kohya_lora_trainer
                     if (!HasScriptFile(str, false))
                     {
                         Debug.WriteLine("Skip training. required files are not found");
-                        BatchProcess.LogText += TrainParams.Current.OutputPath + "\\" + TrainParams.Current.OutputName + ".safetensors\r\ntrain_network.pyがないためスキップ\r\n\r\n";
+                        BatchProcess.LogText += para.OutputPath + "\\" + para.OutputName + ".safetensors\r\ntrain_network.pyがないためスキップ\r\n\r\n";
 
                         BatchProcess.SkippedCount++;
                         continue;
@@ -562,7 +568,7 @@ namespace Kohya_lora_trainer
                         continue;
                     }
 
-                    if (TrainParams.Current.IsOptimizerUnknown || TrainParams.Current.IsModelArchitectureUnkown)
+                    if (para.IsOptimizerUnknown || para.IsModelArchitectureUnkown)
                     {
                         Debug.WriteLine("Skipped. Unknown model or optimizer");
                         if (!string.IsNullOrWhiteSpace(pth))
@@ -647,6 +653,21 @@ namespace Kohya_lora_trainer
             train.ShowDialog();
             train.Dispose();
             cbxCompleteAction.SelectedIndex = (int)CompleteAction;
+            if(CompleteAction == TrainCompleteAction.CloseTerminal)
+            {
+                StringBuilder sb = new StringBuilder();
+                bool failed = !File.Exists(para.OutputPath + "\\" + para.OutputName + ".safetensors") && string.IsNullOrWhiteSpace(para.CustomCommands);
+                if (failed)
+                {
+                    sb.Append("コマンド実行(学習)が終了しましたが失敗した可能性があります。");
+                }
+                else
+                {
+                    sb.Append("コマンド実行(学習)が終了しました。");
+                }
+
+                MessageBox.Show(sb.ToString(), "おしらせ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private bool HasScriptFile(string str, bool showMsg)
@@ -756,7 +777,13 @@ namespace Kohya_lora_trainer
         /// <returns></returns>
         private bool IsTrainingAvailable(bool showMsg)
         {
-            string command = TrainParams.Current.CustomCommands.Trim();
+            var para = TrainParams.Current;
+            if (para == null)
+            {
+                MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            string command = para.CustomCommands.Trim();
             command = command.Replace("\r\n", string.Empty);
             if (!string.IsNullOrWhiteSpace(command))
             {
@@ -772,35 +799,35 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
-            if (!File.Exists(TrainParams.Current.ModelPath) && TrainParams.Current.ModelArchitectureEnum != ModelArchitecture.Anima)
+            if (!File.Exists(para.ModelPath) && para.ModelArchitectureEnum != ModelArchitecture.Anima)
             {
                 if (showMsg)
                     MessageBox.Show("学習元モデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            if (!Directory.Exists(TrainParams.Current.TrainImagePath))
+            if (!Directory.Exists(para.TrainImagePath))
             {
                 if (showMsg)
                     MessageBox.Show("教師画像フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            if (!string.IsNullOrEmpty(TrainParams.Current.RegImagePath) && !Directory.Exists(TrainParams.Current.RegImagePath))
+            if (!string.IsNullOrEmpty(para.RegImagePath) && !Directory.Exists(para.RegImagePath))
             {
                 if (showMsg)
                     MessageBox.Show("正則化画像フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            if (!Directory.Exists(TrainParams.Current.OutputPath))
+            if (!Directory.Exists(para.OutputPath))
             {
                 if (showMsg)
                     MessageBox.Show("出力先フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            if (!string.IsNullOrEmpty(TrainParams.Current.TensorBoardLogPath) && !Directory.Exists(TrainParams.Current.TensorBoardLogPath))
+            if (!string.IsNullOrEmpty(para.TensorBoardLogPath) && !Directory.Exists(para.TensorBoardLogPath))
             {
                 if (showMsg)
                     MessageBox.Show("TensorBoard用ログフォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -814,25 +841,41 @@ namespace Kohya_lora_trainer
                     return false;
             }
 
-            if (!string.IsNullOrEmpty(TrainParams.Current.LoraModelPath) && !File.Exists(TrainParams.Current.LoraModelPath))
+            if (!string.IsNullOrEmpty(para.LoraModelPath) && !File.Exists(para.LoraModelPath))
             {
                 if (showMsg)
                     MessageBox.Show("追加学習するLoRAモデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            if (!string.IsNullOrEmpty(TrainParams.Current.VAEPath) && !File.Exists(TrainParams.Current.VAEPath))
+            if (!string.IsNullOrEmpty(para.VAEPath) && !File.Exists(para.VAEPath))
             {
                 if (showMsg)
                     MessageBox.Show("VAEが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-            if (TrainParams.Current.OptimizerTypeEnum == Optimizer.Custom && string.IsNullOrWhiteSpace(TrainParams.Current.CustomOptName))
+            if (para.OptimizerTypeEnum == Optimizer.Custom && string.IsNullOrWhiteSpace(para.CustomOptName))
             {
                 if (showMsg)
                     MessageBox.Show("オプティマイザにカスタムが指定されていますが、\r\nオプティマイザの名称が指定されていません。\r\nカスタムオプティマイザで指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
+            }
+
+            if(para.ModelArchitectureEnum == ModelArchitecture.Anima)
+            {
+                if (!File.Exists(para.VAEPath))
+                {
+                    if (showMsg)
+                        MessageBox.Show("AnimaはVAEが必須ですが、ファイルが見つかりません(または未指定)。\r\n詳細設定->パスにて正しいファイルを指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                if (!File.Exists(para.Qwen3Path))
+                {
+                    if (showMsg)
+                        MessageBox.Show("AnimaはQwen3 TEが必須ですが、ファイルが見つかりません(または未指定)。\r\n詳細設定->パスにて正しいファイルを指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
             }
 
             return true;
@@ -1400,10 +1443,6 @@ namespace Kohya_lora_trainer
                             return MessageBox.Show("現在のOptimizerでLoRA+は使用できませんが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     }
                     break;
-            }
-            if (para.UseFullBf16)
-            {
-                return MessageBox.Show("「full bf16を使用」が有効になっています。\r\nbfloat16は新しめのGPUが必要です。GPUの対応を確認できたら「はい」を押して開始してください。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
             if (para.ShuffleCaptions && para.CacheTextencoder)
