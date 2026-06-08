@@ -105,7 +105,7 @@ namespace Kohya_lora_trainer
         //Diffusion Transformer関連
         public decimal Sigmoidscale = 1m, DiscreteFlowShift = 1m, GuidanceScale = 0, MaxTokensT5 = 512, BlocksToSwap = 0;
         public ModelPrediction ModelPredictionType;
-        public TimestepSampling TimestepSamplingType;
+        public TimestepSampling TimestepSamplingEnum = TimestepSampling.Sigmoid;
         public TrainBlock TrainBlockType;
         public bool SplitMode = false, ApplyT5AttnMask = false;
         public string DitPath = string.Empty, Qwen3Path = string.Empty;

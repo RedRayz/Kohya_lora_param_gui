@@ -424,7 +424,7 @@ namespace Kohya_lora_trainer
             para.DisableVAECache = cbxDisableVAECache.Checked;
             para.CpuOffloadAsync = cbxCpuOffloadAsync.Checked;
             para.LLMAdapterLR = llmadapterlr;
-
+            para.TimestepSamplingEnum = (TimestepSampling)Enum.ToObject(typeof(TimestepSampling), cbxTimestepSampling.SelectedIndex);
             Close();
         }
 
@@ -583,6 +583,7 @@ namespace Kohya_lora_trainer
             cbxDisableVAECache.Checked = para.DisableVAECache;
             cbxCpuOffloadAsync.Checked = para.CpuOffloadAsync;
             tbxLLMAdapterLR.Text = para.LLMAdapterLR.ToString("g");
+            cbxTimestepSampling.SelectedIndex = (int)para.TimestepSamplingEnum;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)

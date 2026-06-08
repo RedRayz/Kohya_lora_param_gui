@@ -109,6 +109,7 @@ namespace Kohya_lora_trainer
             nudDiscreteFlowShift = new NumericUpDown();
             cbxHuberSchedule = new ComboBox();
             tbxLLMAdapterLR = new TextBox();
+            cbxTimestepSampling = new ComboBox();
             label6 = new Label();
             label9 = new Label();
             button1 = new Button();
@@ -239,6 +240,7 @@ namespace Kohya_lora_trainer
             cbxTrainNorm = new CheckBox();
             label23 = new Label();
             tabPage8 = new TabPage();
+            label63 = new Label();
             label59 = new Label();
             label58 = new Label();
             label61 = new Label();
@@ -1121,6 +1123,17 @@ namespace Kohya_lora_trainer
             tbxLLMAdapterLR.Size = new Size(80, 23);
             tbxLLMAdapterLR.TabIndex = 6;
             toolTip1.SetToolTip(tbxLLMAdapterLR, "0を推奨\r\nLLM Adapterの学習は劣化の原因");
+            // 
+            // cbxTimestepSampling
+            // 
+            cbxTimestepSampling.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxTimestepSampling.FormattingEnabled = true;
+            cbxTimestepSampling.Items.AddRange(new object[] { "Sigma", "Uniform", "Sigmoid", "Shift", "Flux Shift" });
+            cbxTimestepSampling.Location = new Point(134, 172);
+            cbxTimestepSampling.Name = "cbxTimestepSampling";
+            cbxTimestepSampling.Size = new Size(121, 23);
+            cbxTimestepSampling.TabIndex = 8;
+            toolTip1.SetToolTip(cbxTimestepSampling, "SigmoidまたはShiftを推奨");
             // 
             // label6
             // 
@@ -2520,6 +2533,8 @@ namespace Kohya_lora_trainer
             // 
             // tabPage8
             // 
+            tabPage8.Controls.Add(label63);
+            tabPage8.Controls.Add(cbxTimestepSampling);
             tabPage8.Controls.Add(label59);
             tabPage8.Controls.Add(tbxLLMAdapterLR);
             tabPage8.Controls.Add(label58);
@@ -2535,6 +2550,15 @@ namespace Kohya_lora_trainer
             tabPage8.TabIndex = 14;
             tabPage8.Text = "Anima";
             tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // label63
+            // 
+            label63.AutoSize = true;
+            label63.Location = new Point(20, 175);
+            label63.Name = "label63";
+            label63.Size = new Size(106, 15);
+            label63.TabIndex = 9;
+            label63.Text = "Timestep Sampling";
             // 
             // label59
             // 
@@ -2919,5 +2943,7 @@ namespace Kohya_lora_trainer
         private CheckBox cbxCpuOffloadAsync;
         private Label label59;
         private TextBox tbxLLMAdapterLR;
+        private Label label63;
+        private ComboBox cbxTimestepSampling;
     }
 }

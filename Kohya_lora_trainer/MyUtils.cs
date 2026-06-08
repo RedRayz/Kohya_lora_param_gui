@@ -738,9 +738,15 @@ namespace Kohya_lora_trainer
                     sb.Append(" --unsloth_offload_checkpointing");
                 }
 
+                
+                sb.Append(" --timestep_sampling \"").Append(para.TimestepSamplingEnum.ToString().ToLower()).Append('"');
+
                 sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.##"));
-                sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.##"));
                 sb.Append(" --llm_adapter_lr ").Append(para.LLMAdapterLR.ToString("g"));
+                if(para.TimestepSamplingEnum == TimestepSampling.Sigmoid)
+                {
+                    sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.##"));
+                }
             }
 
             if (para.TextEncoderLR > 0)
