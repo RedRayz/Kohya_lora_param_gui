@@ -112,6 +112,7 @@ namespace Kohya_lora_trainer
 
         //Anima
         public bool DisableVAECache = true, CpuOffloadAsync = false;
+        public float LLMAdapterLR = 0f;
 
         //Scheduler
         public decimal SchedulerTimescale = 0m, MinLRRatio = 0m;

@@ -108,6 +108,7 @@ namespace Kohya_lora_trainer
             cbxAdvancedTrain = new ComboBox();
             nudDiscreteFlowShift = new NumericUpDown();
             cbxHuberSchedule = new ComboBox();
+            tbxLLMAdapterLR = new TextBox();
             label6 = new Label();
             label9 = new Label();
             button1 = new Button();
@@ -238,6 +239,7 @@ namespace Kohya_lora_trainer
             cbxTrainNorm = new CheckBox();
             label23 = new Label();
             tabPage8 = new TabPage();
+            label59 = new Label();
             label58 = new Label();
             label61 = new Label();
             label60 = new Label();
@@ -1059,22 +1061,22 @@ namespace Kohya_lora_trainer
             // cbxDisableVAECache
             // 
             cbxDisableVAECache.AutoSize = true;
-            cbxDisableVAECache.Location = new Point(46, 161);
+            cbxDisableVAECache.Location = new Point(310, 249);
             cbxDisableVAECache.Name = "cbxDisableVAECache";
-            cbxDisableVAECache.Size = new Size(136, 19);
+            cbxDisableVAECache.Size = new Size(178, 19);
             cbxDisableVAECache.TabIndex = 4;
-            cbxDisableVAECache.Text = "VAEのキャッシュ無効化";
+            cbxDisableVAECache.Text = "VAEのキャッシュ無効化(Anima)";
             toolTip1.SetToolTip(cbxDisableVAECache, "VAEエンコードのメモリ使用量を大幅に減らし、高速化する");
             cbxDisableVAECache.UseVisualStyleBackColor = true;
             // 
             // cbxCpuOffloadAsync
             // 
             cbxCpuOffloadAsync.AutoSize = true;
-            cbxCpuOffloadAsync.Location = new Point(46, 186);
+            cbxCpuOffloadAsync.Location = new Point(45, 282);
             cbxCpuOffloadAsync.Name = "cbxCpuOffloadAsync";
-            cbxCpuOffloadAsync.Size = new Size(189, 19);
+            cbxCpuOffloadAsync.Size = new Size(231, 19);
             cbxCpuOffloadAsync.TabIndex = 5;
-            cbxCpuOffloadAsync.Text = "unsloth_offload_checkpointing";
+            cbxCpuOffloadAsync.Text = "unsloth_offload_checkpointing(Anima)";
             toolTip1.SetToolTip(cbxCpuOffloadAsync, "Block Swapの方が速い\r\nblock swapと併用不可");
             cbxCpuOffloadAsync.UseVisualStyleBackColor = true;
             // 
@@ -1098,7 +1100,7 @@ namespace Kohya_lora_trainer
             nudDiscreteFlowShift.Name = "nudDiscreteFlowShift";
             nudDiscreteFlowShift.Size = new Size(73, 23);
             nudDiscreteFlowShift.TabIndex = 0;
-            toolTip1.SetToolTip(nudDiscreteFlowShift, "Anima Base 1.0は3が良いかも\r\n低い値では破綻が増加する可能性あり");
+            toolTip1.SetToolTip(nudDiscreteFlowShift, "Anima Base 1.0は3が良いかも\r\n低い値では破綻が増加する可能性あり\r\n低いと高周波成分ばかり学習するようになる？");
             nudDiscreteFlowShift.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // cbxHuberSchedule
@@ -1111,6 +1113,14 @@ namespace Kohya_lora_trainer
             cbxHuberSchedule.Size = new Size(121, 23);
             cbxHuberSchedule.TabIndex = 3;
             toolTip1.SetToolTip(cbxHuberSchedule, "AnimaはSNR非対応");
+            // 
+            // tbxLLMAdapterLR
+            // 
+            tbxLLMAdapterLR.Location = new Point(134, 143);
+            tbxLLMAdapterLR.Name = "tbxLLMAdapterLR";
+            tbxLLMAdapterLR.Size = new Size(80, 23);
+            tbxLLMAdapterLR.TabIndex = 6;
+            toolTip1.SetToolTip(tbxLLMAdapterLR, "0を推奨\r\nLLM Adapterの学習は劣化の原因");
             // 
             // label6
             // 
@@ -1894,7 +1904,9 @@ namespace Kohya_lora_trainer
             // 
             tabPage7.Controls.Add(cbxDisableMmapLoadSafetensors);
             tabPage7.Controls.Add(cbxCacheTextencoderToDisk);
+            tabPage7.Controls.Add(cbxCpuOffloadAsync);
             tabPage7.Controls.Add(label51);
+            tabPage7.Controls.Add(cbxDisableVAECache);
             tabPage7.Controls.Add(cbxUseFP8);
             tabPage7.Controls.Add(cbxCacheTextEncoder);
             tabPage7.Controls.Add(nudGradAccSteps);
@@ -2508,8 +2520,8 @@ namespace Kohya_lora_trainer
             // 
             // tabPage8
             // 
-            tabPage8.Controls.Add(cbxCpuOffloadAsync);
-            tabPage8.Controls.Add(cbxDisableVAECache);
+            tabPage8.Controls.Add(label59);
+            tabPage8.Controls.Add(tbxLLMAdapterLR);
             tabPage8.Controls.Add(label58);
             tabPage8.Controls.Add(label61);
             tabPage8.Controls.Add(label60);
@@ -2523,6 +2535,15 @@ namespace Kohya_lora_trainer
             tabPage8.TabIndex = 14;
             tabPage8.Text = "Anima";
             tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // label59
+            // 
+            label59.AutoSize = true;
+            label59.Location = new Point(30, 146);
+            label59.Name = "label59";
+            label59.Size = new Size(91, 15);
+            label59.TabIndex = 7;
+            label59.Text = "LLM Adapter LR";
             // 
             // label58
             // 
@@ -2584,7 +2605,7 @@ namespace Kohya_lora_trainer
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(692, 434);
+            ClientSize = new Size(692, 436);
             Controls.Add(label56);
             Controls.Add(tabControl1);
             Controls.Add(btnDiscardAndClose);
@@ -2896,5 +2917,7 @@ namespace Kohya_lora_trainer
         private NumericUpDown nudSigmoidScale;
         private CheckBox cbxDisableVAECache;
         private CheckBox cbxCpuOffloadAsync;
+        private Label label59;
+        private TextBox tbxLLMAdapterLR;
     }
 }
