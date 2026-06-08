@@ -604,12 +604,12 @@ namespace Kohya_lora_trainer
             // 
             nudMaxTokens.Increment = new decimal(new int[] { 75, 0, 0, 0 });
             nudMaxTokens.Location = new Point(138, 22);
-            nudMaxTokens.Maximum = new decimal(new int[] { 225, 0, 0, 0 });
+            nudMaxTokens.Maximum = new decimal(new int[] { 512, 0, 0, 0 });
             nudMaxTokens.Minimum = new decimal(new int[] { 75, 0, 0, 0 });
             nudMaxTokens.Name = "nudMaxTokens";
             nudMaxTokens.Size = new Size(92, 23);
             nudMaxTokens.TabIndex = 17;
-            toolTip1.SetToolTip(nudMaxTokens, "コンマ区切りではなくCLIPのトークン数\r\n150以上で品質低下");
+            toolTip1.SetToolTip(nudMaxTokens, "コンマ区切りではなくTEのトークン数\r\n初期値以外で劣化");
             nudMaxTokens.Value = new decimal(new int[] { 75, 0, 0, 0 });
             // 
             // cbxUseConv2d
@@ -1938,9 +1938,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 26);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(660, 335);
+            tabPage7.Size = new Size(660, 337);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -2251,10 +2251,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 26);
+            tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 335);
+            tabPage2.Size = new Size(660, 337);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -2346,9 +2346,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(tbxTokensSeparator);
             pageMisc.Controls.Add(label46);
             pageMisc.Controls.Add(tbxComment);
-            pageMisc.Location = new Point(4, 26);
+            pageMisc.Location = new Point(4, 24);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(660, 335);
+            pageMisc.Size = new Size(660, 337);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -2397,11 +2397,11 @@ namespace Kohya_lora_trainer
             // label26
             // 
             label26.AutoSize = true;
-            label26.Location = new Point(20, 24);
+            label26.Location = new Point(52, 24);
             label26.Name = "label26";
-            label26.Size = new Size(108, 15);
+            label26.Size = new Size(77, 15);
             label26.TabIndex = 19;
-            label26.Text = "最大トークン数(CLIP)";
+            label26.Text = "最大トークン数";
             // 
             // label41
             // 
