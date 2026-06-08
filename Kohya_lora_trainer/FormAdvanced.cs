@@ -44,6 +44,7 @@ namespace Kohya_lora_trainer
             float momentum = 0;
             float beta3 = 0;
             float dcoef = 0;
+            float llmadapterlr = 0f;
 
             if (!string.IsNullOrEmpty(tbxTextEncoLR.Text))
             {
@@ -275,7 +276,20 @@ namespace Kohya_lora_trainer
                 IsValid = false;
             }
 
-
+            if (float.TryParse(tbxLLMAdapterLR.Text, out val))
+            {
+                if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
+                {
+                    MessageBox.Show("LLM Adapter LRの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    IsValid = false;
+                }
+                llmadapterlr = val;
+            }
+            else
+            {
+                MessageBox.Show("LLM Adapter LRの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                IsValid = false;
+            }
 
 
             Regex regex = new Regex("[&:/\\\\\\?\\*<>\\|\"'`]");
@@ -409,7 +423,8 @@ namespace Kohya_lora_trainer
             para.Qwen3Path = lblQwen3Path.Text;
             para.DisableVAECache = cbxDisableVAECache.Checked;
             para.CpuOffloadAsync = cbxCpuOffloadAsync.Checked;
-
+            para.LLMAdapterLR = llmadapterlr;
+            para.TimestepSamplingEnum = (TimestepSampling)Enum.ToObject(typeof(TimestepSampling), cbxTimestepSampling.SelectedIndex);
             Close();
         }
 
@@ -567,6 +582,8 @@ namespace Kohya_lora_trainer
 
             cbxDisableVAECache.Checked = para.DisableVAECache;
             cbxCpuOffloadAsync.Checked = para.CpuOffloadAsync;
+            tbxLLMAdapterLR.Text = para.LLMAdapterLR.ToString("g");
+            cbxTimestepSampling.SelectedIndex = (int)para.TimestepSamplingEnum;
         }
 
         private void tbrCpuThreads_Scroll(object sender, EventArgs e)
