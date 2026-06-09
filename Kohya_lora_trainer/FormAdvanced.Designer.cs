@@ -1059,10 +1059,10 @@ namespace Kohya_lora_trainer
             // 
             // nudBlocksToSwap
             // 
-            nudBlocksToSwap.Location = new Point(135, 279);
+            nudBlocksToSwap.Location = new Point(405, 278);
             nudBlocksToSwap.Maximum = new decimal(new int[] { 26, 0, 0, 0 });
             nudBlocksToSwap.Name = "nudBlocksToSwap";
-            nudBlocksToSwap.Size = new Size(73, 23);
+            nudBlocksToSwap.Size = new Size(96, 23);
             nudBlocksToSwap.TabIndex = 0;
             toolTip1.SetToolTip(nudBlocksToSwap, "一部のブロックをCPUに置くことで\r\n速度低下を抑えつつVRAM消費を減らす");
             // 
@@ -1187,7 +1187,7 @@ namespace Kohya_lora_trainer
             // button1
             // 
             button1.Font = new Font("Yu Gothic UI", 12F);
-            button1.Location = new Point(505, 386);
+            button1.Location = new Point(505, 395);
             button1.Name = "button1";
             button1.Size = new Size(171, 31);
             button1.TabIndex = 22;
@@ -1240,7 +1240,7 @@ namespace Kohya_lora_trainer
             // btnDiscardAndClose
             // 
             btnDiscardAndClose.Font = new Font("Yu Gothic UI", 11F);
-            btnDiscardAndClose.Location = new Point(330, 386);
+            btnDiscardAndClose.Location = new Point(330, 395);
             btnDiscardAndClose.Name = "btnDiscardAndClose";
             btnDiscardAndClose.Size = new Size(165, 31);
             btnDiscardAndClose.TabIndex = 31;
@@ -1440,7 +1440,7 @@ namespace Kohya_lora_trainer
             tabControl1.Location = new Point(12, 12);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(668, 365);
+            tabControl1.Size = new Size(668, 377);
             tabControl1.TabIndex = 57;
             // 
             // tabPage1
@@ -1949,6 +1949,8 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheTextencoderToDisk);
             tabPage7.Controls.Add(cbxCpuOffloadAsync);
             tabPage7.Controls.Add(label51);
+            tabPage7.Controls.Add(nudBlocksToSwap);
+            tabPage7.Controls.Add(label55);
             tabPage7.Controls.Add(cbxDisableVAECache);
             tabPage7.Controls.Add(cbxUseFP8);
             tabPage7.Controls.Add(cbxCacheTextEncoder);
@@ -1968,9 +1970,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 26);
+            tabPage7.Location = new Point(4, 24);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(660, 335);
+            tabPage7.Size = new Size(660, 349);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -2576,13 +2578,11 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(label58);
             tabPage8.Controls.Add(label61);
             tabPage8.Controls.Add(label60);
-            tabPage8.Controls.Add(label55);
             tabPage8.Controls.Add(nudSigmoidScale);
             tabPage8.Controls.Add(nudDiscreteFlowShift);
-            tabPage8.Controls.Add(nudBlocksToSwap);
             tabPage8.Location = new Point(4, 24);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 337);
+            tabPage8.Size = new Size(660, 349);
             tabPage8.TabIndex = 14;
             tabPage8.Text = "Anima";
             tabPage8.UseVisualStyleBackColor = true;
@@ -2662,11 +2662,11 @@ namespace Kohya_lora_trainer
             // label55
             // 
             label55.AutoSize = true;
-            label55.Location = new Point(21, 281);
+            label55.Location = new Point(303, 278);
             label55.Name = "label55";
-            label55.Size = new Size(108, 15);
+            label55.Size = new Size(96, 30);
             label55.TabIndex = 1;
-            label55.Text = "スワップするブロック数";
+            label55.Text = "スワップする\r\nブロック数(Anima)";
             // 
             // nudSigmoidScale
             // 
@@ -2682,7 +2682,7 @@ namespace Kohya_lora_trainer
             // label56
             // 
             label56.AutoSize = true;
-            label56.Location = new Point(8, 380);
+            label56.Location = new Point(12, 395);
             label56.Name = "label56";
             label56.Size = new Size(205, 30);
             label56.TabIndex = 58;
@@ -2692,7 +2692,7 @@ namespace Kohya_lora_trainer
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(692, 436);
+            ClientSize = new Size(692, 446);
             Controls.Add(label56);
             Controls.Add(tabControl1);
             Controls.Add(btnDiscardAndClose);
