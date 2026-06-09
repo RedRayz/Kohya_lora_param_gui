@@ -742,10 +742,30 @@ namespace Kohya_lora_trainer
                 sb.Append(" --timestep_sampling \"").Append(para.TimestepSamplingEnum.ToString().ToLower()).Append('"');
 
                 sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.##"));
-                sb.Append(" --llm_adapter_lr ").Append(para.LLMAdapterLR.ToString("g"));
+                
                 if(para.TimestepSamplingEnum == TimestepSampling.Sigmoid)
                 {
                     sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.##"));
+                }
+
+                if (para.SelfAttnLR >= 0f)
+                {
+                    sb.Append(" --self_attn_lr ").Append(para.SelfAttnLR.ToString("g"));
+                }
+
+                if (para.CrossAttnLR >= 0f)
+                {
+                    sb.Append(" --cross_attn_lr ").Append(para.CrossAttnLR.ToString("g"));
+                }
+
+                if (para.MlpLR >= 0f)
+                {
+                    sb.Append(" --mlp_lr ").Append(para.MlpLR.ToString("g"));
+                }
+
+                if (para.LLMAdapterLR >= 0f)
+                {
+                    sb.Append(" --llm_adapter_lr ").Append(para.LLMAdapterLR.ToString("g"));
                 }
             }
 
