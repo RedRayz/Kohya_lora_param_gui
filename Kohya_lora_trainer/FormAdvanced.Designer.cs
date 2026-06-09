@@ -188,6 +188,7 @@ namespace Kohya_lora_trainer
             tabPage7 = new TabPage();
             cbxCacheTextencoderToDisk = new CheckBox();
             label51 = new Label();
+            label55 = new Label();
             label29 = new Label();
             label27 = new Label();
             tabPage5 = new TabPage();
@@ -251,7 +252,6 @@ namespace Kohya_lora_trainer
             label58 = new Label();
             label61 = new Label();
             label60 = new Label();
-            label55 = new Label();
             nudSigmoidScale = new NumericUpDown();
             label56 = new Label();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
@@ -723,7 +723,7 @@ namespace Kohya_lora_trainer
             nudMinSNRGamma.Name = "nudMinSNRGamma";
             nudMinSNRGamma.Size = new Size(80, 23);
             nudMinSNRGamma.TabIndex = 51;
-            toolTip1.SetToolTip(nudMinSNRGamma, "安定性を改善する\r\nDebiased Estimationを使うなら0にする");
+            toolTip1.SetToolTip(nudMinSNRGamma, "安定性を改善する\r\nDebiased Estimationを使うなら0にする\r\nFlow MatchingのAnimaでは使用しない");
             // 
             // cbxWeightDecomposition
             // 
@@ -994,7 +994,7 @@ namespace Kohya_lora_trainer
             cbxDebiasedEstimation.Size = new Size(132, 19);
             cbxDebiasedEstimation.TabIndex = 58;
             cbxDebiasedEstimation.Text = "Debiased Estimation";
-            toolTip1.SetToolTip(cbxDebiasedEstimation, "色ずれを軽減する\r\n安定性も改善する");
+            toolTip1.SetToolTip(cbxDebiasedEstimation, "色ずれを軽減する\r\n安定性も改善する\r\nFlow MatchingのAnimaでは使用しない");
             cbxDebiasedEstimation.UseVisualStyleBackColor = true;
             // 
             // cbxResizeInterpolation
@@ -1016,7 +1016,7 @@ namespace Kohya_lora_trainer
             nudScaleWeightNorms.Name = "nudScaleWeightNorms";
             nudScaleWeightNorms.Size = new Size(80, 23);
             nudScaleWeightNorms.TabIndex = 51;
-            toolTip1.SetToolTip(nudScaleWeightNorms, "Max Norm Regularizationのこと");
+            toolTip1.SetToolTip(nudScaleWeightNorms, "Max Norm Regularizationのこと\r\nウェイトが大きくなりすぎるのを防ぐ");
             // 
             // cbxUseFullBf16
             // 
@@ -1456,7 +1456,7 @@ namespace Kohya_lora_trainer
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(660, 337);
+            tabPage1.Size = new Size(660, 349);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "ページ1";
             tabPage1.UseVisualStyleBackColor = true;
@@ -1669,7 +1669,7 @@ namespace Kohya_lora_trainer
             tabPage4.Controls.Add(nudCaptionDropout);
             tabPage4.Location = new Point(4, 26);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(660, 335);
+            tabPage4.Size = new Size(660, 347);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "dropout";
             tabPage4.UseVisualStyleBackColor = true;
@@ -1835,9 +1835,9 @@ namespace Kohya_lora_trainer
             page3.Controls.Add(label57);
             page3.Controls.Add(label17);
             page3.Controls.Add(nudIpNoiseGamma);
-            page3.Location = new Point(4, 26);
+            page3.Location = new Point(4, 24);
             page3.Name = "page3";
-            page3.Size = new Size(660, 335);
+            page3.Size = new Size(660, 349);
             page3.TabIndex = 10;
             page3.Text = "損失とノイズ";
             page3.UseVisualStyleBackColor = true;
@@ -1909,9 +1909,9 @@ namespace Kohya_lora_trainer
             tabPage6.Controls.Add(nudMinLRRatio);
             tabPage6.Controls.Add(nudSchedulerTimescale);
             tabPage6.Controls.Add(label47);
-            tabPage6.Location = new Point(4, 26);
+            tabPage6.Location = new Point(4, 24);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(660, 335);
+            tabPage6.Size = new Size(660, 349);
             tabPage6.TabIndex = 13;
             tabPage6.Text = "スケジューラ";
             tabPage6.UseVisualStyleBackColor = true;
@@ -1996,6 +1996,15 @@ namespace Kohya_lora_trainer
             label51.TabIndex = 9;
             label51.Text = "gradient\r\naccumulation\r\nsteps";
             // 
+            // label55
+            // 
+            label55.AutoSize = true;
+            label55.Location = new Point(303, 278);
+            label55.Name = "label55";
+            label55.Size = new Size(96, 30);
+            label55.TabIndex = 1;
+            label55.Text = "スワップする\r\nブロック数(Anima)";
+            // 
             // label29
             // 
             label29.AutoSize = true;
@@ -2041,7 +2050,7 @@ namespace Kohya_lora_trainer
             tabPage5.Controls.Add(tbxGrowthRate);
             tabPage5.Location = new Point(4, 26);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(660, 335);
+            tabPage5.Size = new Size(660, 347);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "オプティマイザ";
             tabPage5.UseVisualStyleBackColor = true;
@@ -2286,7 +2295,7 @@ namespace Kohya_lora_trainer
             tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 335);
+            tabPage2.Size = new Size(660, 347);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -2380,7 +2389,7 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(tbxComment);
             pageMisc.Location = new Point(4, 26);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(660, 335);
+            pageMisc.Size = new Size(660, 347);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
@@ -2490,7 +2499,7 @@ namespace Kohya_lora_trainer
             tabPage3.Controls.Add(label23);
             tabPage3.Location = new Point(4, 26);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(660, 335);
+            tabPage3.Size = new Size(660, 347);
             tabPage3.TabIndex = 11;
             tabPage3.Text = "LyCORIS";
             tabPage3.UseVisualStyleBackColor = true;
@@ -2580,9 +2589,9 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(label60);
             tabPage8.Controls.Add(nudSigmoidScale);
             tabPage8.Controls.Add(nudDiscreteFlowShift);
-            tabPage8.Location = new Point(4, 24);
+            tabPage8.Location = new Point(4, 26);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(660, 349);
+            tabPage8.Size = new Size(660, 347);
             tabPage8.TabIndex = 14;
             tabPage8.Text = "Anima";
             tabPage8.UseVisualStyleBackColor = true;
@@ -2658,15 +2667,6 @@ namespace Kohya_lora_trainer
             label60.Size = new Size(82, 15);
             label60.TabIndex = 1;
             label60.Text = "離散フローシフト";
-            // 
-            // label55
-            // 
-            label55.AutoSize = true;
-            label55.Location = new Point(303, 278);
-            label55.Name = "label55";
-            label55.Size = new Size(96, 30);
-            label55.TabIndex = 1;
-            label55.Text = "スワップする\r\nブロック数(Anima)";
             // 
             // nudSigmoidScale
             // 
