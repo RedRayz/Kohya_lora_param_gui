@@ -276,23 +276,30 @@ namespace Kohya_lora_trainer
                 IsValid = false;
             }
 
-            if (float.TryParse(tbxLLMAdapterLR.Text, out val))
+
+            if (!string.IsNullOrEmpty(tbxLLMAdapterLR.Text))
             {
-                if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
+                if (float.TryParse(tbxLLMAdapterLR.Text, out val))
+                {
+                    if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
+                    {
+                        MessageBox.Show("LLM Adapter LRの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        IsValid = false;
+                    }
+                    llmadapterlr = val;
+                }
+                else
                 {
                     MessageBox.Show("LLM Adapter LRの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     IsValid = false;
                 }
-                llmadapterlr = val;
             }
             else
             {
-                MessageBox.Show("LLM Adapter LRの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                IsValid = false;
+                llmadapterlr = -1f;
             }
 
-
-            Regex regex = new Regex("[&:/\\\\\\?\\*<>\\|\"'`]");
+                Regex regex = new Regex("[&:/\\\\\\?\\*<>\\|\"'`]");
             if (regex.IsMatch(tbxComment.Text))
             {
                 MessageBox.Show("コメント欄に使用できない文字が含まれています。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -582,7 +589,7 @@ namespace Kohya_lora_trainer
 
             cbxDisableVAECache.Checked = para.DisableVAECache;
             cbxCpuOffloadAsync.Checked = para.CpuOffloadAsync;
-            tbxLLMAdapterLR.Text = para.LLMAdapterLR.ToString("g");
+            tbxLLMAdapterLR.Text = para.LLMAdapterLR < 0f ? string.Empty : para.LLMAdapterLR.ToString("g");
             cbxTimestepSampling.SelectedIndex = (int)para.TimestepSamplingEnum;
         }
 
