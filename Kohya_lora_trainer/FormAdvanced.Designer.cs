@@ -1128,10 +1128,10 @@ namespace Kohya_lora_trainer
             // 
             cbxTimestepSampling.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxTimestepSampling.FormattingEnabled = true;
-            cbxTimestepSampling.Items.AddRange(new object[] { "Sigma", "Uniform", "Sigmoid", "Shift", "Flux Shift" });
+            cbxTimestepSampling.Items.AddRange(new object[] { "Sigma", "Uniform", "Sigmoid(logit normal)", "Shift", "Flux Shift" });
             cbxTimestepSampling.Location = new Point(134, 172);
             cbxTimestepSampling.Name = "cbxTimestepSampling";
-            cbxTimestepSampling.Size = new Size(121, 23);
+            cbxTimestepSampling.Size = new Size(143, 23);
             cbxTimestepSampling.TabIndex = 8;
             toolTip1.SetToolTip(cbxTimestepSampling, "SigmoidまたはShiftを推奨");
             // 
@@ -1938,9 +1938,9 @@ namespace Kohya_lora_trainer
             tabPage7.Controls.Add(cbxCacheLatentsToDisk);
             tabPage7.Controls.Add(lblCpuThreadsCounter);
             tabPage7.Controls.Add(label5);
-            tabPage7.Location = new Point(4, 24);
+            tabPage7.Location = new Point(4, 26);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(660, 337);
+            tabPage7.Size = new Size(660, 335);
             tabPage7.TabIndex = 8;
             tabPage7.Text = "パフォーマンス";
             tabPage7.UseVisualStyleBackColor = true;
@@ -2251,10 +2251,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 337);
+            tabPage2.Size = new Size(660, 335);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -2346,9 +2346,9 @@ namespace Kohya_lora_trainer
             pageMisc.Controls.Add(tbxTokensSeparator);
             pageMisc.Controls.Add(label46);
             pageMisc.Controls.Add(tbxComment);
-            pageMisc.Location = new Point(4, 24);
+            pageMisc.Location = new Point(4, 26);
             pageMisc.Name = "pageMisc";
-            pageMisc.Size = new Size(660, 337);
+            pageMisc.Size = new Size(660, 335);
             pageMisc.TabIndex = 2;
             pageMisc.Text = "その他";
             pageMisc.UseVisualStyleBackColor = true;
