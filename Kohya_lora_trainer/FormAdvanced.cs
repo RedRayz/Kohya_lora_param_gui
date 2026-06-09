@@ -45,6 +45,9 @@ namespace Kohya_lora_trainer
             float beta3 = 0;
             float dcoef = 0;
             float llmadapterlr = 0f;
+            float selfattnlr = -1f;
+            float crossattnlr = -1f;
+            float mlplr = -1f;
 
             if (!string.IsNullOrEmpty(tbxTextEncoLR.Text))
             {
@@ -276,6 +279,71 @@ namespace Kohya_lora_trainer
                 IsValid = false;
             }
 
+            if (!string.IsNullOrEmpty(tbxSelfAttnLR.Text))
+            {
+                if (float.TryParse(tbxSelfAttnLR.Text, out val))
+                {
+                    if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
+                    {
+                        MessageBox.Show("Self-Attention LRの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        IsValid = false;
+                    }
+                    selfattnlr = val;
+                }
+                else
+                {
+                    MessageBox.Show("Self-Attention LRの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    IsValid = false;
+                }
+            }
+            else
+            {
+                selfattnlr = -1f;
+            }
+
+            if (!string.IsNullOrEmpty(tbxCrossAttnLR.Text))
+            {
+                if (float.TryParse(tbxCrossAttnLR.Text, out val))
+                {
+                    if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
+                    {
+                        MessageBox.Show("Cross-Attention LRの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        IsValid = false;
+                    }
+                    crossattnlr = val;
+                }
+                else
+                {
+                    MessageBox.Show("Cross-Attention LRの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    IsValid = false;
+                }
+            }
+            else
+            {
+                crossattnlr = -1f;
+            }
+
+            if (!string.IsNullOrEmpty(tbxMlpLR.Text))
+            {
+                if (float.TryParse(tbxMlpLR.Text, out val))
+                {
+                    if (val < 0f || float.IsNaN(val) || float.IsInfinity(val))
+                    {
+                        MessageBox.Show("MLP LRの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        IsValid = false;
+                    }
+                    mlplr = val;
+                }
+                else
+                {
+                    MessageBox.Show("MLP LRの値が不適切です。正しい値を入力してください。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    IsValid = false;
+                }
+            }
+            else
+            {
+                mlplr = -1f;
+            }
 
             if (!string.IsNullOrEmpty(tbxLLMAdapterLR.Text))
             {
@@ -431,6 +499,9 @@ namespace Kohya_lora_trainer
             para.DisableVAECache = cbxDisableVAECache.Checked;
             para.CpuOffloadAsync = cbxCpuOffloadAsync.Checked;
             para.LLMAdapterLR = llmadapterlr;
+            para.SelfAttnLR = selfattnlr;
+            para.CrossAttnLR = crossattnlr;
+            para.MlpLR = mlplr;
             para.TimestepSamplingEnum = (TimestepSampling)Enum.ToObject(typeof(TimestepSampling), cbxTimestepSampling.SelectedIndex);
             Close();
         }
@@ -590,6 +661,9 @@ namespace Kohya_lora_trainer
             cbxDisableVAECache.Checked = para.DisableVAECache;
             cbxCpuOffloadAsync.Checked = para.CpuOffloadAsync;
             tbxLLMAdapterLR.Text = para.LLMAdapterLR < 0f ? string.Empty : para.LLMAdapterLR.ToString("g");
+            tbxSelfAttnLR.Text = para.SelfAttnLR < 0f ? string.Empty : para.SelfAttnLR.ToString("g");
+            tbxCrossAttnLR.Text = para.CrossAttnLR < 0f ? string.Empty : para.CrossAttnLR.ToString("g");
+            tbxMlpLR.Text = para.MlpLR < 0f ? string.Empty : para.MlpLR.ToString("g");
             cbxTimestepSampling.SelectedIndex = (int)para.TimestepSamplingEnum;
         }
 

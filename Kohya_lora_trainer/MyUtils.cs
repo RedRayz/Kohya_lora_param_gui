@@ -748,7 +748,22 @@ namespace Kohya_lora_trainer
                     sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.##"));
                 }
 
-                if (para.LLMAdapterLR >= 0)
+                if (para.SelfAttnLR >= 0f)
+                {
+                    sb.Append(" --self_attn_lr ").Append(para.SelfAttnLR.ToString("g"));
+                }
+
+                if (para.CrossAttnLR >= 0f)
+                {
+                    sb.Append(" --cross_attn_lr ").Append(para.CrossAttnLR.ToString("g"));
+                }
+
+                if (para.MlpLR >= 0f)
+                {
+                    sb.Append(" --mlp_lr ").Append(para.MlpLR.ToString("g"));
+                }
+
+                if (para.LLMAdapterLR >= 0f)
                 {
                     sb.Append(" --llm_adapter_lr ").Append(para.LLMAdapterLR.ToString("g"));
                 }

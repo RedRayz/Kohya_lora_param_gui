@@ -110,6 +110,9 @@ namespace Kohya_lora_trainer
             cbxHuberSchedule = new ComboBox();
             tbxLLMAdapterLR = new TextBox();
             cbxTimestepSampling = new ComboBox();
+            tbxSelfAttnLR = new TextBox();
+            tbxCrossAttnLR = new TextBox();
+            tbxMlpLR = new TextBox();
             label6 = new Label();
             label9 = new Label();
             button1 = new Button();
@@ -241,6 +244,9 @@ namespace Kohya_lora_trainer
             label23 = new Label();
             tabPage8 = new TabPage();
             label63 = new Label();
+            label71 = new Label();
+            label68 = new Label();
+            label67 = new Label();
             label59 = new Label();
             label58 = new Label();
             label61 = new Label();
@@ -1053,7 +1059,7 @@ namespace Kohya_lora_trainer
             // 
             // nudBlocksToSwap
             // 
-            nudBlocksToSwap.Location = new Point(134, 56);
+            nudBlocksToSwap.Location = new Point(135, 279);
             nudBlocksToSwap.Maximum = new decimal(new int[] { 26, 0, 0, 0 });
             nudBlocksToSwap.Name = "nudBlocksToSwap";
             nudBlocksToSwap.Size = new Size(73, 23);
@@ -1096,7 +1102,7 @@ namespace Kohya_lora_trainer
             // nudDiscreteFlowShift
             // 
             nudDiscreteFlowShift.DecimalPlaces = 2;
-            nudDiscreteFlowShift.Location = new Point(134, 85);
+            nudDiscreteFlowShift.Location = new Point(135, 217);
             nudDiscreteFlowShift.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             nudDiscreteFlowShift.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudDiscreteFlowShift.Name = "nudDiscreteFlowShift";
@@ -1118,22 +1124,46 @@ namespace Kohya_lora_trainer
             // 
             // tbxLLMAdapterLR
             // 
-            tbxLLMAdapterLR.Location = new Point(134, 143);
+            tbxLLMAdapterLR.Location = new Point(135, 130);
             tbxLLMAdapterLR.Name = "tbxLLMAdapterLR";
             tbxLLMAdapterLR.Size = new Size(80, 23);
             tbxLLMAdapterLR.TabIndex = 6;
-            toolTip1.SetToolTip(tbxLLMAdapterLR, "0を推奨\r\nLLM Adapterの学習は劣化の原因");
+            toolTip1.SetToolTip(tbxLLMAdapterLR, "0を推奨\r\nLLM Adapterの学習は劣化の原因\r\n空欄で未指定(LRと同じ値を使用する)");
             // 
             // cbxTimestepSampling
             // 
             cbxTimestepSampling.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxTimestepSampling.FormattingEnabled = true;
             cbxTimestepSampling.Items.AddRange(new object[] { "Sigma", "Uniform", "Sigmoid(logit normal)", "Shift", "Flux Shift" });
-            cbxTimestepSampling.Location = new Point(134, 172);
+            cbxTimestepSampling.Location = new Point(135, 159);
             cbxTimestepSampling.Name = "cbxTimestepSampling";
             cbxTimestepSampling.Size = new Size(143, 23);
             cbxTimestepSampling.TabIndex = 8;
             toolTip1.SetToolTip(cbxTimestepSampling, "SigmoidまたはShiftを推奨");
+            // 
+            // tbxSelfAttnLR
+            // 
+            tbxSelfAttnLR.Location = new Point(135, 42);
+            tbxSelfAttnLR.Name = "tbxSelfAttnLR";
+            tbxSelfAttnLR.Size = new Size(80, 23);
+            tbxSelfAttnLR.TabIndex = 6;
+            toolTip1.SetToolTip(tbxSelfAttnLR, "空欄で未指定(LRと同じ値を使用する)\r\nSelf Attnは構図の影響が大きいとされる");
+            // 
+            // tbxCrossAttnLR
+            // 
+            tbxCrossAttnLR.Location = new Point(135, 71);
+            tbxCrossAttnLR.Name = "tbxCrossAttnLR";
+            tbxCrossAttnLR.Size = new Size(80, 23);
+            tbxCrossAttnLR.TabIndex = 6;
+            toolTip1.SetToolTip(tbxCrossAttnLR, "空欄で未指定(LRと同じ値を使用する)\r\nCross Attnはプロンプトの応答性に影響するとされる");
+            // 
+            // tbxMlpLR
+            // 
+            tbxMlpLR.Location = new Point(135, 100);
+            tbxMlpLR.Name = "tbxMlpLR";
+            tbxMlpLR.Size = new Size(80, 23);
+            tbxMlpLR.TabIndex = 6;
+            toolTip1.SetToolTip(tbxMlpLR, "空欄で未指定(LRと同じ値を使用する)\r\nMLPは画風と特徴に影響が大きいとされる\r\n");
             // 
             // label6
             // 
@@ -2535,7 +2565,13 @@ namespace Kohya_lora_trainer
             // 
             tabPage8.Controls.Add(label63);
             tabPage8.Controls.Add(cbxTimestepSampling);
+            tabPage8.Controls.Add(label71);
+            tabPage8.Controls.Add(label68);
+            tabPage8.Controls.Add(label67);
             tabPage8.Controls.Add(label59);
+            tabPage8.Controls.Add(tbxMlpLR);
+            tabPage8.Controls.Add(tbxCrossAttnLR);
+            tabPage8.Controls.Add(tbxSelfAttnLR);
             tabPage8.Controls.Add(tbxLLMAdapterLR);
             tabPage8.Controls.Add(label58);
             tabPage8.Controls.Add(label61);
@@ -2554,20 +2590,47 @@ namespace Kohya_lora_trainer
             // label63
             // 
             label63.AutoSize = true;
-            label63.Location = new Point(20, 175);
+            label63.Location = new Point(21, 162);
             label63.Name = "label63";
             label63.Size = new Size(106, 15);
             label63.TabIndex = 9;
             label63.Text = "Timestep Sampling";
             // 
+            // label71
+            // 
+            label71.AutoSize = true;
+            label71.Location = new Point(66, 103);
+            label71.Name = "label71";
+            label71.Size = new Size(61, 15);
+            label71.TabIndex = 7;
+            label71.Text = "MLP LR##";
+            // 
+            // label68
+            // 
+            label68.AutoSize = true;
+            label68.Location = new Point(9, 74);
+            label68.Name = "label68";
+            label68.Size = new Size(120, 15);
+            label68.TabIndex = 7;
+            label68.Text = "Cross-Attention LR##";
+            // 
+            // label67
+            // 
+            label67.AutoSize = true;
+            label67.Location = new Point(16, 45);
+            label67.Name = "label67";
+            label67.Size = new Size(111, 15);
+            label67.TabIndex = 7;
+            label67.Text = "Self-Attention LR##";
+            // 
             // label59
             // 
             label59.AutoSize = true;
-            label59.Location = new Point(30, 146);
+            label59.Location = new Point(22, 133);
             label59.Name = "label59";
-            label59.Size = new Size(91, 15);
+            label59.Size = new Size(105, 15);
             label59.TabIndex = 7;
-            label59.Text = "LLM Adapter LR";
+            label59.Text = "LLM Adapter LR##";
             // 
             // label58
             // 
@@ -2581,7 +2644,7 @@ namespace Kohya_lora_trainer
             // label61
             // 
             label61.AutoSize = true;
-            label61.Location = new Point(46, 116);
+            label61.Location = new Point(47, 190);
             label61.Name = "label61";
             label61.Size = new Size(80, 15);
             label61.TabIndex = 1;
@@ -2590,7 +2653,7 @@ namespace Kohya_lora_trainer
             // label60
             // 
             label60.AutoSize = true;
-            label60.Location = new Point(46, 87);
+            label60.Location = new Point(47, 219);
             label60.Name = "label60";
             label60.Size = new Size(82, 15);
             label60.TabIndex = 1;
@@ -2599,7 +2662,7 @@ namespace Kohya_lora_trainer
             // label55
             // 
             label55.AutoSize = true;
-            label55.Location = new Point(20, 58);
+            label55.Location = new Point(21, 281);
             label55.Name = "label55";
             label55.Size = new Size(108, 15);
             label55.TabIndex = 1;
@@ -2608,7 +2671,7 @@ namespace Kohya_lora_trainer
             // nudSigmoidScale
             // 
             nudSigmoidScale.DecimalPlaces = 2;
-            nudSigmoidScale.Location = new Point(134, 114);
+            nudSigmoidScale.Location = new Point(135, 188);
             nudSigmoidScale.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             nudSigmoidScale.Minimum = new decimal(new int[] { 1, 0, 0, 65536 });
             nudSigmoidScale.Name = "nudSigmoidScale";
@@ -2945,5 +3008,11 @@ namespace Kohya_lora_trainer
         private TextBox tbxLLMAdapterLR;
         private Label label63;
         private ComboBox cbxTimestepSampling;
+        private Label label68;
+        private Label label67;
+        private TextBox tbxCrossAttnLR;
+        private TextBox tbxSelfAttnLR;
+        private Label label71;
+        private TextBox tbxMlpLR;
     }
 }
