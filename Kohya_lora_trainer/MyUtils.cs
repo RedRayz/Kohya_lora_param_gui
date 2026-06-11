@@ -424,9 +424,9 @@ namespace Kohya_lora_trainer
 
             //Automatic
             sb.Append(" --enable_bucket --save_model_as \"safetensors\"");
-            
 
-            if(para.SchedulerType != Scheduler.None)
+
+            if (para.SchedulerType != Scheduler.None)
             {
                 sb.Append(" --lr_scheduler \"").Append(para.SchedulerType.ToString()).Append('"');
                 switch (para.SchedulerType)
@@ -496,10 +496,10 @@ namespace Kohya_lora_trainer
                     break;
             }
 
-            
+
 
             //Optimizerの引数
-            if(para.OptimizerTypeEnum == Optimizer.Custom)
+            if (para.OptimizerTypeEnum == Optimizer.Custom)
             {
                 sb.Append(" --optimizer_type \"").Append(para.CustomOptName.Trim()).Append('"');
                 string str1 = para.CustomOptArgs.Trim();
@@ -621,7 +621,7 @@ namespace Kohya_lora_trainer
                 sb.Append(" --clip_skip ").Append(para.ClipSkip);
             }
 
-            if(para.SavePrecision != SavePrecision.none)
+            if (para.SavePrecision != SavePrecision.none)
             {
                 string preci = string.Empty;
                 switch (para.SavePrecision)
@@ -639,8 +639,8 @@ namespace Kohya_lora_trainer
 
                 sb.Append(" --save_precision \"").Append(preci).Append('"');
             }
-            
-            
+
+
             sb.Append(" --min_bucket_reso ").Append(para.MinBucketResolution)
             .Append(" --max_bucket_reso ").Append(para.MaxBucketResolution)
             .Append(" --caption_extension \"").Append(para.CaptionFileExtension).Append('"');
@@ -663,7 +663,7 @@ namespace Kohya_lora_trainer
             }
 
             //U-netのStable Diffusion専用オプション
-            if(para.ModelArchitectureEnum != ModelArchitecture.Anima)
+            if (para.ModelArchitectureEnum != ModelArchitecture.Anima)
             {
                 if (para.MaxTokens > 75)
                     sb.Append(" --max_token_length ").Append(para.MaxTokens);
@@ -738,35 +738,32 @@ namespace Kohya_lora_trainer
                     sb.Append(" --unsloth_offload_checkpointing");
                 }
 
-                
+
                 sb.Append(" --timestep_sampling \"").Append(para.TimestepSamplingEnum.ToString().ToLower()).Append('"');
 
                 sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.##"));
-                
-                if(para.TimestepSamplingEnum == TimestepSampling.Sigmoid)
+
+                if (para.TimestepSamplingEnum == TimestepSampling.Sigmoid)
                 {
                     sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.##"));
                 }
 
-                if (para.SelfAttnLR >= 0f)
+                string exclude = GenerateExcludePatterns();
+                if (!string.IsNullOrEmpty(exclude))
                 {
-                    sb.Append(" --self_attn_lr ").Append(para.SelfAttnLR.ToString("g"));
+                    NetworkArgs.Add(exclude);
                 }
 
-                if (para.CrossAttnLR >= 0f)
+                string reglr = GenerateLrPatterns();
+                if (!string.IsNullOrEmpty(reglr))
                 {
-                    sb.Append(" --cross_attn_lr ").Append(para.CrossAttnLR.ToString("g"));
+                    if (para.LLMAdapterLR > 0f)
+                    {
+                        NetworkArgs.Add("train_llm_adapter=True");
+                    }
+                    NetworkArgs.Add(reglr);
                 }
 
-                if (para.MlpLR >= 0f)
-                {
-                    sb.Append(" --mlp_lr ").Append(para.MlpLR.ToString("g"));
-                }
-
-                if (para.LLMAdapterLR >= 0f)
-                {
-                    sb.Append(" --llm_adapter_lr ").Append(para.LLMAdapterLR.ToString("g"));
-                }
             }
 
             if (para.TextEncoderLR > 0)
@@ -779,7 +776,7 @@ namespace Kohya_lora_trainer
                 sb.Append(" --unet_lr ").Append(para.UnetLR.ToString("g"));
             }
 
-            
+
 
             if (para.UseWeightedCaptions)
             {
@@ -871,7 +868,7 @@ namespace Kohya_lora_trainer
                     break;
             }
 
-            
+
 
             if (para.SaveState)
             {
@@ -955,6 +952,103 @@ namespace Kohya_lora_trainer
                 sb.Append(' ').Append(str);
             }
 
+            return sb.ToString();
+        }
+
+        private static string GenerateExcludePatterns()
+        {
+            if (TrainParams.Current == null)
+            {
+                Debug.WriteLine("TrainParams is NULL");
+                return string.Empty;
+            }
+            var para = TrainParams.Current;
+            List<string> excludes = new List<string>();
+            StringBuilder sb = new StringBuilder();
+            if (para.SelfAttnLR >= 0f && para.SelfAttnLR == 0f)
+            {
+                excludes.Add("'.*self_attn.*'");
+            }
+
+            if (para.CrossAttnLR >= 0f && para.CrossAttnLR == 0f)
+            {
+                excludes.Add("'.*cross_attn.*'");
+            }
+
+            if (para.MlpLR >= 0f && para.MlpLR == 0f)
+            {
+                excludes.Add("'.*mlp.*'");
+            }
+
+            if (excludes.Count == 0)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                sb.Append("exclude_patterns=[");
+            }
+
+            for (int i = 0; i < excludes.Count; i++)
+            {
+                sb.Append(excludes[i]);
+                if (i < excludes.Count - 1)
+                {
+                    sb.Append(',');
+                }
+            }
+            sb.Append(']');
+
+            return sb.ToString();
+        }
+
+        private static string GenerateLrPatterns()
+        {
+            if (TrainParams.Current == null)
+            {
+                Debug.WriteLine("TrainParams is NULL");
+                return string.Empty;
+            }
+            var para = TrainParams.Current;
+            List<string> lrpatterns = new List<string>();
+            StringBuilder sb = new StringBuilder();
+            if (para.SelfAttnLR > 0f)
+            {
+                lrpatterns.Add(".*self_attn.*=" + para.SelfAttnLR.ToString("g"));
+            }
+
+            if (para.CrossAttnLR > 0f)
+            {
+                lrpatterns.Add(".*cross_attn.*=" + para.CrossAttnLR.ToString("g"));
+            }
+
+            if (para.MlpLR > 0f)
+            {
+                lrpatterns.Add(".*mlp.*=" + para.MlpLR.ToString("g"));
+            }
+
+            if (para.LLMAdapterLR > 0f)
+            {
+                lrpatterns.Add(".*llm_adapter.*=" + para.LLMAdapterLR.ToString("g"));
+            }
+
+            if (lrpatterns.Count == 0)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                sb.Append("network_reg_lrs=");
+            }
+
+            for (int i = 0; i < lrpatterns.Count; i++)
+            {
+                sb.Append(lrpatterns[i]);
+                if (i < lrpatterns.Count - 1)
+                {
+                    sb.Append(',');
+                }
+            }
             return sb.ToString();
         }
 
@@ -1211,9 +1305,9 @@ namespace Kohya_lora_trainer
                 return null;
             }
             string[]? files = (string[]?)e.Data.GetData(DataFormats.FileDrop, false);
-            if (files !=null && files.Length > 0)
+            if (files != null && files.Length > 0)
             {
-                for(int i=0; i < files.Length; i++)
+                for (int i = 0; i < files.Length; i++)
                 {
                     string fileName = files[i];
                     if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
