@@ -31,6 +31,7 @@ namespace Kohya_lora_trainer
         private bool IsReady = false;
 
         private bool PrevCustomCmdActiveFlag = false, PrevAddArgActiveFlag = false, PrevCustomOptActiveFlag = false;
+        private bool LogGenerated = true;
 
         internal static TrainCompleteAction CompleteAction = TrainCompleteAction.None;
 
@@ -474,6 +475,7 @@ namespace Kohya_lora_trainer
                 MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            LogGenerated = true;
             string str = string.IsNullOrEmpty(ScriptPath) ? Constants.CurrentSdScriptsPath : ScriptPath + "\\";
 
             if (!HasScriptFile(str, true) || !IsCommandAvailable(true) || !IsAdditionalArgsAvailable(true))
@@ -497,6 +499,9 @@ namespace Kohya_lora_trainer
                 BatchProcess.SkippedCount = 0;
                 BatchProcess.CompletedCount = 0;
                 BatchProcess.FailCount = 0;
+                LogGenerated = !BatchProcess.LogResultText;
+                BatchProcess.LogText += "開始時刻: " + DateTime.Now.ToString() + "\r\n";
+
                 while (BatchProcess.BatchStack.Count > 0)
                 {
                     string pth = BatchProcess.BatchStack.Pop();
@@ -595,7 +600,7 @@ namespace Kohya_lora_trainer
                     BatchProcess.CompletedCount++;
                 }
 
-                if (!BatchProcess.IsCancel && !string.IsNullOrWhiteSpace(BatchProcess.LogText))
+                if (!BatchProcess.IsCancel && BatchProcess.LogResultText && !string.IsNullOrWhiteSpace(BatchProcess.LogText))
                 {
                     string sstr = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\batchlog-" + DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss") + ".txt";
                     using (StreamWriter sw = new StreamWriter(sstr, false, new UTF8Encoding(false)))
@@ -603,7 +608,7 @@ namespace Kohya_lora_trainer
                         sw.WriteLine(BatchProcess.LogText);
                     }
                 }
-
+                LogGenerated = true;
                 if ((CompleteAction == TrainCompleteAction.Shutdown || CompleteAction == TrainCompleteAction.Suspend) && !BatchProcess.IsCancel)
                 {
                     Form train0 = new TrainForm(true);
@@ -646,6 +651,7 @@ namespace Kohya_lora_trainer
                 if (res == DialogResult.No)
                     return;
             }
+            
 
             Debug.WriteLine("Execute the command");
 
@@ -1050,6 +1056,24 @@ namespace Kohya_lora_trainer
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (!LogGenerated && BatchProcess.LogResultText && !BatchProcess.IsCancel && !string.IsNullOrWhiteSpace(BatchProcess.LogText))
+            {
+                BatchProcess.LogText += "\r\n" + DateTime.Now.ToString() + ": 上記ファイルを出力する前にGUIが終了。Windows Updateや特定ソフトウェアによる再起動の可能性あり。以下実行予定だったプリセット:\r\n\r\n";
+                while (BatchProcess.BatchStack.Count > 0)
+                {
+                    string pth = BatchProcess.BatchStack.Pop();
+                    BatchProcess.LogText += pth + "\r\n";
+
+                }
+
+                string sstr = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\batchlog-" + DateTime.Now.ToString("yyyy.MM.dd.HH.mm.ss") + ".txt";
+                using (StreamWriter sw = new StreamWriter(sstr, false, new UTF8Encoding(false)))
+                {
+                    sw.WriteLine(BatchProcess.LogText);
+                }
+                LogGenerated = true;
+            }
+
             if (IsInvalidOutputName)
                 return;
             string document = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);

@@ -263,7 +263,7 @@ namespace Kohya_lora_trainer
             if (BatchProcess.LogResultText && BatchProcess.IsRunning)
             {
                 StringBuilder ssb = new StringBuilder();
-                ssb.Append(TrainParams.Current.OutputPath).Append("\\").Append(TrainParams.Current.OutputName).Append(".safetensors\r\n").Append("開始時刻: ").Append(DateTime.Now.ToString());
+                ssb.Append(TrainParams.Current.OutputPath).Append("\\").Append(TrainParams.Current.OutputName).Append(".safetensors\r\n");
 
                 BatchProcess.LogText += ssb.ToString();
             }
