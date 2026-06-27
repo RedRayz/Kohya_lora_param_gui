@@ -114,6 +114,7 @@ namespace Kohya_lora_trainer
             tbxCrossAttnLR = new TextBox();
             tbxMlpLR = new TextBox();
             cbxConvertVaeTwoD = new CheckBox();
+            nudSigmoidScale = new NumericUpDown();
             label6 = new Label();
             label9 = new Label();
             button1 = new Button();
@@ -254,7 +255,6 @@ namespace Kohya_lora_trainer
             label58 = new Label();
             label61 = new Label();
             label60 = new Label();
-            nudSigmoidScale = new NumericUpDown();
             label56 = new Label();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
@@ -284,6 +284,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudTEBatchSize).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudBlocksToSwap).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudDiscreteFlowShift).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudSigmoidScale).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudAdaptiveNoiseScale).BeginInit();
@@ -315,7 +316,6 @@ namespace Kohya_lora_trainer
             groupBox2.SuspendLayout();
             tabPage3.SuspendLayout();
             tabPage8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudSigmoidScale).BeginInit();
             SuspendLayout();
             // 
             // tbxUnetLR
@@ -1109,13 +1109,14 @@ namespace Kohya_lora_trainer
             // nudDiscreteFlowShift
             // 
             nudDiscreteFlowShift.DecimalPlaces = 4;
+            nudDiscreteFlowShift.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
             nudDiscreteFlowShift.Location = new Point(135, 217);
             nudDiscreteFlowShift.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            nudDiscreteFlowShift.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudDiscreteFlowShift.Minimum = new decimal(new int[] { 1, 0, 0, 65536 });
             nudDiscreteFlowShift.Name = "nudDiscreteFlowShift";
             nudDiscreteFlowShift.Size = new Size(73, 23);
             nudDiscreteFlowShift.TabIndex = 0;
-            toolTip1.SetToolTip(nudDiscreteFlowShift, "Discrete Flow Shiftのこと\r\nTimestep Sampling=Shiftで有効\r\nAnima Base 1.0は1～2が良いかも\r\n値に比例して高周波成分の学習が弱くなる\r\nつまり構図優勢になる");
+            toolTip1.SetToolTip(nudDiscreteFlowShift, "Discrete Flow Shiftのこと\r\nTimestep Sampling=Shiftで有効\r\nAnima Base 1.0は1～2が良いかも\r\n1以上で値に比例して高周波成分(細部)の学習が弱くなる\r\n1以下でその逆");
             nudDiscreteFlowShift.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // cbxHuberSchedule
@@ -1182,6 +1183,19 @@ namespace Kohya_lora_trainer
             cbxConvertVaeTwoD.Text = "VAEを2D化(高速化)";
             toolTip1.SetToolTip(cbxConvertVaeTwoD, "Qwen Image(Wan Video)のVAEから時間軸を取り除くことで\r\n計算を高速化する\r\nlatentキャッシュが速くなる");
             cbxConvertVaeTwoD.UseVisualStyleBackColor = true;
+            // 
+            // nudSigmoidScale
+            // 
+            nudSigmoidScale.DecimalPlaces = 4;
+            nudSigmoidScale.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            nudSigmoidScale.Location = new Point(135, 188);
+            nudSigmoidScale.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            nudSigmoidScale.Minimum = new decimal(new int[] { 1, 0, 0, 65536 });
+            nudSigmoidScale.Name = "nudSigmoidScale";
+            nudSigmoidScale.Size = new Size(73, 23);
+            nudSigmoidScale.TabIndex = 0;
+            toolTip1.SetToolTip(nudSigmoidScale, "1.5超過は非推奨(効率と品質が低下するリスク増加)\r\n1.0～1.3が推奨値");
+            nudSigmoidScale.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label6
             // 
@@ -2697,18 +2711,6 @@ namespace Kohya_lora_trainer
             label60.TabIndex = 1;
             label60.Text = "離散フローシフト";
             // 
-            // nudSigmoidScale
-            // 
-            nudSigmoidScale.DecimalPlaces = 4;
-            nudSigmoidScale.Location = new Point(135, 188);
-            nudSigmoidScale.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
-            nudSigmoidScale.Minimum = new decimal(new int[] { 1, 0, 0, 65536 });
-            nudSigmoidScale.Name = "nudSigmoidScale";
-            nudSigmoidScale.Size = new Size(73, 23);
-            nudSigmoidScale.TabIndex = 0;
-            toolTip1.SetToolTip(nudSigmoidScale, "1.5超過は非推奨(効率と品質が低下するリスク増加)\r\n1.0～1.3が推奨値");
-            nudSigmoidScale.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            // 
             // label56
             // 
             label56.AutoSize = true;
@@ -2764,6 +2766,7 @@ namespace Kohya_lora_trainer
             ((System.ComponentModel.ISupportInitialize)nudTEBatchSize).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudBlocksToSwap).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudDiscreteFlowShift).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudSigmoidScale).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMinBucketReso).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMaxBucketReso).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudAdaptiveNoiseScale).EndInit();
@@ -2814,7 +2817,6 @@ namespace Kohya_lora_trainer
             tabPage3.PerformLayout();
             tabPage8.ResumeLayout(false);
             tabPage8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudSigmoidScale).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
