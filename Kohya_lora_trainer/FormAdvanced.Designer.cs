@@ -1194,7 +1194,7 @@ namespace Kohya_lora_trainer
             nudSigmoidScale.Name = "nudSigmoidScale";
             nudSigmoidScale.Size = new Size(73, 23);
             nudSigmoidScale.TabIndex = 0;
-            toolTip1.SetToolTip(nudSigmoidScale, "1.5超過は非推奨(効率と品質が低下するリスク増加)\r\n1.0～1.3が推奨値");
+            toolTip1.SetToolTip(nudSigmoidScale, "1.5超過は非推奨(効率と品質が低下するリスク増加)\r\n1.0～1.3が推奨値\r\nSigmoid, Shift, Flux Shiftで利用する");
             nudSigmoidScale.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // label6
