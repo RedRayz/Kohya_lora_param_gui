@@ -42,16 +42,15 @@ namespace Kohya_lora_trainer
         public decimal ClipLDropoutRate = 0, ClipGDropoutRate = 0, T5DropoutRate = 0, TEBatchSize = 0, ScaleWeightNorms = 0;
         public ResizeInterpolation ResizeInterpolationType = ResizeInterpolation.None;
 
-        //Addtional(KohakuBlueleaf氏作成拡張スクリプト用)
-        public NetworkModule ModuleType = NetworkModule.LoRA;
-        public LycoAlgo AlgoType = LycoAlgo.lora;
+        [XmlIgnore]
+        public NetworkModule ModuleTypeEnum = NetworkModule.LoRA;
+
         public int ConvDim = 4;
         public decimal ConvAlpha = 4;
         //Additional(LoRA)
         public bool UseConv2dExtend = false;
         public decimal DyLoRAUnit = 4;
         public string DatasetConfigPath = string.Empty;
-        public bool TrainNorm = false, RescaledOFT = false, ConstrainedOFT = false, UseScalar = false, UseTucker = false, WeightDocomposition = false;
 
         //Block Weight
         public bool UseBlockWeight = false;
@@ -128,6 +127,8 @@ namespace Kohya_lora_trainer
         public bool IsOptimizerUnknown { get; private set; }
         [XmlIgnore]
         public bool IsModelArchitectureUnkown { get; private set; }
+        [XmlIgnore]
+        public bool IsModuleTypeUnkown { get; private set; }
 
         /// <summary>
         /// OptimizerのString版。主にXMLシリアライザで使用する。
@@ -181,6 +182,28 @@ namespace Kohya_lora_trainer
             }
         }
 
+        public string ModuleType
+        {
+            get
+            {
+                return ModuleTypeEnum.ToString();
+            }
+            set
+            {
+                if (Enum.TryParse(value, out NetworkModule result))
+                {
+                    IsModuleTypeUnkown = false;
+                    ModuleTypeEnum = result;
+                }
+                else
+                {
+                    IsModuleTypeUnkown = true;
+                    ModuleTypeEnum = NetworkModule.LoRA;
+                }
+                
+            }
+        }
+
         public string StableDiffusionType
         {
             get
@@ -198,6 +221,7 @@ namespace Kohya_lora_trainer
                 else
                 {
                     IsModelArchitectureUnkown = true;
+                    ModelArchitectureEnum = ModelArchitecture.Legacy;
                 }
             }
         }
@@ -501,7 +525,6 @@ namespace Kohya_lora_trainer
     public enum NetworkModule
     {
         LoRA,
-        LyCORIS,
         DyLoRA,
         LoRAFA,
         LoHA,

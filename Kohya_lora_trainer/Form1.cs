@@ -147,6 +147,11 @@ namespace Kohya_lora_trainer
                 MessageBox.Show("プリセットファイルで指定されたOptimizerが不明なため、\r\nAdamW8bitに変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
+            if (para.IsModuleTypeUnkown)
+            {
+                MessageBox.Show("プリセットファイルで指定されたモジュールの種類が不明なため、\r\nLoRAに変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             if (para.IsModelArchitectureUnkown)
             {
                 MessageBox.Show("プリセットファイルで指定されたモデルの種類が不明かサポート終了済みのため、\r\nSD1に変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -655,12 +660,12 @@ namespace Kohya_lora_trainer
                         continue;
                     }
 
-                    if (para.IsOptimizerUnknown || para.IsModelArchitectureUnkown)
+                    if (para.IsOptimizerUnknown || para.IsModelArchitectureUnkown || para.IsModuleTypeUnkown)
                     {
                         Debug.WriteLine("Skipped. Unknown model or optimizer");
                         if (!string.IsNullOrWhiteSpace(pth))
                         {
-                            BatchProcess.LogText += pth + "\r\nオプティマイザまたはモデルの種類が不明なためスキップ\r\n\r\n";
+                            BatchProcess.LogText += pth + "\r\nオプティマイザ、モデル、モジュールのいずれかの種類が不明なためスキップ\r\n\r\n";
                         }
 
                         BatchProcess.SkippedCount++;
@@ -1105,6 +1110,11 @@ namespace Kohya_lora_trainer
                 MessageBox.Show("プリセットファイルで指定されたモデルの種類が不明かサポート終了済みのため、\r\nSD1に変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
+            if (para.IsModuleTypeUnkown && ShowMsg)
+            {
+                MessageBox.Show("プリセットファイルで指定されたモジュールの種類が不明なため、\r\nLoRAに変更しました。", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             LastOpenPresetPath = path;
 
             para.OverwriteCustomOptName();
@@ -1208,7 +1218,7 @@ namespace Kohya_lora_trainer
             {
                 return;
             }
-            para.ModuleType = (NetworkModule)Enum.ToObject(typeof(NetworkModule), cbxModuleType.SelectedIndex);
+            para.ModuleTypeEnum = (NetworkModule)Enum.ToObject(typeof(NetworkModule), cbxModuleType.SelectedIndex);
             PredictLoraFilesize();
         }
 
@@ -1591,7 +1601,7 @@ namespace Kohya_lora_trainer
             //Optimizer
             cbxOptimizer.SelectedIndex = (int)para.OptimizerTypeEnum;
             //ModuleType
-            cbxModuleType.SelectedIndex = (int)para.ModuleType;
+            cbxModuleType.SelectedIndex = (int)para.ModuleTypeEnum;
             //OutputName
             tbxFileName.Text = para.OutputName;
             tbxFileName.ForeColor = Color.Black;
@@ -1718,10 +1728,6 @@ namespace Kohya_lora_trainer
             }
             else
             {
-                if ((para.UseBlockWeight || para.UseBlockDim) && ((para.ModelArchitectureEnum != ModelArchitecture.Legacy && para.ModelArchitectureEnum != ModelArchitecture.XL) || para.ModuleType == NetworkModule.LyCORIS))
-                {
-                    return MessageBox.Show("LyCORISでは層別学習は非対応ですが、開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                }
                 if ((para.NoiseOffset > 0 || para.MultiresNoiseIterations > 0) && para.ZeroTerminalSNR)
                 {
                     return MessageBox.Show("ノイズオフセットまたはMultires noiseとZero Terminal SNRの併用は望ましくありません。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -2033,7 +2039,7 @@ namespace Kohya_lora_trainer
                 return;
             }
 
-            if (para.ModuleType != NetworkModule.LoRA)
+            if (para.ModuleTypeEnum != NetworkModule.LoRA)
             {
                 lblPredictedLoraFilesizeTitle.Enabled = false;
                 lblPredictedLoraFilesize.Text = string.Empty;

@@ -419,8 +419,6 @@ namespace Kohya_lora_trainer
             para.DyLoRAUnit = nudDyLoRAUnit.Value;
             para.DatasetConfigPath = lblConfigPath.Text;
 
-            para.AlgoType = (LycoAlgo)Enum.ToObject(typeof(LycoAlgo), cbxAlgoType.SelectedIndex);
-
             para.UseColorAug = cbxUseColorAug.Checked;
             para.UseFastLoading = cbxUseFastLoading.Checked;
 
@@ -452,13 +450,6 @@ namespace Kohya_lora_trainer
             para.UseFullBf16 = cbxUseFullBf16.Checked;
             para.TokensSeparator = tbxTokensSeparator.Text;
             para.UseFP8Base = cbxUseFP8.Checked;
-
-            para.WeightDocomposition = cbxWeightDecomposition.Checked;
-            para.TrainNorm = cbxTrainNorm.Checked;
-            para.RescaledOFT = cbxRescaledOFT.Checked;
-            para.ConstrainedOFT = cbxConstrainedOFT.Checked;
-            para.UseTucker = cbxUseTucker.Checked;
-            para.UseScalar = cbxUseScalar.Checked;
 
             para.HighVRAM = cbxHighVRAM.Checked;
 
@@ -549,8 +540,6 @@ namespace Kohya_lora_trainer
             nudNoiseOffset.Value = (decimal)para.NoiseOffset;
             lblVAEPath.Text = para.VAEPath;
 
-            cbxAlgoType.SelectedIndex = (int)para.AlgoType;
-
             nudConvDim.Value = para.ConvDim;
             nudConvAlpha.Value = para.ConvAlpha;
             cbxUseConv2d.Checked = para.UseConv2dExtend;
@@ -605,12 +594,6 @@ namespace Kohya_lora_trainer
             tbxTokensSeparator.Text = para.TokensSeparator;
             cbxUseFP8.Checked = para.UseFP8Base;
 
-            cbxWeightDecomposition.Checked = para.WeightDocomposition;
-            cbxTrainNorm.Checked = para.TrainNorm;
-            cbxRescaledOFT.Checked = para.RescaledOFT;
-            cbxConstrainedOFT.Checked = para.ConstrainedOFT;
-            cbxUseTucker.Checked = para.UseTucker;
-            cbxUseScalar.Checked = para.UseScalar;
             cbxHighVRAM.Checked = para.HighVRAM;
 
             cbxLossType.SelectedIndex = (int)para.LossType;

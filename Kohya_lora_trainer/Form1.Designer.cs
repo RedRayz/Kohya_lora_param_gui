@@ -410,7 +410,7 @@ namespace Kohya_lora_trainer
             // 
             cbxModuleType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxModuleType.FormattingEnabled = true;
-            cbxModuleType.Items.AddRange(new object[] { "LoRA", "LyCORIS", "DyLoRA", "LoRA-FA", "LoHA", "LoKr" });
+            cbxModuleType.Items.AddRange(new object[] { "LoRA", "DyLoRA", "LoRA-FA", "LoHA", "LoKr" });
             cbxModuleType.Location = new Point(587, 219);
             cbxModuleType.Name = "cbxModuleType";
             cbxModuleType.Size = new Size(80, 23);
@@ -992,9 +992,9 @@ namespace Kohya_lora_trainer
             tabPageAddArgs.Controls.Add(label19);
             tabPageAddArgs.Controls.Add(tbxAdditionalNetworkArgs);
             tabPageAddArgs.Controls.Add(tbxAdditionalArgs);
-            tabPageAddArgs.Location = new Point(4, 24);
+            tabPageAddArgs.Location = new Point(4, 26);
             tabPageAddArgs.Name = "tabPageAddArgs";
-            tabPageAddArgs.Size = new Size(759, 384);
+            tabPageAddArgs.Size = new Size(759, 382);
             tabPageAddArgs.TabIndex = 2;
             tabPageAddArgs.Text = "追加の引数";
             tabPageAddArgs.UseVisualStyleBackColor = true;
