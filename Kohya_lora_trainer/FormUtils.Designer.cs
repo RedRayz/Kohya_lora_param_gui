@@ -41,24 +41,19 @@
             btnSelectOutputPath = new Button();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            label17 = new Label();
             label16 = new Label();
             cbxClearNpzTargetSelection = new ComboBox();
-            cbxUseLatestTorch = new CheckBox();
-            cbxPythonVersion = new ComboBox();
-            label14 = new Label();
-            cbxUsePy = new CheckBox();
+            btnConfigureAccelerate = new Button();
             lblProcessingNpz = new Label();
             label12 = new Label();
             btnDeleteNpz = new Button();
-            btnRegenVenv = new Button();
-            label8 = new Label();
             tabPage2 = new TabPage();
             btnClearResizeOutput = new Button();
             label10 = new Label();
             label13 = new Label();
             numericUpDown1 = new NumericUpDown();
             tabPage3 = new TabPage();
-            btnConfigureAccelerate = new Button();
             cbxUpdateType = new ComboBox();
             label4 = new Label();
             label1 = new Label();
@@ -73,12 +68,17 @@
             tbxBranchName = new TextBox();
             tabPage5 = new TabPage();
             label15 = new Label();
+            btnRegenVenv = new Button();
+            cbxUseLatestTorch = new CheckBox();
             btnShowTorchVer = new Button();
+            label8 = new Label();
             label9 = new Label();
+            cbxPythonVersion = new ComboBox();
             label11 = new Label();
+            cbxUsePy = new CheckBox();
             btnPurgePipCache = new Button();
+            label14 = new Label();
             toolTip1 = new ToolTip(components);
-            label17 = new Label();
             ((System.ComponentModel.ISupportInitialize)nudTargetDim).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -218,6 +218,15 @@
             tabPage1.Text = "ユーティリティ";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(104, 233);
+            label17.Name = "label17";
+            label17.Size = new Size(306, 30);
+            label17.TabIndex = 7;
+            label17.Text = "accelerateの設定画面では、通常は以下の操作をしてください。\r\n7回Enter押す、数字キーの1を押してからEnter押す";
+            // 
             // label16
             // 
             label16.AutoSize = true;
@@ -237,49 +246,15 @@
             cbxClearNpzTargetSelection.Size = new Size(104, 23);
             cbxClearNpzTargetSelection.TabIndex = 10;
             // 
-            // cbxUseLatestTorch
+            // btnConfigureAccelerate
             // 
-            cbxUseLatestTorch.AutoSize = true;
-            cbxUseLatestTorch.Checked = true;
-            cbxUseLatestTorch.CheckState = CheckState.Checked;
-            cbxUseLatestTorch.Location = new Point(151, 208);
-            cbxUseLatestTorch.Name = "cbxUseLatestTorch";
-            cbxUseLatestTorch.Size = new Size(207, 19);
-            cbxUseLatestTorch.TabIndex = 9;
-            cbxUseLatestTorch.Text = "Torch 2.9.1(CUDA 13.0)をインストール";
-            toolTip1.SetToolTip(cbxUseLatestTorch, "Volta, Pascal以前のGPU使用者はチェックを外す\r\n");
-            cbxUseLatestTorch.UseVisualStyleBackColor = true;
-            // 
-            // cbxPythonVersion
-            // 
-            cbxPythonVersion.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbxPythonVersion.FormattingEnabled = true;
-            cbxPythonVersion.Items.AddRange(new object[] { "3.10", "3.11", "3.12", "3.13" });
-            cbxPythonVersion.Location = new Point(294, 263);
-            cbxPythonVersion.Name = "cbxPythonVersion";
-            cbxPythonVersion.Size = new Size(103, 23);
-            cbxPythonVersion.TabIndex = 8;
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Location = new Point(102, 266);
-            label14.Name = "label14";
-            label14.Size = new Size(186, 15);
-            label14.TabIndex = 7;
-            label14.Text = "Pythonバージョン(pyを使用する場合)";
-            // 
-            // cbxUsePy
-            // 
-            cbxUsePy.AutoSize = true;
-            cbxUsePy.Location = new Point(151, 233);
-            cbxUsePy.Name = "cbxUsePy";
-            cbxUsePy.Size = new Size(202, 19);
-            cbxUsePy.TabIndex = 6;
-            cbxUsePy.Text = "「python」の代わりに「py」を使用する";
-            toolTip1.SetToolTip(cbxUsePy, "ターミナルpythonとだけ表示されて何も起きないか\r\nPythonバージョンを指定する場合にチェックをつけてください\r\n");
-            cbxUsePy.UseVisualStyleBackColor = true;
-            cbxUsePy.CheckedChanged += cbxUsePy_CheckedChanged;
+            btnConfigureAccelerate.Location = new Point(183, 197);
+            btnConfigureAccelerate.Name = "btnConfigureAccelerate";
+            btnConfigureAccelerate.Size = new Size(150, 33);
+            btnConfigureAccelerate.TabIndex = 6;
+            btnConfigureAccelerate.Text = "accelerate config実行";
+            btnConfigureAccelerate.UseVisualStyleBackColor = true;
+            btnConfigureAccelerate.Click += btnConfigureAccelerate_Click;
             // 
             // lblProcessingNpz
             // 
@@ -310,26 +285,6 @@
             btnDeleteNpz.Text = ".npzの消去";
             btnDeleteNpz.UseVisualStyleBackColor = true;
             btnDeleteNpz.Click += btnDeleteNpz_Click;
-            // 
-            // btnRegenVenv
-            // 
-            btnRegenVenv.Location = new Point(196, 172);
-            btnRegenVenv.Name = "btnRegenVenv";
-            btnRegenVenv.Size = new Size(117, 30);
-            btnRegenVenv.TabIndex = 2;
-            btnRegenVenv.Text = "venv再生成";
-            btnRegenVenv.UseVisualStyleBackColor = true;
-            btnRegenVenv.Click += btnRegenVenv_Click;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(66, 289);
-            label8.Name = "label8";
-            label8.Size = new Size(388, 45);
-            label8.TabIndex = 1;
-            label8.Text = "ターミナルは手動で閉じてください\r\nvnevがない場合に再生成し、必要なパッケージのみをインストールします\r\nD-AdaptationやLyCORISなどはvenv生成後に更新タブでインストールしてください";
-            label8.TextAlign = ContentAlignment.TopCenter;
             // 
             // tabPage2
             // 
@@ -403,16 +358,6 @@
             tabPage3.Text = "更新";
             tabPage3.UseVisualStyleBackColor = true;
             // 
-            // btnConfigureAccelerate
-            // 
-            btnConfigureAccelerate.Location = new Point(183, 197);
-            btnConfigureAccelerate.Name = "btnConfigureAccelerate";
-            btnConfigureAccelerate.Size = new Size(150, 33);
-            btnConfigureAccelerate.TabIndex = 6;
-            btnConfigureAccelerate.Text = "accelerate config実行";
-            btnConfigureAccelerate.UseVisualStyleBackColor = true;
-            btnConfigureAccelerate.Click += btnConfigureAccelerate_Click;
-            // 
             // cbxUpdateType
             // 
             cbxUpdateType.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -437,9 +382,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(182, 184);
             label1.Name = "label1";
-            label1.Size = new Size(174, 30);
+            label1.Size = new Size(156, 30);
             label1.TabIndex = 2;
-            label1.Text = "lycorisおよび追加のオプティマイザを\r\nインストールまたは更新をします。";
+            label1.Text = "追加のパッケージを\r\nインストールまたは更新をします。";
             // 
             // btnInstallExtension
             // 
@@ -559,6 +504,29 @@
             label15.TabIndex = 3;
             label15.Text = "venvにインストールされたtorchのバージョンを表示する";
             // 
+            // btnRegenVenv
+            // 
+            btnRegenVenv.Location = new Point(196, 172);
+            btnRegenVenv.Name = "btnRegenVenv";
+            btnRegenVenv.Size = new Size(117, 30);
+            btnRegenVenv.TabIndex = 2;
+            btnRegenVenv.Text = "venv再生成";
+            btnRegenVenv.UseVisualStyleBackColor = true;
+            btnRegenVenv.Click += btnRegenVenv_Click;
+            // 
+            // cbxUseLatestTorch
+            // 
+            cbxUseLatestTorch.AutoSize = true;
+            cbxUseLatestTorch.Checked = true;
+            cbxUseLatestTorch.CheckState = CheckState.Checked;
+            cbxUseLatestTorch.Location = new Point(151, 208);
+            cbxUseLatestTorch.Name = "cbxUseLatestTorch";
+            cbxUseLatestTorch.Size = new Size(207, 19);
+            cbxUseLatestTorch.TabIndex = 9;
+            cbxUseLatestTorch.Text = "Torch 2.9.1(CUDA 13.0)をインストール";
+            toolTip1.SetToolTip(cbxUseLatestTorch, "Volta, Pascal以前のGPU使用者はチェックを外す\r\n");
+            cbxUseLatestTorch.UseVisualStyleBackColor = true;
+            // 
             // btnShowTorchVer
             // 
             btnShowTorchVer.Location = new Point(196, 104);
@@ -569,6 +537,16 @@
             btnShowTorchVer.UseVisualStyleBackColor = true;
             btnShowTorchVer.Click += btnShowTorchVer_Click;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(74, 289);
+            label8.Name = "label8";
+            label8.Size = new Size(336, 45);
+            label8.TabIndex = 1;
+            label8.Text = "ターミナルは手動で閉じてください\r\nvnevがない場合に再生成し、必要なパッケージのみをインストールします\r\nD-Adaptationなどはvenv生成後に更新タブでインストールしてください";
+            label8.TextAlign = ContentAlignment.TopCenter;
+            // 
             // label9
             // 
             label9.AutoSize = true;
@@ -578,6 +556,16 @@
             label9.TabIndex = 1;
             label9.Text = "pipのパッケージのインストールのエラーが解決する可能性あり";
             // 
+            // cbxPythonVersion
+            // 
+            cbxPythonVersion.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxPythonVersion.FormattingEnabled = true;
+            cbxPythonVersion.Items.AddRange(new object[] { "3.10", "3.11", "3.12", "3.13" });
+            cbxPythonVersion.Location = new Point(294, 263);
+            cbxPythonVersion.Name = "cbxPythonVersion";
+            cbxPythonVersion.Size = new Size(103, 23);
+            cbxPythonVersion.TabIndex = 8;
+            // 
             // label11
             // 
             label11.AutoSize = true;
@@ -586,6 +574,18 @@
             label11.Size = new Size(158, 15);
             label11.TabIndex = 1;
             label11.Text = "ターミナルは手動で閉じてください";
+            // 
+            // cbxUsePy
+            // 
+            cbxUsePy.AutoSize = true;
+            cbxUsePy.Location = new Point(151, 233);
+            cbxUsePy.Name = "cbxUsePy";
+            cbxUsePy.Size = new Size(202, 19);
+            cbxUsePy.TabIndex = 6;
+            cbxUsePy.Text = "「python」の代わりに「py」を使用する";
+            toolTip1.SetToolTip(cbxUsePy, "ターミナルpythonとだけ表示されて何も起きないか\r\nPythonバージョンを指定する場合にチェックをつけてください\r\n");
+            cbxUsePy.UseVisualStyleBackColor = true;
+            cbxUsePy.CheckedChanged += cbxUsePy_CheckedChanged;
             // 
             // btnPurgePipCache
             // 
@@ -597,14 +597,14 @@
             btnPurgePipCache.UseVisualStyleBackColor = true;
             btnPurgePipCache.Click += btnPurgePipCache_Click;
             // 
-            // label17
+            // label14
             // 
-            label17.AutoSize = true;
-            label17.Location = new Point(104, 233);
-            label17.Name = "label17";
-            label17.Size = new Size(306, 30);
-            label17.TabIndex = 7;
-            label17.Text = "accelerateの設定画面では、通常は以下の操作をしてください。\r\n7回Enter押す、数字キーの1を押してからEnter押す";
+            label14.AutoSize = true;
+            label14.Location = new Point(102, 266);
+            label14.Name = "label14";
+            label14.Size = new Size(186, 15);
+            label14.TabIndex = 7;
+            label14.Text = "Pythonバージョン(pyを使用する場合)";
             // 
             // FormUtils
             // 

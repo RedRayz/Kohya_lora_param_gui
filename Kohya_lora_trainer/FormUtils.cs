@@ -172,7 +172,7 @@ namespace Kohya_lora_trainer
 
         private void btnInstallExtension_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("LyCORISなどのインストールをします。よろしいですか。", "確認", MessageBoxButtons.YesNo);
+            var res = MessageBox.Show("追加のパッケージをインストールをします。よろしいですか。", "確認", MessageBoxButtons.YesNo);
             if (res == DialogResult.Yes)
             {
                 string path = string.IsNullOrEmpty(Form1.ScriptPath) ? Constants.CurrentSdScriptsPath : Form1.ScriptPath + "\\";
@@ -193,7 +193,7 @@ namespace Kohya_lora_trainer
                     sb.Append(Constants.CurrentSdScriptsPath);
                 }
 
-                sb.Append(" && .\\venv\\Scripts\\activate && pip install -U dadaptation lycoris_lora prodigy-plus-schedule-free");
+                sb.Append(" && .\\venv\\Scripts\\activate && pip install -U dadaptation prodigy-plus-schedule-free");
 
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
@@ -239,7 +239,7 @@ namespace Kohya_lora_trainer
                 sb.Append(@" && ").Append(cbxUsePy.Checked ? py : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && ").Append(MyUtils.GenerateMinInstallCommands(cbxUseLatestTorch.Checked));
                 sb.Append(" && ");
 
-                sb.Append("pip install dadaptation lycoris_lora");
+                sb.Append("pip install dadaptation");
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
                 ps.Arguments = sb.ToString();

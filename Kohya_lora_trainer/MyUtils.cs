@@ -179,7 +179,7 @@ namespace Kohya_lora_trainer
                 sb.Append(" --reg_data_dir \"").Append(para.RegImagePath).Append('"');
             }
 
-            switch (para.ModuleType)
+            switch (para.ModuleTypeEnum)
             {
                 case NetworkModule.LoRA:
                 case NetworkModule.LoRAFA:
@@ -188,7 +188,7 @@ namespace Kohya_lora_trainer
                         {
                             case ModelArchitecture.Legacy:
                             case ModelArchitecture.XL:
-                                sb.Append(" --network_module \"").Append(para.ModuleType == NetworkModule.LoRA ? "networks.lora" : "networks.lora_fa").Append('"');
+                                sb.Append(" --network_module \"").Append(para.ModuleTypeEnum == NetworkModule.LoRA ? "networks.lora" : "networks.lora_fa").Append('"');
                                 if (para.UseConv2dExtend)
                                 {
                                     bool di = para.ConvDim > 0;
@@ -205,50 +205,6 @@ namespace Kohya_lora_trainer
                             case ModelArchitecture.Anima:
                                 sb.Append(" --network_module \"networks.lora_anima\"");
                                 break;
-                        }
-                    }
-                    break;
-                case NetworkModule.LyCORIS:
-                    {
-                        string algo = para.AlgoType == LycoAlgo.diag_oft ? "diag-oft" : para.AlgoType.ToString();
-
-                        sb.Append(" --network_module \"").Append("lycoris.kohya\"");
-                        NetworkArgs.Add("algo=" + algo);
-
-                        if (para.WeightDocomposition)
-                            NetworkArgs.Add("dora_wd=True");
-
-                        if (para.TrainNorm)
-                            NetworkArgs.Add("train_norm=True");
-
-                        if (para.RescaledOFT)
-                            NetworkArgs.Add("rescaled=True");
-
-                        if (para.ConstrainedOFT)
-                            NetworkArgs.Add("constrain=FLOAT");
-
-                        if (para.UseTucker)
-                            NetworkArgs.Add("use_tucker=True");
-
-                        if (para.UseScalar)
-                            NetworkArgs.Add("use_scalar=True");
-
-                        if (para.UseConv2dExtend)
-                        {
-                            bool di = para.ConvDim > 0;
-                            bool al = para.ConvAlpha > 0;
-                            if (di || al)
-                            {
-                                if (di)
-                                    NetworkArgs.Add("conv_dim=" + para.ConvDim.ToString());
-                                if (al)
-                                    NetworkArgs.Add("conv_alpha=" + para.ConvAlpha.ToString());
-                            }
-                        }
-                        else
-                        {
-                            NetworkArgs.Add("conv_dim=0");
-                            NetworkArgs.Add("conv_alpha=0");
                         }
                     }
                     break;
