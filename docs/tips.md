@@ -1,10 +1,8 @@
 # トラブルシューティング
 
-## NaN detected in...って出た！！
+## SDXLでNaN detected in...って出た
 
-SDXLなら、詳細設定->パスでVAEに https://huggingface.co/madebyollin/sdxl-vae-fp16-fix で配布されているsdxl.vae.safetensorsを選択すると直るかも。
-
-それがダメなら詳細設定->パフォーマンスにあるVAEを32ビットで使用にチェックをつける。
+詳細設定->パスでVAEに https://huggingface.co/madebyollin/sdxl-vae-fp16-fix で配布されているsdxl.vae.safetensorsを選択すると直るかも。
 
 ## CUDA error: Out Of Memoryって出た！なにこれ？
 
@@ -18,9 +16,7 @@ SDXLなら、詳細設定->パスでVAEに https://huggingface.co/madebyollin/sd
 
 Animaであれば、Block Swapを使用する。
 
-メモリのフォールバックを有効にする手もある(動くが遅い)。
-
-大容量データの転送が多いAI用途ではPCIeは完全に足手まといなっている。
+メモリのフォールバックを有効にする手もある(動くが超遅い)。
 
 ## 速度が極端に遅い！
 
@@ -58,9 +54,9 @@ SDXL以前は、dimの半分以下。dimの値に近いほど不安定になる�
 
 Animaは、Dim(Rank)=AlphaでもOK。ただし予期せぬ画風変化を起こすことがあるので、dimの半分以下にしてもよい。
 
-過学習を抑制する効果もある気がする。
+Animaでは過学習を抑制するオプションとして有用だ。
 
-なお、Alpha > Dimにしてもメリットはない。あれはLLMの話。
+なお、画像モデルでAlpha > Dimにしてもメリットはないと思う。ウェイト過大で破綻が増えるかも。あれはLLMの話。
 
 ## mean ar errorってなに？
 
@@ -74,9 +70,11 @@ Animaは、Dim(Rank)=AlphaでもOK。ただし予期せぬ画風変化を起こ�
 
 ## Optimizerはどれがいい？
 
-RAdamScheduleFree、ProdigyPlusScheduleFree、CAMEをおすすめする。
+RAdamScheduleFree、CAMEをおすすめする。
 
 AdaFactorはLoRA学習ではAdamWより遅く、メリットはない。あれは大規模学習向け。
+
+コピー機orスライダーLoRAなどの極小のデータセットではRAdamScheduleFreeが扱いやすい。CAMEは速すぎて重度の過学習(=汚くなる、破綻増加、負の強度でNaN発生)になりがち。
 
 ## おすすめのステップ数(SDXL)
 
@@ -126,9 +124,7 @@ Animaは画像の情報量に比例する傾向がある。情報量が少ない
 
 ## AnimaのTE学習はいる？
 
-TEはゴールへの進行方向のヒントを与えるものなのでいらないかも。
-
-しかし、ゴールに目的のものがあるとは限らないので、拡散モデルのみのLoRAで修正する。
+いらない。TE無しでも品質に影響しない。
 
 ## データセットのタグの集約っている?
 クソ雑魚SD1が主流だった頃の古いテクニック、「トリガーワードに学習させたい要素を集約する」、いわゆる「マルゼン式」はしなくていいと思う。
@@ -150,7 +146,7 @@ v-prediction+ztsnrモデルで特に不安定。
 ちなみに、AnimaはFlow Matchingの効果なのかはわからないが、学習が安定している。
 
 ## LR Schedulerについて
-LR調整アルゴリズム。ScheduleFree Optimizerでは使用しない。
+LR調整アルゴリズム。ScheduleFree Optimizerでは使用しない(設定しても機能しない)。
 ### cosine_with_restarts
 推奨。num_lr_scheduler_cycleで指定した分だけコサイン波を繰り返す。warmupが指定されているなら0から始まりwarmupまで線形でLRを上げる。
 ### cosine
@@ -158,9 +154,9 @@ LR調整アルゴリズム。ScheduleFree Optimizerでは使用しない。
 ### linear
 線形に減衰。
 ### constant_with_warmup
-warmupまで線形でLRを上げた後は一定。非推奨。ScheduleFree系向け。
+warmupまで線形でLRを上げた後は一定。1エポックだけ回すならあり。
 ### constant
-LRは常に一定。非推奨。
+LRは常に一定。
 ### polynomial
 多項式。powerの値で減衰速度が変化する。
 
@@ -168,7 +164,7 @@ LRは常に一定。非推奨。
 Bucketingが有効だと複数のBucketを1バッチにまとめられない影響でずれる場合あり。
 
 ## LoRAのファイルサイズに影響する設定
-ネットワーク次元数(DimまたはRank)、Stable DiffusionはConv2d拡張の使用(使用時はconv dimも)、LyCORIS使用時はLyCORISのアルゴリズムの種類、Unet/Tencの有無、保存時の精度(--save_precision)、モデルの種類
+ネットワーク次元数(DimまたはRank)、Stable DiffusionはConv2d拡張の使用(使用時はconv dimも)、拡散モデルt/TEの有無、保存時の精度(--save_precision)、モデルの種類
 
 ## 作ったLoRAを使うと出力が暗くなったり赤みがかった色合いになる(SD1/SDXL)
 詳細設定->ノイズ関連->ノイズオフセットに学習元モデルで使用されたnoise_offsetの値を設定すると改善するかも。
