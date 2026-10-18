@@ -141,12 +141,6 @@ namespace Kohya_lora_trainer
                 {
                     sb.Append(Constants.CurrentSdScriptsPath);
                 }
-
-                ProcessStartInfo ps = new ProcessStartInfo();
-                ps.FileName = "cmd";
-                ps.Arguments = sb.ToString();
-
-                Process.Start(ps);
                 switch (cbxUpdateType.SelectedIndex)
                 {
                     default:
@@ -167,6 +161,12 @@ namespace Kohya_lora_trainer
                         }
                         break;
                 }
+                ProcessStartInfo ps = new ProcessStartInfo();
+                ps.FileName = "cmd";
+                ps.Arguments = sb.ToString();
+
+                Process.Start(ps);
+
             }
         }
 
