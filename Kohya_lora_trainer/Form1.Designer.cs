@@ -133,6 +133,7 @@ namespace Kohya_lora_trainer
             cbxCompleteAction = new ComboBox();
             label24 = new Label();
             lblPredictedLoraFilesizeTitle = new Label();
+            btnShowModelTips = new Button();
             ((System.ComponentModel.ISupportInitialize)nudNetworkAlpha).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNetworkDim).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudResolution).BeginInit();
@@ -387,12 +388,11 @@ namespace Kohya_lora_trainer
             // 
             cbxSDType.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxSDType.FormattingEnabled = true;
-            cbxSDType.Items.AddRange(new object[] { "SD1", "SDXL", "Anima" });
+            cbxSDType.Items.AddRange(new object[] { "SD1", "SDXL", "Anima", "MOSS-Image" });
             cbxSDType.Location = new Point(104, 252);
             cbxSDType.Name = "cbxSDType";
             cbxSDType.Size = new Size(139, 23);
             cbxSDType.TabIndex = 85;
-            toolTip1.SetToolTip(cbxSDType, "SDXLとAnimaはVRAM消費を減らすGradient Checkpointingがほぼ必須\r\nSDXLはVRAM12GB以上を推奨\r\n10GB未満はfp8有効化推奨\r\nAnimaは512pxであれば8GB未満で済む\r\n1024px学習かつVRAM8GB以下はblock swap必須");
             cbxSDType.SelectedIndexChanged += cbxSDType_SelectedIndexChanged;
             // 
             // tbxFileName
@@ -910,6 +910,7 @@ namespace Kohya_lora_trainer
             // 
             // tabPageTrain
             // 
+            tabPageTrain.Controls.Add(btnShowModelTips);
             tabPageTrain.Controls.Add(btnShowTipsRegImageDir);
             tabPageTrain.Controls.Add(btnShowTipsDatasetDir);
             tabPageTrain.Controls.Add(btnModel);
@@ -1219,6 +1220,16 @@ namespace Kohya_lora_trainer
             lblPredictedLoraFilesizeTitle.TabIndex = 92;
             lblPredictedLoraFilesizeTitle.Text = "予想ファイルサイズ:";
             // 
+            // btnShowModelTips
+            // 
+            btnShowModelTips.Location = new Point(247, 250);
+            btnShowModelTips.Name = "btnShowModelTips";
+            btnShowModelTips.Size = new Size(24, 24);
+            btnShowModelTips.TabIndex = 88;
+            btnShowModelTips.Text = "?";
+            btnShowModelTips.UseVisualStyleBackColor = true;
+            btnShowModelTips.Click += btnShowModelTips_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -1386,6 +1397,7 @@ namespace Kohya_lora_trainer
         private Button btnRefreshPath;
         private Label lblPredictedLoraFilesizeTitle;
         private Label lblPredictedLoraFilesize;
+        private Button btnShowModelTips;
     }
 }
 
