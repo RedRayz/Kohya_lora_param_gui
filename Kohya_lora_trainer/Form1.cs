@@ -738,7 +738,7 @@ namespace Kohya_lora_trainer
                 if (res == DialogResult.No)
                     return;
             }
-            
+
 
             Debug.WriteLine("Execute the command");
 
@@ -746,7 +746,7 @@ namespace Kohya_lora_trainer
             train.ShowDialog();
             train.Dispose();
             cbxCompleteAction.SelectedIndex = (int)CompleteAction;
-            if(CompleteAction == TrainCompleteAction.CloseTerminal)
+            if (CompleteAction == TrainCompleteAction.CloseTerminal)
             {
                 StringBuilder sb = new StringBuilder();
                 bool failed = !File.Exists(para.OutputPath + "\\" + para.OutputName + ".safetensors") && string.IsNullOrWhiteSpace(para.CustomCommands);
@@ -793,6 +793,14 @@ namespace Kohya_lora_trainer
                     {
                         if (showMsg)
                             MessageBox.Show("anima_train_network.pyが見つかりません。\r\nsd-scriptsのアップデートをお試しください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                    break;
+                case ModelArchitecture.MossImage:
+                    if (!File.Exists(str + "moss_image_train_network.py"))
+                    {
+                        if (showMsg)
+                            MessageBox.Show("moss_image_train_network.pyが見つかりません。\r\nsd-scriptsのアップデートをお試しください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return false;
                     }
                     break;
@@ -1016,7 +1024,7 @@ namespace Kohya_lora_trainer
                 return false;
             }
 
-            if(para.ModelArchitectureEnum == ModelArchitecture.Anima)
+            if (para.ModelArchitectureEnum == ModelArchitecture.Anima)
             {
                 if (!File.Exists(para.VAEPath))
                 {
@@ -1028,6 +1036,22 @@ namespace Kohya_lora_trainer
                 {
                     if (showMsg)
                         MessageBox.Show("AnimaはQwen3 TEが必須ですが、ファイルが見つかりません(または未指定)。\r\n詳細設定->パスにて正しいファイルを指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+
+            if (para.ModelArchitectureEnum == ModelArchitecture.MossImage)
+            {
+                if (!File.Exists(para.VAEPath))
+                {
+                    if (showMsg)
+                        MessageBox.Show("MOSS-ImageはVAEが必須ですが、ファイルが見つかりません(または未指定)。\r\n詳細設定->パスにて正しいファイルを指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+                if (!File.Exists(para.TextEncoderPath))
+                {
+                    if (showMsg)
+                        MessageBox.Show("AnimaはText Encoderが必須ですが、ファイルが見つかりません(または未指定)。\r\n詳細設定->パスにて正しいファイルを指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
@@ -1703,42 +1727,50 @@ namespace Kohya_lora_trainer
                 return MessageBox.Show("Text Encoderの学習(or両方学習)とTEのキャッシュは併用できません。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
-
-
-            if(para.ModelArchitectureEnum == ModelArchitecture.Anima)
+            switch (para.ModelArchitectureEnum)
             {
-                if (para.UseBlockWeight || para.UseBlockDim)
-                {
-                    return MessageBox.Show("層別学習が有効になっていますがAnimaでは非対応のため、\r\n層別学習を使用せず開始します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                }
-                if (para.UseFP8Base)
-                {
-                    return MessageBox.Show("FP8読み込みが有効になっていますがAnimaでは非対応のため、\r\nFP8を使用せず開始します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                }
+                case ModelArchitecture.Anima:
+                case ModelArchitecture.MossImage:
+                    {
+                        if (para.UseBlockWeight || para.UseBlockDim)
+                        {
+                            return MessageBox.Show("層別学習が有効になっていますがDiTモデルでは非対応のため、\r\n層別学習を使用せず開始します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        }
+                        if (para.UseFP8Base)
+                        {
+                            return MessageBox.Show("FP8読み込みが有効になっていますがDiTモデルでは非対応のため、\r\nFP8を使用せず開始します。よろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        }
 
-                if (para.CpuOffloadAsync && para.BlocksToSwap > 0)
-                {
-                    return MessageBox.Show("Unsloth offload checkpointingとブロックスワップは併用できません。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                }
+                        if (para.CpuOffloadAsync && para.BlocksToSwap > 0)
+                        {
+                            return MessageBox.Show("Unsloth offload checkpointingとブロックスワップは併用できません。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        }
 
-                if (para.HuberScheduleType == HuberSchedule.SNR && para.LossType != LossType.LTwo)
-                {
-                    return MessageBox.Show("AnimaはHuber ScheduleにSNRは使用できません。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                }
+                        if (para.HuberScheduleType == HuberSchedule.SNR && para.LossType != LossType.LTwo)
+                        {
+                            return MessageBox.Show("DiTモデルはHuber ScheduleにSNRは使用できません。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        }
+                        int maxblocks = para.ModelArchitectureEnum == ModelArchitecture.Anima ? 26 : 40;
+                        if(para.BlocksToSwap > maxblocks)
+                        {
+                            return MessageBox.Show("スワップするブロック数が現在のモデルの上限を超えています(最大値:Anima=26,MOSS=40)。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        }
+                    }
+                    break;
+                default:
+                    {
+                        if ((para.NoiseOffset > 0 || para.MultiresNoiseIterations > 0) && para.ZeroTerminalSNR)
+                        {
+                            return MessageBox.Show("ノイズオフセットまたはMultires noiseとZero Terminal SNRの併用は望ましくありません。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        }
+
+                        if (!para.VParameterization && para.ZeroTerminalSNR)
+                        {
+                            return MessageBox.Show("Zero Terminal SNRはV Parameterizationが有効でないと動作しません(NaN演算の原因)。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        }
+                    }
+                    break;
             }
-            else
-            {
-                if ((para.NoiseOffset > 0 || para.MultiresNoiseIterations > 0) && para.ZeroTerminalSNR)
-                {
-                    return MessageBox.Show("ノイズオフセットまたはMultires noiseとZero Terminal SNRの併用は望ましくありません。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                }
-
-                if (!para.VParameterization && para.ZeroTerminalSNR)
-                {
-                    return MessageBox.Show("Zero Terminal SNRはV Parameterizationが有効でないと動作しません(NaN演算の原因)。\r\nそれでも開始してよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                }
-            }
-
 
             if (para.CrossAttenType == CrossAtten.xformers)
             {
@@ -1882,7 +1914,7 @@ namespace Kohya_lora_trainer
                 return;
             }
             para.CustomCommands = tbxCommand.Text.Replace("\r\n", string.Empty).Trim();
-            
+
             bool hasNoTxt = string.IsNullOrEmpty(para.CustomCommands);
             if (hasNoTxt != PrevCustomCmdActiveFlag)
             {
@@ -2187,12 +2219,12 @@ namespace Kohya_lora_trainer
 
             string scale = "KiB";
 
-            if(para.SavePrecision == SavePrecision.fp32)
+            if (para.SavePrecision == SavePrecision.fp32)
             {
                 filesize *= 2m;
             }
 
-            if(filesize > 1024m)
+            if (filesize > 1024m)
             {
                 filesize /= 1024m;
                 scale = "MiB";
@@ -2205,7 +2237,7 @@ namespace Kohya_lora_trainer
             }
 
             lblPredictedLoraFilesizeTitle.Enabled = true;
-            if(filesize >= 0)
+            if (filesize >= 0)
             {
                 lblPredictedLoraFilesize.Text = filesize.ToString("#,0.00" + scale);
             }
@@ -2213,7 +2245,14 @@ namespace Kohya_lora_trainer
             {
                 lblPredictedLoraFilesize.Text = "オーバーフロー";
             }
-            
+
+        }
+
+        private void btnShowModelTips_Click(object sender, EventArgs e)
+        {
+            Form frm = new FormModelTypeTips();
+            frm.ShowDialog();
+            frm.Dispose();
         }
     }
 }

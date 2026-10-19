@@ -193,7 +193,7 @@ namespace Kohya_lora_trainer
                     sb.Append(Constants.CurrentSdScriptsPath);
                 }
 
-                sb.Append(" && .\\venv\\Scripts\\activate && pip install -U dadaptation prodigy-plus-schedule-free");
+                sb.Append(" && .\\venv\\Scripts\\activate && pip install -U dadaptation prodigy-plus-schedule-free triton-windows");
 
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
@@ -239,7 +239,7 @@ namespace Kohya_lora_trainer
                 sb.Append(@" && ").Append(cbxUsePy.Checked ? py : "python").Append(" -m venv venv && .\\venv\\Scripts\\activate && ").Append(MyUtils.GenerateMinInstallCommands(cbxUseLatestTorch.Checked));
                 sb.Append(" && ");
 
-                sb.Append("pip install dadaptation");
+                sb.Append("pip install dadaptation triton-windows");
                 ProcessStartInfo ps = new ProcessStartInfo();
                 ps.FileName = "cmd";
                 ps.Arguments = sb.ToString();

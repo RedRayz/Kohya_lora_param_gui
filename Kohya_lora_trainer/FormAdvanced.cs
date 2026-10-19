@@ -367,7 +367,7 @@ namespace Kohya_lora_trainer
                 llmadapterlr = -1f;
             }
 
-                Regex regex = new Regex("[&:/\\\\\\?\\*<>\\|\"'`]");
+            Regex regex = new Regex("[&:/\\\\\\?\\*<>\\|\"'`]");
             if (regex.IsMatch(tbxComment.Text))
             {
                 MessageBox.Show("コメント欄に使用できない文字が含まれています。", "注意", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -495,6 +495,10 @@ namespace Kohya_lora_trainer
             para.MlpLR = mlplr;
             para.TimestepSamplingEnum = (TimestepSampling)Enum.ToObject(typeof(TimestepSampling), cbxTimestepSampling.SelectedIndex);
             para.ConvertVaeTwoD = cbxConvertVaeTwoD.Checked;
+            para.UseInt8ForDit = cbxUseInt8ForDit.Checked;
+            para.UseInt8ForTe = cbxUseInt8ForTe.Checked;
+            para.TextEncoderPath = lblTextEncoderPath.Text;
+            para.UseInt8ForBackward = cbxUseInt8ForBackward.Checked;
             Close();
         }
 
@@ -641,10 +645,15 @@ namespace Kohya_lora_trainer
             nudDiscreteFlowShift.Value = para.DiscreteFlowShift;
 
             lblQwen3Path.Text = para.Qwen3Path;
+            lblTextEncoderPath.Text = para.TextEncoderPath;
 
             cbxDisableVAECache.Checked = para.DisableVAECache;
             cbxCpuOffloadAsync.Checked = para.CpuOffloadAsync;
             cbxConvertVaeTwoD.Checked = para.ConvertVaeTwoD;
+
+            cbxUseInt8ForDit.Checked = para.UseInt8ForDit;
+            cbxUseInt8ForTe.Checked = para.UseInt8ForTe;
+            cbxUseInt8ForBackward.Checked = para.UseInt8ForBackward;
 
             tbxLLMAdapterLR.Text = para.LLMAdapterLR < 0f ? string.Empty : para.LLMAdapterLR.ToString("g");
             tbxSelfAttnLR.Text = para.SelfAttnLR < 0f ? string.Empty : para.SelfAttnLR.ToString("g");
@@ -785,7 +794,7 @@ namespace Kohya_lora_trainer
 
         private void btnSelectConfigPath_Click(object sender, EventArgs e)
         {
-            if (TrainParams.Current == null) 
+            if (TrainParams.Current == null)
             {
                 MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -839,6 +848,24 @@ namespace Kohya_lora_trainer
         private void btnClearQwen3Path_Click(object sender, EventArgs e)
         {
             lblQwen3Path.Text = string.Empty;
+        }
+
+        private void btnTextEncoderPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = Constants.WEIGHT_EXTENSION_FILTER;
+            ofd.Title = "Select a Text Encoder weight";
+            ofd.RestoreDirectory = true;
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                lblTextEncoderPath.Text = ofd.FileName;
+            }
+        }
+
+        private void btnClearTextEncoderPath_Click(object sender, EventArgs e)
+        {
+            lblTextEncoderPath.Text = string.Empty;
         }
     }
 }

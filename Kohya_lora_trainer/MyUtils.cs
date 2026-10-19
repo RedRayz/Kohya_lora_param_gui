@@ -164,6 +164,9 @@ namespace Kohya_lora_trainer
                 case ModelArchitecture.Anima:
                     sb.Append(" anima_train_network.py");
                     break;
+                case ModelArchitecture.MossImage:
+                    sb.Append(" moss_image_train_network.py");
+                    break;
                 default:
                     sb.Append(" train_network.py");
                     break;
@@ -204,6 +207,9 @@ namespace Kohya_lora_trainer
                                 break;
                             case ModelArchitecture.Anima:
                                 sb.Append(" --network_module \"networks.lora_anima\"");
+                                break;
+                            case ModelArchitecture.MossImage:
+                                sb.Append(" --network_module \"networks.lora_generic\"");
                                 break;
                         }
                     }
@@ -605,131 +611,164 @@ namespace Kohya_lora_trainer
                 default:
                     break;
             }
-
-            //U-netのStable Diffusion専用オプション
-            if (para.ModelArchitectureEnum != ModelArchitecture.Anima)
+            switch (para.ModelArchitectureEnum)
             {
-                if (para.MaxTokens > 75)
-                    sb.Append(" --max_token_length ").Append(para.MaxTokens);
-
-                if (para.NoiseOffset > 0f)
-                {
-                    sb.Append(" --noise_offset ").Append(para.NoiseOffset.ToString());
-                    if (para.RandomNoiseOffset)
+                //U-Net
+                case ModelArchitecture.Legacy:
+                case ModelArchitecture.XL:
                     {
-                        sb.Append(" --noise_offset_random_strength");
-                    }
-                }
+                        if (para.MaxTokens > 75)
+                            sb.Append(" --max_token_length ").Append(para.MaxTokens);
 
-                if (para.IpNoiseGamma > 0)
-                {
-                    sb.Append(" --ip_noise_gamma ").Append(para.IpNoiseGamma.ToString());
-                    if (para.RandomIpNoiseGamma)
+                        if (para.NoiseOffset > 0f)
+                        {
+                            sb.Append(" --noise_offset ").Append(para.NoiseOffset.ToString());
+                            if (para.RandomNoiseOffset)
+                            {
+                                sb.Append(" --noise_offset_random_strength");
+                            }
+                        }
+
+                        if (para.IpNoiseGamma > 0)
+                        {
+                            sb.Append(" --ip_noise_gamma ").Append(para.IpNoiseGamma.ToString());
+                            if (para.RandomIpNoiseGamma)
+                            {
+                                sb.Append(" --ip_noise_gamma_random_strength");
+                            }
+                        }
+
+                        if (para.MultiresNoiseIterations > 0)
+                        {
+                            sb.Append(" --multires_noise_iterations ").Append(para.MultiresNoiseIterations.ToString());
+                        }
+
+                        if (para.MultiresNoiseDiscount > 0)
+                        {
+                            sb.Append(" --multires_noise_discount ").Append(para.MultiresNoiseDiscount.ToString());
+                        }
+
+                        if (para.MinSNRGamma > 0)
+                        {
+                            sb.Append(" --min_snr_gamma ").Append(para.MinSNRGamma.ToString());
+                        }
+                        if (para.VParameterization)
+                        {
+                            sb.Append(" --v_parameterization");
+                        }
+
+                        if (para.ZeroTerminalSNR)
+                        {
+                            sb.Append(" --zero_terminal_snr");
+                        }
+
+                        if (para.UseFP8Base)
+                        {
+                            sb.Append(" --fp8_base");
+                        }
+                    }
+                    break;
+                    //Diffusion Transformer
+                case ModelArchitecture.Anima:
+                case ModelArchitecture.MossImage:
                     {
-                        sb.Append(" --ip_noise_gamma_random_strength");
+                        if(para.ModelArchitectureEnum == ModelArchitecture.Anima)
+                        {
+                            if (!string.IsNullOrEmpty(para.Qwen3Path))
+                            {
+                                sb.Append(" --qwen3 \"").Append(para.Qwen3Path).Append('"');
+                            }
+
+                            if (para.DisableVAECache)
+                            {
+                                sb.Append(" --vae_disable_cache");
+                            }
+
+
+                            if (para.ConvertVaeTwoD)
+                            {
+                                sb.Append(" --qwen_image_vae_2d");
+                            }
+
+                            string exclude = GenerateExcludePatterns();
+                            if (!string.IsNullOrEmpty(exclude))
+                            {
+                                NetworkArgs.Add(exclude);
+                            }
+
+                            string reglr = GenerateLrPatterns();
+                            if (!string.IsNullOrEmpty(reglr))
+                            {
+                                if (para.LLMAdapterLR > 0f)
+                                {
+                                    NetworkArgs.Add("train_llm_adapter=True");
+                                }
+                                NetworkArgs.Add(reglr);
+                            }
+                        }
+                        else
+                        {
+                            if (para.UseInt8ForDit)
+                            {
+                                sb.Append(" --convrot_int8");
+                            }
+                            if (para.UseInt8ForTe)
+                            {
+                                sb.Append(" --convrot_int8_text_encoder");
+                            }
+                            if (para.UseInt8ForBackward)
+                            {
+                                sb.Append(" --convrot_int8_bwd \"int8\"");
+                            }
+                            if (!string.IsNullOrEmpty(para.TextEncoderPath))
+                            {
+                                sb.Append(" --text_encoder \"").Append(para.TextEncoderPath).Append('"');
+                            }
+                        }
+
+                        if (para.BlocksToSwap > 0)
+                        {
+                            sb.Append(" --blocks_to_swap ").Append(para.BlocksToSwap.ToString());
+                        }
+
+                        if (para.CpuOffloadAsync)
+                        {
+                            sb.Append(" --unsloth_offload_checkpointing");
+                        }
+
+
+
+                        sb.Append(" --timestep_sampling \"").Append(para.TimestepSamplingEnum.ToString().ToLower()).Append('"');
+
+                        //ShiftとFlux ShiftはSigmoidにシフト式を適用したもの
+                        switch (para.TimestepSamplingEnum)
+                        {
+                            case TimestepSampling.Sigma:
+                                {
+                                    sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.####"));
+                                }
+                                break;
+                            case TimestepSampling.Shift:
+                                {
+                                    sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.####"));
+                                    sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.####"));
+                                }
+                                break;
+                            case TimestepSampling.Sigmoid:
+                            case TimestepSampling.Flux_Shift:
+                                {
+                                    sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.####"));
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+
+
                     }
-                }
-
-                if (para.MultiresNoiseIterations > 0)
-                {
-                    sb.Append(" --multires_noise_iterations ").Append(para.MultiresNoiseIterations.ToString());
-                }
-
-                if (para.MultiresNoiseDiscount > 0)
-                {
-                    sb.Append(" --multires_noise_discount ").Append(para.MultiresNoiseDiscount.ToString());
-                }
-
-                if (para.MinSNRGamma > 0)
-                {
-                    sb.Append(" --min_snr_gamma ").Append(para.MinSNRGamma.ToString());
-                }
-                if (para.VParameterization)
-                {
-                    sb.Append(" --v_parameterization");
-                }
-
-                if (para.ZeroTerminalSNR)
-                {
-                    sb.Append(" --zero_terminal_snr");
-                }
-
-                if (para.UseFP8Base)
-                {
-                    sb.Append(" --fp8_base");
-                }
-            }
-            else //Diffusion Transformer+Flow matchingのAnima専用
-            {
-
-                if (!string.IsNullOrEmpty(para.Qwen3Path))
-                {
-                    sb.Append(" --qwen3 \"").Append(para.Qwen3Path).Append('"');
-                }
-
-                if (para.BlocksToSwap > 0)
-                {
-                    sb.Append(" --blocks_to_swap ").Append(para.BlocksToSwap.ToString());
-                }
-
-                if (para.DisableVAECache)
-                {
-                    sb.Append(" --vae_disable_cache");
-                }
-
-                if (para.CpuOffloadAsync)
-                {
-                    sb.Append(" --unsloth_offload_checkpointing");
-                }
-
-                if (para.ConvertVaeTwoD)
-                {
-                    sb.Append(" --qwen_image_vae_2d");
-                }
-
-
-                sb.Append(" --timestep_sampling \"").Append(para.TimestepSamplingEnum.ToString().ToLower()).Append('"');
-
-                //ShiftとFlux ShiftはSigmoidにシフト式を適用したもの
-                switch (para.TimestepSamplingEnum)
-                {
-                    case TimestepSampling.Sigma:
-                        {
-                            sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.####"));
-                        }
-                        break;
-                    case TimestepSampling.Shift:
-                        {
-                            sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.####"));
-                            sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.####"));
-                        }
-                        break;
-                    case TimestepSampling.Sigmoid:
-                    case TimestepSampling.Flux_Shift:
-                        {
-                            sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.####"));
-                        }
-                        break;
-                    default:
-                        break;
-                }
-
-                string exclude = GenerateExcludePatterns();
-                if (!string.IsNullOrEmpty(exclude))
-                {
-                    NetworkArgs.Add(exclude);
-                }
-
-                string reglr = GenerateLrPatterns();
-                if (!string.IsNullOrEmpty(reglr))
-                {
-                    if (para.LLMAdapterLR > 0f)
-                    {
-                        NetworkArgs.Add("train_llm_adapter=True");
-                    }
-                    NetworkArgs.Add(reglr);
-                }
-
+                    break;
+                default:
+                    break;
             }
 
             if (para.TextEncoderLR > 0)

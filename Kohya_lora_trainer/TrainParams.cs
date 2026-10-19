@@ -106,8 +106,8 @@ namespace Kohya_lora_trainer
         public ModelPrediction ModelPredictionType;
         public TimestepSampling TimestepSamplingEnum = TimestepSampling.Sigmoid;
         public TrainBlock TrainBlockType;
-        public bool SplitMode = false, ApplyT5AttnMask = false;
-        public string DitPath = string.Empty, Qwen3Path = string.Empty;
+        public bool SplitMode = false, ApplyT5AttnMask = false, UseInt8ForDit = false, UseInt8ForTe = false, UseInt8ForBackward = false;
+        public string DitPath = string.Empty, Qwen3Path = string.Empty, TextEncoderPath = string.Empty;
 
         //Anima
         public bool DisableVAECache = true, CpuOffloadAsync = false, ConvertVaeTwoD = false;
@@ -573,6 +573,7 @@ namespace Kohya_lora_trainer
         Legacy,
         XL,
         Anima,
+        MossImage
     }
 
     public enum TrainCompleteAction
