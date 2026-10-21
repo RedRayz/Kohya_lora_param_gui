@@ -2659,6 +2659,7 @@ namespace Kohya_lora_trainer
             cbxUsePinnedMemoryForBlockSwap.Size = new Size(223, 19);
             cbxUsePinnedMemoryForBlockSwap.TabIndex = 5;
             cbxUsePinnedMemoryForBlockSwap.Text = "ブロックスワップにpinned_memoryを使用";
+            toolTip1.SetToolTip(cbxUsePinnedMemoryForBlockSwap, "ウェイトをpinned_memoryに設定することでBlock Swapを高速化");
             cbxUsePinnedMemoryForBlockSwap.UseVisualStyleBackColor = true;
             // 
             // cbxUseH2DBlockSwap
@@ -2669,6 +2670,7 @@ namespace Kohya_lora_trainer
             cbxUseH2DBlockSwap.Size = new Size(237, 19);
             cbxUseH2DBlockSwap.TabIndex = 5;
             cbxUseH2DBlockSwap.Text = "Host to Deviceのみのブロックスワップを使用";
+            toolTip1.SetToolTip(cbxUseH2DBlockSwap, "Block Swapの待機時間を減らし速くする");
             cbxUseH2DBlockSwap.UseVisualStyleBackColor = true;
             // 
             // label55
