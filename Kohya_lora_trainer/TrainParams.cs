@@ -107,6 +107,7 @@ namespace Kohya_lora_trainer
         public TimestepSampling TimestepSamplingEnum = TimestepSampling.Sigmoid;
         public TrainBlock TrainBlockType;
         public bool SplitMode = false, ApplyT5AttnMask = false, UseInt8ForDit = false, UseInt8ForTe = false, UseInt8ForBackward = false;
+        public bool UseH2DBlockSwap = false, UsePinnedMemoryForBlockSwap = false;
         public string DitPath = string.Empty, Qwen3Path = string.Empty, TextEncoderPath = string.Empty;
 
         //Anima

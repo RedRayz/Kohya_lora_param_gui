@@ -240,6 +240,7 @@ namespace Kohya_lora_trainer
             label46 = new Label();
             tbxComment = new TextBox();
             tabPage8 = new TabPage();
+            cbxUseInt8ForBackward = new CheckBox();
             cbxUseInt8ForTe = new CheckBox();
             cbxUseInt8ForDit = new CheckBox();
             groupBox10 = new GroupBox();
@@ -248,11 +249,12 @@ namespace Kohya_lora_trainer
             label59 = new Label();
             label67 = new Label();
             label63 = new Label();
+            cbxUsePinnedMemoryForBlockSwap = new CheckBox();
+            cbxUseH2DBlockSwap = new CheckBox();
             label55 = new Label();
             label61 = new Label();
             label60 = new Label();
             label56 = new Label();
-            cbxUseInt8ForBackward = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)tbrCpuThreads).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudLRSchedulerCycle).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNoiseOffset).BeginInit();
@@ -1041,7 +1043,7 @@ namespace Kohya_lora_trainer
             // 
             // nudBlocksToSwap
             // 
-            nudBlocksToSwap.Location = new Point(455, 31);
+            nudBlocksToSwap.Location = new Point(455, 17);
             nudBlocksToSwap.Maximum = new decimal(new int[] { 40, 0, 0, 0 });
             nudBlocksToSwap.Name = "nudBlocksToSwap";
             nudBlocksToSwap.Size = new Size(74, 23);
@@ -1062,7 +1064,7 @@ namespace Kohya_lora_trainer
             // cbxCpuOffloadAsync
             // 
             cbxCpuOffloadAsync.AutoSize = true;
-            cbxCpuOffloadAsync.Location = new Point(340, 60);
+            cbxCpuOffloadAsync.Location = new Point(340, 55);
             cbxCpuOffloadAsync.Name = "cbxCpuOffloadAsync";
             cbxCpuOffloadAsync.Size = new Size(189, 19);
             cbxCpuOffloadAsync.TabIndex = 5;
@@ -1085,7 +1087,7 @@ namespace Kohya_lora_trainer
             // 
             nudDiscreteFlowShift.DecimalPlaces = 4;
             nudDiscreteFlowShift.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nudDiscreteFlowShift.Location = new Point(412, 162);
+            nudDiscreteFlowShift.Location = new Point(415, 183);
             nudDiscreteFlowShift.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             nudDiscreteFlowShift.Minimum = new decimal(new int[] { 1, 0, 0, 65536 });
             nudDiscreteFlowShift.Name = "nudDiscreteFlowShift";
@@ -1118,7 +1120,7 @@ namespace Kohya_lora_trainer
             cbxTimestepSampling.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxTimestepSampling.FormattingEnabled = true;
             cbxTimestepSampling.Items.AddRange(new object[] { "Sigma", "Uniform(非推奨)", "Sigmoid", "Shift", "Flux Shift(非推奨)" });
-            cbxTimestepSampling.Location = new Point(412, 104);
+            cbxTimestepSampling.Location = new Point(415, 125);
             cbxTimestepSampling.Name = "cbxTimestepSampling";
             cbxTimestepSampling.Size = new Size(143, 23);
             cbxTimestepSampling.TabIndex = 8;
@@ -1163,7 +1165,7 @@ namespace Kohya_lora_trainer
             // 
             nudSigmoidScale.DecimalPlaces = 4;
             nudSigmoidScale.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
-            nudSigmoidScale.Location = new Point(412, 133);
+            nudSigmoidScale.Location = new Point(415, 154);
             nudSigmoidScale.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
             nudSigmoidScale.Minimum = new decimal(new int[] { 1, 0, 0, 65536 });
             nudSigmoidScale.Name = "nudSigmoidScale";
@@ -2299,10 +2301,10 @@ namespace Kohya_lora_trainer
             tabPage2.Controls.Add(btnClearVAE);
             tabPage2.Controls.Add(btnSelectVAE);
             tabPage2.Controls.Add(label16);
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 26);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(660, 349);
+            tabPage2.Size = new Size(660, 347);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "パス";
             tabPage2.UseVisualStyleBackColor = true;
@@ -2539,6 +2541,8 @@ namespace Kohya_lora_trainer
             tabPage8.Controls.Add(groupBox10);
             tabPage8.Controls.Add(label63);
             tabPage8.Controls.Add(cbxTimestepSampling);
+            tabPage8.Controls.Add(cbxUsePinnedMemoryForBlockSwap);
+            tabPage8.Controls.Add(cbxUseH2DBlockSwap);
             tabPage8.Controls.Add(cbxCpuOffloadAsync);
             tabPage8.Controls.Add(nudBlocksToSwap);
             tabPage8.Controls.Add(label55);
@@ -2553,10 +2557,20 @@ namespace Kohya_lora_trainer
             tabPage8.Text = "DiT";
             tabPage8.UseVisualStyleBackColor = true;
             // 
+            // cbxUseInt8ForBackward
+            // 
+            cbxUseInt8ForBackward.AutoSize = true;
+            cbxUseInt8ForBackward.Location = new Point(337, 274);
+            cbxUseInt8ForBackward.Name = "cbxUseInt8ForBackward";
+            cbxUseInt8ForBackward.Size = new Size(260, 19);
+            cbxUseInt8ForBackward.TabIndex = 60;
+            cbxUseInt8ForBackward.Text = "INT8 ConvRot使用時、BackwardをINT8で計算";
+            cbxUseInt8ForBackward.UseVisualStyleBackColor = true;
+            // 
             // cbxUseInt8ForTe
             // 
             cbxUseInt8ForTe.AutoSize = true;
-            cbxUseInt8ForTe.Location = new Point(334, 228);
+            cbxUseInt8ForTe.Location = new Point(337, 249);
             cbxUseInt8ForTe.Name = "cbxUseInt8ForTe";
             cbxUseInt8ForTe.Size = new Size(241, 19);
             cbxUseInt8ForTe.TabIndex = 60;
@@ -2566,7 +2580,7 @@ namespace Kohya_lora_trainer
             // cbxUseInt8ForDit
             // 
             cbxUseInt8ForDit.AutoSize = true;
-            cbxUseInt8ForDit.Location = new Point(335, 203);
+            cbxUseInt8ForDit.Location = new Point(338, 224);
             cbxUseInt8ForDit.Name = "cbxUseInt8ForDit";
             cbxUseInt8ForDit.Size = new Size(246, 19);
             cbxUseInt8ForDit.TabIndex = 60;
@@ -2631,16 +2645,36 @@ namespace Kohya_lora_trainer
             // label63
             // 
             label63.AutoSize = true;
-            label63.Location = new Point(298, 107);
+            label63.Location = new Point(301, 128);
             label63.Name = "label63";
             label63.Size = new Size(106, 15);
             label63.TabIndex = 9;
             label63.Text = "Timestep Sampling";
             // 
+            // cbxUsePinnedMemoryForBlockSwap
+            // 
+            cbxUsePinnedMemoryForBlockSwap.AutoSize = true;
+            cbxUsePinnedMemoryForBlockSwap.Location = new Point(340, 100);
+            cbxUsePinnedMemoryForBlockSwap.Name = "cbxUsePinnedMemoryForBlockSwap";
+            cbxUsePinnedMemoryForBlockSwap.Size = new Size(223, 19);
+            cbxUsePinnedMemoryForBlockSwap.TabIndex = 5;
+            cbxUsePinnedMemoryForBlockSwap.Text = "ブロックスワップにpinned_memoryを使用";
+            cbxUsePinnedMemoryForBlockSwap.UseVisualStyleBackColor = true;
+            // 
+            // cbxUseH2DBlockSwap
+            // 
+            cbxUseH2DBlockSwap.AutoSize = true;
+            cbxUseH2DBlockSwap.Location = new Point(340, 79);
+            cbxUseH2DBlockSwap.Name = "cbxUseH2DBlockSwap";
+            cbxUseH2DBlockSwap.Size = new Size(237, 19);
+            cbxUseH2DBlockSwap.TabIndex = 5;
+            cbxUseH2DBlockSwap.Text = "Host to Deviceのみのブロックスワップを使用";
+            cbxUseH2DBlockSwap.UseVisualStyleBackColor = true;
+            // 
             // label55
             // 
             label55.AutoSize = true;
-            label55.Location = new Point(334, 33);
+            label55.Location = new Point(334, 19);
             label55.Name = "label55";
             label55.Size = new Size(115, 15);
             label55.TabIndex = 1;
@@ -2649,7 +2683,7 @@ namespace Kohya_lora_trainer
             // label61
             // 
             label61.AutoSize = true;
-            label61.Location = new Point(324, 135);
+            label61.Location = new Point(327, 156);
             label61.Name = "label61";
             label61.Size = new Size(80, 15);
             label61.TabIndex = 1;
@@ -2658,7 +2692,7 @@ namespace Kohya_lora_trainer
             // label60
             // 
             label60.AutoSize = true;
-            label60.Location = new Point(324, 164);
+            label60.Location = new Point(327, 185);
             label60.Name = "label60";
             label60.Size = new Size(82, 15);
             label60.TabIndex = 1;
@@ -2672,16 +2706,6 @@ namespace Kohya_lora_trainer
             label56.Size = new Size(205, 30);
             label56.TabIndex = 58;
             label56.Text = "#がつく項目は0を指定すると未指定にする\r\n##がつく項目は空欄で未指定にする";
-            // 
-            // cbxUseInt8ForBackward
-            // 
-            cbxUseInt8ForBackward.AutoSize = true;
-            cbxUseInt8ForBackward.Location = new Point(334, 253);
-            cbxUseInt8ForBackward.Name = "cbxUseInt8ForBackward";
-            cbxUseInt8ForBackward.Size = new Size(260, 19);
-            cbxUseInt8ForBackward.TabIndex = 60;
-            cbxUseInt8ForBackward.Text = "INT8 ConvRot使用時、BackwardをINT8で計算";
-            cbxUseInt8ForBackward.UseVisualStyleBackColor = true;
             // 
             // FormAdvanced
             // 
@@ -3009,5 +3033,7 @@ namespace Kohya_lora_trainer
         private CheckBox cbxUseInt8ForTe;
         private CheckBox cbxUseInt8ForDit;
         private CheckBox cbxUseInt8ForBackward;
+        private CheckBox cbxUsePinnedMemoryForBlockSwap;
+        private CheckBox cbxUseH2DBlockSwap;
     }
 }

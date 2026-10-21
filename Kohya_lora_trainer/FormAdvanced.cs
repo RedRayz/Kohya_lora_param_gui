@@ -499,6 +499,8 @@ namespace Kohya_lora_trainer
             para.UseInt8ForTe = cbxUseInt8ForTe.Checked;
             para.TextEncoderPath = lblTextEncoderPath.Text;
             para.UseInt8ForBackward = cbxUseInt8ForBackward.Checked;
+            para.UseH2DBlockSwap = cbxUseH2DBlockSwap.Checked;
+            para.UsePinnedMemoryForBlockSwap = cbxUsePinnedMemoryForBlockSwap.Checked;
             Close();
         }
 
@@ -654,6 +656,9 @@ namespace Kohya_lora_trainer
             cbxUseInt8ForDit.Checked = para.UseInt8ForDit;
             cbxUseInt8ForTe.Checked = para.UseInt8ForTe;
             cbxUseInt8ForBackward.Checked = para.UseInt8ForBackward;
+
+            cbxUseH2DBlockSwap.Checked = para.UseH2DBlockSwap;
+            cbxUsePinnedMemoryForBlockSwap.Checked = para.UsePinnedMemoryForBlockSwap;
 
             tbxLLMAdapterLR.Text = para.LLMAdapterLR < 0f ? string.Empty : para.LLMAdapterLR.ToString("g");
             tbxSelfAttnLR.Text = para.SelfAttnLR < 0f ? string.Empty : para.SelfAttnLR.ToString("g");
