@@ -111,7 +111,7 @@ namespace Kohya_lora_trainer
         public string DitPath = string.Empty, Qwen3Path = string.Empty, TextEncoderPath = string.Empty;
 
         //Anima
-        public bool DisableVAECache = true, CpuOffloadAsync = false, ConvertVaeTwoD = false;
+        public bool DisableVAECache = true, CpuOffloadAsync = false, ConvertVaeTwoD = true;
         public float LLMAdapterLR = 0f;
         public float SelfAttnLR = -1f, CrossAttnLR = -1f, MlpLR = -1f;
 
