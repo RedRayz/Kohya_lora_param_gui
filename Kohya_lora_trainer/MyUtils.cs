@@ -736,6 +736,20 @@ namespace Kohya_lora_trainer
                             sb.Append(" --unsloth_offload_checkpointing");
                         }
 
+                        if (para.BlocksToSwap > 0)
+                        {
+                            if (para.UseH2DBlockSwap)
+                            {
+                                sb.Append(" --block_swap_h2d_only");
+                            }
+
+                            if (para.UsePinnedMemoryForBlockSwap)
+                            {
+                                sb.Append(" --use_pinned_memory_for_block_swap");
+                            }
+                        }
+
+
 
 
                         sb.Append(" --timestep_sampling \"").Append(para.TimestepSamplingEnum.ToString().ToLower()).Append('"');

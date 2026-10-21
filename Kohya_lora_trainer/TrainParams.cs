@@ -102,15 +102,16 @@ namespace Kohya_lora_trainer
         public string CustomCommands = string.Empty, AdditionalArgs = string.Empty, AdditionalNetworkArgs = string.Empty, CustomOptName = string.Empty, CustomOptArgs = string.Empty;
 
         //Diffusion Transformer関連
-        public decimal Sigmoidscale = 1m, DiscreteFlowShift = 3m, GuidanceScale = 0, MaxTokensT5 = 512, BlocksToSwap = 0;
+        public decimal Sigmoidscale = 1m, DiscreteFlowShift = 1m, GuidanceScale = 0, MaxTokensT5 = 512, BlocksToSwap = 0;
         public ModelPrediction ModelPredictionType;
         public TimestepSampling TimestepSamplingEnum = TimestepSampling.Sigmoid;
         public TrainBlock TrainBlockType;
         public bool SplitMode = false, ApplyT5AttnMask = false, UseInt8ForDit = false, UseInt8ForTe = false, UseInt8ForBackward = false;
+        public bool UseH2DBlockSwap = false, UsePinnedMemoryForBlockSwap = false;
         public string DitPath = string.Empty, Qwen3Path = string.Empty, TextEncoderPath = string.Empty;
 
         //Anima
-        public bool DisableVAECache = true, CpuOffloadAsync = false, ConvertVaeTwoD = false;
+        public bool DisableVAECache = true, CpuOffloadAsync = false, ConvertVaeTwoD = true;
         public float LLMAdapterLR = 0f;
         public float SelfAttnLR = -1f, CrossAttnLR = -1f, MlpLR = -1f;
 
