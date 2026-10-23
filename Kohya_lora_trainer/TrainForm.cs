@@ -83,8 +83,16 @@ namespace Kohya_lora_trainer
 
         private void TrainExited(object? sender, EventArgs e)
         {
+            bool failedWithNonZeroExit = false;
+            Form1.TrainingClosedWithNonZeroExit = false;
             if (process != null)
             {
+                if (process.HasExited && process.ExitCode != 0)
+                {
+                    failedWithNonZeroExit = true;
+                    Form1.TrainingClosedWithNonZeroExit = true;
+                }
+
                 process.Dispose();
                 process = null;
                 btnStop.Enabled = false;
@@ -120,11 +128,15 @@ namespace Kohya_lora_trainer
                 {
                     BatchProcess.LogText += "\r\n出力物がないためエラー落ちの可能性あり。";
                 }
+                else if(failedWithNonZeroExit)
+                {
+                    BatchProcess.LogText += "\r\nエラー落ちかユーザーによる強制停止。";
+                }
                 else
                 {
                     BatchProcess.LogText += "\r\n学習は正常に終了。";
                 }
-                BatchProcess.LogText += "\r\n\r\n";
+                    BatchProcess.LogText += "\r\n\r\n";
             }
 
 
@@ -135,6 +147,12 @@ namespace Kohya_lora_trainer
                 {
                     BatchProcess.FailCount++;
                 }
+
+                if (failedWithNonZeroExit)
+                {
+                    BatchProcess.CountTrainingCrashed++;
+                }
+
                 Close();
                 return;
             }

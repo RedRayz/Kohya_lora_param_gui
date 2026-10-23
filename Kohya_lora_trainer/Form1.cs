@@ -28,6 +28,7 @@ namespace Kohya_lora_trainer
         internal static string? ScriptPath = string.Empty;
         private string? LastOpenPresetPath = string.Empty;
         private bool IsReady = false;
+        internal static bool TrainingClosedWithNonZeroExit = false;
 
         private bool PrevCustomCmdActiveFlag = false, PrevAddArgActiveFlag = false, PrevCustomOptActiveFlag = false;
         private bool LogGenerated = true;
@@ -562,6 +563,7 @@ namespace Kohya_lora_trainer
                 MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            TrainingClosedWithNonZeroExit = false;
             LogGenerated = true;
             string str = string.IsNullOrEmpty(ScriptPath) ? Constants.CurrentSdScriptsPath : ScriptPath + "\\";
 
@@ -586,6 +588,7 @@ namespace Kohya_lora_trainer
                 BatchProcess.SkippedCount = 0;
                 BatchProcess.CompletedCount = 0;
                 BatchProcess.FailCount = 0;
+                BatchProcess.CountTrainingCrashed = 0;
                 LogGenerated = !BatchProcess.LogResultText;
                 BatchProcess.LogText += "開始時刻: " + DateTime.Now.ToString() + "\r\n";
 
@@ -705,7 +708,7 @@ namespace Kohya_lora_trainer
                 else
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.Append("バッチ処理が終了しました。\n").Append(BatchProcess.CompletedCount).Append("件が完了し");
+                    sb.Append("バッチ処理が終了しました。\n").Append(BatchProcess.CompletedCount).Append("件が終了し");
                     if (BatchProcess.SkippedCount > 0)
                     {
                         sb.Append("、").Append(BatchProcess.SkippedCount).Append("件がスキップされました。");
@@ -715,9 +718,14 @@ namespace Kohya_lora_trainer
                         sb.Append("ました。");
                     }
 
+                    if (BatchProcess.CountTrainingCrashed > 0)
+                    {
+                        sb.Append("\n終了したものの内").Append(BatchProcess.CountTrainingCrashed).Append("件がエラーで失敗したか手動で停止されました。");
+                    }
+
                     if (BatchProcess.FailCount > 0)
                     {
-                        sb.Append("\n完了したものの内").Append(BatchProcess.FailCount).Append("件が失敗した可能性があります。");
+                        sb.Append("\n終了したものの内").Append(BatchProcess.FailCount).Append("件が失敗した可能性があります。");
                     }
 
                     sb.Append("\nもう一度バッチ処理をする場合はバッチ処理ウィンドウを開いて反映ボタンを押してください。");
@@ -750,7 +758,11 @@ namespace Kohya_lora_trainer
             {
                 StringBuilder sb = new StringBuilder();
                 bool failed = !File.Exists(para.OutputPath + "\\" + para.OutputName + ".safetensors") && string.IsNullOrWhiteSpace(para.CustomCommands);
-                if (failed)
+                if (TrainingClosedWithNonZeroExit)
+                {
+                    sb.Append("コマンド実行(学習)がクラッシュしたか、手動で強制終了されました。");
+                }
+                else if(failed)
                 {
                     sb.Append("コマンド実行(学習)が終了しましたが失敗した可能性があります。");
                 }
