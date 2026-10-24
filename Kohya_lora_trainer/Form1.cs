@@ -937,7 +937,7 @@ namespace Kohya_lora_trainer
             {
                 if (showMsg)
                 {
-                    MessageBox.Show("正則化画像フォルダが存在しないか不適切な文字があります。\r\n正しいパスを指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("正則化画像フォルダが存在しないか不適切な文字があります。\r\n正しいパスを指定してください。\r\n不要であれば空欄にしてください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 return false;
@@ -976,21 +976,21 @@ namespace Kohya_lora_trainer
             if (!File.Exists(para.ModelPath))
             {
                 if (showMsg)
-                    MessageBox.Show("学習元モデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("学習元モデルが見つかりません。\r\nファイルの存在と権限を確認してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (!Directory.Exists(para.TrainImagePath))
             {
                 if (showMsg)
-                    MessageBox.Show("教師画像フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("教師画像フォルダが見つかりません。\r\nフォルダの存在と権限を確認してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (!string.IsNullOrEmpty(para.RegImagePath) && !Directory.Exists(para.RegImagePath))
             {
                 if (showMsg)
-                    MessageBox.Show("正則化画像フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("正則化画像フォルダが見つかりません。\r\n不要であれば空欄にしてください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -1004,13 +1004,13 @@ namespace Kohya_lora_trainer
             if (!string.IsNullOrEmpty(para.TensorBoardLogPath) && !Directory.Exists(para.TensorBoardLogPath))
             {
                 if (showMsg)
-                    MessageBox.Show("TensorBoard用ログフォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("TensorBoard用ログフォルダが見つかりません。\r\nフォルダの存在と権限を確認してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (showMsg && (HaveNonAscillInImageFolder || HaveNonAscillInModelPath || HaveNonAscillInOutputName || HaveNonAscillInRegFolder || HaveNonAscillInOutputPath))
             {
-                DialogResult res = MessageBox.Show("パスに日本語などのマルチバイト文字または空白文字が含まれています。\n不具合/エラーの原因となるため、それらの文字の使用は推奨しません。\n続けてもよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult res = MessageBox.Show("パスに日本語などのマルチバイト文字または空白文字が含まれています。\r\n不具合/エラーの原因となるため、それらの文字の使用は推奨しません。\n続けてもよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res != DialogResult.Yes)
                     return false;
             }
@@ -1018,14 +1018,14 @@ namespace Kohya_lora_trainer
             if (!string.IsNullOrEmpty(para.LoraModelPath) && !File.Exists(para.LoraModelPath))
             {
                 if (showMsg)
-                    MessageBox.Show("追加学習するLoRAモデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("追加学習するLoRAモデルが見つかりません。\r\n不要であれば詳細設定>パスにて「クリア」してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (!string.IsNullOrEmpty(para.VAEPath) && !File.Exists(para.VAEPath))
             {
                 if (showMsg)
-                    MessageBox.Show("VAEが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("VAEが見つかりません。\r\nファイルの存在と権限を確認してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -1063,7 +1063,7 @@ namespace Kohya_lora_trainer
                 if (!File.Exists(para.TextEncoderPath))
                 {
                     if (showMsg)
-                        MessageBox.Show("AnimaはText Encoderが必須ですが、ファイルが見つかりません(または未指定)。\r\n詳細設定->パスにて正しいファイルを指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("MOSS-ImageはText Encoderが必須ですが、ファイルが見つかりません(または未指定)。\r\n詳細設定->パスにて正しいファイルを指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
