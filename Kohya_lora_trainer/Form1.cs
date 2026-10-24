@@ -1801,7 +1801,7 @@ namespace Kohya_lora_trainer
 
         private void 終了ToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            Application.Exit();
+            Close();
         }
 
         private void プリセットを開くToolStripMenuItem_Click(object sender, EventArgs e)
