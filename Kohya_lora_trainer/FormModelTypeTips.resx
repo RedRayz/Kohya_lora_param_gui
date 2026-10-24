@@ -126,6 +126,7 @@ Anima:
 - Animaは512pxであれば8GB未満で済む
 - 1024px学習かつVRAM8GB以下はblock swap必須
 MOSS-Image:
-- MOSS-ImageはVRAM10GB以上必要</value>
+- MOSS-ImageはVRAM10GB以上必要
+- 計算がAnimaの約2.5倍遅い</value>
   </data>
 </root>
