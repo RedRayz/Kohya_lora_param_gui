@@ -20,6 +20,7 @@ namespace Kohya_lora_trainer
         public static string LogText = string.Empty;
         public static bool ShuffleCaptionsBeforeTraining = false;
         public static int KeepTokensCount = 0;
+        public static int CountTrainingCrashed = 0;
 
         public static void LoadBatchPresetText(string text)
         {

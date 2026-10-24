@@ -113,6 +113,8 @@ namespace Kohya_lora_trainer
             tbxMlpLR = new TextBox();
             cbxConvertVaeTwoD = new CheckBox();
             nudSigmoidScale = new NumericUpDown();
+            cbxUsePinnedMemoryForBlockSwap = new CheckBox();
+            cbxUseH2DBlockSwap = new CheckBox();
             label6 = new Label();
             label9 = new Label();
             button1 = new Button();
@@ -249,8 +251,6 @@ namespace Kohya_lora_trainer
             label59 = new Label();
             label67 = new Label();
             label63 = new Label();
-            cbxUsePinnedMemoryForBlockSwap = new CheckBox();
-            cbxUseH2DBlockSwap = new CheckBox();
             label55 = new Label();
             label61 = new Label();
             label60 = new Label();
@@ -1173,6 +1173,28 @@ namespace Kohya_lora_trainer
             nudSigmoidScale.TabIndex = 0;
             toolTip1.SetToolTip(nudSigmoidScale, "1.5超過は非推奨(効率と品質が低下するリスク増加)\r\n1.0～1.3が推奨値\r\nSigmoid, Shift, Flux Shiftで利用する");
             nudSigmoidScale.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // cbxUsePinnedMemoryForBlockSwap
+            // 
+            cbxUsePinnedMemoryForBlockSwap.AutoSize = true;
+            cbxUsePinnedMemoryForBlockSwap.Location = new Point(340, 100);
+            cbxUsePinnedMemoryForBlockSwap.Name = "cbxUsePinnedMemoryForBlockSwap";
+            cbxUsePinnedMemoryForBlockSwap.Size = new Size(223, 19);
+            cbxUsePinnedMemoryForBlockSwap.TabIndex = 5;
+            cbxUsePinnedMemoryForBlockSwap.Text = "ブロックスワップにpinned_memoryを使用";
+            toolTip1.SetToolTip(cbxUsePinnedMemoryForBlockSwap, "ウェイトをpinned_memoryに設定することでBlock Swapを高速化\r\nNVIDIA専用");
+            cbxUsePinnedMemoryForBlockSwap.UseVisualStyleBackColor = true;
+            // 
+            // cbxUseH2DBlockSwap
+            // 
+            cbxUseH2DBlockSwap.AutoSize = true;
+            cbxUseH2DBlockSwap.Location = new Point(340, 79);
+            cbxUseH2DBlockSwap.Name = "cbxUseH2DBlockSwap";
+            cbxUseH2DBlockSwap.Size = new Size(237, 19);
+            cbxUseH2DBlockSwap.TabIndex = 5;
+            cbxUseH2DBlockSwap.Text = "Host to Deviceのみのブロックスワップを使用";
+            toolTip1.SetToolTip(cbxUseH2DBlockSwap, "Block Swapの待機時間を減らし速くする");
+            cbxUseH2DBlockSwap.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -2650,28 +2672,6 @@ namespace Kohya_lora_trainer
             label63.Size = new Size(106, 15);
             label63.TabIndex = 9;
             label63.Text = "Timestep Sampling";
-            // 
-            // cbxUsePinnedMemoryForBlockSwap
-            // 
-            cbxUsePinnedMemoryForBlockSwap.AutoSize = true;
-            cbxUsePinnedMemoryForBlockSwap.Location = new Point(340, 100);
-            cbxUsePinnedMemoryForBlockSwap.Name = "cbxUsePinnedMemoryForBlockSwap";
-            cbxUsePinnedMemoryForBlockSwap.Size = new Size(223, 19);
-            cbxUsePinnedMemoryForBlockSwap.TabIndex = 5;
-            cbxUsePinnedMemoryForBlockSwap.Text = "ブロックスワップにpinned_memoryを使用";
-            toolTip1.SetToolTip(cbxUsePinnedMemoryForBlockSwap, "ウェイトをpinned_memoryに設定することでBlock Swapを高速化");
-            cbxUsePinnedMemoryForBlockSwap.UseVisualStyleBackColor = true;
-            // 
-            // cbxUseH2DBlockSwap
-            // 
-            cbxUseH2DBlockSwap.AutoSize = true;
-            cbxUseH2DBlockSwap.Location = new Point(340, 79);
-            cbxUseH2DBlockSwap.Name = "cbxUseH2DBlockSwap";
-            cbxUseH2DBlockSwap.Size = new Size(237, 19);
-            cbxUseH2DBlockSwap.TabIndex = 5;
-            cbxUseH2DBlockSwap.Text = "Host to Deviceのみのブロックスワップを使用";
-            toolTip1.SetToolTip(cbxUseH2DBlockSwap, "Block Swapの待機時間を減らし速くする");
-            cbxUseH2DBlockSwap.UseVisualStyleBackColor = true;
             // 
             // label55
             // 

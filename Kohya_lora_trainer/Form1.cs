@@ -28,6 +28,7 @@ namespace Kohya_lora_trainer
         internal static string? ScriptPath = string.Empty;
         private string? LastOpenPresetPath = string.Empty;
         private bool IsReady = false;
+        internal static bool TrainingClosedWithNonZeroExit = false;
 
         private bool PrevCustomCmdActiveFlag = false, PrevAddArgActiveFlag = false, PrevCustomOptActiveFlag = false;
         private bool LogGenerated = true;
@@ -562,6 +563,7 @@ namespace Kohya_lora_trainer
                 MessageBox.Show("エラーが発生しました。アプリを再起動してください。", "Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            TrainingClosedWithNonZeroExit = false;
             LogGenerated = true;
             string str = string.IsNullOrEmpty(ScriptPath) ? Constants.CurrentSdScriptsPath : ScriptPath + "\\";
 
@@ -586,6 +588,7 @@ namespace Kohya_lora_trainer
                 BatchProcess.SkippedCount = 0;
                 BatchProcess.CompletedCount = 0;
                 BatchProcess.FailCount = 0;
+                BatchProcess.CountTrainingCrashed = 0;
                 LogGenerated = !BatchProcess.LogResultText;
                 BatchProcess.LogText += "開始時刻: " + DateTime.Now.ToString() + "\r\n";
 
@@ -705,7 +708,7 @@ namespace Kohya_lora_trainer
                 else
                 {
                     StringBuilder sb = new StringBuilder();
-                    sb.Append("バッチ処理が終了しました。\n").Append(BatchProcess.CompletedCount).Append("件が完了し");
+                    sb.Append("バッチ処理が終了しました。\n").Append(BatchProcess.CompletedCount).Append("件が終了し");
                     if (BatchProcess.SkippedCount > 0)
                     {
                         sb.Append("、").Append(BatchProcess.SkippedCount).Append("件がスキップされました。");
@@ -715,9 +718,14 @@ namespace Kohya_lora_trainer
                         sb.Append("ました。");
                     }
 
+                    if (BatchProcess.CountTrainingCrashed > 0)
+                    {
+                        sb.Append("\n終了したものの内").Append(BatchProcess.CountTrainingCrashed).Append("件がエラーで失敗したか手動で停止されました。");
+                    }
+
                     if (BatchProcess.FailCount > 0)
                     {
-                        sb.Append("\n完了したものの内").Append(BatchProcess.FailCount).Append("件が失敗した可能性があります。");
+                        sb.Append("\n終了したものの内").Append(BatchProcess.FailCount).Append("件が失敗した可能性があります。");
                     }
 
                     sb.Append("\nもう一度バッチ処理をする場合はバッチ処理ウィンドウを開いて反映ボタンを押してください。");
@@ -750,7 +758,11 @@ namespace Kohya_lora_trainer
             {
                 StringBuilder sb = new StringBuilder();
                 bool failed = !File.Exists(para.OutputPath + "\\" + para.OutputName + ".safetensors") && string.IsNullOrWhiteSpace(para.CustomCommands);
-                if (failed)
+                if (TrainingClosedWithNonZeroExit)
+                {
+                    sb.Append("コマンド実行(学習)がクラッシュしたか、手動で強制終了されました。");
+                }
+                else if(failed)
                 {
                     sb.Append("コマンド実行(学習)が終了しましたが失敗した可能性があります。");
                 }
@@ -925,7 +937,7 @@ namespace Kohya_lora_trainer
             {
                 if (showMsg)
                 {
-                    MessageBox.Show("正則化画像フォルダが存在しないか不適切な文字があります。\r\n正しいパスを指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("正則化画像フォルダが存在しないか不適切な文字があります。\r\n正しいパスを指定してください。\r\n不要であれば空欄にしてください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
                 return false;
@@ -964,21 +976,21 @@ namespace Kohya_lora_trainer
             if (!File.Exists(para.ModelPath))
             {
                 if (showMsg)
-                    MessageBox.Show("学習元モデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("学習元モデルが見つかりません。\r\nファイルの存在と権限を確認してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (!Directory.Exists(para.TrainImagePath))
             {
                 if (showMsg)
-                    MessageBox.Show("教師画像フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("教師画像フォルダが見つかりません。\r\nフォルダの存在と権限を確認してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (!string.IsNullOrEmpty(para.RegImagePath) && !Directory.Exists(para.RegImagePath))
             {
                 if (showMsg)
-                    MessageBox.Show("正則化画像フォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("正則化画像フォルダが見つかりません。\r\n不要であれば空欄にしてください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -992,13 +1004,13 @@ namespace Kohya_lora_trainer
             if (!string.IsNullOrEmpty(para.TensorBoardLogPath) && !Directory.Exists(para.TensorBoardLogPath))
             {
                 if (showMsg)
-                    MessageBox.Show("TensorBoard用ログフォルダが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("TensorBoard用ログフォルダが見つかりません。\r\nフォルダの存在と権限を確認してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (showMsg && (HaveNonAscillInImageFolder || HaveNonAscillInModelPath || HaveNonAscillInOutputName || HaveNonAscillInRegFolder || HaveNonAscillInOutputPath))
             {
-                DialogResult res = MessageBox.Show("パスに日本語などのマルチバイト文字または空白文字が含まれています。\n不具合/エラーの原因となるため、それらの文字の使用は推奨しません。\n続けてもよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult res = MessageBox.Show("パスに日本語などのマルチバイト文字または空白文字が含まれています。\r\n不具合/エラーの原因となるため、それらの文字の使用は推奨しません。\n続けてもよろしいですか。", "確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res != DialogResult.Yes)
                     return false;
             }
@@ -1006,14 +1018,14 @@ namespace Kohya_lora_trainer
             if (!string.IsNullOrEmpty(para.LoraModelPath) && !File.Exists(para.LoraModelPath))
             {
                 if (showMsg)
-                    MessageBox.Show("追加学習するLoRAモデルが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("追加学習するLoRAモデルが見つかりません。\r\n不要であれば詳細設定>パスにて「クリア」してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             if (!string.IsNullOrEmpty(para.VAEPath) && !File.Exists(para.VAEPath))
             {
                 if (showMsg)
-                    MessageBox.Show("VAEが見つかりません。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("VAEが見つかりません。\r\nファイルの存在と権限を確認してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -1051,7 +1063,7 @@ namespace Kohya_lora_trainer
                 if (!File.Exists(para.TextEncoderPath))
                 {
                     if (showMsg)
-                        MessageBox.Show("AnimaはText Encoderが必須ですが、ファイルが見つかりません(または未指定)。\r\n詳細設定->パスにて正しいファイルを指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("MOSS-ImageはText Encoderが必須ですが、ファイルが見つかりません(または未指定)。\r\n詳細設定->パスにて正しいファイルを指定してください。", "Note", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
@@ -1789,7 +1801,7 @@ namespace Kohya_lora_trainer
 
         private void 終了ToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            Application.Exit();
+            Close();
         }
 
         private void プリセットを開くToolStripMenuItem_Click(object sender, EventArgs e)
