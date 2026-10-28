@@ -750,34 +750,33 @@ namespace Kohya_lora_trainer
                         }
 
 
-
-
-                        sb.Append(" --timestep_sampling \"").Append(para.TimestepSamplingEnum.ToString().ToLower()).Append('"');
-
-                        //ShiftとFlux ShiftはSigmoidにシフト式を適用したもの
-                        switch (para.TimestepSamplingEnum)
+                        if(para.TimestepSamplingEnum != TimestepSampling.None)
                         {
-                            case TimestepSampling.Sigma:
-                                {
-                                    sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.####"));
-                                }
-                                break;
-                            case TimestepSampling.Shift:
-                                {
-                                    sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.####"));
-                                    sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.####"));
-                                }
-                                break;
-                            case TimestepSampling.Sigmoid:
-                            case TimestepSampling.Flux_Shift:
-                                {
-                                    sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.####"));
-                                }
-                                break;
-                            default:
-                                break;
+                            sb.Append(" --timestep_sampling \"").Append(para.TimestepSamplingEnum.ToString().ToLower()).Append('"');
+                            //ShiftとFlux ShiftはSigmoidにシフト式を適用したもの
+                            switch (para.TimestepSamplingEnum)
+                            {
+                                case TimestepSampling.Sigma:
+                                    {
+                                        sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.####"));
+                                    }
+                                    break;
+                                case TimestepSampling.Shift:
+                                    {
+                                        sb.Append(" --discrete_flow_shift ").Append(para.DiscreteFlowShift.ToString("0.####"));
+                                        sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.####"));
+                                    }
+                                    break;
+                                case TimestepSampling.Sigmoid:
+                                case TimestepSampling.Flux_Shift:
+                                    {
+                                        sb.Append(" --sigmoid_scale ").Append(para.Sigmoidscale.ToString("0.####"));
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
-
 
                     }
                     break;

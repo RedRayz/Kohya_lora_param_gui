@@ -1119,12 +1119,12 @@ namespace Kohya_lora_trainer
             // 
             cbxTimestepSampling.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxTimestepSampling.FormattingEnabled = true;
-            cbxTimestepSampling.Items.AddRange(new object[] { "Sigma", "Uniform(非推奨)", "Sigmoid", "Shift", "Flux Shift(非推奨)" });
+            cbxTimestepSampling.Items.AddRange(new object[] { "Sigma", "Uniform(非推奨)", "Sigmoid", "Shift", "Flux Shift(非推奨)", "未指定" });
             cbxTimestepSampling.Location = new Point(415, 125);
             cbxTimestepSampling.Name = "cbxTimestepSampling";
             cbxTimestepSampling.Size = new Size(143, 23);
             cbxTimestepSampling.TabIndex = 8;
-            toolTip1.SetToolTip(cbxTimestepSampling, "SigmoidまたはShiftを推奨\r\nUniformは効率低下・品質低下のリスク大\r\nFlux Shiftは名前の通りFLUX.1向け");
+            toolTip1.SetToolTip(cbxTimestepSampling, "SigmoidまたはShiftを推奨\r\nUniformは効率低下・品質低下のリスク大\r\nFlux Shiftは名前の通りFLUX.1向け\r\n「未指定」は追加の引数で任意の方法を指定するための選択");
             // 
             // tbxSelfAttnLR
             // 
