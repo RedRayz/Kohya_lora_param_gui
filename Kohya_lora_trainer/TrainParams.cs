@@ -613,7 +613,8 @@ namespace Kohya_lora_trainer
         Uniform,
         Sigmoid,
         Shift,
-        Flux_Shift
+        Flux_Shift,
+        None
     }
 
     public enum TrainBlock
